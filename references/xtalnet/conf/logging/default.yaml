@@ -1,0 +1,23 @@
+# log frequency
+val_check_interval: 5
+progress_bar_refresh_rate: 1
+
+wandb:
+  name: ${expname}
+  project: xtalnet
+  entity: null
+  log_model: False
+  mode: 'offline'
+  group: ${expname}
+  save_dir: ${oc.env:WABDB_DIR}/${expname}
+
+csv:
+  name: ${expname}
+
+wandb_watch:
+  log: 'all'
+  log_freq: 500
+
+lr_monitor:
+  logging_interval: "step"
+  log_momentum: False

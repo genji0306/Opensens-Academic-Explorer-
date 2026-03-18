@@ -1,0 +1,15 @@
+_target_: xtalnet.pl_modules.ccsg_module.CSPDiffusion
+time_dim: 256
+latent_dim: 512
+cost_coord: 1.
+cost_lattice: 1.
+timesteps: 1000
+pretrained: ${data.pretrained}
+freeze_pxrd_encoder: true
+
+
+defaults:
+  - crystal_encoder: ccsg_crystal
+  - beta_scheduler: cosine
+  - sigma_scheduler: wrapped
+  - pxrd_encoder: bert

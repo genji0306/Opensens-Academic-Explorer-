@@ -1,0 +1,31 @@
+{
+  "protocol_id": "verification",
+  "stage_index": 2,
+  "stage_name": "Score candidates",
+  "results": {
+    "stage_results": [
+      {
+        "status": "ok",
+        "catalog_path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/crystal_patterns/pattern_catalog_v000.json",
+        "stage": "Build crystal patterns",
+        "elapsed_s": 1.25
+      },
+      {
+        "status": "ok",
+        "synth_dir": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/synthetic/iteration_000",
+        "stage": "Generate structures",
+        "elapsed_s": 3.15
+      },
+      {
+        "status": "ok",
+        "score": 0.7062,
+        "report_path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/refinements/iteration_000.json",
+        "stage": "Score candidates",
+        "elapsed_s": 5.53
+      }
+    ]
+  },
+  "params": {
+    "target_pressure_GPa": 200.0
+  }
+}

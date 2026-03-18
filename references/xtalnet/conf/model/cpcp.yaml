@@ -1,0 +1,7 @@
+_target_: xtalnet.pl_modules.cpcp_module.CPCPModule
+latent_dim: 512
+freeze_pxrd_encoder: false
+
+defaults:
+  - pxrd_encoder: bert
+  - crystal_encoder: cpcp_crystal

@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CrystalPatternCard",
+  "type": "object",
+  "required": ["pattern_id", "crystal_system", "space_group", "lattice_params", "key_motifs", "typical_Tc_range_K", "source_compounds"],
+  "properties": {
+    "pattern_id": {"type": "string", "description": "Unique identifier e.g. cuprate-layered-001"},
+    "crystal_system": {"type": "string", "enum": ["triclinic","monoclinic","orthorhombic","tetragonal","trigonal","hexagonal","cubic"]},
+    "space_group": {"type": "string"},
+    "lattice_params": {
+      "type": "object",
+      "properties": {
+        "a": {"type": "number"}, "b": {"type": "number"}, "c": {"type": "number"},
+        "alpha": {"type": "number", "default": 90}, "beta": {"type": "number", "default": 90}, "gamma": {"type": "number", "default": 90}
+      },
+      "required": ["a", "c"]
+    },
+    "key_motifs": {"type": "array", "items": {"type": "string"}},
+    "typical_Tc_range_K": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+    "dopant_sites": {"type": "array", "items": {"type": "string"}},
+    "electronic_features": {
+      "type": "object",
+      "properties": {
+        "d_band_filling": {"type": "number"},
+        "Fermi_surface": {"type": "string"},
+        "band_gap_eV": {"type": "number"},
+        "electron_phonon_lambda": {"type": "number"}
+      }
+    },
+    "source_compounds": {"type": "array", "items": {"type": "string"}},
+    "nemad_magnetic_class": {"type": "string", "enum": ["FM","AFM","NM","mixed"]},
+    "feature_vector": {"type": "array", "items": {"type": "number"}}
+  }
+}

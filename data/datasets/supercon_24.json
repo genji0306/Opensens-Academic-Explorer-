@@ -1,0 +1,74 @@
+[
+  {
+    "composition": "YBa2Cu3O7",
+    "Tc_K": 92,
+    "crystal_system": "orthorhombic",
+    "space_group": "Pmmm",
+    "lattice_a": 3.82,
+    "lattice_c": 11.68,
+    "family": "cuprate"
+  },
+  {
+    "composition": "MgB2",
+    "Tc_K": 39,
+    "crystal_system": "hexagonal",
+    "space_group": "P6/mmm",
+    "lattice_a": 3.086,
+    "lattice_c": 3.524,
+    "family": "mgb2-type"
+  },
+  {
+    "composition": "Nb3Sn",
+    "Tc_K": 18.3,
+    "crystal_system": "cubic",
+    "space_group": "Pm-3n",
+    "lattice_a": 5.29,
+    "lattice_c": 5.29,
+    "family": "a15"
+  },
+  {
+    "composition": "LaFeAsO",
+    "Tc_K": 26,
+    "crystal_system": "tetragonal",
+    "space_group": "P4/nmm",
+    "lattice_a": 4.03,
+    "lattice_c": 8.74,
+    "family": "iron-pnictide"
+  },
+  {
+    "composition": "FeSe",
+    "Tc_K": 8,
+    "crystal_system": "tetragonal",
+    "space_group": "P4/nmm",
+    "lattice_a": 3.77,
+    "lattice_c": 5.52,
+    "family": "iron-chalcogenide"
+  },
+  {
+    "composition": "CeCoIn5",
+    "Tc_K": 2.3,
+    "crystal_system": "tetragonal",
+    "space_group": "P4/mmm",
+    "lattice_a": 4.62,
+    "lattice_c": 7.56,
+    "family": "heavy-fermion"
+  },
+  {
+    "composition": "La3Ni2O7",
+    "Tc_K": 80,
+    "crystal_system": "tetragonal",
+    "space_group": "I4/mmm",
+    "lattice_a": 3.83,
+    "lattice_c": 20.5,
+    "family": "nickelate"
+  },
+  {
+    "composition": "H3S",
+    "Tc_K": 203,
+    "crystal_system": "cubic",
+    "space_group": "Im-3m",
+    "lattice_a": 3.09,
+    "lattice_c": 3.09,
+    "family": "hydride"
+  }
+]

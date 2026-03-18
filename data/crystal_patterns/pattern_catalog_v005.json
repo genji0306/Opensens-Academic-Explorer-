@@ -1,0 +1,1809 @@
+{
+  "version": 5,
+  "num_patterns": 24,
+  "patterns": [
+    {
+      "pattern_id": "cuprate-layered-001",
+      "crystal_system": "tetragonal",
+      "space_group": "I4/mmm",
+      "lattice_params": {
+        "a": 3.78,
+        "c": 13.2,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "CuO2 planes",
+        "charge reservoir layers",
+        "apical oxygen"
+      ],
+      "typical_Tc_range_K": [
+        30,
+        135
+      ],
+      "source_compounds": [
+        "YBa2Cu3O7",
+        "La2-xSrxCuO4",
+        "Bi2Sr2CaCu2O8",
+        "HgBa2Ca2Cu3O8"
+      ],
+      "dopant_sites": [
+        "La/Sr",
+        "Ba/Y",
+        "Ca"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.85,
+        "Fermi_surface": "nested",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 2.0,
+        "pairing_mechanism": "bcs",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": null,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "AFM",
+      "feature_vector": [
+        51.2431,
+        2.5215,
+        294.0,
+        13.0,
+        22.6154,
+        3.3077,
+        0.0,
+        11.6923,
+        1.15699,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 11.5,
+        "B0_GPa": 120,
+        "B0_prime": 4.5,
+        "gruneisen_gamma": 2.0,
+        "eta_lambda": 3.3,
+        "thermal_gruneisen": 1.8,
+        "debye_T_K": 410,
+        "dTc_dP_exp_K_per_GPa": -1.5,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 30.0,
+        "Tc_ceiling_K": 200.0,
+        "notes": "Generic layered cuprate; dTc/dP ~ -1.5 K/GPa"
+      }
+    },
+    {
+      "pattern_id": "cuprate-layered-002",
+      "crystal_system": "orthorhombic",
+      "space_group": "Pmmm",
+      "lattice_params": {
+        "a": 3.82,
+        "c": 11.68,
+        "b": 3.89,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "CuO2 planes",
+        "CuO chains",
+        "BaO layers"
+      ],
+      "typical_Tc_range_K": [
+        89,
+        93
+      ],
+      "source_compounds": [
+        "YBa2Cu3O7-d"
+      ],
+      "dopant_sites": [
+        "O-chain"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.83,
+        "Fermi_surface": "nested",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 1.8,
+        "pairing_mechanism": "bcs",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": null,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "AFM",
+      "feature_vector": [
+        51.2431,
+        2.5215,
+        294.0,
+        13.0,
+        22.6154,
+        3.3077,
+        0.0,
+        11.6923,
+        1.15699,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 11.8,
+        "B0_GPa": 115,
+        "B0_prime": 4.5,
+        "gruneisen_gamma": 2.0,
+        "eta_lambda": 3.3,
+        "thermal_gruneisen": 1.8,
+        "debye_T_K": 400,
+        "dTc_dP_exp_K_per_GPa": -1.5,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 30.0,
+        "Tc_ceiling_K": 200.0,
+        "notes": "YBCO orthorhombic; chains give slight anisotropy"
+      }
+    },
+    {
+      "pattern_id": "iron-pnictide-001",
+      "crystal_system": "tetragonal",
+      "space_group": "I4/mmm",
+      "lattice_params": {
+        "a": 3.96,
+        "c": 13.0,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "FeAs layers",
+        "spacer layers",
+        "tetrahedral Fe coordination"
+      ],
+      "typical_Tc_range_K": [
+        26,
+        56
+      ],
+      "source_compounds": [
+        "LaFeAsO1-xFx",
+        "BaFe2As2",
+        "NaFeAs",
+        "LiFeAs"
+      ],
+      "dopant_sites": [
+        "La/Ce",
+        "O/F",
+        "Ba/K"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.6,
+        "Fermi_surface": "multi-band",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 0.6,
+        "pairing_mechanism": "bcs",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": null,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "AFM",
+      "feature_vector": [
+        57.134,
+        1.71,
+        124.0,
+        5.0,
+        24.8,
+        3.2,
+        0.2,
+        8.4,
+        1.60944,
+        0.2,
+        0.2
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 12.5,
+        "B0_GPa": 85,
+        "B0_prime": 4.0,
+        "gruneisen_gamma": 1.5,
+        "eta_lambda": 2.3,
+        "thermal_gruneisen": 1.4,
+        "debye_T_K": 300,
+        "dTc_dP_exp_K_per_GPa": 2.0,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 30.0,
+        "Tc_ceiling_K": 80.0,
+        "notes": "Iron pnictide 122; Tc increases under moderate P"
+      }
+    },
+    {
+      "pattern_id": "iron-chalcogenide-001",
+      "crystal_system": "tetragonal",
+      "space_group": "P4/nmm",
+      "lattice_params": {
+        "a": 3.77,
+        "c": 5.52,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "FeSe layers",
+        "van der Waals gap"
+      ],
+      "typical_Tc_range_K": [
+        8,
+        65
+      ],
+      "source_compounds": [
+        "FeSe",
+        "FeSe0.5Te0.5",
+        "FeSe/SrTiO3 monolayer"
+      ],
+      "dopant_sites": [
+        "Se/Te",
+        "intercalation"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.58,
+        "Fermi_surface": "multi-band",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 0.5,
+        "pairing_mechanism": "bcs",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": null,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "AFM",
+      "feature_vector": [
+        67.41,
+        2.19,
+        60.0,
+        2.0,
+        30.0,
+        4.0,
+        0.5,
+        12.0,
+        0.69315,
+        0.5,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 13.5,
+        "B0_GPa": 40,
+        "B0_prime": 5.0,
+        "gruneisen_gamma": 1.8,
+        "eta_lambda": -1.0,
+        "thermal_gruneisen": 1.5,
+        "debye_T_K": 230,
+        "dTc_dP_exp_K_per_GPa": 9.0,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 15.0,
+        "Tc_ceiling_K": 80.0,
+        "notes": "FeSe: negative eta \u2014 spin-fluctuation enhancement under P"
+      }
+    },
+    {
+      "pattern_id": "heavy-fermion-001",
+      "crystal_system": "tetragonal",
+      "space_group": "P4/mmm",
+      "lattice_params": {
+        "a": 4.62,
+        "c": 7.56,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "CeIn3 layers",
+        "CoIn2 layers",
+        "f-electron hybridization"
+      ],
+      "typical_Tc_range_K": [
+        0.5,
+        2.3
+      ],
+      "source_compounds": [
+        "CeCoIn5",
+        "CeRhIn5",
+        "CeIrIn5",
+        "PuCoGa5"
+      ],
+      "dopant_sites": [
+        "Ce/Pu",
+        "Co/Rh/Ir"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.45,
+        "Fermi_surface": "heavy",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 0.3,
+        "pairing_mechanism": "bcs",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": null,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "AFM",
+      "feature_vector": [
+        110.4329,
+        1.7,
+        330.0,
+        7.0,
+        47.1429,
+        5.0,
+        0.2857,
+        11.0,
+        0.79631,
+        0.28571,
+        0.14286
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 15.0,
+        "B0_GPa": 80,
+        "B0_prime": 4.5,
+        "gruneisen_gamma": 2.2,
+        "eta_lambda": 3.7,
+        "thermal_gruneisen": 2.0,
+        "debye_T_K": 180,
+        "dTc_dP_exp_K_per_GPa": null,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 10.0,
+        "Tc_ceiling_K": 10.0,
+        "notes": "Heavy fermion CeCoIn5; complex f-electron physics"
+      }
+    },
+    {
+      "pattern_id": "mgb2-type-001",
+      "crystal_system": "hexagonal",
+      "space_group": "P6/mmm",
+      "lattice_params": {
+        "a": 3.09,
+        "c": 3.52,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "graphene-like B layers",
+        "Mg intercalation",
+        "sigma bond phonons"
+      ],
+      "typical_Tc_range_K": [
+        39,
+        39
+      ],
+      "source_compounds": [
+        "MgB2"
+      ],
+      "dopant_sites": [
+        "Mg/Al",
+        "B/C"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.0,
+        "Fermi_surface": "two-gap",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 0.87,
+        "pairing_mechanism": "bcs",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": null,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        15.31,
+        1.7967,
+        22.0,
+        3.0,
+        7.3333,
+        2.3333,
+        0.0,
+        9.3333,
+        0.63651,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 8.8,
+        "B0_GPa": 150,
+        "B0_prime": 3.8,
+        "gruneisen_gamma": 2.3,
+        "eta_lambda": 3.9,
+        "thermal_gruneisen": 2.0,
+        "debye_T_K": 750,
+        "dTc_dP_exp_K_per_GPa": -1.6,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 40.0,
+        "Tc_ceiling_K": 80.0,
+        "notes": "MgB2; sigma-bond phonons harden rapidly under P"
+      }
+    },
+    {
+      "pattern_id": "a15-001",
+      "crystal_system": "cubic",
+      "space_group": "Pm-3n",
+      "lattice_params": {
+        "a": 5.29,
+        "c": 5.29,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "A15 chain structure",
+        "transition metal chains",
+        "high DOS at Ef"
+      ],
+      "typical_Tc_range_K": [
+        15,
+        23
+      ],
+      "source_compounds": [
+        "Nb3Sn",
+        "Nb3Ge",
+        "V3Si",
+        "Nb3Al"
+      ],
+      "dopant_sites": [
+        "Nb/V",
+        "Sn/Ge/Si"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.7,
+        "Fermi_surface": "chain-like",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 1.6,
+        "pairing_mechanism": "bcs",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": null,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        99.3575,
+        1.69,
+        173.0,
+        4.0,
+        43.25,
+        5.0,
+        0.0,
+        7.25,
+        0.56234,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 12.0,
+        "B0_GPa": 170,
+        "B0_prime": 4.2,
+        "gruneisen_gamma": 1.9,
+        "eta_lambda": 3.1,
+        "thermal_gruneisen": 1.7,
+        "debye_T_K": 350,
+        "dTc_dP_exp_K_per_GPa": -0.8,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 30.0,
+        "Tc_ceiling_K": 40.0,
+        "notes": "A15 Nb3Sn; stiff lattice, Tc decreases slowly with P"
+      }
+    },
+    {
+      "pattern_id": "hydride-001",
+      "crystal_system": "cubic",
+      "space_group": "Im-3m",
+      "lattice_params": {
+        "a": 3.54,
+        "c": 3.54,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "H3S clathrate cage",
+        "high-pressure stabilized",
+        "hydrogen sublattice"
+      ],
+      "typical_Tc_range_K": [
+        200,
+        288
+      ],
+      "source_compounds": [
+        "H3S",
+        "LaH10",
+        "YH6",
+        "CaH6"
+      ],
+      "dopant_sites": [
+        "La/Y/Ca",
+        "H content"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.0,
+        "Fermi_surface": "isotropic",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 2.2,
+        "pairing_mechanism": "bcs",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": null,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        8.7735,
+        2.295,
+        19.0,
+        4.0,
+        4.75,
+        1.5,
+        0.0,
+        4.75,
+        0.56234,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 4.0,
+        "B0_GPa": 160,
+        "B0_prime": 4.0,
+        "gruneisen_gamma": 2.5,
+        "eta_lambda": 1.5,
+        "thermal_gruneisen": 2.2,
+        "debye_T_K": 1500,
+        "dTc_dP_exp_K_per_GPa": null,
+        "P_min_GPa": 100.0,
+        "P_max_GPa": 300.0,
+        "Tc_ceiling_K": 300.0,
+        "notes": "H3S clathrate; only stable at extreme pressure"
+      }
+    },
+    {
+      "pattern_id": "nickelate-001",
+      "crystal_system": "tetragonal",
+      "space_group": "I4/mmm",
+      "lattice_params": {
+        "a": 3.92,
+        "c": 12.7,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "NiO2 planes",
+        "rare-earth spacer",
+        "infinite-layer analog"
+      ],
+      "typical_Tc_range_K": [
+        9,
+        80
+      ],
+      "source_compounds": [
+        "Nd0.8Sr0.2NiO2",
+        "La3Ni2O7",
+        "La4Ni3O10"
+      ],
+      "dopant_sites": [
+        "Nd/La",
+        "Sr doping",
+        "O stoichiometry"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.78,
+        "Fermi_surface": "cuprate-like",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 1.0,
+        "pairing_mechanism": "bcs",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": null,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "mixed",
+      "feature_vector": [
+        55.8935,
+        2.473,
+        99.6,
+        4.0,
+        24.9,
+        3.45,
+        0.45,
+        11.2,
+        1.16482,
+        0.45,
+        0.2
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 10.5,
+        "B0_GPa": 200,
+        "B0_prime": 4.0,
+        "gruneisen_gamma": 1.7,
+        "eta_lambda": 2.7,
+        "thermal_gruneisen": 1.5,
+        "debye_T_K": 380,
+        "dTc_dP_exp_K_per_GPa": 5.0,
+        "P_min_GPa": 10.0,
+        "P_max_GPa": 50.0,
+        "Tc_ceiling_K": 120.0,
+        "notes": "La3Ni2O7; SC onset at ~14 GPa"
+      }
+    },
+    {
+      "pattern_id": "chevrel-001",
+      "crystal_system": "trigonal",
+      "space_group": "R-3",
+      "lattice_params": {
+        "a": 6.54,
+        "c": 6.54,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "Mo6S8 clusters",
+        "intercalant cavities",
+        "cluster superconductivity"
+      ],
+      "typical_Tc_range_K": [
+        1,
+        15
+      ],
+      "source_compounds": [
+        "PbMo6S8",
+        "SnMo6S8",
+        "Cu1.8Mo6S8"
+      ],
+      "dopant_sites": [
+        "Pb/Sn/Cu intercalant"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.55,
+        "Fermi_surface": "cluster",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 1.2,
+        "pairing_mechanism": "bcs",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": null,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        69.2973,
+        2.3953,
+        462.0,
+        15.0,
+        30.8,
+        4.0,
+        0.0,
+        11.8667,
+        0.88231,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 16.0,
+        "B0_GPa": 90,
+        "B0_prime": 5.0,
+        "gruneisen_gamma": 1.6,
+        "eta_lambda": 2.5,
+        "thermal_gruneisen": 1.4,
+        "debye_T_K": 250,
+        "dTc_dP_exp_K_per_GPa": -0.5,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 20.0,
+        "Tc_ceiling_K": 20.0,
+        "notes": "Chevrel PbMo6S8; soft cluster lattice"
+      }
+    },
+    {
+      "pattern_id": "cuprate-multilayer-001",
+      "crystal_system": "tetragonal",
+      "space_group": "I4/mmm",
+      "lattice_params": {
+        "a": 3.81,
+        "c": 30.6,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "CuO2-planes",
+        "BiO-layers",
+        "SrO-layers",
+        "multi-layer-stacking"
+      ],
+      "typical_Tc_range_K": [
+        85,
+        133
+      ],
+      "source_compounds": [
+        "Bi2Sr2CaCu2O8",
+        "HgBa2Ca2Cu3O8",
+        "Tl2Ba2Ca2Cu3O10"
+      ],
+      "dopant_sites": [
+        "Ca/Sr",
+        "O stoichiometry"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.85,
+        "Fermi_surface": "nested",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 1.5,
+        "pairing_mechanism": "bcs",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": null,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "AFM",
+      "feature_vector": [
+        59.228,
+        2.5507,
+        384.0,
+        15.0,
+        25.6,
+        3.3333,
+        0.0,
+        12.4,
+        1.32176,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 11.2,
+        "B0_GPa": 125,
+        "B0_prime": 4.5,
+        "gruneisen_gamma": 2.0,
+        "eta_lambda": 3.3,
+        "thermal_gruneisen": 1.8,
+        "debye_T_K": 420,
+        "dTc_dP_exp_K_per_GPa": -1.2,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 30.0,
+        "Tc_ceiling_K": 200.0,
+        "notes": "Multi-layer cuprate; Hg-1223 has highest ambient Tc"
+      }
+    },
+    {
+      "pattern_id": "hydride-lah10-001",
+      "crystal_system": "cubic",
+      "space_group": "Fm-3m",
+      "lattice_params": {
+        "a": 5.1,
+        "c": 5.1,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "H-cage",
+        "La-center",
+        "clathrate",
+        "sodalite-like"
+      ],
+      "typical_Tc_range_K": [
+        240,
+        260
+      ],
+      "source_compounds": [
+        "LaH10"
+      ],
+      "dopant_sites": [
+        "La/Y/Ce",
+        "H content"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.0,
+        "Fermi_surface": "isotropic",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 2.5,
+        "pairing_mechanism": "bcs",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": null,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        13.5436,
+        2.1,
+        67.0,
+        11.0,
+        6.0909,
+        1.4545,
+        0.0,
+        1.1818,
+        0.30464,
+        0.0,
+        0.09091
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 5.5,
+        "B0_GPa": 180,
+        "B0_prime": 4.0,
+        "gruneisen_gamma": 2.5,
+        "eta_lambda": 1.5,
+        "thermal_gruneisen": 2.2,
+        "debye_T_K": 1600,
+        "dTc_dP_exp_K_per_GPa": null,
+        "P_min_GPa": 130.0,
+        "P_max_GPa": 250.0,
+        "Tc_ceiling_K": 300.0,
+        "notes": "LaH10 sodalite cage; requires >130 GPa"
+      }
+    },
+    {
+      "pattern_id": "kagome-001",
+      "crystal_system": "hexagonal",
+      "space_group": "P6/mmm",
+      "lattice_params": {
+        "a": 5.5,
+        "c": 9.31,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "V3Sb5 kagome net",
+        "van Hove singularity",
+        "charge density wave",
+        "sublattice frustration",
+        "flat band near Ef"
+      ],
+      "typical_Tc_range_K": [
+        0.9,
+        2.5
+      ],
+      "source_compounds": [
+        "CsV3Sb5",
+        "KV3Sb5",
+        "RbV3Sb5"
+      ],
+      "dopant_sites": [
+        "Cs/K/Rb",
+        "Sb/Sn/Bi",
+        "V/Ti/Nb"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.5,
+        "Fermi_surface": "kagome-flat-band",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 0.6,
+        "pairing_mechanism": "mixed",
+        "flat_band_width_eV": 0.02,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": 0.85,
+        "van_hove_distance_eV": 0.01,
+        "topological_index": null,
+        "dos_at_ef_states_eV": 5.0,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        99.4133,
+        1.77,
+        379.0,
+        9.0,
+        42.1111,
+        4.7778,
+        0.0,
+        10.1111,
+        0.93689,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 18.0,
+        "B0_GPa": 50,
+        "B0_prime": 5.0,
+        "gruneisen_gamma": 1.5,
+        "eta_lambda": 2.0,
+        "thermal_gruneisen": 1.3,
+        "debye_T_K": 250,
+        "dTc_dP_exp_K_per_GPa": 4.0,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 10.0,
+        "Tc_ceiling_K": 80.0,
+        "notes": "CsV3Sb5 kagome; Tc increases with P, CDW suppressed"
+      }
+    },
+    {
+      "pattern_id": "kagome-002",
+      "crystal_system": "hexagonal",
+      "space_group": "P6/mmm",
+      "lattice_params": {
+        "a": 5.47,
+        "c": 9.15,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "kagome net",
+        "Nb d-band",
+        "enhanced flat band",
+        "CDW competitor"
+      ],
+      "typical_Tc_range_K": [
+        1.0,
+        5.0
+      ],
+      "source_compounds": [
+        "CsNb3Sb5",
+        "RbNb3Bi5"
+      ],
+      "dopant_sites": [
+        "Cs/Rb",
+        "Nb/Ta",
+        "Sb/Bi"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.45,
+        "Fermi_surface": "kagome-flat-band",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 0.8,
+        "pairing_mechanism": "mixed",
+        "flat_band_width_eV": 0.015,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": 0.8,
+        "van_hove_distance_eV": 0.02,
+        "topological_index": null,
+        "dos_at_ef_states_eV": 6.0,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        113.4033,
+        1.76,
+        433.0,
+        9.0,
+        48.1111,
+        5.1111,
+        0.0,
+        10.1111,
+        0.93689,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 17.5,
+        "B0_GPa": 55,
+        "B0_prime": 5.0,
+        "gruneisen_gamma": 1.6,
+        "eta_lambda": 2.1,
+        "thermal_gruneisen": 1.4,
+        "debye_T_K": 260,
+        "dTc_dP_exp_K_per_GPa": 3.5,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 10.0,
+        "Tc_ceiling_K": 80.0,
+        "notes": "Nb-kagome variant; heavier d-electrons may enhance pairing"
+      }
+    },
+    {
+      "pattern_id": "ternary-hydride-001",
+      "crystal_system": "cubic",
+      "space_group": "Pm-3m",
+      "lattice_params": {
+        "a": 4.8,
+        "c": 4.8,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "H-cage clathrate",
+        "chemical pre-compression",
+        "light-element stabilizer",
+        "ambient-metastable H sublattice"
+      ],
+      "typical_Tc_range_K": [
+        50,
+        200
+      ],
+      "source_compounds": [
+        "LaBH8",
+        "CaBeH8",
+        "SrSiH8",
+        "BaSiH8"
+      ],
+      "dopant_sites": [
+        "La/Ca/Sr/Ba",
+        "B/Be/Si",
+        "H content"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.0,
+        "Fermi_surface": "isotropic",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 2.2,
+        "pairing_mechanism": "hydride_cage",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": null,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        15.7774,
+        2.074,
+        70.0,
+        10.0,
+        7.0,
+        1.6,
+        0.0,
+        2.4,
+        0.63903,
+        0.0,
+        0.1
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 6.0,
+        "B0_GPa": 100,
+        "B0_prime": 4.5,
+        "gruneisen_gamma": 2.3,
+        "eta_lambda": 2.0,
+        "thermal_gruneisen": 2.0,
+        "debye_T_K": 1200,
+        "dTc_dP_exp_K_per_GPa": null,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 50.0,
+        "Tc_ceiling_K": 350.0,
+        "notes": "Target: ternary hydrides at <10 GPa via strong chemical pre-compression"
+      }
+    },
+    {
+      "pattern_id": "ternary-hydride-002",
+      "crystal_system": "cubic",
+      "space_group": "Fm-3m",
+      "lattice_params": {
+        "a": 5.2,
+        "c": 5.2,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "sodalite H-cage",
+        "covalent B-H network",
+        "clathrate-like",
+        "electronegativity-driven pre-compression"
+      ],
+      "typical_Tc_range_K": [
+        80,
+        250
+      ],
+      "source_compounds": [
+        "YBH8",
+        "ScBH8",
+        "LaCH8"
+      ],
+      "dopant_sites": [
+        "Y/Sc/La",
+        "B/C/N",
+        "H stoichiometry"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.0,
+        "Fermi_surface": "isotropic",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 2.0,
+        "pairing_mechanism": "hydride_cage",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": null,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        10.7784,
+        2.086,
+        52.0,
+        10.0,
+        5.2,
+        1.5,
+        0.0,
+        2.4,
+        0.63903,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 5.5,
+        "B0_GPa": 120,
+        "B0_prime": 4.5,
+        "gruneisen_gamma": 2.4,
+        "eta_lambda": 1.8,
+        "thermal_gruneisen": 2.1,
+        "debye_T_K": 1400,
+        "dTc_dP_exp_K_per_GPa": null,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 80.0,
+        "Tc_ceiling_K": 280.0,
+        "notes": "Sodalite-type ternary hydride; B-H covalent cage aids stability"
+      }
+    },
+    {
+      "pattern_id": "infinite-layer-001",
+      "crystal_system": "tetragonal",
+      "space_group": "P4/mmm",
+      "lattice_params": {
+        "a": 3.92,
+        "c": 3.37,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "NiO2 square-planar planes",
+        "R-site charge reservoir",
+        "d^(9-delta) filling",
+        "cuprate-analog electronic structure"
+      ],
+      "typical_Tc_range_K": [
+        9,
+        30
+      ],
+      "source_compounds": [
+        "Nd0.8Sr0.2NiO2",
+        "La0.8Sr0.2NiO2",
+        "Pr0.8Sr0.2NiO2"
+      ],
+      "dopant_sites": [
+        "Nd/La/Pr",
+        "Sr/Ca doping level"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.82,
+        "Fermi_surface": "cuprate-like",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 1.2,
+        "pairing_mechanism": "spin_fluctuation",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": 450,
+        "nesting_strength": 0.82,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": 5.0,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "AFM",
+      "feature_vector": [
+        55.8935,
+        2.473,
+        99.6,
+        4.0,
+        24.9,
+        3.45,
+        0.45,
+        11.2,
+        1.16482,
+        0.45,
+        0.2
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 9.0,
+        "B0_GPa": 180,
+        "B0_prime": 4.0,
+        "gruneisen_gamma": 1.8,
+        "eta_lambda": 2.8,
+        "thermal_gruneisen": 1.6,
+        "debye_T_K": 350,
+        "dTc_dP_exp_K_per_GPa": 2.0,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 30.0,
+        "Tc_ceiling_K": 500.0,
+        "notes": "Infinite-layer nickelate; cuprate analog with 3d9 config"
+      }
+    },
+    {
+      "pattern_id": "topological-001",
+      "crystal_system": "trigonal",
+      "space_group": "R-3m",
+      "lattice_params": {
+        "a": 4.14,
+        "c": 28.6,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "topological surface states",
+        "Dirac cone at Gamma",
+        "bulk-boundary correspondence",
+        "strong spin-orbit coupling"
+      ],
+      "typical_Tc_range_K": [
+        0.5,
+        4.0
+      ],
+      "source_compounds": [
+        "Bi2Se3-Cux",
+        "Bi2Te3-Srx",
+        "FeTe0.55Se0.45"
+      ],
+      "dopant_sites": [
+        "Cu/Sr intercalant",
+        "Se/Te ratio"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.4,
+        "Fermi_surface": "topological-surface",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 0.9,
+        "pairing_mechanism": "spin_fluctuation",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": 350.0,
+        "nesting_strength": 0.75,
+        "van_hove_distance_eV": null,
+        "topological_index": 1,
+        "dos_at_ef_states_eV": 5.0,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        119.7433,
+        2.265,
+        297.0,
+        6.0,
+        49.5,
+        4.6667,
+        0.0,
+        14.8333,
+        1.0114,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 22.0,
+        "B0_GPa": 35,
+        "B0_prime": 5.5,
+        "gruneisen_gamma": 1.8,
+        "eta_lambda": 2.5,
+        "thermal_gruneisen": 1.5,
+        "debye_T_K": 160,
+        "dTc_dP_exp_K_per_GPa": 1.5,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 10.0,
+        "Tc_ceiling_K": 500.0,
+        "notes": "Topological SC with spin-fluctuation pairing; SOC + surface states"
+      }
+    },
+    {
+      "pattern_id": "2d-heterostructure-001",
+      "crystal_system": "hexagonal",
+      "space_group": "P6/mmm",
+      "lattice_params": {
+        "a": 2.46,
+        "c": 6.7,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "twisted bilayer",
+        "moire flat bands",
+        "van Hove proximity",
+        "correlated insulator neighbor",
+        "twist-angle tunable"
+      ],
+      "typical_Tc_range_K": [
+        1.0,
+        3.0
+      ],
+      "source_compounds": [
+        "TBLG-1.1deg",
+        "TBG-WSe2",
+        "TTG-1.6deg"
+      ],
+      "dopant_sites": [
+        "twist angle",
+        "dielectric environment",
+        "gate voltage"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.5,
+        "Fermi_surface": "moire-flat",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 1.0,
+        "pairing_mechanism": "flat_band",
+        "flat_band_width_eV": 0.003,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": 0.8,
+        "van_hove_distance_eV": 0.002,
+        "topological_index": null,
+        "dos_at_ef_states_eV": 10.0,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        2.7025,
+        0.51,
+        5.0,
+        4.0,
+        1.25,
+        0.5,
+        0.0,
+        3.25,
+        1.38629,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 8.8,
+        "B0_GPa": 30,
+        "B0_prime": 8.0,
+        "gruneisen_gamma": 1.0,
+        "eta_lambda": 1.5,
+        "thermal_gruneisen": 1.0,
+        "debye_T_K": 200,
+        "dTc_dP_exp_K_per_GPa": 0.5,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 5.0,
+        "Tc_ceiling_K": 500.0,
+        "notes": "Twisted bilayer graphene; ultra-flat bands at magic angle"
+      }
+    },
+    {
+      "pattern_id": "carbon-based-001",
+      "crystal_system": "cubic",
+      "space_group": "Fm-3m",
+      "lattice_params": {
+        "a": 14.04,
+        "c": 14.04,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "C60 cage",
+        "alkali intercalation",
+        "t1u LUMO band",
+        "Jahn-Teller phonons",
+        "molecular superconductor"
+      ],
+      "typical_Tc_range_K": [
+        18,
+        38
+      ],
+      "source_compounds": [
+        "Cs3C60",
+        "K3C60",
+        "Rb3C60"
+      ],
+      "dopant_sites": [
+        "Cs/K/Rb intercalant",
+        "C60 substitution"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.0,
+        "Fermi_surface": "molecular-t1u",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 0.9,
+        "pairing_mechanism": "flat_band",
+        "flat_band_width_eV": 0.04,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": 4.0,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        17.7667,
+        2.4662,
+        525.0,
+        63.0,
+        8.3333,
+        2.1905,
+        0.0,
+        13.381,
+        0.19144,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 12.0,
+        "B0_GPa": 20,
+        "B0_prime": 8.0,
+        "gruneisen_gamma": 2.0,
+        "eta_lambda": 3.0,
+        "thermal_gruneisen": 1.5,
+        "debye_T_K": 500,
+        "dTc_dP_exp_K_per_GPa": -0.3,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 30.0,
+        "Tc_ceiling_K": 60.0,
+        "notes": "Alkali-doped fullerides; Jahn-Teller + s-wave BCS"
+      }
+    },
+    {
+      "pattern_id": "carbon-based-002",
+      "crystal_system": "hexagonal",
+      "space_group": "P6/mmm",
+      "lattice_params": {
+        "a": 2.5,
+        "c": 5.4,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "graphite intercalation",
+        "alkali-earth donor layers",
+        "pi-band metallization",
+        "phonon-mediated"
+      ],
+      "typical_Tc_range_K": [
+        6,
+        12
+      ],
+      "source_compounds": [
+        "CaC6",
+        "YbC6",
+        "BaC6"
+      ],
+      "dopant_sites": [
+        "Ca/Yb/Ba intercalant",
+        "graphene layers"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.0,
+        "Fermi_surface": "pi-band",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 1.0,
+        "pairing_mechanism": "flat_band",
+        "flat_band_width_eV": 0.03,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": 5.0,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        16.02,
+        2.3286,
+        56.0,
+        7.0,
+        8.0,
+        2.2857,
+        0.0,
+        12.2857,
+        0.41012,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 10.0,
+        "B0_GPa": 40,
+        "B0_prime": 6.0,
+        "gruneisen_gamma": 1.8,
+        "eta_lambda": 2.8,
+        "thermal_gruneisen": 1.4,
+        "debye_T_K": 400,
+        "dTc_dP_exp_K_per_GPa": 0.5,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 20.0,
+        "Tc_ceiling_K": 500.0,
+        "notes": "Graphite intercalation with flat-band enhancement; pi-band + interlayer phonons"
+      }
+    },
+    {
+      "pattern_id": "engineered-cuprate-001",
+      "crystal_system": "tetragonal",
+      "space_group": "I4/mmm",
+      "lattice_params": {
+        "a": 3.84,
+        "c": 40.0,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "5+ CuO2 planes",
+        "optimized charge reservoir",
+        "interface-enhanced pairing",
+        "strain-tuned c/a ratio",
+        "Hg-based multilayer architecture"
+      ],
+      "typical_Tc_range_K": [
+        130,
+        180
+      ],
+      "source_compounds": [
+        "HgBa2Ca4Cu5O12+d",
+        "TlBa2Ca4Cu5O13"
+      ],
+      "dopant_sites": [
+        "Ca count",
+        "Hg/Tl reservoir",
+        "O stoichiometry",
+        "CuO2 layer count"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.84,
+        "Fermi_surface": "nested",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 2.2,
+        "pairing_mechanism": "spin_fluctuation",
+        "flat_band_width_eV": null,
+        "spin_fluctuation_T_K": 500,
+        "nesting_strength": 0.85,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": 4.5,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "AFM",
+      "feature_vector": [
+        47.7196,
+        2.44,
+        513.0,
+        24.0,
+        21.375,
+        3.25,
+        0.0,
+        11.2917,
+        1.31149,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 10.8,
+        "B0_GPa": 130,
+        "B0_prime": 4.5,
+        "gruneisen_gamma": 2.0,
+        "eta_lambda": 3.2,
+        "thermal_gruneisen": 1.8,
+        "debye_T_K": 430,
+        "dTc_dP_exp_K_per_GPa": -1.0,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 30.0,
+        "Tc_ceiling_K": 250.0,
+        "notes": "Engineered 5-layer cuprate; pushing beyond Hg-1223 record"
+      }
+    },
+    {
+      "pattern_id": "mof-sc-001",
+      "crystal_system": "hexagonal",
+      "space_group": "P6/mmm",
+      "lattice_params": {
+        "a": 8.76,
+        "c": 3.39,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "metal-organic framework",
+        "kagome-like Cu lattice",
+        "BHT organic linker",
+        "designed Fermi surface topology",
+        "excitonic pairing mediator"
+      ],
+      "typical_Tc_range_K": [
+        1.0,
+        30.0
+      ],
+      "source_compounds": [
+        "Cu3(BHT)2",
+        "Ni3(HITP)2",
+        "Fe3(THT)2"
+      ],
+      "dopant_sites": [
+        "Cu/Ni/Fe metal node",
+        "organic linker choice",
+        "guest molecules"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.5,
+        "Fermi_surface": "kagome-derived",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 0.4,
+        "pairing_mechanism": "excitonic",
+        "flat_band_width_eV": 0.05,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": null,
+        "van_hove_distance_eV": null,
+        "topological_index": null,
+        "dos_at_ef_states_eV": 3.0,
+        "exciton_energy_eV": 0.5,
+        "excitonic_coupling_V": 0.3
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        33.7447,
+        1.6567,
+        93.0,
+        6.0,
+        15.5,
+        2.5,
+        0.0,
+        7.8333,
+        1.24245,
+        0.0,
+        0.0
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 20.0,
+        "B0_GPa": 15,
+        "B0_prime": 10.0,
+        "gruneisen_gamma": 1.0,
+        "eta_lambda": 1.5,
+        "thermal_gruneisen": 0.8,
+        "debye_T_K": 150,
+        "dTc_dP_exp_K_per_GPa": 0.5,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 5.0,
+        "Tc_ceiling_K": 100.0,
+        "notes": "Cu3(BHT)2 MOF; designed electronic topology with organic linkers"
+      }
+    },
+    {
+      "pattern_id": "flat-band-001",
+      "crystal_system": "tetragonal",
+      "space_group": "P4/mmm",
+      "lattice_params": {
+        "a": 4.2,
+        "c": 6.8,
+        "b": null,
+        "alpha": 90.0,
+        "beta": 90.0,
+        "gamma": 90.0
+      },
+      "key_motifs": [
+        "Lieb lattice analog",
+        "flat band at Ef",
+        "singular DOS",
+        "geometric frustration",
+        "orbital selectivity"
+      ],
+      "typical_Tc_range_K": [
+        5,
+        100
+      ],
+      "source_compounds": [
+        "LaRu3Si2",
+        "CeRu2",
+        "ScV6Sn6"
+      ],
+      "dopant_sites": [
+        "La/Ce/Sc",
+        "Ru/V metal",
+        "Si/Sn"
+      ],
+      "electronic_features": {
+        "d_band_filling": 0.55,
+        "Fermi_surface": "flat-band-singular",
+        "band_gap_eV": null,
+        "electron_phonon_lambda": 1.0,
+        "pairing_mechanism": "flat_band",
+        "flat_band_width_eV": 0.03,
+        "spin_fluctuation_T_K": null,
+        "nesting_strength": 0.65,
+        "van_hove_distance_eV": 0.005,
+        "topological_index": null,
+        "dos_at_ef_states_eV": 7.0,
+        "exciton_energy_eV": null,
+        "excitonic_coupling_V": null
+      },
+      "nemad_magnetic_class": "NM",
+      "feature_vector": [
+        83.0633,
+        1.9167,
+        217.0,
+        6.0,
+        36.1667,
+        4.5,
+        0.0,
+        9.1667,
+        1.0114,
+        0.0,
+        0.16667
+      ],
+      "pressure_params": {
+        "V0_per_atom_A3": 14.0,
+        "B0_GPa": 80,
+        "B0_prime": 4.5,
+        "gruneisen_gamma": 1.5,
+        "eta_lambda": 2.2,
+        "thermal_gruneisen": 1.3,
+        "debye_T_K": 300,
+        "dTc_dP_exp_K_per_GPa": 1.0,
+        "P_min_GPa": 0.0,
+        "P_max_GPa": 20.0,
+        "Tc_ceiling_K": 200.0,
+        "notes": "Generic flat-band SC; Tc enhanced by singular DOS at Ef"
+      }
+    }
+  ]
+}

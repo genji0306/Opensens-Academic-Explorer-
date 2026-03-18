@@ -1,0 +1,402 @@
+[
+  {
+    "composition": "HgBa2Ca2Cu3O8",
+    "Tc_K": 133,
+    "crystal_system": "tetragonal",
+    "space_group": "P4/mmm",
+    "family": "cuprate",
+    "mechanism": "d-wave_pairing",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "HgBa2Ca3Cu4O10",
+    "Tc_K": 127,
+    "crystal_system": "tetragonal",
+    "space_group": "P4/mmm",
+    "family": "cuprate",
+    "mechanism": "d-wave_pairing",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "Tl2Ba2Ca2Cu3O10",
+    "Tc_K": 125,
+    "crystal_system": "tetragonal",
+    "space_group": "I4/mmm",
+    "family": "cuprate",
+    "mechanism": "d-wave_pairing",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "Bi2Sr2Ca2Cu3O10",
+    "Tc_K": 110,
+    "crystal_system": "orthorhombic",
+    "space_group": "Amaa",
+    "family": "cuprate",
+    "mechanism": "d-wave_pairing",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "YBa2Cu3O7",
+    "Tc_K": 92,
+    "crystal_system": "orthorhombic",
+    "space_group": "Pmmm",
+    "family": "cuprate",
+    "mechanism": "d-wave_pairing",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "La3Ni2O7",
+    "Tc_K": 80,
+    "crystal_system": "tetragonal",
+    "space_group": "I4/mmm",
+    "family": "nickelate",
+    "mechanism": "s+-_pairing",
+    "pressure_GPa": 14,
+    "is_confirmed": true
+  },
+  {
+    "composition": "MgB2",
+    "Tc_K": 39,
+    "crystal_system": "hexagonal",
+    "space_group": "P6/mmm",
+    "family": "mgb2-type",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "Cs3C60",
+    "Tc_K": 38,
+    "crystal_system": "cubic",
+    "space_group": "Fm-3m",
+    "family": "fulleride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "LaFeAsO0.9F0.1",
+    "Tc_K": 26,
+    "crystal_system": "tetragonal",
+    "space_group": "P4/nmm",
+    "family": "iron-pnictide",
+    "mechanism": "spin-fluctuation",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "Nd0.8Sr0.2NiO2",
+    "Tc_K": 15,
+    "crystal_system": "tetragonal",
+    "space_group": "P4/mmm",
+    "family": "nickelate",
+    "mechanism": "d-wave_pairing",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "H3S",
+    "Tc_K": 203,
+    "crystal_system": "cubic",
+    "space_group": "Im-3m",
+    "family": "hydride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 150,
+    "is_confirmed": true
+  },
+  {
+    "composition": "LaH10",
+    "Tc_K": 250,
+    "crystal_system": "cubic",
+    "space_group": "Fm-3m",
+    "family": "hydride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 190,
+    "is_confirmed": true
+  },
+  {
+    "composition": "YH9",
+    "Tc_K": 243,
+    "crystal_system": "hexagonal",
+    "space_group": "P6_3/mmc",
+    "family": "hydride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 201,
+    "is_confirmed": true
+  },
+  {
+    "composition": "CaH6",
+    "Tc_K": 215,
+    "crystal_system": "cubic",
+    "space_group": "Im-3m",
+    "family": "hydride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 172,
+    "is_confirmed": true
+  },
+  {
+    "composition": "CeH10",
+    "Tc_K": 116,
+    "crystal_system": "cubic",
+    "space_group": "Fm-3m",
+    "family": "hydride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 90,
+    "is_confirmed": true
+  },
+  {
+    "composition": "LaBeH8",
+    "Tc_K": 110,
+    "crystal_system": "cubic",
+    "space_group": "Fm-3m",
+    "family": "hydride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 50,
+    "is_confirmed": false
+  },
+  {
+    "composition": "YCeH20",
+    "Tc_K": 280,
+    "crystal_system": "cubic",
+    "space_group": "Fm-3m",
+    "family": "ternary-hydride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 150,
+    "is_confirmed": false
+  },
+  {
+    "composition": "LaBH8",
+    "Tc_K": 180,
+    "crystal_system": "cubic",
+    "space_group": "Fm-3m",
+    "family": "ternary-hydride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 100,
+    "is_confirmed": false
+  },
+  {
+    "composition": "MgScH12",
+    "Tc_K": 260,
+    "crystal_system": "hexagonal",
+    "space_group": "P6_3/mmc",
+    "family": "ternary-hydride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 120,
+    "is_confirmed": false
+  },
+  {
+    "composition": "CaYH12",
+    "Tc_K": 235,
+    "crystal_system": "cubic",
+    "space_group": "Im-3m",
+    "family": "ternary-hydride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 80,
+    "is_confirmed": false
+  },
+  {
+    "composition": "SrScH12",
+    "Tc_K": 220,
+    "crystal_system": "cubic",
+    "space_group": "Fm-3m",
+    "family": "ternary-hydride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 90,
+    "is_confirmed": false
+  },
+  {
+    "composition": "HgBa2Ca4Cu5O12",
+    "Tc_K": 145,
+    "crystal_system": "tetragonal",
+    "space_group": "P4/mmm",
+    "family": "cuprate",
+    "mechanism": "d-wave_pairing",
+    "pressure_GPa": 0,
+    "is_confirmed": false
+  },
+  {
+    "composition": "Tl2Ba2Ca3Cu4O12",
+    "Tc_K": 138,
+    "crystal_system": "tetragonal",
+    "space_group": "I4/mmm",
+    "family": "cuprate",
+    "mechanism": "d-wave_pairing",
+    "pressure_GPa": 0,
+    "is_confirmed": false
+  },
+  {
+    "composition": "Bi2Sr2Ca3Cu4O12",
+    "Tc_K": 120,
+    "crystal_system": "orthorhombic",
+    "space_group": "Amaa",
+    "family": "cuprate",
+    "mechanism": "d-wave_pairing",
+    "pressure_GPa": 0,
+    "is_confirmed": false
+  },
+  {
+    "composition": "BaSrNi2O6",
+    "Tc_K": 90,
+    "crystal_system": "tetragonal",
+    "space_group": "I4/mmm",
+    "family": "nickelate",
+    "mechanism": "s+-_pairing",
+    "pressure_GPa": 10,
+    "is_confirmed": false
+  },
+  {
+    "composition": "Li2MoH12",
+    "Tc_K": 300,
+    "crystal_system": "cubic",
+    "space_group": "Fm-3m",
+    "family": "ternary-hydride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 50,
+    "is_confirmed": false
+  },
+  {
+    "composition": "NaScH10",
+    "Tc_K": 290,
+    "crystal_system": "hexagonal",
+    "space_group": "P6_3/mmc",
+    "family": "ternary-hydride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 30,
+    "is_confirmed": false
+  },
+  {
+    "composition": "BaYH14",
+    "Tc_K": 310,
+    "crystal_system": "cubic",
+    "space_group": "Im-3m",
+    "family": "ternary-hydride",
+    "mechanism": "phonon-mediated",
+    "pressure_GPa": 20,
+    "is_confirmed": false
+  },
+  {
+    "composition": "CsTi3Bi5",
+    "Tc_K": 4,
+    "crystal_system": "hexagonal",
+    "space_group": "P6/mmm",
+    "family": "kagome",
+    "mechanism": "flat-band",
+    "pressure_GPa": 0,
+    "is_confirmed": false
+  },
+  {
+    "composition": "RbV3Sb5",
+    "Tc_K": 5,
+    "crystal_system": "hexagonal",
+    "space_group": "P6/mmm",
+    "family": "kagome",
+    "mechanism": "flat-band",
+    "pressure_GPa": 0,
+    "is_confirmed": false
+  },
+  {
+    "composition": "CsV3Sb5",
+    "Tc_K": 2.5,
+    "crystal_system": "hexagonal",
+    "space_group": "P6/mmm",
+    "family": "kagome",
+    "mechanism": "flat-band",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "Cu3(BHT)2",
+    "Tc_K": 0.25,
+    "crystal_system": "hexagonal",
+    "space_group": "P6/mmm",
+    "family": "mof-sc",
+    "mechanism": "electron-phonon_mof",
+    "pressure_GPa": 0,
+    "is_confirmed": false
+  },
+  {
+    "composition": "Ni3(HITP)2",
+    "Tc_K": 0.3,
+    "crystal_system": "hexagonal",
+    "space_group": "P6/mmm",
+    "family": "mof-sc",
+    "mechanism": "electron-phonon_mof",
+    "pressure_GPa": 0,
+    "is_confirmed": false
+  },
+  {
+    "composition": "TBG-C2",
+    "Tc_K": 1.7,
+    "crystal_system": "hexagonal",
+    "space_group": "P6/mmm",
+    "family": "flat-band",
+    "mechanism": "flat-band",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "CaKFe4As4",
+    "Tc_K": 35,
+    "crystal_system": "tetragonal",
+    "space_group": "P4/mmm",
+    "family": "iron-pnictide",
+    "mechanism": "spin-fluctuation",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "Cu",
+    "Tc_K": 0,
+    "crystal_system": "cubic",
+    "space_group": "Fm-3m",
+    "family": "elemental-metal",
+    "mechanism": "none",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "Fe",
+    "Tc_K": 0,
+    "crystal_system": "cubic",
+    "space_group": "Im-3m",
+    "family": "elemental-metal",
+    "mechanism": "none",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "SiO2",
+    "Tc_K": 0,
+    "crystal_system": "trigonal",
+    "space_group": "P3_121",
+    "family": "insulator",
+    "mechanism": "none",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "Al2O3",
+    "Tc_K": 0,
+    "crystal_system": "trigonal",
+    "space_group": "R-3c",
+    "family": "insulator",
+    "mechanism": "none",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  },
+  {
+    "composition": "NaCl",
+    "Tc_K": 0,
+    "crystal_system": "cubic",
+    "space_group": "Fm-3m",
+    "family": "insulator",
+    "mechanism": "none",
+    "pressure_GPa": 0,
+    "is_confirmed": true
+  }
+]

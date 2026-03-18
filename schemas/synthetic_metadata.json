@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SyntheticDataMetadata",
+  "type": "object",
+  "required": ["iteration", "timestamp", "pattern_ids_used", "num_structures", "generation_params"],
+  "properties": {
+    "iteration": {"type": "integer"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "pattern_ids_used": {"type": "array", "items": {"type": "string"}},
+    "num_structures": {"type": "integer"},
+    "generation_params": {
+      "type": "object",
+      "properties": {
+        "diffusion_steps": {"type": "integer"},
+        "temperature": {"type": "number"},
+        "noise_schedule": {"type": "string"},
+        "lambda_scaling": {"type": "object"},
+        "stability_threshold_meV": {"type": "number"}
+      }
+    },
+    "applied_refinements": {"type": "array", "items": {"type": "string"}}
+  }
+}
