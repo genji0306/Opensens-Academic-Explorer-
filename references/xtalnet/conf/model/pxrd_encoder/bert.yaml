@@ -1,0 +1,2 @@
+_target_: xtalnet.pl_modules.bert.BertModel
+max_seq_len: 2048

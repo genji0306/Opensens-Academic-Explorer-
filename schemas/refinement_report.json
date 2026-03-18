@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RefinementReport",
+  "type": "object",
+  "required": ["iteration", "convergence_score", "component_scores", "refinements"],
+  "properties": {
+    "iteration": {"type": "integer"},
+    "convergence_score": {"type": "number", "minimum": 0, "maximum": 1},
+    "component_scores": {
+      "type": "object",
+      "properties": {
+        "tc_distribution": {"type": "number"},
+        "lattice_accuracy": {"type": "number"},
+        "space_group_correctness": {"type": "number"},
+        "electronic_property_match": {"type": "number"},
+        "composition_validity": {"type": "number"},
+        "coordination_geometry": {"type": "number"}
+      }
+    },
+    "refinements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["target_agent", "action", "detail"],
+        "properties": {
+          "target_agent": {"type": "string", "enum": ["CS", "Sin"]},
+          "action": {"type": "string", "enum": ["expand_pattern","adjust_model","add_constraint","remove_pattern","retrain_surrogate"]},
+          "pattern_id": {"type": "string"},
+          "parameter": {"type": "string"},
+          "current_value": {},
+          "suggested_value": {},
+          "detail": {"type": "string"},
+          "priority": {"type": "string", "enum": ["high","medium","low"]}
+        }
+      }
+    },
+    "novel_candidates_flagged": {"type": "integer"},
+    "convergence_trend": {"type": "string", "enum": ["improving","stagnant","oscillating","converged"]}
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "protocol_id": "magnetic_study",
+  "stage_index": 0,
+  "stage_name": "Load NEMAD data",
+  "results": {
+    "stage_results": [
+      {
+        "status": "ok",
+        "counts": {
+          "fm_curie": 15577,
+          "afm_neel": 7893,
+          "classification": 35037
+        },
+        "stage": "Load NEMAD data",
+        "elapsed_s": 1.1
+      }
+    ]
+  },
+  "params": {
+    "max_compounds": 20
+  }
+}

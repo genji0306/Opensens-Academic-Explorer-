@@ -1,0 +1,20 @@
+{
+  "protocol_id": "discovery",
+  "stage_index": 0,
+  "stage_name": "Build crystal patterns",
+  "results": {
+    "stage_results": [
+      {
+        "status": "ok",
+        "catalog_path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/crystal_patterns/pattern_catalog_v000.json",
+        "stage": "Build crystal patterns",
+        "elapsed_s": 0.56
+      }
+    ]
+  },
+  "params": {
+    "target": 0.95,
+    "max_iterations": 20,
+    "target_pressure_GPa": 0.0
+  }
+}

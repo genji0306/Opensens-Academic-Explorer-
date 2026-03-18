@@ -1,0 +1,15 @@
+optimizer:
+  #  Adam-oriented deep learning
+  _target_: torch.optim.Adam
+  #  These are all default parameters for the Adam optimizer
+  lr: 0.0004
+  betas: [ 0.9, 0.999 ]
+  eps: 1.0e-08
+  weight_decay: 0
+
+use_lr_scheduler: True
+
+lr_scheduler:
+  _target_: xtalnet.pl_modules.diff_utils.CosineWarmupScheduler
+  warmup: 20
+  max_iters: ${data.train_max_epochs}
