@@ -1,0 +1,91 @@
+{
+  "report_id": "2e7f24708136",
+  "source_report": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/reports/final_report.json",
+  "training_zeros": 10000,
+  "best_iteration": 15,
+  "best_score": 0.9999999999999999,
+  "in_sample_match_rate": 1.0,
+  "in_sample_rmse": 0.0,
+  "spline_knots": 10000,
+  "knot_to_sample_ratio": 1.0,
+  "holdout_zeros": 200,
+  "holdout_rmse": 0.2971184005202258,
+  "holdout_mae": 0.2353620593207688,
+  "holdout_match_rate": 0.005,
+  "holdout_max_abs_error": 0.7763231208573416,
+  "holdout_nearest_index_hit_rate": 0.925,
+  "holdout_max_index_offset": 1,
+  "capacity_jump_iteration": 15,
+  "capacity_jump_fit_rms": 0.0,
+  "refinement_mode": "local_sign_change_bisection",
+  "holdout_mismatch_examples": [
+    {
+      "n": 10002,
+      "predicted_gamma": 9879.489966832894,
+      "target_gamma": 9879.036733397,
+      "nearest_index": 10003,
+      "nearest_delta": 0.3945237641055428,
+      "target_delta": 0.4532334358937078,
+      "index_offset": 1
+    },
+    {
+      "n": 10012,
+      "predicted_gamma": 9888.02592118186,
+      "target_gamma": 9887.495618736,
+      "nearest_index": 10013,
+      "nearest_delta": 0.335636710140534,
+      "target_delta": 0.5303024458589789,
+      "index_offset": 1
+    },
+    {
+      "n": 10043,
+      "predicted_gamma": 9914.480918986796,
+      "target_gamma": 9914.211424575,
+      "nearest_index": 10044,
+      "nearest_delta": 0.17264624520430516,
+      "target_delta": 0.26949441179567657,
+      "index_offset": 1
+    },
+    {
+      "n": 10044,
+      "predicted_gamma": 9915.334143279946,
+      "target_gamma": 9914.653565232,
+      "nearest_index": 10045,
+      "nearest_delta": 0.26203035405342234,
+      "target_delta": 0.6805780479462555,
+      "index_offset": 1
+    },
+    {
+      "n": 10052,
+      "predicted_gamma": 9922.159571257946,
+      "target_gamma": 9921.715530357,
+      "nearest_index": 10053,
+      "nearest_delta": 0.39444894905500405,
+      "target_delta": 0.4440409009457653,
+      "index_offset": 1
+    }
+  ],
+  "findings": [
+    "Iteration 15 reaches the full knot budget and collapses the training residual to 0.0.",
+    "Holdout RMSE on the next 200 zeros is 0.2971; the fit does not generalize as an exact law off-training.",
+    "Nearest-index hit rate on the holdout slice is 92.5%, with max index drift of 1.",
+    "The generated principle is the classical Hardy Z framing, not a proof of the Riemann hypothesis."
+  ],
+  "red_flags": [
+    "The residual spline uses one knot per training zero, which is a memorization table."
+  ],
+  "recommendations": [
+    "Reserve a validation slice before letting spline capacity reach the full training set size.",
+    "If the goal is generalization, cap residual knots below the number of training zeros.",
+    "Use explicit bracketing or interval arithmetic to keep the n-th zero index stable off-training."
+  ],
+  "conclusion": "The loop found a high-precision interpolant and a classical Hardy-Z numerical generator, but not a proof of the Riemann hypothesis.",
+  "confidence": 0.98,
+  "metadata": {
+    "principle_name": "riemann_zero_hardy_Z_v1",
+    "principle_source_path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/reports/principle.py",
+    "refinement_mode_label": "local sign-change bisection",
+    "coeff_count": 16,
+    "flow_event_count": 48
+  }
+}

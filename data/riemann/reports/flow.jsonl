@@ -1,0 +1,48 @@
+{"event": "loop_start", "n_zeros": 10000, "target": 0.95, "max_iter": 200}
+{"event": "agent_a", "iteration": 1, "n_terms": 3, "n_knots": 24, "fit_rms": 0.28376996194484627}
+{"event": "agent_b", "iteration": 1, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 1, "score": 0.28589681868388944, "match_rate": 0.0283, "rmse": 0.28376996194485293, "rel_error_median": 0.20262790994279573, "spacing_fit": 0.4869486948694869, "residual_abs_max": 0.9935676473863282, "residual_abs_mean": 0.2286980381499543}
+{"event": "agent_a", "iteration": 2, "n_terms": 4, "n_knots": 44, "fit_rms": 0.28377148232020116}
+{"event": "agent_b", "iteration": 2, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 2, "score": 0.28585647524652846, "match_rate": 0.0282, "rmse": 0.28377148232020477, "rel_error_median": 0.2030228595898067, "spacing_fit": 0.4869486948694869, "residual_abs_max": 0.9934988106957263, "residual_abs_mean": 0.22870328209182675}
+{"event": "agent_a", "iteration": 3, "n_terms": 5, "n_knots": 74, "fit_rms": 0.2837751868759649}
+{"event": "agent_b", "iteration": 3, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 3, "score": 0.28657563846110995, "match_rate": 0.03, "rmse": 0.2837751868759609, "rel_error_median": 0.20289135816763992, "spacing_fit": 0.4869486948694869, "residual_abs_max": 0.9913040831976332, "residual_abs_mean": 0.22869888382030376}
+{"event": "agent_a", "iteration": 4, "n_terms": 6, "n_knots": 119, "fit_rms": 0.2837871631836468}
+{"event": "agent_b", "iteration": 4, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 4, "score": 0.28617293325155113, "match_rate": 0.029, "rmse": 0.28378716318364633, "rel_error_median": 0.20315963568684192, "spacing_fit": 0.4869486948694869, "residual_abs_max": 0.9983054765916393, "residual_abs_mean": 0.2286912047232403}
+{"event": "agent_a", "iteration": 5, "n_terms": 7, "n_knots": 186, "fit_rms": 0.28382837564060476}
+{"event": "agent_b", "iteration": 5, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 5, "score": 0.2863636244720369, "match_rate": 0.0295, "rmse": 0.2838283756405997, "rel_error_median": 0.2025581515448051, "spacing_fit": 0.4869486948694869, "residual_abs_max": 0.9893496852009349, "residual_abs_mean": 0.22869668489255482}
+{"event": "agent_a", "iteration": 6, "n_terms": 8, "n_knots": 287, "fit_rms": 0.28394021952227433}
+{"event": "agent_b", "iteration": 6, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 6, "score": 0.28573836384585266, "match_rate": 0.028, "rmse": 0.28394021952227394, "rel_error_median": 0.2025758056663082, "spacing_fit": 0.4869486948694869, "residual_abs_max": 1.0006179079175013, "residual_abs_mean": 0.22881706568211693}
+{"event": "agent_a", "iteration": 7, "n_terms": 9, "n_knots": 438, "fit_rms": 0.28399869477410716}
+{"event": "agent_b", "iteration": 7, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 7, "score": 0.2870851579594429, "match_rate": 0.0314, "rmse": 0.28399869477411416, "rel_error_median": 0.2031351065712654, "spacing_fit": 0.4869486948694869, "residual_abs_max": 0.9920749354908054, "residual_abs_mean": 0.22887242299979543}
+{"event": "agent_a", "iteration": 8, "n_terms": 10, "n_knots": 665, "fit_rms": 0.284888981813477}
+{"event": "agent_b", "iteration": 8, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 8, "score": 0.2840441936132594, "match_rate": 0.0243, "rmse": 0.28488898181347944, "rel_error_median": 0.20451224628118891, "spacing_fit": 0.4869486948694869, "residual_abs_max": 0.987872680530586, "residual_abs_mean": 0.22967254168780804}
+{"event": "agent_a", "iteration": 9, "n_terms": 11, "n_knots": 1005, "fit_rms": 0.2850180705304251}
+{"event": "agent_b", "iteration": 9, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 9, "score": 0.28493506932679785, "match_rate": 0.0266, "rmse": 0.28501807053042566, "rel_error_median": 0.20330755374558984, "spacing_fit": 0.4869486948694869, "residual_abs_max": 0.9421455228332292, "residual_abs_mean": 0.22975262087898327}
+{"event": "agent_a", "iteration": 10, "n_terms": 12, "n_knots": 1515, "fit_rms": 0.283768965498004}
+{"event": "agent_b", "iteration": 10, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 10, "score": 0.2886873748541152, "match_rate": 0.027, "rmse": 0.2837689654980043, "rel_error_median": 0.20095672438836698, "spacing_fit": 0.52005200520052, "residual_abs_max": 0.9908214034483933, "residual_abs_mean": 0.22822178162159115}
+{"event": "agent_a", "iteration": 11, "n_terms": 13, "n_knots": 2280, "fit_rms": 0.2679095855932646}
+{"event": "agent_b", "iteration": 11, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 11, "score": 0.2989889058395183, "match_rate": 0.0282, "rmse": 0.26790958559326483, "rel_error_median": 0.18789167470732637, "spacing_fit": 0.5821582158215821, "residual_abs_max": 0.9563840370280872, "residual_abs_mean": 0.21429190587820143}
+{"event": "agent_a", "iteration": 12, "n_terms": 14, "n_knots": 3428, "fit_rms": 0.23948601115955495}
+{"event": "agent_b", "iteration": 12, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 12, "score": 0.3159963209492693, "match_rate": 0.0341, "rmse": 0.23948601115955942, "rel_error_median": 0.16679635026310513, "spacing_fit": 0.6624662466246625, "residual_abs_max": 1.0001689986620335, "residual_abs_mean": 0.19073270596463832}
+{"event": "agent_a", "iteration": 13, "n_terms": 15, "n_knots": 5150, "fit_rms": 0.20083425656612708}
+{"event": "agent_b", "iteration": 13, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 13, "score": 0.34517202002475145, "match_rate": 0.0654, "rmse": 0.20083425656612802, "rel_error_median": 0.13559444496253326, "spacing_fit": 0.735973597359736, "residual_abs_max": 0.8991095087500725, "residual_abs_mean": 0.1569993113123954}
+{"event": "agent_a", "iteration": 14, "n_terms": 16, "n_knots": 7733, "fit_rms": 0.14396054088722704}
+{"event": "agent_b", "iteration": 14, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 14, "score": 0.773345439655172, "match_rate": 0.5623, "rmse": 0.14396054088723276, "rel_error_median": 0.0, "spacing_fit": 0.8864886488648864, "residual_abs_max": 0.9499070688438351, "residual_abs_mean": 0.07721836773469504}
+{"event": "agent_a", "iteration": 15, "n_terms": 16, "n_knots": 10000, "fit_rms": 0.0}
+{"event": "agent_b", "iteration": 15, "n_predicted": 10000}
+{"event": "agent_ob", "iteration": 15, "score": 0.9999999999999999, "match_rate": 1.0, "rmse": 0.0, "rel_error_median": 0.0, "spacing_fit": 1.0, "residual_abs_max": 0.0, "residual_abs_mean": 0.0}
+{"event": "converged", "iteration": 15, "score": 0.9999999999999999}
+{"event": "loop_end", "elapsed": 61.14800786972046, "converged": true}

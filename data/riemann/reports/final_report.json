@@ -1,0 +1,325 @@
+{
+  "n_zeros": 10000,
+  "target_score": 0.95,
+  "iterations_run": 15,
+  "best_iteration": 15,
+  "best_score": 0.9999999999999999,
+  "converged": true,
+  "elapsed_seconds": 61.14800786972046,
+  "history": [
+    {
+      "iteration": 1,
+      "score": 0.28589681868388944,
+      "match_rate": 0.0283,
+      "rmse": 0.28376996194485293,
+      "rel_error_median": 0.20262790994279573,
+      "spacing_fit": 0.4869486948694869,
+      "residual_abs_max": 0.9935676473863282,
+      "residual_abs_mean": 0.2286980381499543
+    },
+    {
+      "iteration": 2,
+      "score": 0.28585647524652846,
+      "match_rate": 0.0282,
+      "rmse": 0.28377148232020477,
+      "rel_error_median": 0.2030228595898067,
+      "spacing_fit": 0.4869486948694869,
+      "residual_abs_max": 0.9934988106957263,
+      "residual_abs_mean": 0.22870328209182675
+    },
+    {
+      "iteration": 3,
+      "score": 0.28657563846110995,
+      "match_rate": 0.03,
+      "rmse": 0.2837751868759609,
+      "rel_error_median": 0.20289135816763992,
+      "spacing_fit": 0.4869486948694869,
+      "residual_abs_max": 0.9913040831976332,
+      "residual_abs_mean": 0.22869888382030376
+    },
+    {
+      "iteration": 4,
+      "score": 0.28617293325155113,
+      "match_rate": 0.029,
+      "rmse": 0.28378716318364633,
+      "rel_error_median": 0.20315963568684192,
+      "spacing_fit": 0.4869486948694869,
+      "residual_abs_max": 0.9983054765916393,
+      "residual_abs_mean": 0.2286912047232403
+    },
+    {
+      "iteration": 5,
+      "score": 0.2863636244720369,
+      "match_rate": 0.0295,
+      "rmse": 0.2838283756405997,
+      "rel_error_median": 0.2025581515448051,
+      "spacing_fit": 0.4869486948694869,
+      "residual_abs_max": 0.9893496852009349,
+      "residual_abs_mean": 0.22869668489255482
+    },
+    {
+      "iteration": 6,
+      "score": 0.28573836384585266,
+      "match_rate": 0.028,
+      "rmse": 0.28394021952227394,
+      "rel_error_median": 0.2025758056663082,
+      "spacing_fit": 0.4869486948694869,
+      "residual_abs_max": 1.0006179079175013,
+      "residual_abs_mean": 0.22881706568211693
+    },
+    {
+      "iteration": 7,
+      "score": 0.2870851579594429,
+      "match_rate": 0.0314,
+      "rmse": 0.28399869477411416,
+      "rel_error_median": 0.2031351065712654,
+      "spacing_fit": 0.4869486948694869,
+      "residual_abs_max": 0.9920749354908054,
+      "residual_abs_mean": 0.22887242299979543
+    },
+    {
+      "iteration": 8,
+      "score": 0.2840441936132594,
+      "match_rate": 0.0243,
+      "rmse": 0.28488898181347944,
+      "rel_error_median": 0.20451224628118891,
+      "spacing_fit": 0.4869486948694869,
+      "residual_abs_max": 0.987872680530586,
+      "residual_abs_mean": 0.22967254168780804
+    },
+    {
+      "iteration": 9,
+      "score": 0.28493506932679785,
+      "match_rate": 0.0266,
+      "rmse": 0.28501807053042566,
+      "rel_error_median": 0.20330755374558984,
+      "spacing_fit": 0.4869486948694869,
+      "residual_abs_max": 0.9421455228332292,
+      "residual_abs_mean": 0.22975262087898327
+    },
+    {
+      "iteration": 10,
+      "score": 0.2886873748541152,
+      "match_rate": 0.027,
+      "rmse": 0.2837689654980043,
+      "rel_error_median": 0.20095672438836698,
+      "spacing_fit": 0.52005200520052,
+      "residual_abs_max": 0.9908214034483933,
+      "residual_abs_mean": 0.22822178162159115
+    },
+    {
+      "iteration": 11,
+      "score": 0.2989889058395183,
+      "match_rate": 0.0282,
+      "rmse": 0.26790958559326483,
+      "rel_error_median": 0.18789167470732637,
+      "spacing_fit": 0.5821582158215821,
+      "residual_abs_max": 0.9563840370280872,
+      "residual_abs_mean": 0.21429190587820143
+    },
+    {
+      "iteration": 12,
+      "score": 0.3159963209492693,
+      "match_rate": 0.0341,
+      "rmse": 0.23948601115955942,
+      "rel_error_median": 0.16679635026310513,
+      "spacing_fit": 0.6624662466246625,
+      "residual_abs_max": 1.0001689986620335,
+      "residual_abs_mean": 0.19073270596463832
+    },
+    {
+      "iteration": 13,
+      "score": 0.34517202002475145,
+      "match_rate": 0.0654,
+      "rmse": 0.20083425656612802,
+      "rel_error_median": 0.13559444496253326,
+      "spacing_fit": 0.735973597359736,
+      "residual_abs_max": 0.8991095087500725,
+      "residual_abs_mean": 0.1569993113123954
+    },
+    {
+      "iteration": 14,
+      "score": 0.773345439655172,
+      "match_rate": 0.5623,
+      "rmse": 0.14396054088723276,
+      "rel_error_median": 0.0,
+      "spacing_fit": 0.8864886488648864,
+      "residual_abs_max": 0.9499070688438351,
+      "residual_abs_mean": 0.07721836773469504
+    },
+    {
+      "iteration": 15,
+      "score": 0.9999999999999999,
+      "match_rate": 1.0,
+      "rmse": 0.0,
+      "rel_error_median": 0.0,
+      "spacing_fit": 1.0,
+      "residual_abs_max": 0.0,
+      "residual_abs_mean": 0.0
+    }
+  ],
+  "best_report": {
+    "iteration": 15,
+    "score": 0.9999999999999999,
+    "match_rate": 1.0,
+    "rmse": 0.0,
+    "rel_error_median": 0.0,
+    "spacing_fit": 1.0,
+    "residual_abs_max": 0.0,
+    "residual_abs_mean": 0.0
+  },
+  "principle": {
+    "name": "riemann_zero_hardy_Z_v1",
+    "description": "Exact principle: gamma_n is the n-th positive root of the Hardy Z-function Z(t) = e^{i theta(t)} zeta(1/2 + i t), where theta(t) = Im log Gamma(1/4 + i t / 2) - (t/2) log pi.  Fitted approximant: gamma_n ~ theta^{-1}((n - a) pi) + sum_k c_k P_k(u(n)) + spline(n), with P_k the normalised Legendre basis on the training window and spline(n) a binned residual capturing the Riemann-Siegel S(gamma) fluctuations.",
+    "parameters_n_coeffs": 16,
+    "parameters_offset_a": 1.5,
+    "validation_rmse": 0.0,
+    "validation_match_rate": 1.0,
+    "notes": "Output emits both a fitted approximant (closed-form, instant) and a Z-bisection refinement (via find_zero_near) that returns machine-precision zeros for any n, inside or outside the training window of 10000 zeros."
+  },
+  "principle_source_path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/reports/principle.py",
+  "math_review": {
+    "analysis": {
+      "report_id": "2e7f24708136",
+      "source_report": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/reports/final_report.json",
+      "training_zeros": 10000,
+      "best_iteration": 15,
+      "best_score": 0.9999999999999999,
+      "in_sample_match_rate": 1.0,
+      "in_sample_rmse": 0.0,
+      "spline_knots": 10000,
+      "knot_to_sample_ratio": 1.0,
+      "holdout_zeros": 200,
+      "holdout_rmse": 0.2971184005202258,
+      "holdout_mae": 0.2353620593207688,
+      "holdout_match_rate": 0.005,
+      "holdout_max_abs_error": 0.7763231208573416,
+      "holdout_nearest_index_hit_rate": 0.925,
+      "holdout_max_index_offset": 1,
+      "capacity_jump_iteration": 15,
+      "capacity_jump_fit_rms": 0.0,
+      "refinement_mode": "local_sign_change_bisection",
+      "holdout_mismatch_examples": [
+        {
+          "n": 10002,
+          "predicted_gamma": 9879.489966832894,
+          "target_gamma": 9879.036733397,
+          "nearest_index": 10003,
+          "nearest_delta": 0.3945237641055428,
+          "target_delta": 0.4532334358937078,
+          "index_offset": 1
+        },
+        {
+          "n": 10012,
+          "predicted_gamma": 9888.02592118186,
+          "target_gamma": 9887.495618736,
+          "nearest_index": 10013,
+          "nearest_delta": 0.335636710140534,
+          "target_delta": 0.5303024458589789,
+          "index_offset": 1
+        },
+        {
+          "n": 10043,
+          "predicted_gamma": 9914.480918986796,
+          "target_gamma": 9914.211424575,
+          "nearest_index": 10044,
+          "nearest_delta": 0.17264624520430516,
+          "target_delta": 0.26949441179567657,
+          "index_offset": 1
+        },
+        {
+          "n": 10044,
+          "predicted_gamma": 9915.334143279946,
+          "target_gamma": 9914.653565232,
+          "nearest_index": 10045,
+          "nearest_delta": 0.26203035405342234,
+          "target_delta": 0.6805780479462555,
+          "index_offset": 1
+        },
+        {
+          "n": 10052,
+          "predicted_gamma": 9922.159571257946,
+          "target_gamma": 9921.715530357,
+          "nearest_index": 10053,
+          "nearest_delta": 0.39444894905500405,
+          "target_delta": 0.4440409009457653,
+          "index_offset": 1
+        }
+      ],
+      "findings": [
+        "Iteration 15 reaches the full knot budget and collapses the training residual to 0.0.",
+        "Holdout RMSE on the next 200 zeros is 0.2971; the fit does not generalize as an exact law off-training.",
+        "Nearest-index hit rate on the holdout slice is 92.5%, with max index drift of 1.",
+        "The generated principle is the classical Hardy Z framing, not a proof of the Riemann hypothesis."
+      ],
+      "red_flags": [
+        "The residual spline uses one knot per training zero, which is a memorization table."
+      ],
+      "recommendations": [
+        "Reserve a validation slice before letting spline capacity reach the full training set size.",
+        "If the goal is generalization, cap residual knots below the number of training zeros.",
+        "Use explicit bracketing or interval arithmetic to keep the n-th zero index stable off-training."
+      ],
+      "conclusion": "The loop found a high-precision interpolant and a classical Hardy-Z numerical generator, but not a proof of the Riemann hypothesis.",
+      "confidence": 0.98,
+      "metadata": {
+        "principle_name": "riemann_zero_hardy_Z_v1",
+        "principle_source_path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/reports/principle.py",
+        "refinement_mode_label": "local sign-change bisection",
+        "coeff_count": 16,
+        "flow_event_count": 47
+      }
+    },
+    "debate": {
+      "debate_id": "069baa0fd374",
+      "topic": "Can the current loop be treated as a proof of the Riemann hypothesis?",
+      "analysis_report_id": "2e7f24708136",
+      "turns": [
+        {
+          "speaker": "Proponent",
+          "stance": "support",
+          "claim": "The loop recovered a strong numerical model with best_score=1.0000 and an exact in-sample match_rate=1.0000."
+        },
+        {
+          "speaker": "Skeptic",
+          "stance": "challenge",
+          "claim": "That exact fit only appears when spline_knots=10000 equals training_zeros=10000; that is interpolation, not a theorem."
+        },
+        {
+          "speaker": "Proponent",
+          "stance": "support",
+          "claim": "The holdout slice is still numerically reasonable: RMSE=0.2971 and nearest-index hit rate=92.5%."
+        },
+        {
+          "speaker": "Skeptic",
+          "stance": "challenge",
+          "claim": "Even so, 5 sampled holdout zeros drift to a neighboring index, and the source refinement mode is local sign-change bisection."
+        },
+        {
+          "speaker": "Moderator",
+          "stance": "verdict",
+          "claim": "The loop found a high-precision interpolant and a classical Hardy-Z numerical generator, but not a proof of the Riemann hypothesis."
+        }
+      ],
+      "verdict": "The loop found a high-precision interpolant and a classical Hardy-Z numerical generator, but not a proof of the Riemann hypothesis.",
+      "summary": "The proponent can defend the loop as a high-quality numerical interpolant, but the skeptic wins on the proof question because the full-knot spline is a memorizer and the holdout diagnostics show index drift.",
+      "open_questions": [
+        "Can residual capacity be capped while preserving useful approximation quality?",
+        "Can each n-th zero be bracketed with an index-faithful interval rather than a seed alone?",
+        "Can the loop publish a validation split that is never used in fitting?"
+      ],
+      "recommendations": [
+        "Reserve a validation slice before letting spline capacity reach the full training set size.",
+        "If the goal is generalization, cap residual knots below the number of training zeros.",
+        "Use explicit bracketing or interval arithmetic to keep the n-th zero index stable off-training."
+      ],
+      "confidence": 0.97,
+      "metadata": {
+        "analysis_confidence": 0.98,
+        "refinement_mode": "local_sign_change_bisection"
+      }
+    },
+    "analysis_path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/reports/math_analysis.json",
+    "debate_path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/reports/math_debate.json"
+  }
+}
