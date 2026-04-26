@@ -1,0 +1,249 @@
+{
+  "experiment": "Phase 1 \u2014 falsifiable claim injection per candidate",
+  "date": "2026-04-26",
+  "seed_packs": [
+    "rh-classical",
+    "rh-spectral"
+  ],
+  "max_rounds": 10,
+  "what_changed_from_phase0": [
+    "Every auto-generated lean skeleton now commits to a `no_zero_in T_lo T_hi` claim with deterministic-per-candidate window in [10, 101].",
+    "Odlyzko benchmark scores: -0.50 if window contains a known zero; +0.20 if window inside table range AND empty; 0 otherwise.",
+    "Result: 19 candidate claims FALSIFIED across all 3 arms \u2014 first real adversarial signal in the apparatus."
+  ],
+  "honest_finding_about_klein": "Klein topology has the highest factual error rate of the three modes (11.25% claims contradicted by Odlyzko vs 6.25% for baseline). The K-novelty surface_return + obstruction_cycle artifacts add candidates whose auto-generated claim windows happen to straddle real zeros more often. This is empirical, not a bug \u2014 Klein's added candidate diversity comes with a higher wrongness rate.",
+  "honest_finding_about_hyperloop": "Hyperloop wins external Odlyzko (0.4917 vs klein 0.3725, lift +0.1192) primarily by rejecting 49 untestable candidates (vs baseline's 70 untestable kept in). Per-candidate confirmed/contradicted ratio is actually slightly WORSE than baseline (11:1 vs 15:1). Hyperloop's lift is structural (fewer untestable noise candidates), not predictive (it doesn't generate more accurate windows).",
+  "what_phase1_does_NOT_show": [
+    "Hyperloop is NOT generating mathematically better hypotheses about RH zeros \u2014 the claim windows are auto-generated from candidate_id hashes, not from any reasoning the system performed.",
+    "Confirmation does NOT mean the candidate would be a useful step toward proving RH; it means a randomly-chosen window happened to be empty in the table.",
+    "Contradiction DOES mean something real: the candidate's lean skeleton commits to a claim that empirical zero data refutes. This is the first non-tautological feedback signal."
+  ],
+  "next_phases_that_would_produce_real_progress": [
+    "Phase 2: have Agent A choose claim windows from the candidate's actual reasoning (e.g. de_branges candidates claim windows derived from operator spectrum), not from hash bytes.",
+    "Phase 3: replace lean_bridge mock backend with real AXLE Lean kernel \u2014 currently sorry-filled skeletons pass `verify_file(backend='mock')` trivially.",
+    "Phase 4: when Odlyzko falsifies a claim, that falsification should propagate back into the dead_end_library so the campaign LEARNS to avoid that ingredient combination."
+  ],
+  "arms": {
+    "baseline": {
+      "campaign_id": "g7_baseline",
+      "internal_best_score": 0.7157989113493148,
+      "total_hypotheses": 80,
+      "external_odlyzko_mean": 0.38875000000000004,
+      "claims_confirmed_total": 75,
+      "claims_contradicted_total": 5,
+      "claims_untestable_total": 70,
+      "wrongness_rate": 0.0625,
+      "per_round": [
+        {
+          "round": 1,
+          "score": 0.4,
+          "confirmed": 8,
+          "contradicted": 0
+        },
+        {
+          "round": 2,
+          "score": 0.425,
+          "confirmed": 8,
+          "contradicted": 0
+        },
+        {
+          "round": 3,
+          "score": 0.425,
+          "confirmed": 8,
+          "contradicted": 0
+        },
+        {
+          "round": 4,
+          "score": 0.3625,
+          "confirmed": 7,
+          "contradicted": 1
+        },
+        {
+          "round": 5,
+          "score": 0.4,
+          "confirmed": 8,
+          "contradicted": 0
+        },
+        {
+          "round": 6,
+          "score": 0.4,
+          "confirmed": 7,
+          "contradicted": 1
+        },
+        {
+          "round": 7,
+          "score": 0.4,
+          "confirmed": 8,
+          "contradicted": 0
+        },
+        {
+          "round": 8,
+          "score": 0.3375,
+          "confirmed": 6,
+          "contradicted": 2
+        },
+        {
+          "round": 9,
+          "score": 0.3375,
+          "confirmed": 7,
+          "contradicted": 1
+        },
+        {
+          "round": 10,
+          "score": 0.4,
+          "confirmed": 8,
+          "contradicted": 0
+        }
+      ]
+    },
+    "klein": {
+      "campaign_id": "g7_klein",
+      "internal_best_score": 0.69357004674436,
+      "total_hypotheses": 80,
+      "external_odlyzko_mean": 0.3725,
+      "claims_confirmed_total": 71,
+      "claims_contradicted_total": 9,
+      "claims_untestable_total": 69,
+      "wrongness_rate": 0.1125,
+      "per_round": [
+        {
+          "round": 1,
+          "score": 0.425,
+          "confirmed": 8,
+          "contradicted": 0
+        },
+        {
+          "round": 2,
+          "score": 0.3625,
+          "confirmed": 7,
+          "contradicted": 1
+        },
+        {
+          "round": 3,
+          "score": 0.425,
+          "confirmed": 8,
+          "contradicted": 0
+        },
+        {
+          "round": 4,
+          "score": 0.3625,
+          "confirmed": 7,
+          "contradicted": 1
+        },
+        {
+          "round": 5,
+          "score": 0.3375,
+          "confirmed": 6,
+          "contradicted": 2
+        },
+        {
+          "round": 6,
+          "score": 0.4,
+          "confirmed": 7,
+          "contradicted": 1
+        },
+        {
+          "round": 7,
+          "score": 0.275,
+          "confirmed": 6,
+          "contradicted": 2
+        },
+        {
+          "round": 8,
+          "score": 0.3375,
+          "confirmed": 7,
+          "contradicted": 1
+        },
+        {
+          "round": 9,
+          "score": 0.4,
+          "confirmed": 8,
+          "contradicted": 0
+        },
+        {
+          "round": 10,
+          "score": 0.4,
+          "confirmed": 7,
+          "contradicted": 1
+        }
+      ]
+    },
+    "hyperloop": {
+      "campaign_id": "g7_hyperloop",
+      "internal_best_score": 0.7085700467443601,
+      "total_hypotheses": 60,
+      "external_odlyzko_mean": 0.4916666666666667,
+      "claims_confirmed_total": 55,
+      "claims_contradicted_total": 5,
+      "claims_untestable_total": 49,
+      "wrongness_rate": 0.08333333333333333,
+      "per_round": [
+        {
+          "round": 1,
+          "score": 0.5666666666666667,
+          "confirmed": 6,
+          "contradicted": 0
+        },
+        {
+          "round": 2,
+          "score": 0.45,
+          "confirmed": 5,
+          "contradicted": 1
+        },
+        {
+          "round": 3,
+          "score": 0.45,
+          "confirmed": 5,
+          "contradicted": 1
+        },
+        {
+          "round": 4,
+          "score": 0.5333333333333333,
+          "confirmed": 6,
+          "contradicted": 0
+        },
+        {
+          "round": 5,
+          "score": 0.3333333333333333,
+          "confirmed": 4,
+          "contradicted": 2
+        },
+        {
+          "round": 6,
+          "score": 0.5333333333333333,
+          "confirmed": 6,
+          "contradicted": 0
+        },
+        {
+          "round": 7,
+          "score": 0.5333333333333333,
+          "confirmed": 6,
+          "contradicted": 0
+        },
+        {
+          "round": 8,
+          "score": 0.45,
+          "confirmed": 5,
+          "contradicted": 1
+        },
+        {
+          "round": 9,
+          "score": 0.5333333333333333,
+          "confirmed": 6,
+          "contradicted": 0
+        },
+        {
+          "round": 10,
+          "score": 0.5333333333333333,
+          "confirmed": 6,
+          "contradicted": 0
+        }
+      ]
+    }
+  },
+  "dominance_lift": {
+    "hyperloop_vs_klein_external": 0.1191666666666667,
+    "hyperloop_vs_baseline_external": 0.10291666666666666,
+    "klein_vs_baseline_wrongness_increase": 0.05
+  }
+}

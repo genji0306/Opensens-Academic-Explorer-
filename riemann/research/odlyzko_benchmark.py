@@ -54,6 +54,9 @@ _CHECKABLE_FAMILIES = frozenset({
 # Numeric pattern: matches floats/ints inside lean source likely to be height claims.
 _NUMERIC_HEIGHT_RE = re.compile(r"\b(\d+\.\d+|\d{2,})\b")
 
+# Phase 1: structured `no_zero_in T_lo T_hi` claim parser.
+_NO_ZERO_IN_RE = re.compile(r"no_zero_in\s+(\d+\.\d+)\s+(\d+\.\d+)", re.IGNORECASE)
+
 
 @dataclass(frozen=True)
 class OdlyzkoTable:
@@ -99,7 +102,9 @@ class CandidateConsistencyScore:
     closed_obligation_bonus: float
     untestable_penalty: float
     contradiction_penalty: float
+    correct_claim_bonus: float
     contradicted_window: tuple[float, float] | None
+    confirmed_window: tuple[float, float] | None
     breakdown: dict[str, float]
 
 
@@ -111,6 +116,7 @@ class OdlyzkoBenchmarkResult:
     candidate_count: int
     mean_score: float
     contradicted_count: int
+    confirmed_count: int
     untestable_count: int
     per_candidate: tuple[CandidateConsistencyScore, ...]
 
@@ -133,17 +139,36 @@ def score_candidate(
         open_obligation_count - len(checkable),
     )
 
+    # Phase 1: parse the falsifiable `no_zero_in T_lo T_hi` claim from the
+    # skeleton and let the Odlyzko table adjudicate.
+    #   - Contradicted (any zero in the window): -0.50
+    #   - Confirmed (no zero in the window, window inside table range): +0.20
+    #   - No claim: 0
     contradiction_penalty = 0.0
+    correct_claim_bonus = 0.0
     contradicted_window: tuple[float, float] | None = None
+    confirmed_window: tuple[float, float] | None = None
     if lean_skeleton and "no_zero_in" in lean_skeleton.lower():
-        nums = [float(m) for m in _NUMERIC_HEIGHT_RE.findall(lean_skeleton)]
-        if len(nums) >= 2:
-            t_lo, t_hi = sorted(nums[:2])
+        # Find all "no_zero_in T_lo T_hi" patterns. Use the first if multiple.
+        match = _NO_ZERO_IN_RE.search(lean_skeleton)
+        if match:
+            t_lo = float(match.group(1))
+            t_hi = float(match.group(2))
+            if t_lo > t_hi:
+                t_lo, t_hi = t_hi, t_lo
             if odlyzko.contradicts_no_zero_claim(t_lo, t_hi):
                 contradiction_penalty = -0.50
                 contradicted_window = (t_lo, t_hi)
+            elif t_hi <= odlyzko.t_max and odlyzko.heights:
+                # Window is inside the verified Odlyzko range AND empty → real prediction confirmed.
+                correct_claim_bonus = 0.20
+                confirmed_window = (t_lo, t_hi)
+            # If t_hi > t_max we cannot confirm; treat as no signal (0).
 
-    raw = base + family_bonus + closed_bonus + untestable_penalty + contradiction_penalty
+    raw = (
+        base + family_bonus + closed_bonus + untestable_penalty
+        + contradiction_penalty + correct_claim_bonus
+    )
     score = max(0.0, min(1.0, raw))
     breakdown = {
         "base": base,
@@ -151,6 +176,7 @@ def score_candidate(
         "closed_bonus": closed_bonus,
         "untestable_penalty": untestable_penalty,
         "contradiction_penalty": contradiction_penalty,
+        "correct_claim_bonus": correct_claim_bonus,
         "raw": raw,
         "clamped": score,
     }
@@ -162,7 +188,9 @@ def score_candidate(
         closed_obligation_bonus=closed_bonus,
         untestable_penalty=untestable_penalty,
         contradiction_penalty=contradiction_penalty,
+        correct_claim_bonus=correct_claim_bonus,
         contradicted_window=contradicted_window,
+        confirmed_window=confirmed_window,
         breakdown=breakdown,
     )
 
@@ -192,12 +220,14 @@ def evaluate_round(
     else:
         mean = 0.0
     contradicted = sum(1 for c in per_candidate if c.contradiction_penalty < 0)
+    confirmed = sum(1 for c in per_candidate if c.correct_claim_bonus > 0)
     untestable = sum(1 for c in per_candidate if c.untestable_penalty < 0)
     return OdlyzkoBenchmarkResult(
         round_index=round_index,
         candidate_count=len(per_candidate),
         mean_score=mean,
         contradicted_count=contradicted,
+        confirmed_count=confirmed,
         untestable_count=untestable,
         per_candidate=tuple(per_candidate),
     )

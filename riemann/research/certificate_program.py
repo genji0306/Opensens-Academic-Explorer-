@@ -1,21 +1,61 @@
 """Campaign-level certificate reporting for RH research."""
 from __future__ import annotations
 
+import hashlib
 from collections import Counter
 from typing import Any, Iterable, Mapping
 
 from .obligation_ledger import build_candidate_obligation_snapshot
 
 
+# Phase-1 falsifiable-claim generation:
+#
+# Each auto-generated lean skeleton commits to a `no_zero_in T_lo T_hi` claim.
+# The window is deterministic per candidate_id so runs are reproducible, but
+# spans the entire Odlyzko range so some claims will hit real zeros (and be
+# correctly falsified) while others will land in genuinely empty windows
+# between zeros. This gives the Odlyzko external benchmark real adversarial
+# signal — without this, every skeleton is pure scaffolding and the benchmark
+# can never fire its contradiction penalty.
+#
+# Window selection:
+#   - hash(candidate_id) → deterministic seed
+#   - center T ∈ [10, 100] uniformly at hash%9100/100 + 10
+#   - half-width ∈ [0.05, 0.40] uniformly — narrow enough that ~half the
+#     windows fall between adjacent zeros (mean spacing ~1 at low T) and
+#     the other half straddle a zero
+#
+# This range is intentionally INSIDE the Odlyzko table where contradiction
+# is detectable, not safely beyond t_max where the benchmark would be silent.
+def _claim_window(candidate_id: str) -> tuple[float, float]:
+    h = int(hashlib.sha256(candidate_id.encode()).hexdigest(), 16)
+    center = (h % 9100) / 100.0 + 10.0           # in [10.0, 101.0)
+    half_width = ((h >> 32) % 350) / 1000.0 + 0.05  # in [0.05, 0.40)
+    return (center - half_width, center + half_width)
+
+
 def _generate_lean_skeleton(candidate_id: str, obligation_snapshot: dict[str, Any]) -> str:
-    """Generate a minimal Lean 4 skeleton with sorry placeholders for open obligations."""
+    """Generate a minimal Lean 4 skeleton with sorry placeholders for open obligations.
+
+    Phase 1: also emits a falsifiable `no_zero_in T_lo T_hi` claim per candidate
+    so the Odlyzko external benchmark can grade real predictions, not just
+    structural metadata. The numeric window is deterministic per candidate_id.
+    """
     safe_id = "".join(ch if ch.isalnum() else "_" for ch in candidate_id)
     raw_open = obligation_snapshot.get("open_obligation_classes", {})
     if isinstance(raw_open, dict):
         open_classes = list(raw_open.keys())
     else:
         open_classes = list(raw_open)
+    t_lo, t_hi = _claim_window(candidate_id)
     lines = [f"-- Candidate: {candidate_id}", "import Mathlib", ""]
+    # Falsifiable numeric claim — Odlyzko adjudicates.
+    lines.append(
+        f"theorem numeric_window_{safe_id} : no_zero_in {t_lo:.4f} {t_hi:.4f} := by"
+    )
+    lines.append("  sorry")
+    lines.append("")
+    # Open-obligation skeletons (existing scaffolding, unchanged).
     for i, cls in enumerate(open_classes[:4]):
         safe_cls = "".join(ch if ch.isalnum() else "_" for ch in cls)
         lines.append(f"theorem obligation_{safe_id}_{i} : sorry_obligation_{safe_cls} := by")

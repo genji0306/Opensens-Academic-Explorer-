@@ -147,6 +147,7 @@ class ExternalEvaluator:
                 "candidate_count": result.candidate_count,
                 "mean_score": result.mean_score,
                 "contradicted_count": result.contradicted_count,
+                "confirmed_count": result.confirmed_count,
                 "untestable_count": result.untestable_count,
                 "table_size": len(odlyzko.heights),
                 "table_t_max": odlyzko.t_max,

@@ -163,3 +163,106 @@ def test_evaluate_round_empty_input_returns_zero() -> None:
     res = evaluate_round(round_index=1, candidate_records=[], odlyzko=table)
     assert res.candidate_count == 0
     assert res.mean_score == 0.0
+
+
+def test_phase1_structured_claim_inside_table_confirms_score(tiny_table: OdlyzkoTable) -> None:
+    """no_zero_in 50.0000 60.0000 — empty in tiny table, t_hi (60) inside t_max (32.93)?
+    Actually 60 > 32.93, so this falls in the 'cannot confirm' bucket.
+
+    Use a window that IS inside table range and IS empty: (15.0, 20.0)
+    — between zero[0]=14.13 and zero[1]=21.02.
+    """
+    skel = (
+        "import Mathlib\n"
+        "theorem numeric_window_x : no_zero_in 15.0000 20.0000 := by\n"
+        "  sorry\n"
+    )
+    s = score_candidate(
+        candidate_id="confirmed",
+        ingredient_families=("explicit_formula",),  # 1 checkable
+        closed_obligation_count=0,
+        open_obligation_count=0,  # no untestable
+        lean_skeleton=skel,
+        odlyzko=tiny_table,
+    )
+    # base 0.30 + family 0.10 + correct_claim 0.20 = 0.60
+    assert s.score == pytest.approx(0.60, abs=1e-6)
+    assert s.confirmed_window == (15.0, 20.0)
+    assert s.contradicted_window is None
+
+
+def test_phase1_structured_claim_outside_table_no_signal(tiny_table: OdlyzkoTable) -> None:
+    """Claim window beyond t_max — cannot confirm or contradict."""
+    skel = (
+        "import Mathlib\n"
+        "theorem numeric_window_y : no_zero_in 50.0000 60.0000 := by\n"
+        "  sorry\n"
+    )
+    s = score_candidate(
+        candidate_id="silent",
+        ingredient_families=("explicit_formula",),
+        closed_obligation_count=0,
+        open_obligation_count=0,
+        lean_skeleton=skel,
+        odlyzko=tiny_table,
+    )
+    # base 0.30 + family 0.10 = 0.40 (no confirmation, no contradiction)
+    assert s.score == pytest.approx(0.40, abs=1e-6)
+    assert s.confirmed_window is None
+    assert s.contradicted_window is None
+
+
+def test_phase1_structured_claim_contradicts(tiny_table: OdlyzkoTable) -> None:
+    """Claim window straddles a known zero → contradiction."""
+    skel = (
+        "import Mathlib\n"
+        "theorem numeric_window_z : no_zero_in 14.0000 22.0000 := by\n"
+        "  sorry\n"
+    )
+    s = score_candidate(
+        candidate_id="wrong",
+        ingredient_families=("explicit_formula",),
+        closed_obligation_count=0,
+        open_obligation_count=0,
+        lean_skeleton=skel,
+        odlyzko=tiny_table,
+    )
+    # base 0.30 + family 0.10 - 0.50 = -0.10 → clamped 0.0
+    assert s.score == pytest.approx(0.0, abs=1e-6)
+    assert s.contradicted_window == (14.0, 22.0)
+
+
+def test_evaluate_round_aggregates_confirmations(tiny_table: OdlyzkoTable) -> None:
+    """confirmed_count must reflect candidates whose claim landed in an empty table window."""
+    records = [
+        {
+            "candidate_id": "good",
+            "ingredient_families": ["explicit_formula"],
+            "closed_obligation_count": 0,
+            "open_obligation_count": 0,
+            "lean_skeleton": "theorem t : no_zero_in 15.0000 20.0000 := by sorry",
+        },
+        {
+            "candidate_id": "bad",
+            "ingredient_families": ["explicit_formula"],
+            "closed_obligation_count": 0,
+            "open_obligation_count": 0,
+            "lean_skeleton": "theorem t : no_zero_in 14.0000 22.0000 := by sorry",
+        },
+    ]
+    res = evaluate_round(round_index=1, candidate_records=records, odlyzko=tiny_table)
+    assert res.confirmed_count == 1
+    assert res.contradicted_count == 1
+
+
+def test_certificate_skeleton_includes_falsifiable_claim() -> None:
+    """The auto-generated lean skeleton must commit to a no_zero_in claim."""
+    from riemann.research.certificate_program import _claim_window, _generate_lean_skeleton
+    skel = _generate_lean_skeleton(
+        candidate_id="rh-hyp-99-deadbeef",
+        obligation_snapshot={"open_obligation_classes": {"some_class": 1}},
+    )
+    assert "no_zero_in" in skel
+    t_lo, t_hi = _claim_window("rh-hyp-99-deadbeef")
+    assert t_lo < t_hi
+    assert 9.5 <= t_lo and t_hi <= 102.0  # within designed [10, 101] range with margin
