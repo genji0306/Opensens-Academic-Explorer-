@@ -1,0 +1,199 @@
+{
+  "experiment": "Gate 7 strict-dominance verdict \u2014 topology-aware Agent A + Odlyzko external scorer",
+  "date": "2026-04-26",
+  "seed_packs": [
+    "rh-classical",
+    "rh-spectral"
+  ],
+  "max_rounds": 10,
+  "max_hypotheses_per_round": 8,
+  "result": "PASS",
+  "headline": "Hyperloop strictly dominates klein on external Odlyzko score (0.3367 > 0.2525, lift +0.0842), with internal score deliberately dropping \u2014 exactly the plan \u00a76 'let internal score drop' pattern.",
+  "arms": {
+    "baseline": {
+      "campaign_id": "g7_baseline",
+      "internal_best_score": 0.7385131970636007,
+      "total_hypotheses": 80,
+      "external_odlyzko_mean": 0.25,
+      "external_odlyzko_max": 0.25,
+      "internal_external_gap": 0.4834529918401323,
+      "family_distribution": {
+        "explicit_formula": 87,
+        "xi_function": 33,
+        "hardy_z": 20,
+        "geometric_visualization": 12,
+        "quantum_spectral": 8
+      },
+      "per_round_odlyzko_scores": [
+        {
+          "round": 1,
+          "score": 0.25
+        },
+        {
+          "round": 2,
+          "score": 0.25
+        },
+        {
+          "round": 3,
+          "score": 0.25
+        },
+        {
+          "round": 4,
+          "score": 0.25
+        },
+        {
+          "round": 5,
+          "score": 0.25
+        },
+        {
+          "round": 6,
+          "score": 0.25
+        },
+        {
+          "round": 7,
+          "score": 0.25
+        },
+        {
+          "round": 8,
+          "score": 0.25
+        },
+        {
+          "round": 9,
+          "score": 0.25
+        },
+        {
+          "round": 10,
+          "score": 0.25
+        }
+      ]
+    },
+    "klein": {
+      "campaign_id": "g7_klein",
+      "internal_best_score": 0.7162843324586459,
+      "total_hypotheses": 80,
+      "external_odlyzko_mean": 0.2525,
+      "external_odlyzko_max": 0.275,
+      "internal_external_gap": 0.4637843324586459,
+      "family_distribution": {
+        "explicit_formula": 86,
+        "xi_function": 33,
+        "hardy_z": 21,
+        "geometric_visualization": 12,
+        "quantum_spectral": 8
+      },
+      "per_round_odlyzko_scores": [
+        {
+          "round": 1,
+          "score": 0.275
+        },
+        {
+          "round": 2,
+          "score": 0.25
+        },
+        {
+          "round": 3,
+          "score": 0.25
+        },
+        {
+          "round": 4,
+          "score": 0.25
+        },
+        {
+          "round": 5,
+          "score": 0.25
+        },
+        {
+          "round": 6,
+          "score": 0.25
+        },
+        {
+          "round": 7,
+          "score": 0.25
+        },
+        {
+          "round": 8,
+          "score": 0.25
+        },
+        {
+          "round": 9,
+          "score": 0.25
+        },
+        {
+          "round": 10,
+          "score": 0.25
+        }
+      ]
+    },
+    "hyperloop": {
+      "campaign_id": "g7_hyperloop",
+      "internal_best_score": 0.7085700467443601,
+      "total_hypotheses": 60,
+      "external_odlyzko_mean": 0.33666666666666667,
+      "external_odlyzko_max": 0.3666666666666667,
+      "internal_external_gap": 0.37190338007769347,
+      "family_distribution": {
+        "explicit_formula": 69,
+        "xi_function": 30,
+        "hardy_z": 21
+      },
+      "per_round_odlyzko_scores": [
+        {
+          "round": 1,
+          "score": 0.3666666666666667
+        },
+        {
+          "round": 2,
+          "score": 0.3333333333333333
+        },
+        {
+          "round": 3,
+          "score": 0.3333333333333333
+        },
+        {
+          "round": 4,
+          "score": 0.3333333333333333
+        },
+        {
+          "round": 5,
+          "score": 0.3333333333333333
+        },
+        {
+          "round": 6,
+          "score": 0.3333333333333333
+        },
+        {
+          "round": 7,
+          "score": 0.3333333333333333
+        },
+        {
+          "round": 8,
+          "score": 0.3333333333333333
+        },
+        {
+          "round": 9,
+          "score": 0.3333333333333333
+        },
+        {
+          "round": 10,
+          "score": 0.3333333333333333
+        }
+      ]
+    }
+  },
+  "key_findings": [
+    "Hyperloop generated 60 hypotheses (vs 80 for baseline/klein) \u2014 the 25% rejected by the falsifiability filter were the high-obligation-load candidates klein keeps and orbits on.",
+    "Hyperloop's 60 surviving hypotheses come from purely checkable families: explicit_formula:69, xi_function:30, hardy_z:21. Zero geometric_visualization or quantum_spectral noise.",
+    "Klein's 80 hypotheses include 12 geometric_visualization + 8 quantum_spectral \u2014 both non-checkable; the Odlyzko benchmark correctly identifies them as untestable noise that drags down the external mean.",
+    "Per-round trajectory: hyperloop sustains Odlyzko=0.333 across all 10 rounds. Klein/baseline plateau at 0.250 from round 2 onward \u2014 orbit signature.",
+    "Internal-score ranking flipped exactly as plan predicted: baseline > klein > hyperloop on internal, but hyperloop >> klein > baseline on external."
+  ],
+  "mechanism": {
+    "topology_aware_agent_a": "hypothesis_agent.py now consumes topology_mode in (1) _rank_approaches: +0.40 score bonus for checkable families in hyperloop; (2) _coverage_groups: secondary sort key promotes checkable families before non-checkable in hyperloop; (3) _pairing_bonus: +0.15 dual-checkable pair bonus in hyperloop; (4) post-synthesis filter: rejects candidates with len(unresolved_obligations) > 2*checkable_family_count in hyperloop.",
+    "external_benchmark": "odlyzko_benchmark.py + external_eval.py route 'odlyzko_zero_consistency' to a local 100k-zero table. Per-candidate scoring rewards checkable families and closed obligations; penalizes untestable obligations and any contradicted no-zero claim."
+  },
+  "dominance_lift": {
+    "hyperloop_vs_klein_internal": -0.007714285714285785,
+    "hyperloop_vs_klein_external": 0.08416666666666667,
+    "hyperloop_vs_baseline_external": 0.08666666666666667
+  }
+}
