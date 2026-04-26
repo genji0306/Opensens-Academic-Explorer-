@@ -927,7 +927,7 @@ def run_campaign(
             for family in hypothesis.ingredient_families:
                 family_usage[family] = family_usage.get(family, 0) + 1
         novelties = agent_m.run(hypotheses) + agent_q.run(hypotheses) + agent_t.run(hypotheses)
-        if cfg.topology_mode == "klein":
+        if cfg.topology_mode in ("klein", "hyperloop"):
             novelties += agent_k.run(
                 hypotheses,
                 campaign_failure_counts=campaign_failure_counts,
@@ -1017,7 +1017,7 @@ def run_campaign(
             routing,
             feedback=merge_feedback(routing.feedback, _feedback_from_failure_counts(round_failure_counts)),
         )
-        if cfg.topology_mode == "klein":
+        if cfg.topology_mode in ("klein", "hyperloop"):
             routing = replace(
                 routing,
                 feedback=merge_feedback(routing.feedback, klein_feedback_from_failure_counts(round_failure_counts)),
@@ -1059,8 +1059,10 @@ def run_campaign(
             obligation_snapshot = {
                 "open_obligation_classes": {ob: 1 for ob in obligations},
             }
-            # Suffix with round index so the resulting Lean decl names are unique per round.
-            unique_candidate_id = f"{evaluation.candidate_id}_r{round_index:03d}"
+            # Suffix with campaign_id + round so decl names stay unique across both rounds
+            # AND across campaigns that share the same seed-derived candidate IDs.
+            campaign_tag = "".join(ch if ch.isalnum() else "_" for ch in cfg.campaign_id)[:32]
+            unique_candidate_id = f"{evaluation.candidate_id}_c{campaign_tag}_r{round_index:03d}"
             skeleton = _generate_lean_skeleton(unique_candidate_id, obligation_snapshot)
             candidate_skeletons.append((unique_candidate_id, skeleton))
         if candidate_skeletons:
