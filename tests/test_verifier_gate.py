@@ -1,8 +1,12 @@
 """Tests for verifier_gate.py and ensemble (Phase 3)."""
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 import pytest
 
+from riemann.research.d_phi_disruption_metric import score_research_dir
 from riemann.research.verifier_gate import (
     GateDecision,
     EnsembleResult,
@@ -159,3 +163,75 @@ def test_ensemble_result_to_dict() -> None:
     parsed = json.loads(serialized)
     assert parsed["total"] == 1
     assert parsed["consensus"] == 1
+
+
+# ---------------------------------------------------------------------------
+# D_phi obligation-adjusted metric
+# ---------------------------------------------------------------------------
+
+
+def _write_d_phi_campaign(tmp_path: Path, *, rh_proof_claim: bool) -> Path:
+    research_dir = tmp_path / "data" / "riemann" / "research"
+    campaign_dir = research_dir / "rh-disruptive-tail-reduction"
+    lean_dir = tmp_path / "lean" / "RH"
+    campaign_dir.mkdir(parents=True)
+    lean_dir.mkdir(parents=True)
+
+    (lean_dir / "TailReduction.lean").write_text(
+        "def uniform_tail_recombination_budget_reduction : True := True.intro\n",
+        encoding="utf-8",
+    )
+    (campaign_dir / "summary.json").write_text(
+        json.dumps({"campaign_id": "rh-disruptive-tail-reduction", "best_score": 0.956}),
+        encoding="utf-8",
+    )
+    (campaign_dir / "certificate_report.json").write_text(
+        json.dumps(
+            {
+                "candidate_reports": [
+                    {
+                        "open_obligation_classes": [
+                            "analytic_xi_bridge_theorem",
+                            "global_off_line_exclusion_theorem",
+                            "uniform_tail_recombination_theorem",
+                        ],
+                        "core_obligation_reduction_evidence": [
+                            {
+                                "core_obligation": "uniform_tail_recombination_theorem",
+                                "reduced_to": "weil_guinand_tail_budget_certificate",
+                                "mechanical_check": "mock_lean_bridge_decl_present",
+                                "lean_path": "lean/RH/TailReduction.lean",
+                                "lean_declaration": "uniform_tail_recombination_budget_reduction",
+                                "rh_proof_claim": rh_proof_claim,
+                            }
+                        ],
+                        "lane_reports": [
+                            {
+                                "check_id": "d_phi_formalization",
+                                "passed": True,
+                                "metrics": {"threshold_gap": 0.0},
+                            }
+                        ],
+                    }
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    return research_dir
+
+
+def test_d_phi_metric_promotes_evidence_backed_core_reduction(tmp_path: Path) -> None:
+    metric = score_research_dir(_write_d_phi_campaign(tmp_path, rh_proof_claim=False))
+
+    assert metric.score == 0.956
+    assert metric.reduced_core_obligations == ("uniform_tail_recombination_theorem",)
+    assert len(metric.open_core_obligations) == 2
+
+
+def test_d_phi_metric_rejects_reduction_with_rh_proof_claim(tmp_path: Path) -> None:
+    metric = score_research_dir(_write_d_phi_campaign(tmp_path, rh_proof_claim=True))
+
+    assert metric.score == 0.949
+    assert metric.reduced_core_obligations == ()
+    assert len(metric.open_core_obligations) == 3

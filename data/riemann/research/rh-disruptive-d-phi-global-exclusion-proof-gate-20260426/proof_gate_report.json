@@ -19,6 +19,15 @@
     "Turn the quartet obstruction margin into a global off-line-zero exclusion theorem.",
     "Turn the Weil-Guinand tail recombination margin into a uniform tail bound."
   ],
+  "core_obligation_reductions": [
+    {
+      "core_obligation": "uniform_tail_recombination_theorem",
+      "reduced_to": "weil_guinand_tail_budget_certificate",
+      "lean_path": "lean/RH/MetaTheorems/MT-gamma-uniform_tail_budget-006.lean",
+      "lean_declaration": "uniform_tail_recombination_budget_reduction",
+      "claim_scope": "Reduction certificate only; no RH proof claim and no completed uniform tail theorem claim."
+    }
+  ],
   "best_score": 0.956,
   "d_phi_metrics": {
     "score": 0.952,

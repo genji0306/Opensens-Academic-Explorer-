@@ -59,6 +59,17 @@
         "global_off_line_exclusion_theorem",
         "uniform_tail_recombination_theorem"
       ],
+      "core_obligation_reduction_evidence": [
+        {
+          "core_obligation": "uniform_tail_recombination_theorem",
+          "reduced_to": "weil_guinand_tail_budget_certificate",
+          "mechanical_check": "mock_lean_bridge_decl_present",
+          "lean_path": "lean/RH/MetaTheorems/MT-gamma-uniform_tail_budget-006.lean",
+          "lean_declaration": "uniform_tail_recombination_budget_reduction",
+          "rh_proof_claim": false,
+          "remaining_subobligation": "Promote the recorded 0.672 Weil-Guinand recombination budget into a uniform analytic tail theorem."
+        }
+      ],
       "proof_obligation_reduction": 0.75,
       "margin_summary": {
         "checks_run": 2,

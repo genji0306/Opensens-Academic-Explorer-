@@ -17,6 +17,7 @@
   },
   "required_stop_label_evidence": [
     "d_phi-threshold-cleared",
-    "global-exclusion-or-positivity-progress"
+    "global-exclusion-or-positivity-progress",
+    "core-obligation-reduced"
   ]
 }
