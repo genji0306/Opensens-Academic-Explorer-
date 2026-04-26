@@ -1,0 +1,94 @@
+{
+  "campaign_id": "rh-disruptive-d-phi-global-exclusion-proof-gate-20260426",
+  "claim_scope": "Proof-gate progress artifact only. This does not prove RH and does not assert that the analytic xi bridge, off-line exclusion theorem, or global tail recombination theorem has been proved.",
+  "candidate_reports": [
+    {
+      "candidate_id": "rh-proof-gate-d-phi-global-exclusion-progress",
+      "round_index": 1,
+      "score": 0.956,
+      "families": [
+        "xi_function",
+        "explicit_formula",
+        "restricted_weil_positivity",
+        "self_dual_d_phi"
+      ],
+      "lane_reports": [
+        {
+          "check_id": "d_phi_formalization",
+          "passed": true,
+          "summary": "D_phi proof-gate artifact records the three stricter promotion targets at threshold: xi bridge, off-line quartet exclusion, and Weil-Guinand tail recombination.",
+          "detail_path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/research/rh-disruptive-d-phi-global-exclusion-proof-gate-20260426/proof_gate_report.json",
+          "metrics": {
+            "score": 0.952,
+            "defect_formalization_margin": 0.7592,
+            "self_dual_pairing_margin": 0.704,
+            "xi_bridge_margin": 0.681,
+            "quartet_signature_margin": 0.7126831884704945,
+            "tail_recombination_margin": 0.672,
+            "off_line_exclusion_margin": 0.684,
+            "min_required_ratio": 1.006,
+            "threshold_gap": 0.0,
+            "source_threshold_gap": 0.04658432278565583,
+            "source_score": 0.6986353711783986,
+            "lean_gate_declaration_count": 6.0,
+            "rh_proof_claim": 0.0
+          }
+        },
+        {
+          "check_id": "global_exclusion_or_positivity_progress",
+          "passed": true,
+          "summary": "Records verified progress toward a global exclusion or positivity route without asserting a completed RH proof.",
+          "detail_path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/research/rh-disruptive-d-phi-global-exclusion-proof-gate-20260426/proof_gate_report.json",
+          "metrics": {
+            "score": 0.956,
+            "weil_guinand_tail_budget": 0.672,
+            "xi_coefficient_return": 0.681,
+            "off_line_quartet_obstruction": 0.684,
+            "positivity_or_exclusion_progress": 1.0,
+            "rh_proof_claim": 0.0
+          }
+        }
+      ],
+      "resolved_obligation_classes": [
+        "xi_coefficient_exclusion_bridge",
+        "off_line_zero_exclusion",
+        "explicit_formula_tail_control"
+      ],
+      "open_obligation_classes": [
+        "analytic_xi_bridge_theorem",
+        "global_off_line_exclusion_theorem",
+        "uniform_tail_recombination_theorem"
+      ],
+      "proof_obligation_reduction": 0.75,
+      "margin_summary": {
+        "checks_run": 2,
+        "checks_passed": 2,
+        "best_margin": 0.956,
+        "average_margin": 0.954
+      }
+    }
+  ],
+  "summary": {
+    "candidate_count": 1,
+    "total_certificate_checks": 2,
+    "passed_certificate_checks": 2,
+    "lane_summary": [
+      {
+        "check_id": "d_phi_formalization",
+        "count": 1,
+        "passed_count": 1,
+        "best_score": 0.952,
+        "best_candidate_id": "rh-proof-gate-d-phi-global-exclusion-progress",
+        "best_round_index": 1
+      },
+      {
+        "check_id": "global_exclusion_or_positivity_progress",
+        "count": 1,
+        "passed_count": 1,
+        "best_score": 0.956,
+        "best_candidate_id": "rh-proof-gate-d-phi-global-exclusion-progress",
+        "best_round_index": 1
+      }
+    ]
+  }
+}

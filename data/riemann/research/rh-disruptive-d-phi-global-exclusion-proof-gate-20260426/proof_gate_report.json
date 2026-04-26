@@ -1,0 +1,47 @@
+{
+  "campaign_id": "rh-disruptive-d-phi-global-exclusion-proof-gate-20260426",
+  "generated_at": "2026-04-26T12:49:50.574559+00:00",
+  "artifact_type": "d_phi_global_exclusion_proof_gate_progress",
+  "claim_scope": "Proof-gate progress artifact only. This does not prove RH and does not assert that the analytic xi bridge, off-line exclusion theorem, or global tail recombination theorem has been proved.",
+  "source_artifacts": {
+    "best_self_dual_summary": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/research/rh-bs-self-dual-baseline-095-20260426/summary.json",
+    "d_phi_threshold_certificate": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/research/rh-d-phi-threshold-gated-smoke-20260426/certificate_report.json",
+    "lean_gate": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/lean/RH/Obstructions/DPhiThresholdGate.lean"
+  },
+  "mechanical_checks": {
+    "lean_gate_shape_present": true,
+    "d_phi_three_target_gate_recorded": true,
+    "global_exclusion_or_positivity_progress_recorded": true,
+    "unsupported_rh_proof_claim_absent": true
+  },
+  "remaining_obligations": [
+    "Turn the xi/coefficient bridge margin into an analytic exclusion theorem.",
+    "Turn the quartet obstruction margin into a global off-line-zero exclusion theorem.",
+    "Turn the Weil-Guinand tail recombination margin into a uniform tail bound."
+  ],
+  "best_score": 0.956,
+  "d_phi_metrics": {
+    "score": 0.952,
+    "defect_formalization_margin": 0.7592,
+    "self_dual_pairing_margin": 0.704,
+    "xi_bridge_margin": 0.681,
+    "quartet_signature_margin": 0.7126831884704945,
+    "tail_recombination_margin": 0.672,
+    "off_line_exclusion_margin": 0.684,
+    "min_required_ratio": 1.006,
+    "threshold_gap": 0.0,
+    "source_threshold_gap": 0.04658432278565583,
+    "source_score": 0.6986353711783986,
+    "lean_gate_declaration_count": 6.0,
+    "rh_proof_claim": 0.0
+  },
+  "global_progress_metrics": {
+    "score": 0.956,
+    "weil_guinand_tail_budget": 0.672,
+    "xi_coefficient_return": 0.681,
+    "off_line_quartet_obstruction": 0.684,
+    "positivity_or_exclusion_progress": 1.0,
+    "rh_proof_claim": 0.0
+  },
+  "source_best_score": 0.7405697412380321
+}
