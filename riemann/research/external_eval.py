@@ -1,9 +1,12 @@
-"""External benchmark evaluator: FrontierMath / IMProofBench / LemmaBench / gdm-formal-conjectures (Phase 4)."""
+"""External benchmark evaluator: FrontierMath / IMProofBench / LemmaBench / gdm-formal-conjectures / Odlyzko (Phase 4)."""
 from __future__ import annotations
 
 import os
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any
+
+from .odlyzko_benchmark import OdlyzkoTable, evaluate_round
 
 
 EXTERNAL_BENCHMARKS: dict[str, dict[str, str]] = {
@@ -23,9 +26,30 @@ EXTERNAL_BENCHMARKS: dict[str, dict[str, str]] = {
         "url": "https://github.com/AxiomMath/gdm-formal-conjectures",
         "kind": "conjecture",
     },
+    "odlyzko_zero_consistency": {
+        "url": "local:data/riemann/zeros1.txt",
+        "kind": "empirical_ground_truth",
+    },
 }
 
 _UNAVAILABLE_ERROR = "EXTERNAL_EVAL_ENABLED not set"
+
+# Cache for Odlyzko table — loading 100k zeros takes ~50ms.
+_ODLYZKO_CACHE: OdlyzkoTable | None = None
+
+
+def _load_odlyzko(max_zeros: int = 10_000) -> OdlyzkoTable | None:
+    global _ODLYZKO_CACHE
+    if _ODLYZKO_CACHE is not None:
+        return _ODLYZKO_CACHE
+    # Search up from this file for data/riemann/zeros1.txt.
+    here = Path(__file__).resolve()
+    for ancestor in [here.parent, *here.parents]:
+        candidate = ancestor / "data" / "riemann" / "zeros1.txt"
+        if candidate.exists():
+            _ODLYZKO_CACHE = OdlyzkoTable.load(candidate, max_zeros=max_zeros)
+            return _ODLYZKO_CACHE
+    return None
 
 
 @dataclass(frozen=True)
@@ -56,6 +80,13 @@ class ExternalEvaluator:
     def _query_benchmark(
         self, benchmark_id: str, payload: dict[str, Any]
     ) -> ExternalBenchmarkResult:
+        # Odlyzko is local-data-backed and always available — it does NOT require
+        # EXTERNAL_EVAL_ENABLED because there is no network call. It is 'external'
+        # in the relevant sense: the zero table is empirical mathematical truth
+        # that no orchestrator paraphrase can change.
+        if benchmark_id == "odlyzko_zero_consistency":
+            return self._query_odlyzko(payload)
+
         if not os.environ.get("EXTERNAL_EVAL_ENABLED"):
             return ExternalBenchmarkResult(
                 benchmark_id=benchmark_id,
@@ -89,6 +120,39 @@ class ExternalEvaluator:
                 details={},
                 error=str(exc),
             )
+
+    def _query_odlyzko(self, payload: dict[str, Any]) -> ExternalBenchmarkResult:
+        """Score candidates against the Odlyzko zero table (local, always available)."""
+        odlyzko = _load_odlyzko()
+        if odlyzko is None:
+            return ExternalBenchmarkResult(
+                benchmark_id="odlyzko_zero_consistency",
+                score=0.0,
+                available=False,
+                details={},
+                error="data/riemann/zeros1.txt not found in any ancestor of external_eval.py",
+            )
+        candidates = payload.get("candidates", [])
+        round_index = int(payload.get("round_index", 0))
+        result = evaluate_round(
+            round_index=round_index,
+            candidate_records=candidates,
+            odlyzko=odlyzko,
+        )
+        return ExternalBenchmarkResult(
+            benchmark_id="odlyzko_zero_consistency",
+            score=result.mean_score,
+            available=True,
+            details={
+                "candidate_count": result.candidate_count,
+                "mean_score": result.mean_score,
+                "contradicted_count": result.contradicted_count,
+                "untestable_count": result.untestable_count,
+                "table_size": len(odlyzko.heights),
+                "table_t_max": odlyzko.t_max,
+            },
+            error="",
+        )
 
     def run(
         self,

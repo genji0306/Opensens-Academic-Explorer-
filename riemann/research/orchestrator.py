@@ -43,6 +43,7 @@ from .tail_control_agent import TailControlAgent
 from .lean_residue import LeanResidueLedger
 from .lean_residue_writer import write_round_skeletons
 from .certificate_program import _generate_lean_skeleton
+from .external_eval import ExternalEvaluator
 
 
 def _write_json(path: Path, payload: Any) -> Path:
@@ -901,6 +902,8 @@ def run_campaign(
     lean_ledger = LeanResidueLedger(cfg.lean_rh_root)
     lean_snapshot_before = lean_ledger.snapshot()
     lean_residue_log: list[dict[str, Any]] = []
+    external_evaluator = ExternalEvaluator()
+    external_eval_log: list[dict[str, Any]] = []
 
     for round_index in range(resumed_from_round + 1, cfg.max_rounds + 1):
         hypotheses = agent_a.run(
@@ -1049,6 +1052,7 @@ def run_campaign(
         # Persist per-candidate Lean skeletons so the residue ledger sees new decls each round.
         hypothesis_lookup = {item.candidate_id: item for item in hypotheses}
         candidate_skeletons: list[tuple[str, str]] = []
+        external_candidate_records: list[dict[str, Any]] = []
         for evaluation in evaluations_tuple:
             hypothesis = hypothesis_lookup.get(evaluation.candidate_id)
             obligations = (
@@ -1065,6 +1069,17 @@ def run_campaign(
             unique_candidate_id = f"{evaluation.candidate_id}_c{campaign_tag}_r{round_index:03d}"
             skeleton = _generate_lean_skeleton(unique_candidate_id, obligation_snapshot)
             candidate_skeletons.append((unique_candidate_id, skeleton))
+            # Build payload for the external Odlyzko benchmark.
+            ingredient_families = tuple(
+                getattr(hypothesis, "ingredient_families", ())
+            ) if hypothesis is not None else ()
+            external_candidate_records.append({
+                "candidate_id": evaluation.candidate_id,
+                "ingredient_families": ingredient_families,
+                "closed_obligation_count": 0,  # baseline floor; real closures are tracked elsewhere
+                "open_obligation_count": len(obligations),
+                "lean_skeleton": skeleton,
+            })
         if candidate_skeletons:
             write_round_skeletons(
                 lean_rh_root=cfg.lean_rh_root,
@@ -1088,6 +1103,33 @@ def run_campaign(
         lean_snapshot_before = lean_snapshot_after
         if not lean_gate_passed and verbose:
             print(f"  [lean] RESIDUE_GATE_FAIL round {round_index}: {lean_gate_reason}")
+        # External Odlyzko consistency benchmark — runs every round, all topology modes.
+        # Provides the moving-target external scorecard that Gate 7 requires.
+        external_report = external_evaluator.run(
+            campaign_id=cfg.campaign_id,
+            internal_score=round_best_score if evaluations_tuple else 0.0,
+            lean_candidates=external_candidate_records,
+        )
+        odlyzko_result = next(
+            (r for r in external_report.external_scores if r.benchmark_id == "odlyzko_zero_consistency"),
+            None,
+        )
+        external_eval_log.append({
+            "round_index": round_index,
+            "internal_score": external_report.internal_score,
+            "odlyzko_score": odlyzko_result.score if odlyzko_result else 0.0,
+            "odlyzko_available": odlyzko_result.available if odlyzko_result else False,
+            "odlyzko_details": dict(odlyzko_result.details) if odlyzko_result else {},
+            "mean_external": external_report.mean_external,
+            "replan_triggered": external_report.replan_triggered,
+            "replan_reason": external_report.replan_reason,
+        })
+        if verbose and odlyzko_result and odlyzko_result.available:
+            print(
+                f"  [external] odlyzko_score={odlyzko_result.score:.4f} "
+                f"(internal={external_report.internal_score:.4f}, "
+                f"contradicted={odlyzko_result.details.get('contradicted_count', 0)})"
+            )
         checkpoint_path = cfg.checkpoints_dir / f"round_{round_index:03d}.json"
         if cfg.checkpoint_every_round:
             _write_json(checkpoint_path, round_record.to_dict())
@@ -1150,6 +1192,23 @@ def run_campaign(
         "history": history,
         "lean_residue_gate_failures": sum(1 for e in lean_residue_log if not e["gate_passed"]),
         "lean_residue_log": lean_residue_log,
+        "external_eval_log": external_eval_log,
+        "external_eval_summary": {
+            "rounds_evaluated": len(external_eval_log),
+            "mean_odlyzko_score": (
+                sum(e["odlyzko_score"] for e in external_eval_log) / len(external_eval_log)
+                if external_eval_log else 0.0
+            ),
+            "max_odlyzko_score": (
+                max((e["odlyzko_score"] for e in external_eval_log), default=0.0)
+            ),
+            "replan_triggered_count": sum(1 for e in external_eval_log if e["replan_triggered"]),
+            "internal_external_gap": (
+                (sum(e["internal_score"] for e in external_eval_log)
+                 - sum(e["odlyzko_score"] for e in external_eval_log))
+                / len(external_eval_log) if external_eval_log else 0.0
+            ),
+        },
         "memory_summary": memory.summary(),
         "trace_path": str(trace_path),
         "paths": {

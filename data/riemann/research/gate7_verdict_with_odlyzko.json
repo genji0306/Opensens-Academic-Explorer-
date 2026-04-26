@@ -1,0 +1,434 @@
+{
+  "experiment": "Gate 7 tri-arm verdict with Odlyzko external benchmark wired",
+  "date": "2026-04-26",
+  "seed_pack": "rh-ri-functional-vector",
+  "max_rounds": 10,
+  "external_benchmark": {
+    "name": "odlyzko_zero_consistency",
+    "kind": "empirical_ground_truth",
+    "table_size": 10000,
+    "implementation": "riemann/research/odlyzko_benchmark.py"
+  },
+  "arms": {
+    "baseline": {
+      "campaign_id": "g7_baseline",
+      "internal_best_score": 0.5670027900719412,
+      "external": {
+        "mean_odlyzko_score": 0.0625,
+        "max_odlyzko_score": 0.0625,
+        "internal_external_gap": 0.4830059333648583,
+        "replan_triggered_count": 10
+      },
+      "per_round_odlyzko": [
+        {
+          "round": 1,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 2,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 3,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 4,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 5,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 6,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 7,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 8,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 9,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 10,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        }
+      ],
+      "lean_residue": {
+        "decls_added_total": 300,
+        "rounds_gate_passed": 10
+      }
+    },
+    "klein": {
+      "campaign_id": "g7_klein",
+      "internal_best_score": 0.612542726433852,
+      "external": {
+        "mean_odlyzko_score": 0.0625,
+        "max_odlyzko_score": 0.0625,
+        "internal_external_gap": 0.5314616786422124,
+        "replan_triggered_count": 10
+      },
+      "per_round_odlyzko": [
+        {
+          "round": 1,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 2,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 3,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 4,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 5,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 6,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 7,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 8,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 9,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 10,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        }
+      ],
+      "lean_residue": {
+        "decls_added_total": 300,
+        "rounds_gate_passed": 10
+      }
+    },
+    "hyperloop": {
+      "campaign_id": "g7_hyperloop",
+      "internal_best_score": 0.5670027900719412,
+      "external": {
+        "mean_odlyzko_score": 0.0625,
+        "max_odlyzko_score": 0.0625,
+        "internal_external_gap": 0.459072713443776,
+        "replan_triggered_count": 10
+      },
+      "per_round_odlyzko": [
+        {
+          "round": 1,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 2,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 3,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 4,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 5,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 6,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 7,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 8,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 9,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        },
+        {
+          "round": 10,
+          "score": 0.0625,
+          "details": {
+            "candidate_count": 8,
+            "mean_score": 0.0625,
+            "contradicted_count": 0,
+            "untestable_count": 7,
+            "table_size": 10000,
+            "table_t_max": 9877.782654004
+          }
+        }
+      ],
+      "lean_residue": {
+        "decls_added_total": 300,
+        "rounds_gate_passed": 10
+      }
+    }
+  },
+  "verdict": {
+    "structural": "PASS \u2014 external benchmark is wired and produces real numbers per round.",
+    "strict_dominance": "TIE \u2014 hyperloop matches klein at 0.0625 Odlyzko score (also matches baseline).",
+    "diagnosis": [
+      "All 3 arms produce IDENTICAL hypothesis populations: de_branges:86, quantum_spectral:37, hilbert_polya:24, geometric_visualization:13.",
+      "topology_mode in Agent A (hypothesis generator) is structurally a no-op \u2014 only Agent K (novelty) and routing.feedback are topology-aware.",
+      "Therefore any external scorer evaluating hypotheses must produce identical numbers across arms \u2014 the benchmark is working as designed.",
+      "The Odlyzko score of 0.0625 reflects that nearly all hypotheses from this seed pack have UNTESTABLE obligation loads (avg 4.05 unresolved per candidate, mostly families not in the checkable set).",
+      "Internal-score divergence (klein=0.6125, hyperloop=0.5670) comes from K-feedback affecting Agent Ob's scoring, NOT from different hypotheses being generated."
+    ],
+    "next_step_to_unlock_gate7": "Make Agent A consume topology_mode: in hyperloop mode, bias hypothesis ingredient_families toward checkable lanes (hardy_z, explicit_formula, de_branges, xi_function) and reject candidates whose obligation load exceeds 2*checkable_family_count. This would force hyperloop to produce structurally different (more falsifiable) hypotheses than klein."
+  }
+}
