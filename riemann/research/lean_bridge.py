@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Literal
 
-LeanBackend = Literal["mock", "http", "mcp"]
+LeanBackend = Literal["mock", "strict", "http", "mcp"]
 
 _DECL_RE = re.compile(
     r"^\s*(?:noncomputable\s+)?(?:private\s+)?"
@@ -64,6 +64,34 @@ def _verify_mock(source: str, *, backend_label: str = "mock") -> LeanCheckResult
     )
 
 
+def _verify_strict(source: str) -> LeanCheckResult:
+    """Strict honest-mock backend (Phase 3): rejects any source containing `sorry`.
+
+    The mock backend reports passed=True for sorry-filled skeletons because
+    structurally they parse fine. The strict backend reports passed=False
+    when any `sorry` appears, exposing the gap that auto-generated skeletons
+    are not actually proven.
+
+    Use mock for "is the source well-formed?" and strict for "is this an
+    actual proof?". Use http or mcp backends for real Lean kernel verification.
+    """
+    base = _verify_mock(source, backend_label="strict")
+    errors = list(base.errors)
+    if base.sorry_count > 0:
+        errors.append(
+            f"strict backend: source contains {base.sorry_count} `sorry` "
+            f"placeholder(s); strict mode rejects unproven skeletons"
+        )
+    return LeanCheckResult(
+        passed=not errors,
+        backend="strict",
+        decls=base.decls,
+        sorry_count=base.sorry_count,
+        messages=("strict verifier: sorry-rejecting mock — not a real Lean kernel",),
+        errors=tuple(errors),
+    )
+
+
 def verify(source: str, *, backend: LeanBackend = "mock") -> LeanCheckResult:
     """Verify Lean source with the selected backend.
 
@@ -73,6 +101,9 @@ def verify(source: str, *, backend: LeanBackend = "mock") -> LeanCheckResult:
     """
     if backend == "mock":
         return _verify_mock(source)
+
+    if backend == "strict":
+        return _verify_strict(source)
 
     if not os.environ.get("AXLE_API_KEY"):
         result = _verify_mock(source, backend_label="mock")

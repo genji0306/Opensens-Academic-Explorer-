@@ -1,0 +1,122 @@
+{
+  "name": "rh-core",
+  "description": "Curated RH bibliography seed pack with offline-capable local sources plus the existing OAE Riemann reports.",
+  "allowlisted_domains": [
+    "arxiv.org",
+    "doi.org",
+    "projecteuclid.org",
+    "annals.math.princeton.edu",
+    "claymath.org",
+    "www-users.cse.umn.edu"
+  ],
+  "seeds": [
+    "data/riemann/research/seed_packs/rh_core_bibliography.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_functional_equation.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_xi_symmetry.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_contour_methods.md",
+    "data/riemann/reports/rh_synthesis.md",
+    "data/riemann/reports/final_report.json",
+    "data/riemann/reports/math_analysis.json",
+    "data/riemann/reports/rh_projection.html",
+    "data/riemann/reports/rh_strip.html",
+    "data/riemann/reports/rh_explicit.html"
+  ],
+  "bibliography": [
+    {
+      "family": "analytic_foundations",
+      "title": "Prime number theorem via zero-free regions",
+      "authors": [
+        "Hadamard",
+        "de la Vallee Poussin"
+      ],
+      "year": 1896,
+      "note": "Classical zero-free-region work shows the baseline analytic control but does not prove RH."
+    },
+    {
+      "family": "hardy_z",
+      "title": "Infinitely many zeros on the critical line",
+      "authors": [
+        "G. H. Hardy"
+      ],
+      "year": 1914,
+      "note": "Critical-line existence result; useful for separating partial on-line results from full RH."
+    },
+    {
+      "family": "explicit_formula",
+      "title": "Explicit formula and prime-zero duality",
+      "authors": [
+        "Riemann",
+        "von Mangoldt",
+        "modern expositors"
+      ],
+      "year": 1859,
+      "note": "Any candidate proof should preserve the explicit formula bridge between zeros and prime powers."
+    },
+    {
+      "family": "random_matrix",
+      "title": "Pair correlation and GUE heuristics",
+      "authors": [
+        "H. L. Montgomery",
+        "A. M. Odlyzko"
+      ],
+      "year": 1973,
+      "note": "Strong statistical evidence for spectral structure, but not a proof."
+    },
+    {
+      "family": "hilbert_polya",
+      "title": "Hilbert-Polya operator program",
+      "authors": [
+        "Hilbert-Polya tradition"
+      ],
+      "year": 1910,
+      "note": "Search for a self-adjoint operator whose spectrum matches the non-trivial zeros."
+    },
+    {
+      "family": "mollifier_moment",
+      "title": "Mollifier and moment methods",
+      "authors": [
+        "Selberg",
+        "Levinson",
+        "Conrey"
+      ],
+      "year": 1974,
+      "note": "Partial-density-on-the-line results that sharpen evidence without closing RH."
+    },
+    {
+      "family": "de_branges",
+      "title": "de Branges / Hilbert space approaches",
+      "authors": [
+        "Louis de Branges"
+      ],
+      "year": 1986,
+      "note": "Function-space program aimed at forcing zero locations via positivity structure."
+    },
+    {
+      "family": "xi_function",
+      "title": "Xi-function and entire-function structure",
+      "authors": [
+        "Classical analytic number theory"
+      ],
+      "year": 1859,
+      "note": "Tracks the completed xi-function and Laguerre-Polya style constraints."
+    },
+    {
+      "family": "geometric_visualization",
+      "title": "OAE projection, strip, and explicit-formula synthesis",
+      "authors": [
+        "OAE local reports"
+      ],
+      "year": 2026,
+      "note": "Geomath lane: projection geometry, strip symmetry, and explicit prime-zero reconstructions."
+    },
+    {
+      "family": "quantum_spectral",
+      "title": "Quantum-inspired spectral surrogates",
+      "authors": [
+        "OAE exploratory lane"
+      ],
+      "year": 2026,
+      "note": "Simulator-backed operator heuristics; only useful when converted into falsifiable claims."
+    }
+  ]
+}

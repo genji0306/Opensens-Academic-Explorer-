@@ -1,0 +1,59 @@
+{
+  "name": "rh-visual-quantum",
+  "description": "Geomath and quantum-inspired pack: projection geometry, strip visualization, explicit-formula bridge, and simulator-backed novelty.",
+  "allowlisted_domains": [
+    "arxiv.org",
+    "doi.org",
+    "projecteuclid.org",
+    "annals.math.princeton.edu",
+    "claymath.org",
+    "www-users.cse.umn.edu"
+  ],
+  "seeds": [
+    "data/riemann/research/seed_packs/rh_visual_quantum_bibliography.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_functional_equation.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_xi_symmetry.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_contour_methods.md",
+    "data/riemann/reports/rh_projection.html",
+    "data/riemann/reports/rh_strip.html",
+    "data/riemann/reports/rh_explicit.html",
+    "data/riemann/reports/rh_synthesis.md",
+    "data/riemann/reports/final_report.json"
+  ],
+  "bibliography": [
+    {
+      "family": "geometric_visualization",
+      "title": "OAE projection and strip geometry",
+      "authors": [
+        "OAE local reports"
+      ],
+      "year": 2026
+    },
+    {
+      "family": "explicit_formula",
+      "title": "Prime-zero bridge for geometric hypotheses",
+      "authors": [
+        "Riemann",
+        "von Mangoldt"
+      ],
+      "year": 1859
+    },
+    {
+      "family": "hardy_z",
+      "title": "Hardy Z phase-amplitude identity",
+      "authors": [
+        "Hardy",
+        "Riemann-Siegel tradition"
+      ],
+      "year": 1914
+    },
+    {
+      "family": "quantum_spectral",
+      "title": "Simulator-backed Hermitian surrogates",
+      "authors": [
+        "OAE exploratory lane"
+      ],
+      "year": 2026
+    }
+  ]
+}

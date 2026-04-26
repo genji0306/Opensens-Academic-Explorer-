@@ -119,6 +119,7 @@ class HypothesisAgent:
         route_lock_bonus_primary: float = 0.35,
         route_lock_bonus_support: float = 0.08,
         route_lock_penalty_off_route: float = 0.06,
+        falsification_ledger: object | None = None,
     ) -> tuple[HypothesisCandidate, ...]:
         usage = dict(family_usage or {})
         feedback_text = self._feedback_text(feedback or {})
@@ -141,6 +142,7 @@ class HypothesisAgent:
             route_lock_bonus_support=route_lock_bonus_support,
             route_lock_penalty_off_route=route_lock_penalty_off_route,
             topology_mode=topology_mode,
+            falsification_ledger=falsification_ledger,
         )
         candidates: list[HypothesisCandidate] = []
         seen_groups: set[tuple[str, ...]] = set()
@@ -251,11 +253,23 @@ class HypothesisAgent:
         route_lock_bonus_support: float,
         route_lock_penalty_off_route: float,
         topology_mode: str = "baseline",
+        falsification_ledger: object | None = None,
     ) -> list[ApproachCard]:
         ingredient_bonus: dict[str, float] = {}
         for item in prior_evaluations:
             for approach_id in item.get("ingredient_approach_ids", ()):
                 ingredient_bonus[approach_id] = ingredient_bonus.get(approach_id, 0.0) + float(item.get("score", 0.0))
+
+        # Phase 4: per-family falsification count → ranking penalty.
+        # Family contradicted N times anywhere in the ledger gets -0.05 * N
+        # (capped -0.30) penalty in approach ranking. Causes Agent A to
+        # demote families with poor empirical accuracy across rounds.
+        family_falsification_count: dict[str, int] = {}
+        if falsification_ledger is not None:
+            try:
+                family_falsification_count = falsification_ledger.family_falsification_count()
+            except AttributeError:
+                pass
 
         def score(card: ApproachCard) -> tuple[float, str]:
             base = float(card.observer_scores.get("baseline_proximity", 0.0))
@@ -276,11 +290,12 @@ class HypothesisAgent:
                 route_lock_penalty_off_route=route_lock_penalty_off_route,
             )
             # Hyperloop bias: in hyperloop mode, prefer families whose claims
-            # the Odlyzko external benchmark can mechanically grade. This is
-            # the upstream half of Gate 7 — without it, all topology arms
-            # generate the same hypothesis population and external score ties.
+            # the Odlyzko external benchmark can mechanically grade.
             if topology_mode == "hyperloop" and card.family in _FALSIFIABILITY_CHECKABLE_FAMILIES:
                 bonus += _HYPERLOOP_FALSIFIABILITY_BONUS
+            # Phase 4: family-level falsification penalty.
+            f_count = family_falsification_count.get(card.family, 0)
+            penalty += min(0.30, 0.05 * f_count)
             return (base - penalty + bonus, card.approach_id)
 
         return sorted(approaches, key=score, reverse=True)

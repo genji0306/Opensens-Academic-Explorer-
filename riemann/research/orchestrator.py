@@ -44,6 +44,7 @@ from .lean_residue import LeanResidueLedger
 from .lean_residue_writer import write_round_skeletons
 from .certificate_program import _generate_lean_skeleton
 from .external_eval import ExternalEvaluator
+from .falsification_ledger import FalsificationLedger
 
 
 def _write_json(path: Path, payload: Any) -> Path:
@@ -908,6 +909,7 @@ def run_campaign(
     lean_residue_log: list[dict[str, Any]] = []
     external_evaluator = ExternalEvaluator()
     external_eval_log: list[dict[str, Any]] = []
+    falsification_ledger = FalsificationLedger()
 
     for round_index in range(resumed_from_round + 1, cfg.max_rounds + 1):
         hypotheses = agent_a.run(
@@ -928,6 +930,7 @@ def run_campaign(
             route_lock_bonus_primary=cfg.route_lock_bonus_primary,
             route_lock_bonus_support=cfg.route_lock_bonus_support,
             route_lock_penalty_off_route=cfg.route_lock_penalty_off_route,
+            falsification_ledger=falsification_ledger,
         )
         total_hypotheses += len(hypotheses)
         for hypothesis in hypotheses:
@@ -1139,6 +1142,32 @@ def run_campaign(
                 f"(internal={external_report.internal_score:.4f}, "
                 f"contradicted={odlyzko_result.details.get('contradicted_count', 0)})"
             )
+
+        # Phase 4: per-candidate falsification → ledger feedback. Records each
+        # contradicted claim's (family_signature, height_band) so Agent A can
+        # de-prioritize the same combination in future rounds.
+        if odlyzko_result and odlyzko_result.available:
+            from .odlyzko_benchmark import OdlyzkoTable, score_candidate
+            _odlyzko_path = Path(__file__).resolve().parents[2] / "data" / "riemann" / "zeros1.txt"
+            if _odlyzko_path.exists():
+                _table = OdlyzkoTable.load(_odlyzko_path, max_zeros=10000)
+                for record in external_candidate_records:
+                    sc = score_candidate(
+                        candidate_id=record["candidate_id"],
+                        ingredient_families=record["ingredient_families"],
+                        closed_obligation_count=record["closed_obligation_count"],
+                        open_obligation_count=record["open_obligation_count"],
+                        lean_skeleton=record["lean_skeleton"],
+                        odlyzko=_table,
+                    )
+                    if sc.contradicted_window is not None:
+                        falsification_ledger.record(
+                            round_index=round_index,
+                            candidate_id=record["candidate_id"],
+                            ingredient_families=record["ingredient_families"],
+                            contradicted_window=sc.contradicted_window,
+                        )
+
         checkpoint_path = cfg.checkpoints_dir / f"round_{round_index:03d}.json"
         if cfg.checkpoint_every_round:
             _write_json(checkpoint_path, round_record.to_dict())
@@ -1201,6 +1230,7 @@ def run_campaign(
         "history": history,
         "lean_residue_gate_failures": sum(1 for e in lean_residue_log if not e["gate_passed"]),
         "lean_residue_log": lean_residue_log,
+        "falsification_ledger": falsification_ledger.to_dict(),
         "external_eval_log": external_eval_log,
         "external_eval_summary": {
             "rounds_evaluated": len(external_eval_log),

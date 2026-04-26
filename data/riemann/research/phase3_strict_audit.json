@@ -1,0 +1,24 @@
+{
+  "scanned_files": 10,
+  "mock_pass_count": 10,
+  "strict_pass_count": 1,
+  "sorry_total": 26,
+  "honest_gap": 9,
+  "by_subdirectory": {
+    "Lemmas": {
+      "files": 6,
+      "mock_pass": 6,
+      "strict_pass": 0,
+      "sorry": 23
+    },
+    "MetaTheorems": {
+      "files": 4,
+      "mock_pass": 4,
+      "strict_pass": 1,
+      "sorry": 3
+    }
+  },
+  "strict_pass_files": [
+    "lean/RH/MetaTheorems/MT-gamma-uniform_tail_budget-006.lean"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "name": "rh-spectral",
+  "description": "Spectral/operator RH pack: Hilbert-Polya, random-matrix evidence, de Branges, and xi-function structure.",
+  "allowlisted_domains": [
+    "arxiv.org",
+    "doi.org",
+    "projecteuclid.org",
+    "annals.math.princeton.edu",
+    "claymath.org",
+    "www-users.cse.umn.edu"
+  ],
+  "seeds": [
+    "data/riemann/research/seed_packs/rh_spectral_bibliography.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_functional_equation.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_xi_symmetry.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_contour_methods.md",
+    "data/riemann/reports/final_report.json",
+    "data/riemann/reports/math_analysis.json",
+    "data/riemann/reports/rh_explicit.html",
+    "data/riemann/reports/rh_synthesis.md"
+  ],
+  "bibliography": [
+    {
+      "family": "hilbert_polya",
+      "title": "Hilbert-Polya operator program",
+      "authors": [
+        "Hilbert-Polya tradition"
+      ],
+      "year": 1910
+    },
+    {
+      "family": "random_matrix",
+      "title": "Pair correlation and GUE heuristics",
+      "authors": [
+        "H. L. Montgomery",
+        "A. M. Odlyzko"
+      ],
+      "year": 1973
+    },
+    {
+      "family": "de_branges",
+      "title": "de Branges Hilbert-space program",
+      "authors": [
+        "Louis de Branges"
+      ],
+      "year": 1986
+    },
+    {
+      "family": "xi_function",
+      "title": "Xi-function spectral constraints",
+      "authors": [
+        "Classical analytic number theory"
+      ],
+      "year": 1859
+    },
+    {
+      "family": "quantum_spectral",
+      "title": "Simulator-backed spectral surrogates",
+      "authors": [
+        "OAE exploratory lane"
+      ],
+      "year": 2026
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "name": "rh-deep",
+  "description": "Extended seed pack adding de_branges, xi_function, hilbert_polya, random_matrix, mollifier_moment families to expose K-lane obstruction differentiation.",
+  "families": ["de_branges", "xi_function", "hilbert_polya", "random_matrix", "mollifier_moment"],
+  "entries": [
+    {
+      "family": "de_branges",
+      "title": "Hilbert Space of Entire Functions and the Riemann Hypothesis",
+      "authors": ["Louis de Branges de Bourcia"],
+      "year": 2004,
+      "note": "de Branges proposes a Hilbert space whose positivity conditions would force all non-trivial zeros onto the critical line; the program depends on establishing completeness of Sonin spaces, which remains unverified.",
+      "known_blockers": [
+        "positivity structure requires full function-space proof",
+        "Sonin space completeness unverified"
+      ],
+      "proof_obligations": [
+        "establish positivity of the de Branges reproducing kernel for all admissible entire functions",
+        "prove completeness of the Sonin space associated with the zeta function",
+        "show the function-space positivity condition is equivalent to RH"
+      ],
+      "executable_checks": ["de_branges_positivity_check", "sonin_space_check"],
+      "observer_scores": {
+        "source_year": 2004,
+        "baseline_proximity": 0.45,
+        "contradiction_burden": 0.18,
+        "unresolved_obligation_count": 3
+      }
+    },
+    {
+      "family": "xi_function",
+      "title": "Xi Function Entire-Function Structure and Laguerre-Polya Class",
+      "authors": ["Bernhard Riemann", "G. H. Hardy", "J. E. Littlewood", "George Polya"],
+      "year": 1927,
+      "note": "The completed zeta function xi(s) is an entire function of order one; membership in the Laguerre-Polya class (real zeros only) would imply RH, but no proof of class membership has been found.",
+      "known_blockers": [
+        "entire-function constraints are necessary but not sufficient for RH",
+        "Laguerre-Polya class membership unproven"
+      ],
+      "proof_obligations": [
+        "show xi(s) belongs to the Laguerre-Polya class of entire functions",
+        "prove all zeros of xi are real, which is equivalent to RH",
+        "connect entire-function order constraints to the location of zeros"
+      ],
+      "executable_checks": ["xi_laguerre_polya_check", "entire_function_order_check"],
+      "observer_scores": {
+        "source_year": 1927,
+        "baseline_proximity": 0.48,
+        "contradiction_burden": 0.20,
+        "unresolved_obligation_count": 3
+      }
+    },
+    {
+      "family": "hilbert_polya",
+      "title": "Self-Adjoint Operator Conjecture and the Berry-Keating H=xp Hamiltonian",
+      "authors": ["David Hilbert", "George Polya", "Michael V. Berry", "Jonathan P. Keating"],
+      "year": 1999,
+      "note": "The Hilbert-Polya program seeks a self-adjoint operator whose eigenvalues are the imaginary parts of the zeros; Berry and Keating proposed H = xp as a semi-classical candidate, but a rigorous quantum realization with the correct spectral measure has not been constructed.",
+      "known_blockers": [
+        "no candidate self-adjoint operator has been rigorously constructed",
+        "spectral measure connection to zeros unproven"
+      ],
+      "proof_obligations": [
+        "construct a self-adjoint operator on an explicit Hilbert space with eigenvalues matching imaginary parts of Riemann zeros",
+        "prove the spectral measure of the operator is supported exactly on the imaginary parts of zeros",
+        "verify the boundary conditions of the quantized H = xp system reproduce the Selberg zeta function"
+      ],
+      "executable_checks": ["hilbert_polya_operator_check", "spectral_measure_check"],
+      "observer_scores": {
+        "source_year": 1999,
+        "baseline_proximity": 0.38,
+        "contradiction_burden": 0.25,
+        "unresolved_obligation_count": 3
+      }
+    },
+    {
+      "family": "random_matrix",
+      "title": "GUE Pair Correlation of Riemann Zeros (Montgomery-Odlyzko Law)",
+      "authors": ["Hugh L. Montgomery", "Andrew M. Odlyzko"],
+      "year": 1987,
+      "note": "Montgomery's pair correlation conjecture and Odlyzko's numerical computations show that zero spacings follow GUE random matrix statistics; this is strong heuristic evidence for RH but does not determine individual zero locations.",
+      "known_blockers": [
+        "GUE statistics are evidence not proof",
+        "pair correlation does not determine individual zero locations"
+      ],
+      "proof_obligations": [
+        "prove Montgomery's pair correlation conjecture unconditionally (currently conditional on RH)",
+        "show that GUE pair correlation statistics imply all zeros lie on the critical line",
+        "derive a deterministic constraint on individual zero positions from the statistical ensemble"
+      ],
+      "executable_checks": ["gue_pair_correlation_check", "zero_spacing_statistics_check"],
+      "observer_scores": {
+        "source_year": 1987,
+        "baseline_proximity": 0.42,
+        "contradiction_burden": 0.22,
+        "unresolved_obligation_count": 3
+      }
+    },
+    {
+      "family": "mollifier_moment",
+      "title": "Mollifier and Moment Methods: Selberg, Levinson, Conrey Density Results",
+      "authors": ["Atle Selberg", "Norman Levinson", "J. Brian Conrey"],
+      "year": 1989,
+      "note": "Mollifier and moment techniques have progressively increased the proven proportion of zeros on the critical line (Selberg: positive proportion, Levinson: >1/3, Conrey: >2/5); these are unconditional but fall short of 100%.",
+      "known_blockers": [
+        "partial density results do not close the off-line gap",
+        "mollifier window bounds not tight enough"
+      ],
+      "proof_obligations": [
+        "improve the mollifier window to achieve density greater than 1/2",
+        "show that the off-critical-line complement has measure zero",
+        "combine moment estimates with zero-free regions to close the gap unconditionally"
+      ],
+      "executable_checks": ["mollifier_density_check", "moment_bound_check"],
+      "observer_scores": {
+        "source_year": 1989,
+        "baseline_proximity": 0.50,
+        "contradiction_burden": 0.15,
+        "unresolved_obligation_count": 3
+      }
+    }
+  ]
+}
