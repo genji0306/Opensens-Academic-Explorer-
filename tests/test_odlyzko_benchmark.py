@@ -266,3 +266,79 @@ def test_certificate_skeleton_includes_falsifiable_claim() -> None:
     t_lo, t_hi = _claim_window("rh-hyp-99-deadbeef")
     assert t_lo < t_hi
     assert 9.5 <= t_lo and t_hi <= 102.0  # within designed [10, 101] range with margin
+
+
+def test_phase2_reasoning_window_centers_on_family_vote() -> None:
+    """Different families should center their windows at different heights."""
+    from riemann.research.certificate_program import _claim_window_from_reasoning
+    de_branges_lo, de_branges_hi = _claim_window_from_reasoning(
+        "id1", ("de_branges",), ("o1",)
+    )
+    random_matrix_lo, random_matrix_hi = _claim_window_from_reasoning(
+        "id1", ("random_matrix",), ("o1",)
+    )
+    de_branges_center = (de_branges_lo + de_branges_hi) / 2
+    random_matrix_center = (random_matrix_lo + random_matrix_hi) / 2
+    # de_branges → 20.0 region, random_matrix → 70.0 region (with ±2.5 perturbation)
+    assert 17.0 <= de_branges_center <= 23.0
+    assert 67.0 <= random_matrix_center <= 73.0
+    # And clearly separated
+    assert random_matrix_center - de_branges_center > 40.0
+
+
+def test_phase2_window_width_grows_with_obligation_count() -> None:
+    """More obligations = bolder claim = wider window."""
+    from riemann.research.certificate_program import _claim_window_from_reasoning
+    narrow = _claim_window_from_reasoning("id", ("explicit_formula",), ("o1",))
+    wide = _claim_window_from_reasoning("id", ("explicit_formula",), tuple(f"o{i}" for i in range(5)))
+    narrow_w = narrow[1] - narrow[0]
+    wide_w = wide[1] - wide[0]
+    assert wide_w > narrow_w
+    # 1 obligation: half-width 0.10 → full width 0.20
+    # 5 obligations: half-width 0.30 → full width 0.60
+    assert narrow_w == pytest.approx(0.20, abs=1e-6)
+    assert wide_w == pytest.approx(0.60, abs=1e-6)
+
+
+def test_phase2_two_same_family_candidates_get_different_windows() -> None:
+    """Tie-break perturbation should give distinct windows to same-family candidates."""
+    from riemann.research.certificate_program import _claim_window_from_reasoning
+    a = _claim_window_from_reasoning("id-a", ("hardy_z",), ("o1",))
+    b = _claim_window_from_reasoning("id-b", ("hardy_z",), ("o1",))
+    assert a != b
+    # But both centered near 50.0 ± 2.5
+    a_center = (a[0] + a[1]) / 2
+    b_center = (b[0] + b[1]) / 2
+    assert 47.5 <= a_center <= 52.5
+    assert 47.5 <= b_center <= 52.5
+
+
+def test_phase2_skeleton_uses_reasoning_window_when_families_provided() -> None:
+    """Skeleton with families should pick a reasoning-derived window, not the hash-only one."""
+    from riemann.research.certificate_program import (
+        _claim_window,
+        _claim_window_from_reasoning,
+        _generate_lean_skeleton,
+    )
+    cid = "rh-hyp-test-deadbeef"
+    obl_snapshot = {"open_obligation_classes": {"o1": 1, "o2": 1}}
+
+    skel_no_families = _generate_lean_skeleton(cid, obl_snapshot)
+    skel_with_families = _generate_lean_skeleton(
+        cid, obl_snapshot, ingredient_families=("random_matrix",)
+    )
+
+    # Hash-only window for cid is somewhere in [10, 101] roughly uniform.
+    hash_lo, hash_hi = _claim_window(cid)
+    reasoning_lo, reasoning_hi = _claim_window_from_reasoning(
+        cid, ("random_matrix",), ("o1", "o2")
+    )
+
+    # Reasoning window should center near 70 (random_matrix preferred height)
+    reasoning_center = (reasoning_lo + reasoning_hi) / 2
+    assert 67.0 <= reasoning_center <= 73.0
+
+    # The two skeletons should commit to different windows (assuming hash didn't accidentally land near 70)
+    if abs((hash_lo + hash_hi) / 2 - reasoning_center) > 1.0:
+        assert f"{reasoning_lo:.4f}" in skel_with_families
+        assert f"{reasoning_lo:.4f}" not in skel_no_families

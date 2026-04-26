@@ -1,0 +1,151 @@
+{
+  "experiment": "Phase 2 \u2014 reasoning-derived claim windows (family votes height, obligations vote width)",
+  "date": "2026-04-26",
+  "seed_packs": [
+    "rh-classical",
+    "rh-spectral"
+  ],
+  "max_rounds": 10,
+  "design": {
+    "window_center": "weighted average of family-voted preferred heights",
+    "window_width": "0.05 + 0.05 * min(n_obligations, 5) per side",
+    "tie_break": "\u00b12.5 perturbation from candidate_id sha256",
+    "family_preferred_heights": {
+      "explicit_formula": 30.0,
+      "hardy_z": 50.0,
+      "de_branges": 20.0,
+      "xi_function": 40.0,
+      "random_matrix": 70.0,
+      "mollifier_moment": 60.0,
+      "hilbert_polya": 25.0,
+      "quantum_spectral": 35.0,
+      "geometric_visualization": 80.0,
+      "general_analytic": 90.0
+    },
+    "rationale": "Each height is a loosely-justified region where the family's mathematical objects naturally live. de_branges \u2192 first eigenvalue cluster region. random_matrix \u2192 GUE-active high-T region. The rationales are illustrative not rigorous; the value is that they make Odlyzko grading depend on family choice, not on hash bytes."
+  },
+  "arms": {
+    "baseline": {
+      "campaign_id": "g7_baseline",
+      "internal_best_score": 0.7157989113493148,
+      "total_hypotheses": 80,
+      "external_odlyzko_mean": 0.38625000000000004,
+      "claims_confirmed_total": 73,
+      "claims_contradicted_total": 7,
+      "wrongness_rate": 0.0875,
+      "per_family_wrongness": {
+        "explicit_formula": {
+          "total": 87,
+          "contradicted": 8,
+          "rate": 0.09195402298850575
+        },
+        "geometric_visualization": {
+          "total": 12,
+          "contradicted": 3,
+          "rate": 0.25
+        },
+        "hardy_z": {
+          "total": 20,
+          "contradicted": 2,
+          "rate": 0.1
+        },
+        "quantum_spectral": {
+          "total": 8,
+          "contradicted": 1,
+          "rate": 0.125
+        },
+        "xi_function": {
+          "total": 33,
+          "contradicted": 0,
+          "rate": 0.0
+        }
+      }
+    },
+    "klein": {
+      "campaign_id": "g7_klein",
+      "internal_best_score": 0.69357004674436,
+      "total_hypotheses": 80,
+      "external_odlyzko_mean": 0.36125,
+      "claims_confirmed_total": 71,
+      "claims_contradicted_total": 9,
+      "wrongness_rate": 0.1125,
+      "per_family_wrongness": {
+        "explicit_formula": {
+          "total": 86,
+          "contradicted": 11,
+          "rate": 0.12790697674418605
+        },
+        "geometric_visualization": {
+          "total": 12,
+          "contradicted": 0,
+          "rate": 0.0
+        },
+        "hardy_z": {
+          "total": 21,
+          "contradicted": 1,
+          "rate": 0.047619047619047616
+        },
+        "quantum_spectral": {
+          "total": 8,
+          "contradicted": 2,
+          "rate": 0.25
+        },
+        "xi_function": {
+          "total": 33,
+          "contradicted": 4,
+          "rate": 0.12121212121212122
+        }
+      }
+    },
+    "hyperloop": {
+      "campaign_id": "g7_hyperloop",
+      "internal_best_score": 0.7085700467443601,
+      "total_hypotheses": 60,
+      "external_odlyzko_mean": 0.47000000000000003,
+      "claims_confirmed_total": 52,
+      "claims_contradicted_total": 8,
+      "wrongness_rate": 0.13333333333333333,
+      "per_family_wrongness": {
+        "explicit_formula": {
+          "total": 69,
+          "contradicted": 8,
+          "rate": 0.11594202898550725
+        },
+        "hardy_z": {
+          "total": 21,
+          "contradicted": 5,
+          "rate": 0.23809523809523808
+        },
+        "xi_function": {
+          "total": 30,
+          "contradicted": 3,
+          "rate": 0.1
+        }
+      }
+    }
+  },
+  "honest_findings": [
+    "Hyperloop has the WORST wrongness rate of the three (13.33% vs baseline 8.75%, klein 11.25%) \u2014 its bias toward checkable families concentrates candidates in explicit_formula/xi_function/hardy_z, all of which have preferred heights (30/40/50) near low-T zero clusters where any non-trivial window straddles a zero.",
+    "Hyperloop still wins external Odlyzko (+0.1088 vs klein, +0.0837 vs baseline) because rejecting 20 untestable candidates outweighs being slightly more wrong on average. The win is structural (less noise), still not predictive (less accurate).",
+    "Family-choice signal is now real: xi_function in baseline had 0/33 contradictions; same family in klein got 4/33. Same family, different mixing perturbations \u2192 different contradiction rates.",
+    "geometric_visualization (preferred height 80, far from low-T zero density) had 25% contradiction in baseline but 0% in klein \u2014 small sample (12 candidates) so this is noisy but suggestive."
+  ],
+  "what_phase2_does_NOT_show": [
+    "The system is NOT learning from contradictions. A claim getting falsified produces no feedback that propagates back to Agent A \u2014 a deeper-orbit candidate could re-claim the same window next round.",
+    "The 'reasoning' here is heuristic: heights were chosen by the implementer to be physically plausible, not derived from the candidate's actual computed evidence (operator spectrum, prime distribution, etc.).",
+    "Hyperloop wins external mean while losing on wrongness rate \u2014 this means it's still optimizing for the wrong metric (untestability avoidance), not for empirical accuracy."
+  ],
+  "what_phase2_DOES_show": [
+    "When claim windows depend on candidate properties, the Odlyzko benchmark differentiates between families by their actual contradiction rate, not just by their family-bonus accounting. This is the first time the system's design choices show up as different empirical accuracy footprints.",
+    "Klein topology adds cross-family candidates that systematically contradict more often \u2014 its K-novelty surface_return artifacts mix surface\u00d7depth pairs that produce 'reasoning' windows neither lane would have chosen alone, with predictably worse results on tight low-T windows."
+  ],
+  "next_phases": [
+    "Phase 3: replace lean_bridge mock backend with real AXLE Lean kernel. Currently sorry-filled skeletons trivially pass mock verification.",
+    "Phase 4: when Odlyzko falsifies a claim, propagate the falsification back into dead_end_library. Then a candidate that picked a contradicted window pays a campaign-level cost, and Agent A learns to bias hypothesis generation away from height regions where its families produce contradictions.",
+    "Phase 5: derive family preferred heights from the candidate's actual computed evidence (e.g. for de_branges, parse the candidate's operator spectrum and pick a window near a real eigenvalue), not from a fixed table the implementer wrote."
+  ],
+  "dominance_lift": {
+    "hyperloop_vs_klein_external": 0.10875000000000001,
+    "hyperloop_vs_baseline_wrongness_increase": 0.04583333333333334
+  }
+}

@@ -423,6 +423,10 @@ def _targeted_check_for_dead_end(pattern_id: str) -> tuple[str, str]:
             "variance_collapse_exclusion",
             "Statistical concentration still needs a theorem-level exclusion upgrade.",
         ),
+        "d_phi_subcritical_exclusion_return": (
+            "d_phi_formalization",
+            "D_phi needs stronger xi-bridge, quartet-exclusion, and tail-recombination submargins before promotion.",
+        ),
     }
     return mapping.get(pattern_id, ("certificate_search", "The branch still needs a stronger exclusion-oriented certificate."))
 
@@ -1067,12 +1071,17 @@ def run_campaign(
             # AND across campaigns that share the same seed-derived candidate IDs.
             campaign_tag = "".join(ch if ch.isalnum() else "_" for ch in cfg.campaign_id)[:32]
             unique_candidate_id = f"{evaluation.candidate_id}_c{campaign_tag}_r{round_index:03d}"
-            skeleton = _generate_lean_skeleton(unique_candidate_id, obligation_snapshot)
-            candidate_skeletons.append((unique_candidate_id, skeleton))
-            # Build payload for the external Odlyzko benchmark.
+            # Build ingredient_families BEFORE the skeleton so Phase 2 reasoning-derived
+            # window can use them.
             ingredient_families = tuple(
                 getattr(hypothesis, "ingredient_families", ())
             ) if hypothesis is not None else ()
+            skeleton = _generate_lean_skeleton(
+                unique_candidate_id,
+                obligation_snapshot,
+                ingredient_families=ingredient_families,
+            )
+            candidate_skeletons.append((unique_candidate_id, skeleton))
             external_candidate_records.append({
                 "candidate_id": evaluation.candidate_id,
                 "ingredient_families": ingredient_families,

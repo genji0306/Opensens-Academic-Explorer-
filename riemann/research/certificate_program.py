@@ -8,25 +8,12 @@ from typing import Any, Iterable, Mapping
 from .obligation_ledger import build_candidate_obligation_snapshot
 
 
-# Phase-1 falsifiable-claim generation:
+# Phase-1 falsifiable-claim generation (deprecated, kept for back-compat).
 #
-# Each auto-generated lean skeleton commits to a `no_zero_in T_lo T_hi` claim.
-# The window is deterministic per candidate_id so runs are reproducible, but
-# spans the entire Odlyzko range so some claims will hit real zeros (and be
-# correctly falsified) while others will land in genuinely empty windows
-# between zeros. This gives the Odlyzko external benchmark real adversarial
-# signal — without this, every skeleton is pure scaffolding and the benchmark
-# can never fire its contradiction penalty.
-#
-# Window selection:
-#   - hash(candidate_id) → deterministic seed
-#   - center T ∈ [10, 100] uniformly at hash%9100/100 + 10
-#   - half-width ∈ [0.05, 0.40] uniformly — narrow enough that ~half the
-#     windows fall between adjacent zeros (mean spacing ~1 at low T) and
-#     the other half straddle a zero
-#
-# This range is intentionally INSIDE the Odlyzko table where contradiction
-# is detectable, not safely beyond t_max where the benchmark would be silent.
+# Selects a `no_zero_in T_lo T_hi` window purely from the candidate_id hash.
+# This made the benchmark *able* to falsify but the choice was random — no
+# reasoning information flowed from the candidate's ingredient mix into the
+# claim. Phase 2 supersedes this with `_claim_window_from_reasoning` below.
 def _claim_window(candidate_id: str) -> tuple[float, float]:
     h = int(hashlib.sha256(candidate_id.encode()).hexdigest(), 16)
     center = (h % 9100) / 100.0 + 10.0           # in [10.0, 101.0)
@@ -34,12 +21,88 @@ def _claim_window(candidate_id: str) -> tuple[float, float]:
     return (center - half_width, center + half_width)
 
 
-def _generate_lean_skeleton(candidate_id: str, obligation_snapshot: dict[str, Any]) -> str:
+# Phase-2 reasoning-derived claim window:
+#
+# Each ingredient family votes for a preferred height region — a deliberate
+# choice that ties the claim back to a (loosely justified) physical
+# interpretation:
+#   explicit_formula:      30 — near the "explicit-formula prime tail" region
+#   hardy_z:               50 — region where Hardy Z-function is well-studied
+#   de_branges:            20 — near the first de Branges eigenvalue cluster
+#   xi_function:           40 — xi function symmetry-point neighborhood
+#   random_matrix:         70 — GUE statistics become reliable in this region
+#   mollifier_moment:      60 — moment-method targeted region
+#   hilbert_polya:         25
+#   quantum_spectral:      35
+#   geometric_visualization: 80
+#   general_analytic:      90 — high-T fallback
+#
+# Width comes from the obligation count: more obligations = a bolder/wider
+# claim. Width = 0.05 + 0.05 * min(n_obligations, 5), so [0.05, 0.30].
+#
+# A small candidate_id-derived perturbation breaks ties between same-family
+# candidates so two de_branges hypotheses claim slightly different windows.
+#
+# What this reveals empirically: different families have different
+# contradiction rates because they target different parts of the zero
+# distribution. de_branges centers near 20 — adjacent to zero[1]=21.02, so
+# wider windows hit it. random_matrix centers near 70 where zeros are
+# sparser. The Odlyzko benchmark thus differentiates families on a real
+# predictive quality, not just on family-bonus accounting.
+_FAMILY_PREFERRED_HEIGHT: dict[str, float] = {
+    "explicit_formula": 30.0,
+    "hardy_z": 50.0,
+    "de_branges": 20.0,
+    "xi_function": 40.0,
+    "random_matrix": 70.0,
+    "mollifier_moment": 60.0,
+    "hilbert_polya": 25.0,
+    "quantum_spectral": 35.0,
+    "geometric_visualization": 80.0,
+    "general_analytic": 90.0,
+}
+
+
+def _claim_window_from_reasoning(
+    candidate_id: str,
+    ingredient_families: tuple[str, ...],
+    obligations: tuple[str, ...],
+) -> tuple[float, float]:
+    """Reasoning-derived claim window. Center from family votes, width from
+    obligation count, tie-break perturbation from candidate_id hash."""
+    n_obligations = len(obligations)
+    half_width = 0.05 + 0.05 * min(n_obligations, 5)  # [0.05, 0.30]
+    if ingredient_families:
+        votes = [
+            _FAMILY_PREFERRED_HEIGHT.get(f, 50.0)
+            for f in ingredient_families
+        ]
+        center = sum(votes) / len(votes)
+    else:
+        center = 50.0
+    # Tie-break: ±2.5 perturbation deterministic per candidate_id.
+    perturbation = (
+        (int(hashlib.sha256(candidate_id.encode()).hexdigest()[:8], 16) % 1000)
+        - 500
+    ) * 0.005
+    center += perturbation
+    return (center - half_width, center + half_width)
+
+
+def _generate_lean_skeleton(
+    candidate_id: str,
+    obligation_snapshot: dict[str, Any],
+    *,
+    ingredient_families: tuple[str, ...] = (),
+) -> str:
     """Generate a minimal Lean 4 skeleton with sorry placeholders for open obligations.
 
-    Phase 1: also emits a falsifiable `no_zero_in T_lo T_hi` claim per candidate
-    so the Odlyzko external benchmark can grade real predictions, not just
-    structural metadata. The numeric window is deterministic per candidate_id.
+    Phase 1: emits a falsifiable `no_zero_in T_lo T_hi` claim per candidate.
+    Phase 2: when ingredient_families is provided, the claim window is derived
+    from candidate reasoning (family-voted center, obligation-count width)
+    instead of pure candidate_id hash. Falls back to Phase 1 hash-only window
+    when ingredient_families is empty (back-compat for the certificate report
+    callsite that doesn't have family info).
     """
     safe_id = "".join(ch if ch.isalnum() else "_" for ch in candidate_id)
     raw_open = obligation_snapshot.get("open_obligation_classes", {})
@@ -47,7 +110,12 @@ def _generate_lean_skeleton(candidate_id: str, obligation_snapshot: dict[str, An
         open_classes = list(raw_open.keys())
     else:
         open_classes = list(raw_open)
-    t_lo, t_hi = _claim_window(candidate_id)
+    if ingredient_families:
+        t_lo, t_hi = _claim_window_from_reasoning(
+            candidate_id, ingredient_families, tuple(open_classes)
+        )
+    else:
+        t_lo, t_hi = _claim_window(candidate_id)
     lines = [f"-- Candidate: {candidate_id}", "import Mathlib", ""]
     # Falsifiable numeric claim — Odlyzko adjudicates.
     lines.append(
