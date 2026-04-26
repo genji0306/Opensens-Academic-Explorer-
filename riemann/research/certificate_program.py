@@ -10,7 +10,11 @@ from .obligation_ledger import build_candidate_obligation_snapshot
 def _generate_lean_skeleton(candidate_id: str, obligation_snapshot: dict[str, Any]) -> str:
     """Generate a minimal Lean 4 skeleton with sorry placeholders for open obligations."""
     safe_id = "".join(ch if ch.isalnum() else "_" for ch in candidate_id)
-    open_classes = list(obligation_snapshot.get("open_obligation_classes", {}).keys())
+    raw_open = obligation_snapshot.get("open_obligation_classes", {})
+    if isinstance(raw_open, dict):
+        open_classes = list(raw_open.keys())
+    else:
+        open_classes = list(raw_open)
     lines = [f"-- Candidate: {candidate_id}", "import Mathlib", ""]
     for i, cls in enumerate(open_classes[:4]):
         safe_cls = "".join(ch if ch.isalnum() else "_" for ch in cls)

@@ -1,0 +1,41 @@
+{
+  "report_path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/research/gate7_triarm_report.json",
+  "arms": [
+    {
+      "topology_mode": "baseline",
+      "campaign_id": "triarm_baseline",
+      "rounds_run": 2,
+      "best_score": 0.7312324460493309,
+      "lean_residue_gate_failures": 0,
+      "total_lean_decls_added": 14,
+      "persistent_obstruction_count": 0,
+      "meta_theorem_count": 0,
+      "meta_theorem_applies_count": 0,
+      "termination_reason": "max_rounds_exhausted"
+    },
+    {
+      "topology_mode": "klein",
+      "campaign_id": "triarm_klein",
+      "rounds_run": 2,
+      "best_score": 0.716232446049331,
+      "lean_residue_gate_failures": 0,
+      "total_lean_decls_added": 14,
+      "persistent_obstruction_count": 0,
+      "meta_theorem_count": 0,
+      "meta_theorem_applies_count": 0,
+      "termination_reason": "max_rounds_exhausted"
+    },
+    {
+      "topology_mode": "hyperloop",
+      "campaign_id": "triarm_hyperloop",
+      "rounds_run": 2,
+      "best_score": 0.7312324460493309,
+      "lean_residue_gate_failures": 0,
+      "total_lean_decls_added": 14,
+      "persistent_obstruction_count": 0,
+      "meta_theorem_count": 1,
+      "meta_theorem_applies_count": 0,
+      "termination_reason": "max_rounds_exhausted"
+    }
+  ]
+}

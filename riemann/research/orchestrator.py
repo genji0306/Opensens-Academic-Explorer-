@@ -41,6 +41,8 @@ from .schemas import ApproachCard, CampaignRoundRecord, SourceRecord
 from .seed_pack import resolve_seed_inputs
 from .tail_control_agent import TailControlAgent
 from .lean_residue import LeanResidueLedger
+from .lean_residue_writer import write_round_skeletons
+from .certificate_program import _generate_lean_skeleton
 
 
 def _write_json(path: Path, payload: Any) -> Path:
@@ -1044,6 +1046,30 @@ def run_campaign(
             cfg.campaign_dir / f"round_{round_index:03d}_evaluations.json",
             [item.to_dict() for item in evaluations_tuple],
         )
+        # Persist per-candidate Lean skeletons so the residue ledger sees new decls each round.
+        hypothesis_lookup = {item.candidate_id: item for item in hypotheses}
+        candidate_skeletons: list[tuple[str, str]] = []
+        for evaluation in evaluations_tuple:
+            hypothesis = hypothesis_lookup.get(evaluation.candidate_id)
+            obligations = (
+                tuple(getattr(hypothesis, "unresolved_proof_obligations", ()))
+                if hypothesis is not None
+                else ()
+            )
+            obligation_snapshot = {
+                "open_obligation_classes": {ob: 1 for ob in obligations},
+            }
+            # Suffix with round index so the resulting Lean decl names are unique per round.
+            unique_candidate_id = f"{evaluation.candidate_id}_r{round_index:03d}"
+            skeleton = _generate_lean_skeleton(unique_candidate_id, obligation_snapshot)
+            candidate_skeletons.append((unique_candidate_id, skeleton))
+        if candidate_skeletons:
+            write_round_skeletons(
+                lean_rh_root=cfg.lean_rh_root,
+                campaign_id=cfg.campaign_id,
+                round_index=round_index,
+                candidate_skeletons=candidate_skeletons,
+            )
         lean_snapshot_after = lean_ledger.snapshot()
         lean_delta = lean_ledger.diff(lean_snapshot_before, lean_snapshot_after)
         persistent_obstruction_count = len(campaign_failure_counts)

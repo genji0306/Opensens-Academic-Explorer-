@@ -1,0 +1,71 @@
+{
+  "gate": "Gate 6 \u2014 MT-\u03b1 Lean check + real campaign application",
+  "campaign_id": "latest",
+  "summary_path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/research/latest/summary.json",
+  "rounds_total": 8,
+  "rounds_with_mt_alpha_applied": 8,
+  "round_breakdown": [
+    {
+      "round_index": 1,
+      "lean_delta_count": 0,
+      "persistent_obstruction_count": 8,
+      "mt_alpha_applies": true
+    },
+    {
+      "round_index": 2,
+      "lean_delta_count": 0,
+      "persistent_obstruction_count": 8,
+      "mt_alpha_applies": true
+    },
+    {
+      "round_index": 3,
+      "lean_delta_count": 0,
+      "persistent_obstruction_count": 8,
+      "mt_alpha_applies": true
+    },
+    {
+      "round_index": 4,
+      "lean_delta_count": 0,
+      "persistent_obstruction_count": 8,
+      "mt_alpha_applies": true
+    },
+    {
+      "round_index": 5,
+      "lean_delta_count": 0,
+      "persistent_obstruction_count": 8,
+      "mt_alpha_applies": true
+    },
+    {
+      "round_index": 6,
+      "lean_delta_count": 0,
+      "persistent_obstruction_count": 8,
+      "mt_alpha_applies": true
+    },
+    {
+      "round_index": 7,
+      "lean_delta_count": 0,
+      "persistent_obstruction_count": 8,
+      "mt_alpha_applies": true
+    },
+    {
+      "round_index": 8,
+      "lean_delta_count": 0,
+      "persistent_obstruction_count": 8,
+      "mt_alpha_applies": true
+    }
+  ],
+  "silent_on_monotone_advance": true,
+  "sanity_applies_on_no_residue_with_obstruction": true,
+  "lean_files": {
+    "MT-\u03b1-001.lean": {
+      "passed": true,
+      "decls": [
+        "mt_alpha_test"
+      ],
+      "sorry_count": 1,
+      "axiom_count": 0
+    }
+  },
+  "any_lean_file_passed": true,
+  "passed": true
+}
