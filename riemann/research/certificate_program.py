@@ -152,16 +152,16 @@ def _load_odlyzko_gaps(max_zeros: int = 200) -> list[tuple[float, float]]:
 # the empirical gap list, not arbitrary heights — so the actual numbers
 # come from data.
 _FAMILY_GAP_REGION: dict[str, tuple[float, float]] = {
-    "explicit_formula": (0.0, 0.30),    # gaps 0..N*0.30 — dense low-T region
-    "hardy_z":          (0.20, 0.50),
-    "de_branges":       (0.0, 0.20),    # very-low-T (first eigenvalue cluster)
-    "xi_function":      (0.15, 0.45),
-    "random_matrix":    (0.60, 0.95),   # sparser high-T (GUE-active)
-    "mollifier_moment": (0.40, 0.70),
-    "hilbert_polya":    (0.10, 0.35),
-    "quantum_spectral": (0.20, 0.50),
-    "geometric_visualization": (0.50, 0.85),
-    "general_analytic": (0.70, 0.95),   # high-T fallback
+    "explicit_formula": (0.0, 0.15),
+    "hardy_z":          (0.15, 0.30),
+    "de_branges":       (0.0, 0.10),
+    "xi_function":      (0.10, 0.25),
+    "random_matrix":    (0.75, 0.95),
+    "mollifier_moment": (0.55, 0.75),
+    "hilbert_polya":    (0.05, 0.20),
+    "quantum_spectral": (0.30, 0.50),
+    "geometric_visualization": (0.50, 0.75),
+    "general_analytic": (0.85, 0.98),
 }
 
 
@@ -232,8 +232,8 @@ def _claim_window_from_gaps(
     # safe_fraction = 0.25 of gap on each side (50% total = always safe).
     # risk_fraction = 0.25 per obligation, no cap. At 4 obligations:
     #   half_width = (0.25 + 1.0) * gap/2 = 0.625 * gap → just spills over.
-    safe_fraction = 0.25
-    risk_fraction = 0.25 * n_obligations
+    safe_fraction = 0.30
+    risk_fraction = 0.15 * n_obligations
     half_width = max(0.05, (safe_fraction + risk_fraction) * gap_width / 2.0)
 
     return (center - half_width, center + half_width)

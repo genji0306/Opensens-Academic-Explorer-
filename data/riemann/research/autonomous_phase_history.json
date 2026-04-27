@@ -1,0 +1,194 @@
+[
+  {
+    "phase": "6",
+    "title": "obligation-text-driven gap bias",
+    "baseline": {
+      "internal": 0.11864504484848486,
+      "odlyzko_mean": 0.19749999999999998,
+      "total_hyps": 80,
+      "contradicted": 54,
+      "wrongness": 0.675,
+      "late_rounds_odlyzko": 0.175,
+      "per_round_odlyzko": [
+        0.15,
+        0.26249999999999996,
+        0.32499999999999996,
+        0.275,
+        0.0875,
+        0.15,
+        0.275,
+        0.0875,
+        0.2125,
+        0.15
+      ]
+    },
+    "klein": {
+      "internal": 0.1313328025974026,
+      "odlyzko_mean": 0.19624999999999998,
+      "total_hyps": 80,
+      "contradicted": 55,
+      "wrongness": 0.6875,
+      "late_rounds_odlyzko": 0.125,
+      "per_round_odlyzko": [
+        0.15,
+        0.38749999999999996,
+        0.38749999999999996,
+        0.26249999999999996,
+        0.15,
+        0.15,
+        0.0875,
+        0.15,
+        0.15,
+        0.0875
+      ]
+    },
+    "hyperloop": {
+      "internal": 0.12562195885780886,
+      "odlyzko_mean": 0.36466666666666664,
+      "total_hyps": 52,
+      "contradicted": 21,
+      "wrongness": 0.40384615384615385,
+      "late_rounds_odlyzko": 0.31599999999999995,
+      "per_round_odlyzko": [
+        0.33999999999999997,
+        0.33999999999999997,
+        0.4333333333333333,
+        0.4333333333333333,
+        0.5199999999999999,
+        0.41999999999999993,
+        0.33999999999999997,
+        0.24,
+        0.33999999999999997,
+        0.24
+      ]
+    }
+  },
+  {
+    "phase": "7",
+    "title": "sharper family-region partition",
+    "baseline": {
+      "internal": 0.11864504484848486,
+      "odlyzko_mean": 0.19,
+      "total_hyps": 80,
+      "contradicted": 56,
+      "wrongness": 0.7,
+      "late_rounds_odlyzko": 0.125,
+      "per_round_odlyzko": [
+        0.2125,
+        0.32499999999999996,
+        0.32499999999999996,
+        0.26249999999999996,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.0875,
+        0.0875
+      ]
+    },
+    "klein": {
+      "internal": 0.1313328025974026,
+      "odlyzko_mean": 0.20749999999999996,
+      "total_hyps": 80,
+      "contradicted": 54,
+      "wrongness": 0.675,
+      "late_rounds_odlyzko": 0.15,
+      "per_round_odlyzko": [
+        0.15,
+        0.38749999999999996,
+        0.26249999999999996,
+        0.26249999999999996,
+        0.26249999999999996,
+        0.0875,
+        0.2125,
+        0.0875,
+        0.15,
+        0.2125
+      ]
+    },
+    "hyperloop": {
+      "internal": 0.12562195885780886,
+      "odlyzko_mean": 0.32499999999999996,
+      "total_hyps": 52,
+      "contradicted": 24,
+      "wrongness": 0.46153846153846156,
+      "late_rounds_odlyzko": 0.25999999999999995,
+      "per_round_odlyzko": [
+        0.24,
+        0.33999999999999997,
+        0.4333333333333333,
+        0.5166666666666666,
+        0.41999999999999993,
+        0.24,
+        0.24,
+        0.33999999999999997,
+        0.24,
+        0.24
+      ]
+    }
+  },
+  {
+    "phase": "8",
+    "title": "width formula recalibrated for lower wrongness",
+    "baseline": {
+      "internal": 0.11864504484848486,
+      "odlyzko_mean": 0.3375,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.3375,
+      "per_round_odlyzko": [
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375
+      ]
+    },
+    "klein": {
+      "internal": 0.1313328025974026,
+      "odlyzko_mean": 0.3375,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.3375,
+      "per_round_odlyzko": [
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375
+      ]
+    },
+    "hyperloop": {
+      "internal": 0.12562195885780886,
+      "odlyzko_mean": 0.54,
+      "total_hyps": 50,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.54,
+      "per_round_odlyzko": [
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54
+      ]
+    }
+  }
+]
