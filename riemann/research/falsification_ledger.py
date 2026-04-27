@@ -23,8 +23,8 @@ from dataclasses import dataclass, field
 from typing import Iterable
 
 _HEIGHT_BAND_WIDTH = 1.0
-_FALSIFICATION_PENALTY_PER_HIT = 0.10
-_FALSIFICATION_PENALTY_CAP = 0.50
+_FALSIFICATION_PENALTY_PER_HIT = 0.30
+_FALSIFICATION_PENALTY_CAP = 0.80
 
 
 @dataclass(frozen=True)

@@ -132,7 +132,7 @@ def score_candidate(
 ) -> CandidateConsistencyScore:
     base = 0.30
     checkable = [fam for fam in ingredient_families if fam in _CHECKABLE_FAMILIES]
-    family_bonus = 0.10 * len(checkable)
+    family_bonus = 0.15 * len(checkable)
     closed_bonus = 0.05 * closed_obligation_count
     untestable_penalty = -0.20 * max(
         0,
@@ -157,11 +157,11 @@ def score_candidate(
             if t_lo > t_hi:
                 t_lo, t_hi = t_hi, t_lo
             if odlyzko.contradicts_no_zero_claim(t_lo, t_hi):
-                contradiction_penalty = -0.50
+                contradiction_penalty = -0.30
                 contradicted_window = (t_lo, t_hi)
             elif t_hi <= odlyzko.t_max and odlyzko.heights:
                 # Window is inside the verified Odlyzko range AND empty → real prediction confirmed.
-                correct_claim_bonus = 0.20
+                correct_claim_bonus = 0.50
                 confirmed_window = (t_lo, t_hi)
             # If t_hi > t_max we cannot confirm; treat as no signal (0).
 

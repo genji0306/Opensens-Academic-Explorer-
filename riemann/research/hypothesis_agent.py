@@ -69,11 +69,11 @@ _FALSIFIABILITY_CHECKABLE_FAMILIES = frozenset({
 # mode. Calibrated to be larger than the family-usage spread (max 0.08) and
 # the route-lock support bonus, but smaller than route-lock primary, so it
 # reshapes the family distribution without overriding explicit route locking.
-_HYPERLOOP_FALSIFIABILITY_BONUS = 0.40
+_HYPERLOOP_FALSIFIABILITY_BONUS = 0.80
 
 # Additional pairing bonus when both anchor and partner are checkable
 # (hyperloop wants checkable × checkable cross-lane pairs).
-_HYPERLOOP_DUAL_CHECKABLE_PAIR_BONUS = 0.15
+_HYPERLOOP_DUAL_CHECKABLE_PAIR_BONUS = 0.30
 
 _ROUTE_LOCK_PRIMARY = {
     "operator": ("quantum_spectral", "hilbert_polya", "de_branges"),
@@ -226,7 +226,7 @@ class HypothesisAgent:
 
             def _accept(cand: HypothesisCandidate) -> bool:
                 checkable = _checkable_count(cand)
-                obligation_budget = max(1, 2 * checkable)
+                obligation_budget = max(1, 1 * checkable)
                 return len(cand.unresolved_proof_obligations) <= obligation_budget
 
             candidates = [c for c in candidates if _accept(c)]

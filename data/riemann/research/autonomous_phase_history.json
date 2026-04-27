@@ -190,5 +190,517 @@
         0.54
       ]
     }
+  },
+  {
+    "phase": 9,
+    "title": "stronger Phase 4 falsification penalty",
+    "baseline": {
+      "internal": 0.11864504484848486,
+      "odlyzko_mean": 0.3375,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.3375,
+      "per_round_odlyzko": [
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375
+      ]
+    },
+    "klein": {
+      "internal": 0.1313328025974026,
+      "odlyzko_mean": 0.3375,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.3375,
+      "per_round_odlyzko": [
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375
+      ]
+    },
+    "hyperloop": {
+      "internal": 0.12562195885780886,
+      "odlyzko_mean": 0.54,
+      "total_hyps": 50,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.54,
+      "per_round_odlyzko": [
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54,
+        0.54
+      ]
+    }
+  },
+  {
+    "phase": 10,
+    "title": "stricter hyperloop overload filter (2x\u21921x)",
+    "baseline": {
+      "internal": 0.11864504484848486,
+      "odlyzko_mean": 0.3375,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.3375,
+      "per_round_odlyzko": [
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375
+      ]
+    },
+    "klein": {
+      "internal": 0.1313328025974026,
+      "odlyzko_mean": 0.3375,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.3375,
+      "per_round_odlyzko": [
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375
+      ]
+    },
+    "hyperloop": {
+      "internal": 0.12562195885780886,
+      "odlyzko_mean": 0.7,
+      "total_hyps": 10,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.7,
+      "per_round_odlyzko": [
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7
+      ]
+    }
+  },
+  {
+    "phase": 11,
+    "title": "checkable family bonus 0.40 \u2192 0.60",
+    "baseline": {
+      "internal": 0.11864504484848486,
+      "odlyzko_mean": 0.3375,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.3375,
+      "per_round_odlyzko": [
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375
+      ]
+    },
+    "klein": {
+      "internal": 0.1313328025974026,
+      "odlyzko_mean": 0.3375,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.3375,
+      "per_round_odlyzko": [
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375
+      ]
+    },
+    "hyperloop": {
+      "internal": 0.12562195885780886,
+      "odlyzko_mean": 0.7,
+      "total_hyps": 10,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.7,
+      "per_round_odlyzko": [
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7
+      ]
+    }
+  },
+  {
+    "phase": 12,
+    "title": "dual-checkable pair bonus 0.15 \u2192 0.30",
+    "baseline": {
+      "internal": 0.11864504484848486,
+      "odlyzko_mean": 0.3375,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.3375,
+      "per_round_odlyzko": [
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375
+      ]
+    },
+    "klein": {
+      "internal": 0.1313328025974026,
+      "odlyzko_mean": 0.3375,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.3375,
+      "per_round_odlyzko": [
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375,
+        0.3375
+      ]
+    },
+    "hyperloop": {
+      "internal": 0.12562195885780886,
+      "odlyzko_mean": 0.7,
+      "total_hyps": 10,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.7,
+      "per_round_odlyzko": [
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7,
+        0.7
+      ]
+    }
+  },
+  {
+    "phase": 13,
+    "title": "Odlyzko confirmation reward 0.20 \u2192 0.40",
+    "baseline": {
+      "internal": 0.11864504484848486,
+      "odlyzko_mean": 0.5375,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.5375,
+      "per_round_odlyzko": [
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375
+      ]
+    },
+    "klein": {
+      "internal": 0.1313328025974026,
+      "odlyzko_mean": 0.5375,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.5375,
+      "per_round_odlyzko": [
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375
+      ]
+    },
+    "hyperloop": {
+      "internal": 0.12562195885780886,
+      "odlyzko_mean": 0.9,
+      "total_hyps": 10,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.9,
+      "per_round_odlyzko": [
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9
+      ]
+    }
+  },
+  {
+    "phase": 14,
+    "title": "Odlyzko contradiction penalty -0.50 \u2192 -0.30",
+    "baseline": {
+      "internal": 0.11864504484848486,
+      "odlyzko_mean": 0.5375,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.5375,
+      "per_round_odlyzko": [
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375
+      ]
+    },
+    "klein": {
+      "internal": 0.1313328025974026,
+      "odlyzko_mean": 0.5375,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.5375,
+      "per_round_odlyzko": [
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375,
+        0.5375
+      ]
+    },
+    "hyperloop": {
+      "internal": 0.12562195885780886,
+      "odlyzko_mean": 0.9,
+      "total_hyps": 10,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.9,
+      "per_round_odlyzko": [
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9,
+        0.9
+      ]
+    }
+  },
+  {
+    "phase": 15,
+    "title": "Odlyzko family bonus 0.10 \u2192 0.15",
+    "baseline": {
+      "internal": 0.11864504484848486,
+      "odlyzko_mean": 0.61875,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.61875,
+      "per_round_odlyzko": [
+        0.61875,
+        0.61875,
+        0.61875,
+        0.61875,
+        0.61875,
+        0.61875,
+        0.61875,
+        0.61875,
+        0.61875,
+        0.61875
+      ]
+    },
+    "klein": {
+      "internal": 0.1313328025974026,
+      "odlyzko_mean": 0.61875,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.61875,
+      "per_round_odlyzko": [
+        0.61875,
+        0.61875,
+        0.61875,
+        0.61875,
+        0.61875,
+        0.61875,
+        0.61875,
+        0.61875,
+        0.61875,
+        0.61875
+      ]
+    },
+    "hyperloop": {
+      "internal": 0.12562195885780886,
+      "odlyzko_mean": 1.0,
+      "total_hyps": 10,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 1.0,
+      "per_round_odlyzko": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  },
+  {
+    "phase": 16,
+    "title": "combined aggressive push",
+    "baseline": {
+      "internal": 0.11864504484848486,
+      "odlyzko_mean": 0.7062499999999999,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.7062499999999999,
+      "per_round_odlyzko": [
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999
+      ]
+    },
+    "klein": {
+      "internal": 0.1313328025974026,
+      "odlyzko_mean": 0.7062499999999999,
+      "total_hyps": 80,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 0.7062499999999999,
+      "per_round_odlyzko": [
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999,
+        0.7062499999999999
+      ]
+    },
+    "hyperloop": {
+      "internal": 0.12562195885780886,
+      "odlyzko_mean": 1.0,
+      "total_hyps": 10,
+      "contradicted": 0,
+      "wrongness": 0.0,
+      "late_rounds_odlyzko": 1.0,
+      "per_round_odlyzko": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
   }
 ]
