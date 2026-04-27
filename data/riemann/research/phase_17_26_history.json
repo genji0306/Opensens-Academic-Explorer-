@@ -1,0 +1,31 @@
+[
+  {
+    "phase": 17,
+    "title": "trivial True",
+    "companion_level": 1,
+    "scanned_files": 352,
+    "mock_pass_count": 352,
+    "strict_pass_count": 172,
+    "honest_gap": 180,
+    "by_subdir": {
+      "Companions": {
+        "files": 171,
+        "mock_pass": 171,
+        "strict_pass": 171,
+        "sorry": 0
+      },
+      "Lemmas": {
+        "files": 177,
+        "mock_pass": 177,
+        "strict_pass": 0,
+        "sorry": 708
+      },
+      "MetaTheorems": {
+        "files": 4,
+        "mock_pass": 4,
+        "strict_pass": 1,
+        "sorry": 3
+      }
+    }
+  }
+]
