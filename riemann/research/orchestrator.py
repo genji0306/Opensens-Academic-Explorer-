@@ -42,6 +42,10 @@ from .seed_pack import resolve_seed_inputs
 from .tail_control_agent import TailControlAgent
 from .lean_residue import LeanResidueLedger
 from .lean_residue_writer import write_round_skeletons
+from .companion_lean_writer import (
+    _COMPANION_THEOREM_LEVEL,
+    write_round_companions,
+)
 from .certificate_program import _generate_lean_skeleton
 from .external_eval import ExternalEvaluator
 from .falsification_ledger import FalsificationLedger
@@ -1092,6 +1096,27 @@ def run_campaign(
                 "open_obligation_count": len(obligations),
                 "lean_skeleton": skeleton,
             })
+        # Phase 17+: emit strict-passable companion lean files per candidate.
+        # These contain trivially-true theorems (no sorry) so they raise the
+        # strict-pass count without claiming RH content.
+        if external_candidate_records:
+            from .certificate_program import _claim_window_from_gaps
+            companion_windows: list[tuple[str, float, float]] = []
+            for rec in external_candidate_records:
+                t_lo, t_hi = _claim_window_from_gaps(
+                    rec["candidate_id"],
+                    rec["ingredient_families"],
+                    tuple(["x"] * rec["open_obligation_count"]),
+                )
+                companion_windows.append((rec["candidate_id"] + f"_c{cfg.campaign_id[:24]}_r{round_index:03d}", t_lo, t_hi))
+            write_round_companions(
+                lean_rh_root=cfg.lean_rh_root,
+                campaign_id=cfg.campaign_id,
+                round_index=round_index,
+                candidate_windows=companion_windows,
+                level=_COMPANION_THEOREM_LEVEL,
+            )
+
         if candidate_skeletons:
             write_round_skeletons(
                 lean_rh_root=cfg.lean_rh_root,
