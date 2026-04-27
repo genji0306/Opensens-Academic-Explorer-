@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 from collections import Counter
+from pathlib import Path
 from typing import Any, Iterable, Mapping
 
 from .obligation_ledger import build_candidate_obligation_snapshot
@@ -89,6 +90,141 @@ def _claim_window_from_reasoning(
     return (center - half_width, center + half_width)
 
 
+# Phase-5 gap-aware claim window:
+#
+# Instead of picking a height from a hand-curated family preferred height
+# table (Phase 2), the candidate picks an actual gap between adjacent
+# Odlyzko zeros. The choice of gap is deterministic per candidate but
+# parameterized by ingredient families. The claim window is centered on
+# that gap; the width depends on candidate obligation load — speculative
+# candidates (many obligations) get wider claims that may straddle beyond
+# the chosen gap into adjacent zeros, producing real contradictions.
+#
+# Why this is more honest than Phase 2:
+#   - The center is grounded in EMPIRICAL zero data, not a table I wrote.
+#   - The contradiction structure depends on the candidate's confidence
+#     (obligation count) vs the actual gap width at the chosen height.
+#   - Different families select different gap-index ranges, so family
+#     choice still matters but the underlying numbers come from Odlyzko.
+#
+# Loaded lazily so this module does not depend on import order.
+_ODLYZKO_GAPS_CACHE: list[tuple[float, float]] | None = None
+
+
+def _load_odlyzko_gaps(max_zeros: int = 200) -> list[tuple[float, float]]:
+    """Return adjacent (zero[i], zero[i+1]) pairs from the Odlyzko table.
+
+    Cached after first load. Uses the first `max_zeros` zeros (~T<150) so
+    candidate windows live in the verified-empirical region.
+    """
+    global _ODLYZKO_GAPS_CACHE
+    if _ODLYZKO_GAPS_CACHE is not None:
+        return _ODLYZKO_GAPS_CACHE
+    here = Path(__file__).resolve()
+    for ancestor in [here.parent, *here.parents]:
+        path = ancestor / "data" / "riemann" / "zeros1.txt"
+        if path.exists():
+            heights: list[float] = []
+            with path.open() as fh:
+                for i, line in enumerate(fh):
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        heights.append(float(line))
+                    except ValueError:
+                        continue
+                    if i + 1 >= max_zeros:
+                        break
+            _ODLYZKO_GAPS_CACHE = [
+                (heights[i], heights[i + 1]) for i in range(len(heights) - 1)
+            ]
+            return _ODLYZKO_GAPS_CACHE
+    _ODLYZKO_GAPS_CACHE = []
+    return _ODLYZKO_GAPS_CACHE
+
+
+# Per-family bias for which slice of the gap list a candidate prefers.
+# Each family maps to a (low, high) fraction of the gap-index range.
+# explicit_formula → low gaps (small T, dense zeros, narrower gaps).
+# random_matrix → high gaps (large T, sparser zeros, wider gaps).
+# These ranges are still designer-set BUT they only choose a region of
+# the empirical gap list, not arbitrary heights — so the actual numbers
+# come from data.
+_FAMILY_GAP_REGION: dict[str, tuple[float, float]] = {
+    "explicit_formula": (0.0, 0.30),    # gaps 0..N*0.30 — dense low-T region
+    "hardy_z":          (0.20, 0.50),
+    "de_branges":       (0.0, 0.20),    # very-low-T (first eigenvalue cluster)
+    "xi_function":      (0.15, 0.45),
+    "random_matrix":    (0.60, 0.95),   # sparser high-T (GUE-active)
+    "mollifier_moment": (0.40, 0.70),
+    "hilbert_polya":    (0.10, 0.35),
+    "quantum_spectral": (0.20, 0.50),
+    "geometric_visualization": (0.50, 0.85),
+    "general_analytic": (0.70, 0.95),   # high-T fallback
+}
+
+
+import hashlib as _hashlib  # local re-bind so we don't shadow the module-level import
+
+
+def _claim_window_from_gaps(
+    candidate_id: str,
+    ingredient_families: tuple[str, ...],
+    obligations: tuple[str, ...],
+) -> tuple[float, float]:
+    """Phase-5 gap-aware window: center inside an empirical Odlyzko gap.
+
+    Width depends on obligation count — high-obligation candidates get
+    wider windows that may straddle beyond the gap into adjacent zeros
+    (= contradiction). Low-obligation candidates get narrow windows that
+    stay safely inside the gap (= confirmation).
+    """
+    gaps = _load_odlyzko_gaps()
+    if not gaps:
+        # Odlyzko data unavailable; fall back to Phase 2 behavior.
+        return _claim_window_from_reasoning(candidate_id, ingredient_families, obligations)
+
+    # 1. Determine the gap-index region from the family mix.
+    if ingredient_families:
+        regions = [
+            _FAMILY_GAP_REGION.get(f, (0.30, 0.70))
+            for f in ingredient_families
+        ]
+        lo_frac = sum(r[0] for r in regions) / len(regions)
+        hi_frac = sum(r[1] for r in regions) / len(regions)
+    else:
+        lo_frac, hi_frac = 0.30, 0.70
+
+    n_gaps = len(gaps)
+    lo_idx = max(0, int(lo_frac * n_gaps))
+    hi_idx = min(n_gaps, int(hi_frac * n_gaps))
+    if hi_idx <= lo_idx:
+        hi_idx = lo_idx + 1
+
+    # 2. Pick a specific gap from that region using candidate_id hash.
+    h = int(_hashlib.sha256(candidate_id.encode()).hexdigest()[:12], 16)
+    gap_idx = lo_idx + (h % (hi_idx - lo_idx))
+    z_lo, z_hi = gaps[gap_idx]
+    gap_width = z_hi - z_lo
+    center = (z_lo + z_hi) / 2.0
+
+    # 3. Width grows with obligation count. Calibrated so candidates with
+    # 1-2 obligations stay safely inside the gap (confirm), but candidates
+    # with 4+ obligations can exceed gap_width (overflow into adjacent
+    # zeros = contradiction). This preserves the falsification signal Phase 4
+    # needs to learn from.
+    n_obligations = len(obligations)
+    # safe_fraction = 0.25 of gap on each side (50% total = always safe).
+    # risk_fraction = 0.25 per obligation, no cap. At 4 obligations:
+    #   half_width = (0.25 + 1.0) * gap/2 = 0.625 * gap → just spills over.
+    safe_fraction = 0.25
+    risk_fraction = 0.25 * n_obligations
+    half_width = max(0.05, (safe_fraction + risk_fraction) * gap_width / 2.0)
+
+    return (center - half_width, center + half_width)
+
+
 def _generate_lean_skeleton(
     candidate_id: str,
     obligation_snapshot: dict[str, Any],
@@ -111,7 +247,9 @@ def _generate_lean_skeleton(
     else:
         open_classes = list(raw_open)
     if ingredient_families:
-        t_lo, t_hi = _claim_window_from_reasoning(
+        # Phase 5: gap-aware window grounded in actual Odlyzko zero distribution.
+        # Falls back to Phase 2 hand-curated heights if Odlyzko data unavailable.
+        t_lo, t_hi = _claim_window_from_gaps(
             candidate_id, ingredient_families, tuple(open_classes)
         )
     else:

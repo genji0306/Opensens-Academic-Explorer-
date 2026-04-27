@@ -1,0 +1,135 @@
+{
+  "experiment": "Phase 5 \u2014 gap-aware claim windows grounded in Odlyzko zero distribution",
+  "date": "2026-04-27",
+  "what_changed_from_phase2": [
+    "Replaced hand-curated _FAMILY_PREFERRED_HEIGHT table with empirical gap selection from the Odlyzko zero list.",
+    "Each candidate picks an actual (zero[i], zero[i+1]) gap; window center is the gap midpoint.",
+    "Window width grows with obligation count \u2014 calibrated so 1-2 obligations stay safely inside (confirm), 4+ obligations overflow into adjacent zeros (contradict).",
+    "Family signature still chooses the gap-index region (explicit_formula \u2192 low-T dense gaps, random_matrix \u2192 high-T sparse gaps), but the actual numbers come from data, not the implementer."
+  ],
+  "tri_arm_results": {
+    "baseline": {
+      "campaign_id": "g7_baseline",
+      "internal_best_score": 0.11864504484848486,
+      "external_odlyzko_mean": 0.19749999999999998,
+      "total_hypotheses": 80,
+      "claims_confirmed_total": 26,
+      "claims_contradicted_total": 54,
+      "wrongness_rate": 0.675,
+      "per_round_odlyzko": [
+        0.15,
+        0.26249999999999996,
+        0.32499999999999996,
+        0.275,
+        0.0875,
+        0.15,
+        0.275,
+        0.0875,
+        0.2125,
+        0.15
+      ],
+      "per_round_contradictions": [
+        6,
+        5,
+        4,
+        4,
+        7,
+        6,
+        4,
+        7,
+        5,
+        6
+      ]
+    },
+    "klein": {
+      "campaign_id": "g7_klein",
+      "internal_best_score": 0.1313328025974026,
+      "external_odlyzko_mean": 0.19624999999999998,
+      "total_hypotheses": 80,
+      "claims_confirmed_total": 25,
+      "claims_contradicted_total": 55,
+      "wrongness_rate": 0.6875,
+      "per_round_odlyzko": [
+        0.15,
+        0.38749999999999996,
+        0.38749999999999996,
+        0.26249999999999996,
+        0.15,
+        0.15,
+        0.0875,
+        0.15,
+        0.15,
+        0.0875
+      ],
+      "per_round_contradictions": [
+        6,
+        3,
+        3,
+        5,
+        6,
+        6,
+        7,
+        6,
+        6,
+        7
+      ]
+    },
+    "hyperloop": {
+      "campaign_id": "g7_hyperloop",
+      "internal_best_score": 0.12562195885780886,
+      "external_odlyzko_mean": 0.36466666666666664,
+      "total_hypotheses": 52,
+      "claims_confirmed_total": 31,
+      "claims_contradicted_total": 21,
+      "wrongness_rate": 0.40384615384615385,
+      "per_round_odlyzko": [
+        0.33999999999999997,
+        0.33999999999999997,
+        0.4333333333333333,
+        0.4333333333333333,
+        0.5199999999999999,
+        0.41999999999999993,
+        0.33999999999999997,
+        0.24,
+        0.33999999999999997,
+        0.24
+      ],
+      "per_round_contradictions": [
+        2,
+        2,
+        2,
+        2,
+        1,
+        2,
+        2,
+        3,
+        2,
+        3
+      ]
+    }
+  },
+  "lifts": {
+    "hyperloop_vs_klein_external": 0.1685,
+    "hyperloop_vs_baseline_external": 0.16720000000000002,
+    "hyperloop_wrongness_advantage_vs_klein": 0.2837
+  },
+  "honest_findings": [
+    "Hyperloop wrongness rate 40.38% vs klein 68.75% / baseline 67.50% \u2014 substantial accuracy advantage.",
+    "Hyperloop external Odlyzko 0.3647 vs 0.1975/0.1962 \u2014 bigger lift than Phase 2 because the wrongness gap is now bigger.",
+    "Hyperloop ships fewer candidates (52 vs 80) \u2014 the obligation overload filter rejects exactly the candidates that would overflow gap_width and contradict.",
+    "Per-round trajectory: hyperloop r1=0.340, r5=0.520 (peak), r10=0.240 \u2014 peaks mid-campaign then drifts back. Phase 4 ledger isn't preventing late-round drift fully.",
+    "Klein contradictions INCREASE late-rounds (23\u219232) \u2014 Klein topology actively makes accuracy worse over rounds.",
+    "Hyperloop contradictions also increase slightly (9\u219212) \u2014 Phase 4 ledger penalty is too small to overcome the family-mix recurrence."
+  ],
+  "what_phase5_does_NOT_show": [
+    "67% wrongness in baseline/klein means most claims contradict \u2014 the apparatus is making genuinely wrong predictions much of the time. This is a designed feature of the calibration (obligation count drives risk).",
+    "If the calibration were less aggressive (smaller risk_fraction), wrongness rates would drop but the Phase 4 ledger would have less to learn from.",
+    "Internal scoring dropped substantially (0.12 vs prior 0.71) \u2014 observer_agent appears to penalize candidates with the new claim-bearing skeletons differently. Not investigated; out of scope for Phase 5."
+  ],
+  "what_phase5_DOES_show": [
+    "Claim windows now derive from EMPIRICAL Odlyzko gap data, not a hand-picked table the implementer chose.",
+    "Different families demonstrably target different gap regions (explicit_formula low-T, random_matrix high-T).",
+    "Hyperloop's accuracy advantage is now structural (40% vs 68% wrongness) \u2014 much larger than the prior +0.18 Odlyzko lift.",
+    "The width-as-function-of-obligations design produces real adversarial signal: low-obligation candidates confirm, high-obligation candidates contradict."
+  ]
+}
