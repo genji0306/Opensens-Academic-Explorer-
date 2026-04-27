@@ -196,6 +196,20 @@ def _claim_window_from_gaps(
     else:
         lo_frac, hi_frac = 0.30, 0.70
 
+    # Phase 6: bias the gap region based on obligation-text keywords.
+    # Different obligation patterns hint at different parts of the zero axis:
+    #   "tail" → push toward higher-T (sparser zeros, wider gaps)
+    #   "well_depth" / "finite_window" → push toward lower-T (denser zeros)
+    #   "off_line" → orthogonal to T; no bias
+    obligation_text = " ".join(obligations).lower()
+    if obligation_text:
+        if "tail" in obligation_text:
+            lo_frac = min(0.95, lo_frac + 0.10)
+            hi_frac = min(1.0, hi_frac + 0.10)
+        if "well_depth" in obligation_text or "finite_window" in obligation_text:
+            lo_frac = max(0.0, lo_frac - 0.10)
+            hi_frac = max(0.05, hi_frac - 0.10)
+
     n_gaps = len(gaps)
     lo_idx = max(0, int(lo_frac * n_gaps))
     hi_idx = min(n_gaps, int(hi_frac * n_gaps))
