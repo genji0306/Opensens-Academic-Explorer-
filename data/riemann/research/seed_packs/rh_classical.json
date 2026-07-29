@@ -1,0 +1,68 @@
+{
+  "name": "rh-classical",
+  "description": "Classical analytic RH pack: explicit formula, Hardy Z, xi-function, and moment-method context.",
+  "allowlisted_domains": [
+    "arxiv.org",
+    "doi.org",
+    "projecteuclid.org",
+    "annals.math.princeton.edu",
+    "claymath.org",
+    "www-users.cse.umn.edu"
+  ],
+  "seeds": [
+    "data/riemann/research/seed_packs/rh_classical_bibliography.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_functional_equation.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_xi_symmetry.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_contour_methods.md",
+    "data/riemann/reports/rh_synthesis.md",
+    "data/riemann/reports/final_report.json",
+    "data/riemann/reports/math_analysis.json",
+    "data/riemann/reports/rh_explicit.html"
+  ],
+  "bibliography": [
+    {
+      "family": "analytic_foundations",
+      "title": "Prime number theorem and zero-free regions",
+      "authors": [
+        "Hadamard",
+        "de la Vallee Poussin"
+      ],
+      "year": 1896
+    },
+    {
+      "family": "hardy_z",
+      "title": "Infinitely many zeros on the critical line",
+      "authors": [
+        "G. H. Hardy"
+      ],
+      "year": 1914
+    },
+    {
+      "family": "explicit_formula",
+      "title": "Explicit formula and prime-zero duality",
+      "authors": [
+        "Riemann",
+        "von Mangoldt"
+      ],
+      "year": 1859
+    },
+    {
+      "family": "xi_function",
+      "title": "Completed xi-function and entire-function structure",
+      "authors": [
+        "Classical analytic number theory"
+      ],
+      "year": 1859
+    },
+    {
+      "family": "mollifier_moment",
+      "title": "Mollifier and moment methods",
+      "authors": [
+        "Selberg",
+        "Levinson",
+        "Conrey"
+      ],
+      "year": 1974
+    }
+  ]
+}

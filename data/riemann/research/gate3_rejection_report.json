@@ -1,0 +1,59 @@
+{
+  "gate": "Gate 3 \u2014 verifier rejection rate",
+  "threshold": 0.7,
+  "rejection_threshold_used": 0.7,
+  "bad_total": 9,
+  "bad_rejected": 9,
+  "good_total": 5,
+  "good_accepted": 5,
+  "true_positive_rate": 1.0,
+  "false_positive_rate": 0.0,
+  "per_pattern": {
+    "classical_critical_line_reuse": {
+      "rejected": true,
+      "consensus": 0.6,
+      "rejection_reason": "consensus_below_threshold"
+    },
+    "finite_window_well_depth": {
+      "rejected": true,
+      "consensus": 0.6,
+      "rejection_reason": "consensus_below_threshold"
+    },
+    "spectral_matching_surrogate": {
+      "rejected": true,
+      "consensus": 0.6,
+      "rejection_reason": "consensus_below_threshold"
+    },
+    "generic_explicit_formula_restatement": {
+      "rejected": true,
+      "consensus": 0.6,
+      "rejection_reason": "consensus_below_threshold"
+    },
+    "descriptive_visualization_only": {
+      "rejected": true,
+      "consensus": 0.0,
+      "rejection_reason": "no_lean_skeleton"
+    },
+    "quantum_analogy_without_rigor": {
+      "rejected": true,
+      "consensus": 0.4,
+      "rejection_reason": "consensus_below_threshold"
+    },
+    "statistical_constancy_without_exclusion": {
+      "rejected": true,
+      "consensus": 0.6,
+      "rejection_reason": "consensus_below_threshold"
+    },
+    "lp_equivalent_reformulation": {
+      "rejected": true,
+      "consensus": 0.6,
+      "rejection_reason": "consensus_below_threshold"
+    },
+    "conditional_heat_flow_monotonicity": {
+      "rejected": true,
+      "consensus": 0.6,
+      "rejection_reason": "consensus_below_threshold"
+    }
+  },
+  "passed": true
+}

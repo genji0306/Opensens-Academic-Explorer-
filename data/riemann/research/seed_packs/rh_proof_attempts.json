@@ -1,0 +1,189 @@
+{
+  "name": "rh-proof-attempts",
+  "description": "Curated local corpus of major documented RH proof-attempt families plus the OAE local reports used to compare literature routes against orchestrator routes.",
+  "allowlisted_domains": [
+    "aimath.org",
+    "www.aimath.org",
+    "claymath.org",
+    "www.claymath.org",
+    "mdpi.com",
+    "www.mdpi.com",
+    "pmc.ncbi.nlm.nih.gov"
+  ],
+  "seeds": [
+    "data/riemann/research/proof_attempts/attempts/zero_free_regions_program.md",
+    "data/riemann/research/proof_attempts/attempts/critical_line_density_methods.md",
+    "data/riemann/research/proof_attempts/attempts/hilbert_polya_program.md",
+    "data/riemann/research/proof_attempts/attempts/connes_noncommutative_program.md",
+    "data/riemann/research/proof_attempts/attempts/pair_correlation_random_matrix.md",
+    "data/riemann/research/proof_attempts/attempts/li_keiper_criterion.md",
+    "data/riemann/research/proof_attempts/attempts/beurling_nyman_criterion.md",
+    "data/riemann/research/proof_attempts/attempts/de_branges_positivity_program.md",
+    "data/riemann/research/proof_attempts/attempts/newman_debruijn_flow.md",
+    "data/riemann/research/proof_attempts/attempts/jensen_polynomial_program.md",
+    "data/riemann/research/proof_attempts/attempts/dirichlet_polynomial_turan_route.md",
+    "data/riemann/research/proof_attempts/attempts/explicit_formula_positivity.md",
+    "data/riemann/research/proof_attempts/attempts/hardy_z_numerical_verification.md",
+    "data/riemann/research/proof_attempts/attempts/geometric_modulus_monotonicity.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_functional_equation.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_xi_symmetry.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_contour_methods.md",
+    "data/riemann/reports/rh_synthesis.md",
+    "data/riemann/reports/final_report.json",
+    "data/riemann/reports/math_analysis.json",
+    "data/riemann/reports/rh_operator_framework.md",
+    "data/riemann/reports/rh_projection.html",
+    "data/riemann/reports/rh_strip.html",
+    "data/riemann/reports/rh_explicit.html"
+  ],
+  "bibliography": [
+    {
+      "family": "zero_free_regions",
+      "title": "Zero-free regions and zero-density program",
+      "authors": [
+        "Enrico Bombieri",
+        "Renato Spigler",
+        "American Institute of Mathematics"
+      ],
+      "year": 2000,
+      "note": "Classical analytic work pushes zero-free regions toward the critical line and sharpens zero-density estimates."
+    },
+    {
+      "family": "mollifiers_and_moments",
+      "title": "Mollifier and critical-line density methods",
+      "authors": [
+        "J. Brian Conrey",
+        "American Institute of Mathematics"
+      ],
+      "year": 2019,
+      "note": "Hardy, Selberg, Levinson, and Conrey style methods prove that many zeros lie on the critical line and improve the on-line proportion."
+    },
+    {
+      "family": "spectral_operator",
+      "title": "Hilbert-Polya spectral operator program",
+      "authors": [
+        "J. Brian Conrey",
+        "Peter Sarnak",
+        "American Institute of Mathematics"
+      ],
+      "year": 2004,
+      "note": "A self-adjoint operator with spectrum matching the imaginary parts of non-trivial zeros would force them onto the critical line."
+    },
+    {
+      "family": "noncommutative_spectral",
+      "title": "Connes and Bost-Connes noncommutative program",
+      "authors": [
+        "American Institute of Mathematics",
+        "J. Brian Conrey"
+      ],
+      "year": 2019,
+      "note": "Noncommutative geometry and zeta-partition-function dynamical systems aim to recast RH as a spectral statement."
+    },
+    {
+      "family": "random_matrix",
+      "title": "Pair-correlation and random-matrix heuristics",
+      "authors": [
+        "J. Brian Conrey",
+        "Peter Sarnak"
+      ],
+      "year": 2004,
+      "note": "Montgomery-Odlyzko style statistics suggest that zeta zeros behave like eigenvalues of GUE random matrices."
+    },
+    {
+      "family": "equivalent_criteria",
+      "title": "Keiper-Li positivity criterion",
+      "authors": [
+        "American Institute of Mathematics",
+        "Renato Spigler",
+        "J. Brian Conrey"
+      ],
+      "year": 2019,
+      "note": "RH is equivalent to nonnegativity of the Li coefficients derived from log xi(s)."
+    },
+    {
+      "family": "function_space_equivalence",
+      "title": "Beurling-Nyman closure criterion",
+      "authors": [
+        "American Institute of Mathematics",
+        "J. Brian Conrey"
+      ],
+      "year": 2019,
+      "note": "RH is equivalent to a density or closure statement in L^2(0,1) for a specific function class."
+    },
+    {
+      "family": "de_branges_spaces",
+      "title": "de Branges positivity and Hilbert-space program",
+      "authors": [
+        "American Institute of Mathematics",
+        "J. Brian Conrey",
+        "Renato Spigler"
+      ],
+      "year": 2019,
+      "note": "de Branges-style Hilbert spaces of entire functions aim to force RH through positivity and reproducing-kernel structure."
+    },
+    {
+      "family": "xi_deformation",
+      "title": "de Bruijn-Newman flow and heat deformation",
+      "authors": [
+        "American Institute of Mathematics",
+        "J. Brian Conrey"
+      ],
+      "year": 2019,
+      "note": "RH is equivalent to the de Bruijn-Newman constant satisfying Lambda <= 0 under a heat-flow deformation of Xi."
+    },
+    {
+      "family": "jensen_hyperbolicity",
+      "title": "Polya-Jensen hyperbolicity program",
+      "authors": [
+        "Michael Griffin",
+        "Ken Ono",
+        "Larry Rolen",
+        "Don Zagier",
+        "J. Brian Conrey"
+      ],
+      "year": 2019,
+      "note": "RH is equivalent to hyperbolicity of all relevant Jensen polynomials, and recent work proves wide finite-shift regimes."
+    },
+    {
+      "family": "dirichlet_polynomial_criteria",
+      "title": "Turan route via Dirichlet polynomials",
+      "authors": [
+        "American Institute of Mathematics",
+        "J. Brian Conrey"
+      ],
+      "year": 2019,
+      "note": "Turan-type criteria try to deduce RH from zero-free properties of finite zeta partial sums or Dirichlet polynomials."
+    },
+    {
+      "family": "explicit_formula",
+      "title": "Explicit-formula and positivity route",
+      "authors": [
+        "J. Brian Conrey",
+        "Enrico Bombieri"
+      ],
+      "year": 2000,
+      "note": "Weil-style explicit formulas and positivity criteria tie prime sums to zero distributions with theorem-level exactness."
+    },
+    {
+      "family": "numerical_verification",
+      "title": "Hardy Z and computational verification lane",
+      "authors": [
+        "Clay Mathematics Institute",
+        "American Institute of Mathematics",
+        "Renato Spigler"
+      ],
+      "year": 2025,
+      "note": "Hardy Z evaluations, Riemann-Siegel methods, and large-scale computation verify vast initial zero ranges on the critical line."
+    },
+    {
+      "family": "geometric_visualization",
+      "title": "Geometric and modulus-monotonicity route",
+      "authors": [
+        "Renato Spigler",
+        "Peter Sarnak"
+      ],
+      "year": 2004,
+      "note": "Visual and geometric interpretations study modulus flow, horizontal monotonicity, and critical-strip structure as a guide to zero geometry."
+    }
+  ]
+}

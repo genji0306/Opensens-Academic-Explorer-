@@ -1,0 +1,270 @@
+{
+  "experiment": "RH Hyperloop tri-arm head-to-head \u2014 Phase 0 final validation",
+  "date": "2026-04-26",
+  "seed_pack": "rh-ri-functional-vector",
+  "max_rounds": 10,
+  "max_hypotheses_per_round": 8,
+  "patience": 12,
+  "arms": {
+    "baseline": {
+      "campaign_id": "triarm_baseline_v2_20260426",
+      "rounds_run": 10,
+      "best_score": 0.5670027900719412,
+      "termination_reason": "max_rounds_exhausted",
+      "lean_residue": {
+        "decls_added_total": 300,
+        "rounds_gate_passed": "10/10"
+      },
+      "per_round_scores": [
+        {
+          "round": 1,
+          "best": 0.5670027900719412,
+          "mean": 0.49977345087405683
+        },
+        {
+          "round": 2,
+          "best": 0.5670027900719412,
+          "mean": 0.47716684102440093
+        },
+        {
+          "round": 3,
+          "best": 0.5670027900719412,
+          "mean": 0.47716684102440093
+        },
+        {
+          "round": 4,
+          "best": 0.5670027900719412,
+          "mean": 0.47716684102440093
+        },
+        {
+          "round": 5,
+          "best": 0.5311746955601363,
+          "mean": 0.49529493906008126
+        },
+        {
+          "round": 6,
+          "best": 0.5311746955601363,
+          "mean": 0.49529493906008126
+        },
+        {
+          "round": 7,
+          "best": 0.5311746955601363,
+          "mean": 0.49529493906008126
+        },
+        {
+          "round": 8,
+          "best": 0.5311746955601363,
+          "mean": 0.49529493906008126
+        },
+        {
+          "round": 9,
+          "best": 0.5311746955601363,
+          "mean": 0.49529493906008126
+        },
+        {
+          "round": 10,
+          "best": 0.5311746955601363,
+          "mean": 0.49529493906008126
+        }
+      ],
+      "failure_atlas_top5": [
+        {
+          "class": "candidate_spaces_have_not_yielded_an_accepted_proof",
+          "count": 152
+        },
+        {
+          "class": "large_obligation_load",
+          "count": 140
+        },
+        {
+          "class": "novelty_requires_translation",
+          "count": 100
+        },
+        {
+          "class": "finite_window_only",
+          "count": 96
+        },
+        {
+          "class": "action_avoid_repeating_known_dead_end_branches_before_promotion",
+          "count": 80
+        }
+      ]
+    },
+    "klein": {
+      "campaign_id": "triarm_klein_v2_20260426",
+      "rounds_run": 10,
+      "best_score": 0.612542726433852,
+      "termination_reason": "max_rounds_exhausted",
+      "lean_residue": {
+        "decls_added_total": 300,
+        "rounds_gate_passed": "10/10"
+      },
+      "per_round_scores": [
+        {
+          "round": 1,
+          "best": 0.612542726433852,
+          "mean": 0.527484520171557
+        },
+        {
+          "round": 2,
+          "best": 0.5913324595687727,
+          "mean": 0.504714658257049
+        },
+        {
+          "round": 3,
+          "best": 0.5920271024259155,
+          "mean": 0.4988584710276118
+        },
+        {
+          "round": 4,
+          "best": 0.591965520612339,
+          "mean": 0.4987865962537661
+        },
+        {
+          "round": 5,
+          "best": 0.591939394994458,
+          "mean": 0.4925412655353663
+        },
+        {
+          "round": 6,
+          "best": 0.5919512506196758,
+          "mean": 0.4925453182235785
+        },
+        {
+          "round": 7,
+          "best": 0.5919584957239755,
+          "mean": 0.49254779486637484
+        },
+        {
+          "round": 8,
+          "best": 0.5919633819571078,
+          "mean": 0.4925494651603538
+        },
+        {
+          "round": 9,
+          "best": 0.5919669000449631,
+          "mean": 0.49255066777201856
+        },
+        {
+          "round": 10,
+          "best": 0.5919695540410645,
+          "mean": 0.49255157500537977
+        }
+      ],
+      "failure_atlas_top5": [
+        {
+          "class": "finite_window_only",
+          "count": 192
+        },
+        {
+          "class": "candidate_spaces_have_not_yielded_an_accepted_proof",
+          "count": 152
+        },
+        {
+          "class": "large_obligation_load",
+          "count": 140
+        },
+        {
+          "class": "operator_rigor_gap",
+          "count": 132
+        },
+        {
+          "class": "global_exclusion_gap",
+          "count": 122
+        }
+      ]
+    },
+    "hyperloop": {
+      "campaign_id": "triarm_hyperloop_v3_20260426",
+      "rounds_run": 10,
+      "best_score": 0.5670027900719412,
+      "termination_reason": "max_rounds_exhausted",
+      "lean_residue": {
+        "decls_added_total": 300,
+        "rounds_gate_passed": "10/10"
+      },
+      "per_round_scores": [
+        {
+          "round": 1,
+          "best": 0.5670027900719412,
+          "mean": 0.4891563725560555
+        },
+        {
+          "round": 2,
+          "best": 0.5670027900719412,
+          "mean": 0.4481574524893666
+        },
+        {
+          "round": 3,
+          "best": 0.5670027900719412,
+          "mean": 0.4414306014406138
+        },
+        {
+          "round": 4,
+          "best": 0.5670027900719412,
+          "mean": 0.44134859205973376
+        },
+        {
+          "round": 5,
+          "best": 0.49126454666033315,
+          "mean": 0.44764198965633106
+        },
+        {
+          "round": 6,
+          "best": 0.49127809594629623,
+          "mean": 0.44764681658945543
+        },
+        {
+          "round": 7,
+          "best": 0.49128637606549586,
+          "mean": 0.44764976638192033
+        },
+        {
+          "round": 8,
+          "best": 0.4912919603319329,
+          "mean": 0.4476517557768385
+        },
+        {
+          "round": 9,
+          "best": 0.4912959810037675,
+          "mean": 0.44765318814117955
+        },
+        {
+          "round": 10,
+          "best": 0.49129901414216903,
+          "mean": 0.44765426869673514
+        }
+      ],
+      "failure_atlas_top5": [
+        {
+          "class": "finite_window_only",
+          "count": 192
+        },
+        {
+          "class": "candidate_spaces_have_not_yielded_an_accepted_proof",
+          "count": 152
+        },
+        {
+          "class": "large_obligation_load",
+          "count": 140
+        },
+        {
+          "class": "operator_rigor_gap",
+          "count": 132
+        },
+        {
+          "class": "global_exclusion_gap",
+          "count": 122
+        }
+      ]
+    }
+  },
+  "findings": [
+    "Gate 1 confirmed under real campaign load: 30 monotone Lean decls/round across 10 rounds \u00d7 3 modes = 900 total decls, 30/30 gates passed.",
+    "Klein orbit signature visible: peaks at r1=0.6125 then orbits at 0.5920 for rounds 3\u201310 (zero improvement across 8 consecutive rounds).",
+    "Hyperloop deliberately suppresses internal score (0.5670 \u2192 0.4913 by r5) \u2014 matches plan \u00a76: 'willingness to let internal score drop is the cultural shift that operationalizes the disruptor.'",
+    "External scorecard (EXTERNAL_EVAL_ENABLED) not wired to a real benchmark \u2014 Gate 7 strict-dominance verdict deferred until external eval lands.",
+    "Bug fix: topology_mode == 'klein' was strict-equal in 3 places, blocking K-lane novelty + observer routing for hyperloop. Now matches ('klein', 'hyperloop').",
+    "Bug fix: residue writer suffix included only round_index, causing decl-name collisions across campaigns sharing the same seed pack. Suffix now also encodes campaign_id."
+  ]
+}

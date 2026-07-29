@@ -1,0 +1,23 @@
+{
+  "campaign_id": "rh-disruptive-d-phi-global-exclusion-proof-gate-20260426",
+  "proof_target": 0.95,
+  "topology_mode": "proof_gate_progress",
+  "rounds_run": 1,
+  "total_hypotheses": 1,
+  "best_score": 0.956,
+  "best_candidate_id": "rh-proof-gate-d-phi-global-exclusion-progress",
+  "converged": false,
+  "termination_reason": "proof_gate_progress_artifact_generated",
+  "claim_scope": "Proof-gate progress artifact only. This does not prove RH and does not assert that the analytic xi bridge, off-line exclusion theorem, or global tail recombination theorem has been proved.",
+  "paths": {
+    "campaign_dir": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/research/rh-disruptive-d-phi-global-exclusion-proof-gate-20260426",
+    "summary": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/research/rh-disruptive-d-phi-global-exclusion-proof-gate-20260426/summary.json",
+    "certificate_report": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/research/rh-disruptive-d-phi-global-exclusion-proof-gate-20260426/certificate_report.json",
+    "proof_gate_report": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/data/riemann/research/rh-disruptive-d-phi-global-exclusion-proof-gate-20260426/proof_gate_report.json"
+  },
+  "required_stop_label_evidence": [
+    "d_phi-threshold-cleared",
+    "global-exclusion-or-positivity-progress",
+    "core-obligation-reduced"
+  ]
+}

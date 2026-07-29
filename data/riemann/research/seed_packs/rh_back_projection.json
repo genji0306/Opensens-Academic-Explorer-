@@ -1,0 +1,75 @@
+{
+  "name": "rh-back-projection",
+  "description": "Targeted seed pack for the back-projection exclusion angle: G(w) pole inside-disk contradiction, Weil pairing indefiniteness, and Omega_k sign-pattern disruption from off-critical zeros.",
+  "allowlisted_domains": [
+    "arxiv.org",
+    "doi.org",
+    "projecteuclid.org",
+    "annals.math.princeton.edu",
+    "claymath.org",
+    "www-users.cse.umn.edu",
+    "aimath.org",
+    "www.aimath.org"
+  ],
+  "seeds": [
+    "data/riemann/research/seed_packs/rh_back_projection_angle.md",
+    "data/riemann/research/seed_packs/rh_core_bibliography.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_functional_equation.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_xi_symmetry.md",
+    "data/riemann/research/seed_packs/rh_operator_calibration_contour_methods.md",
+    "data/riemann/reports/rh_synthesis.md",
+    "data/riemann/reports/rh_projection.html",
+    "data/riemann/research/RH_AP_AT_PHASE_REPORT.md"
+  ],
+  "bibliography": [
+    {
+      "family": "hardy_z",
+      "title": "Hardy Z-function and back-projection geometry",
+      "authors": ["G. H. Hardy"],
+      "year": 1914,
+      "note": "Z(t) = e^{i*theta(t)} zeta(1/2+it) is real-valued on critical line. Back projection curve C = Z(t)*e^{-i*theta(t)} passes through origin at each zero."
+    },
+    {
+      "family": "explicit_formula",
+      "title": "Hadamard product and off-critical zero contribution",
+      "authors": ["Hadamard", "von Mangoldt"],
+      "year": 1896,
+      "note": "zeta(s) = e^{A+Bs} prod_rho (1-s/rho) e^{s/rho}. Off-critical zero pair {rho, 1-rho} contributes P_rho(t) factor with non-trivial phase to the back projection."
+    },
+    {
+      "family": "xi_function",
+      "title": "G(w) generating function pole structure",
+      "authors": ["Maslanka", "OAE Phase ALAM"],
+      "year": 2026,
+      "note": "G(w) = sum Omega_k w^k. Poles at w_rho = rho/(rho-1). |w_rho|=1 iff Re(rho)=1/2. Off-critical zero moves pole inside disk, contradicting radius of convergence."
+    },
+    {
+      "family": "explicit_formula",
+      "title": "Omega_k exact decomposition A+B+C+D",
+      "authors": ["OAE Phase AO", "Stieltjes"],
+      "year": 2026,
+      "note": "Omega_k = A_k + B_k + C_k + D_k unconditional. Quasi-period-4 (+,+,-,-) breaks at k=46. Any off-critical zero must be consistent with this exact form."
+    },
+    {
+      "family": "de_branges",
+      "title": "Weil positivity and pairing matrix",
+      "authors": ["Bombieri", "OAE Phase AP"],
+      "year": 2026,
+      "note": "M_{nm} = W(h_n tensor h_bar_m). M_3 PSD proved (eigenvalues 0.2047, 0.0183, 0.00312). Off-critical zero introduces complex-phase correction potentially making M_3 indefinite."
+    },
+    {
+      "family": "xi_function",
+      "title": "Weil kernels as associated Laguerre polynomials",
+      "authors": ["OAE Phase AS"],
+      "year": 2026,
+      "note": "K_n(u) = e^{-u/2} * n * L_{n-1}^{(1)}(u). Turan inequality K_n^2 - K_{n-1}K_{n+1} >= 0 via Szego-Gasper. Off-critical correction breaks Turan via negative phase contribution."
+    },
+    {
+      "family": "geometric_visualization",
+      "title": "Back projection orthographic view of critical-line trace",
+      "authors": ["OAE preview.html"],
+      "year": 2026,
+      "note": "Orthographic back wall of 3D trace Gamma(t) = (Re zeta, Im zeta, t). Visually: off-critical zeros invisible as crossings but would distort spiral arm structure in a detectable way."
+    }
+  ]
+}

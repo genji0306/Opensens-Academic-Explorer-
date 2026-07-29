@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>RH — ζ(½+it) 3D Projection (x-i · xy · y-i)</title>
+<style>
+  :root {
+    --bg:#0b0f14; --fg:#e8eef5; --muted:#7d8a99;
+    --accent:#5fb4ff; --primary:#ffd160; --zero:#ff4d6d;
+    --xi:#56d1ff; --yi:#9b8cff; --xy:#7cffb2;
+  }
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,'Inter',sans-serif;height:100%;overflow:hidden;}
+  #app{position:fixed;inset:0;}
+  header{position:absolute;top:16px;left:20px;z-index:10;pointer-events:none;max-width:480px;}
+  header h1{margin:0 0 4px;font-size:15px;font-weight:600;letter-spacing:.3px;}
+  header p{margin:0;font-size:11px;color:var(--muted);line-height:1.5;}
+  header code{color:var(--primary);background:rgba(255,209,96,.08);
+    padding:1px 5px;border-radius:3px;font-size:10.5px;}
+  #controls{position:absolute;bottom:16px;left:20px;z-index:10;
+    display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  button,label.tog{background:rgba(255,255,255,.06);color:var(--fg);border:1px solid rgba(255,255,255,.12);
+    padding:7px 12px;font-size:11px;border-radius:6px;cursor:pointer;
+    font-family:inherit;letter-spacing:.3px;transition:all .15s;user-select:none;}
+  button:hover,label.tog:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);}
+  label.tog input{margin-right:5px;vertical-align:middle;}
+  .legend{position:absolute;top:16px;right:20px;z-index:10;
+    background:rgba(12,17,24,.78);backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.08);padding:10px 14px;border-radius:8px;
+    font-size:10.5px;line-height:1.7;min-width:170px;}
+  .legend .row{display:flex;align-items:center;gap:8px;}
+  .legend .sw{width:14px;height:2px;display:inline-block;border-radius:1px;}
+  .legend .sq{width:8px;height:8px;display:inline-block;border-radius:50%;}
+  #info{position:absolute;bottom:16px;right:20px;z-index:10;font-size:10px;
+    color:var(--muted);font-family:ui-monospace,monospace;text-align:right;line-height:1.5;}
+  #info b{color:var(--primary);}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<header>
+  <h1>Riemann ζ(½ + it) — Three-Plane Orthographic Projection</h1>
+  <p>3D trace Γ(t) = ( Re ζ, Im ζ, t ). Three projection walls: <code>x–i</code> (Re vs t),
+  <code>x–y</code> (complex plane), <code>y–i</code> (Im vs t). Red dots mark the first 12
+  non-trivial zeros γₙ where the trace threads the t-axis.</p>
+</header>
+<div class="legend">
+  <div class="row"><span class="sw" style="background:var(--primary);"></span>3D curve Γ(t)</div>
+  <div class="row"><span class="sw" style="background:var(--xi);"></span>x–i projection (Re ζ vs t)</div>
+  <div class="row"><span class="sw" style="background:var(--xy);"></span>x–y projection (Re ζ vs Im ζ)</div>
+  <div class="row"><span class="sw" style="background:var(--yi);"></span>y–i projection (Im ζ vs t)</div>
+  <div class="row"><span class="sq" style="background:var(--zero);"></span>non-trivial zeros γₙ</div>
+</div>
+<div id="controls">
+  <button id="replay">↻ replay</button>
+  <button id="pause">⏸ pause</button>
+  <label class="tog"><input type="checkbox" id="toggle-xi" checked>x–i</label>
+  <label class="tog"><input type="checkbox" id="toggle-xy" checked>x–y</label>
+  <label class="tog"><input type="checkbox" id="toggle-yi" checked>y–i</label>
+  <label class="tog"><input type="checkbox" id="toggle-guides">guide lines</label>
+</div>
+<div id="info"><span id="info-t">t = 0.00</span> &nbsp; <b id="info-z">Z = 0.00</b><br>drag=orbit · scroll=zoom</div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+}}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const dataResp = await fetch('rh_projection_data.json');
+const DATA = await dataResp.json();
+const CURVE = DATA.curve;               // [[t, Re, Im, Z], ...]
+const ZEROS = DATA.zeros;               // [γ1, γ2, ...]
+const T_MIN = DATA.t_min, T_MAX = DATA.t_max;
+
+// axis ranges from data
+const xs = CURVE.map(p=>p[1]), ys = CURVE.map(p=>p[2]);
+const X_MIN=-1.8, X_MAX=3.8;
+const Y_MIN=-2.6, Y_MAX=2.6;
+const Z_MIN=T_MIN, Z_MAX=T_MAX;
+
+// world-space normalisation so aspect is sensible
+const W = 12;  // width
+const H = 12;  // height (Im)
+const D = 28;  // depth (t)
+const toWorld = (reZ, imZ, t) => new THREE.Vector3(
+  ((reZ - X_MIN)/(X_MAX - X_MIN) - 0.5) * W,
+  ((imZ - Y_MIN)/(Y_MAX - Y_MIN) - 0.5) * H,
+  ((t    - Z_MIN)/(Z_MAX - Z_MIN) - 0.5) * D
+);
+
+// --- three.js setup ---
+const app = document.getElementById('app');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0b0f14);
+scene.fog = new THREE.Fog(0x0b0f14, 40, 80);
+
+const camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 0.1, 200);
+camera.position.set(18, 10, 28);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth, innerHeight);
+app.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.08;
+
+scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+const dirLight = new THREE.DirectionalLight(0xffffff, 0.4);
+dirLight.position.set(10,15,10);
+scene.add(dirLight);
+
+// ---- reference box & projection walls ----
+const halfW=W/2, halfH=H/2, halfD=D/2;
+
+function makeWall(geom, color, opacity=0.035) {
+  const mat = new THREE.MeshBasicMaterial({ color, transparent:true, opacity,
+    side:THREE.DoubleSide, depthWrite:false });
+  return new THREE.Mesh(geom, mat);
+}
+// xy wall (back: z = -halfD) — classic complex plane
+scene.add(makeWall(new THREE.PlaneGeometry(W,H), 0x7cffb2, 0.045).translateZ(-halfD));
+// x-i wall (floor: y = -halfH) — Re vs t
+const xiWall = makeWall(new THREE.PlaneGeometry(W,D), 0x56d1ff, 0.045);
+xiWall.rotation.x = -Math.PI/2; xiWall.position.y = -halfH; scene.add(xiWall);
+// y-i wall (left: x = -halfW) — Im vs t
+const yiWall = makeWall(new THREE.PlaneGeometry(D,H), 0x9b8cff, 0.045);
+yiWall.rotation.y = Math.PI/2; yiWall.position.x = -halfW; scene.add(yiWall);
+
+// wireframe box
+const box = new THREE.LineSegments(
+  new THREE.EdgesGeometry(new THREE.BoxGeometry(W,H,D)),
+  new THREE.LineBasicMaterial({ color:0x2a3441 }));
+scene.add(box);
+
+// axis labels (sprite)
+function label(text, pos, color='#e8eef5', size=0.7){
+  const canv = document.createElement('canvas'); canv.width=256; canv.height=64;
+  const ctx = canv.getContext('2d');
+  ctx.fillStyle=color; ctx.font='600 34px -apple-system,Inter,sans-serif';
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(text, 128, 32);
+  const tex = new THREE.CanvasTexture(canv); tex.anisotropy=4;
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map:tex, transparent:true, depthTest:false }));
+  sp.position.copy(pos); sp.scale.set(4*size, 1*size, 1); return sp;
+}
+scene.add(label('Re ζ  (x)',     new THREE.Vector3(halfW+0.5, -halfH-0.6, halfD+0.3), '#ffd160'));
+scene.add(label('Im ζ  (y)',     new THREE.Vector3(-halfW-0.6, halfH+0.5, halfD+0.3), '#ffd160'));
+scene.add(label('t  (i-axis)',   new THREE.Vector3(halfW+0.5, -halfH-0.6, -halfD-0.3),'#ffd160'));
+scene.add(label('x–i  wall',     new THREE.Vector3(0, -halfH-0.4, -halfD-1.0), '#56d1ff', 0.6));
+scene.add(label('x–y  wall',     new THREE.Vector3( halfW+1.2, 0, -halfD), '#7cffb2', 0.6));
+scene.add(label('y–i  wall',     new THREE.Vector3(-halfW-0.6,  halfH+0.4, 0), '#9b8cff', 0.6));
+
+// origin axes through the box (Re=0, Im=0 lines)
+function axisLine(a,b,color){
+  const g = new THREE.BufferGeometry().setFromPoints([a,b]);
+  const m = new THREE.LineBasicMaterial({ color, transparent:true, opacity:0.35 });
+  return new THREE.Line(g,m);
+}
+const reZero_x = ((0 - X_MIN)/(X_MAX - X_MIN) - 0.5) * W;
+const imZero_y = ((0 - Y_MIN)/(Y_MAX - Y_MIN) - 0.5) * H;
+scene.add(axisLine(new THREE.Vector3(reZero_x,-halfH,-halfD), new THREE.Vector3(reZero_x,-halfH,halfD), 0x4a5663));
+scene.add(axisLine(new THREE.Vector3(-halfW,imZero_y,-halfD), new THREE.Vector3(-halfW,imZero_y,halfD), 0x4a5663));
+scene.add(axisLine(new THREE.Vector3(reZero_x,-halfH,-halfD), new THREE.Vector3(reZero_x,halfH,-halfD), 0x4a5663));
+scene.add(axisLine(new THREE.Vector3(-halfW,imZero_y,-halfD), new THREE.Vector3(halfW,imZero_y,-halfD), 0x4a5663));
+
+// ---- precompute point arrays for main curve + projections ----
+const mainPts=[], xiPts=[], xyPts=[], yiPts=[];
+for (const [t, reZ, imZ] of CURVE) {
+  const v = toWorld(reZ, imZ, t);
+  mainPts.push(v);
+  xiPts.push(new THREE.Vector3(v.x, -halfH, v.z));   // floor
+  xyPts.push(new THREE.Vector3(v.x,  v.y,  -halfD)); // back
+  yiPts.push(new THREE.Vector3(-halfW, v.y, v.z));   // left
+}
+
+// helper: build a line with pre-allocated attribute we can grow progressively
+function makeProgressiveLine(pts, color, width=1, opacity=1){
+  const geom = new THREE.BufferGeometry();
+  const positions = new Float32Array(pts.length*3);
+  for (let i=0;i<pts.length;i++){
+    positions[3*i  ]=pts[i].x;
+    positions[3*i+1]=pts[i].y;
+    positions[3*i+2]=pts[i].z;
+  }
+  geom.setAttribute('position', new THREE.BufferAttribute(positions,3));
+  geom.setDrawRange(0, 0);
+  const mat = new THREE.LineBasicMaterial({ color, transparent:true, opacity, linewidth: width });
+  return new THREE.Line(geom, mat);
+}
+
+const mainLine = makeProgressiveLine(mainPts, 0xffd160, 2, 1.0);
+const xiLine   = makeProgressiveLine(xiPts,   0x56d1ff, 1, 0.75);
+const xyLine   = makeProgressiveLine(xyPts,   0x7cffb2, 1, 0.75);
+const yiLine   = makeProgressiveLine(yiPts,   0x9b8cff, 1, 0.75);
+scene.add(mainLine, xiLine, xyLine, yiLine);
+
+// guide-line bundle (dynamic, from current 3D head to 3 walls)
+const guideMat = new THREE.LineBasicMaterial({ color:0x4a5663, transparent:true, opacity:0.55 });
+const guideGeom = new THREE.BufferGeometry();
+guideGeom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(6*3), 3));
+const guideLines = new THREE.LineSegments(guideGeom, guideMat);
+guideLines.visible = false;
+scene.add(guideLines);
+
+// ---- zero markers (red spheres on the t-axis) ----
+const zeroGroup = new THREE.Group();
+const zeroGeom = new THREE.SphereGeometry(0.18, 20, 20);
+const zeroMat  = new THREE.MeshBasicMaterial({ color:0xff4d6d });
+const zeroSprites = [];
+for (const gamma of ZEROS) {
+  if (gamma < T_MIN || gamma > T_MAX) continue;
+  const v = toWorld(0, 0, gamma);
+  const m = new THREE.Mesh(zeroGeom, zeroMat);
+  m.position.copy(v); m.userData.t = gamma;
+  m.visible = false;
+  zeroGroup.add(m);
+  // on each projection wall: small dot
+  const makeDot = (pos, col) => {
+    const d = new THREE.Mesh(new THREE.SphereGeometry(0.1,12,12),
+      new THREE.MeshBasicMaterial({ color:col, transparent:true, opacity:0.85 }));
+    d.position.copy(pos); d.visible=false;
+    zeroGroup.add(d); return d;
+  };
+  const xiDot = makeDot(new THREE.Vector3(v.x, -halfH, v.z), 0xff8f9f);
+  const xyDot = makeDot(new THREE.Vector3(v.x,  v.y,  -halfD), 0xff8f9f);
+  const yiDot = makeDot(new THREE.Vector3(-halfW, v.y, v.z), 0xff8f9f);
+  zeroSprites.push({ sphere:m, xiDot, xyDot, yiDot, t:gamma });
+}
+scene.add(zeroGroup);
+
+// ---- animation state ----
+let head = 0;                      // index along CURVE
+let paused = false;
+const SPEED = 5;                   // indices per frame during play
+const infoT = document.getElementById('info-t');
+const infoZ = document.getElementById('info-z');
+
+function setHead(i){
+  head = Math.max(0, Math.min(CURVE.length-1, i));
+  mainLine.geometry.setDrawRange(0, head+1);
+  xiLine  .geometry.setDrawRange(0, head+1);
+  xyLine  .geometry.setDrawRange(0, head+1);
+  yiLine  .geometry.setDrawRange(0, head+1);
+  const [t,reZ,imZ,Z] = CURVE[head];
+  infoT.textContent = `t = ${t.toFixed(2)}`;
+  infoZ.textContent = `Z = ${Z.toFixed(3)}`;
+  for (const zs of zeroSprites) {
+    const show = t >= zs.t;
+    zs.sphere.visible = show;
+    zs.xiDot.visible = show && document.getElementById('toggle-xi').checked;
+    zs.xyDot.visible = show && document.getElementById('toggle-xy').checked;
+    zs.yiDot.visible = show && document.getElementById('toggle-yi').checked;
+  }
+  // update guide lines from 3D head to each projection
+  if (guideLines.visible) {
+    const v = mainPts[head];
+    const arr = guideLines.geometry.attributes.position.array;
+    // head -> xi (floor)
+    arr[0]=v.x; arr[1]=v.y; arr[2]=v.z; arr[3]=v.x; arr[4]=-halfH; arr[5]=v.z;
+    // head -> xy (back)
+    arr[6]=v.x; arr[7]=v.y; arr[8]=v.z; arr[9]=v.x; arr[10]=v.y; arr[11]=-halfD;
+    // head -> yi (left)
+    arr[12]=v.x; arr[13]=v.y; arr[14]=v.z; arr[15]=-halfW; arr[16]=v.y; arr[17]=v.z;
+    guideLines.geometry.attributes.position.needsUpdate = true;
+  }
+}
+setHead(0);
+
+// expose globally so Playwright / devtools can call window.setHead(n)
+window.setHead = setHead;
+window.CURVE_LEN = CURVE.length;
+
+// if URL has ?end=1, jump immediately to last frame (for automated screenshots)
+if (new URLSearchParams(location.search).get('end') === '1') {
+  paused = true;
+  setHead(CURVE.length - 1);
+}
+
+// ---- interaction ----
+document.getElementById('replay').onclick = () => { setHead(0); paused=false;
+  document.getElementById('pause').textContent='⏸ pause'; };
+document.getElementById('pause').onclick = (e) => {
+  paused = !paused; e.target.textContent = paused ? '▶ play' : '⏸ pause';
+};
+function bindToggle(id, obj){
+  document.getElementById(id).onchange = (e)=>{ obj.visible = e.target.checked; setHead(head); };
+}
+bindToggle('toggle-xi', xiLine);
+bindToggle('toggle-xy', xyLine);
+bindToggle('toggle-yi', yiLine);
+document.getElementById('toggle-guides').onchange = (e) => {
+  guideLines.visible = e.target.checked; setHead(head);
+};
+
+addEventListener('resize', ()=>{
+  camera.aspect = innerWidth/innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+
+// ---- render loop ----
+function tick(){
+  requestAnimationFrame(tick);
+  if (!paused && head < CURVE.length-1) setHead(head + SPEED);
+  controls.update();
+  renderer.render(scene, camera);
+}
+tick();
+</script>
+</body>
+</html>
