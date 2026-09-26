@@ -5,6 +5,8 @@
 **Reviewer and fleet operator:** Claude Opus · **Core vision worker:** DeepSeek V4.1 Flash ·
 **Support:** Codex Sol (`gpt-5.6-sol`), Claude Opus · **Critical-strategy cross-review:** Astra + Fable.
 
+Decisions D1–D6 were taken by the owner on 2026-09-27 (§0).
+
 Companion files (same folder): `MVE_REVIEW_OF_SOURCES.md` (per-paper review),
 `../../schemas/mve_observation_record.json` (the record every stage reads and writes),
 `README_FOR_ASTRA.md` (packet manifest and dispatch command).
@@ -47,16 +49,16 @@ pilot (`rhvf`), a Mathlib v4.29.0 Lake project, Lean 4.34.1, the Evidence Atlas 
 channel, and the Explorer scenes (geometry, quaternion/Clifford torus, field lab) as a
 source of diagrams. Full paths in §3.
 
-**Decisions only the owner can make (blocking, in order):**
+**Owner decisions, taken 2026-09-27 (this table is now the record of decision):**
 
-| # | Decision | Default if no word |
+| # | Decision | Owner's answer (2026-09-27) |
 |---|---|---|
-| D1 | Jev backend for MVE: TypeSafe hosted key (`JEV_API_KEY`), local openJev 151M, or both ("run both" was the 09-26 word for the RH harness) | both, hosted inert until the key exists |
-| D2 | Canvas kernel: JSXGraph (LGPL/MIT, commercial-safe) or GeoGebra (apps non-commercial without agreement; Newclid reads `.ggb`) | JSXGraph for the UI, GeoGebra only inside Newclid |
-| D3 | Prover on this Mac: Goedel-Prover-V2-8B (Apache-2.0, needs MLX conversion) vs DeepSeek-Prover-V2-7B vs AXLE MCP (currently down) | DeepSeek-Prover-V2-7B via the existing local MLX worker pattern; AXLE when it returns |
-| D4 | Budget for P0–P2 DeepSeek Flash calls and Jev calls | USD 10 total, off-peak only, hard cap in every manifest |
-| D5 | Whether MVE lives in this repo as `mve/` (sibling of `laboratory/`) or in `~/Developer/Opensens/mve` beside the RH tools | this repo, `mve/`, with the RH-worktree scripts vendored by path, not copied |
-| D6 | Licensing stance on GeoX and MultiMath data (HF cards carry no license; GeoX alignment data is disputed by the PGPS9K author) | use only Euclid/Geoperception (Apache-2.0), Geometry3K, LeanGeo, LeanEuclid; cite GeoX and MultiMath |
+| D1 | Jev backend | **openJev, local.** The CLM priority is a local Jev model that learns recursively from its own decisions. TypeSafe hosted is not used; it may be run later only as a comparison baseline. Learning loop: **both** sources of labels (human verdicts from the co-observer tab, and DeepSeek/Opus judgments on items openJev was unsure about), **humans override** on conflict and weigh higher. See §5a. |
+| D2 | Canvas kernel | **JSXGraph for the UI and measurement; GeoGebra only inside Newclid.** |
+| D3 | Prover | **DeepSeek-Prover-V2-7B first** (existing MLX worker pattern), **and** Goedel-Prover-V2-8B tested on the **same 50 statements** with the same timeout at gate G4; the comparison table sets the default. AXLE rejoins when it reconnects. |
+| D4 | Budget P0–P2 | **USD 20**, hard cap in every wave manifest, off-peak only. |
+| D5 | Package location | **This repo, `mve/`**, sibling of `laboratory/`, RH scripts reached by path. |
+| D6 | GeoX / MultiMath data | **Exclude, cite only.** Training and evaluation use Euclid, Geoperception, Geometry3K, LeanGeo, LeanEuclid. |
 
 ---
 
@@ -277,18 +279,48 @@ A fixed 10% of confident answers is audited by Opus each wave and the audit resu
 recorded on the decision. Jev's "cannot hallucinate" holds only because the label set is
 ours; the `other` label is the escape hatch and is always last.
 
-**Two backends, one contract.** TypeSafe hosted (`jev-1.13.0`, needs `JEV_API_KEY`; the
-endpoint and wire format in `rhjev/backends.py` are still assumptions and must be verified
-against docs.typesafe.ai before the first live call) and local openJev 151M (Apache-2.0,
-512-token cap: states must stay ≤ ~140 words, so every template is measured in tokens at
-build time). Per the owner's 09-26 word for the RH harness, "highest efficiency claim or run
-both": run both on the labelled set in P2 and keep whichever meets the threshold at lower
-cost; the harness's ReplayBackend makes the comparison reproducible.
+**One backend by decision, one contract.** Per D1 the decision layer runs on the local
+openJev 151M (Apache-2.0, ONNX fp16 at `~/Developer/Opensens/models/openjev/`, venv
+`runtimes/openjev-venv`) through `rhjev.backends.OpenJevBackend`. Its 512-token cap means
+every state template is measured in tokens at build time and kept ≤ ~140 words. The
+`rhjev` contract (Choice / Score / Noul, probabilities, confidence, ReplayBackend for
+reproducible reruns) is unchanged, so a hosted TypeSafe comparison can be run later as a
+baseline without touching callers; it is not part of the plan's budget.
 
 **The three primitives map onto the sketch in the request:** Choice is the simplex
 (a+b+c=1), Score is the ordered points on [0,1] under a sigmoid, Noul is p + (1−p) = 1.
 The overlapping-distributions sketch is the cascade: the shaded band between the two
 thresholds is where the robot hands the item to the human.
+
+### 5a. Recursive self-learning loop for the local Jev (D1)
+
+The owner's priority is a local classifier that improves from its own decisions. The
+loop, per wave:
+
+1. **Decide.** openJev answers the catalogue questions; every decision is written to the
+   record with its probabilities, confidence, thresholds and route.
+2. **Label.** Two label sources, kept separate in the ledger:
+   - *Human verdicts* from the co-observer tab (A6): confirm / reject / not-visible on
+     relations and on decisions. Weight 1.0.
+   - *Manager judgments*: DeepSeek V4-Pro (text) or Opus labels the items openJev routed
+     to `llm` or `human` and a 10% random sample of its confident answers. Weight 0.5,
+     and every manager label carries the judge's model id.
+   On conflict the human label wins and the manager label is kept as a disagreement row.
+3. **Split.** Labels are appended to `data/mve/labels/labels.jsonl`; a sealed held-out
+   half per question (HMAC-drawn, `rhvf/heldout.py` pattern) is never trained on and is
+   the only set thresholds are fit on.
+4. **Re-fit.** Fine-tune the openJev head (GLiClass over ModernBERT) on the training half
+   for the questions whose label count clears the floor (≥ 10 yes / 10 no); re-fit τ_high /
+   τ_low on the held-out half; write `mve/calibration/lock.json` with the labelled set's
+   SHA-256, the weights' SHA-256, the wave id and the metrics.
+5. **Guard.** A re-fit is accepted only if held-out accuracy does not drop on any question
+   and the human-queue rate does not rise; otherwise the previous lock stays and the wave
+   summary says so. Weights are versioned; every record names the weights version that
+   decided it.
+6. **Audit.** Opus reviews the 10% confident sample each wave; audit outcomes are labels.
+
+What this loop must never do: learn from its own unaudited confident answers (that would
+be the circularity found in the Q4 detector on 09-26), or move a threshold by hand.
 
 ---
 
@@ -302,7 +334,7 @@ thresholds is where the robot hands the item to the human.
 | Critical strategy | **Astra + Fable** cross-review | Phase gates (§7), any change to the record schema, any change to §8 protocol | — |
 | Core vision worker | **DeepSeek V4.1 Flash** (`deepseek-flash`) | A1 perception; A4 hypothesis naming (text) | Judging its own output |
 | Text judge | DeepSeek V4-Pro / Opus / Sol | Disagreement resolution in A3's LLM tier | Looking at pixels (V4-Pro cannot) |
-| Decision layer | Jev (TypeSafe / openJev) | §5 catalogue only | Any "is this true" question |
+| Decision layer | openJev local, re-fit per wave (§5a) | §5 catalogue only | Any "is this true" question; learning from its own unaudited answers |
 | Prover | Goedel-Prover-V2 / DeepSeek-Prover-V2 / AXLE | A5 | Being cited as "proved" without kernel acceptance |
 | Local slow jobs | Qwen 3.6 / R1 (MLX) | Batch GeoIR→Lean translation drafts, overnight repair loops | Perception (text-only) |
 | Co-observers | Owner, invited humans | Confirm/reject relations in A6; name features; set the goal | — |
@@ -333,7 +365,7 @@ Weeks are calendar weeks of part-time work; every gate states its chance rate an
   stratified sample, stateless, temperature 0; record per-predicate accuracy.
 - **Gate G0:** Geoperception numbers exist for three models with the random baseline
   (16.4% average) printed beside them; the record schema validates 100 synthetic records;
-  tests ≥ 80% coverage of `mve/`. Cost ≤ USD 1.
+  tests ≥ 80% coverage of `mve/`. Cost ≤ USD 2.
 
 ### P1 — Perception and measurement (weeks 2–3)
 - Perceiver prompt v1 (JSON record, no CoT, pixel coordinates). Two-call disagreement.
@@ -345,11 +377,11 @@ Weeks are calendar weeks of part-time work; every gate states its chance rate an
   `rhvf/heldout.py` conventions, HMAC-named, sealed before the prompt is frozen):
   PointLiesOnLine precision ≥ 0.90 and recall ≥ 0.70 *after* re-measure, versus the
   perceiver-alone number and the random baseline; on real Geoperception, ≥ Euclid-L's
-  64.9 average or a written explanation of the gap. Cost ≤ USD 3.
+  64.9 average or a written explanation of the gap. Cost ≤ USD 8.
 
 ### P2 — Decision layer (weeks 3–4)
 - Question catalogue §5 implemented as data (`mve/questions/*.json`), token-measured
-  templates, both backends through `rhjev`.
+  templates, openJev through `rhjev` (D1).
 - Labelled set: ≥ 300 items across the 12 questions, at least 10 yes / 10 no per question,
   labels from synthetic ground truth where possible and from two humans (owner + one) where
   not; inter-rater agreement recorded.
@@ -357,7 +389,7 @@ Weeks are calendar weeks of part-time work; every gate states its chance rate an
   with the labelled set's SHA-256.
 - **Gate G2:** cascade accuracy on the held-out half within 3 points of Opus-as-judge on the
   same items (the 2609.26550 bar), human-queue rate ≤ 25%, cost per 1,000 decisions
-  reported; TypeSafe vs openJev comparison table. Jev spend ≤ USD 1.
+  reported; first re-fit of openJev under §5a with its lock file. Jev spend USD 0 (local).
 
 ### P3 — Formalizer (weeks 4–6)
 - Deterministic GeoIR → Lean translation for every schema predicate; LeanGeo vendored as a
@@ -373,10 +405,12 @@ Weeks are calendar weeks of part-time work; every gate states its chance rate an
   or latency is the bottleneck.
 
 ### P4 — Prover and co-observer surface (weeks 6–8)
-- A5 with D3's prover; counterexample search first; per-statement timeout 120 s.
+- A5 with DeepSeek-Prover-V2-7B as default and Goedel-Prover-V2-8B run on the same 50
+  statements with the same 120 s timeout (D3); counterexample search first.
 - A6 lab tab: four panes, verdict buttons, labelled-set append; render-back via Penrose
   (Euclidean domain) and JSXGraph; ProofWidgets4 view in the Lean project.
-- **Gate G4:** ≥ 30% of G3's equivalent statements proved (kernel-accepted) within budget;
+- **Gate G4:** ≥ 30% of G3's equivalent statements proved (kernel-accepted) within budget,
+  with a two-prover comparison table (proved / timeout / error per prover) that sets the default;
   a 30-minute co-observer session with the owner on 20 real diagrams produces
   human_confirmed/rejected statuses that re-fit at least one Jev threshold; the tab is
   built from `git archive HEAD` and passes the atlas labs check.
@@ -425,12 +459,12 @@ Weeks are calendar weeks of part-time work; every gate states its chance rate an
 |---|---|---|
 | DeepSeek V4.1 Flash, off-peak | $0.15 / $0.60 per MTok in/out | ~3,000 images × ~2k tokens ≈ USD 2–4 |
 | DeepSeek V4-Pro text judge | $1.32 / $3.96 peak | ≤ USD 1 (disagreements only) |
-| Jev hosted | $0.042 per MTok in, output free | < USD 0.20 for 10k decisions |
-| openJev local | electricity | 0 |
+| openJev local (D1) | electricity | 0 |
+| TypeSafe hosted | $0.042 per MTok in | not in plan; comparison baseline only if the owner asks |
 | Codex Sol / Astra | account quota | one packet per phase gate |
 | Prover on Mac | time | overnight batches |
 
-Owner cap D4 governs; every manifest carries `run_cap_usd`; peak-hour calls are refused by
+Owner cap D4 = USD 20 for P0–P2 governs; every manifest carries `run_cap_usd`; peak-hour calls are refused by
 the runner.
 
 ---
@@ -448,9 +482,9 @@ in-place), conventional commit messages, review by Opus before merge.
 | WP-2 | Euclid generator vendored + full-predicate ground truth | `mve/gen/euclid_engine.py`, `mve/gen/predicates.py`, `data/mve/synthetic/` | 2,000 diagrams with records; determinism by seed; licence file carried |
 | WP-3 | Perceiver wrapper | `mve/perceiver.py` (by-path import of the vision cell), `mve/prompts/perceiver_v1.md`, replay fixtures | dry-run and fake-response paths covered; prompt hash in provenance; V4-Pro refused for images |
 | WP-4 | Measurer | `mve/measure/canvas.py`, `mve/measure/tolerances.json`, `mve/measure/newclid_bridge.py` | tolerances fit script reproducible; FP ≤ 2% on random triples; Newclid derivable/drawn split on 50 fixtures |
-| WP-5 | Decision layer | `mve/decide.py`, `mve/questions/*.json`, `mve/calibration/lock.json` | both backends via `rhjev`; token length asserted ≤ 512; τ fit script; 10% audit sampler |
+| WP-5 | Decision layer + self-learning loop (§5a) | `mve/decide.py`, `mve/questions/*.json`, `mve/learn/labels.py`, `mve/learn/refit.py`, `mve/calibration/lock.json` | openJev via `rhjev`; token length asserted ≤ 512; label sources kept separate with human override; sealed held-out split; re-fit guard; lock file with SHA-256s; 10% audit sampler |
 | WP-6 | Formalizer | `mve/formalize/geoir.py`, `mve/formalize/lean_emit.py`, `mve/formalize/repair.py`, Lake dep on LeanGeo | G3 numbers reproduced from a fixture set; `lake env lean` invoked with timeout; no `sorry` accepted as success |
-| WP-7 | Prover + counterexample | `mve/prove.py` | kernel acceptance parsed from Lean output; timeouts recorded |
+| WP-7 | Prover + counterexample | `mve/prove.py`, `mve/prove_compare.py` | kernel acceptance parsed from Lean output; timeouts recorded; two-prover comparison on the same statement set (D3) |
 | WP-8 | Co-observer tab | `mve/lab/` (HTML built from `git archive HEAD`), Penrose/JSXGraph render-back, verdict endpoint writing statuses | atlas labs check passes; verdict round-trip test |
 | WP-9 | Fleet + ledger | `mve/fleet/manifest.py`, `mve/fleet/wave.py` (wraps the worker runner by path) | manifest schema; cap enforced in dry-run; SUMMARY.json produced |
 | WP-10 | Topology | `mve/topo/skeleton.py`, `mve/topo/pd.py`, `mve/topo/invariants.py` | strict PD on synthetic knots ≤ 7 crossings ≥ 30%; SnapPy verify |
@@ -479,7 +513,7 @@ Astra verdicts were applied.
 | Risk | Mitigation |
 |---|---|
 | DeepSeek V4.1 Flash image API changes or is retired (the `-vision-exp` model was already folded into it) | perceiver behind an interface; Claude/GPT fallback for perception is allowed only with a written cost note |
-| Jev endpoint/wire format assumed in `rhjev/backends.py` | WP-5 verifies against docs.typesafe.ai before any live call; openJev path is independent |
+| openJev re-fit drifts or learns its own errors | §5a guard: sealed held-out, no re-fit without a floor of human/audited labels, previous lock kept on any regression |
 | openJev 151M token cap (512) | every template token-measured at build time; ≤140 words enforced |
 | GeoGebra non-commercial licence | JSXGraph default (D2); GeoGebra only inside Newclid |
 | GeoX / MultiMath data licences unresolved | D6 default excludes them from training and evaluation; cite only |
