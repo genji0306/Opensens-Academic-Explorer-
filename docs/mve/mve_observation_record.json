@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "oae-mve-observation-v4",
-  "title": "MVE observation record (oae-mve-observation-v4)",
+  "$id": "oae-mve-observation-v5",
+  "title": "MVE observation record (oae-mve-observation-v5)",
   "description": "Authoritative schema (docs/mve/ holds a derived copy checked equal). One diagram, one record, five evidence classes. Every node of the dependency graph has an id and a `depends_on`; the graph's nodes are: sources (txt/geo), problem propositions (prm/ndg/goal), entities (ent) and their geometries (geo), obs, mea, der, asm, jud, dec, formal propositions (prop), typecheck (tc), proof (prf), equivalence (eqv), render (rnd). Invalidation is transitive over depends_on; an invalidated node gets valid=false and can no longer be cited. Structural rules live here; referential integrity, uniqueness across arrays, authorisation (MVE_PLAN §4a), stage invariants and canonical-form checks live in mve/record.py. Older schema versions are rejected, not migrated.",
   "type": "object",
   "additionalProperties": false,
@@ -81,7 +81,7 @@
     "exact": {
       "type": "string",
       "maxLength": 120,
-      "description": "exact-expression grammar (parsed by the semantic validator with sympy, rejected on parse failure): expr := term (('+'|'-') term)* ; term := factor (('*'|'/') factor)* ; factor := INT | INT '/' INT | 'sqrt(' INT ')' | 'pi' | '(' expr ')' | factor '^' INT . Domain: real algebraic numbers; canonical form = sympy nsimplify(...).srepr() string, stored in value_exact; `value` = float evaluation."
+      "description": "exact-expression grammar over the REAL ALGEBRAIC numbers (no pi, no transcendental constants): expr := term (('+'|'-') term)* ; term := factor (('*'|'/') factor)* ; factor := INT | 'sqrt(' INT ')' | '(' expr ')' | factor '^' INT | '-' factor . Canonical stored form = the same grammar re-rendered from sympy.nsimplify(parse(expr), rational=True) with sqrt/rational normal form (NOT srepr); the semantic validator requires render(parse(value_exact)) == value_exact and rejects anything else. Angles are in degrees, so 90, 45, 60 are integers; an angle that is not an algebraic number of degrees has value_exact = null and is not an exact truth value."
     },
     "proposition": {
       "type": "object",
@@ -181,7 +181,7 @@
   },
   "properties": {
     "schema": {
-      "const": "oae-mve-observation-v4"
+      "const": "oae-mve-observation-v5"
     },
     "record_id": {
       "$ref": "#/$defs/sha256",
@@ -189,7 +189,7 @@
     },
     "content_hash": {
       "$ref": "#/$defs/sha256",
-      "description": "DETERMINISTIC mathematical identity over the canonical projection (mve/record.py canonical_projection, JSON with sorted keys, no whitespace): synthetic = {generator.id, generator.version, generator.config_sha256, seed, versions.predicate_registry, problem (canonical), image.truth.candidate_universe_sha256, image.truth.math_coordinates_sha256}; ingested/user = {image.sha256, versions.predicate_registry, problem (canonical)}. Image bytes are EXCLUDED for synthetic records so equal seed ⇒ equal content_hash whether or not the renderer is pinned. Evidence edits keep content_hash and bump revision; a problem or truth edit changes content_hash and creates a new record with lineage.parent_record_id."
+      "description": "MATHEMATICAL identity over the canonical projection (mve/record.py canonical_projection, sorted-key JSON, no whitespace): synthetic = {generator.id, generator.version, generator.config_sha256, seed, versions.predicate_registry, generator.evaluator_version, canonical problem, image.truth.candidate_universe_sha256, image.truth.math_coordinates_sha256}; ingested/user = {image.sha256, versions.predicate_registry, canonical problem}. Image bytes are EXCLUDED for synthetic records. Truth EVIDENCE (candidate classes, DDAR outcomes, ddar_version, ddar_budget_s) is NOT in the projection: it lives in the truth artifact whose sha256 is sources[].sha256; changing it is an evidence revision (bump revision, new sources[].sha256), not a new identity. Equal (generator id, version, config, seed, registry, evaluator version) ⇒ equal content_hash. A problem edit, or a truth edit that changes the candidate universe, the mathematical coordinates, the generator inputs or the evaluator version, changes content_hash and creates a new record with lineage.parent_record_id."
     },
     "revision": {
       "type": "integer",
@@ -650,6 +650,10 @@
                 "depends_on": {
                   "$ref": "#/$defs/deps",
                   "description": "perceiver_call_k → the obs ids of that call are downstream (empty here); image_measurement → the mea ids that produced it are downstream; ground_truth → [geo_N]"
+                },
+                "valid": {
+                  "type": "boolean",
+                  "description": "false once invalidated transitively (e.g. its truth source was invalidated)"
                 }
               }
             }
@@ -1868,6 +1872,13 @@
               },
               "ddar_budget_s": {
                 "type": "number"
+              },
+              "coordinates_exact": {
+                "type": "boolean",
+                "description": "true only when every point has algebraic coordinates in the exact grammar; a diagram with non-algebraic or unsupported coordinates is NOT a truth source (it may be an unlabelled perception input only)"
+              },
+              "ddar_version": {
+                "type": "string"
               }
             }
           },
@@ -1907,7 +1918,7 @@
           "enum": [
             "rerun",
             "problem_edit",
-            "truth_edit",
+            "truth_identity_edit",
             null
           ]
         }
