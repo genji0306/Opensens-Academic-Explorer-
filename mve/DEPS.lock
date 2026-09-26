@@ -1,0 +1,46 @@
+{
+  "schema": "mve-deps-v1",
+  "packet": "WP-9a offline accounting",
+  "base_git_sha": "5645250003f129473919f4f32984c68a86e1c477",
+  "python": "3.13.2",
+  "sqlite": "3.45.3",
+  "packages": {
+    "pytest": "8.4.2",
+    "pytest-cov": "6.3.0",
+    "ruff": "0.8.6"
+  },
+  "files": [
+    {
+      "path": "mve/__init__.py",
+      "sha256": "1660edf3de4ade8f040b5b6ce0248e7cbb029cb85490702a5f523807658c37f0"
+    },
+    {
+      "path": "mve/budget.py",
+      "sha256": "9c14b576d071529d12cff6e6a2c5ee6a27b0636574d1becaa9891a8b57f357c6"
+    },
+    {
+      "path": "mve/money.py",
+      "sha256": "0503706ad4f3f1f6308e3f9a6b58f68b303b0fc9ded526f818d2aa2390ea3b50"
+    },
+    {
+      "path": "mve/pricing.py",
+      "sha256": "de913a7451410bd52c10945b679d6876b8589e61b4669352cb08e4d2570107e3"
+    },
+    {
+      "path": "tests/mve/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/mve/conftest.py",
+      "sha256": "cb2572188b58ff4ed54ebee6286a63a1c8305f7131dc35731100bbadc619ae66"
+    },
+    {
+      "path": "tests/mve/test_budget.py",
+      "sha256": "6ac9994e3c3bda9113fd976e108647ca9f5d4d11406e8c30bd306697d0c34538"
+    },
+    {
+      "path": "tests/mve/test_pricing.py",
+      "sha256": "0a3fd1f12f7a442e13cbfed50f48a10ad4a9f3592be9ed4d52882809b0f30edb"
+    }
+  ]
+}
