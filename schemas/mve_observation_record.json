@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "oae-mve-observation-v1",
+  "title": "MVE observation record (oae-mve-observation-v1)",
+  "description": "One diagram, one typed record. Extends oae-rh-vision-cell-v1 (rh_deepseek_vision_cell.py): every claim carries its source stage, confidence and, where measurable, a re-measured value. Nothing enters `formal` unless `measured` or `derived` supports it.",
+  "type": "object",
+  "required": ["schema", "record_id", "image", "domain", "entities", "relations", "claims", "provenance"],
+  "properties": {
+    "schema": {"const": "oae-mve-observation-v1"},
+    "record_id": {"type": "string", "description": "sha256 of image bytes + prompt hash + perceiver model id"},
+    "image": {
+      "type": "object",
+      "required": ["sha256", "width", "height", "source"],
+      "properties": {
+        "sha256": {"type": "string"},
+        "width": {"type": "integer"},
+        "height": {"type": "integer"},
+        "source": {"type": "string", "description": "synthetic:euclid | benchmark:<name> | atlas:<scene> | user"},
+        "ground_truth_ref": {"type": ["string", "null"], "description": "path or id of the generator premise / predicate set when synthetic"}
+      }
+    },
+    "domain": {
+      "type": "string",
+      "enum": ["euclidean_plane", "solid", "function_plot", "chart", "graph", "knot", "surface", "braid", "other"]
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind"],
+        "properties": {
+          "id": {"type": "string", "description": "label as printed (A, O, l1) or generated (p7)"},
+          "kind": {"type": "string", "enum": ["point", "segment", "line", "ray", "circle", "arc", "polygon", "curve", "crossing", "strand", "region", "label", "tick", "arrow", "angle_mark", "right_angle_mark"]},
+          "px": {"type": "array", "items": {"type": "number"}, "description": "pixel coordinates (x,y[,x2,y2,...]) as read by the perceiver"},
+          "measured_px": {"type": "array", "items": {"type": "number"}, "description": "coordinates after canvas re-measurement (A2)"},
+          "on": {"type": "array", "items": {"type": "string"}, "description": "entity ids this entity lies on (incidence)"},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "description": "Typed predicates in Inter-GPS / LeanGeo vocabulary. `status` records how far the relation has been checked.",
+      "items": {
+        "type": "object",
+        "required": ["pred", "args", "status", "source"],
+        "properties": {
+          "pred": {"type": "string", "enum": ["Collinear", "Concyclic", "Parallel", "Perpendicular", "EqualLength", "EqualAngle", "Midpoint", "Tangent", "Between", "AngleValue", "LengthValue", "RightAngle", "Bisects", "Intersect", "InsideCircle", "Crossing", "OverStrand", "UnderStrand", "Genus", "Components", "Connected", "Other"]},
+          "args": {"type": "array", "items": {"type": ["string", "number"]}},
+          "value": {"type": ["number", "null"], "description": "numeric value for AngleValue / LengthValue / Genus / Components"},
+          "unit": {"type": ["string", "null"]},
+          "status": {"type": "string", "enum": ["perceived", "measured", "derived", "asserted_by_text", "contradicted", "human_confirmed", "human_rejected"]},
+          "source": {"type": "string", "description": "A1:perceiver | A2:measure | A2:newclid | A3:jev | A3:llm | human:<id> | text"},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "measure_residual": {"type": ["number", "null"], "description": "distance from the exact relation after re-measurement (e.g. |angle-90| in degrees, point-line distance in px)"}
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "description": "Free-text observations the perceiver made that did not fit a predicate. These are inputs to the Jev question catalogue, never to the formalizer directly.",
+      "items": {
+        "type": "object",
+        "required": ["what", "confidence"],
+        "properties": {
+          "what": {"type": "string", "maxLength": 600},
+          "confidence": {"type": "number"},
+          "jev_questions": {"type": "array", "items": {"type": "string"}, "description": "ids from docs/mve/MVE_PLAN.md §5 catalogue that were asked on this claim"}
+        }
+      }
+    },
+    "not_determinable_from_image": {"type": "array", "items": {"type": "string"}},
+    "decisions": {
+      "type": "array",
+      "description": "Jev cascade outcomes, one per question asked.",
+      "items": {
+        "type": "object",
+        "required": ["question_id", "answer", "confidence", "route"],
+        "properties": {
+          "question_id": {"type": "string"},
+          "primitive": {"type": "string", "enum": ["choice", "score", "noul"]},
+          "answer": {"type": ["string", "number", "boolean"]},
+          "probabilities": {"type": "object"},
+          "confidence": {"type": "number"},
+          "threshold_high": {"type": "number"},
+          "threshold_low": {"type": "number"},
+          "route": {"type": "string", "enum": ["act", "llm", "human", "other"]},
+          "backend": {"type": "string", "description": "typesafe:jev-1.13.0 | openjev:151m | rule | replay"},
+          "audited": {"type": "boolean"}
+        }
+      }
+    },
+    "formal": {
+      "type": "object",
+      "description": "Filled by A4. Absent until at least one relation has status measured|derived|human_confirmed.",
+      "properties": {
+        "geoir": {"type": "string", "description": "MechGeo-style intermediate representation text"},
+        "lean_statement": {"type": "string"},
+        "lean_imports": {"type": "array", "items": {"type": "string"}},
+        "elaborates": {"type": ["boolean", "null"]},
+        "lean_version": {"type": "string"},
+        "equivalence_ref": {"type": ["string", "null"], "description": "reference statement id (LeanGeo-Bench / LeanEuclid) when one exists"},
+        "equivalence_verdict": {"type": ["string", "null"], "enum": ["equivalent", "weaker", "stronger", "different", null]},
+        "proof_status": {"type": "string", "enum": ["none", "attempted", "proved", "counterexample", "timeout"]},
+        "prover": {"type": ["string", "null"]},
+        "render_back_sha256": {"type": ["string", "null"], "description": "Penrose / JSXGraph rendering of the formal statement, for the co-observer view"}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["perceiver_model", "prompt_sha256", "created_at", "cost_usd"],
+      "properties": {
+        "perceiver_model": {"type": "string", "description": "e.g. deepseek-flash (V4.1) ; never deepseek-v4-pro (no image input)"},
+        "prompt_sha256": {"type": "string"},
+        "created_at": {"type": "string", "format": "date-time"},
+        "wave_id": {"type": ["string", "null"]},
+        "cell_id": {"type": ["string", "null"]},
+        "cost_usd": {"type": "number"},
+        "ledger_path": {"type": ["string", "null"]},
+        "code_version": {"type": "string", "description": "git sha of mve/ that produced the record"}
+      }
+    }
+  }
+}
