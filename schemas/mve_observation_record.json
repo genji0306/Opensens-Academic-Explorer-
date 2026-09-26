@@ -1,19 +1,21 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "oae-mve-observation-v3",
-  "title": "MVE observation record (oae-mve-observation-v3)",
-  "description": "Authoritative schema (docs/mve/ holds a derived copy). One diagram, one record, five evidence classes. Structural rules live here; referential integrity, uniqueness across arrays, evidence authorisation (docs/mve/MVE_PLAN.md §4a table) and stage invariants live in mve/record.py's semantic validator. Older schema versions are rejected, not migrated (nothing was produced under them). Every evidence item carries `depends_on`; invalidation is transitive over that graph.",
+  "$id": "oae-mve-observation-v4",
+  "title": "MVE observation record (oae-mve-observation-v4)",
+  "description": "Authoritative schema (docs/mve/ holds a derived copy checked equal). One diagram, one record, five evidence classes. Every node of the dependency graph has an id and a `depends_on`; the graph's nodes are: sources (txt/geo), problem propositions (prm/ndg/goal), entities (ent) and their geometries (geo), obs, mea, der, asm, jud, dec, formal propositions (prop), typecheck (tc), proof (prf), equivalence (eqv), render (rnd). Invalidation is transitive over depends_on; an invalidated node gets valid=false and can no longer be cited. Structural rules live here; referential integrity, uniqueness across arrays, authorisation (MVE_PLAN §4a), stage invariants and canonical-form checks live in mve/record.py. Older schema versions are rejected, not migrated.",
   "type": "object",
   "additionalProperties": false,
   "required": [
     "schema",
     "record_id",
     "content_hash",
+    "lineage",
     "revision",
     "stage",
     "versions",
     "image",
     "domain",
+    "sources",
     "problem",
     "entities",
     "observations",
@@ -33,7 +35,7 @@
     },
     "id": {
       "type": "string",
-      "pattern": "^(ent|obs|mea|der|asm|jud|dec|prop|evt|prm|ndg|goal|txt|geo)_[0-9]{1,6}$"
+      "pattern": "^(ent|obs|mea|der|asm|jud|dec|prop|evt|prm|ndg|goal|txt|geo|src|tc|prf|eqv|rnd)_[0-9]{1,6}$"
     },
     "unit01": {
       "type": "number",
@@ -78,8 +80,8 @@
     },
     "exact": {
       "type": "string",
-      "pattern": "^[0-9A-Za-z_+\\-*/^() .√π]{1,80}$",
-      "description": "exact-expression convention: integers, rationals a/b, sqrt(n) or √n, π, and + - * / ^ over them; numeric `value` is its float evaluation"
+      "maxLength": 120,
+      "description": "exact-expression grammar (parsed by the semantic validator with sympy, rejected on parse failure): expr := term (('+'|'-') term)* ; term := factor (('*'|'/') factor)* ; factor := INT | INT '/' INT | 'sqrt(' INT ')' | 'pi' | '(' expr ')' | factor '^' INT . Domain: real algebraic numbers; canonical form = sympy nsimplify(...).srepr() string, stored in value_exact; `value` = float evaluation."
     },
     "proposition": {
       "type": "object",
@@ -157,7 +159,7 @@
       "required": [
         "id",
         "proposition",
-        "source"
+        "depends_on"
       ],
       "properties": {
         "id": {
@@ -166,24 +168,28 @@
         "proposition": {
           "$ref": "#/$defs/proposition"
         },
-        "source": {
-          "$ref": "#/$defs/id",
-          "description": "a txt_N id (problem text span) or geo_N (ground-truth artifact)"
+        "depends_on": {
+          "$ref": "#/$defs/deps",
+          "minItems": 1,
+          "description": "exactly one src id (txt_N or geo_N)"
+        },
+        "valid": {
+          "type": "boolean"
         }
       }
     }
   },
   "properties": {
     "schema": {
-      "const": "oae-mve-observation-v3"
+      "const": "oae-mve-observation-v4"
     },
     "record_id": {
       "$ref": "#/$defs/sha256",
-      "description": "EXECUTION identity: sha256(content_hash + perceiver model + prompt sha + provenance.request_nonce). Distinct runs on identical content get distinct record_ids."
+      "description": "EXECUTION identity: sha256(content_hash + perceiver model + prompt sha + provenance.request_nonce). Same content re-run ⇒ new record_id; lineage kept in `lineage`."
     },
     "content_hash": {
       "$ref": "#/$defs/sha256",
-      "description": "DETERMINISTIC mathematical identity: sha256 of the canonical JSON of {image.sha256, problem, entities with source=ground_truth, versions.predicate_registry}. Synthetic identity = generator id + seed + registry version, and two generations with equal seed must yield equal content_hash."
+      "description": "DETERMINISTIC mathematical identity over the canonical projection (mve/record.py canonical_projection, JSON with sorted keys, no whitespace): synthetic = {generator.id, generator.version, generator.config_sha256, seed, versions.predicate_registry, problem (canonical), image.truth.candidate_universe_sha256, image.truth.math_coordinates_sha256}; ingested/user = {image.sha256, versions.predicate_registry, problem (canonical)}. Image bytes are EXCLUDED for synthetic records so equal seed ⇒ equal content_hash whether or not the renderer is pinned. Evidence edits keep content_hash and bump revision; a problem or truth edit changes content_hash and creates a new record with lineage.parent_record_id."
     },
     "revision": {
       "type": "integer",
@@ -199,9 +205,10 @@
         "derived",
         "formalized",
         "proved",
-        "reviewed"
+        "reviewed",
+        "ingested_atlas"
       ],
-      "description": "stage invariants (semantic validator): ground_truth/ingested need no perceiver provenance and no measurement contract; perceived requires observations and perceiver provenance; measured requires versions.measurement_contract; formalized requires formal.ir_sha256 and lean_lock_sha; proved requires formal.proof.ok"
+      "description": "see MVE_PLAN §4a operations table; measure is permitted from ground_truth (synthetic fixtures, coordinate_consistency on ground_truth geometries) as well as from perceived"
     },
     "versions": {
       "type": "object",
@@ -350,7 +357,7 @@
               "type": "null"
             }
           ],
-          "description": "geo_N id of the truth artifact (stored out of band, referenced by sha in `truth`)"
+          "description": "geo_N id in `sources` (kind truth_artifact)"
         },
         "truth": {
           "type": [
@@ -358,12 +365,16 @@
             "null"
           ],
           "additionalProperties": false,
+          "required": [
+            "source",
+            "split",
+            "family",
+            "candidate_universe_sha256",
+            "math_coordinates_sha256"
+          ],
           "properties": {
-            "artifact_sha256": {
-              "$ref": "#/$defs/sha256"
-            },
-            "candidate_universe_sha256": {
-              "$ref": "#/$defs/sha256"
+            "source": {
+              "$ref": "#/$defs/id"
             },
             "split": {
               "type": "string",
@@ -377,6 +388,17 @@
             },
             "family": {
               "type": "string"
+            },
+            "candidate_universe_sha256": {
+              "$ref": "#/$defs/sha256"
+            },
+            "math_coordinates_sha256": {
+              "$ref": "#/$defs/sha256",
+              "description": "hash of the exact mathematical coordinates (distinct from rendered pixel coordinates; not-to-scale controls differ here)"
+            },
+            "render_pinned": {
+              "type": "boolean",
+              "description": "true when the renderer + config are pinned so PNG bytes are deterministic"
             }
           }
         },
@@ -427,43 +449,12 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "texts",
         "binders",
         "premises",
         "nondegeneracy",
         "goal"
       ],
       "properties": {
-        "texts": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-              "id",
-              "sha256",
-              "span"
-            ],
-            "properties": {
-              "id": {
-                "$ref": "#/$defs/id"
-              },
-              "sha256": {
-                "$ref": "#/$defs/sha256"
-              },
-              "span": {
-                "type": "array",
-                "items": {
-                  "type": "integer",
-                  "minimum": 0
-                },
-                "minItems": 2,
-                "maxItems": 2
-              }
-            }
-          },
-          "description": "addressable text sources txt_N (sha of the full text + char span)"
-        },
         "binders": {
           "type": "array",
           "items": {
@@ -506,14 +497,14 @@
           "items": {
             "$ref": "#/$defs/sourced_proposition"
           },
-          "description": "stated givens, ids prm_N, each with a txt_N or geo_N source"
+          "description": "stated givens prm_N; each depends_on one src id"
         },
         "nondegeneracy": {
           "type": "array",
           "items": {
             "$ref": "#/$defs/sourced_proposition"
           },
-          "description": "ids ndg_N; predicates Distinct / NotCollinear only (semantic validator)"
+          "description": "ndg_N; predicates Distinct / NotCollinear only (semantic validator)"
         },
         "goal": {
           "type": [
@@ -525,7 +516,7 @@
             "id",
             "kind",
             "proposition",
-            "source"
+            "depends_on"
           ],
           "properties": {
             "id": {
@@ -542,11 +533,15 @@
             "proposition": {
               "$ref": "#/$defs/proposition"
             },
-            "source": {
-              "$ref": "#/$defs/id"
+            "depends_on": {
+              "$ref": "#/$defs/deps",
+              "minItems": 1
+            },
+            "valid": {
+              "type": "boolean"
             }
           },
-          "description": "null means no goal: the formalizer emits an assumption record, never a theorem. The goal is a SOURCE for formal.propositions[role=goal]; it is never an established hypothesis."
+          "description": "null = no goal → assumption record only. The formal goal proposition must equal this one under the binder→entity mapping (semantic validator)."
         }
       }
     },
@@ -558,7 +553,8 @@
         "required": [
           "id",
           "kind",
-          "geometries"
+          "geometries",
+          "depends_on"
         ],
         "properties": {
           "id": {
@@ -601,7 +597,8 @@
                 "id",
                 "source",
                 "frame",
-                "params"
+                "params",
+                "depends_on"
               ],
               "properties": {
                 "id": {
@@ -649,6 +646,10 @@
                 },
                 "occluded": {
                   "type": "boolean"
+                },
+                "depends_on": {
+                  "$ref": "#/$defs/deps",
+                  "description": "perceiver_call_k → the obs ids of that call are downstream (empty here); image_measurement → the mea ids that produced it are downstream; ground_truth → [geo_N]"
                 }
               }
             }
@@ -659,6 +660,14 @@
               "$ref": "#/$defs/id"
             },
             "uniqueItems": true
+          },
+          "valid": {
+            "type": "boolean",
+            "description": "false once invalidated transitively; invalid nodes cannot be cited"
+          },
+          "depends_on": {
+            "$ref": "#/$defs/deps",
+            "description": "binder link: the prm/ndg/goal ids whose args name this entity's label (may be empty for unnamed entities)"
           }
         }
       }
@@ -707,6 +716,10 @@
           "depends_on": {
             "$ref": "#/$defs/deps",
             "description": "the geo_N ids of the call's own geometries"
+          },
+          "valid": {
+            "type": "boolean",
+            "description": "false once invalidated transitively; invalid nodes cannot be cited"
           }
         },
         "allOf": [
@@ -824,6 +837,10 @@
           "depends_on": {
             "$ref": "#/$defs/deps",
             "description": "geo_N ids of the coordinates used (so call-1 vs call-2 vs image measurement is explicit) plus obs_N that motivated it"
+          },
+          "valid": {
+            "type": "boolean",
+            "description": "false once invalidated transitively; invalid nodes cannot be cited"
           }
         },
         "allOf": [
@@ -851,6 +868,9 @@
                 },
                 "tolerance": {
                   "type": "number"
+                },
+                "residual_unit": {
+                  "type": "string"
                 }
               }
             }
@@ -928,7 +948,8 @@
             "additionalProperties": false,
             "properties": {
               "coordinates": {
-                "type": "object"
+                "type": "object",
+                "minProperties": 1
               },
               "exact": {
                 "type": "boolean",
@@ -949,6 +970,10 @@
           "depends_on": {
             "$ref": "#/$defs/deps",
             "description": "premises used: prm_N, ndg_N, asm_N only (never mea_N)"
+          },
+          "valid": {
+            "type": "boolean",
+            "description": "false once invalidated transitively; invalid nodes cannot be cited"
           }
         },
         "allOf": [
@@ -985,7 +1010,11 @@
               ],
               "properties": {
                 "witness": {
-                  "type": "object"
+                  "type": "object",
+                  "required": [
+                    "coordinates",
+                    "exact"
+                  ]
                 }
               }
             }
@@ -1018,6 +1047,10 @@
           "depends_on": {
             "$ref": "#/$defs/deps",
             "minItems": 1
+          },
+          "valid": {
+            "type": "boolean",
+            "description": "false once invalidated transitively; invalid nodes cannot be cited"
           }
         }
       }
@@ -1061,7 +1094,8 @@
               "adopt",
               "decline",
               "label"
-            ]
+            ],
+            "description": "confirm/reject/not_visible/unsure are evidence only; `adopt` is the sole verdict that leads to an assumption (semantic validator creates asm_N citing the jud); `decline` refuses; `label` answers a catalogue question"
           },
           "label": {
             "type": [
@@ -1085,7 +1119,12 @@
             "format": "date-time"
           },
           "depends_on": {
-            "$ref": "#/$defs/deps"
+            "$ref": "#/$defs/deps",
+            "description": "must include `target`"
+          },
+          "valid": {
+            "type": "boolean",
+            "description": "false once invalidated transitively; invalid nodes cannot be cited"
           }
         }
       }
@@ -1180,6 +1219,10 @@
           },
           "depends_on": {
             "$ref": "#/$defs/deps"
+          },
+          "valid": {
+            "type": "boolean",
+            "description": "false once invalidated transitively; invalid nodes cannot be cited"
           }
         }
       }
@@ -1259,14 +1302,16 @@
                   "problem_text",
                   "assumption",
                   "derived",
-                  "human_confirmed",
                   "goal_source"
                 ],
-                "description": "authorisation (semantic validator): problem_text → depends_on ⊆ prm/ndg ids; assumption → an asm_N; derived → a der_N with outcome=proved whose target equals this proposition; human_confirmed → a jud_N with judge human:* and verdict confirm on a mea_N/obs_N carrying this proposition (model judges never authorise); goal_source → role must be goal, depends_on = [goal_1]; a goal is never an established hypothesis"
+                "description": "authorisation (semantic validator): problem_text → depends_on = one prm/ndg id whose proposition EQUALS this one under the binder→entity mapping; assumption → one asm_N with equal proposition; derived → one der_N, outcome proved, target equal; goal_source → role goal, depends_on = [goal_1], proposition equal to problem.goal.proposition. There is no human_confirmed support: a human `confirm` judgment is evidence for an `adopt` judgment, which creates the assumption that authorises."
               },
               "depends_on": {
                 "$ref": "#/$defs/deps",
                 "minItems": 1
+              },
+              "valid": {
+                "type": "boolean"
               }
             }
           }
@@ -1288,11 +1333,16 @@
           ],
           "additionalProperties": false,
           "required": [
+            "id",
             "ok",
             "toolchain",
-            "log_sha256"
+            "log_sha256",
+            "depends_on"
           ],
           "properties": {
+            "id": {
+              "const": "tc_1"
+            },
             "ok": {
               "type": "boolean"
             },
@@ -1301,6 +1351,13 @@
             },
             "log_sha256": {
               "$ref": "#/$defs/sha256"
+            },
+            "depends_on": {
+              "$ref": "#/$defs/deps",
+              "minItems": 1
+            },
+            "valid": {
+              "type": "boolean"
             }
           }
         },
@@ -1311,6 +1368,7 @@
           ],
           "additionalProperties": false,
           "required": [
+            "id",
             "prover",
             "ok",
             "axioms",
@@ -1360,6 +1418,12 @@
             },
             "depends_on": {
               "$ref": "#/$defs/deps"
+            },
+            "id": {
+              "const": "prf_1"
+            },
+            "valid": {
+              "type": "boolean"
             }
           }
         },
@@ -1370,11 +1434,13 @@
           ],
           "additionalProperties": false,
           "required": [
+            "id",
             "reference",
             "level",
             "evaluator",
             "artifact_sha256",
-            "variable_mapping"
+            "variable_mapping",
+            "depends_on"
           ],
           "properties": {
             "reference": {
@@ -1408,6 +1474,16 @@
                 "null"
               ],
               "maxLength": 1000
+            },
+            "id": {
+              "const": "eqv_1"
+            },
+            "depends_on": {
+              "$ref": "#/$defs/deps",
+              "minItems": 1
+            },
+            "valid": {
+              "type": "boolean"
             }
           }
         },
@@ -1418,6 +1494,7 @@
           ],
           "additionalProperties": false,
           "required": [
+            "id",
             "renderer",
             "realizations",
             "depends_on"
@@ -1453,6 +1530,12 @@
             },
             "depends_on": {
               "$ref": "#/$defs/deps"
+            },
+            "id": {
+              "const": "rnd_1"
+            },
+            "valid": {
+              "type": "boolean"
             }
           }
         },
@@ -1472,9 +1555,25 @@
           "then": {
             "required": [
               "proof",
-              "statement_sha256"
+              "typecheck",
+              "statement_sha256",
+              "ir_sha256"
             ],
             "properties": {
+              "statement_sha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "ir_sha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "typecheck": {
+                "type": "object",
+                "properties": {
+                  "ok": {
+                    "const": true
+                  }
+                }
+              },
               "proof": {
                 "type": "object",
                 "properties": {
@@ -1485,6 +1584,9 @@
                     "const": true
                   },
                   "statement_matches_accepted": {
+                    "const": true
+                  },
+                  "dependency_closure_checked": {
                     "const": true
                   }
                 }
@@ -1508,11 +1610,18 @@
           "then": {
             "required": [
               "typecheck",
-              "ir_sha256"
+              "ir_sha256",
+              "statement_sha256"
             ],
             "properties": {
               "typecheck": {
                 "type": "object"
+              },
+              "ir_sha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "statement_sha256": {
+                "$ref": "#/$defs/sha256"
               }
             }
           }
@@ -1559,12 +1668,14 @@
               "rendered",
               "edited",
               "invalidated",
-              "ingested"
+              "ingested",
+              "reviewed"
             ]
           },
           "from_revision": {
             "type": "integer",
-            "minimum": 0
+            "minimum": 0,
+            "description": "optimistic concurrency: an edit whose from_revision is not the current revision is REJECTED (no merge); the editor rebases and resubmits"
           },
           "to_revision": {
             "type": "integer",
@@ -1585,7 +1696,7 @@
           },
           "invalidates": {
             "$ref": "#/$defs/deps",
-            "description": "ids invalidated transitively via depends_on (semantic validator computes and checks)"
+            "description": "ids invalidated transitively via depends_on (computed by the semantic validator, including tc/prf/eqv/rnd/prop nodes); each gets valid=false"
           },
           "note": {
             "type": [
@@ -1684,6 +1795,120 @@
           "type": [
             "string",
             "null"
+          ]
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "sha256",
+          "depends_on"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "text",
+              "truth_artifact"
+            ]
+          },
+          "sha256": {
+            "$ref": "#/$defs/sha256"
+          },
+          "span": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "minItems": 2,
+            "maxItems": 2,
+            "description": "text only: char span in the full text"
+          },
+          "path_hint": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "truth_artifact only: out-of-band location; never mounted for A1–A3"
+          },
+          "generator": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "config_sha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "seed": {
+                "type": "integer"
+              },
+              "evaluator_version": {
+                "type": "string"
+              },
+              "ddar_budget_s": {
+                "type": "number"
+              }
+            }
+          },
+          "depends_on": {
+            "$ref": "#/$defs/deps"
+          },
+          "valid": {
+            "type": "boolean"
+          }
+        }
+      },
+      "description": "txt_N (problem text spans) and geo_N (truth artifacts). Premises, nondegeneracy and the goal cite one of these via depends_on."
+    },
+    "lineage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "parent_record_id",
+        "reason"
+      ],
+      "properties": {
+        "parent_record_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "rerun",
+            "problem_edit",
+            "truth_edit",
+            null
           ]
         }
       }
