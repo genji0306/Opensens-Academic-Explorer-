@@ -1,1 +1,1129 @@
-{"note":"Per-packet dependency locks preserved verbatim at merge into mve/integration; each packet pins the files it was built and reviewed against.","packets":{"WP-1":{"base_git_sha":"5645250003f129473919f4f32984c68a86e1c477","files":[{"path":"/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/__init__.py","sha256":"1660edf3de4ade8f040b5b6ce0248e7cbb029cb85490702a5f523807658c37f0"},{"path":"/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/errors.py","sha256":"326a016d2b764ec6ce470823bc6b59c007714875001b8a637e9e600e4985a7ef"},{"path":"/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/exact.py","sha256":"a95bd48b146d91c639ef65f7bc369a307f9a160ea2e7321ca76a5f133374b592"},{"path":"/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/formal.py","sha256":"e6d162ee2d0e8ef21701f32c25286ffc3e3d53a9b36c63d28b4eba14f2b6dd38"},{"path":"/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/graph.py","sha256":"e8f772def06c1fe922efd32c7471e14fb02b45f2588cae042d7a152e5399b2a5"},{"path":"/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/identity.py","sha256":"9980da4703486d43348df7e6e5a3bf24313eb7db47d30fd47482e5694e390f64"},{"path":"/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/operations.py","sha256":"368b5194d379c0cca622eb5a86724b21206b2e83750c199fa136a6a2ed02aa21"},{"path":"/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/patch.py","sha256":"cce0d2998ad5efd3662e0ca1ce588d564396b7886425186b03d611817f529b6f"},{"path":"/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/predicates.py","sha256":"18e0d8c2f4525078bbc62c67e9a6643e09f511ebfc4f969dc58f29ca8e349fd4"},{"path":"/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/record.py","sha256":"f64d52453c4dcfca0b5f8d140306505fffdc9aa03a2896a1acfa9a6dd1c663d8"},{"path":"/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/registry/predicates_v1.json","sha256":"119440136269d3875c1c130cf4988a1b923d49f0acd09f94133d9882b76756a4"},{"path":"/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/semantics.py","sha256":"8c89b57f235e766d8421e6dfe609f36ccc7b46c15e3a4892d7e3bc5fb56291bb"},{"path":"/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/validation.py","sha256":"c189940d38c61dc327cf168cfa8b0ba570483a9fac63bdd203e74894d0f2ab5a"},{"path":"/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/schemas/mve_observation_record.json","sha256":"13ebcbe03ab718dd39844a65db7519cec370acdc7924555dece6d970414e46fc"}],"note":"WP-1 uses no by-path RH imports. Merge this package/source lock with WP-0a external pins after Opus review.","packages":{"jsonschema":"4.26.0","pytest":"8.4.2","sympy":"1.14.0"},"schema":"mve-deps-v1"},"WP-11a":{"base_git_sha":"5645250003f129473919f4f32984c68a86e1c477","files":[{"path":"mve/__init__.py","sha256":"1660edf3de4ade8f040b5b6ce0248e7cbb029cb85490702a5f523807658c37f0"},{"path":"mve/evaluation/__init__.py","sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},{"path":"mve/evaluation/confidence.py","sha256":"3ef520444744f51360a32caf74ce09abb851cca5f4b30251359e066cb97077f1"},{"path":"mve/evaluation/isolation.py","sha256":"e97ae96d19465321444a0a5935df84c78e5d62ed5438a962127ffef8e405fa11"},{"path":"mve/evaluation/manifest.py","sha256":"3534ee1df3ec2678f225b1bd3a409587451ca411dcabf287b60816ed830df34c"},{"path":"mve/evaluation/scoring.py","sha256":"ecea445caf42bfff81d5784d8100a9d794b4da6b644c486dc5d79f20d6151e60"},{"path":"mve/evaluation/splits.py","sha256":"93fd2fb470a816adbe28cd5dced0e613b2601046f8644ad50516a8417c736eab"},{"path":"tests/mve/__init__.py","sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},{"path":"tests/mve/conftest.py","sha256":"cb2572188b58ff4ed54ebee6286a63a1c8305f7131dc35731100bbadc619ae66"},{"path":"tests/mve/test_confidence.py","sha256":"f3db9bbb38f5df3ed03e506d42d183a59172331a0208e695891086077596230e"},{"path":"tests/mve/test_evaluation_manifest.py","sha256":"bcad01aa1f8176b8cd535e6b6ab064b8fd015501ea4b59f33ed34c7cb72d03af"},{"path":"tests/mve/test_isolation.py","sha256":"bf54700dbcf33215ed04df2d3479b9305ed47d1ee1aa5117f8cf92edf3e2bcee"},{"path":"tests/mve/test_scoring.py","sha256":"5e352fbac474129634a5a09625676f877d9e234bc6855e349997f9a6ee21b90a"},{"path":"tests/mve/test_splits.py","sha256":"d9260d24837c028a0c6359dba0dcd238f11c25a6fc8b003b38917a1e9b307bd6"}],"packages":{"numpy":"2.4.6","pytest":"8.4.2","pytest-cov":"6.3.0","ruff":"0.8.6","scipy":"1.17.1"},"packet":"WP-11a offline evaluation infrastructure","platform":"macOS-27.0-arm64-arm-64bit-Mach-O","python":"3.13.2","schema":"mve-deps-v1"},"WP-9a":{"base_git_sha":"5645250003f129473919f4f32984c68a86e1c477","files":[{"path":"mve/__init__.py","sha256":"1660edf3de4ade8f040b5b6ce0248e7cbb029cb85490702a5f523807658c37f0"},{"path":"mve/budget.py","sha256":"9c14b576d071529d12cff6e6a2c5ee6a27b0636574d1becaa9891a8b57f357c6"},{"path":"mve/money.py","sha256":"0503706ad4f3f1f6308e3f9a6b58f68b303b0fc9ded526f818d2aa2390ea3b50"},{"path":"mve/pricing.py","sha256":"de913a7451410bd52c10945b679d6876b8589e61b4669352cb08e4d2570107e3"},{"path":"tests/mve/__init__.py","sha256":"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},{"path":"tests/mve/conftest.py","sha256":"cb2572188b58ff4ed54ebee6286a63a1c8305f7131dc35731100bbadc619ae66"},{"path":"tests/mve/test_budget.py","sha256":"6ac9994e3c3bda9113fd976e108647ca9f5d4d11406e8c30bd306697d0c34538"},{"path":"tests/mve/test_pricing.py","sha256":"0a3fd1f12f7a442e13cbfed50f48a10ad4a9f3592be9ed4d52882809b0f30edb"}],"packages":{"pytest":"8.4.2","pytest-cov":"6.3.0","ruff":"0.8.6"},"packet":"WP-9a offline accounting","python":"3.13.2","schema":"mve-deps-v1","sqlite":"3.45.3"}},"schema":"mve-deps-v1"}
+{
+  "note": "Per-packet dependency locks preserved verbatim at merge into mve/integration; each packet pins the files it was built and reviewed against.",
+  "packets": {
+    "WP-0a": {
+      "files": [
+        {
+          "bytes": 222655232,
+          "git_sha": null,
+          "path": "/Users/applefamily/.codex/packages/standalone/releases/0.154.0-aarch64-apple-darwin/bin/codex",
+          "sha256": "4f85982624b3898c8991cb80c0981b2aa71070e3537046c9a95950318a95afcc",
+          "status": "pinned"
+        },
+        {
+          "bytes": 838,
+          "git_sha": "e1e32dc35c484ddd21db131f6c81a3b34fba9fbe",
+          "path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/.claude/worktrees/rh-handover-opus-deepseek-dc7dc2/riemann/research/deepseek/__init__.py",
+          "sha256": "4ed8169e044f131dd88234ed384feac7762abaa435d5e6f91e095b5a6617108b",
+          "status": "pinned"
+        },
+        {
+          "bytes": 4710,
+          "git_sha": "e1e32dc35c484ddd21db131f6c81a3b34fba9fbe",
+          "path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/.claude/worktrees/rh-handover-opus-deepseek-dc7dc2/riemann/research/deepseek/client.py",
+          "sha256": "0feedbc26ebe3d8f1516dafd58eeaeb20785bec443fdfbd45618dbbaedbbe874",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6565,
+          "git_sha": "e1e32dc35c484ddd21db131f6c81a3b34fba9fbe",
+          "path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/.claude/worktrees/rh-handover-opus-deepseek-dc7dc2/riemann/research/deepseek/repair.py",
+          "sha256": "bd4a2ceeeb4ed62b68e7d7efbec3eec43c309e9a4a66dbef32545289804b0a62",
+          "status": "pinned"
+        },
+        {
+          "bytes": 14026,
+          "git_sha": "e1e32dc35c484ddd21db131f6c81a3b34fba9fbe",
+          "path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/.claude/worktrees/rh-handover-opus-deepseek-dc7dc2/scripts/rh_deepseek_vision_cell.py",
+          "sha256": "600efbc4fffe99984dd29aa7ccf3c6fb4e427018394348e4aa9633268a745039",
+          "status": "pinned"
+        },
+        {
+          "bytes": 31110,
+          "git_sha": "e1e32dc35c484ddd21db131f6c81a3b34fba9fbe",
+          "path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/Opensens Academic Explorer/.claude/worktrees/rh-handover-opus-deepseek-dc7dc2/scripts/rh_deepseek_worker_runner.py",
+          "sha256": "a315be490f6bc834b16123fb692765ad9d52db1a505330e8d663488798559a31",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3097,
+          "git_sha": "9f1cbc363cfc36712fb6c0cdc1d7a3ed8af3ab6b",
+          "path": "/Users/applefamily/Developer/Opensens/Opensens Academic Explorer/lean/lake-manifest.json",
+          "sha256": "b274281f2458acee09d87c5e615e7a33a39928770d85362aea971caa44f02173",
+          "status": "pinned"
+        },
+        {
+          "bytes": 329,
+          "git_sha": "9f1cbc363cfc36712fb6c0cdc1d7a3ed8af3ab6b",
+          "path": "/Users/applefamily/Developer/Opensens/Opensens Academic Explorer/lean/lakefile.lean",
+          "sha256": "b58de05bc02afd2d6331556ff10c7751d5d2da9ec9e25c84b9953679d673a420",
+          "status": "pinned"
+        },
+        {
+          "bytes": 25,
+          "git_sha": "9f1cbc363cfc36712fb6c0cdc1d7a3ed8af3ab6b",
+          "path": "/Users/applefamily/Developer/Opensens/Opensens Academic Explorer/lean/lean-toolchain",
+          "sha256": "651c8accb402b0c071cd336e9d3dc0a55516b1bfb434ddc4801f14936785b1d2",
+          "status": "pinned"
+        },
+        {
+          "bytes": 1259,
+          "git_sha": null,
+          "path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/models/openjev/calibrator.json",
+          "sha256": "af2a876993148efa0726b6ccf710fe2303897d20c0ce8c7c9036eb50f64d23de",
+          "status": "pinned"
+        },
+        {
+          "bytes": 303785047,
+          "git_sha": null,
+          "path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/models/openjev/model_fp16.onnx",
+          "sha256": "4db28305590c714e33c2cacb75a57ec941c72bb210e1266ba2c7d77e85ddc526",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3583596,
+          "git_sha": null,
+          "path": "/Users/applefamily/Desktop/Business/Opensens/03 - R&D Projects/Opensens Darklab/models/openjev/tokenizer.json",
+          "sha256": "8bb449eb0c037aae44115b65905bb339b8f3f74eb37067c19127feb3c0755723",
+          "status": "pinned"
+        },
+        {
+          "bytes": 0,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/__init__.py",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status": "pinned"
+        },
+        {
+          "bytes": 4556,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/backends.py",
+          "sha256": "3275f1810efd9590b34f6d18aad80ecc196088ee1b802db51acb50301f5e4577",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5418,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/cli.py",
+          "sha256": "1ab334854f2d938a2c8e83f9f43fbd6da839f8fc48ddc65d2da58d3d4edf4b28",
+          "status": "pinned"
+        },
+        {
+          "bytes": 12857,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/dream.py",
+          "sha256": "414a7213d062231ecc2c1f39906edaeda2773e7c0727cde821bf247c5397e6f2",
+          "status": "pinned"
+        },
+        {
+          "bytes": 2784,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/dream_dry.py",
+          "sha256": "701895d0d304d21fa16410ef8a9c8b83ed33ddceb9f8c181931e242a0c3e61e9",
+          "status": "pinned"
+        },
+        {
+          "bytes": 2860,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/ledger.py",
+          "sha256": "4cc725989085cb4c5daa715815a17ea5c2c6d6b97eca9f9b330bf41a6d1df819",
+          "status": "pinned"
+        },
+        {
+          "bytes": 10588,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/openjev.py",
+          "sha256": "a5d7add5ed36dc2db9fe3589234ed4d35518dd443f2a6c3bae05770721f0d137",
+          "status": "pinned"
+        },
+        {
+          "bytes": 832,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/__init__.py",
+          "sha256": "bdcaeffea71051209c704936e4e9cd6e0a8ee1fbad325e235730a2d858021a7f",
+          "status": "pinned"
+        },
+        {
+          "bytes": 8471,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/arms.py",
+          "sha256": "6123430018a0550f8470b744853ce3aa5fb6e190c099feb1caba99c6463ce8a9",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6494,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/blind.py",
+          "sha256": "4816218789d053af67501604be7487def64a4779f08be372ab7904b7a9061fbf",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5306,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/claims.py",
+          "sha256": "0a46e88169900a295d26701def7112ae282fec9fa17edca4b1f2a458caed56bf",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6054,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/corpus.py",
+          "sha256": "a4e693e3994fa5bee959adef54493923b3b77b2c5abcd9396a0a5379fd729675",
+          "status": "pinned"
+        },
+        {
+          "bytes": 14625,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/deepseek.py",
+          "sha256": "8ff4ea586fa540c031699d8293b4dd33012f9fae330ce0474666708f1ac0abd1",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5478,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/dnr.py",
+          "sha256": "a92c2152ad35dd24c1fb866375450f81781fb189416d49c6201462a219038777",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5721,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/fakes.py",
+          "sha256": "adb4731f1454ea08d4a5bf86d2397ac9a83085a7a0c188dae21cd665d2947201",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3579,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/fit.py",
+          "sha256": "5d0ea78e69d2a52c9593527517512c0d5975eaec0c6182b6bcd5a38960ed90a3",
+          "status": "pinned"
+        },
+        {
+          "bytes": 9641,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/judges.py",
+          "sha256": "f197f156da2ddcbe489d3088ef40bfde4edfde5071a28a462c2411a87f724907",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5761,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/metrics.py",
+          "sha256": "7de7bf9c9e1bcddfbf65a5c2bc7b898a344d33d35c5c6000177a2126c02a139a",
+          "status": "pinned"
+        },
+        {
+          "bytes": 9261,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/run.py",
+          "sha256": "3d0148cda0f881f65847a3aeca68232c8af2109f96a128b10f1bf84a7360c19d",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6267,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/score.py",
+          "sha256": "c45cba20ef5d85977f0fb3936e18808ca37f50707601ef0e7214e057d008c6ea",
+          "status": "pinned"
+        },
+        {
+          "bytes": 10627,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/seeds.py",
+          "sha256": "9ea4d70ae23c8655fe04cba4500a7f6e86d3d48f0740036e910736405a943610",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3380,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/policy_compact.py",
+          "sha256": "c4cf0b2f11568607d99395741ad008dd561eb8cdfb41e51c266cbf6e8825758e",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6284,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/policy_fleet.py",
+          "sha256": "e9ebef48f0d6c34e628eeb495d2a4734c9a0c3669f45a44ac639926dd22751ce",
+          "status": "pinned"
+        },
+        {
+          "bytes": 7392,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/policy_manager.py",
+          "sha256": "72fe6d547fda7c450467adfe0a9809d88f604c69381694590ec2300b3fc9c01e",
+          "status": "pinned"
+        },
+        {
+          "bytes": 7226,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/policy_worker.py",
+          "sha256": "50cb11c4c3a2af922e367f79e570a6782de990de40530ca747fa6472bcd3d629",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5679,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/questions.py",
+          "sha256": "ccdfb353c38858543a40235e732d03caa8c74be8ef4535929cab1f93b7eef7d3",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3736,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/roster.py",
+          "sha256": "d5a1eaa850ad18c4a0a5bcce33bef3092ab4fc7c2b7419845ff1accaf91d6364",
+          "status": "pinned"
+        },
+        {
+          "bytes": 12459,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/study.py",
+          "sha256": "fa23ee76c6a4b7c286bbcdec145558876493854174101e97891abe80c4774769",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6146,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/study_data.py",
+          "sha256": "f7b8b376857b7754027cd78ee20a4d551519ee2b5f9f595cb4546ffcc1130c77",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5484,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/study_report.py",
+          "sha256": "251df57f1d90aa9b9378841fc59d622fb5e79fa390e385deca85d50307da9ada",
+          "status": "pinned"
+        },
+        {
+          "bytes": 198,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/__init__.py",
+          "sha256": "1aad8c89bc387c0360972e62641226f8176705122eb053d9070d79e70217a466",
+          "status": "pinned"
+        },
+        {
+          "bytes": 7803,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/__main__.py",
+          "sha256": "2dc4fe4eb0c3106a7a3b69396cb52542d3a2cd37666c6e23594135b14fc160dd",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6630,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/baseline.py",
+          "sha256": "08fa4f8de99d9e09029d542e231989f85304320c899ba59c488840aba99c72d5",
+          "status": "pinned"
+        },
+        {
+          "bytes": 7435,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/blind.py",
+          "sha256": "327093f1e611ac27cf64a416f0c20952da6430c1ce8aced0060bf28412089ba1",
+          "status": "pinned"
+        },
+        {
+          "bytes": 2997,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/control.py",
+          "sha256": "f3c0857976d16918c5b6713331c72fb72b562865e6d4f9cb6e605958ffec7b86",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6900,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/dirichlet.py",
+          "sha256": "4d45f2a74c3f82b0e240fabca1ebeb4fa31b25e492e34a40ddb6e2619c24b684",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6712,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/functions.py",
+          "sha256": "60d7cd939ce134e0dfa3e56c42d732ce584304946fe83866cdb452b0d562a1bc",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5342,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/heat.py",
+          "sha256": "ab99d36c3d55df6db6bf20b0c20e215c9922f3205ba269904b23c3a43ab45741",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5680,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/heldout.py",
+          "sha256": "13d831d0e3cdc3a9b12342642c614deb950283c0cd7ecd23db34c0df862ee68f",
+          "status": "pinned"
+        },
+        {
+          "bytes": 12132,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/observer.py",
+          "sha256": "2e58a900c907c81894df021a8284e4d0718f4789681745404536e6f86b2118d2",
+          "status": "pinned"
+        },
+        {
+          "bytes": 0,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/panels/__init__.py",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6810,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/panels/common.py",
+          "sha256": "342b944f6499f88632929c8f3440b80ce27e55e7adc376071229baa73701a031",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6877,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/panels/p1_sign.py",
+          "sha256": "9d79dccf3ef430a9bd1bb46beb4d042626375b18f6d744a1ac64afe4401e29f5",
+          "status": "pinned"
+        },
+        {
+          "bytes": 9541,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/panels/p2_newton.py",
+          "sha256": "71a440a4ff9e92f2902fe39669b159ed1f53011d7f996ebedd733b7a51da91c8",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6640,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/panels/p3_curvature.py",
+          "sha256": "cb2af066f42e3308f8f6417e15fd69f226dcbc2bb7c48ed50b5fca2e3d7cfd40",
+          "status": "pinned"
+        },
+        {
+          "bytes": 11339,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/panels/p4_heat.py",
+          "sha256": "e3d66366001f489e23fbf0cb17ca22f454a5e9b9a82dd3268e281ae349eb2886",
+          "status": "pinned"
+        },
+        {
+          "bytes": 12118,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/panels/p5_weil.py",
+          "sha256": "3421ddb21be628993c89b4479c16e055c9f88cbd1c6d53bd33c986b782e97ad0",
+          "status": "pinned"
+        },
+        {
+          "bytes": 2220,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/plotting.py",
+          "sha256": "eb6a369524759e47a7bb89977555231fa6961bebfe135c05944e379f279eeb6f",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3862,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/pngfixed.py",
+          "sha256": "5fbc75ebee1f67684ad97384ca4e323538322cbad5c8efb07707993f92230a3d",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6649,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/r4baseline.py",
+          "sha256": "769b48476a4165e69b87ed5dbd0a07b12013e9b61d89eed1c351ef3c8bfb8e1d",
+          "status": "pinned"
+        },
+        {
+          "bytes": 10594,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/r4set.py",
+          "sha256": "06d66cf31c0986c92101a3e751076f204478b048c5aee3e16e94d84b109027e8",
+          "status": "pinned"
+        },
+        {
+          "bytes": 7555,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/r6.py",
+          "sha256": "95ffd0c50c1caccabf5c2b9d4c04cfa51725e7956d6bf63181f2573e02963392",
+          "status": "pinned"
+        },
+        {
+          "bytes": 7452,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/render.py",
+          "sha256": "f6c2498c9fa1c2acbd727a07ab467de6312b266952f8b4c0779e35355a88a2b2",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3993,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/scorer.py",
+          "sha256": "841a791b136a747ba39d70ffb923f5e849f392ff433fa7c83eb83845711356ab",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3123,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/specials.py",
+          "sha256": "137235620584af72286fb628bda5ed4bd1783d9e42a4ced8ca16e214e0bacce5",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6221,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/v0plan.py",
+          "sha256": "9498274ccfc12d141e10ec5596d29c534483477ae5bd722b0a738b47d06fa60c",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5114,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/views.py",
+          "sha256": "9254bef28a95312d956ce391e3d4070028b5b25d9585ce5da5949768086639b6",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5368,
+          "git_sha": "98716cd58a90bd2dad9efb7297be7e5fd850458c",
+          "path": "/Users/applefamily/Developer/Opensens/rh-visual-fields/rhvf/zeros.py",
+          "sha256": "00bf566cbdb5d2b1bf066a5b3e1ca6c77d2abda1b38e0be98ddc06c0417b8896",
+          "status": "pinned"
+        },
+        {
+          "bytes": 2511,
+          "git_sha": null,
+          "path": "/Users/applefamily/Developer/Opensens/runtimes/qwen-local-worker/com.opensens.qwen-local-worker.plist",
+          "sha256": "113d84405ea74360dbaa8e9667ada28eaf555841727a8891e14c7149926a7b4d",
+          "status": "pinned"
+        },
+        {
+          "bytes": 2526,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/data/riemann/evidence_atlas/schema/result.schema.json",
+          "sha256": "ca53b079ce0323b628b292ace76fd822ec804da3c138290bfd449c3ecec7c041",
+          "status": "pinned"
+        },
+        {
+          "bytes": 666,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/__init__.py",
+          "sha256": "0f475ca8246f9c95b0caca70691d2ef0c979be46f335eaf12a94bd63e6543b07",
+          "status": "pinned"
+        },
+        {
+          "bytes": 316,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/__init__.py",
+          "sha256": "1305ac9c65bfcd57ea1ff955394904f7c42cbb5a3801962ecbe25367afbcb59b",
+          "status": "pinned"
+        },
+        {
+          "bytes": 8265,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/atlas_page.py",
+          "sha256": "83ba1f164d237f1bd409157010f274deb02b4a8d26975fc02ed81e4fb57fb8bc",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3285,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/blocker_map.py",
+          "sha256": "7856cf60fc21dfe357f5fb72c05b884379116ab6519fe757f017e64955d391bc",
+          "status": "pinned"
+        },
+        {
+          "bytes": 12916,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/fleet_cells.py",
+          "sha256": "261384b768eafd3868021663db28804abc8831f160b84a7bb57d359d8fed793c",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3953,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/graphify.py",
+          "sha256": "7ee0c8d8c5f8ea4a8a3d1dc8ec0f0b9f4527f577c05d859f682465ad43ad110b",
+          "status": "pinned"
+        },
+        {
+          "bytes": 19537,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/j1_resolver.py",
+          "sha256": "491ab9bda0e6d58e6a70ecb60c158229b8a26203d668477c30873bc19bd077dc",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3189,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/kit_seed.py",
+          "sha256": "4fe8dc115338c0220d33aa93c63b05270320ff69033d869fda89852b9ed01e63",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5917,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/lab_snapshots.py",
+          "sha256": "1814be0ca934c762a671c7394bb6707c8ffba7d99fd1cefdf9588bb059588cf5",
+          "status": "pinned"
+        },
+        {
+          "bytes": 8535,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/paper_agents.py",
+          "sha256": "00ef78feab08c63ac40148661c09f8fefb60b6e26bb3dc9c60d6ad310b498561",
+          "status": "pinned"
+        },
+        {
+          "bytes": 4755,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/result_bundle.py",
+          "sha256": "6a00ed9a7c99b345b77284e56844f61a2e911083375cf6551e940223ca486972",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5261,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/review_records.py",
+          "sha256": "a2247d3a4954f120c4ed4a9d0cfc5a32774e9df67887ab5e023ba50d6d3b52f5",
+          "status": "pinned"
+        },
+        {
+          "bytes": 4856,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/tao_blog.py",
+          "sha256": "971e071f7705282f3b26e521a081a6d9310b475f6cd0645ac714280d52110d64",
+          "status": "pinned"
+        },
+        {
+          "bytes": 2692,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/tao_ideas.py",
+          "sha256": "6d83d59fcaf1e3a02ec376a55098a5b7a91c82c432ead78dfbe15df643ddb223",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3610,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/v2_graph.py",
+          "sha256": "28949d4a08cdf3f65e2838779f75de879274e4f622bcad8fc2d551fdcbfe619d",
+          "status": "pinned"
+        },
+        {
+          "bytes": 26604,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/wzca.py",
+          "sha256": "ff9c6add93004200168a7ace5e50aa0082f194e3de10d8526861c90211aafbc6",
+          "status": "pinned"
+        },
+        {
+          "bytes": 8428,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/adapters/zeta.py",
+          "sha256": "b048d68bcc49d0c466f861a3e23b7fbb9691d981eae97a6ae1ac4274e5fdace0",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3744,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/archify_cache.py",
+          "sha256": "134c05307d106fa770da93ff039c6ee0c683c170a1e8c557678f10bcdb525bb5",
+          "status": "pinned"
+        },
+        {
+          "bytes": 15857,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/archify_map.py",
+          "sha256": "63494120a3157ea94df2708854a07cdf2302aa472bfa62096194e7bb57cf4388",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3299,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/atlas_blockermap.py",
+          "sha256": "090288cfc9340ff8f19ad2a8c8bbd9a535c0d702b705b88fff662b087793e997",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5909,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/atlas_build.py",
+          "sha256": "a46cd79675ab483c189d610a17cec58c1d30be7b2791695cf50e4c25cb1ad5bb",
+          "status": "pinned"
+        },
+        {
+          "bytes": 1921,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/atlas_data.py",
+          "sha256": "3902a843451770f3eca24726cc6977a7da09355eab2845037c57c218c24b5c40",
+          "status": "pinned"
+        },
+        {
+          "bytes": 14316,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/atlas_front.py",
+          "sha256": "3c1753202249552bdd2d1f45366800c8d38b8974b89a4b16e5ee009d7c7ec069",
+          "status": "pinned"
+        },
+        {
+          "bytes": 20206,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/atlas_labs.py",
+          "sha256": "4bd4145ad4c23a5ee36525a18f2fbad88c53366a314f6a3cc47a4d16ece8dfe0",
+          "status": "pinned"
+        },
+        {
+          "bytes": 10952,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/atlas_labs_gallery.py",
+          "sha256": "2475f5e4d5f9f178834064104ad9294f5070e34128b830ce6cd7309a32ca012e",
+          "status": "pinned"
+        },
+        {
+          "bytes": 9389,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/atlas_literature.py",
+          "sha256": "605acbcc5d973e5bcb6b01a338bc7e3fa5441054dcf9f80a39396a9db2ee25c5",
+          "status": "pinned"
+        },
+        {
+          "bytes": 1546,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/atlas_map_embed.py",
+          "sha256": "a78aa922d29fc88ce3646d9a9d010bf0a3791038797f4320e41fbfe5bfc95646",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3297,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/atlas_mindmap.py",
+          "sha256": "b4919a5250156feae0dc47d9d78e3012513f58be525aec2492e79c6cf7fa0807",
+          "status": "pinned"
+        },
+        {
+          "bytes": 10644,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/atlas_p3_assets.py",
+          "sha256": "6ac730e8c1f6cff92d740800394f8486cbb12f3d9cec424ae988b621fe075292",
+          "status": "pinned"
+        },
+        {
+          "bytes": 10555,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/atlas_protocol.py",
+          "sha256": "239cb184b9a1f4e83c4c0328e3cdab73d015733267c0d9b21c7adcfcae4f4106",
+          "status": "pinned"
+        },
+        {
+          "bytes": 17780,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/atlas_restructure.py",
+          "sha256": "089d5ecddce8b8ab42ddc000ac7d2068ef9a929ad55ce6fb6e2a435bfb2a4bb9",
+          "status": "pinned"
+        },
+        {
+          "bytes": 11602,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/blocker_rules.py",
+          "sha256": "cee3fbc183b5772318938e1d55c6db1713064d07712a82ccfe703ad8bcb61b73",
+          "status": "pinned"
+        },
+        {
+          "bytes": 12308,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/blockers.py",
+          "sha256": "f31a4120d8ff76631d189986436042bedfae396ff4e476b1c9c93c7fb5862b63",
+          "status": "pinned"
+        },
+        {
+          "bytes": 14442,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/chains.py",
+          "sha256": "66e299a5e4a681c86efea201c69026935b9b27a30913bd7ab6c666c8041ed0cb",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5299,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/chains_overlay.py",
+          "sha256": "ed50e1a31b319cf8377970d4eb8389652fc4b64b1f3d7071fc82bf73d4c80bcf",
+          "status": "pinned"
+        },
+        {
+          "bytes": 28123,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/cli.py",
+          "sha256": "7d2cd363f9f471eb316a4e7c07485e757ee441bba5c9c51107aacc500f04b8bc",
+          "status": "pinned"
+        },
+        {
+          "bytes": 4179,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/depth_lint.py",
+          "sha256": "c4bf0f93a45c196af13543653140757dd5cb19787f1f22c3972b6b110b2d2bcf",
+          "status": "pinned"
+        },
+        {
+          "bytes": 13899,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/export.py",
+          "sha256": "00884e45906527e8cd0f672850ab4e63a407cf32211ded0a9250d8f3bcd5c9fc",
+          "status": "pinned"
+        },
+        {
+          "bytes": 8041,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/importer.py",
+          "sha256": "7c00136cfc7a2919f4c22dbded3276987fe2593e406aa76852b2f6996dc6f523",
+          "status": "pinned"
+        },
+        {
+          "bytes": 13882,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/jev.py",
+          "sha256": "96621b2347b8636cec8c9967ce0bb96a79088b5f0f25327ff4a9b16606e238d2",
+          "status": "pinned"
+        },
+        {
+          "bytes": 16845,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/labs_snapshots.py",
+          "sha256": "18b42c979feb6794f6e07ffe96a0c543da31a580ea6676699db985d5f9c33461",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3847,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/labs_v1.py",
+          "sha256": "16631c571e81deaaff512cd2aeb4daddacb5a6323f5143716f4c3fbbaff1c128",
+          "status": "pinned"
+        },
+        {
+          "bytes": 31899,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/mindmap.py",
+          "sha256": "5bf5273db800c5e89a8861ddc3c38e527e150835fbb8986d339a61a6af65afca",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6387,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/mindmap_papers.py",
+          "sha256": "8b65de25c1b3a80b67a09d979a33b78efd08f11f711071258aa2723c106e170d",
+          "status": "pinned"
+        },
+        {
+          "bytes": 13654,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/model.py",
+          "sha256": "be6b44964007d8b628f53826e0d2ab882c482208c5560a8b0cfd1c02547e315c",
+          "status": "pinned"
+        },
+        {
+          "bytes": 7916,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/now.py",
+          "sha256": "71e9208b428c67aef9532e134f370420d09dad430289b2facffbce59199045b3",
+          "status": "pinned"
+        },
+        {
+          "bytes": 2929,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/overlays.py",
+          "sha256": "b0de4e924efcb372ed8b69eeba3b9d4837fc3272b8d3097091db859e6aecfd7c",
+          "status": "pinned"
+        },
+        {
+          "bytes": 861,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/paths.py",
+          "sha256": "a4fe05b5d8f0b447b0779fd6e07bfecde2c83af0a1e26d12e9ac85faf2a07d9a",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5910,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/reader_depth.py",
+          "sha256": "618a6bf08f4287fbe106e0f92a2aceee3b70b51f769d6c0766ecbdab0d469fae",
+          "status": "pinned"
+        },
+        {
+          "bytes": 1427,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/reconcile.py",
+          "sha256": "bd8742f59636b5e552866d30aa26bfbfdaeb792cb3cf63fba081beb36f131272",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5275,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/screenshot.py",
+          "sha256": "ae269f6782de1c4d8b47efedab53caa1c4ab6697bbd8f86dc8665e1cd540b973",
+          "status": "pinned"
+        },
+        {
+          "bytes": 18905,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/server.py",
+          "sha256": "f062623d421d7f9f807585e82436bf440844b8719010af28b533fe3d2cc0dcbe",
+          "status": "pinned"
+        },
+        {
+          "bytes": 25735,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/services.py",
+          "sha256": "3224108944ffb1c73969f4297738cb386ad13ee5b4726fdb20d35db4fee29fb5",
+          "status": "pinned"
+        },
+        {
+          "bytes": 9054,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/store.py",
+          "sha256": "406c4cfa28a7fb899c70a3230b50fb5bf019021aaa9f75517dc0cee1a6c15450",
+          "status": "pinned"
+        },
+        {
+          "bytes": 2933,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/svg_geometry.py",
+          "sha256": "da3f376dc7c5fb0f1d1c007ed1515b7e3d859b4f7dd3aba568beb0468088c5ef",
+          "status": "pinned"
+        },
+        {
+          "bytes": 18876,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/tao_blog.py",
+          "sha256": "7b84d00c7652d7efc781c5e4a80ba939d6b299149596e418f60874d560518848",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5707,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/tao_cli.py",
+          "sha256": "56ddf8f52f7a33e3d9482fc8d6612baa38a620abc663ee7e4f151a064ad36948",
+          "status": "pinned"
+        },
+        {
+          "bytes": 9427,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/tao_ideas.py",
+          "sha256": "491e5cd47275ca5ebe2d3d708e33e6b1eda83ce4577d6165278fcb0b8876b81b",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6605,
+          "git_sha": "de7974b3fb3fe381a11c78125fd584f52866b5e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924/rh_evidence/tao_index.py",
+          "sha256": "03818eac8adf2217f73d27d585dd23c840049cec1c9c11d88583128141f505fe",
+          "status": "pinned"
+        },
+        {
+          "bytes": 22604,
+          "git_sha": "6498d932be4be0654fb08b99f7b9a62e541f0a86",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/zeta-explorer-main/dist/geometry.js",
+          "sha256": "d23db184c41641033fa492eccb2eb52818845bf281e2ba3d423b68041e55b77d",
+          "status": "pinned"
+        },
+        {
+          "bytes": 118906,
+          "git_sha": "6498d932be4be0654fb08b99f7b9a62e541f0a86",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/zeta-explorer-main/dist/index.html",
+          "sha256": "0097f9484ce147a64d56142a0c3bd53e227aa404dc643bfcf96937b7d812f771",
+          "status": "pinned"
+        }
+      ],
+      "note": "File hashes pin actual bytes; git SHA alone does not exclude dirty edits.",
+      "schema": "mve-deps-v1"
+    },
+    "WP-1": {
+      "base_git_sha": "5645250003f129473919f4f32984c68a86e1c477",
+      "files": [
+        {
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/__init__.py",
+          "sha256": "1660edf3de4ade8f040b5b6ce0248e7cbb029cb85490702a5f523807658c37f0"
+        },
+        {
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/errors.py",
+          "sha256": "326a016d2b764ec6ce470823bc6b59c007714875001b8a637e9e600e4985a7ef"
+        },
+        {
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/exact.py",
+          "sha256": "a95bd48b146d91c639ef65f7bc369a307f9a160ea2e7321ca76a5f133374b592"
+        },
+        {
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/formal.py",
+          "sha256": "e6d162ee2d0e8ef21701f32c25286ffc3e3d53a9b36c63d28b4eba14f2b6dd38"
+        },
+        {
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/graph.py",
+          "sha256": "e8f772def06c1fe922efd32c7471e14fb02b45f2588cae042d7a152e5399b2a5"
+        },
+        {
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/identity.py",
+          "sha256": "9980da4703486d43348df7e6e5a3bf24313eb7db47d30fd47482e5694e390f64"
+        },
+        {
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/operations.py",
+          "sha256": "368b5194d379c0cca622eb5a86724b21206b2e83750c199fa136a6a2ed02aa21"
+        },
+        {
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/patch.py",
+          "sha256": "cce0d2998ad5efd3662e0ca1ce588d564396b7886425186b03d611817f529b6f"
+        },
+        {
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/predicates.py",
+          "sha256": "18e0d8c2f4525078bbc62c67e9a6643e09f511ebfc4f969dc58f29ca8e349fd4"
+        },
+        {
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/record.py",
+          "sha256": "f64d52453c4dcfca0b5f8d140306505fffdc9aa03a2896a1acfa9a6dd1c663d8"
+        },
+        {
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/registry/predicates_v1.json",
+          "sha256": "119440136269d3875c1c130cf4988a1b923d49f0acd09f94133d9882b76756a4"
+        },
+        {
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/semantics.py",
+          "sha256": "8c89b57f235e766d8421e6dfe609f36ccc7b46c15e3a4892d7e3bc5fb56291bb"
+        },
+        {
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/validation.py",
+          "sha256": "c189940d38c61dc327cf168cfa8b0ba570483a9fac63bdd203e74894d0f2ab5a"
+        },
+        {
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/schemas/mve_observation_record.json",
+          "sha256": "13ebcbe03ab718dd39844a65db7519cec370acdc7924555dece6d970414e46fc"
+        }
+      ],
+      "note": "WP-1 uses no by-path RH imports. Merge this package/source lock with WP-0a external pins after Opus review.",
+      "packages": {
+        "jsonschema": "4.26.0",
+        "pytest": "8.4.2",
+        "sympy": "1.14.0"
+      },
+      "schema": "mve-deps-v1"
+    },
+    "WP-11a": {
+      "base_git_sha": "5645250003f129473919f4f32984c68a86e1c477",
+      "files": [
+        {
+          "path": "mve/__init__.py",
+          "sha256": "1660edf3de4ade8f040b5b6ce0248e7cbb029cb85490702a5f523807658c37f0"
+        },
+        {
+          "path": "mve/evaluation/__init__.py",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "mve/evaluation/confidence.py",
+          "sha256": "3ef520444744f51360a32caf74ce09abb851cca5f4b30251359e066cb97077f1"
+        },
+        {
+          "path": "mve/evaluation/isolation.py",
+          "sha256": "e97ae96d19465321444a0a5935df84c78e5d62ed5438a962127ffef8e405fa11"
+        },
+        {
+          "path": "mve/evaluation/manifest.py",
+          "sha256": "3534ee1df3ec2678f225b1bd3a409587451ca411dcabf287b60816ed830df34c"
+        },
+        {
+          "path": "mve/evaluation/scoring.py",
+          "sha256": "ecea445caf42bfff81d5784d8100a9d794b4da6b644c486dc5d79f20d6151e60"
+        },
+        {
+          "path": "mve/evaluation/splits.py",
+          "sha256": "93fd2fb470a816adbe28cd5dced0e613b2601046f8644ad50516a8417c736eab"
+        },
+        {
+          "path": "tests/mve/__init__.py",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/mve/conftest.py",
+          "sha256": "cb2572188b58ff4ed54ebee6286a63a1c8305f7131dc35731100bbadc619ae66"
+        },
+        {
+          "path": "tests/mve/test_confidence.py",
+          "sha256": "f3db9bbb38f5df3ed03e506d42d183a59172331a0208e695891086077596230e"
+        },
+        {
+          "path": "tests/mve/test_evaluation_manifest.py",
+          "sha256": "bcad01aa1f8176b8cd535e6b6ab064b8fd015501ea4b59f33ed34c7cb72d03af"
+        },
+        {
+          "path": "tests/mve/test_isolation.py",
+          "sha256": "bf54700dbcf33215ed04df2d3479b9305ed47d1ee1aa5117f8cf92edf3e2bcee"
+        },
+        {
+          "path": "tests/mve/test_scoring.py",
+          "sha256": "5e352fbac474129634a5a09625676f877d9e234bc6855e349997f9a6ee21b90a"
+        },
+        {
+          "path": "tests/mve/test_splits.py",
+          "sha256": "d9260d24837c028a0c6359dba0dcd238f11c25a6fc8b003b38917a1e9b307bd6"
+        }
+      ],
+      "packages": {
+        "numpy": "2.4.6",
+        "pytest": "8.4.2",
+        "pytest-cov": "6.3.0",
+        "ruff": "0.8.6",
+        "scipy": "1.17.1"
+      },
+      "packet": "WP-11a offline evaluation infrastructure",
+      "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+      "python": "3.13.2",
+      "schema": "mve-deps-v1"
+    },
+    "WP-9a": {
+      "base_git_sha": "5645250003f129473919f4f32984c68a86e1c477",
+      "files": [
+        {
+          "path": "mve/__init__.py",
+          "sha256": "1660edf3de4ade8f040b5b6ce0248e7cbb029cb85490702a5f523807658c37f0"
+        },
+        {
+          "path": "mve/budget.py",
+          "sha256": "9c14b576d071529d12cff6e6a2c5ee6a27b0636574d1becaa9891a8b57f357c6"
+        },
+        {
+          "path": "mve/money.py",
+          "sha256": "0503706ad4f3f1f6308e3f9a6b58f68b303b0fc9ded526f818d2aa2390ea3b50"
+        },
+        {
+          "path": "mve/pricing.py",
+          "sha256": "de913a7451410bd52c10945b679d6876b8589e61b4669352cb08e4d2570107e3"
+        },
+        {
+          "path": "tests/mve/__init__.py",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/mve/conftest.py",
+          "sha256": "cb2572188b58ff4ed54ebee6286a63a1c8305f7131dc35731100bbadc619ae66"
+        },
+        {
+          "path": "tests/mve/test_budget.py",
+          "sha256": "6ac9994e3c3bda9113fd976e108647ca9f5d4d11406e8c30bd306697d0c34538"
+        },
+        {
+          "path": "tests/mve/test_pricing.py",
+          "sha256": "0a3fd1f12f7a442e13cbfed50f48a10ad4a9f3592be9ed4d52882809b0f30edb"
+        }
+      ],
+      "packages": {
+        "pytest": "8.4.2",
+        "pytest-cov": "6.3.0",
+        "ruff": "0.8.6"
+      },
+      "packet": "WP-9a offline accounting",
+      "python": "3.13.2",
+      "schema": "mve-deps-v1",
+      "sqlite": "3.45.3"
+    }
+  },
+  "schema": "mve-deps-v1"
+}
