@@ -1,0 +1,292 @@
+{
+  "version": "v1",
+  "conventions": {
+    "angles": "undirected degrees",
+    "circle": "[cx,cy,r]",
+    "incidence": "PointLiesOnLine(P,AB) = Collinear(P,A,B) with Distinct(A,B)",
+    "inactive_rows": "registered names only; typed use rejected until semantics are frozen"
+  },
+  "predicates": {
+    "Collinear": {
+      "arity": 3,
+      "argument_kinds": [
+        "point",
+        "point",
+        "point"
+      ],
+      "active": true,
+      "category": "P1",
+      "symmetry": "S3",
+      "degeneracy": "any repeated point",
+      "mathlib_target": "Collinear \u211d {A,B,C}",
+      "target_compiled": false,
+      "scalar_value": false
+    },
+    "Concyclic": {
+      "arity": 4,
+      "argument_kinds": [
+        "point",
+        "point",
+        "point",
+        "point"
+      ],
+      "active": true,
+      "category": "P1",
+      "symmetry": "S4",
+      "degeneracy": "any repeated point or any three collinear",
+      "mathlib_target": "Concyclic {A,B,C,D}",
+      "target_compiled": false,
+      "scalar_value": false
+    },
+    "Parallel": {
+      "arity": 4,
+      "argument_kinds": [
+        "point",
+        "point",
+        "point",
+        "point"
+      ],
+      "active": true,
+      "category": "P1",
+      "symmetry": "pairs",
+      "degeneracy": "any repeated point; A=B or C=D",
+      "mathlib_target": "line[\u211d,A,B] \u2225 line[\u211d,C,D]",
+      "target_compiled": false,
+      "scalar_value": false
+    },
+    "Perpendicular": {
+      "arity": 4,
+      "argument_kinds": [
+        "point",
+        "point",
+        "point",
+        "point"
+      ],
+      "active": true,
+      "category": "P1",
+      "symmetry": "pairs",
+      "degeneracy": "any repeated point; A=B or C=D",
+      "mathlib_target": "orthogonal line AB CD",
+      "target_compiled": false,
+      "scalar_value": false
+    },
+    "EqualLength": {
+      "arity": 4,
+      "argument_kinds": [
+        "point",
+        "point",
+        "point",
+        "point"
+      ],
+      "active": true,
+      "category": "P1",
+      "symmetry": "pairs",
+      "degeneracy": "any repeated point",
+      "mathlib_target": "dist A B = dist C D",
+      "target_compiled": false,
+      "scalar_value": false
+    },
+    "EqualAngle": {
+      "arity": 6,
+      "argument_kinds": [
+        "point",
+        "point",
+        "point",
+        "point",
+        "point",
+        "point"
+      ],
+      "active": true,
+      "category": "P1",
+      "symmetry": "angles",
+      "degeneracy": "any repeated point; zero angle arms",
+      "mathlib_target": "\u2220 A B C = \u2220 D E F",
+      "target_compiled": false,
+      "scalar_value": false
+    },
+    "Midpoint": {
+      "arity": 3,
+      "argument_kinds": [
+        "point",
+        "point",
+        "point"
+      ],
+      "active": true,
+      "category": "P1",
+      "symmetry": "endpoints",
+      "degeneracy": "any repeated point; A=B",
+      "mathlib_target": "M = midpoint \u211d A B",
+      "target_compiled": false,
+      "scalar_value": false
+    },
+    "SBetween": {
+      "arity": 3,
+      "argument_kinds": [
+        "point",
+        "point",
+        "point"
+      ],
+      "active": true,
+      "category": "P1",
+      "symmetry": "endpoints",
+      "degeneracy": "any repeated point",
+      "mathlib_target": "Sbtw \u211d A B C",
+      "target_compiled": false,
+      "scalar_value": false
+    },
+    "RightAngle": {
+      "arity": 3,
+      "argument_kinds": [
+        "point",
+        "point",
+        "point"
+      ],
+      "active": true,
+      "category": "P1",
+      "symmetry": "angle",
+      "degeneracy": "any repeated point; zero angle arms",
+      "mathlib_target": "\u2220 A B C = \u03c0/2",
+      "target_compiled": false,
+      "scalar_value": false
+    },
+    "Distinct": {
+      "arity": 2,
+      "argument_kinds": [
+        "point",
+        "point"
+      ],
+      "active": true,
+      "category": "nondegeneracy",
+      "symmetry": "S2",
+      "degeneracy": "none",
+      "mathlib_target": "A \u2260 B",
+      "target_compiled": false,
+      "scalar_value": false
+    },
+    "NotCollinear": {
+      "arity": 3,
+      "argument_kinds": [
+        "point",
+        "point",
+        "point"
+      ],
+      "active": true,
+      "category": "nondegeneracy",
+      "symmetry": "S3",
+      "degeneracy": "none",
+      "mathlib_target": "\u00ac Collinear \u211d {A,B,C}",
+      "target_compiled": false,
+      "scalar_value": false
+    },
+    "AngleValue": {
+      "arity": null,
+      "argument_kinds": null,
+      "active": false,
+      "category": "inactive",
+      "symmetry": null,
+      "degeneracy": "unsupported",
+      "mathlib_target": null,
+      "target_compiled": false
+    },
+    "LengthValue": {
+      "arity": null,
+      "argument_kinds": null,
+      "active": false,
+      "category": "inactive",
+      "symmetry": null,
+      "degeneracy": "unsupported",
+      "mathlib_target": null,
+      "target_compiled": false
+    },
+    "Tangent": {
+      "arity": null,
+      "argument_kinds": null,
+      "active": false,
+      "category": "inactive",
+      "symmetry": null,
+      "degeneracy": "unsupported",
+      "mathlib_target": null,
+      "target_compiled": false
+    },
+    "Bisects": {
+      "arity": null,
+      "argument_kinds": null,
+      "active": false,
+      "category": "inactive",
+      "symmetry": null,
+      "degeneracy": "unsupported",
+      "mathlib_target": null,
+      "target_compiled": false
+    },
+    "Intersect": {
+      "arity": null,
+      "argument_kinds": null,
+      "active": false,
+      "category": "inactive",
+      "symmetry": null,
+      "degeneracy": "unsupported",
+      "mathlib_target": null,
+      "target_compiled": false
+    },
+    "InsideCircle": {
+      "arity": null,
+      "argument_kinds": null,
+      "active": false,
+      "category": "inactive",
+      "symmetry": null,
+      "degeneracy": "unsupported",
+      "mathlib_target": null,
+      "target_compiled": false
+    },
+    "Crossing": {
+      "arity": null,
+      "argument_kinds": null,
+      "active": false,
+      "category": "inactive",
+      "symmetry": null,
+      "degeneracy": "unsupported",
+      "mathlib_target": null,
+      "target_compiled": false
+    },
+    "OverStrand": {
+      "arity": null,
+      "argument_kinds": null,
+      "active": false,
+      "category": "inactive",
+      "symmetry": null,
+      "degeneracy": "unsupported",
+      "mathlib_target": null,
+      "target_compiled": false
+    },
+    "UnderStrand": {
+      "arity": null,
+      "argument_kinds": null,
+      "active": false,
+      "category": "inactive",
+      "symmetry": null,
+      "degeneracy": "unsupported",
+      "mathlib_target": null,
+      "target_compiled": false
+    },
+    "Components": {
+      "arity": null,
+      "argument_kinds": null,
+      "active": false,
+      "category": "inactive",
+      "symmetry": null,
+      "degeneracy": "unsupported",
+      "mathlib_target": null,
+      "target_compiled": false
+    },
+    "Connected": {
+      "arity": null,
+      "argument_kinds": null,
+      "active": false,
+      "category": "inactive",
+      "symmetry": null,
+      "degeneracy": "unsupported",
+      "mathlib_target": null,
+      "target_compiled": false
+    }
+  }
+}
