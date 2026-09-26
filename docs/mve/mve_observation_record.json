@@ -1,123 +1,250 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "oae-mve-observation-v1",
-  "title": "MVE observation record (oae-mve-observation-v1)",
-  "description": "One diagram, one typed record. Extends oae-rh-vision-cell-v1 (rh_deepseek_vision_cell.py): every claim carries its source stage, confidence and, where measurable, a re-measured value. Nothing enters `formal` unless `measured` or `derived` supports it.",
+  "$id": "oae-mve-observation-v2",
+  "title": "MVE observation record (oae-mve-observation-v2)",
+  "description": "One diagram, one record, five separate evidence classes (Astra verdict 2026-09-27, WP-1): observations (what a perceiver said), measurements (what a kernel computed), derivations (what a symbolic engine proved or refuted), assumptions (what was explicitly adopted), judgments (what a human or model decided). Formal artifacts cite evidence ids per proposition. Records are immutable; edits append events and bump `revision`.",
   "type": "object",
-  "required": ["schema", "record_id", "image", "domain", "entities", "relations", "claims", "provenance"],
-  "properties": {
-    "schema": {"const": "oae-mve-observation-v1"},
-    "record_id": {"type": "string", "description": "sha256 of image bytes + prompt hash + perceiver model id"},
-    "image": {
+  "additionalProperties": false,
+  "required": ["schema", "record_id", "revision", "versions", "image", "domain", "problem", "entities", "observations", "measurements", "derivations", "assumptions", "judgments", "decisions", "formal", "events", "provenance"],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "id": {"type": "string", "pattern": "^[a-z]+_[0-9]{1,6}$", "description": "typed ids: ent_N, obs_N, mea_N, der_N, asm_N, jud_N, dec_N, prop_N, evt_N"},
+    "unit01": {"type": "number", "minimum": 0, "maximum": 1},
+    "predicate": {"type": "string", "enum": ["Collinear", "Concyclic", "Parallel", "Perpendicular", "EqualLength", "EqualAngle", "Midpoint", "Tangent", "Between", "AngleValue", "LengthValue", "RightAngle", "Bisects", "Intersect", "InsideCircle", "Crossing", "OverStrand", "UnderStrand", "Components", "Connected"], "description": "Predicate registry v1 (docs/mve/MVE_PLAN.md §4a) fixes arity, argument order and degeneracy rules per predicate. No `Other`: an unsupported relation goes into observations[].free_text, never into a predicate."},
+    "proposition": {
       "type": "object",
-      "required": ["sha256", "width", "height", "source"],
+      "additionalProperties": false,
+      "required": ["pred", "args"],
       "properties": {
-        "sha256": {"type": "string"},
-        "width": {"type": "integer"},
-        "height": {"type": "integer"},
-        "source": {"type": "string", "description": "synthetic:euclid | benchmark:<name> | atlas:<scene> | user"},
-        "ground_truth_ref": {"type": ["string", "null"], "description": "path or id of the generator premise / predicate set when synthetic"}
+        "pred": {"$ref": "#/$defs/predicate"},
+        "args": {"type": "array", "items": {"type": "string"}, "minItems": 1, "maxItems": 6, "description": "entity ids in registry order"},
+        "value": {"type": ["number", "null"]},
+        "unit": {"type": ["string", "null"], "enum": ["deg", "rad", "px", "ratio", "count", null]}
+      }
+    }
+  },
+  "properties": {
+    "schema": {"const": "oae-mve-observation-v2"},
+    "record_id": {"$ref": "#/$defs/sha256", "description": "sha256 over image sha256 + problem sha256 + perceiver model id + prompt sha256 + request nonce; a repeated identical request gets a new nonce and a new record_id"},
+    "revision": {"type": "integer", "minimum": 1},
+    "versions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["code_sha", "predicate_registry", "measurement_contract", "classifier_weights"],
+      "properties": {
+        "code_sha": {"type": "string", "pattern": "^[0-9a-f]{7,40}$"},
+        "predicate_registry": {"type": "string", "description": "e.g. v1"},
+        "measurement_contract": {"type": "string", "description": "id of the JSXGraph measurement contract + tolerance file sha"},
+        "classifier_weights": {"type": ["string", "null"], "description": "openJev weights sha256 or null when no classifier ran"},
+        "lean_toolchain": {"type": ["string", "null"]},
+        "lean_lock_sha": {"type": ["string", "null"], "description": "sha256 of lake-manifest.json pinning Mathlib/LeanGeo"}
       }
     },
-    "domain": {
-      "type": "string",
-      "enum": ["euclidean_plane", "solid", "function_plot", "chart", "graph", "knot", "surface", "braid", "other"]
+    "image": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sha256", "width", "height", "source", "track"],
+      "properties": {
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "source": {"type": "string", "pattern": "^(synthetic:[a-z0-9_-]+|benchmark:[a-z0-9_-]+|atlas:[a-z0-9_/-]+|user)$"},
+        "track": {"type": "string", "enum": ["appearance_only", "annotated_problem"], "description": "appearance_only = labels stripped, visual claims only; annotated_problem = labels and givens preserved, answer text and reference metadata excluded"},
+        "ground_truth_ref": {"type": ["string", "null"], "description": "path of the generator's premise/predicate file; MUST be absent from anything the perceiver, measurer or classifier can read"},
+        "ocr": {"type": ["object", "null"], "properties": {"engine": {"type": "string"}, "sha256": {"$ref": "#/$defs/sha256"}, "frame": {"type": "string", "enum": ["pixel_topleft_yx", "pixel_topleft_xy"]}}}
+      }
+    },
+    "domain": {"type": "string", "enum": ["euclidean_plane", "solid", "function_plot", "chart", "graph", "knot", "surface", "braid", "unsupported"]},
+    "problem": {
+      "type": "object", "additionalProperties": false,
+      "required": ["text_sha256", "premises", "goal"],
+      "properties": {
+        "text_sha256": {"type": ["string", "null"]},
+        "premises": {"type": "array", "items": {"$ref": "#/$defs/proposition"}, "description": "givens stated by the problem text (source=text), distinct from anything observed"},
+        "goal": {"type": ["object", "null"], "properties": {"kind": {"type": "string", "enum": ["prove", "compute", "construct", "none"]}, "proposition": {"$ref": "#/$defs/proposition"}, "binders": {"type": "array", "items": {"type": "string"}}}},
+        "nondegeneracy": {"type": "array", "items": {"$ref": "#/$defs/proposition"}, "description": "distinctness / non-collinearity assumptions required for the goal to be well posed"}
+      }
     },
     "entities": {
-      "type": "array",
+      "type": "array", "uniqueItems": true,
       "items": {
-        "type": "object",
-        "required": ["id", "kind"],
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "kind", "geometry"],
         "properties": {
-          "id": {"type": "string", "description": "label as printed (A, O, l1) or generated (p7)"},
-          "kind": {"type": "string", "enum": ["point", "segment", "line", "ray", "circle", "arc", "polygon", "curve", "crossing", "strand", "region", "label", "tick", "arrow", "angle_mark", "right_angle_mark"]},
-          "px": {"type": "array", "items": {"type": "number"}, "description": "pixel coordinates (x,y[,x2,y2,...]) as read by the perceiver"},
-          "measured_px": {"type": "array", "items": {"type": "number"}, "description": "coordinates after canvas re-measurement (A2)"},
-          "on": {"type": "array", "items": {"type": "string"}, "description": "entity ids this entity lies on (incidence)"},
-          "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+          "id": {"$ref": "#/$defs/id"},
+          "label": {"type": ["string", "null"], "description": "printed label if the track preserves it"},
+          "kind": {"type": "string", "enum": ["point", "segment", "line", "ray", "circle", "arc", "polygon", "curve", "crossing", "strand", "region", "tick", "arrow", "angle_mark", "right_angle_mark"]},
+          "geometry": {"type": "object", "additionalProperties": false, "required": ["frame", "params"], "properties": {"frame": {"const": "pixel_topleft_xy"}, "params": {"type": "array", "items": {"type": "number"}, "description": "point: [x,y]; segment/ray/line: [x1,y1,x2,y2]; circle: [cx,cy,r]; arc: [cx,cy,r,a0,a1]; polygon/curve: [x1,y1,...]; crossing: [x,y]; marks: [x,y,w,h]"}, "source": {"type": "string", "enum": ["perceiver", "image_measurement", "ground_truth"]}}},
+          "on": {"type": "array", "items": {"$ref": "#/$defs/id"}, "uniqueItems": true}
         }
       }
     },
-    "relations": {
+    "observations": {
       "type": "array",
-      "description": "Typed predicates in Inter-GPS / LeanGeo vocabulary. `status` records how far the relation has been checked.",
+      "description": "What a perceiver call said. Never promoted; only cited.",
       "items": {
-        "type": "object",
-        "required": ["pred", "args", "status", "source"],
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "call", "kind", "confidence"],
         "properties": {
-          "pred": {"type": "string", "enum": ["Collinear", "Concyclic", "Parallel", "Perpendicular", "EqualLength", "EqualAngle", "Midpoint", "Tangent", "Between", "AngleValue", "LengthValue", "RightAngle", "Bisects", "Intersect", "InsideCircle", "Crossing", "OverStrand", "UnderStrand", "Genus", "Components", "Connected", "Other"]},
-          "args": {"type": "array", "items": {"type": ["string", "number"]}},
-          "value": {"type": ["number", "null"], "description": "numeric value for AngleValue / LengthValue / Genus / Components"},
-          "unit": {"type": ["string", "null"]},
-          "status": {"type": "string", "enum": ["perceived", "measured", "derived", "asserted_by_text", "contradicted", "human_confirmed", "human_rejected"]},
-          "source": {"type": "string", "description": "A1:perceiver | A2:measure | A2:newclid | A3:jev | A3:llm | human:<id> | text"},
-          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
-          "measure_residual": {"type": ["number", "null"], "description": "distance from the exact relation after re-measurement (e.g. |angle-90| in degrees, point-line distance in px)"}
+          "id": {"$ref": "#/$defs/id"},
+          "call": {"type": "integer", "minimum": 1, "description": "which perceiver call (1 or 2) produced it"},
+          "kind": {"type": "string", "enum": ["proposition", "free_text", "not_determinable"]},
+          "proposition": {"$ref": "#/$defs/proposition"},
+          "free_text": {"type": "string", "maxLength": 600},
+          "confidence": {"$ref": "#/$defs/unit01", "description": "model-reported; not a probability"}
         }
       }
     },
-    "claims": {
+    "measurements": {
       "type": "array",
-      "description": "Free-text observations the perceiver made that did not fit a predicate. These are inputs to the Jev question catalogue, never to the formalizer directly.",
+      "description": "What a kernel computed. `method` distinguishes checking the perceiver's own coordinates from independent image evidence (Astra: these are different measurements).",
       "items": {
-        "type": "object",
-        "required": ["what", "confidence"],
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "proposition", "method", "kernel", "residual", "tolerance", "outcome"],
         "properties": {
-          "what": {"type": "string", "maxLength": 600},
-          "confidence": {"type": "number"},
-          "jev_questions": {"type": "array", "items": {"type": "string"}, "description": "ids from docs/mve/MVE_PLAN.md §5 catalogue that were asked on this claim"}
+          "id": {"$ref": "#/$defs/id"},
+          "proposition": {"$ref": "#/$defs/proposition"},
+          "method": {"type": "string", "enum": ["coordinate_consistency", "image_measurement", "mark_association"]},
+          "kernel": {"type": "string", "description": "jsxgraph:<ver> | numpy:<contract id> ; both must satisfy the same measurement contract"},
+          "residual": {"type": "number"},
+          "residual_unit": {"type": "string", "enum": ["deg", "px", "px_normalized", "ratio"]},
+          "tolerance": {"type": "number"},
+          "outcome": {"type": "string", "enum": ["consistent", "inconsistent", "degenerate", "unmeasurable"]},
+          "cites": {"type": "array", "items": {"$ref": "#/$defs/id"}, "description": "observation ids that motivated the measurement"}
         }
       }
     },
-    "not_determinable_from_image": {"type": "array", "items": {"type": "string"}},
+    "derivations": {
+      "type": "array",
+      "description": "What a symbolic engine did with explicit premises. `unknown` is not `false`.",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "engine", "premises", "target", "outcome"],
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "engine": {"type": "string", "description": "newclid:<ver> | ddar2:<ver> | lean:<toolchain>"},
+          "premises": {"type": "array", "items": {"$ref": "#/$defs/id"}, "description": "assumption ids or problem premises used; measurements are never premises"},
+          "target": {"$ref": "#/$defs/proposition"},
+          "outcome": {"type": "string", "enum": ["proved", "counterexample", "unknown", "unsupported", "timeout"]},
+          "trace_sha256": {"type": ["string", "null"]},
+          "witness": {"type": ["object", "null"], "description": "numeric counterexample coordinates when outcome=counterexample"},
+          "budget_s": {"type": "number"}
+        }
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "description": "Propositions explicitly adopted as hypotheses, each citing the evidence that motivated adoption. Adoption is a decision, not a fact.",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "proposition", "adopted_by", "cites"],
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "proposition": {"$ref": "#/$defs/proposition"},
+          "adopted_by": {"type": "string", "description": "human:<id> | policy:<rule id> | text"},
+          "cites": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 1}
+        }
+      }
+    },
+    "judgments": {
+      "type": "array",
+      "description": "Human or model verdicts on a specific target. `not_visible` is abstention, not rejection.",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "judge", "target", "question", "verdict", "at"],
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "judge": {"type": "string", "description": "human:<id> | model:<model id> | audit:<model id>"},
+          "target": {"$ref": "#/$defs/id"},
+          "question": {"type": "string", "description": "catalogue question id or 'relation_visible' / 'assumption_adopt'"},
+          "verdict": {"type": "string", "enum": ["confirm", "reject", "not_visible", "unsure", "label"]},
+          "label": {"type": ["string", "number", "null"]},
+          "weight": {"$ref": "#/$defs/unit01"},
+          "rationale": {"type": ["string", "null"], "maxLength": 600},
+          "at": {"type": "string", "format": "date-time"}
+        }
+      }
+    },
     "decisions": {
       "type": "array",
-      "description": "Jev cascade outcomes, one per question asked.",
+      "description": "Classifier cascade outcomes. Input token count is the complete serialized model input.",
       "items": {
-        "type": "object",
-        "required": ["question_id", "answer", "confidence", "route"],
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "question_id", "primitive", "backend", "input_tokens", "answer", "confidence", "route"],
         "properties": {
+          "id": {"$ref": "#/$defs/id"},
           "question_id": {"type": "string"},
           "primitive": {"type": "string", "enum": ["choice", "score", "noul"]},
-          "answer": {"type": ["string", "number", "boolean"]},
-          "probabilities": {"type": "object"},
-          "confidence": {"type": "number"},
-          "threshold_high": {"type": "number"},
-          "threshold_low": {"type": "number"},
-          "route": {"type": "string", "enum": ["act", "llm", "human", "other"]},
-          "backend": {"type": "string", "description": "typesafe:jev-1.13.0 | openjev:151m | rule | replay"},
-          "audited": {"type": "boolean"}
+          "backend": {"type": "string", "description": "openjev:<weights sha8> | rule:<id> | replay"},
+          "input_tokens": {"type": "integer", "minimum": 1},
+          "answer": {"type": ["string", "number", "boolean", "null"]},
+          "abstained": {"type": "boolean", "description": "true when the classifier returned the abstention option or evidence was missing"},
+          "probabilities": {"type": "object", "additionalProperties": {"$ref": "#/$defs/unit01"}},
+          "confidence": {"$ref": "#/$defs/unit01", "description": "selected-label probability unless the calibration lock says otherwise"},
+          "threshold_high": {"$ref": "#/$defs/unit01"},
+          "threshold_low": {"$ref": "#/$defs/unit01"},
+          "route": {"type": "string", "enum": ["act", "llm", "human", "disabled"]},
+          "audit_sample": {"type": "boolean"},
+          "lock_sha256": {"$ref": "#/$defs/sha256"}
         }
       }
     },
     "formal": {
-      "type": "object",
-      "description": "Filled by A4. Absent until at least one relation has status measured|derived|human_confirmed.",
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "propositions"],
       "properties": {
-        "geoir": {"type": "string", "description": "MechGeo-style intermediate representation text"},
-        "lean_statement": {"type": "string"},
-        "lean_imports": {"type": "array", "items": {"type": "string"}},
-        "elaborates": {"type": ["boolean", "null"]},
-        "lean_version": {"type": "string"},
-        "equivalence_ref": {"type": ["string", "null"], "description": "reference statement id (LeanGeo-Bench / LeanEuclid) when one exists"},
-        "equivalence_verdict": {"type": ["string", "null"], "enum": ["equivalent", "weaker", "stronger", "different", null]},
-        "proof_status": {"type": "string", "enum": ["none", "attempted", "proved", "counterexample", "timeout"]},
-        "prover": {"type": ["string", "null"]},
-        "render_back_sha256": {"type": ["string", "null"], "description": "Penrose / JSXGraph rendering of the formal statement, for the co-observer view"}
+        "status": {"type": "string", "enum": ["none", "unsupported", "emitted", "typechecked", "proof_attempted", "proved", "counterexample"]},
+        "target": {"type": ["string", "null"], "enum": ["mathlib", "leangeo", null]},
+        "ir_sha256": {"type": ["string", "null"], "description": "MVE formalization IR (binders, premises, goal, constants, evidence refs)"},
+        "propositions": {
+          "type": "array",
+          "description": "Every hypothesis and the goal, each with its own evidence. A single supported relation authorizes nothing else.",
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["id", "role", "proposition", "support"],
+            "properties": {
+              "id": {"$ref": "#/$defs/id"},
+              "role": {"type": "string", "enum": ["hypothesis", "nondegeneracy", "goal"]},
+              "proposition": {"$ref": "#/$defs/proposition"},
+              "support": {"type": "string", "enum": ["problem_text", "assumption", "derived", "human_confirmed"]},
+              "cites": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 1}
+            }
+          }
+        },
+        "statement_sha256": {"type": ["string", "null"]},
+        "typecheck": {"type": ["object", "null"], "properties": {"ok": {"type": "boolean"}, "toolchain": {"type": "string"}, "log_sha256": {"$ref": "#/$defs/sha256"}}},
+        "proof": {"type": ["object", "null"], "properties": {"prover": {"type": "string"}, "ok": {"type": "boolean"}, "axioms": {"type": "array", "items": {"type": "string"}}, "sorry_free": {"type": "boolean"}, "dependency_closure_checked": {"type": "boolean"}, "budget_s": {"type": "number"}, "log_sha256": {"$ref": "#/$defs/sha256"}}},
+        "equivalence": {"type": ["object", "null"], "properties": {"reference": {"type": "string"}, "level": {"type": "string", "enum": ["structural", "machine_supported", "reviewer_judged", "unknown", "unsupported"]}, "evaluator": {"type": "string"}, "artifact_sha256": {"$ref": "#/$defs/sha256"}}},
+        "render_back": {"type": ["object", "null"], "properties": {"renderer": {"type": "string"}, "sha256": {"$ref": "#/$defs/sha256"}, "roundtrip_ok": {"type": ["boolean", "null"]}}}
+      }
+    },
+    "events": {
+      "type": "array",
+      "description": "Append-only history: every edit, verdict, refit, invalidation.",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "at", "actor", "kind", "touches"],
+        "properties": {
+          "id": {"$ref": "#/$defs/id"},
+          "at": {"type": "string", "format": "date-time"},
+          "actor": {"type": "string"},
+          "kind": {"type": "string", "enum": ["created", "perceived", "measured", "derived", "assumed", "judged", "decided", "formalized", "proved", "rendered", "edited", "invalidated", "ingested"]},
+          "touches": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+          "note": {"type": ["string", "null"], "maxLength": 300}
+        }
       }
     },
     "provenance": {
-      "type": "object",
-      "required": ["perceiver_model", "prompt_sha256", "created_at", "cost_usd"],
+      "type": "object", "additionalProperties": false,
+      "required": ["perceiver_model", "perceiver_calls", "prompt_sha256", "created_at", "cost_usd", "raw_response_sha256"],
       "properties": {
-        "perceiver_model": {"type": "string", "description": "e.g. deepseek-flash (V4.1) ; never deepseek-v4-pro (no image input)"},
-        "prompt_sha256": {"type": "string"},
+        "perceiver_model": {"type": ["string", "null"], "description": "deepseek-flash (V4.1). deepseek-v4-pro is refused (no image input). null for synthetic ground-truth records"},
+        "perceiver_calls": {"type": "integer", "minimum": 0, "maximum": 2},
+        "prompt_sha256": {"type": ["string", "null"]},
+        "raw_response_sha256": {"type": "array", "items": {"$ref": "#/$defs/sha256"}, "description": "raw responses retained for replay"},
         "created_at": {"type": "string", "format": "date-time"},
         "wave_id": {"type": ["string", "null"]},
         "cell_id": {"type": ["string", "null"]},
-        "cost_usd": {"type": "number"},
-        "ledger_path": {"type": ["string", "null"]},
-        "code_version": {"type": "string", "description": "git sha of mve/ that produced the record"}
+        "cost_usd": {"type": "number", "minimum": 0, "description": "all chargeable calls for this record, both perception calls included"},
+        "ledger_path": {"type": ["string", "null"]}
       }
     }
   }

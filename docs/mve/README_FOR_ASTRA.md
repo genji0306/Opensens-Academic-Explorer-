@@ -1,40 +1,33 @@
-# README for Codex Astra — Math Vision Engine (MVE) plan review
+# README for Codex Astra — Math Vision Engine (MVE) plan, r2 packet
 
-Packet date: 2026-09-27. Flat folder, four files, every SHA-256 below. Never cite a file
-that is not listed here.
+Packet date: 2026-09-27 (r2). Flat folder, six files, every SHA-256 below. Never cite a
+file that is not listed here.
 
 | File | SHA-256 | What |
 |---|---|---|
-| MVE_PLAN.md | 2afdf15e56cf563a692f41bf4fdd823cb80b6ad79cab87d8cdd7b598983900aa | The review-and-plan document: vision, findings, architecture A0–A7, Jev decision layer, roles, phases P0–P6 with gates, work packets WP-1..WP-12, risks |
-| MVE_REVIEW_OF_SOURCES.md | c7d41a5b020a2e57ce2ce6700ffd404fee2a8bb97d263adff38ee57cb2f166db | Per-source review of the six requested papers/repos plus Jev and the wider landscape, with verified/unverified marks |
-| mve_observation_record.json | 47a45b9378cfd9c87fde5b36cdd03fdb3e268e71b16a217a7e2df98c998e8112 | JSON Schema `oae-mve-observation-v1` (copy of `schemas/mve_observation_record.json` in the repo) |
+| MVE_PLAN.md | e74aa0732a45657c90d956372568f1363d45dc947dad9da440ed9d6016b3fce8 | **r2**: the plan after your verdict was applied (evidence classes, registry, routing table, build order, gates with nulls, open questions answered) |
+| ASTRA_VERDICT_MVE_PLAN_20260927.md | 844f67c33807b89afbdf501a1f408f5def86aa3dcc0ac044735cd6db9272b238 | Your r1 verdict, verbatim |
+| MVE_PLAN_r1_20260927.md | 2afdf15e56cf563a692f41bf4fdd823cb80b6ad79cab87d8cdd7b598983900aa | The r1 plan you reviewed, for diffing |
+| MVE_REVIEW_OF_SOURCES.md | c7d41a5b020a2e57ce2ce6700ffd404fee2a8bb97d263adff38ee57cb2f166db | Per-source review (unchanged since r1; every external number is a secondary assertion) |
+| mve_observation_record.json | 56f279ac8507d3404ce084e01e910bb9282e79d4943971cfcbc7944ad0e2dce9 | JSON Schema **v2** `oae-mve-observation-v2` (copy of `schemas/mve_observation_record.json`) |
 | README_FOR_ASTRA.md | (this file) | Manifest and task |
 
-## Your task
+## Your task (r2 review)
 
-You are the builder who will implement WP-1..WP-11 in `MVE_PLAN.md` §10. Read the plan
-and the review, then return one markdown file with:
+Read MVE_PLAN.md (r2) against your own r1 verdict. Return one markdown file with:
 
-1. Every ambiguity that would block a work packet (name the WP and the sentence).
-2. Every claim you believe is wrong or unverified in a way that matters (cite section).
-3. The build order you would actually use, with the reason for any change from §7.
-4. A revised gate table if any gate in §7 is untestable as written, with the test you would
-   run instead and its chance rate.
-5. Your answer to the open questions in §11 (GeoIR vs Lean-typed record; LeanGeo vs native
-   Mathlib target; honest equivalence scoring; the first topology statement).
+1. For each item in your r1 sections 1 and 2: **applied / partly / not applied**, one line
+   each, citing the r2 section or schema field.
+2. Anything in r2 that would still block WP-0, WP-1 or WP-2 (the first three packets).
+3. Any new defect r2 introduced.
 
-Do not write code. Do not propose spending beyond the owner's caps in §0 D4. Mark every
-statement you cannot verify from the packet as UNVERIFIED.
+Do not write code. Owner decisions D1–D6 in r2 §0 are constraints. Mark anything you cannot
+verify from the packet as UNVERIFIED.
 
 ## Context you may assume
 
-- Repo worktree branch `claude/math-vision-engine-078a13`, crystal-platform history only;
-  RH tools are reached by path (plan §3).
+- Repo worktree branch `claude/math-vision-engine-078a13`; RH tools reached by path; a
+  `DEPS.lock` will pin them (r2 §3).
 - Roles: Astra builds; Claude Opus reviews and operates the fleet; DeepSeek V4.1 Flash is the
-  vision worker; Sol does structured reviews; Astra + Fable cross-review strategy.
-- Lean 4.34.1 and a Mathlib v4.29.0 project exist locally; the AXLE MCP is down.
-- Jev is text-only; the decision layer is the local openJev 151M (512-token cap) with the
-  recursive self-learning loop in plan §5a (human verdicts override manager labels).
-- Owner decisions D1–D6 are recorded in plan §0: openJev local; JSXGraph UI + GeoGebra in
-  Newclid only; DeepSeek-Prover-V2-7B first with Goedel-Prover-V2-8B compared on the same
-  50 statements; USD 20 cap for P0–P2; package `mve/` in this repo; GeoX/MultiMath data excluded.
+  vision worker; Sol structured reviews; Astra + Fable strategy cross-review.
+- The local openJev is an inference artifact only; its training pipeline is a WP-5 spike.
