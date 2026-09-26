@@ -1,6 +1,7 @@
 """One local inference fixture; a routing answer carries no truth authority."""
 from dataclasses import asdict
 import json
+import importlib.metadata
 import sys
 import time
 
@@ -16,4 +17,6 @@ answer = backend.ask(request)
 if answer is None:
     raise RuntimeError('openJev inference unavailable')
 print(json.dumps({'duration_s': time.monotonic() - start, 'answers': asdict(answer),
-                  'complete_input_tokens': backend.token_counts(request)}, indent=2))
+                  'complete_input_tokens': backend.token_counts(request),
+                  'runtime_versions': {name: importlib.metadata.version(name)
+                      for name in ('onnxruntime', 'tokenizers', 'numpy')}}, indent=2))

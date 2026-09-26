@@ -35,7 +35,7 @@ def test_report_preserves_failure_and_unknown_cost(tmp_path):
 
 
 def test_dependency_inventory_and_main(tmp_path, monkeypatch):
-    from mve.preflight import run
+    from mve.preflight import offline as run
     for key in ('BASE', 'VISION', 'JEV', 'ATLAS', 'LEAN'):
         monkeypatch.setattr(run, key, tmp_path)
     monkeypatch.setattr(run, 'pin', lambda p: {'path': str(p)})
@@ -47,7 +47,7 @@ def test_dependency_inventory_and_main(tmp_path, monkeypatch):
 
 
 def test_local_checks_dispatch_only_offline_probes(monkeypatch):
-    from mve.preflight import run
+    from mve.preflight import offline as run
     monkeypatch.setattr(run, 'probe', lambda name, *a, **k: {'name': name, 'status': 'ran'})
     monkeypatch.setattr(run, 'lean_check', lambda: {'name': 'lean_project_build', 'status': 'failed'})
     checks = run.local_checks()
@@ -60,3 +60,36 @@ def test_guard_blocks_child_network(tmp_path):
                    'import socket; socket.create_connection(("localhost", 80))'], tmp_path)
     assert result['status'] == 'failed'
     assert 'network disabled' in result['stderr']
+
+
+def test_r5_toolchain_probe_is_presence_only(monkeypatch):
+    from mve.preflight import offline
+    calls = []
+    def capture(name, command, cwd, **kwargs):
+        calls.append(command)
+        return {'name': name, 'status': 'ran'}
+    monkeypatch.setattr(offline, 'probe', capture)
+    assert offline.lean_check()['name'] == 'lean_toolchain_presence'
+    assert calls[0][-1] == '--version'
+    assert all('build' not in call for call in calls)
+
+
+def test_euclid_discovery_is_bounded_and_offline(tmp_path):
+    from mve.preflight.offline import discover_euclid
+    result = discover_euclid([tmp_path])
+    assert result['status'] == 'failed'
+    assert result['stop_budget_engineer_hours'] == 2
+    assert result['fallback_selected'] is False
+    (tmp_path / 'Euclid').mkdir()
+    result = discover_euclid([tmp_path])
+    assert result['candidates'] == [str(tmp_path / 'Euclid')]
+    assert result['status'] == 'failed'  # directory presence does not prove a fixture runs
+
+
+def test_r5_schema_packet_is_unchanged_and_valid():
+    from jsonschema import Draft202012Validator
+    schema = Path('schemas/mve_observation_record.json')
+    data = json.loads(schema.read_text())
+    assert data['$id'] == 'oae-mve-observation-v5'
+    Draft202012Validator.check_schema(data)
+    assert schema.read_bytes() == Path('docs/mve/mve_observation_record.json').read_bytes()

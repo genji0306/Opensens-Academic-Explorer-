@@ -1,11 +1,9 @@
-"""Run the WP-0 local probes and persist explicit failures for missing prerequisites."""
+"""Run the WP-0a offline probes and persist explicit failures for missing prerequisites."""
 import argparse
 import json
-import os
 from pathlib import Path
-import shutil
 import sys
-import tempfile
+from datetime import datetime, timezone
 
 from mve.preflight.core import pin, probe, write_report
 
@@ -23,6 +21,9 @@ def dependencies():
              ('rh_deepseek_vision_cell.py', 'rh_deepseek_worker_runner.py')]
     paths += list((VISION / 'riemann/research/deepseek').glob('*.py'))
     paths += list((JEV / 'rhjev').rglob('*.py'))
+    paths += list((JEV / 'tests').rglob('*.py'))
+    paths += list((ROOT / 'mve/preflight').rglob('*.py'))
+    paths += [ROOT / 'docs/mve/MVE_PLAN.md', ROOT / 'schemas/mve_observation_record.json']
     paths += list((BASE / 'rh-visual-fields/rhvf').rglob('*.py'))
     paths += list((ATLAS / 'rh_evidence').rglob('*.py'))
     paths += [BASE / 'models/openjev' / name for name in
@@ -56,25 +57,22 @@ def local_checks():
 
 
 def lean_check():
-    toolchain = Path.home() / '.elan/toolchains/leanprover--lean4---v4.29.0/bin/lake'
-    if not toolchain.is_file():
-        return {'name': 'lean_project_build', 'status': 'failed', 'reason': 'pinned Lake binary missing'}
-    # Do not build in the borrowed project or auto-fetch dependencies.
-    with tempfile.TemporaryDirectory(prefix='mve-lean-') as tmp:
-        dest = Path(tmp)
-        for name in ('lakefile.lean', 'lean-toolchain', 'lake-manifest.json'):
-            shutil.copy2(LEAN / name, dest / name)
-        (dest / 'RH').mkdir()
-        (dest / 'RH.lean').write_text('import Mathlib\n')
-        # macOS sandbox denies network to Lake and all its child processes.
-        sandbox = Path('/usr/bin/sandbox-exec')
-        if not sandbox.exists():
-            return {'name': 'lean_project_build', 'status': 'failed',
-                    'reason': 'network-denying OS sandbox unavailable'}
-        return probe('lean_project_build', [str(sandbox), '-p',
-            '(version 1)(allow default)(deny network*)', str(toolchain),
-            '--no-cache', 'build'], dest, timeout=60,
-            extra_env={'PATH': str(toolchain.parent) + os.pathsep + os.environ['PATH']})
+    toolchain = Path.home() / '.elan/toolchains/leanprover--lean4---v4.29.0/bin/lean'
+    return probe('lean_toolchain_presence', [str(toolchain), '--version'], ROOT)
+
+
+def discover_euclid(roots):
+    """Bounded directory discovery; no fetching or executing unknown entry points."""
+    candidates = sorted(str(p) for root in roots if root.is_dir()
+                        for p in root.iterdir()
+                        if p.is_dir() and 'euclid' in p.name.lower())
+    return {'name': 'euclid_generator_discovery', 'status': 'failed',
+            'at': datetime.now(timezone.utc).isoformat(), 'candidates': candidates,
+            'searched_roots': [str(root) for root in roots],
+            'reason': ('local candidate found; executable fixture not yet established' if candidates
+                       else 'no local Euclid checkout in bounded roots; cannot run fixture offline'),
+            'stop_budget_engineer_hours': 2, 'fallback_selected': False,
+            'next': 'WP-2 in-house fallback only after the discovery stop criterion is recorded'}
 
 
 
@@ -83,8 +81,9 @@ def main():
     parser.add_argument('--output', type=Path, default=ROOT / 'mve/preflight/results')
     args = parser.parse_args()
     checks = local_checks()
+    checks.append(discover_euclid([ROOT / 'vendor', ROOT / 'references', BASE, BASE / 'worktrees', BASE / 'runtimes']))
     failures = {
-        'deepseek_live_probe': 'not sent: borrowed runner fails aggregate in-flight reservation and peak-refusal prerequisites; no current verified price lock',
+        'newclid_jgex_roundtrip': 'Newclid import failed in selected Python; no JGEX round-trip capability established',
         'newclid_geogebra_terms': 'actual imported Newclid dependency/terms unavailable; no licence conclusion',
         'rhvf_isolation': 'source pinned only; end-to-end isolation requires WP-11a process boundary',
         'explorer_scenes': 'index and geometry entrypoints pinned; scene-to-record integration awaits WP-9',

@@ -158,10 +158,10 @@
           "status": "pinned"
         },
         {
-          "bytes": 5306,
+          "bytes": 9009,
           "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
           "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/claims.py",
-          "sha256": "0a46e88169900a295d26701def7112ae282fec9fa17edca4b1f2a458caed56bf",
+          "sha256": "deb1d1cccb4783ff0dfedee50adc37efb392ae12842713d2f3fb88b0d577bd54",
           "status": "pinned"
         },
         {
@@ -211,6 +211,20 @@
           "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
           "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/metrics.py",
           "sha256": "7de7bf9c9e1bcddfbf65a5c2bc7b898a344d33d35c5c6000177a2126c02a139a",
+          "status": "pinned"
+        },
+        {
+          "bytes": 8320,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/numeric.py",
+          "sha256": "0386f6b3195846aa164c12972cfaeadfc2535df5caf95f83d29d0259712a581f",
+          "status": "pinned"
+        },
+        {
+          "bytes": 10934,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/pilot/numeric_eval.py",
+          "sha256": "0d0046dca35dbb99e27cb50d4e583d82620c269a429825650cf9eb8a46baaf48",
           "status": "pinned"
         },
         {
@@ -295,6 +309,181 @@
           "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
           "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/rhjev/study_report.py",
           "sha256": "251df57f1d90aa9b9378841fc59d622fb5e79fa390e385deca85d50307da9ada",
+          "status": "pinned"
+        },
+        {
+          "bytes": 0,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/__init__.py",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status": "pinned"
+        },
+        {
+          "bytes": 244,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/conftest.py",
+          "sha256": "32b363ac2845dca78fa9b2457b9f7d9bca558f015c46676aee641ea367d250a9",
+          "status": "pinned"
+        },
+        {
+          "bytes": 0,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/pilot/__init__.py",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "status": "pinned"
+        },
+        {
+          "bytes": 710,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/pilot/conftest.py",
+          "sha256": "40852689b48f71faa607b85bb8d6f8ef4e43dfbceb1980078e45904ee5227220",
+          "status": "pinned"
+        },
+        {
+          "bytes": 4911,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/pilot/helpers.py",
+          "sha256": "595190506ea713a9f411f6f65d8d7bfff4491a2d4a2262b70a8bbc0b844ecf3a",
+          "status": "pinned"
+        },
+        {
+          "bytes": 7581,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/pilot/test_blind_score.py",
+          "sha256": "f708bf18cb74a98c50881fcaba3b8373c8e4572c6c4c774c1c1244e2d7d2fe4d",
+          "status": "pinned"
+        },
+        {
+          "bytes": 4861,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/pilot/test_claims_seeds.py",
+          "sha256": "612ab5b94b5f64ad49e812da0e3a33040df3d03da73311f685e6b81bc2b67ec7",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5648,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/pilot/test_deepseek.py",
+          "sha256": "e2eb5f23f48db6f84bc09f5b33dce2a1ed2c591824c5ee666917f847c8750707",
+          "status": "pinned"
+        },
+        {
+          "bytes": 1608,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/pilot/test_dryrun.py",
+          "sha256": "4f30fc750129b0c84ebddec6b6c399c0543693b1716601dc1af121676f03d69d",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6904,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/pilot/test_judges_g1.py",
+          "sha256": "1f9814bbfd4a88735e04f3cdda8a2e1e3200c7c7e15112c561bd11800438ee15",
+          "status": "pinned"
+        },
+        {
+          "bytes": 931,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/pilot/test_manager_amendments.py",
+          "sha256": "eead6aa085e65c7d4497bc00ef0e07ba07aedf1b0a2288b9d9761cb13b7963bd",
+          "status": "pinned"
+        },
+        {
+          "bytes": 9679,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/pilot/test_run.py",
+          "sha256": "8232677f4bb998ea1c83708194f6d26180a4e2ab92bf695a0c13c72f587871c9",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5427,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/test_backends.py",
+          "sha256": "b7586fca9578a3e8d3d2e6a86ec2a148d82297d6023d2a20040218bf6ec9df5c",
+          "status": "pinned"
+        },
+        {
+          "bytes": 4752,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/test_cli.py",
+          "sha256": "4453c3a0975ffeae3b7a7c4b714f5e583a5c92624509682b2d9330dbcc3e5070",
+          "status": "pinned"
+        },
+        {
+          "bytes": 4391,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/test_compact_hook.py",
+          "sha256": "8bfdf4098d8186d7f8f8a77da88bbaf7a19f33f2e3dee3fe78c3bf0949dffba8",
+          "status": "pinned"
+        },
+        {
+          "bytes": 11089,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/test_dream.py",
+          "sha256": "8740cfde64bcb213342f23d43e2786a0d8c7be3bfb12c70edb42dda83680817e",
+          "status": "pinned"
+        },
+        {
+          "bytes": 1999,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/test_ledger.py",
+          "sha256": "5a00025b43eb68e4e5ed75f12e333c8184ac49cf6ff100471201d8155dac41f9",
+          "status": "pinned"
+        },
+        {
+          "bytes": 9115,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/test_openjev.py",
+          "sha256": "4b57501c9c7d592c77fe2ceee63d7f7fa427a4a36e92c9d616b30397e26bbc1e",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3007,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/test_policy_compact.py",
+          "sha256": "d4188ead4915641b5fe1a0b7672cb70ab1cfab3f4d4bb9d15ad8374b8c6183e5",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5197,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/test_policy_fleet.py",
+          "sha256": "146a37e1b17e174d651719598f4a5f918ca149b00642865c9e67d373995097a3",
+          "status": "pinned"
+        },
+        {
+          "bytes": 8485,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/test_policy_manager.py",
+          "sha256": "a7ae04935e3f3b5cdf431db4bba72ccddf9c69158240141b4830cf8e0ad3d9c5",
+          "status": "pinned"
+        },
+        {
+          "bytes": 7311,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/test_policy_worker.py",
+          "sha256": "12280bf722280c74b6be50290d3ba60b624de055246bb3d61c4a86f8379c3eea",
+          "status": "pinned"
+        },
+        {
+          "bytes": 2961,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/test_questions.py",
+          "sha256": "11657a4a8020bf0c91d4cf8b8e83f196d640bb41c6f3fcc5288d64edf28449a0",
+          "status": "pinned"
+        },
+        {
+          "bytes": 1551,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/test_roster.py",
+          "sha256": "9fea6bee4635e43e27d65df87488d7a06a97d3e4e97e2bfc1fe7f62409d81715",
+          "status": "pinned"
+        },
+        {
+          "bytes": 8000,
+          "git_sha": "9c40588a99bc73797f827f64405f0a649051dd17",
+          "path": "/Users/applefamily/Developer/Opensens/rh-jev-harness/tests/test_study.py",
+          "sha256": "6c14b23ff02367dc919189bc2e24ef042b267f191e91c53d3f3d5c5a4aec0791",
           "status": "pinned"
         },
         {
@@ -498,6 +687,62 @@
           "git_sha": null,
           "path": "/Users/applefamily/Developer/Opensens/runtimes/qwen-local-worker/com.opensens.qwen-local-worker.plist",
           "sha256": "113d84405ea74360dbaa8e9667ada28eaf555841727a8891e14c7149926a7b4d",
+          "status": "pinned"
+        },
+        {
+          "bytes": 58460,
+          "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/docs/mve/MVE_PLAN.md",
+          "sha256": "94107fbbfb667d2dfdb1944f344298240cfd481069fbac3571e4ba81605b75a7",
+          "status": "pinned"
+        },
+        {
+          "bytes": 68,
+          "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/__init__.py",
+          "sha256": "f89051b5140cc466f5d4bb91e15781427bfbfab80db214040cc089dadf50ab9e",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3314,
+          "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/core.py",
+          "sha256": "3d5fc2fd0e471f6261de1277356a66aac8b692bdb6ad9a92a41bba8adc2d15f3",
+          "status": "pinned"
+        },
+        {
+          "bytes": 438,
+          "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/guard/sitecustomize.py",
+          "sha256": "212358db3a9c95ee7da482fcaa35c0a4e78c01e9d204bd0dae29333209b6e20e",
+          "status": "pinned"
+        },
+        {
+          "bytes": 5587,
+          "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/offline.py",
+          "sha256": "4fdf74443adf8925d4da72504bb9a0dca8cd920477ced05daf6f79cba23ffeb5",
+          "status": "pinned"
+        },
+        {
+          "bytes": 955,
+          "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/openjev_fixture.py",
+          "sha256": "c2d11188b298c9a60a3721d53086aedc9ea82755811930e5e883caaf8a742c47",
+          "status": "pinned"
+        },
+        {
+          "bytes": 2630,
+          "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/vision_contract.py",
+          "sha256": "ea1e81eb05a6a6a712f2262b571dec91d409a56d4da907bd5699c04b5a17f498",
+          "status": "pinned"
+        },
+        {
+          "bytes": 51576,
+          "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/schemas/mve_observation_record.json",
+          "sha256": "13ebcbe03ab718dd39844a65db7519cec370acdc7924555dece6d970414e46fc",
           "status": "pinned"
         },
         {

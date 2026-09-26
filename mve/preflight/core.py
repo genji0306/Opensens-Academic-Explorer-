@@ -28,7 +28,7 @@ def probe(name, command, cwd, timeout=60, extra_env=None):
     """Capture bounded local execution; socket access is disabled in Python children."""
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1', HF_HUB_OFFLINE='1',
                TRANSFORMERS_OFFLINE='1', **(extra_env or {}))
-    guard = Path(__file__).parent / 'offline'
+    guard = Path(__file__).parent / 'guard'
     env['PYTHONPATH'] = str(guard) + os.pathsep + env.get('PYTHONPATH', '')
     for key in ('DEEPSEEK_API_KEY', 'TYPESAFE_API_KEY'):
         env.pop(key, None)
@@ -50,12 +50,12 @@ def probe(name, command, cwd, timeout=60, extra_env=None):
 def write_report(output, checks, dependencies):
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
-    report = {'schema': 'mve-preflight-v1', 'checks': checks, 'live_calls': 0,
+    report = {'schema': 'mve-preflight-v1', 'work_packet': 'WP-0a', 'plan_revision': 'r5', 'observation_schema': 'oae-mve-observation-v5', 'checks': checks, 'live_calls': 0,
               'actual_api_cost_usd': 0, 'cost_model': {
                   'vision_latency_s': None, 'tokens_per_image': None,
                   'human_seconds_per_verdict': None, 'calls_per_image': 2,
                   'cost_formula': '2 * (input_tokens * miss_rate + output_tokens * output_rate) / 1e6',
-                  'status': 'incomplete: no safe live probe or human session',
+                  'status': 'deferred to WP-0b and human session; WP-0a is offline only',
                   'aggregate_cap_usd': 20, 'p0_cap_usd': 2, 'p1_cap_usd': 8}}
     (output / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
     lock = {'schema': 'mve-deps-v1', 'files': dependencies,
