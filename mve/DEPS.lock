@@ -1,0 +1,72 @@
+{
+  "schema": "mve-deps-v1",
+  "packet": "WP-11a offline evaluation infrastructure",
+  "base_git_sha": "5645250003f129473919f4f32984c68a86e1c477",
+  "python": "3.13.2",
+  "platform": "macOS-27.0-arm64-arm-64bit-Mach-O",
+  "packages": {
+    "scipy": "1.17.1",
+    "numpy": "2.4.6",
+    "pytest": "8.4.2",
+    "pytest-cov": "6.3.0",
+    "ruff": "0.8.6"
+  },
+  "files": [
+    {
+      "path": "mve/__init__.py",
+      "sha256": "1660edf3de4ade8f040b5b6ce0248e7cbb029cb85490702a5f523807658c37f0"
+    },
+    {
+      "path": "mve/evaluation/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "mve/evaluation/confidence.py",
+      "sha256": "3ef520444744f51360a32caf74ce09abb851cca5f4b30251359e066cb97077f1"
+    },
+    {
+      "path": "mve/evaluation/isolation.py",
+      "sha256": "e97ae96d19465321444a0a5935df84c78e5d62ed5438a962127ffef8e405fa11"
+    },
+    {
+      "path": "mve/evaluation/manifest.py",
+      "sha256": "3534ee1df3ec2678f225b1bd3a409587451ca411dcabf287b60816ed830df34c"
+    },
+    {
+      "path": "mve/evaluation/scoring.py",
+      "sha256": "ecea445caf42bfff81d5784d8100a9d794b4da6b644c486dc5d79f20d6151e60"
+    },
+    {
+      "path": "mve/evaluation/splits.py",
+      "sha256": "93fd2fb470a816adbe28cd5dced0e613b2601046f8644ad50516a8417c736eab"
+    },
+    {
+      "path": "tests/mve/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/mve/conftest.py",
+      "sha256": "cb2572188b58ff4ed54ebee6286a63a1c8305f7131dc35731100bbadc619ae66"
+    },
+    {
+      "path": "tests/mve/test_confidence.py",
+      "sha256": "f3db9bbb38f5df3ed03e506d42d183a59172331a0208e695891086077596230e"
+    },
+    {
+      "path": "tests/mve/test_evaluation_manifest.py",
+      "sha256": "bcad01aa1f8176b8cd535e6b6ab064b8fd015501ea4b59f33ed34c7cb72d03af"
+    },
+    {
+      "path": "tests/mve/test_isolation.py",
+      "sha256": "bf54700dbcf33215ed04df2d3479b9305ed47d1ee1aa5117f8cf92edf3e2bcee"
+    },
+    {
+      "path": "tests/mve/test_scoring.py",
+      "sha256": "5e352fbac474129634a5a09625676f877d9e234bc6855e349997f9a6ee21b90a"
+    },
+    {
+      "path": "tests/mve/test_splits.py",
+      "sha256": "d9260d24837c028a0c6359dba0dcd238f11c25a6fc8b003b38917a1e9b307bd6"
+    }
+  ]
+}
