@@ -162,7 +162,7 @@
     "uncertain_policy": "dispatched without settlement retains full reservation; actual cost unknown"
   },
   "confidence_policy": "95% intervals are null where no independent sampling design is committed; fixture counts are descriptive, not population confidence claims.",
-  "evidence_commit": "ea621a8918e5bb22c5ed53a1d3c30bfb5b09f7d7",
+  "evidence_commit": "413a5daf49b9cf4f5d8d6f37372cf962b219a44b",
   "gates": {
     "G0": {
       "aggregation_reason": "gate criteria are conjunctions, not relation or diagram scores",
@@ -567,38 +567,50 @@
     "G5": {
       "aggregation_reason": "gate criteria are conjunctions, not relation or diagram scores",
       "counts": {
-        "criteria_evidenced": 0,
+        "criteria_evidenced": 1,
         "criteria_expected": 4,
-        "criteria_met": 0
+        "criteria_met": 1
       },
       "criteria": {
         "external": {
           "outcome": null,
           "policy_source": "docs/mve/MVE_PLAN.md#8",
-          "reason": "Missing evidence: >= 30% complete PD on permitted external <= 7-crossing set; missing external incomplete",
+          "reason": "No permitted external perception set or scored run",
           "requirement": ">= 30% complete PD on permitted external <= 7-crossing set; missing external incomplete",
-          "sources": []
+          "sources": [
+            "mve/topology/artifacts/receipt.json#/",
+            "docs/mve/TOPOLOGY.md"
+          ]
         },
         "grammar": {
-          "outcome": null,
+          "outcome": true,
           "policy_source": "docs/mve/MVE_PLAN.md#8",
-          "reason": "Missing evidence: frozen diagram grammar and PD scorer",
+          "reason": "Frozen coordinate-fixture grammar and PD scorer; evaluation split retired",
           "requirement": "frozen diagram grammar and PD scorer",
-          "sources": []
+          "sources": [
+            "mve/topology/artifacts/receipt.json#/",
+            "docs/mve/TOPOLOGY.md"
+          ]
         },
         "scores": {
           "outcome": null,
           "policy_source": "docs/mve/MVE_PLAN.md#8",
-          "reason": "Missing evidence: exact/canonicalized apart; component validity, crossing/orientation errors, unknowns, invariant consistency",
+          "reason": "Perception scores absent; fixture scores are reported separately",
           "requirement": "exact/canonicalized apart; component validity, crossing/orientation errors, unknowns, invariant consistency",
-          "sources": []
+          "sources": [
+            "mve/topology/artifacts/receipt.json#/",
+            "docs/mve/TOPOLOGY.md"
+          ]
         },
         "synthetic": {
           "outcome": null,
           "policy_source": "docs/mve/MVE_PLAN.md#8",
-          "reason": "Missing evidence: >= 30% complete PD on separate synthetic <= 7-crossing set",
+          "reason": "No real perception run; coordinate self-consistency is not G5 evidence",
           "requirement": ">= 30% complete PD on separate synthetic <= 7-crossing set",
-          "sources": []
+          "sources": [
+            "mve/topology/artifacts/receipt.json#/",
+            "docs/mve/TOPOLOGY.md"
+          ]
         }
       },
       "interval95": null,
@@ -607,10 +619,9 @@
       "micro": null,
       "null": "N/A general PD; conditional orientation-only 2^(-c); knot-type 1/k plus majority",
       "reasons": [
-        "Missing evidence: frozen diagram grammar and PD scorer",
-        "Missing evidence: >= 30% complete PD on separate synthetic <= 7-crossing set",
-        "Missing evidence: >= 30% complete PD on permitted external <= 7-crossing set; missing external incomplete",
-        "Missing evidence: exact/canonicalized apart; component validity, crossing/orientation errors, unknowns, invariant consistency"
+        "No real perception run; coordinate self-consistency is not G5 evidence",
+        "No permitted external perception set or scored run",
+        "Perception scores absent; fixture scores are reported separately"
       ],
       "sources": [
         "docs/mve/MVE_PLAN.md#8",
@@ -844,8 +855,11 @@
     "docs/mve/MVE_PLAN.md": {
       "sha256": "f073240be638b9225b5f6f33da4bbe34ef75d2ba71087da7b39b2ab9d9b61908"
     },
+    "docs/mve/TOPOLOGY.md": {
+      "sha256": "d9df94bbb4bef9cdf0db01bc0be8623fac4304975a60cf80d4a85960272e6ec5"
+    },
     "docs/mve/reviews/OFFLINE_PACKETS_REVIEW_OPUS_20260927.md": {
-      "sha256": "5546164a1a8dfe9b727da17b8c5b11faf84c032b928e185799ce9198f61e3bbe"
+      "sha256": "01d05c2e4c3b79b86c8ccab76edcf356d462ae706314bcc1318459804eac6aba"
     },
     "docs/mve/reviews/WP2_CORPUS_RECEIPT_20260927.json": {
       "sha256": "4795282bf1aad58553744316a518fa326eb8178de3d8ca3e9652370635d68db8"
@@ -873,6 +887,9 @@
     },
     "mve/preflight/results/report.json": {
       "sha256": "f5e55b7b10e57f4c2fcf0695c3a7b7a182edff6dbee809a15afba85ccc3051a5"
+    },
+    "mve/topology/artifacts/receipt.json": {
+      "sha256": "cc705e18143a78eb691c8cc00ed7fbc34a8537bdff1c8cf87ec5750ad19427f9"
     }
   },
   "tables": {
@@ -2485,6 +2502,636 @@
         ],
         "unit": "capability check"
       }
+    ]
+  },
+  "topology": {
+    "scope": "synthetic_coordinate_self_consistency",
+    "scores": {
+      "canonicalized": {
+        "denominator": 30,
+        "numerator": 30,
+        "value": 1.0
+      },
+      "complete": {
+        "denominator": 30,
+        "numerator": 30,
+        "value": 1.0
+      },
+      "component_validity": {
+        "denominator": 30,
+        "numerator": 30,
+        "value": 1.0
+      },
+      "crossing_count": {
+        "denominator": 30,
+        "numerator": 30,
+        "value": 1.0
+      },
+      "crossing_errors": 0,
+      "errors": {},
+      "exact": {
+        "denominator": 30,
+        "numerator": 30,
+        "value": 1.0
+      },
+      "interval95": null,
+      "interval_reason": "public finite regression census, no sampling inference",
+      "invariant_consistency": {
+        "denominator": 0,
+        "numerator": 0,
+        "value": null
+      },
+      "invariant_reason": "no SnapPy invariant run; agreement would not verify transcription",
+      "knot_type": {
+        "denominator": 30,
+        "macro": {
+          "denominator": 30,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "micro": {
+          "denominator": 30,
+          "numerator": 0,
+          "value": 0.0
+        },
+        "numerator": 0,
+        "unit": "one class label per diagram; micro equals diagram macro",
+        "value": 0.0
+      },
+      "knot_type_unknowns": 30,
+      "macro": {
+        "denominator": 25,
+        "numerator": 25.0,
+        "unit": "diagrams with crossings",
+        "value": 1.0
+      },
+      "macro_excluded_crossing_free": 5,
+      "micro": {
+        "denominator": 76,
+        "numerator": 76,
+        "unit": "crossing rows",
+        "value": 1.0
+      },
+      "nulls": {
+        "exact_pd": null,
+        "exact_pd_reason": "N/A; no general PD null",
+        "knot_type": {
+          "counts": {
+            "figure_eight": 6,
+            "hopf": 6,
+            "trefoil_negative": 5,
+            "trefoil_positive": 1,
+            "unknot": 6,
+            "unlink": 6
+          },
+          "k": 6,
+          "majority": 0.2,
+          "uniform": 0.16666666666666666
+        },
+        "orientation_complete": {
+          "condition": "fixed detected crossings and arc correspondence; independent sign guessing; c=0 is vacuous",
+          "mean": 0.32447916666666665,
+          "per_diagram": {
+            "figure_eight-base": 0.0625,
+            "figure_eight-mirror": 0.0625,
+            "figure_eight-near_miss": 0.0625,
+            "figure_eight-r1": 0.03125,
+            "figure_eight-r1_negative": 0.03125,
+            "figure_eight-r2": 0.015625,
+            "hopf-base": 0.25,
+            "hopf-mirror": 0.25,
+            "hopf-near_miss": 0.25,
+            "hopf-r1": 0.125,
+            "hopf-r1_negative": 0.125,
+            "hopf-r2": 0.0625,
+            "trefoil-base": 0.125,
+            "trefoil-mirror": 0.125,
+            "trefoil-near_miss": 0.125,
+            "trefoil-r1": 0.0625,
+            "trefoil-r1_negative": 0.0625,
+            "trefoil-r2": 0.03125,
+            "unknot-base": 1,
+            "unknot-mirror": 1,
+            "unknot-near_miss": 0.5,
+            "unknot-r1": 0.5,
+            "unknot-r1_negative": 0.5,
+            "unknot-r2": 0.125,
+            "unlink-base": 1,
+            "unlink-mirror": 1,
+            "unlink-near_miss": 1,
+            "unlink-r1": 0.5,
+            "unlink-r1_negative": 0.5,
+            "unlink-r2": 0.25
+          }
+        }
+      },
+      "orientation": {
+        "complete": {
+          "denominator": 30,
+          "numerator": 30,
+          "value": 1.0
+        },
+        "macro": {
+          "denominator": 25,
+          "numerator": 25.0,
+          "value": 1.0
+        },
+        "macro_excluded_crossing_free": 5,
+        "micro": {
+          "denominator": 76,
+          "numerator": 76,
+          "value": 1.0
+        },
+        "unaligned_diagrams": 0
+      },
+      "rows": [
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 0,
+          "errors": [],
+          "exact": true,
+          "id": "unknot-base",
+          "matched_rows": 0,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 0,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 0,
+          "errors": [],
+          "exact": true,
+          "id": "unknot-mirror",
+          "matched_rows": 0,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 0,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 1,
+          "errors": [],
+          "exact": true,
+          "id": "unknot-r1",
+          "matched_rows": 1,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 1,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 1,
+          "errors": [],
+          "exact": true,
+          "id": "unknot-r1_negative",
+          "matched_rows": 1,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 1,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 3,
+          "errors": [],
+          "exact": true,
+          "id": "unknot-r2",
+          "matched_rows": 3,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 3,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 1,
+          "errors": [],
+          "exact": true,
+          "id": "unknot-near_miss",
+          "matched_rows": 1,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 1,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 3,
+          "errors": [],
+          "exact": true,
+          "id": "trefoil-base",
+          "matched_rows": 3,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 3,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 3,
+          "errors": [],
+          "exact": true,
+          "id": "trefoil-mirror",
+          "matched_rows": 3,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 3,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 4,
+          "errors": [],
+          "exact": true,
+          "id": "trefoil-r1",
+          "matched_rows": 4,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 4,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 4,
+          "errors": [],
+          "exact": true,
+          "id": "trefoil-r1_negative",
+          "matched_rows": 4,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 4,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 5,
+          "errors": [],
+          "exact": true,
+          "id": "trefoil-r2",
+          "matched_rows": 5,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 5,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 3,
+          "errors": [],
+          "exact": true,
+          "id": "trefoil-near_miss",
+          "matched_rows": 3,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 3,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 4,
+          "errors": [],
+          "exact": true,
+          "id": "figure_eight-base",
+          "matched_rows": 4,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 4,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 4,
+          "errors": [],
+          "exact": true,
+          "id": "figure_eight-mirror",
+          "matched_rows": 4,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 4,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 5,
+          "errors": [],
+          "exact": true,
+          "id": "figure_eight-r1",
+          "matched_rows": 5,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 5,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 5,
+          "errors": [],
+          "exact": true,
+          "id": "figure_eight-r1_negative",
+          "matched_rows": 5,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 5,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 6,
+          "errors": [],
+          "exact": true,
+          "id": "figure_eight-r2",
+          "matched_rows": 6,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 6,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 4,
+          "errors": [],
+          "exact": true,
+          "id": "figure_eight-near_miss",
+          "matched_rows": 4,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 4,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 2,
+          "errors": [],
+          "exact": true,
+          "id": "hopf-base",
+          "matched_rows": 2,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 2,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 2,
+          "errors": [],
+          "exact": true,
+          "id": "hopf-mirror",
+          "matched_rows": 2,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 2,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 3,
+          "errors": [],
+          "exact": true,
+          "id": "hopf-r1",
+          "matched_rows": 3,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 3,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 3,
+          "errors": [],
+          "exact": true,
+          "id": "hopf-r1_negative",
+          "matched_rows": 3,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 3,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 4,
+          "errors": [],
+          "exact": true,
+          "id": "hopf-r2",
+          "matched_rows": 4,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 4,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 2,
+          "errors": [],
+          "exact": true,
+          "id": "hopf-near_miss",
+          "matched_rows": 2,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 2,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 0,
+          "errors": [],
+          "exact": true,
+          "id": "unlink-base",
+          "matched_rows": 0,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 0,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 0,
+          "errors": [],
+          "exact": true,
+          "id": "unlink-mirror",
+          "matched_rows": 0,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 0,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 1,
+          "errors": [],
+          "exact": true,
+          "id": "unlink-r1",
+          "matched_rows": 1,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 1,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 1,
+          "errors": [],
+          "exact": true,
+          "id": "unlink-r1_negative",
+          "matched_rows": 1,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 1,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 2,
+          "errors": [],
+          "exact": true,
+          "id": "unlink-r2",
+          "matched_rows": 2,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 2,
+          "unknown": false
+        },
+        {
+          "canonicalized": true,
+          "complete": true,
+          "component_valid": true,
+          "crossing_count_correct": true,
+          "crossing_errors": 0,
+          "crossings": 0,
+          "errors": [],
+          "exact": true,
+          "id": "unlink-near_miss",
+          "matched_rows": 0,
+          "orientation_aligned": true,
+          "orientation_complete": true,
+          "orientation_matches": 0,
+          "unknown": false
+        }
+      ],
+      "scope": "descriptive fixture census; not G5 perception evidence",
+      "unknowns": 0
+    },
+    "sources": [
+      "mve/topology/artifacts/receipt.json#/",
+      "docs/mve/TOPOLOGY.md"
     ]
   }
 }

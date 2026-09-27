@@ -129,3 +129,11 @@ or invariant agreement must never be promoted to transcript verification.
 No Q-topo-workflow classifier activation, knot-type classifier, Euclidean record
 changes, automatic gate promotion or live transport is introduced. Opus review
 and an outside-sandbox full-suite rerun remain pending.
+
+## Committed report snapshot
+
+`docs/mve/reports/SUMMARY.md` and `SUMMARY.json` are regenerated from evidence
+commit `413a5daf49b9cf4f5d8d6f37372cf962b219a44b`. A second generation and JSON round trip
+produce identical bytes. G5 is 1/1/4 and not established; the budget object is
+byte-equivalent after canonical serialization to the prior report. The follow-up
+commit contains only this snapshot, its documentation and refreshed WP-10 hashes.

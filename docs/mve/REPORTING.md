@@ -3,7 +3,7 @@
 Run from the repository root, with a local evidence commit:
 
 ```bash
-python3 -m mve.reporting --revision ea621a8918e --output docs/mve/reports
+python3 -m mve.reporting --revision 413a5daf49b --output docs/mve/reports
 ```
 
 This writes `SUMMARY.md` and `SUMMARY.json`. The same revision and inputs produce
@@ -13,8 +13,8 @@ model call, download, compiler invocation, corpus regeneration or database mutat
 has its SHA-256 in the report; rows carry file/field pointers. The packet entry in
 `mve/DEPS.lock` pins the reporting implementation and its evidence dependencies.
 
-The checked-in report uses integration commit
-`ea621a8918e5bb22c5ed53a1d3c30bfb5b09f7d7`. Reproducing it does not require a model,
+The checked-in report uses WP-10 evidence commit
+`413a5daf49b9cf4f5d8d6f37372cf962b219a44b`. Reproducing it does not require a model,
 Lean cache, generated private corpus, credentials or network access.
 
 ## Accounting

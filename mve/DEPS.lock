@@ -1523,11 +1523,19 @@
         },
         {
           "path": "docs/mve/REPORTING.md",
-          "sha256": "4a17f3a4ee3e6d7ce2a08ce1b7b2bcd200f4398bb72d4d34c1c8fb0a98716f08"
+          "sha256": "000c0e014de58bb6bc4cd4034a0b5b74b02624c05a25e9e4b016dd964ea19c65"
         },
         {
           "path": "docs/mve/TOPOLOGY.md",
           "sha256": "d9df94bbb4bef9cdf0db01bc0be8623fac4304975a60cf80d4a85960272e6ec5"
+        },
+        {
+          "path": "docs/mve/reports/SUMMARY.json",
+          "sha256": "44a2cb1df7489dfb22b4dea7429f59f7306e53bbcd67610d410482a094048721"
+        },
+        {
+          "path": "docs/mve/reports/SUMMARY.md",
+          "sha256": "ee9cf6abdda1d60d0e31d8d9fa0feaa33671a39fd48fc13cadd070544749ff18"
         },
         {
           "path": "docs/mve/reviews/OFFLINE_PACKETS_REVIEW_OPUS_20260927.md",
@@ -1535,7 +1543,7 @@
         },
         {
           "path": "docs/mve/reviews/WP10_TOPOLOGY_ASTRA_20260928.md",
-          "sha256": "2f258eb8cd0803bbfe326d8359bf99ffc8ecf1ffff340b96cbc46ea56605d989"
+          "sha256": "4b8546a8c5e8182a7e9e9b2e2fc2f8286e471632a3c5b18ed024249f42152346"
         },
         {
           "path": "mve/evaluation/splits.py",
@@ -1996,6 +2004,7 @@
         "ruff": "0.8.6"
       },
       "python": "3.13.2",
+      "report_evidence_git_sha": "413a5daf49b9cf4f5d8d6f37372cf962b219a44b",
       "scope": "synthetic_coordinate_self_consistency",
       "snappy": "unavailable; not installed or implemented",
       "split_sha256": "0b58ec98fba40f88880db0d38871d596d37f4bbd956c1ddacd95cdf54d5230ad",
