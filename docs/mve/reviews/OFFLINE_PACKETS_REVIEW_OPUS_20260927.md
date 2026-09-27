@@ -84,3 +84,33 @@ to the project / output root (hashes carry the integrity).
 ## Standing
 WP-0b must refuse unverified prices before any hosted transport. Euclid, LeanGeo and JSXGraph
 remain "failed: not present locally"; vendoring needs an owner-approved packet.
+
+## Addendum: re-review after fixes (base 8da83b3c2a2)
+
+| Branch | Head | Re-run | Verdict |
+|---|---|---|---|
+| codex/mve-wp4-geometry-guards | a9ac0502255 | 317 passed, measurement/records.py 100% | **PASS, merged** |
+| codex/mve-wp6a-lean-spike | 0c94e493fe5 | 338 passed + 2 skipped in scratch; the 29 formalizer tests incl. both real-Lean checks pass from a Developer worktree at the lock's depth | **PASS, merged** |
+| codex/mve-wp2-generator | cfd40f80bb2 | 364 passed | **CHANGES REQUESTED (E1a, from my own incomplete ruling)** |
+
+Combined mve/integration: 346 passed, 2 skipped (real-Lean, path-dependent), 93% coverage.
+
+WP-6a: `guards.require_nondegeneracy` refuses emission naming each missing Distinct/NotCollinear;
+env is built explicitly; no `/Users/` in committed artifacts. Follow-up (non-blocking): `lock.json`
+paths are relative to the worktree location, so the real-Lean tests still skip unless the checkout
+sits at `~/Developer/Opensens/worktrees/<name>`. Resolve the toolchain from `ELAN_HOME` (default
+`~/.elan`) plus the toolchain name, and the packages from an `MVE_LEAN_PACKAGES` root, verified
+by the existing hashes; print one line when they are skipped.
+
+WP-2 fixed B2 (coordinate collisions computed and in `accepted`; receipts regenerated), M1 (one
+label; "sealed" is the 500-item set; record matches manifest, tested), M2. B1 follows E1 exactly,
+but E1 was incomplete and now admits trivially true candidates (probe, four points A–D):
+- 6 self-EqualLength candidates such as `EqualLength(A,B,A,B)`.
+- 210 of 276 EqualAngle candidates contain a zero angle such as `∠ABA`; `EqualAngle(A,B,A,C,D,C)`
+  is `true` for any configuration.
+
+**Erratum E1a (binding):** EqualAngle is also degenerate iff A=C or D=F (a zero "angle" is not an
+angle). EqualLength is excluded when both sides are the same segment up to symmetry (as for the
+self-EqualAngle). Update `mve/degeneracy.py`, the registry strings, `required_nondegeneracy`
+(EqualAngle now requires `Distinct(A,C)` and `Distinct(D,F)`), and the universe, truth and corpus;
+add tests for both exclusions. WP-6a's guard picks up the change through `mve/degeneracy.py`.
