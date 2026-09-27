@@ -1,0 +1,111 @@
+{
+ "card": "card001_hawking",
+ "version": "lane_check_v2_sanity",
+ "status": "exploratory_nominal_not_inferential",
+ "caveat": "devices not validated by a size check against a known dependent null; retrospective data; replication size 9,999 < declared 10,000",
+ "params": {
+  "B_ks": 400,
+  "B_diff": 1000,
+  "block_len": 100,
+  "seed": 20260929,
+  "v2_spec_sha256": "f8adee32e18548d16f5fd652a756426e5d38bdc32f15e2c952db4f23124d50f0"
+ },
+ "script_sha256": "db48316bc819d94385e0033dbbbd377193606212821055b12b2bd03b7b61032f",
+ "v2_script_sha256": "1d51ec45de452821be2112e72b46e7430a9c937e1721df953e7462fc233da63b",
+ "env": {
+  "python": "3.13.2",
+  "numpy": "2.4.6",
+  "scipy": "1.17.1"
+ },
+ "blocks": [
+  {
+   "block": "zeros #1001..#100000",
+   "gaps_thinned": 33000,
+   "ks_D": 0.02319,
+   "copula_null": {
+    "replicates": 400,
+    "exceedances": 0,
+    "p_mc": 0.00249,
+    "p_upper95_if_zero_exceed": 0.00746,
+    "null_D_max": 0.00687,
+    "null_D_q99": 0.00564
+   },
+   "exponent_difference": {
+    "measured_minus_planck_implied": -1.1164,
+    "ci99_5_joint_block_bootstrap": [
+     -1.336,
+     -0.9429
+    ],
+    "replicates": 1000,
+    "excludes_zero": true
+   }
+  },
+  {
+   "block": "zeros #10^12+1..#10^12+10000",
+   "gaps_thinned": 3333,
+   "ks_D": 0.03273,
+   "copula_null": {
+    "replicates": 400,
+    "exceedances": 0,
+    "p_mc": 0.00249,
+    "p_upper95_if_zero_exceed": 0.00746,
+    "null_D_max": 0.01961,
+    "null_D_q99": 0.0187
+   },
+   "exponent_difference": {
+    "measured_minus_planck_implied": -0.9023,
+    "ci99_5_joint_block_bootstrap": [
+     -1.4453,
+     -0.3595
+    ],
+    "replicates": 1000,
+    "excludes_zero": true
+   }
+  },
+  {
+   "block": "zeros #10^21+1..#10^21+10000",
+   "gaps_thinned": 3333,
+   "ks_D": 0.02705,
+   "copula_null": {
+    "replicates": 400,
+    "exceedances": 0,
+    "p_mc": 0.00249,
+    "p_upper95_if_zero_exceed": 0.00746,
+    "null_D_max": 0.02551,
+    "null_D_q99": 0.01997
+   },
+   "exponent_difference": {
+    "measured_minus_planck_implied": -0.8276,
+    "ci99_5_joint_block_bootstrap": [
+     -1.3373,
+     -0.2757
+    ],
+    "replicates": 1000,
+    "excludes_zero": true
+   }
+  },
+  {
+   "block": "zeros #10^22+1..#10^22+10000",
+   "gaps_thinned": 3333,
+   "ks_D": 0.03387,
+   "copula_null": {
+    "replicates": 400,
+    "exceedances": 0,
+    "p_mc": 0.00249,
+    "p_upper95_if_zero_exceed": 0.00746,
+    "null_D_max": 0.02194,
+    "null_D_q99": 0.01865
+   },
+   "exponent_difference": {
+    "measured_minus_planck_implied": -0.7382,
+    "ci99_5_joint_block_bootstrap": [
+     -1.263,
+     -0.2052
+    ],
+    "replicates": 1000,
+    "excludes_zero": true
+   }
+  }
+ ],
+ "runtime_s": 91.3
+}

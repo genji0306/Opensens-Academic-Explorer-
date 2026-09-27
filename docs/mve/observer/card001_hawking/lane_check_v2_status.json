@@ -1,0 +1,26 @@
+{
+ "receipt": "lane_check_v2.json",
+ "receipt_sha256": "1c7547e7f0c0c762feb7d17319cbf67ca09bde2336c48824d2c89bf891e81a7c",
+ "script_sha256": "1d51ec45de452821be2112e72b46e7430a9c937e1721df953e7462fc233da63b",
+ "sanity_receipt": "lane_check_v2_sanity.json",
+ "sanity_receipt_sha256": "9085abc5cf798472eff7d625b3d8aa4908b37e691401020d48be7606db5791b6",
+ "status": "retrospective_exploratory",
+ "inferential": false,
+ "p_values": "nominal",
+ "fixture_role": "WO-3 regression fixture: certifies reproduction of code, not inference",
+ "reasons": [
+  "Planck refit bootstrap draws iid replicates; dependence of thinned gaps not shown to preserve the 1% tail",
+  "GUE/CUE null from concatenated CUE(50)/CUE(N) spectra; does not establish the dependence law of zeta zeros",
+  "CUE(50) 95th-percentile check does not validate a 1% threshold",
+  "low-block sqrt(n)*D null transferred 3,333 -> 33,000, unvalidated",
+  "H0 kill rule (KS 1% OR 95% CI exclusion) has no declared overall alpha",
+  "replication blocks have 9,999 gaps < declared 10,000; spec written after v1 results"
+ ],
+ "monte_carlo": {
+  "planck_ks_exceedances": "0 of 200 in every block",
+  "p_mc": "1/201 = 0.004975",
+  "one_sided_95_upper_bound_tail_prob": 0.01487
+ },
+ "h0_status": "inconclusive (informative negative)",
+ "reviewed_by": "Astra r6.1 verdict (B2 partial)"
+}

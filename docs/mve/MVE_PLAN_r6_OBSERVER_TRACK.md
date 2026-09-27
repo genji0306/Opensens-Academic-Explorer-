@@ -1,21 +1,28 @@
-# MVE plan addendum r6.1: the Observer track (O)
+# MVE plan addendum r6.2: the Observer track (O)
 
-**Date:** 2026-09-28 · **Status:** r6.1, revised after Astra's r6 verdict (BLOCK, six blockers,
-`docs/mve/ASTRA_VERDICT_MVE_PLAN_r6_20260928.md`); for Opus review and an Astra re-verdict. It does
-not edit the frozen r5 text (`docs/mve/MVE_PLAN.md`). Every addition to r5, including the r5
+**Date:** 2026-09-28 · **Status:** r6.2, revised after Astra's r6.1 verdict (BLOCK; B1, B3, B5, B6
+closed; B2, B4 partial), itself after the r6 verdict (`docs/mve/ASTRA_VERDICT_MVE_PLAN_r6_20260928.md`);
+for an Astra re-verdict. It does not edit the frozen r5 text (`docs/mve/MVE_PLAN.md`). Every addition to r5, including the r5
 changelog for the new evidence class, lives in this addendum.
 **Direction (owner, binding):** "The atlas (the lab creates visualization/geometry/topology) is the
 input → MVE observes and creates hypotheses/theories/insights as output → RH research fleets
 test/verify/create attack lanes → report to the Atlas."
+
+## Revision r6.2 (changes against r6.1 `fe3cdf175a8`)
+
+| # | Astra r6.1 finding | Fixed in |
+|---|---|---|
+| B2 (partial) | iid refit bootstrap, unvalidated dependence and 3,333→33,000 transfer; no joint exponent test; "KS 1% OR 95% CI" has no overall α | Honest route. §3: every card-#1 v2 p-value is **nominal/exploratory**; Monte Carlo p = 1/201 with one-sided 95% upper bound 0.01487; H0 stays `inconclusive`. §7 WO-3: v2 is a **regression fixture**, not inferential certification (`C1H/lane_check_v2_status.json`, `inferential: false`). §2c rules 4, 5, 5a for future checks: dependence-preserving refit calibration at the actual n with a size check, joint bootstrap of (measured − model-implied) exponent, one kill rule with one overall α. Sanity addendum `C1H/lane_check_v2_sanity.py` (91 s) demonstrates both devices, exploratory |
+| B4 (partial) | binomial/CP unit assumes iid Bernoulli trials; opportunities per cluster unfrozen; image-free arm not budget-matched | §5 rewritten as a **fixed stratified cluster design**: strata (module × family), clusters (discovery/replication block pairs), fixed V views × C card slots × 1 check per slot in every arm, image-free and shuffled arms budget-matched, seeded allocation, exact cluster-level sign-flip permutation test per control arm (one-sided 0.05, intersection–union), K ≥ 20 clusters, detectable effect stated; CP descriptive only; pilot descriptive only (§5, §6 GO2, §7 WO-4/WO-6) |
 
 ## Revision r6.1 (changes against r6 `fc27b211c5f`)
 
 | # | Astra r6 blocker | Fixed in |
 |---|---|---|
 | B1 | Index/height labels, gap counts, N_eff formula without Λ; WO-3 fixture encoded wrong claims | §3 rewritten from `lane_check_v2.json`: blocks named by zero index, heights 2.6765e11 / 1.4418e20 / 1.3709e21, 9,999 gaps each, N_eff = log(H/2π)/√(12Λ), rounding and asymptotic limits disclosed. Card #1 is a **retrospective exploratory example**, not a prospective test. WO-3's golden fixture is the v2 receipt; v1 is kept as the historical record only (§7) |
-| B2 | Numerical reproduction is not calibration | §2c rules 3–4 and 7: the whole unfold→fit→test procedure is calibrated by simulation with refitting; dependence is handled by thinning and surrogate sequences, or p-values are labelled nominal; actual denominators are reported; the primary statistic is compared with the accepted baseline (exact GUE/Gaudin law, CUE(N_eff)); the CDF exponent is compared with Planck's `a`; likelihood sums are called marginal composite scores; the causal "finite-height effect" claim is removed (§3) |
+| B2 | Numerical reproduction is not calibration | (partly superseded by r6.2) §2c rules 3–4 and 7: the whole unfold→fit→test procedure is calibrated by simulation with refitting; dependence is handled by thinning and surrogate sequences, or p-values are labelled nominal; actual denominators are reported; the primary statistic is compared with the accepted baseline (exact GUE/Gaudin law, CUE(N_eff)); the CDF exponent is compared with Planck's `a`; likelihood sums are called marginal composite scores; the causal "finite-height effect" claim is removed (§3) |
 | B3 | Contradictory survival definitions; H1 counted in GO2; no image-free baseline | §2c rule 6 separates `replicated_observation`, `baseline_explained` and `baseline_exceeding_survivor`; only the last counts. H1 is `baseline_explained`, owner-originated and unblinded, so it is out of GO2 (§3). §5 adds an image-free fixed-card arm and a shuffled-image ablation arm |
-| B4 | Sampling assumptions of the GO2 bound | §5: the unit is an independent source block (cluster), with an intersection–union test over three control arms; card limits, retries, check selection and stopping rules are frozen; development and untouched replication partitions are separated; contrast sensitivity is pre-declared |
+| B4 | Sampling assumptions of the GO2 bound | (superseded by r6.2's cluster design) §5: the unit is an independent source block (cluster), with an intersection–union test over three control arms; card limits, retries, check selection and stopping rules are frozen; development and untouched replication partitions are separated; contrast sensitivity is pre-declared |
 | B5 | Incomplete identity hash; no `preliminary`; GO1 denominators | §2b: `check_spec` field; hash over the full card specification; transitive invalidation; `preliminary` in the lifecycle; current-revision, survivor-only hand-off; `hyp_N` rejected on every formalisation path. §6: GO1 denominators. §7 WO-2: H0/H1 fixtures with real hashes |
 | B6 | Live readiness overstated | §7 pilot cost and §8: USD 0.000268 is **known exposure only**; aggregate-ledger reconciliation, O-M2 price/quota verification and worst-case reservation are pre-dispatch conditions; fleet ownership, GO3 timing and atlas status confirmation are pre-relay dependencies (§2d, §9) |
 | notes | non-blocking | WO-1 isolation tests strengthened (§7); CP numbers called rejection thresholds, not power (§5); Planck normaliser T^{a+1}Γ(a+1)ζ(a+1) (§3); GO4 = absence from a searched corpus (§6) |
@@ -38,9 +45,9 @@ MVE gains an **Observer track (O)**: it looks at atlas lab visuals, as the owner
 runs on the lab's source data, never on pixels. Cards whose pattern exceeds the declared baseline at
 replication go to the RH fleets as attack-lane proposals; lane outcomes return to the atlas as result
 bundles. The **Euclidean track (E)**, everything r5 built, becomes **observer calibration** against
-exact synthetic truth. Track O's central metric is a **pareidolia null**: baseline-exceeding survival
-on independent real source blocks minus survival in control and image-free arms, with a declared
-one-sided bound. MVE is allowed to be wrong. Its product is testable hypotheses, not answers.
+exact synthetic truth. Track O's central metric is a **pareidolia null**: in a fixed stratified
+cluster design, baseline-exceeding survival on real source blocks must exceed survival in null-twin,
+image-free and shuffled-image arms by an exact cluster-level permutation test. MVE is allowed to be wrong. Its product is testable hypotheses, not answers.
 
 ---
 
@@ -104,8 +111,8 @@ HEADs into `mve/observer/snapshots/<capture_id>/`, following the "build from a c
 | `module`, `deep_link` | e.g. `spectral`, `#labs/field-dyson`, `#labs/space-<scene>` (keys from `AT/rh_evidence/atlas_labs.py`, `export.py:LAB_MODULES`) |
 | `params`, `params_sha256` | exact lab state |
 | `lab_commit` | AT and ZE HEAD shas |
-| `data_ref` | `{path, sha256, generator, seed, source_block_id, partition: development \| replication}` (§5) |
-| `control` | `{kind: null_twin \| shuffled_image \| contrast_twin \| none, twin_snapshot_id}` (§5) |
+| `data_ref` | `{path, sha256, generator, seed, source_block_id, stratum, role: development \| discovery \| replication \| donor}` (§5) |
+| `control` | `{kind: null_twin \| donor \| contrast \| none, cluster_id, twin_snapshot_id}` (§5) |
 | `png_full` | `{path, sha256, w, h}`: the page as a human sees it |
 | `png_blinded` | `{path, sha256, crop_box, caption_free: true, metadata_stripped: true}`: model view |
 | `withheld_text` | title, summary, caveat, legend strings. Stored, never shown to model observers |
@@ -172,17 +179,26 @@ A data check runs on the snapshot's **source data**, never on pixels. Its code l
    secondary reference only. The **primary statistic is compared with the accepted baseline**.
    Penalise extra parameters (AIC and BIC). Sums of marginal log densities are reported as
    **marginal composite scores**, not joint likelihoods, because gaps are dependent.
-4. **Calibrate the procedure, not the formula.** Any p-value that enters a verdict comes from
-   simulating the complete procedure (unfolding, fitting with refitting on each replicate, thinning,
-   testing) under the baseline or fitted model. Fixed-CDF KS p-values after fitting are invalid and
-   may be shown only as such. Dependence (adjacent gaps, gaps within one matrix, mean normalisation)
-   is handled by independent blocks, thinning with surrogate sequences that carry the same dependence,
-   or a block bootstrap. Otherwise the p-value is labelled `nominal` and cannot enter a verdict. The
-   receipt states the actual denominators (fit size, test size, replicate counts).
+4. **Calibrate the procedure, not the formula.** A p-value enters a verdict only if it comes from
+   simulating the complete procedure (unfolding, fitting with refitting per replicate, thinning,
+   testing) **at the actual sample size** with a **dependence-preserving** null: simulation from a
+   declared dependent null, or a moving-block bootstrap of the unfolded sequence after the fitted
+   model's quantile transform (data ranks, fitted marginal: s*_i = F̂⁻¹(rank_i/(n+1))). The device is
+   **validated** before use by a size check on sequences from a known dependent null (e.g. CUE spectra
+   with the same thinning) at the declared α, with enough replicates to resolve that tail (≥ 20/α).
+   No transfer of a null across sample sizes. Fixed-CDF KS p-values after fitting are invalid. A
+   Monte Carlo p is reported as (1 + r)/(B + 1) with the one-sided 95% upper bound on the tail
+   probability. Anything short of this is labelled `nominal` and cannot enter a verdict. The receipt
+   states the actual denominators (fit size, test size, replicate counts).
 5. **A structural statistic is required** beside any omnibus fit (e.g. the small-gap CDF exponent,
-   residue-class counts for primes). Its estimator and interval are declared in `check_spec`, it
-   carries a dependence-aware CI, and it is compared with the value each model implies **under the
-   same estimator and interval** as well as with the model's asymptotic exponent.
+   residue-class counts for primes). Estimator and interval are declared in `check_spec`. The test
+   is on the **difference** between the measured value and the fitted model's implied value under
+   the same estimator and interval, by a joint dependence-preserving bootstrap that refits the model
+   in every replicate; the model's asymptotic exponent is reported beside it.
+5a. **One kill rule, one overall α.** `check_spec` declares a single kill rule and its overall α:
+   either one primary statistic, or components with an explicit split (e.g. Bonferroni: KS at 0.005
+   and a 99.5% CI for the exponent difference, overall ≤ 0.01). "KS at 1% OR exclusion by a 95% CI"
+   is not an overall 1% test and fails validation.
 6. **Outcomes.** `killed` (the kill rule fires at replication); `replicated_observation` (the stated
    pattern reappears at replication; specificity not run or undecided); `baseline_explained` (it reappears **and** samples from the
    declared baseline reproduce it at the declared α: a known or explained pattern); and
@@ -191,7 +207,7 @@ A data check runs on the snapshot's **source data**, never on pixels. Its code l
    eligible for hand-off. Also `inconclusive` (underpowered, stages disagree, replication size not
    met) and `not_checkable`.
 7. **Receipt.** Script sha, `spec_sha256`, data sha256s, seeds, runtime, Python/numpy/scipy/mpmath
-   versions, and the denominators of rule 4.
+   versions, the denominators of rule 4, and `inferential: true | false` (false unless rules 4–5a hold).
 
 ### 2d. C4: fleet hand-off (attack-lane proposal)
 
@@ -257,11 +273,12 @@ unblinded (full page).
 - claim: unfolded ζ-zero gaps follow a Planck-shaped law p(s) = s^a / (e^{s/T} − 1) / Z with
   Z = T^{a+1} Γ(a+1) ζ(a+1), rather than the GUE law.
 - testable form: 2-parameter Planck MLE vs the GUE limit and finite-N CUE; primary statistic
-  (re-declared in v2, retrospectively; r6 used Δloglik vs Wigner): calibrated fitted-Planck KS; structural statistic: the small-gap CDF
-  exponent. Near 0 the Planck CDF grows as s^a, so its CDF exponent is **a** (density s^{a−1}); the
+  (re-declared in v2, retrospectively; r6 used Δloglik vs Wigner): fitted-Planck KS; structural
+  statistic: the small-gap CDF exponent. Near 0 the Planck CDF grows as s^a, so its CDF exponent is **a** (density s^{a−1}); the
   GUE CDF grows as s³ (density s², β = 2).
-- kill criterion: at replication (≥ 10,000 gaps per block), calibrated Planck p < 0.01, **or** the
-  Planck-implied CDF exponent outside the 95% CI of the measured one.
+- kill criterion: at replication (≥ 10,000 gaps per block), Planck KS p < 0.01, **or** the
+  Planck-implied CDF exponent outside the 95% CI of the measured one. As filed this rule has no
+  overall α (1% OR 95% is not a 1% test); under §2c rule 5a it would fail validation today.
 - resemblance target: Hawking/Planck spectrum. Suggested lane: spacing statistics.
 
 **Stage 1** (`C1H/hawking_check.py` → `hawking_check.json`, unchanged). Zeros 1–2000 by mpmath, first
@@ -277,56 +294,65 @@ log(H/2π)/√(12Λ) with Λ = 1.57314 (Bogomolny, Bohigas, Leboeuf, Monastra 20
 at the block's median height and **rounded** to the CUE size sampled. It is an asymptotic
 large-height approximation; at N_eff ≈ 2 it is outside its useful range.
 
-| Block (zero index) | Median height H | Gaps all / thinned | N_eff (range) → CUE N | GUE limit KS: D, p_cal | CUE(N) KS p_cal | Planck a, T | Planck KS: D (boot max), p_cal | CDF exponent b̂ [95% CI] | Implied b: Gaudin / Planck |
+**Status of every v2 p-value: nominal and exploratory.** The Planck bootstrap draws iid replicates;
+the dependence of the thinned gaps (|r| ≤ 0.05 at lag 1) is not shown to leave the 1% tail of the
+fitted KS intact; the GUE null comes from concatenated CUE(50) spectra, which do not establish the
+dependence law of zeta zeros; its 95% check does not validate a 1% threshold; and the low block's
+3,333 → 33,000 transfer is unvalidated. WO-3 reproduces these numbers as a **regression fixture**, not
+as inferential certification (`C1H/lane_check_v2_status.json`).
+
+| Block (zero index) | Median height H | Gaps all / thinned | N_eff (range) → CUE N | GUE limit KS: D, p (nominal) | CUE(N) p (nominal) | Planck a, T | Planck KS: D (boot max), p_MC | CDF exponent b̂ [95% CI] | Implied b: Gaudin / Planck |
 |---|---|---|---|---|---|---|---|---|---|
-| #1,001–#100,000 | 4.08e4 (1.42e3–7.49e4) | 98,999 / 33,000 | 2.02 (1.25–2.16) → 2 | 0.0171, ≤ 0.005† | ≤ 0.005† | 4.84, 0.173 | 0.0232 (0.0059), ≤ 0.005 | 3.04 [2.92, 3.17] | 2.92 / 4.16 |
-| #10¹²+1 – #10¹²+10⁴ | 2.6765e11 | 9,999 / 3,333 | 5.63 → 6 | 0.0182, 0.22 | 0.60 | 4.33, 0.192 | 0.0327 (0.0193), ≤ 0.005 | 2.85 [2.53, 3.20] | 2.92 / 3.75 |
-| #10²¹+1 – #10²¹+10⁴ | 1.4418e20 | 9,999 / 3,333 | 10.26 → 10 | 0.0120, 0.71 | 0.67 | 4.30, 0.191 | 0.0271 (0.0207), ≤ 0.005 | 2.90 [2.56, 3.26] | 2.92 / 3.72 |
-| #10²²+1 – #10²²+10⁴ | 1.3709e21 | 9,999 / 3,333 | 10.78 → 11 | 0.0150, 0.39 | 0.40 | 4.38, 0.189 | 0.0339 (0.0209), ≤ 0.005 | 3.05 [2.75, 3.43] | 2.92 / 3.78 |
+| #1,001–#100,000 | 4.08e4 (1.42e3–7.49e4) | 98,999 / 33,000 | 2.02 (1.25–2.16) → 2 | 0.0171, 1/201† | 1/201† | 4.84, 0.173 | 0.0232 (0.0059), 1/201 | 3.04 [2.92, 3.17] | 2.92 / 4.16 |
+| #10¹²+1 – #10¹²+10⁴ | 2.6765e11 | 9,999 / 3,333 | 5.63 → 6 | 0.0182, 0.22 | 0.60 | 4.33, 0.192 | 0.0327 (0.0193), 1/201 | 2.85 [2.53, 3.20] | 2.92 / 3.75 |
+| #10²¹+1 – #10²¹+10⁴ | 1.4418e20 | 9,999 / 3,333 | 10.26 → 10 | 0.0120, 0.71 | 0.67 | 4.30, 0.191 | 0.0271 (0.0207), 1/201 | 2.90 [2.56, 3.26] | 2.92 / 3.72 |
+| #10²²+1 – #10²²+10⁴ | 1.3709e21 | 9,999 / 3,333 | 10.78 → 11 | 0.0150, 0.39 | 0.40 | 4.38, 0.189 | 0.0339 (0.0209), 1/201 | 3.05 [2.75, 3.43] | 2.92 / 3.78 |
 
-† √n·D null transferred from n = 3,333 to n = 33,000 (asymptotic). "≤ 0.005" is the resolution floor
-1/201: no replicate reached the observed statistic. Marginal composite scores on the thinned samples,
-Planck − Gaudin: −166.1, −38.2, −27.6, −30.1 (BIC penalty for two parameters 10.4 / 8.1).
+1/201 = 0.00498 is a Monte Carlo p with 0 of 200 exceedances; the one-sided 95% upper bound on the
+tail probability is **0.01487**, so even nominally this is not a certified p < 0.01. † √n·D null
+transferred from n = 3,333 (unvalidated). Marginal composite scores, Planck − Gaudin: −166.1, −38.2,
+−27.6, −30.1 (not used).
 
-Reading the table:
-- **Planck (primary).** Fitted-parameter KS, calibrated by parametric bootstrap with refitting (200
-  replicates at the thinned size). In every block the observed D exceeds all 200 replicates. The
-  fixed-CDF p-values on the same thinned samples (recorded as `INVALID`) were 7.7e-16, 1.5e-3,
-  1.5e-2 and 9.3e-4: at 10²¹ the uncalibrated test would not have rejected at 0.01, so calibration
-  changes a conclusion, not only a number.
-- **GUE baseline.** KS against the exact Gaudin law is calibrated by 200 CUE(50) surrogate sequences
-  thinned like the data (n = 3,333; the low block transfers √n·D to n = 33,000, which is asymptotic).
-  The three high blocks are not rejected (p 0.22, 0.71, 0.39; CUE(N_eff) 0.60, 0.67, 0.40), which
-  means "not rejected at this size", not equality. The low block is rejected by both at the floor.
-- **Structural statistic.** Conditional power-law MLE of the CDF exponent on the pre-declared interval
-  (0, 0.30], all gaps, 95% moving-block bootstrap CI (blocks of 100, 2,000 replicates). At the three
-  high blocks each CI contains the Gaudin value 2.92 and excludes both Planck's CDF exponent a (4.30–4.38) and the value the fitted Planck law gives under the same
-  estimator and interval (3.72–3.78). In the low block the CI [2.92, 3.17] excludes Planck (a = 4.84,
-  implied 4.16) and only just excludes the Gaudin value 2.916.
-- **Dependence.** Adjacent-gap correlation is −0.30 to −0.36 in the data (−0.31 in CUE(50));
-  thinning to every 3rd gap leaves |r| ≤ 0.05. The 95% quantile of √n·D under thinned CUE(50) surrogates is 1.344
-  against 1.358 for iid gaps. The Planck bootstrap draws iid replicates, so its p-value is calibrated
-  for fitting and only approximately for this residual dependence. Marginal scores are not used.
+Reading the table (all nominal):
+- **Planck.** Fitted-parameter KS with refitting in each of 200 iid replicates at the thinned size;
+  the observed D exceeds every replicate. The fixed-CDF p-values (recorded as `INVALID`) were
+  7.7e-16, 1.5e-3, 1.5e-2 and 9.3e-4: refitting matters (at 10²¹ the fixed-CDF test gives 0.015).
+- **GUE baseline.** The high blocks are not rejected by the Gaudin law (0.22, 0.71, 0.39) or CUE(N_eff)
+  (0.60, 0.67, 0.40): "not rejected at this size", not equality. The low block is rejected by both.
+- **Structural statistic.** Conditional power-law MLE of the CDF exponent on the pre-declared
+  (0, 0.30], 95% moving-block bootstrap CI (blocks of 100, 2,000 replicates). High-block CIs contain
+  Gaudin 2.92 and exclude Planck's a (4.30–4.38) and its implied value (3.72–3.78). The low-block CI
+  [2.92, 3.17] excludes Planck and only just the Gaudin value 2.916.
 
-**Exploratory outcome.** On the three high blocks both kill clauses fire (calibrated Planck p ≤ 0.005;
-Planck-implied exponent outside the CI), and the GUE limit and CUE(N_eff) are not rejected. Read as
-exploration, the Planck-shape resemblance does not survive. Formally each block has 9,999 gaps, below
-H0's declared 10,000, and the spec is retrospective, so under §2c rule 2 H0 is `inconclusive`,
-recorded as an informative negative, not `killed`. The low block (heights 1.4e3–7.5e4) rejects every
-model tested; whether that is the finite-height correction of Bogomolny et al. is **not tested here**.
+**Sanity addendum (r6.2, `C1H/lane_check_v2_sanity.py` → `.json`, 91 s, seed 20260929; exploratory,
+devices not validated).** It demonstrates the two devices §2c now requires. (1) Copula-preserving
+refit null (data ranks, fitted Planck marginal, moving blocks of 100, 400 refits, actual thinned
+size): 0 exceedances in every block, p_MC = 1/401, 95% upper bound 0.0075. The null maxima (0.0069,
+0.0196, 0.0255, 0.0219) sit closer to the observed D than the iid maxima did, most at 10²¹ (0.0271),
+which is why dependence must be calibrated. (2) Joint block bootstrap of measured − Planck-implied
+exponent with refitting (1,000 replicates, 99.5% CI): −1.12 [−1.34, −0.94], −0.90 [−1.45, −0.36],
+−0.83 [−1.34, −0.28], −0.74 [−1.26, −0.21]; all exclude 0.
+
+**Exploratory outcome.** On the three high blocks the Planck shape is rejected nominally by both the
+KS and the exponent difference, and the GUE descriptions are not. Read as exploration, the
+resemblance does not survive. Formally the blocks have 9,999 gaps, below H0's declared 10,000 (not
+lowered retrospectively), the spec is retrospective, the kill rule has no overall α and the p-values
+are nominal, so H0 is `inconclusive`, recorded as an informative negative, not `killed`. The low
+block rejects every model tested; whether that is the finite-height correction of Bogomolny et al.
+is **not tested here**.
 
 **Card H1:** "ζ gap statistics sit in the β = 2 universality class shared by quantum-chaotic and
 horizon models." Status (exploratory) `baseline_explained`: the GUE baseline reproduces it by
 construction, and its novelty is **known** (Montgomery; Odlyzko; Berry–Keating; SYK/black-hole
 random-matrix literature). It is owner-originated and unblinded, and its data are the same exploratory blocks. It
 is **excluded from GO2**, is not a survivor, and is not handed off. Proposed atlas outcome (pending
-Q5): H0 `inconclusive` with the limitation "exploratory; fitted Planck law rejected on three
-9,999-gap blocks, below the declared size"; H1 `completed` with "explained by the GUE baseline;
+Q5): H0 `inconclusive` with the limitation "exploratory, nominal p-values; fitted Planck law
+rejected on three 9,999-gap blocks, below the declared size"; H1 `completed` with "explained by the GUE baseline;
 known in literature".
 
 **Lessons → rules.** Stage 1 alone misled (small sample, low height, flexible family): §2c rule 2.
 The Wigner surmise is not the accepted baseline: rule 3. Fixed-CDF p-values after fitting and
-dependent gaps are not calibrated (at 10²¹ this flips the result): rule 4. An omnibus fit hid a
+dependent gaps are not calibrated: rule 4. A kill rule needs one overall α: rule 5a. An omnibus fit hid a
 structural contradiction, and the right comparison is Planck's CDF exponent `a` with the measured
 CDF exponent: rule 5. KS and likelihood can rank models differently: one primary statistic, declared
 first (§2b). v1 called zero indices "heights": labels are checked against source headers. The
@@ -363,11 +389,11 @@ PNG metadata stripped and re-encoded, since HMAC names alone do not blind, r5 §
 
 | Arm | What the observer gets | Role |
 |---|---|---|
-| **Real** | blinded PNG of a real source block | numerator |
-| **Null twin** | same module, params and crop, rendered from a baseline-model sample | primary control: false survival of observer + check together |
-| **Image-free fixed card** | no image. A fixed generic card per family (e.g. "the gaps deviate from the declared baseline"), run through the same checks on disjoint real replication blocks | how often checks alone "find" something in real data |
-| **Shuffled image** | a real image of another block or module; the cards are checked on this unit's own real block | ablates matching visual content while keeping real-looking pictures |
-| **Contrast twin** | Poisson/GOE spacings, Davenport–Heilbronn off-line zeros, off-line pair injection | sensitivity |
+| **Real** | V blinded views of the cluster's discovery block D_c | numerator |
+| **Null twin** | same module, params and crop, rendered from a baseline sample seeded per cluster; checks run on baseline data | false survival of observer + check together |
+| **Image-free** | no image. A frozen library of S generic cards per family (e.g. "the gaps deviate from the declared baseline"), one per slot, checked on D_c → R_c | how often checks alone "find" something in real data; same slot budget |
+| **Shuffled image** | V views of a **donor block** (same stratum, used by no cluster); the cards are checked on D_c → R_c | ablates matching visual content, same slot budget |
+| **Contrast** | contrast clusters: Poisson/GOE spacings, Davenport–Heilbronn, off-line pair injection | sensitivity |
 
 | Family (modules) | Null twin | Contrast twin |
 |---|---|---|
@@ -376,32 +402,46 @@ PNG metadata stripped and re-encoded, since HMAC names alone do not blind, r5 §
 | L-functions / fields (`andreev`, RHVF p1–p5) | random Dirichlet series | Davenport–Heilbronn |
 | xi, heat, others with off-line toggles | — | off-line pair injection |
 
-**Independence (unit of analysis).** Each data family is split, before any O-track run, into
-**disjoint source blocks** (non-overlapping zero-index ranges, disjoint prime intervals, independent
-seeds), listed with sha256s in `DEPS.lock`. Each block is assigned to the **development** partition
-(prompt design, check development, stage 1) or the **untouched replication** partition (stage 2 and
-GO2 only). Several visuals of one block form a **cluster**. The unit is (source block, observer): 1
-if any card from any visual of that block reaches `baseline_exceeding_survivor`, else 0. Malformed
-output, refusals, `not_checkable` and `inconclusive` count as 0. Twins, image-free and shuffled arms
-use their own disjoint blocks or seeds. Clopper–Pearson is applied to cluster counts only.
+**Design: a fixed stratified cluster design** (r6.2; replaces the binomial unit of r6.1, since
+disjoint blocks do not make iid Bernoulli trials and pooled families share no common distribution).
+- **Strata** = lab module × data family (e.g. `spectral × zero spacings`, `ulam × primes`), frozen
+  in `DEPS.lock` before any run.
+- **Clusters** = source blocks. Cluster c is a pair (discovery block D_c, replication block R_c) of
+  disjoint data from one stratum, drawn by a seeded rule from the stratum's frozen block list (e.g.
+  consecutive non-overlapping zero-index ranges, alternately D and R). Donor blocks for the shuffled
+  arm come from the same list. No block serves twice. Development blocks (prompt and check design)
+  are a separate list and never become clusters.
+- **Fixed opportunities.** Per (cluster, arm, observer): V views, C card slots per view, exactly one
+  check opportunity per slot (frozen family→check mapping; stage 1 on D_c, stage 2 on R_c), so
+  S = V·C slots in **every** arm. Frozen: V = 2, C = 3, S = 6 (pilot: V = 1, S = 3). ≤ 2 transport
+  retries, which never add slots. No optional stopping, topping-up or re-drawing.
+- **Allocation.** Every cluster receives all four arms (paired design). One recorded seed fixes the
+  D/R assignment, the donor map, the baseline seeds and the call order; each call is a fresh context.
+- **Outcome.** y_{c,a} = baseline-exceeding survivors / S. Empty, malformed, refused, `not_checkable`
+  and `inconclusive` slots count 0. d_{c,k} = y_{c,real} − y_{c,k} for control arm k.
+- **Test.** For each k ∈ {null twin, image-free, shuffled}, a one-sided **exact sign-flip permutation
+  test** of T_k = Σ_c d_{c,k} (all 2^K patterns for K ≤ 20, else 10⁵ random flips with the Monte
+  Carlo interval reported), α = 0.05 per comparison. **GO2 needs all three** (intersection–union:
+  the global null is controlled at 5% despite the shared real arm) **plus the contrast floor**:
+  contrast clusters detected in ≥ 8 of 10 at scale. One detection is weak protection.
+- **Assumptions, stated, not proven.** A1: clusters are independent (disjoint blocks and donors,
+  independent seeds, fresh-context calls). A2: under H0_k the within-cluster pair (y_real, y_k) is
+  exchangeable, so d_{c,k} is symmetric about 0. The seed randomises order and donors, not content,
+  so A2 is an assumption for the null-twin and image-free arms. Clusters may differ in distribution
+  across strata and heights; the sign-flip test needs only per-cluster symmetry. Results are also
+  reported per stratum.
+- **Minimum size and detectable effect.** A GO2 decision needs K ≥ 20 clusters over ≥ 2 strata. The
+  smallest attainable p is 2^−K′ (K′ = clusters with d ≠ 0), so K′ ≥ 5 is needed to reject at all.
+  With equal-size differences the test is the sign test: it rejects only if ≥ 9 of 10, ≥ 15 of 20
+  or ≥ 26 of 40 non-zero clusters favour the real arm. If each cluster (no ties) favours real with
+  probability q, power is 0.38 (K = 10) and 0.80 (K = 20) at q = 0.8; at q = 0.7 it is 0.42 (K = 20)
+  and 0.81 (K = 40). Weaker effects are not detectable at these sizes.
+- **Descriptive only.** Clopper–Pearson intervals on pooled slot proportions per arm and stratum are
+  reported for description. They do not decide GO2 (r6.1's 7/10, 8/20, 8/40, 9/100 were binomial
+  rejection thresholds and are retired as decision rules).
 
-**Frozen procedure.** ≤ 3 cards per (visual, observer); ≤ 2 transport retries, which never create
-extra cards; checks chosen by a frozen family→check mapping in `mve/observer/checks/`, never by the
-card author after seeing data; fixed arm sizes and no optional stopping or topping-up; the same limits
-in every arm. Because the unit is "any card survives", the card multiplicity sits inside the rate
-that the null arms calibrate. That holds only if every arm runs the same frozen procedure.
-
-**Declared bound (as WP-11a):** for each control arm k ∈ {null twin, image-free, shuffled image},
-L_k = CP_lower(p_real, one-sided 97.5%) − CP_upper(p_k, one-sided 97.5%), a one-sided 95% bound on
-the lift over arm k. **GO2 passes iff L_k > 0 for every k** (an intersection–union test, so each
-comparison at 5% keeps the family at 5%) **and contrast sensitivity meets its pre-declared floor:**
-≥ 3 of 4 contrast blocks detected in the pilot; at scale a one-sided 95% CP lower bound ≥ 0.5. One
-detection alone is weak protection and does not pass.
-
-**Rejection thresholds, not power.** With 0 control survivors, L_k > 0 needs ≥ 8/20, ≥ 8/40 or
-≥ 9/100 real survivors, and ≥ 7/10 in a 10-block pilot. These are rejection thresholds, not power
-estimates. The pilot is **expected to be inconclusive** unless the effect is very large, which is an
-acceptable pilot outcome.
+**Pilot (WO-6): descriptive only.** K = 10 clusters (2 strata × 5), V = 1, S = 3, plus 4 contrast
+clusters. The sign-flip p-values are computed and reported, but the pilot cannot pass GO2 (K < 20).
 
 A correct observer can legitimately fail GO2. If real data match the baseline (as spacings match
 GUE), real cards are `baseline_explained` or killed, as control cards are. GO2 is not impossible to
@@ -413,14 +453,14 @@ baseline, the checks alone and pictures without matching content.
 ## 6. Gates GO1–GO4
 
 Common rules as r5 §8: freeze prompts, crops, check library version, baselines, replication
-partitions, card limits, retries, check mapping, arm sizes and α before opening results; report
+partitions, strata, clusters, V/C/S, retries, check mapping, donor map, seeds and α before opening results; report
 counts and 95% intervals; keep abstentions and malformed output in denominators. An underpowered run
 is **inconclusive, not a pass**.
 
 | Gate | Test and pass rule | Null / baseline |
 |---|---|---|
 | **GO1 Card well-formedness and checkability** | Per observer. **Denominator** = every card slot requested: (visual, observer) pairs × the frozen card limit actually requested, with each refusal, empty reply, malformed JSON or transport failure after retries counting as one failed slot. (1) ≥ 90% of slots hold a card that validates against `oae-mve-hypothesis-card-v1` (all fields of §2b, single observer, hashes match). (2) ≥ 50% of the same denominator are `data_checkable`: an existing check runs them, or a check can be written without changing the claim, as judged by a human. Every validator negative fixture is rejected: unfalsifiable claim, missing kill rule, missing `check_spec`, human/model conflated, hash mismatch, model `adopt`, `hyp_N` as formal support | N/A (structural). Control: a fixed set of vague cards ("looks structured") must all fail validation |
-| **GO2 Real-vs-control survival lift** | §5: L_k > 0 for every control arm k, per observer, over independent source blocks, contrast sensitivity at its floor; owner unblinded cards and baseline-explained cards (e.g. H1) excluded | declared: null-twin, image-free and shuffled-image arms; H0: p_real ≤ p_k for some k |
+| **GO2 Real-vs-control survival lift** | §5 cluster design: per observer, the exact sign-flip test rejects at one-sided 0.05 for **every** control arm, with K ≥ 20 clusters over ≥ 2 strata and the contrast floor met; owner unblinded cards and baseline-explained cards (e.g. H1) excluded; CP intervals descriptive only | declared: null-twin, image-free and shuffled arms; H0_k: d_{c,k} symmetric about 0 for some k |
 | **GO3 Fleet uptake** | Among handed-off survivors: the fraction receiving a lane verdict other than `technical_failure` within N days of relay (N set by the owner before the first relay, Q3) is ≥ 0.5, with n ≥ 5 hand-offs, else inconclusive; median latency reported | N/A (operational); it measures the contract, not truth |
 | **GO4 Absence from a searched corpus** | Survivors are searched against the atlas graph (`EA` export), lab snapshot summaries, `tao_ideas.json`, `atlas_literature` and the literature index. **The search counts only if it retrieves every planted known claim** (≥ 5 planted cards, e.g. "ζ gaps are GUE-distributed" must hit Montgomery/Odlyzko). Pass: ≥ 1 survivor `absent_from_searched_corpus`, confirmed by a human reviewer. This establishes absence from the searched corpus, **not global novelty** | planted-known recall must be 100%, else `not established` |
 
@@ -439,15 +479,15 @@ go] → WO-4 live → WO-6.**
 |---|---|---|---|
 | **WO-1 Snapshot adapter** | `mve/observer/snapshots.py`: reads `EA/inputs/lab_snapshots.json` and committed PNGs by path; captures only from a `git archive` of pinned AT/ZE HEADs into `mve/observer/snapshots/`; blinded crops (caption- and title-free, metadata stripped, re-encoded); manifest per §2a with source blocks and partitions; per-module table of control-only twins | Manifest validates; hashes reproduce. **Isolation:** capture runs against the archive copy with AT/ZE paths not writable by the process (a test asserts a write attempt fails), and a before/after sha256 tree of AT/ZE **including ignored files** (`git status --ignored` plus a full file hash list) is unchanged. **Leakage:** OCR every blinded PNG for withheld strings, plus a PNG chunk/EXIF dump that must be empty of text, plus a test that planted caption text in a fixture is caught; OCR alone is not accepted as proof. ≥ 10 real + 10 null-twin blocks identified, or the shortfall stated | no (local only) |
 | **WO-2 Card schema + validator** | `schemas/mve_hypothesis_card.json` (v1), `mve/observer/card.py` (validation, content hash over all spec fields incl. `check_spec`, lifecycle with `frozen` and `preliminary`, transitive invalidation via `mve/graph.py`, hand-off eligibility), `mve/observer/__main__.py card new`; the class-`hypothesis` changelog stays in this addendum | GO1 negative fixtures rejected; model `adopt` refused; an edit to `prediction` or `primary_statistic` or `check_spec` changes the hash and invalidates checks, judgments and adoption; a `hyp_N` rejected as support on each formalisation path; H0 and H1 fixtures carry the real Odlyzko sha256s, script and receipt sha256s and machine-testable kill rules | no |
-| **WO-3 Data-check library** | `mve/observer/checks/spacing.py`: Gaudin GUE law, finite-N CUE with N_eff (Λ), Wigner (secondary), Planck family with analytic normaliser, calibrated KS with refitting, surrogate calibration with thinning, CDF-exponent MLE with block-bootstrap CI and model-implied values; the two-stage runner enforcing §2c; receipts | **Golden fixture: `C1H/lane_check_v2.json`** (not v1). Recomputed with the same spec and seed: exponents and CIs ±0.02, fitted a, T ±0.01, calibrated p-values within ±0.03 or both below 0.01, block labels, heights and N_eff exact to 4 digits; v1 files are history and no test compares with them. Stage 1 alone returns `preliminary`; tests use small committed extracts; Odlyzko files read by sha256 pinned in `DEPS.lock`; prime checks follow as a second fixture | no |
-| **WO-4 Observer runner** | `mve/observer/run.py`: arms of §5, pairing, shuffle seed, blinded delivery, card prompt, O-DS through the WP-3 adapter and P1 ledger, O-M2 adapter, O-H intake; offline `FakeTransport` mode first | Offline: replay fixtures produce cards; the ledger reserves per call at worst-case output × (1 + retries); malformed/refusal recorded as GO1 slots; no hosted call possible without `--live` plus an owner-go stamp and the pre-dispatch conditions of §8, mirroring the WP-0b CLI gate | **yes, for any hosted call** |
+| **WO-3 Data-check library** | `mve/observer/checks/spacing.py`: Gaudin GUE law, finite-N CUE with N_eff (Λ), Wigner (secondary), Planck family with analytic normaliser, dependence-preserving refit calibration at actual n (§2c rule 4) with its size check, joint bootstrap of the exponent difference, one kill rule with overall α; the two-stage runner enforcing §2c; receipts | **Regression fixture: `C1H/lane_check_v2.json`** (not v1). It certifies reproduction of code, **not inference**: its p-values stay `nominal` and the receipt `inferential: false`. Recomputed with the same spec and seed: exponents and CIs ±0.02, fitted a, T ±0.01, Monte Carlo exceedance counts equal, block labels, heights and N_eff exact to 4 digits; v1 is history only. Inferential use needs the §2c rule 4 devices, validated by a size check on a known dependent null at the declared α. Stage 1 alone returns `preliminary`; tests use small committed extracts; Odlyzko files read by sha256 pinned in `DEPS.lock`; prime checks follow as a second fixture | no |
+| **WO-4 Observer runner** | `mve/observer/run.py`: the §5 cluster design (strata, D/R pairs, donors, fixed slots), allocation seed, blinded delivery, card prompt, O-DS through the WP-3 adapter and P1 ledger, O-M2 adapter, O-H intake; offline `FakeTransport` mode first | Offline: replay fixtures produce cards; the ledger reserves per call at worst-case output × (1 + retries); malformed/refusal recorded as GO1 slots; no hosted call possible without `--live` plus an owner-go stamp and the pre-dispatch conditions of §8, mirroring the WP-0b CLI gate | **yes, for any hosted call** |
 | **WO-5 Fleet/atlas contracts + outbox writers** | `mve/observer/outbox.py`: exchange submission writer (§2d) and result-bundle writer (§2e); validation against `EA/schema/result.schema.json` read by path (sha pinned) and against the adapter's rules | Writers only under `mve/observer/outbox/`; H0/H1 bundles validate; `technical_failure` held; round 2 supersedes round 1 by `work_id`; relay refused while any pre-relay dependency of §2d is unrecorded | no; relay per Q4 after §2d |
-| **WO-6 Pilot report** | 10 blocks each for real, null-twin, image-free and shuffled arms, plus 4 contrast blocks, × O-DS and O-M2; owner cards in their own stratum; GO1–GO4 table in SUMMARY with nulls and counts | Report deterministic given HEAD; spend reconciled in the aggregate ledger; GO2 labelled inconclusive if underpowered | **yes** (hosted calls) |
+| **WO-6 Pilot report** | 10 clusters (2 strata × 5) × 4 arms, V = 1, S = 3, plus 4 contrast clusters, × O-DS and O-M2; descriptive only; owner cards in their own stratum; GO1–GO4 table in SUMMARY with nulls and counts | Report deterministic given HEAD; spend reconciled in the aggregate ledger; GO2 reported as not decidable (K < 20) | **yes** (hosted calls) |
 
 **Pilot cost.** WP-0b measured 236 input tokens and USD 0.000268 for one call on a 288×288 PNG. That
 is the only **known exposure** on record, not a reconciled campaign total: SUMMARY reports the
-campaign snapshot absent and the remaining budget unknown. The pilot needs ≈ 34 imaged blocks × 3
-calls ≈ 102 calls plus retries (the image-free arm makes no call). WO-4 re-estimates tokens per image
+campaign snapshot absent and the remaining budget unknown. The pilot needs 34 images (10 real, 10
+null twin, 10 donor, 4 contrast) × 3 calls = 102 calls plus retries (the image-free arm makes none). WO-4 re-estimates tokens per image
 offline and reserves **worst-case** output × (1 + 2 retries) per call. The hard P1 reservation ceiling
 is **USD 0.25**; if the worst case does not fit, arm sizes shrink before the run, never during it.
 The P1 cap (USD 8) and the aggregate cap (USD 20) are unchanged.
@@ -512,9 +552,9 @@ honesty protocol (declared null or N/A, isolation, controls every wave, naming t
 | **Generic "reject the null" cards** produce lift whenever real data differ from a mis-chosen null | image-free fixed-card arm; baseline = accepted model at the right scale; `baseline_explained` is not survival |
 | **Novelty illusion**: a "discovery" is textbook (as H1 was) | GO4 planted-known recall must be 100%; a human confirms each `absent_from_searched_corpus` |
 | **Answer leakage** through captions, titles, legends, deep links, file names, PNG metadata or control colours | caption-free, title-cropped, metadata-stripped, re-encoded PNGs with opaque ids; WO-1 OCR + chunk dump + planted-text test; control-only twins with the real palette; owner cards are an unblinded stratum |
-| **Miscalibrated statistics** (fitted-parameter KS, dependent gaps, wrong labels) | §2c rules 4–5 and 7; v2 receipt as golden fixture; labels checked against source headers |
+| **Miscalibrated statistics** (fitted-parameter KS, dependent gaps, wrong labels) | §2c rules 4, 5, 5a and 7; v2 receipt is a regression fixture only (`inferential: false`); labels checked against source headers |
 | **Reuse of discovery data** as "replication" | development/replication partitions fixed in `DEPS.lock` before any run; stage 2 reads only replication blocks |
-| **Multiple testing** across cards and arms | unit = independent source block, "any card survives"; frozen card limit, retries, check mapping and arm sizes; intersection–union test over the three control arms |
+| **Multiple testing; non-iid units** across cards, views and arms | cluster = source block with fixed S slots in every arm; exact sign-flip test over clusters; frozen retries, check mapping, donors and seeds; intersection–union over the three control arms; CP descriptive only |
 | **Ownership collisions; contract drift** | outbox-only writes; isolation tests; pre-relay dependencies; relay by a named session; schema and script sha256 pinned in `DEPS.lock`, WO-5 fails on change |
 | **Budget overstatement** | known exposure only until the aggregate ledger is reconciled; worst-case reservation; pre-dispatch conditions |
 | **Owner intuition dismissed** because GO2 fails | GO2 measures model observers; owner cards are tracked in their own stratum; a negative owner card is recorded as informative (as H0) |
