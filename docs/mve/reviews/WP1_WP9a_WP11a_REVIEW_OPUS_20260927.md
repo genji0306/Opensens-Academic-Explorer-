@@ -35,3 +35,14 @@ WP-11a
    root at runtime and reading through it is denied.
 
 WP-0a remains CHANGES REQUESTED (coverage 65%), see WP0a_REVIEW_OPUS_20260927.md.
+
+## Addendum, 2026-09-27 — fixes merged
+
+- **WP-0a** `113be79b44b`: coverage fixed (preflight modules 95–98%; guard module exercised in a child
+  process); runner and openJev checks now testable with injected fakes. **PASS, merged.**
+- **WP-1 follow-ups** `6b35653e652`: `canonical_exact` wired into `validation.proposition()` with
+  record-level negative tests; binder re-mapping invalidation and derivation-cites-measurement
+  tests added; message wording fixed. Items 1–4 closed. **PASS, merged.**
+- Combined suite after both merges is recorded in the merge commit message below.
+- Still open: items 5–8 (WP-9a verified-price gate belongs in WP-0b; boundary and zero-token
+  tests; WP-11a runtime-symlink test).
