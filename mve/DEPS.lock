@@ -1658,6 +1658,31 @@
       "review_base_git_sha": "8da83b3c2a26d92b827b9b6a30da342236a7b5ad",
       "schema": "mve-deps-v1"
     },
+    "WP-6a-portable-discovery": {
+      "base_git_sha": "0550144a89543c0e6cd214fb89324537eb6f2b2e",
+      "files": [
+        {
+          "path": "mve/formalizer/runtime.py",
+          "sha256": "8979f58ddb14d6b571839eb3bb03add300a9bc65da8fc38292d174b98cd25dd5"
+        },
+        {
+          "path": "mve/lean/lock.json",
+          "sha256": "4286213ae6b98e8f9b94882487c634392e9c21eac4e7709f257cd6e4bec297a9"
+        },
+        {
+          "path": "tests/mve/test_formalizer_runtime.py",
+          "sha256": "0e7fcb64b07ddc3dc5c33f68c5248e272219069094aba6eced1bbe69e073fac9"
+        },
+        {
+          "path": "tests/mve/test_lean_discovery.py",
+          "sha256": "694d9a3d783e63b3afde0371c98815edb5a38b50d7d01028b19babb18ad3f8bc"
+        }
+      ],
+      "hosted_calls": 0,
+      "lean_lock_sha256": "4286213ae6b98e8f9b94882487c634392e9c21eac4e7709f257cd6e4bec297a9",
+      "note": "Portable ELAN_HOME/toolchain and MVE_LEAN_PACKAGES discovery; existing dependency hashes retained and verified.",
+      "proof_checked": false
+    },
     "WP-9a": {
       "base_git_sha": "5645250003f129473919f4f32984c68a86e1c477",
       "files": [

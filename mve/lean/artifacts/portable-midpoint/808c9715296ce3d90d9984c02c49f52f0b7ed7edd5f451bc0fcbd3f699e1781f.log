@@ -1,0 +1,10 @@
+artifacts/portable-midpoint/d4b5bcf69b65635fd4808e82767ba14fa90682438428a69c1f95cf120b42f27d.lean:6:36: warning: unused variable `p3`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+artifacts/portable-midpoint/d4b5bcf69b65635fd4808e82767ba14fa90682438428a69c1f95cf120b42f27d.lean:6:39: warning: unused variable `p4`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+artifacts/portable-midpoint/d4b5bcf69b65635fd4808e82767ba14fa90682438428a69c1f95cf120b42f27d.lean:6:42: warning: unused variable `p5`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+statement : Prop
