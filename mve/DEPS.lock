@@ -1363,6 +1363,35 @@
       "python": "3.13.2",
       "schema": "mve-deps-v1"
     },
+    "WP-4a": {
+      "LeanGeo": "failed: not present locally; vendoring deferred to owner-approved packet",
+      "base_git_sha": "e827c05717d23a1d570e49847918c8e7347313ec",
+      "files": [
+        {
+          "path": "mve/measurement/__init__.py",
+          "sha256": "0a525a7504c35b3543844ac0933e7d7efd9c496b55d46230533ffe5f731138fb"
+        },
+        {
+          "path": "mve/measurement/numpy_kernel.py",
+          "sha256": "c547c67477e542bf5803e21b6c10489896fac588e47096120dafb9539026af65"
+        },
+        {
+          "path": "mve/measurement/records.py",
+          "sha256": "0a8366bdd0e4627f3c02ff04e5d77468bfd19177da54bf982576368a12913373"
+        },
+        {
+          "path": "tests/mve/test_measurement_fixtures.py",
+          "sha256": "d43f4de5db51c40066ddde80f1b919dbddfbd183ea25296894ed6560918d4685"
+        }
+      ],
+      "jsxgraph": "failed: not present locally; vendoring deferred to owner-approved packet",
+      "packages": {
+        "numpy": "2.4.6",
+        "pytest": "8.4.2"
+      },
+      "schema": "mve-deps-v1",
+      "status": "offline numerical fixtures implemented; JSXGraph deferred to A6/WP-7 by owner"
+    },
     "WP-9a": {
       "base_git_sha": "5645250003f129473919f4f32984c68a86e1c477",
       "files": [
