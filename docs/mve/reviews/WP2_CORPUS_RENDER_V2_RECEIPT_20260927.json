@@ -1,0 +1,76 @@
+{
+  "acceptance": "generated_counts_met",
+  "api_cost_usd": 0,
+  "artifact_hashes_verified": 10240,
+  "class_counts": {
+    "false": 1035994,
+    "incidental_unproved": 132334,
+    "premise": 3587,
+    "unknown": 151605
+  },
+  "code_sha": "a2d3c73f94fa1686c2380a5fa5a02562460a6932",
+  "controls": {
+    "calibration:adversarial_negative": 4,
+    "calibration:degenerate": 4,
+    "calibration:exact_positive": 4,
+    "calibration:near_miss_negative": 4,
+    "calibration:not_to_scale": 4,
+    "development:adversarial_negative": 4,
+    "development:degenerate": 4,
+    "development:exact_positive": 4,
+    "development:near_miss_negative": 4,
+    "development:not_to_scale": 4,
+    "evaluation:adversarial_negative": 100,
+    "evaluation:degenerate": 100,
+    "evaluation:exact_positive": 100,
+    "evaluation:near_miss_negative": 100,
+    "evaluation:not_to_scale": 100,
+    "fit:adversarial_negative": 399,
+    "fit:degenerate": 399,
+    "fit:exact_positive": 404,
+    "fit:near_miss_negative": 399,
+    "fit:not_to_scale": 399,
+    "retrieval:adversarial_negative": 4,
+    "retrieval:degenerate": 4,
+    "retrieval:exact_positive": 4,
+    "retrieval:near_miss_negative": 4,
+    "retrieval:not_to_scale": 4
+  },
+  "counts": {
+    "calibration": 20,
+    "development": 20,
+    "evaluation": 500,
+    "fit": 2000,
+    "retrieval": 20
+  },
+  "cross_split_coordinate_collisions": 0,
+  "cross_split_image_collisions": 0,
+  "ddar_note": "All DDAR receipts unsupported until a local backend passes preflight; no consequence claims.",
+  "hosted_calls": 0,
+  "local_artifact_root": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/generated/wp2-corpus-render-v2-20260927",
+  "manifest_sha256": "a7e148a9babc14f8f8056ab1c1995b3d704c06f2d808beae6a0d8914e984619f",
+  "records_validated": 2560,
+  "render_pinned": false,
+  "scene_contracts_validated": 2560,
+  "schema": "mve-corpus-v1",
+  "sealed_truth_inspected_for_tuning": false,
+  "split_sha256": "47c65704ee1afadf149cc741623ab891ffc7260aa79e97e257a3cfdf1bc762a2",
+  "styles": [
+    "thin"
+  ],
+  "supersedes": "WP2_CORPUS_RECEIPT_20260927.json (retired duplicate renders)",
+  "unique_mathematical_diagrams": {
+    "calibration": 20,
+    "development": 20,
+    "evaluation": 500,
+    "fit": 2000,
+    "retrieval": 20
+  },
+  "unique_rendered_images": {
+    "calibration": 20,
+    "development": 20,
+    "evaluation": 500,
+    "fit": 2000,
+    "retrieval": 20
+  }
+}
