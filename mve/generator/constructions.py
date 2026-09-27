@@ -140,20 +140,7 @@ def construct(family, seed, *, control=None):
         2 + sp.Rational((code >> 8) % 43, 103),
     )
     points = dict(zip("ABCDEF", anchors(family, s, t)))
-    a, b = points["A"], points["B"]
-    midpoint = tuple(sp.Rational(1, 2) * (x + y) for x, y in zip(a, b))
-    delta = (
-        sp.Rational(1, 10**6) if control == "near_miss_negative" else sp.Rational(1, 3)
-    )
-    if control in {"exact_positive", "not_to_scale"}:
-        points["C"] = midpoint
-    elif control == "degenerate":
-        points["C"] = a
-    else:
-        points["C"] = (
-            midpoint[0] - (b[1] - a[1]) * delta,
-            midpoint[1] + (b[0] - a[0]) * delta,
-        )
+    points = control_points(points, control)
     coordinates = {
         name: [
             canonical_exact(str(sp.expand(v)).replace("**", "^").replace(" ", ""))
@@ -179,3 +166,21 @@ def construct(family, seed, *, control=None):
             ),
         },
     }
+
+
+def control_points(points, control):
+    a, b = points["A"], points["B"]
+    midpoint = tuple(sp.Rational(1, 2) * (x + y) for x, y in zip(a, b))
+    delta = (
+        sp.Rational(1, 10**6) if control == "near_miss_negative" else sp.Rational(1, 3)
+    )
+    if control in {"exact_positive", "not_to_scale"}:
+        points["C"] = midpoint
+    elif control == "degenerate":
+        points["C"] = a
+    else:
+        points["C"] = (
+            midpoint[0] - (b[1] - a[1]) * delta,
+            midpoint[1] + (b[0] - a[0]) * delta,
+        )
+    return points
