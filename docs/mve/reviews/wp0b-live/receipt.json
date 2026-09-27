@@ -1,0 +1,62 @@
+{
+  "attempt": "wp0b:single-model-probe",
+  "cost_policy": "peak cache-miss input and peak output; cache discounts not assumed; derived upper estimate, not vendor-billed",
+  "headers": {
+    "Authorization": "[REDACTED]",
+    "Content-Type": "application/json"
+  },
+  "holiday_policy": "no holiday exemption; conservative",
+  "image_source": "WP-2 midpoint_grid seed 0 fit",
+  "image_wire_format_previously_verified": false,
+  "input_allowance": "131072 includes image/text/hidden overhead; engineering allowance, vendor tokenizer unverified",
+  "mode": "live",
+  "observation": {
+    "cost_basis": "derived_from_usage",
+    "derived_micro_usd": 268,
+    "http_status": 200,
+    "image_accepted": true,
+    "latency_s": 1.4512553750537336,
+    "raw_redacted": false,
+    "raw_sha256": "43c4ba95f6e344d4904426fe73382dd19ff1e30ee557b2e437b200b03e5985cd",
+    "returned_model": "deepseek-flash",
+    "status": "ok",
+    "usage": {
+      "completion_tokens": 164,
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 236,
+      "prompt_tokens": 236,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "total_tokens": 400
+    }
+  },
+  "owner_approval": "2026-09-27",
+  "phase": "P0",
+  "price": {
+    "input_micro_usd_per_million": 300000,
+    "output_micro_usd_per_million": 1200000,
+    "source_sha256": "7e82f84f86abef7ff95eb3a54dc2928e39919b5d2c065b0242f8ac50a2248a4a",
+    "verified": true
+  },
+  "price_fetch_date": "2026-09-27",
+  "price_source": "https://api-docs.deepseek.com/quick_start/pricing",
+  "request": {
+    "image_count": 1,
+    "image_sha256": "15f0d4cda4c3677eda6f2e4bce9f1c43ee22ecf77c2dc11ebdb7ee346ad59371",
+    "max_input_tokens": 131072,
+    "max_output_tokens": 512,
+    "model": "deepseek-flash",
+    "prompt": "Return only JSON: {\"observations\":[]}. List visible point labels and geometric relations in this image. No reasoning.",
+    "response_format": "json",
+    "temperature": 0,
+    "thinking": false,
+    "timeout_s": 30
+  },
+  "requested_model": "deepseek-flash",
+  "reserved_micro_usd": 39936,
+  "reviewed_by_opus": "16cf4788cce7a339e44a06540903255d12475265",
+  "schema": "mve-probe-live-receipt-v1",
+  "window_policy": "deepseek-pricing-20260927:UTC:Mon-Fri:01-04,06-10:VERIFIED:holidays-conservative",
+  "window_verified": true
+}

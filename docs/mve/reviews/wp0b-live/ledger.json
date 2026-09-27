@@ -1,0 +1,35 @@
+{
+  "attempts": [
+    {
+      "actual": 268,
+      "created": "2026-09-27T12:28:42.706105+00:00",
+      "dispatched": "2026-09-27T12:28:42.741874+00:00",
+      "id": "wp0b:single-model-probe",
+      "phase": "P0",
+      "receipt": "f328968f5e3ef6ebacff4cc1226b7e90485c9eefaff0722c5285aa1f88e18cc8",
+      "reserved": 39936,
+      "state": "settled",
+      "wave": "wp0b"
+    }
+  ],
+  "configuration": {
+    "caps": {
+      "P0": 50000,
+      "P1": 8000000,
+      "aggregate": 50000
+    },
+    "prices": {
+      "deepseek-flash": {
+        "input_micro_usd_per_million": 300000,
+        "output_micro_usd_per_million": 1200000,
+        "source_sha256": "7e82f84f86abef7ff95eb3a54dc2928e39919b5d2c065b0242f8ac50a2248a4a",
+        "verified": true
+      }
+    },
+    "window": "deepseek-pricing-20260927:UTC:Mon-Fri:01-04,06-10:VERIFIED:holidays-conservative"
+  },
+  "events": [],
+  "exposure_micro_usd": 268,
+  "frozen": false,
+  "quota": []
+}

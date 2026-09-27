@@ -209,3 +209,25 @@ preserved; no `/Users/` remains in tracked `mve/` files.
 Follow-ups: (1) the parity and fit set (3 states, 4 rows, 1 family) is plumbing only, so G2 needs
 real WP-8a human labels; (2) rename or comment `epochs` vs `min(epochs, max_steps)` in spike.py;
 (3) make the no-`/Users/` test skip with a reason outside a git checkout.
+
+## Addendum 8: WP-0b live probe: EXECUTED ONCE (owner-run), merged
+
+Code `16cf4788cce` reviewed by Opus (stdlib urllib; fixed host; no proxy, redirect or retry;
+1 MiB reply cap; Keychain key read at call time only and scrubbed from raw bytes; CLI gated on
+owner date + Opus-reviewed HEAD + clean tree). 695 passed outside the sandbox before the call;
+710 passed on integration after merge. Opus's own invocation was blocked by the Claude Code
+permission classifier; **the owner ran the single call** at 2026-09-27T12:28:42Z (Sunday, off-peak).
+
+Result (receipt, request, raw response and ledger rows in `docs/mve/reviews/wp0b-live/`):
+HTTP 200, returned model `deepseek-flash`, image accepted with the OpenAI-compatible `image_url`
+data URL, `thinking: disabled` accepted, JSON reply. Usage 236 prompt tokens (all cache miss; image
+included), 164 completion tokens, latency 1.45 s. Cost derived from usage at peak prices:
+**USD 0.000268** (reserved 0.039936), settled in the one-shot ledger with no freeze. The key was
+not found in any artifact (checked byte-for-byte against the Keychain value). Campaign P0 spend
+is now USD 0.000268 of 2.00.
+Measured cost model for WP-3 planning: ≈ 236 input tokens for a 288×288 PNG plus a short prompt.
+At P1 peak prices one two-call perception costs ≈ USD 0.0005, so USD 8 covers ~15,000 images
+before retries. The reply named 6 points, collinearities and segments; accuracy is not scored
+here (one image, no truth in the prompt).
+Next: WP-3 live transport reuses this adapter behind the P1 ledger; the first scored run on the
+fit split still needs an owner go.

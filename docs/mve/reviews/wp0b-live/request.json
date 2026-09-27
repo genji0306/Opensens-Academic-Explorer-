@@ -1,0 +1,12 @@
+{
+  "image_count": 1,
+  "image_sha256": "15f0d4cda4c3677eda6f2e4bce9f1c43ee22ecf77c2dc11ebdb7ee346ad59371",
+  "max_input_tokens": 131072,
+  "max_output_tokens": 512,
+  "model": "deepseek-flash",
+  "prompt": "Return only JSON: {\"observations\":[]}. List visible point labels and geometric relations in this image. No reasoning.",
+  "response_format": "json",
+  "temperature": 0,
+  "thinking": false,
+  "timeout_s": 30
+}
