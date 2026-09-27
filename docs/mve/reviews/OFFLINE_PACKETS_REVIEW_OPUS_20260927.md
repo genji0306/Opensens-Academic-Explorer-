@@ -231,3 +231,21 @@ before retries. The reply named 6 points, collinearities and segments; accuracy 
 here (one image, no truth in the prompt).
 Next: WP-3 live transport reuses this adapter behind the P1 ledger; the first scored run on the
 fit split still needs an owner go.
+
+## Addendum 9: G3 task set (83ceda94dda + Opus receipts 623026be358): PASS, merged; G3 pending human rubric
+
+725 passed in a git worktree outside the builder sandbox. Opus ran
+`python3 -m mve.formalizer.g3 --output mve/lean/artifacts/g3-taskset` with real pinned Lean:
+100 tasks with **100 unique canonical statements**, 170 unique compiler inputs; first-pass 80/100
+(exactly the 20 injected syntax faults), post-repair 100/100; all 7 control kinds 100/100;
+`g3_pass: false`, because the 50-task blinded rubric has 0 human reviews (needs ≥ 20 passes).
+Per predicate: Parallel 18, EqualLength 17, EqualAngle 17, RightAngle 17, Perpendicular 14,
+Collinear 5, SBetween 5, Concyclic 4, Midpoint 3. The shortfalls are disclosed: the frozen sealed
+families at seeds 0–9 hold only that many distinct statements, and the unfilled quota is spread round-robin.
+Caveat: first-pass/post-repair measure the deterministic emitter and syntax repair, not model
+formalization; G3's model-facing meaning needs the formalizer to be driven by perceived records.
+**Owner action to finish G3:** a human fills
+`mve/lean/artifacts/g3-taskset/rubric-template.csv` (50 rows, blinded), then Opus runs the
+`--reviews` command in docs/mve/reviews/G3_TASKSET_ASTRA_20260927.md.
+Follow-up: widen Collinear/Concyclic/Midpoint/SBetween coverage by adding sealed-family seeds or
+constructions (a WP-2 generator extension), without touching the frozen split.
