@@ -1,6 +1,7 @@
-"""Offline WP-6a native Mathlib spike; LeanGeo is unavailable, proof authority unchanged."""
+"""Offline native Mathlib formalizer; LeanGeo is unavailable, proof authority unchanged."""
 
 from mve.formalizer.ir import build_ir
 from mve.formalizer.emitter import emit
+from mve.formalizer.repairs import formalize
 
-__all__ = ["build_ir", "emit"]
+__all__ = ["build_ir", "emit", "formalize"]

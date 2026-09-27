@@ -31,6 +31,9 @@ def build_ir(record):
         for p in problem[key]
         if p.get("valid", True)
     ]
+    premises += [
+        node(p, "hypothesis") for p in data["assumptions"] if p.get("valid", True)
+    ]
     if goal and not goal.get("valid", True):
         raise ValueError("invalidated goal")
     return {

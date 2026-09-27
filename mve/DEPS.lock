@@ -1913,6 +1913,629 @@
       "note": "Portable ELAN_HOME/toolchain and MVE_LEAN_PACKAGES discovery; existing dependency hashes retained and verified.",
       "proof_checked": false
     },
+    "WP-6b": {
+      "LeanGeo": "failed: not present locally",
+      "base_git_sha": "576816e73754b825967777d279c362a9b959454a",
+      "downloads": 0,
+      "files": [
+        {
+          "path": "docs/mve/FORMALIZER.md",
+          "sha256": "3a467e1fc5221dac6b5f5edb6d5267493b24483d661d12ca5c5ef06d33a9243e"
+        },
+        {
+          "path": "docs/mve/MVE_PLAN.md",
+          "sha256": "f073240be638b9225b5f6f33da4bbe34ef75d2ba71087da7b39b2ab9d9b61908"
+        },
+        {
+          "path": "docs/mve/VERDICTS.md",
+          "sha256": "6ed4e0cf792412d8727b35d16fa0c798ecb3ca6c5f8741dd588b49a66a4e7011"
+        },
+        {
+          "path": "docs/mve/mve_observation_record.json",
+          "sha256": "32fc02ab2f080e0580a11cac04ccf42dcc6f8c8e4b6dcee4891cdf42e47ee213"
+        },
+        {
+          "path": "docs/mve/reviews/WP6B_FORMALIZER_ASTRA_20260927.md",
+          "sha256": "0262e01d38c05b76aa14f522f568e3ea230dd0c43e4924dc888d99bf13180399"
+        },
+        {
+          "path": "mve/degeneracy.py",
+          "sha256": "a72a47ecacb68ed9913e9e9d245ea2b6f283bb5ac34cc66666540d6477ecb66b"
+        },
+        {
+          "path": "mve/evaluation/splits.py",
+          "sha256": "367ff90790a7e5745cf711577888e30ec7496ec9d954c0f67e0ed503e72f45c9"
+        },
+        {
+          "path": "mve/formalizer/__init__.py",
+          "sha256": "36f18f9160e8ccb64a4c82bf4eba63d70a822de140a7d1de03b0c0ba630fd837"
+        },
+        {
+          "path": "mve/formalizer/__main__.py",
+          "sha256": "4b29a7dbba708b143358d7244008e116678e614e4c2390b4c396e65e8f7942e9"
+        },
+        {
+          "path": "mve/formalizer/emitter.py",
+          "sha256": "5a325e05937b5e91f132e769b198d51d78d8bb0f4ca69056450d41efb353469e"
+        },
+        {
+          "path": "mve/formalizer/equivalence.py",
+          "sha256": "0d18285400a758448abe24a5dd426f3d518ed8c77c5bf5659f9aa801978f4e0a"
+        },
+        {
+          "path": "mve/formalizer/g3.py",
+          "sha256": "12ef97a03247d1bbe6ed0a314d3cdb67716175c8080e2ea65b1e495fff059a9e"
+        },
+        {
+          "path": "mve/formalizer/guards.py",
+          "sha256": "366d7c79a4da22f3eae4fdca5fcb41d1d139cccbf425d9b9f63d98684b69d424"
+        },
+        {
+          "path": "mve/formalizer/ir.py",
+          "sha256": "0842586648612006397781bbc9d67389f3b16772e4f62a44d01dbd0980ce9889"
+        },
+        {
+          "path": "mve/formalizer/leangeo.py",
+          "sha256": "81ad1c745b1c87d18c8a2d65fade52e2a99229c8f7888e27876ea852b303fd0a"
+        },
+        {
+          "path": "mve/formalizer/repairs.py",
+          "sha256": "a9425592fe047cda55e6b9414b6c23a15af1393f043a4a082361582d251916c7"
+        },
+        {
+          "path": "mve/formalizer/retrieval.py",
+          "sha256": "bee5f08ba19bcc7052636cec9c4962a5c6cfcb3fe8655359839f4a60ece295bf"
+        },
+        {
+          "path": "mve/formalizer/runtime.py",
+          "sha256": "c1ebe550b392f1a4e1ccca75b4bcedb9a5feb835480c2569971667f874e7e857"
+        },
+        {
+          "path": "mve/formalizer/tasks.py",
+          "sha256": "7459c9cf1817a1ee07105bde1b806cc4607dd561ffddbd05fa5f750905c1cd60"
+        },
+        {
+          "path": "mve/generator/constructions.py",
+          "sha256": "aaf8bc844ec61bfcb54cfc4063ae18f5698fd06869ad664071f2a4efd7686236"
+        },
+        {
+          "path": "mve/generator/corpus.py",
+          "sha256": "dd7cac618f4267af8ca6eb7af13c8b25017e270fdfd689ac9aa5a107f6f74f52"
+        },
+        {
+          "path": "mve/generator/truth.py",
+          "sha256": "0e26b6e1baf0a09cba1fbeb189b3dc833f3852fcd343cbf2088b302a0e3a1512"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/140a6c3f4c7fa2416b24e91e0a97967d76ab7d1f0ea4714522e52263a3d25aab/140a6c3f4c7fa2416b24e91e0a97967d76ab7d1f0ea4714522e52263a3d25aab.lean",
+          "sha256": "140a6c3f4c7fa2416b24e91e0a97967d76ab7d1f0ea4714522e52263a3d25aab"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/140a6c3f4c7fa2416b24e91e0a97967d76ab7d1f0ea4714522e52263a3d25aab/140a6c3f4c7fa2416b24e91e0a97967d76ab7d1f0ea4714522e52263a3d25aab.receipt.json",
+          "sha256": "cc805aba4565e0e8143a48cd0c61a9440c7f0c59c149f41360d69004fe29ae08"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/140a6c3f4c7fa2416b24e91e0a97967d76ab7d1f0ea4714522e52263a3d25aab/d34a4e4359a4dc36526cf5b363da32f7b7594a3a09eea17cbdfd6425b052d93e.log",
+          "sha256": "d34a4e4359a4dc36526cf5b363da32f7b7594a3a09eea17cbdfd6425b052d93e"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/3d6c59e64ec7fef6cd547d5ee80908b298f93f6d9e736015844182e74686eb53/3d6c59e64ec7fef6cd547d5ee80908b298f93f6d9e736015844182e74686eb53.lean",
+          "sha256": "3d6c59e64ec7fef6cd547d5ee80908b298f93f6d9e736015844182e74686eb53"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/3d6c59e64ec7fef6cd547d5ee80908b298f93f6d9e736015844182e74686eb53/3d6c59e64ec7fef6cd547d5ee80908b298f93f6d9e736015844182e74686eb53.receipt.json",
+          "sha256": "8a963f604abdd6f2b38a53ad5506c59e7ef5be1b64f9b2239ebc6963b7eef6c2"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/3d6c59e64ec7fef6cd547d5ee80908b298f93f6d9e736015844182e74686eb53/d34a4e4359a4dc36526cf5b363da32f7b7594a3a09eea17cbdfd6425b052d93e.log",
+          "sha256": "d34a4e4359a4dc36526cf5b363da32f7b7594a3a09eea17cbdfd6425b052d93e"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/5cbb32a3f4b98fffce2008b0a57c744d90721deca4d57ba0f4767e3c8cb22f75/5cbb32a3f4b98fffce2008b0a57c744d90721deca4d57ba0f4767e3c8cb22f75.lean",
+          "sha256": "5cbb32a3f4b98fffce2008b0a57c744d90721deca4d57ba0f4767e3c8cb22f75"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/5cbb32a3f4b98fffce2008b0a57c744d90721deca4d57ba0f4767e3c8cb22f75/5cbb32a3f4b98fffce2008b0a57c744d90721deca4d57ba0f4767e3c8cb22f75.receipt.json",
+          "sha256": "d8e83cd176d97dd825b8bbf243ab0316242eeda3dbebe2fc36ff5e969219fafa"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/5cbb32a3f4b98fffce2008b0a57c744d90721deca4d57ba0f4767e3c8cb22f75/d34a4e4359a4dc36526cf5b363da32f7b7594a3a09eea17cbdfd6425b052d93e.log",
+          "sha256": "d34a4e4359a4dc36526cf5b363da32f7b7594a3a09eea17cbdfd6425b052d93e"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/b1d674d14404a9173cb8b878ae8955c461214523de670ab525df539477a3fa84/b1d674d14404a9173cb8b878ae8955c461214523de670ab525df539477a3fa84.lean",
+          "sha256": "b1d674d14404a9173cb8b878ae8955c461214523de670ab525df539477a3fa84"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/b1d674d14404a9173cb8b878ae8955c461214523de670ab525df539477a3fa84/b1d674d14404a9173cb8b878ae8955c461214523de670ab525df539477a3fa84.receipt.json",
+          "sha256": "758506792d91380b45a6ed0c813f0ddb243fa5148b93d8af08df8acd64fb057b"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/b1d674d14404a9173cb8b878ae8955c461214523de670ab525df539477a3fa84/d34a4e4359a4dc36526cf5b363da32f7b7594a3a09eea17cbdfd6425b052d93e.log",
+          "sha256": "d34a4e4359a4dc36526cf5b363da32f7b7594a3a09eea17cbdfd6425b052d93e"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/b6bca05c7d3983c9027745ef42bf8f34b10cd9fe19f2bd41d1179276e4e8c399/b6bca05c7d3983c9027745ef42bf8f34b10cd9fe19f2bd41d1179276e4e8c399.lean",
+          "sha256": "b6bca05c7d3983c9027745ef42bf8f34b10cd9fe19f2bd41d1179276e4e8c399"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/b6bca05c7d3983c9027745ef42bf8f34b10cd9fe19f2bd41d1179276e4e8c399/b6bca05c7d3983c9027745ef42bf8f34b10cd9fe19f2bd41d1179276e4e8c399.receipt.json",
+          "sha256": "b7e18bd2eacc18dd033ba869468ce6bc494cd57ce1ea171d809d500f8a73c013"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/b6bca05c7d3983c9027745ef42bf8f34b10cd9fe19f2bd41d1179276e4e8c399/d34a4e4359a4dc36526cf5b363da32f7b7594a3a09eea17cbdfd6425b052d93e.log",
+          "sha256": "d34a4e4359a4dc36526cf5b363da32f7b7594a3a09eea17cbdfd6425b052d93e"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/e9d082611a933cb9a646becc0a2e328085dcf71cf307f6aa568b5ff25f529ed0/d34a4e4359a4dc36526cf5b363da32f7b7594a3a09eea17cbdfd6425b052d93e.log",
+          "sha256": "d34a4e4359a4dc36526cf5b363da32f7b7594a3a09eea17cbdfd6425b052d93e"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/e9d082611a933cb9a646becc0a2e328085dcf71cf307f6aa568b5ff25f529ed0/e9d082611a933cb9a646becc0a2e328085dcf71cf307f6aa568b5ff25f529ed0.lean",
+          "sha256": "e9d082611a933cb9a646becc0a2e328085dcf71cf307f6aa568b5ff25f529ed0"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/checks/e9d082611a933cb9a646becc0a2e328085dcf71cf307f6aa568b5ff25f529ed0/e9d082611a933cb9a646becc0a2e328085dcf71cf307f6aa568b5ff25f529ed0.receipt.json",
+          "sha256": "947eac8adb9788750906d77d0d19a1bd4055d7925b7893d6dc144049f96472d3"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/g3.json",
+          "sha256": "cbb30833bac9f8c1620bec69585008267c5d50fcda9ffe16c4b5b18d5b207cf8"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/split.json",
+          "sha256": "1f98bc92a425e6b29a758e993f0bde6ef9a6d55f9f3dca17ebdcdee95f312ad2"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-000.json",
+          "sha256": "7ce8b63d40ae55b315770b1b5c83293c567fcc51f11110693f4279d3690cd529"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-001.json",
+          "sha256": "879a9ce092b1c3db982b4a7eb6c942f5a6457e5c851a206a281a2502b0e03d22"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-002.json",
+          "sha256": "d759495f2b3f891c576bb9e1477f1d714f85018e58a1f1d160cce0dccefe7090"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-003.json",
+          "sha256": "0f56c03108ee12a6e24cf2064bf9bb71662063fc327f7dda6a09d176a965fcdd"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-004.json",
+          "sha256": "4c72046640fb529e91c7896a0dde8340511c50ff2dc8636f329b5ae9a470cbaa"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-005.json",
+          "sha256": "9d431edc12dc08c434363dd02d3bd3c6de906634e5cd37e109cd6d34460028d6"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-006.json",
+          "sha256": "93376ea865f57b8d50b5739be5e8e012a70f9514159d89fdadf8ba2ff326213c"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-007.json",
+          "sha256": "730e417576974456ded1190cdf9dc3338db9935556d0d04b7e2a8844d2bc33a1"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-008.json",
+          "sha256": "18a4d84bb578a9be96dc5a9102420f5897112d48ad2a1c55ec9982a2edab4cd9"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-009.json",
+          "sha256": "256bf809148515b90b0c9864fbde392839dabc7099efcae5359c81bc877ea533"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-010.json",
+          "sha256": "4754babebde5562b0b4499ca2cdeb622de92b6a8fdf86dc4e93e09c98c426a2e"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-011.json",
+          "sha256": "2a82cc5ae32321515da1804caa14ad855391b7b3ec547d6bd193f2218d78994e"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-012.json",
+          "sha256": "6a13b89366281e7bd6cd2d50d856a552646a907ce1743f1c875f660ce76f11aa"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-013.json",
+          "sha256": "b881dfccc18dad8aff3b35d60ea12caf480a7b35152f745623350e9aec267e7c"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-014.json",
+          "sha256": "091c2eeb3ad3fd235e476db7879eb47f45acad650907b54b02b6d72941a5b291"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-015.json",
+          "sha256": "8bd6969073ae3f3effb1a5b7a7b3cbd4bb0b3db889e533a91281d88efa96b932"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-016.json",
+          "sha256": "f6b347d89b8f64de63c0f0f4218e7054df8bd786b46a831ba85564896da72ce3"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-017.json",
+          "sha256": "8e87042bcb1948bafabe85b4f91698406c342b4b9967f3cd82d643804bef0f98"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-018.json",
+          "sha256": "88553893d7f7dbcd43bddd087f3408249bd6fe1ebb857b2aa521287f090275df"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-019.json",
+          "sha256": "8bc229800e22905c0aae98585c8292d5574ef34cfe0a25e31987ab8d2910c475"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-020.json",
+          "sha256": "cb76725c02756a73577019d39a30f79bb7bfe6e167e6febfe210bbd6e34ece71"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-021.json",
+          "sha256": "f96fa25dab15e32d29d97fee1952d727b2b2873b891f997f6b8c33f7d7a23b99"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-022.json",
+          "sha256": "f558d58baf95c6d7b7cc2598f721abd82e6284c011b3c71043dfecedee1be271"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-023.json",
+          "sha256": "0914920bd1e844469cdcf5696a11e930391683abbb6eda9d871c5e55d6db041b"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-024.json",
+          "sha256": "ad4e2d9064796b15c44788ff41181dc72df7c703a9b6926c18b974143e7e2f88"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-025.json",
+          "sha256": "1890dcd3068f015fc67710d69a7bef277150e6063adfabadd21777aef0d1c76c"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-026.json",
+          "sha256": "4809696bb0ba20a0ea8a0fc22de0541c3811f1dc02e952cd552bde57ad5bec53"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-027.json",
+          "sha256": "184940c6c86070d7148cd1065654a933b8f640c4e8a198e1681eefa5b8af7d61"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-028.json",
+          "sha256": "6d85c1239a070f0fbc2c44861ac8daf956749af690205088a4f8e818cf302872"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-029.json",
+          "sha256": "94efd4233dbc60e1cc6efbde4ee09e532c10c00533857ef92335e59dd38574f7"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-030.json",
+          "sha256": "54d7cecee487692d9995bccdf0a123fa5cced349a588a8c9f31a024146834b5e"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-031.json",
+          "sha256": "c8471db13f6c31b52c52006f565f061ce0101507a64d1fc1ad809d5b7a6efd82"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-032.json",
+          "sha256": "54c777b7050dc48291a61dd3fb9e266a3dc086c03e6f3123089a3ada9eace01b"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-033.json",
+          "sha256": "741add95be41e7975ed32697e9d1d56f0883c7e53a24719cdb607a94fae8de43"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-034.json",
+          "sha256": "273872d57e426c9ea545804cfa71491a2b34a0f0aff90f5c1be88ba181edabf7"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-035.json",
+          "sha256": "81666e45e00bcd9cdba9a1373b83cb70185703f25c11595f3c824fe4397c5ecf"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-036.json",
+          "sha256": "6d744fc01432a8af1e74eb5bccac2e0be60dd261bb0a3bfce7a5212b76ab332e"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-037.json",
+          "sha256": "596156c415c921149eb7f0391669cb0968a1ddd718910bcd032581a6954b6a3d"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-038.json",
+          "sha256": "e8b8b39dc76c2506493ee16be376ce92497d4d5203d77f024b98e47427bb9e8e"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-039.json",
+          "sha256": "9f685f1bf2362f0c7825424c3781e88fbb4b649d2a315a9ff253833c1a5cfa3a"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-040.json",
+          "sha256": "159622a2821b026c4c8325bed75c11a4982467ef3b7ae6025d4ae109e43baf4d"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-041.json",
+          "sha256": "87a1ff8a74db6e3093a2ecf1507e0ce455c94bdcb08a09fdd441a4c40b95d37e"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-042.json",
+          "sha256": "3d09ac782ce732cdc616067cb2a3b6c07768c7d9eec636f3bc0c2ea782e55eac"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-043.json",
+          "sha256": "cc4e1c89d2db07cc14e4802811daaa706fddc47a415123a36072e30994ea6258"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-044.json",
+          "sha256": "3c4fbffe5b4d6933a4b82d9b785e379f08081ac8765ba3ca5de0b6af7edbb6f4"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-045.json",
+          "sha256": "cda1223809636df7cdd6bac14747e982a6a72e15acca79f7eabd4617bd6c1fe3"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-046.json",
+          "sha256": "81cfaf474ea82e485eefdc1f629fadeaa815b4fd8a8e223a43923bfe357bd0c3"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-047.json",
+          "sha256": "5856a793227326c4a494b08b9fcdeb53dac47dbb8275257ab4f4c3400dbf888b"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-048.json",
+          "sha256": "13ff632f1b72a39a9b51fa0ce5caedce3fdff3abc44fc017278e8fdb31d29638"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-049.json",
+          "sha256": "58a90df6455362537e9adc3afe303ee5e7fd50635427a134d8a5f8454941af18"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-050.json",
+          "sha256": "18b017a5a070f5ecc17773e9ccba68165fc131572cbd445b951ee198b0839030"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-051.json",
+          "sha256": "db6d677147daa5da5bbcd485bd835e893f795f64c8726ceff21b432fa27bacae"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-052.json",
+          "sha256": "3ce1b9534997b8a5b11804793a5dda57fe77b1de1a6cf8236be2e9dd3995162f"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-053.json",
+          "sha256": "093b477b0e7ecd55a8c2326c7c2b77d4b9d8f286b954a6a1a87d89359e6d7d91"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-054.json",
+          "sha256": "4e7a4fb47b175f71fd63289e396528b8a603bb648afd7a919abc1423f11b6ebc"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-055.json",
+          "sha256": "58e679cd20357eebc3a2f74e89c8fdfea279459ec720e359bb405c8c7d041e39"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-056.json",
+          "sha256": "814d77777c22a52b9b9bb3bdd68caa09126da5d66c605e40702a378062e75458"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-057.json",
+          "sha256": "7d005455331b81c2c7425bcf95f1a83ea9f4c003eae6aebf27b6253b18f871d2"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-058.json",
+          "sha256": "fda5c39e5d56e97769a0059fb06b751b8d454c2f03651be5c1407e293a2b7233"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-059.json",
+          "sha256": "8b64df3ca113e64c039e6d2ae388d830e892068f66b501c978743df139b2be5f"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-060.json",
+          "sha256": "393fdbd2834f0e1f48d7789459dfa9abfab840d7fc19058a1d4b72664ec69f7f"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-061.json",
+          "sha256": "bf7d1b1a06ad02b57f52508297f9739dba4192e468c09657fe2eb200c66e36ca"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-062.json",
+          "sha256": "c282c8cf40b133e4f6931686f340ea3839451434778379374eaa1caea1798f83"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-063.json",
+          "sha256": "bc84fa0d0ba5cc02dc2259b0abdb920f369f83f2e1cb922213071e5b39753a76"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-064.json",
+          "sha256": "9e79c5faccce98e53f442374b775b48bd48f864fe4132d2d245580bf788e809f"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-065.json",
+          "sha256": "cb418ec2fd975d25d3adcb4c651114ebe247434838080fe23f54b0fc31ac0369"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-066.json",
+          "sha256": "5546b5561da8383f58d7f2261c1000f0d8fd8685d56360a29b4c4a758738fc80"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-067.json",
+          "sha256": "7abc75069083e1b5aac78655e44e0ebec3a39918aedda707da770947f383edd6"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-068.json",
+          "sha256": "1e34d8781747ae14a83dc82c7a144437ec00e22bc0f6a9daffd7206483d197b7"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-069.json",
+          "sha256": "6d56bd9339489757c7a5fe23d23b3e55bd647341b9412541cf3cd1628e8461df"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-070.json",
+          "sha256": "185e603eccc16454200727e6d4d284c73d8b6db49e8af9a6a85a504d11b2533c"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-071.json",
+          "sha256": "b038db59114d11b8c1f15b7c89f14230ccec6b935bc7e468561712c4db109f86"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-072.json",
+          "sha256": "d3d3237ac6aafb984fafdf13a8d5f1af7adda554393904e70a73f8bdd4b009ce"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-073.json",
+          "sha256": "cc1ab73f0c04e9e45b1a2e650c784e7d35d1d300b8435518c647ee1aaa9653f8"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-074.json",
+          "sha256": "74001b558c87d1c5444fbb45e7ed26cb4cf678a7125c40dbf52147e55b644228"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-075.json",
+          "sha256": "fd668232c1e4dac83a82042ac8b123944cc3dbf7433380a36636fbcb6c06c590"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-076.json",
+          "sha256": "2dcea4e2bbe088c91328b55ad45aee685a27c7e807e1fb642aec064d2f13c01b"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-077.json",
+          "sha256": "b40f3dc3dd8f945dda9c0ebeb350610c221591e2e8f431a81e3b3b03be3e0f1c"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-078.json",
+          "sha256": "99762cd1b5e7d265de5cb5b8297e71caa2bc4cbb14d2a5c2361e72f2c5c6dee9"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-079.json",
+          "sha256": "6def90798dd6ffe72bf3ac9c3910794d95c1f30bce949d151d2ee193dc3925d3"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-080.json",
+          "sha256": "52c3244591f8de5a7d35bfed3811dbd2835a40d8931fef75e0dd336057b350ea"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-081.json",
+          "sha256": "7474ddf6affc0077e620157e8396286f86b4d8e0c0b830ba5b5d4d18e102ecbd"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-082.json",
+          "sha256": "ebac88e4dc47eee3c7295418f544c17ba6354c396ed0876e251d5a79f1c59574"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-083.json",
+          "sha256": "f20788762ab0ea15a3dc3f300c502156e296ee1a5ef2289aa724fc0e2045ad3c"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-084.json",
+          "sha256": "2cf7bfc9b209d051a3ec2d8191e9b8236cce9b7f9175b7592887ecb5d402d89e"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-085.json",
+          "sha256": "c775b538d3025c6cf840e16b5bf78bb3e71e7c610addf23bb7f5caf743038caf"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-086.json",
+          "sha256": "011eaf68b8627e196b74d67ce7f4a754e24c3da2f177f917da2cc9b938d38c2f"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-087.json",
+          "sha256": "b894d4045d6fe6b6abc77499c52535e9f0cdf3b5382d8d21ea33e6fc458cc3bd"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-088.json",
+          "sha256": "bad579508c09713b72aa22c8f72a8fc7f3407e8fbc8bac1264ef5d58e0bbb8e1"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-089.json",
+          "sha256": "5ffb39ecdf7373752c5cd1366a6f24a2c4d227da54a2abf471f1c185ee64c113"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-090.json",
+          "sha256": "e8222873059abc019bdd01c111c2f562438b5f624b356359e98852fc5a7e58b6"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-091.json",
+          "sha256": "9aba7e0d3737a1f9fd27b179fa569eb403d8e336cd2de893fff23413218b62cd"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-092.json",
+          "sha256": "36e5df52e6660ea99f2622d94796f7e76fc9c4483215f80a04bf8e3b2b754722"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-093.json",
+          "sha256": "3f75893714a328fe453ab1ab2994e116ed7c7204cccdecea5b6b5edbe08630c8"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-094.json",
+          "sha256": "312598ccb4bebb4712d39610b62b80c0edf1888f40fc93aabf118063f3d6b38b"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-095.json",
+          "sha256": "6c3e3454842c4f9cadd21e5583129e0df95d7e2bf5ddaca549a4c967aa1b8487"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-096.json",
+          "sha256": "baef9aab3174ee011a25a8a2fc841c2ae5cf9d8bdd9ba9038cdc530ad5bb212a"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-097.json",
+          "sha256": "bf5e04e86e98ccb352c75fe13eaacc7d860bb09f8455c2882dc8d967bfd20484"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-098.json",
+          "sha256": "70987474d3404eb44e8d042d9d7a6054a75a6f1908c263e67df75fd6dad06add"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/task-099.json",
+          "sha256": "5f1a13e24006e323fd41d12c35510907d8c429d138686ea651d7fa3c99b5ffa5"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/tasks.json",
+          "sha256": "913e5f592ca5890ac3783ca3f27873a16b5fca6f55d904ead499c6aa45bb5b60"
+        },
+        {
+          "path": "mve/lean/artifacts/wp6b-g3/validation.json",
+          "sha256": "aa9d2798e8b36bc8e77bf591764f2bd4f0bc1f9da477c8669d7e4eca87db26d6"
+        },
+        {
+          "path": "mve/lean/lock.json",
+          "sha256": "4286213ae6b98e8f9b94882487c634392e9c21eac4e7709f257cd6e4bec297a9"
+        },
+        {
+          "path": "mve/registry/predicates_v1.json",
+          "sha256": "28cc10c86c7d53de7c1d75472660ffa678a97fc7efdd8523fc7a89d3ffc15c7b"
+        },
+        {
+          "path": "schemas/mve_observation_record.json",
+          "sha256": "32fc02ab2f080e0580a11cac04ccf42dcc6f8c8e4b6dcee4891cdf42e47ee213"
+        },
+        {
+          "path": "tests/mve/test_formalizer_g3.py",
+          "sha256": "5ec1664549f5c26594325c0fc17a99fc4b6c3e23c3f31455da94f0f89719ecfd"
+        },
+        {
+          "path": "tests/mve/test_formalizer_repairs.py",
+          "sha256": "32804d33d6b775280379a2f783656640afcc8f9d9d3fca7737fe1a09dbabb1ed"
+        },
+        {
+          "path": "tests/mve/test_formalizer_retrieval.py",
+          "sha256": "ab012529ef2f3e31490f12b888c357d9070aad10baa7e37a5187ef2be131aeba"
+        },
+        {
+          "path": "tests/mve/test_wp8a_followups.py",
+          "sha256": "b84bf84fbbe953cfa3a5d0f1452ebd9adbc96955d1d4935f823e2ed537735eb8"
+        }
+      ],
+      "g3": "incomplete: real Lean blocked by nested sandbox; no independent semantic review",
+      "hosted_calls": 0,
+      "lean_lock_sha256": "4286213ae6b98e8f9b94882487c634392e9c21eac4e7709f257cd6e4bec297a9",
+      "lean_packages_root": "MVE_LEAN_PACKAGES",
+      "mode": "offline_only",
+      "new_external_dependencies": [],
+      "proof_checked": false,
+      "tests": {
+        "failed_nested_sandbox_exec": 7,
+        "passed": 633,
+        "skipped": 0
+      }
+    },
     "WP-8a": {
       "base_git_sha": "0be52713584ac62338e877b3197dfbef7d466b82",
       "files": [
