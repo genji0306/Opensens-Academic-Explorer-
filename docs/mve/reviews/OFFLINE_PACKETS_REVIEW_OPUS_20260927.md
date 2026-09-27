@@ -162,3 +162,18 @@ saved before parsing. Output goes only to observations.
 Follow-ups (next perceiver branch): (a) WP-3 dispatch fixed to P1, since P0 is the WP-0b
 probe's pool; (b) remove the dead `model=` kwarg on `perceive()`, or assert it equals
 `deepseek-flash`.
+
+## Addendum 5: WP-8a verdict capture (e0f679d23cc): PASS with follow-ups, merged
+
+Headless Astra build; from a clean archive outside the Codex sandbox: 612 passed, 0 skipped,
+94%; `mve/verdicts/*` 100%. `adopt` remains human/policy only; a model judgment that says adopt
+fails at the transition before any assumption is written; model judgments keep weight 0.5 under
+full revalidation. Stale revisions rejected; edits invalidate dependent judgments transitively.
+Training export draws from `fit` only; human 1.0 beats model 0.5 deterministically; model labels
+exported as `actor_kind: model`. WP-3 follow-ups closed (P1 only; `model` asserted).
+Follow-ups: (1) the schema gained `can_N` nodes, a `proposed` event and a wider `human:` id pattern
+under the unchanged `oae-mve-observation-v5` id. They are additive and old records validate, but add a
+dated changelog block to the schema description and to MVE_PLAN §13 naming each extension; any
+future non-additive change bumps to v6. (2) VERDICTS.md says a model may not decline, but only
+adopt is blocked. Fix the doc, or refuse model `decline` as well. (3) "human:" is a local
+operator assertion, not authentication; keep that stated wherever labels are exported.
