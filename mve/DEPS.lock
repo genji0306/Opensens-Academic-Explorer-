@@ -1369,6 +1369,7 @@
       "Newclid": "failed: does not import; exact-true non-premise candidates remain incidental_unproved (DDAR unsupported)",
       "backend": "inhouse-plane-v1; local Euclid absent; frozen DDAR unsupported",
       "base_git_sha": "e827c05717d23a1d570e49847918c8e7347313ec",
+      "corpus_source_git_sha": "110df922429418b34a0812007351ac30f85092ce",
       "erratum": "r5 E1; 4507 candidates; exact evaluator v1-e1",
       "files": [
         {
@@ -1483,6 +1484,16 @@
         "pytest": "8.4.2",
         "sympy": "1.14.0"
       },
+      "receipts": [
+        {
+          "path": "docs/mve/reviews/WP2_CORPUS_RECEIPT_20260927.json",
+          "sha256": "3f97daea237ecdd4105c14f1582fe355e74742323fcd514c0bc2e17c0c0ba7da"
+        },
+        {
+          "path": "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json",
+          "sha256": "41b72484805c20dea24935b6e2f8c431adee60e098a17e43cc50e7fcf2a9e39a"
+        }
+      ],
       "render_recipe": "pillow-lines-v2; deterministic seed rotation and scale; render_pinned=false",
       "review_base_git_sha": "8da83b3c2a2",
       "schema": "mve-deps-v1"
