@@ -1,0 +1,751 @@
+task_id,reference_ir_sha256,candidate_ir_sha256,statement_sha256,problem,reference_statement,candidate_statement,reviewer,rationale,blinded,binders,premises,goal,nondegeneracy
+reference-000,189286d9c29a5f49568242becd19afc1e2a18e1e74412f476b51313242e43b2a,189286d9c29a5f49568242becd19afc1e2a18e1e74412f476b51313242e43b2a,08a2a6a94d714a26b5298ae5b44605b2d87f90086e3f703532bc2411c54e8aa5,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""E"",""F""],""pred"":""Collinear""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""E"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p0 ≠ p4) → (p0 ≠ p5) → (p4 ≠ p5) → (Collinear ℝ ({p0,p4,p5} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p0 ≠ p4) → (p0 ≠ p5) → (p4 ≠ p5) → (Collinear ℝ ({p0,p4,p5} : Set Point))
+#check statement
+",,,,,,,
+reference-001,6594a7ba4b626c827029e7eb30b6d877b12017b3d9c03b96ee0162930f8a9535,6594a7ba4b626c827029e7eb30b6d877b12017b3d9c03b96ee0162930f8a9535,04ad27352d315a02c0b16e9be12e18238d616b13fce9b2d94d13784139579b12,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""B"",""D"",""E"",""F""],""pred"":""Concyclic""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""B"",""D"",""E""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""D"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""E"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""B"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""D"",""E"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_8"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_9"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_10"",""proposition"":{""args"":[""E"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (¬ Collinear ℝ ({p1,p3,p4} : Set Point)) → (¬ Collinear ℝ ({p1,p3,p5} : Set Point)) → (p1 ≠ p3) → (¬ Collinear ℝ ({p1,p4,p5} : Set Point)) → (p1 ≠ p4) → (p1 ≠ p5) → (¬ Collinear ℝ ({p3,p4,p5} : Set Point)) → (p3 ≠ p4) → (p3 ≠ p5) → (p4 ≠ p5) → (EuclideanGeometry.Concyclic ({p1,p3,p4,p5} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (¬ Collinear ℝ ({p1,p3,p4} : Set Point)) → (¬ Collinear ℝ ({p1,p3,p5} : Set Point)) → (p1 ≠ p3) → (¬ Collinear ℝ ({p1,p4,p5} : Set Point)) → (p1 ≠ p4) → (p1 ≠ p5) → (¬ Collinear ℝ ({p3,p4,p5} : Set Point)) → (p3 ≠ p4) → (p3 ≠ p5) → (p4 ≠ p5) → (EuclideanGeometry.Concyclic ({p1,p3,p4,p5} : Set Point))
+#check statement
+",,,,,,,
+reference-002,36b3e61f22521bad6ce28815519db425c5c41aff16db73ef60489a80ff326d5a,36b3e61f22521bad6ce28815519db425c5c41aff16db73ef60489a80ff326d5a,055ae8118587d1c14e24deea371935e0494b38b13b2dd7700b1516774ea7c4f0,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""D"",""B"",""E""],""pred"":""Parallel""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p0 ≠ p3) → (p0 ≠ p4) → (p1 ≠ p3) → (p1 ≠ p4) → (p3 ≠ p4) → (AffineSubspace.Parallel (affineSpan ℝ ({p0,p3} : Set Point)) (affineSpan ℝ ({p1,p4} : Set Point)))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p0 ≠ p3) → (p0 ≠ p4) → (p1 ≠ p3) → (p1 ≠ p4) → (p3 ≠ p4) → (AffineSubspace.Parallel (affineSpan ℝ ({p0,p3} : Set Point)) (affineSpan ℝ ({p1,p4} : Set Point)))
+#check statement
+",,,,,,,
+reference-003,dab58bf2e9f556d150d8037297a329b62f86f05024d92ab34628da36a2abc01a,dab58bf2e9f556d150d8037297a329b62f86f05024d92ab34628da36a2abc01a,1cab99c0f3d1412e98ae6d49a9b73a293bb9047ff2e69bdcfd0cc18a402ca6b1,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""B"",""E"",""C"",""D""],""pred"":""EqualLength""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""B"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""C"",""D""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p1 ≠ p4) → (p2 ≠ p3) → (dist p1 p4 = dist p2 p3)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p1 ≠ p4) → (p2 ≠ p3) → (dist p1 p4 = dist p2 p3)
+#check statement
+",,,,,,,
+reference-004,df07d6052211f8e39438d17c6e77d1ebc9b34cc0631319287f3252bd630d72a6,df07d6052211f8e39438d17c6e77d1ebc9b34cc0631319287f3252bd630d72a6,0077ac2dbe558ab47a248578e91398ce270c26d4e78cf986bb9bf320f09caff7,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""F"",""D"",""B"",""E"",""D""],""pred"":""EqualAngle""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""B"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_8"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p5) → (p1 ≠ p2) → (p1 ≠ p3) → (p1 ≠ p4) → (p3 ≠ p4) → (p3 ≠ p5) → (EuclideanGeometry.angle p0 p5 p3 = EuclideanGeometry.angle p1 p4 p3)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p5) → (p1 ≠ p2) → (p1 ≠ p3) → (p1 ≠ p4) → (p3 ≠ p4) → (p3 ≠ p5) → (EuclideanGeometry.angle p0 p5 p3 = EuclideanGeometry.angle p1 p4 p3)
+#check statement
+",,,,,,,
+reference-005,5ad5984f02384870e7800d33584667fe98f31c9bfc39bda411294c6ad690dcab,5ad5984f02384870e7800d33584667fe98f31c9bfc39bda411294c6ad690dcab,1b969695ef2ae0405995ad1bdeb5f8365f74022b2605ff951a8ea9375234cbc0,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""D"",""B"",""F""],""pred"":""Midpoint""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p1 ≠ p3) → (p1 ≠ p5) → (p3 ≠ p5) → (p3 = midpoint ℝ p1 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p1 ≠ p3) → (p1 ≠ p5) → (p3 ≠ p5) → (p3 = midpoint ℝ p1 p5)
+#check statement
+",,,,,,,
+reference-006,91ce3715eac377575dd51b9c2b24c837957a9f44ca5ba4120b14f4457004ea8b,91ce3715eac377575dd51b9c2b24c837957a9f44ca5ba4120b14f4457004ea8b,003eb6e8fb34acc02ab69281b00cf9aa4e5ebc993a5e4a2071d3f2e31c1907a9,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""C"",""A"",""F""],""pred"":""SBetween""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""C"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p5) → (p1 ≠ p2) → (p2 ≠ p5) → (Sbtw ℝ p0 p2 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p5) → (p1 ≠ p2) → (p2 ≠ p5) → (Sbtw ℝ p0 p2 p5)
+#check statement
+",,,,,,,
+reference-007,d1976ee07aa3d56480a94adb5bdcb65b22fe001ff6903033b54646a8f6439287,d1976ee07aa3d56480a94adb5bdcb65b22fe001ff6903033b54646a8f6439287,0e0191c1b5e897bcb62dd1fe22823cef93463c641eec84b909532500ade4164e,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""C"",""D"",""F""],""pred"":""Collinear""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""C"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""C"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p2 ≠ p3) → (p2 ≠ p5) → (p3 ≠ p5) → (Collinear ℝ ({p2,p3,p5} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p2 ≠ p3) → (p2 ≠ p5) → (p3 ≠ p5) → (Collinear ℝ ({p2,p3,p5} : Set Point))
+#check statement
+",,,,,,,
+reference-008,50bf2eeca37f8ea79e03743fbcef45138effd09762984d4e15fe57eccdce18f9,50bf2eeca37f8ea79e03743fbcef45138effd09762984d4e15fe57eccdce18f9,1835f5e5b6a93fed0f83924b88142f7a51658ba63369e31f7b1bddca3a7e762c,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""B"",""D"",""E""],""pred"":""Concyclic""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""B"",""D""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""B"",""E""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""A"",""D"",""E""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_8"",""proposition"":{""args"":[""B"",""D"",""E""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_9"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_10"",""proposition"":{""args"":[""B"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_11"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (¬ Collinear ℝ ({p0,p1,p3} : Set Point)) → (¬ Collinear ℝ ({p0,p1,p4} : Set Point)) → (p0 ≠ p2) → (¬ Collinear ℝ ({p0,p3,p4} : Set Point)) → (p0 ≠ p3) → (p0 ≠ p4) → (p1 ≠ p2) → (¬ Collinear ℝ ({p1,p3,p4} : Set Point)) → (p1 ≠ p3) → (p1 ≠ p4) → (p3 ≠ p4) → (EuclideanGeometry.Concyclic ({p0,p1,p3,p4} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (¬ Collinear ℝ ({p0,p1,p3} : Set Point)) → (¬ Collinear ℝ ({p0,p1,p4} : Set Point)) → (p0 ≠ p2) → (¬ Collinear ℝ ({p0,p3,p4} : Set Point)) → (p0 ≠ p3) → (p0 ≠ p4) → (p1 ≠ p2) → (¬ Collinear ℝ ({p1,p3,p4} : Set Point)) → (p1 ≠ p3) → (p1 ≠ p4) → (p3 ≠ p4) → (EuclideanGeometry.Concyclic ({p0,p1,p3,p4} : Set Point))
+#check statement
+",,,,,,,
+reference-009,08b09a7e1f7203efe753373708e3b6de14f14f2886ca16b27f60dfa49ccc9566,08b09a7e1f7203efe753373708e3b6de14f14f2886ca16b27f60dfa49ccc9566,0d2cd7326e5a9c9d703bb47f2e0f446f58c0ecf9576ed264f62b468200baae57,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""D"",""B"",""E""],""pred"":""Parallel""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""B"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p4) → (p1 ≠ p2) → (p1 ≠ p3) → (p1 ≠ p4) → (p3 ≠ p4) → (AffineSubspace.Parallel (affineSpan ℝ ({p0,p3} : Set Point)) (affineSpan ℝ ({p1,p4} : Set Point)))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p4) → (p1 ≠ p2) → (p1 ≠ p3) → (p1 ≠ p4) → (p3 ≠ p4) → (AffineSubspace.Parallel (affineSpan ℝ ({p0,p3} : Set Point)) (affineSpan ℝ ({p1,p4} : Set Point)))
+#check statement
+",,,,,,,
+reference-010,af456f766ed44386070fb4f6eb2f48063b5c2f89d2069fe08ba64c82ec71dd55,af456f766ed44386070fb4f6eb2f48063b5c2f89d2069fe08ba64c82ec71dd55,2c2e2725bc4389872da94f4f31916e2b419f784715339b5278e30b6669b031fa,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""B"",""D"",""E""],""pred"":""EqualLength""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p3 ≠ p4) → (dist p0 p1 = dist p3 p4)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p3 ≠ p4) → (dist p0 p1 = dist p3 p4)
+#check statement
+",,,,,,,
+reference-011,610152f401326b089519ca6c694363e81b1334ce7208bac8d4adf67523c7ba24,610152f401326b089519ca6c694363e81b1334ce7208bac8d4adf67523c7ba24,0088c8184e1f0942e255bbdd2e132711441ca03c62a599471c53690d28f143eb,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""C"",""F"",""D"",""D"",""A"",""F""],""pred"":""EqualAngle""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""C"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""C"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p5) → (p1 ≠ p2) → (p2 ≠ p3) → (p2 ≠ p5) → (p3 ≠ p5) → (EuclideanGeometry.angle p2 p5 p3 = EuclideanGeometry.angle p3 p0 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p5) → (p1 ≠ p2) → (p2 ≠ p3) → (p2 ≠ p5) → (p3 ≠ p5) → (EuclideanGeometry.angle p2 p5 p3 = EuclideanGeometry.angle p3 p0 p5)
+#check statement
+",,,,,,,
+reference-012,77702c151bce96ac510773348dde0900213bf4a8da2c0837dd9ba5d0d717c5d1,77702c151bce96ac510773348dde0900213bf4a8da2c0837dd9ba5d0d717c5d1,5000009ede3c4400b8b04c2b3e24dd9d052ff56da1313d11ee72ce34b8cd1408,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""D"",""B"",""F""],""pred"":""Midpoint""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p1 ≠ p3) → (p1 ≠ p5) → (p3 ≠ p5) → (p3 = midpoint ℝ p1 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p1 ≠ p3) → (p1 ≠ p5) → (p3 ≠ p5) → (p3 = midpoint ℝ p1 p5)
+#check statement
+",,,,,,,
+reference-013,8da56bfea8fb99c01d305eb90941ae7de15404878c16f347b20fd3f93e9347ed,8da56bfea8fb99c01d305eb90941ae7de15404878c16f347b20fd3f93e9347ed,1318387f0c7b2f5becc7aff2224585258d6bf50852e96ea6dc4a514b93a8a86a,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""C"",""A"",""E""],""pred"":""SBetween""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""C"",""E""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p4) → (p1 ≠ p2) → (p2 ≠ p4) → (Sbtw ℝ p0 p2 p4)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p4) → (p1 ≠ p2) → (p2 ≠ p4) → (Sbtw ℝ p0 p2 p4)
+#check statement
+",,,,,,,
+reference-014,e085bc74638241a32f5c29a3cdc4db1deece742d5fa08cc0c7d50673c6cd625e,e085bc74638241a32f5c29a3cdc4db1deece742d5fa08cc0c7d50673c6cd625e,10733f56388c1fba0da2884ffa8815b50c598dfdc8fab35f386fd714b8ff6d02,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""B"",""E"",""F""],""pred"":""Collinear""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""E"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p1 ≠ p4) → (p1 ≠ p5) → (p4 ≠ p5) → (Collinear ℝ ({p1,p4,p5} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p1 ≠ p4) → (p1 ≠ p5) → (p4 ≠ p5) → (Collinear ℝ ({p1,p4,p5} : Set Point))
+#check statement
+",,,,,,,
+reference-015,4251948c5e99295e74e34f53ecf42395722b1956032b2a94e1294e9169dcd1c2,4251948c5e99295e74e34f53ecf42395722b1956032b2a94e1294e9169dcd1c2,46c30e5f3fb96ae5dfa4b382e08545ac48fe6e69f69d76e31215a79ef5f8fa24,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""B"",""D"",""F""],""pred"":""Concyclic""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""B"",""D""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""B"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""A"",""D"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_8"",""proposition"":{""args"":[""B"",""D"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_9"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_10"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_11"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (¬ Collinear ℝ ({p0,p1,p3} : Set Point)) → (¬ Collinear ℝ ({p0,p1,p5} : Set Point)) → (p0 ≠ p2) → (¬ Collinear ℝ ({p0,p3,p5} : Set Point)) → (p0 ≠ p3) → (p0 ≠ p5) → (p1 ≠ p2) → (¬ Collinear ℝ ({p1,p3,p5} : Set Point)) → (p1 ≠ p3) → (p1 ≠ p5) → (p3 ≠ p5) → (EuclideanGeometry.Concyclic ({p0,p1,p3,p5} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (¬ Collinear ℝ ({p0,p1,p3} : Set Point)) → (¬ Collinear ℝ ({p0,p1,p5} : Set Point)) → (p0 ≠ p2) → (¬ Collinear ℝ ({p0,p3,p5} : Set Point)) → (p0 ≠ p3) → (p0 ≠ p5) → (p1 ≠ p2) → (¬ Collinear ℝ ({p1,p3,p5} : Set Point)) → (p1 ≠ p3) → (p1 ≠ p5) → (p3 ≠ p5) → (EuclideanGeometry.Concyclic ({p0,p1,p3,p5} : Set Point))
+#check statement
+",,,,,,,
+reference-016,3e74d5b9ce00dc6cd5f8580618d1205b5ffe589ccf3bbd9e3cef0003ca06f86f,3e74d5b9ce00dc6cd5f8580618d1205b5ffe589ccf3bbd9e3cef0003ca06f86f,164bc957f593c27d351df20709b49df7c802472c112bfcef5a753186192c80f7,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""B"",""D"",""E""],""pred"":""Parallel""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p0 ≠ p3) → (p0 ≠ p4) → (p1 ≠ p3) → (p1 ≠ p4) → (p3 ≠ p4) → (AffineSubspace.Parallel (affineSpan ℝ ({p0,p1} : Set Point)) (affineSpan ℝ ({p3,p4} : Set Point)))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p0 ≠ p3) → (p0 ≠ p4) → (p1 ≠ p3) → (p1 ≠ p4) → (p3 ≠ p4) → (AffineSubspace.Parallel (affineSpan ℝ ({p0,p1} : Set Point)) (affineSpan ℝ ({p3,p4} : Set Point)))
+#check statement
+",,,,,,,
+reference-017,7357f2d223063672c648c132edbf952dc7cf17ffbe2e9f53ff5a3fdf727a543d,7357f2d223063672c648c132edbf952dc7cf17ffbe2e9f53ff5a3fdf727a543d,349b5a9f9692d8d9be0c674bd110b579117d0fb4836fa97bd3efa5641e93bb6b,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""B"",""D"",""D"",""F""],""pred"":""EqualLength""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p1 ≠ p3) → (p3 ≠ p5) → (dist p1 p3 = dist p3 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p1 ≠ p3) → (p3 ≠ p5) → (dist p1 p3 = dist p3 p5)
+#check statement
+",,,,,,,
+reference-018,462e2edf475e4b27322a378de086de3848b9efc1309edbe11ce7a49563d4e9e1,462e2edf475e4b27322a378de086de3848b9efc1309edbe11ce7a49563d4e9e1,00a0382fef767ccda83afe0315b11ba075b7258e8c84e09be66bad37333447f2,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""B"",""F"",""A"",""D"",""F""],""pred"":""EqualAngle""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p0 ≠ p3) → (p0 ≠ p5) → (p1 ≠ p5) → (p3 ≠ p5) → (EuclideanGeometry.angle p0 p1 p5 = EuclideanGeometry.angle p0 p3 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p0 ≠ p3) → (p0 ≠ p5) → (p1 ≠ p5) → (p3 ≠ p5) → (EuclideanGeometry.angle p0 p1 p5 = EuclideanGeometry.angle p0 p3 p5)
+#check statement
+",,,,,,,
+reference-019,66e8e59c4657681094648b21ee300ab19f4a654484dd70276c0e929ac9922458,66e8e59c4657681094648b21ee300ab19f4a654484dd70276c0e929ac9922458,d5eea5a5568cf59bd444c9cf8d47f79f7e90c0f9db126e1e07e61b7d3f57c7b9,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""E"",""D"",""F""],""pred"":""Midpoint""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""E"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p3 ≠ p4) → (p3 ≠ p5) → (p4 ≠ p5) → (p4 = midpoint ℝ p3 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p3 ≠ p4) → (p3 ≠ p5) → (p4 ≠ p5) → (p4 = midpoint ℝ p3 p5)
+#check statement
+",,,,,,,
+reference-020,b775967a3b162b29a365e2cfe01bd37cab62a885e85e69899541c7afed0d9749,b775967a3b162b29a365e2cfe01bd37cab62a885e85e69899541c7afed0d9749,16746fb96d6ed25bd2bb5d691da518eb51a8059800e832dc381300af6017b976,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""B"",""C"",""F""],""pred"":""SBetween""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""C"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p1 ≠ p5) → (p2 ≠ p5) → (Sbtw ℝ p2 p1 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p1 ≠ p5) → (p2 ≠ p5) → (Sbtw ℝ p2 p1 p5)
+#check statement
+",,,,,,,
+reference-021,5d3885fc3d178876f1ee9a7decc1029d3e8c79e6bfa64facd377d58f2da5dbbb,5d3885fc3d178876f1ee9a7decc1029d3e8c79e6bfa64facd377d58f2da5dbbb,18dfa7f632ccdd6a28c5b9d72774dfce54fba2cf3bdc258e3a89a7b993a700df,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""B"",""C"",""F""],""pred"":""Collinear""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""C"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p1 ≠ p2) → (p1 ≠ p5) → (p2 ≠ p5) → (Collinear ℝ ({p1,p2,p5} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p1 ≠ p2) → (p1 ≠ p5) → (p2 ≠ p5) → (Collinear ℝ ({p1,p2,p5} : Set Point))
+#check statement
+",,,,,,,
+reference-022,839fe88fcf9617719fcc5ed9834c2d49715b23c4754df2b877dacf994365c38b,839fe88fcf9617719fcc5ed9834c2d49715b23c4754df2b877dacf994365c38b,4fe1461a2bb1dc6b213cdb35b4379d75638b2a19e53a4a9be36698c26d212768,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""B"",""D"",""E""],""pred"":""Concyclic""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""B"",""D""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""B"",""E""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""D"",""E""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""B"",""D"",""E""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_8"",""proposition"":{""args"":[""B"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_9"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (¬ Collinear ℝ ({p0,p1,p3} : Set Point)) → (¬ Collinear ℝ ({p0,p1,p4} : Set Point)) → (¬ Collinear ℝ ({p0,p3,p4} : Set Point)) → (p0 ≠ p3) → (p0 ≠ p4) → (¬ Collinear ℝ ({p1,p3,p4} : Set Point)) → (p1 ≠ p3) → (p1 ≠ p4) → (p3 ≠ p4) → (EuclideanGeometry.Concyclic ({p0,p1,p3,p4} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (¬ Collinear ℝ ({p0,p1,p3} : Set Point)) → (¬ Collinear ℝ ({p0,p1,p4} : Set Point)) → (¬ Collinear ℝ ({p0,p3,p4} : Set Point)) → (p0 ≠ p3) → (p0 ≠ p4) → (¬ Collinear ℝ ({p1,p3,p4} : Set Point)) → (p1 ≠ p3) → (p1 ≠ p4) → (p3 ≠ p4) → (EuclideanGeometry.Concyclic ({p0,p1,p3,p4} : Set Point))
+#check statement
+",,,,,,,
+reference-023,e4633cd5c782dc32cfd34446780f2fa370fbc09585e79cea97060ab70aedbbf3,e4633cd5c782dc32cfd34446780f2fa370fbc09585e79cea97060ab70aedbbf3,174612f8f2c040a0669939ea335b893b7d0a08cc02fc17c564fa2439749ed327,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""F"",""C"",""E""],""pred"":""Parallel""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""C"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""C"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""E"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p4) → (p0 ≠ p5) → (p1 ≠ p2) → (p2 ≠ p4) → (p2 ≠ p5) → (p4 ≠ p5) → (AffineSubspace.Parallel (affineSpan ℝ ({p0,p5} : Set Point)) (affineSpan ℝ ({p2,p4} : Set Point)))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p4) → (p0 ≠ p5) → (p1 ≠ p2) → (p2 ≠ p4) → (p2 ≠ p5) → (p4 ≠ p5) → (AffineSubspace.Parallel (affineSpan ℝ ({p0,p5} : Set Point)) (affineSpan ℝ ({p2,p4} : Set Point)))
+#check statement
+",,,,,,,
+reference-024,cf39215ec7833f6862ad4cae7b628a62d8de31966b26110bb847cb11f56361d4,cf39215ec7833f6862ad4cae7b628a62d8de31966b26110bb847cb11f56361d4,36167fe63d820388289979c57d253ebcb085fa69d824383c6ccdf3952eb5fd48,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""B"",""C"",""E"",""F""],""pred"":""EqualLength""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""E"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p1 ≠ p2) → (p4 ≠ p5) → (dist p1 p2 = dist p4 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p1 ≠ p2) → (p4 ≠ p5) → (dist p1 p2 = dist p4 p5)
+#check statement
+",,,,,,,
+reference-025,b135c399d44e7ec81f92573fffdb1303b2da7de18b2521ddfc5544f50e8aa2ac,b135c399d44e7ec81f92573fffdb1303b2da7de18b2521ddfc5544f50e8aa2ac,00a072cfe81d6b1c9f6519f3154340a0dd0470b7df045605d8cfe8416d849e61,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""B"",""C"",""F"",""D"",""B"",""E""],""pred"":""EqualAngle""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""C"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p1 ≠ p3) → (p1 ≠ p4) → (p1 ≠ p5) → (p2 ≠ p5) → (p3 ≠ p4) → (EuclideanGeometry.angle p1 p2 p5 = EuclideanGeometry.angle p3 p1 p4)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p1 ≠ p3) → (p1 ≠ p4) → (p1 ≠ p5) → (p2 ≠ p5) → (p3 ≠ p4) → (EuclideanGeometry.angle p1 p2 p5 = EuclideanGeometry.angle p3 p1 p4)
+#check statement
+",,,,,,,
+reference-026,83283ce761b96b5899d8f4cef437209097470268510d891dc9cf7b2389b3544a,83283ce761b96b5899d8f4cef437209097470268510d891dc9cf7b2389b3544a,e888a7f0fb8603ec6be6db6ebce3f00730080764be5c962685c5fa1ace5820b3,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""E"",""D"",""F""],""pred"":""Midpoint""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""E"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p3 ≠ p4) → (p3 ≠ p5) → (p4 ≠ p5) → (p4 = midpoint ℝ p3 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p3 ≠ p4) → (p3 ≠ p5) → (p4 ≠ p5) → (p4 = midpoint ℝ p3 p5)
+#check statement
+",,,,,,,
+reference-027,1cd8ff1a64f2fd341c248c4025e51de58bb727cc6d8eb049586719af83eb6e1e,1cd8ff1a64f2fd341c248c4025e51de58bb727cc6d8eb049586719af83eb6e1e,1c1cb723c1ac186ca589239ef6d01663fa61b9f6fd049438cac28a0a50c6625b,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""D"",""A"",""E""],""pred"":""SBetween""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p4) → (p1 ≠ p2) → (p3 ≠ p4) → (Sbtw ℝ p0 p3 p4)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p4) → (p1 ≠ p2) → (p3 ≠ p4) → (Sbtw ℝ p0 p3 p4)
+#check statement
+",,,,,,,
+reference-028,ce9cac24e3b671cdf90fa1f104324a7c22c731fc7d2bbab962d728fa8cc7bdb8,ce9cac24e3b671cdf90fa1f104324a7c22c731fc7d2bbab962d728fa8cc7bdb8,3538dcb3b2de65c20488bea555c593894dc6fbb9aa54770a91a4e41c4351cb9d,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""B"",""D"",""F""],""pred"":""Collinear""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p1 ≠ p3) → (p1 ≠ p5) → (p3 ≠ p5) → (Collinear ℝ ({p1,p3,p5} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p1 ≠ p3) → (p1 ≠ p5) → (p3 ≠ p5) → (Collinear ℝ ({p1,p3,p5} : Set Point))
+#check statement
+",,,,,,,
+reference-029,3be1443d14c1d4829be3417f59b60afa2e4c4378b42a1328fd5033707e3025c5,3be1443d14c1d4829be3417f59b60afa2e4c4378b42a1328fd5033707e3025c5,89fb615736ea14b010ae1ee649eb12f165816a3e5f7cde65114e9426b111d884,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""B"",""D"",""F""],""pred"":""Concyclic""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""B"",""D""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""B"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""D"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""B"",""D"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_8"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_9"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (¬ Collinear ℝ ({p0,p1,p3} : Set Point)) → (¬ Collinear ℝ ({p0,p1,p5} : Set Point)) → (¬ Collinear ℝ ({p0,p3,p5} : Set Point)) → (p0 ≠ p3) → (p0 ≠ p5) → (¬ Collinear ℝ ({p1,p3,p5} : Set Point)) → (p1 ≠ p3) → (p1 ≠ p5) → (p3 ≠ p5) → (EuclideanGeometry.Concyclic ({p0,p1,p3,p5} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (¬ Collinear ℝ ({p0,p1,p3} : Set Point)) → (¬ Collinear ℝ ({p0,p1,p5} : Set Point)) → (¬ Collinear ℝ ({p0,p3,p5} : Set Point)) → (p0 ≠ p3) → (p0 ≠ p5) → (¬ Collinear ℝ ({p1,p3,p5} : Set Point)) → (p1 ≠ p3) → (p1 ≠ p5) → (p3 ≠ p5) → (EuclideanGeometry.Concyclic ({p0,p1,p3,p5} : Set Point))
+#check statement
+",,,,,,,
+reference-030,07dfbc440bb0e0130af2854fbec7cf37abcead26c26914afe40f21fe22478dc8,07dfbc440bb0e0130af2854fbec7cf37abcead26c26914afe40f21fe22478dc8,1b667f77a9e1780d3cc1728b34113041ed565be7bb2fe60cc56d9692b0a4030f,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""C"",""D"",""F""],""pred"":""Parallel""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""C"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""C"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p5) → (p1 ≠ p2) → (p2 ≠ p3) → (p2 ≠ p5) → (p3 ≠ p5) → (AffineSubspace.Parallel (affineSpan ℝ ({p0,p2} : Set Point)) (affineSpan ℝ ({p3,p5} : Set Point)))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p5) → (p1 ≠ p2) → (p2 ≠ p3) → (p2 ≠ p5) → (p3 ≠ p5) → (AffineSubspace.Parallel (affineSpan ℝ ({p0,p2} : Set Point)) (affineSpan ℝ ({p3,p5} : Set Point)))
+#check statement
+",,,,,,,
+reference-031,aa62075d3126f82dd46016df12ace3859d1a33cdf686e89fd18ebd6dd51dd7dd,aa62075d3126f82dd46016df12ace3859d1a33cdf686e89fd18ebd6dd51dd7dd,50e5796e90ad5101b2af2202b485db01e9481dc7f979d31a77d512893700ec67,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""B"",""F"",""C"",""E""],""pred"":""EqualLength""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""C"",""E""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p1 ≠ p5) → (p2 ≠ p4) → (dist p1 p5 = dist p2 p4)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p1 ≠ p5) → (p2 ≠ p4) → (dist p1 p5 = dist p2 p4)
+#check statement
+",,,,,,,
+reference-032,e7cb5ea471344232ae8fe46745a85c5f62e8fd1d85f23d3c9240dc740392fbed,e7cb5ea471344232ae8fe46745a85c5f62e8fd1d85f23d3c9240dc740392fbed,010dccbfd0d29d6a3c84deeaa7e3441f152d5adb386f143958d7efc8435b8c3a,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""E"",""C"",""D"",""C"",""F""],""pred"":""EqualAngle""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""C"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""C"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""C"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p4) → (p1 ≠ p2) → (p2 ≠ p3) → (p2 ≠ p4) → (p2 ≠ p5) → (p3 ≠ p5) → (EuclideanGeometry.angle p0 p4 p2 = EuclideanGeometry.angle p3 p2 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p4) → (p1 ≠ p2) → (p2 ≠ p3) → (p2 ≠ p4) → (p2 ≠ p5) → (p3 ≠ p5) → (EuclideanGeometry.angle p0 p4 p2 = EuclideanGeometry.angle p3 p2 p5)
+#check statement
+",,,,,,,
+reference-033,04d70572a385d4a3aca56382e79ed5da133449251493b1918631a42f68258804,04d70572a385d4a3aca56382e79ed5da133449251493b1918631a42f68258804,24f27f6477342edb71be02b5ba7ab2ce5c8906f49f454b6a0e06c86b2b201df7,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""B"",""A"",""F""],""pred"":""SBetween""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p5) → (p1 ≠ p2) → (p1 ≠ p5) → (Sbtw ℝ p0 p1 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p5) → (p1 ≠ p2) → (p1 ≠ p5) → (Sbtw ℝ p0 p1 p5)
+#check statement
+",,,,,,,
+reference-034,14b98c40e0992368ed77b4136b6ce1add18c824d03ae20a88613a0b82d0a81e7,14b98c40e0992368ed77b4136b6ce1add18c824d03ae20a88613a0b82d0a81e7,39fbeab750018319699d0c7027cdc85cdaff7b9610f1f6105743c82c0adac0b4,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""C"",""D"",""E""],""pred"":""Collinear""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""C"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""C"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p2 ≠ p3) → (p2 ≠ p4) → (p3 ≠ p4) → (Collinear ℝ ({p2,p3,p4} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p2 ≠ p3) → (p2 ≠ p4) → (p3 ≠ p4) → (Collinear ℝ ({p2,p3,p4} : Set Point))
+#check statement
+",,,,,,,
+reference-035,b94b4dd60ab81ad24e6253f96149149144ae64127a3db89c61afb4e8df386f3c,b94b4dd60ab81ad24e6253f96149149144ae64127a3db89c61afb4e8df386f3c,934744d0b67245c76e9e060db56f68295ebcccbfe463251165377eb4f6b814a0,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""B"",""C"",""D"",""F""],""pred"":""Concyclic""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""B"",""C"",""D""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""C"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""D"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""C"",""D"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_8"",""proposition"":{""args"":[""C"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_9"",""proposition"":{""args"":[""C"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_10"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (¬ Collinear ℝ ({p1,p2,p3} : Set Point)) → (¬ Collinear ℝ ({p1,p2,p5} : Set Point)) → (p1 ≠ p2) → (¬ Collinear ℝ ({p1,p3,p5} : Set Point)) → (p1 ≠ p3) → (p1 ≠ p5) → (¬ Collinear ℝ ({p2,p3,p5} : Set Point)) → (p2 ≠ p3) → (p2 ≠ p5) → (p3 ≠ p5) → (EuclideanGeometry.Concyclic ({p1,p2,p3,p5} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (¬ Collinear ℝ ({p1,p2,p3} : Set Point)) → (¬ Collinear ℝ ({p1,p2,p5} : Set Point)) → (p1 ≠ p2) → (¬ Collinear ℝ ({p1,p3,p5} : Set Point)) → (p1 ≠ p3) → (p1 ≠ p5) → (¬ Collinear ℝ ({p2,p3,p5} : Set Point)) → (p2 ≠ p3) → (p2 ≠ p5) → (p3 ≠ p5) → (EuclideanGeometry.Concyclic ({p1,p2,p3,p5} : Set Point))
+#check statement
+",,,,,,,
+reference-036,2326d00c12a54fe73bc57a4815d7f1ed430cf3ece320008dcabb37dc0c1fb396,2326d00c12a54fe73bc57a4815d7f1ed430cf3ece320008dcabb37dc0c1fb396,20c7d42f88d1df3fd955fb824a6c36941d45bebf7bad25b9e95a1d7e2d2e6ad2,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""B"",""C"",""D""],""pred"":""Parallel""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""C"",""D""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p1 ≠ p2) → (p1 ≠ p3) → (p2 ≠ p3) → (AffineSubspace.Parallel (affineSpan ℝ ({p0,p1} : Set Point)) (affineSpan ℝ ({p2,p3} : Set Point)))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p1 ≠ p2) → (p1 ≠ p3) → (p2 ≠ p3) → (AffineSubspace.Parallel (affineSpan ℝ ({p0,p1} : Set Point)) (affineSpan ℝ ({p2,p3} : Set Point)))
+#check statement
+",,,,,,,
+reference-037,906733259f78a9e07cc66efa2c2657840bde7c823b6d73cf6f3107912d09e091,906733259f78a9e07cc66efa2c2657840bde7c823b6d73cf6f3107912d09e091,5750d532ce477be97d64c408d247575779ce03278602f33b34cd53dbf53c376e,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""E"",""B"",""F""],""pred"":""EqualLength""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p4) → (p1 ≠ p2) → (p1 ≠ p5) → (dist p0 p4 = dist p1 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p4) → (p1 ≠ p2) → (p1 ≠ p5) → (dist p0 p4 = dist p1 p5)
+#check statement
+",,,,,,,
+reference-038,360a849edb6d16cb2c8f773cfc76dcaa27019fd6b5f1bee24a66e3b267da1f5d,360a849edb6d16cb2c8f773cfc76dcaa27019fd6b5f1bee24a66e3b267da1f5d,013040c15807292eae84b4cd919861c02999ec8aee5e6f34d97d6c57056b4b7b,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""D"",""E"",""A"",""D"",""F""],""pred"":""EqualAngle""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p4) → (p0 ≠ p5) → (p1 ≠ p2) → (p3 ≠ p4) → (p3 ≠ p5) → (EuclideanGeometry.angle p0 p3 p4 = EuclideanGeometry.angle p0 p3 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p4) → (p0 ≠ p5) → (p1 ≠ p2) → (p3 ≠ p4) → (p3 ≠ p5) → (EuclideanGeometry.angle p0 p3 p4 = EuclideanGeometry.angle p0 p3 p5)
+#check statement
+",,,,,,,
+reference-039,d227549857fc7e22d2220987873c1cb860b955f8de02ff25a2e15a490b9f57b1,d227549857fc7e22d2220987873c1cb860b955f8de02ff25a2e15a490b9f57b1,3aabb31b4067d839addca64752a1e04c627819d9ad28ffac819f972343596142,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""D"",""C"",""F""],""pred"":""SBetween""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""C"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""C"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p2 ≠ p3) → (p2 ≠ p5) → (p3 ≠ p5) → (Sbtw ℝ p2 p3 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p1 ≠ p2) → (p2 ≠ p3) → (p2 ≠ p5) → (p3 ≠ p5) → (Sbtw ℝ p2 p3 p5)
+#check statement
+",,,,,,,
+reference-040,7d56ad390f0008f8330b20fc0d040922f855c3007187ee8348480a1617565d81,7d56ad390f0008f8330b20fc0d040922f855c3007187ee8348480a1617565d81,3a3780c2871c97449511a0a6d215191c4a9182b38b2f78b29fdd45f2be147543,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""B"",""F""],""pred"":""Collinear""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p5) → (p1 ≠ p2) → (p1 ≠ p5) → (Collinear ℝ ({p0,p1,p5} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p5) → (p1 ≠ p2) → (p1 ≠ p5) → (Collinear ℝ ({p0,p1,p5} : Set Point))
+#check statement
+",,,,,,,
+reference-041,93709257cb055305e563f3c5c172f0ed328602018e656b8c2a8d595a077f3bce,93709257cb055305e563f3c5c172f0ed328602018e656b8c2a8d595a077f3bce,93aaa6e0b8f06e15be6cb3bb6e4382e837036c087170a5a250cdefd3ec37fbf8,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""B"",""E"",""F""],""pred"":""Concyclic""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""B"",""E""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""B"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""A"",""E"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_8"",""proposition"":{""args"":[""B"",""E"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_9"",""proposition"":{""args"":[""B"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_10"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_11"",""proposition"":{""args"":[""E"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (¬ Collinear ℝ ({p0,p1,p4} : Set Point)) → (¬ Collinear ℝ ({p0,p1,p5} : Set Point)) → (p0 ≠ p2) → (¬ Collinear ℝ ({p0,p4,p5} : Set Point)) → (p0 ≠ p4) → (p0 ≠ p5) → (p1 ≠ p2) → (¬ Collinear ℝ ({p1,p4,p5} : Set Point)) → (p1 ≠ p4) → (p1 ≠ p5) → (p4 ≠ p5) → (EuclideanGeometry.Concyclic ({p0,p1,p4,p5} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (¬ Collinear ℝ ({p0,p1,p4} : Set Point)) → (¬ Collinear ℝ ({p0,p1,p5} : Set Point)) → (p0 ≠ p2) → (¬ Collinear ℝ ({p0,p4,p5} : Set Point)) → (p0 ≠ p4) → (p0 ≠ p5) → (p1 ≠ p2) → (¬ Collinear ℝ ({p1,p4,p5} : Set Point)) → (p1 ≠ p4) → (p1 ≠ p5) → (p4 ≠ p5) → (EuclideanGeometry.Concyclic ({p0,p1,p4,p5} : Set Point))
+#check statement
+",,,,,,,
+reference-042,104a6f7c113100e470611705b21bf94ca8f02373fd6005604b8618639cf6d480,104a6f7c113100e470611705b21bf94ca8f02373fd6005604b8618639cf6d480,20cf9769a967077b3092353f70009b4470186ec436c0d9bdb0971b204b605f5a,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""B"",""F"",""C"",""D""],""pred"":""Parallel""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""C"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""C"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p1 ≠ p2) → (p1 ≠ p3) → (p1 ≠ p5) → (p2 ≠ p3) → (p2 ≠ p5) → (p3 ≠ p5) → (AffineSubspace.Parallel (affineSpan ℝ ({p1,p5} : Set Point)) (affineSpan ℝ ({p2,p3} : Set Point)))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p1 ≠ p2) → (p1 ≠ p3) → (p1 ≠ p5) → (p2 ≠ p3) → (p2 ≠ p5) → (p3 ≠ p5) → (AffineSubspace.Parallel (affineSpan ℝ ({p1,p5} : Set Point)) (affineSpan ℝ ({p2,p3} : Set Point)))
+#check statement
+",,,,,,,
+reference-043,8ad5d287b40f99da17048b2d1d3cddfcf678d97dc3693ee544c5430a5a6d876e,8ad5d287b40f99da17048b2d1d3cddfcf678d97dc3693ee544c5430a5a6d876e,673559132214d48ba3a1fe24dbc85499515ef967c967e880c54b5ea332156b3e,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""B"",""E"",""F""],""pred"":""EqualLength""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""E"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p4 ≠ p5) → (dist p0 p1 = dist p4 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p4 ≠ p5) → (dist p0 p1 = dist p4 p5)
+#check statement
+",,,,,,,
+reference-044,3169df7527f360ac39bc679e5841aaec2943c7caac5205fd2c29d82d726f18c9,3169df7527f360ac39bc679e5841aaec2943c7caac5205fd2c29d82d726f18c9,01439f041003e6b62adae4ccfa6682d797fa45dd061f21ca67cd13a069fd0c59,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""E"",""D"",""B"",""C"",""D""],""pred"":""EqualAngle""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""C"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p0 ≠ p3) → (p0 ≠ p4) → (p1 ≠ p2) → (p1 ≠ p3) → (p2 ≠ p3) → (p3 ≠ p4) → (EuclideanGeometry.angle p0 p4 p3 = EuclideanGeometry.angle p1 p2 p3)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p0 ≠ p3) → (p0 ≠ p4) → (p1 ≠ p2) → (p1 ≠ p3) → (p2 ≠ p3) → (p3 ≠ p4) → (EuclideanGeometry.angle p0 p4 p3 = EuclideanGeometry.angle p1 p2 p3)
+#check statement
+",,,,,,,
+reference-045,4a64b97cc5adf55c1ab9c749fe79f1e1c48b7442d7d44f27ea93ab5f680c5583,4a64b97cc5adf55c1ab9c749fe79f1e1c48b7442d7d44f27ea93ab5f680c5583,46a24b85cfdef9117dbe5a145268b6bb4039af83a6cd0f468ca18df126f9ab74,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""E"",""C"",""F""],""pred"":""SBetween""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""C"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""C"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""E"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 ≠ p4) → (p2 ≠ p5) → (p4 ≠ p5) → (Sbtw ℝ p2 p4 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 ≠ p4) → (p2 ≠ p5) → (p4 ≠ p5) → (Sbtw ℝ p2 p4 p5)
+#check statement
+",,,,,,,
+reference-046,bbf71488a7c0974d6b4bbc96c64addf2f0a8bafbec49bad2ca463d3abf9d9d9e,bbf71488a7c0974d6b4bbc96c64addf2f0a8bafbec49bad2ca463d3abf9d9d9e,3db366eb86dbf2657fee0146e827ec77e0a736da13a40ee8463fdb67d91eb9ea,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""D"",""F""],""pred"":""Collinear""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p5) → (p1 ≠ p2) → (p3 ≠ p5) → (Collinear ℝ ({p0,p3,p5} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p5) → (p1 ≠ p2) → (p3 ≠ p5) → (Collinear ℝ ({p0,p3,p5} : Set Point))
+#check statement
+",,,,,,,
+reference-047,b238f68856d8148e95bab1f9bc5d1ea58274fe8faa33265228ec1d9324f7568f,b238f68856d8148e95bab1f9bc5d1ea58274fe8faa33265228ec1d9324f7568f,a41e2325febbba2c864ceabbd3b40c3af68138ceb4aa521469aca3ae966ed373,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""B"",""E"",""F""],""pred"":""Concyclic""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""B"",""E""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""B"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""E"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""B"",""E"",""F""],""pred"":""NotCollinear""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""B"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_8"",""proposition"":{""args"":[""B"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_9"",""proposition"":{""args"":[""E"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (¬ Collinear ℝ ({p0,p1,p4} : Set Point)) → (¬ Collinear ℝ ({p0,p1,p5} : Set Point)) → (¬ Collinear ℝ ({p0,p4,p5} : Set Point)) → (p0 ≠ p4) → (p0 ≠ p5) → (¬ Collinear ℝ ({p1,p4,p5} : Set Point)) → (p1 ≠ p4) → (p1 ≠ p5) → (p4 ≠ p5) → (EuclideanGeometry.Concyclic ({p0,p1,p4,p5} : Set Point))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (¬ Collinear ℝ ({p0,p1,p4} : Set Point)) → (¬ Collinear ℝ ({p0,p1,p5} : Set Point)) → (¬ Collinear ℝ ({p0,p4,p5} : Set Point)) → (p0 ≠ p4) → (p0 ≠ p5) → (¬ Collinear ℝ ({p1,p4,p5} : Set Point)) → (p1 ≠ p4) → (p1 ≠ p5) → (p4 ≠ p5) → (EuclideanGeometry.Concyclic ({p0,p1,p4,p5} : Set Point))
+#check statement
+",,,,,,,
+reference-048,79d8122da451db9df550a74b449b2cc3f12e9910d84ad0d0f6cbfe8d1ac04de6,79d8122da451db9df550a74b449b2cc3f12e9910d84ad0d0f6cbfe8d1ac04de6,21f0ceaa70fdc1ba6b4136e414b8ef5f5a4995dff7f92490cffeea4fd48e2039,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""A"",""F"",""D"",""E""],""pred"":""Parallel""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""A"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""A"",""D""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_3"",""proposition"":{""args"":[""A"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_4"",""proposition"":{""args"":[""A"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_5"",""proposition"":{""args"":[""B"",""C""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_6"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_7"",""proposition"":{""args"":[""D"",""F""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_8"",""proposition"":{""args"":[""E"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""prm_2"",""proposition"":{""args"":[""C"",""A"",""B""],""pred"":""Midpoint""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p4) → (p0 ≠ p5) → (p1 ≠ p2) → (p3 ≠ p4) → (p3 ≠ p5) → (p4 ≠ p5) → (AffineSubspace.Parallel (affineSpan ℝ ({p0,p5} : Set Point)) (affineSpan ℝ ({p3,p4} : Set Point)))
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p2 = midpoint ℝ p0 p1) → (p0 ≠ p2) → (p0 ≠ p3) → (p0 ≠ p4) → (p0 ≠ p5) → (p1 ≠ p2) → (p3 ≠ p4) → (p3 ≠ p5) → (p4 ≠ p5) → (AffineSubspace.Parallel (affineSpan ℝ ({p0,p5} : Set Point)) (affineSpan ℝ ({p3,p4} : Set Point)))
+#check statement
+",,,,,,,
+reference-049,10b5e9ce7e1155c51c225a87a5ebf09db6146263c764050810f14029e508138e,10b5e9ce7e1155c51c225a87a5ebf09db6146263c764050810f14029e508138e,6fb1559b3be21120cac2888445f43eb12137e5cd345535a22e07e90170c265b1,"{""binders"":[{""entity"":""ent_1"",""name"":""A"",""type"":""Point""},{""entity"":""ent_2"",""name"":""B"",""type"":""Point""},{""entity"":""ent_3"",""name"":""C"",""type"":""Point""},{""entity"":""ent_4"",""name"":""D"",""type"":""Point""},{""entity"":""ent_5"",""name"":""E"",""type"":""Point""},{""entity"":""ent_6"",""name"":""F"",""type"":""Point""}],""goal"":{""depends_on"":[""txt_1""],""id"":""goal_1"",""kind"":""prove"",""proposition"":{""args"":[""D"",""E"",""E"",""F""],""pred"":""EqualLength""}},""nondegeneracy"":[{""depends_on"":[""txt_1""],""id"":""ndg_1"",""proposition"":{""args"":[""D"",""E""],""pred"":""Distinct""}},{""depends_on"":[""txt_1""],""id"":""ndg_2"",""proposition"":{""args"":[""E"",""F""],""pred"":""Distinct""}}],""premises"":[{""depends_on"":[""txt_1""],""id"":""prm_1"",""proposition"":{""args"":[""A"",""B""],""pred"":""Distinct""}}]}","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p3 ≠ p4) → (p4 ≠ p5) → (dist p3 p4 = dist p4 p5)
+#check statement
+","import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
+import Mathlib.Geometry.Euclidean.Sphere.Basic
+import Mathlib.Analysis.InnerProductSpace.PiL2
+set_option autoImplicit false
+abbrev Point := EuclideanSpace ℝ (Fin 2)
+def statement : Prop := ∀ (p0 p1 p2 p3 p4 p5 : Point), (p0 ≠ p1) → (p3 ≠ p4) → (p4 ≠ p5) → (dist p3 p4 = dist p4 p5)
+#check statement
+",,,,,,,

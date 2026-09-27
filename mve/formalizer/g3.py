@@ -1,4 +1,4 @@
-"""Offline G3 fixture counts, with explicit syntax faults and structural controls."""
+"""Offline G3 sealed statements, disjoint references and explicit gate thresholds."""
 
 import json
 from pathlib import Path
@@ -16,6 +16,7 @@ from mve.formalizer.equivalence import assess, LEVELS, proposition_hash
 from mve.formalizer.retrieval import examples, nearest
 from mve.formalizer.runtime import compile_source, sha
 from mve.identity import digest
+from mve.formalizer.taskset import load_packet, record, write_review_sheet, PREDICATES
 
 
 def controls(ir, retrieval):
@@ -71,6 +72,8 @@ def evaluate_task(record, catalog, index, project, output, cache):
         name: inspect_candidate(ir, candidate) for name, candidate in variants.items()
     }
     return {
+        "predicate": ir["goal"]["proposition"]["pred"],
+        "canonical_statement_sha256": sha(emit(ir).encode()),
         "image_sha256": record.to_dict()["image"]["sha256"],
         "ir_sha256": digest(ir),
         "proposition_sha256": proposition_hash(ir),
@@ -83,10 +86,35 @@ def evaluate_task(record, catalog, index, project, output, cache):
     }
 
 
-def run(output, *, count=100, project=None):
+def evaluate_references(references, reviews, project, output, cache):
+    templates = {f"reference-{i:03}": row for i, row in enumerate(references)}
+    if not isinstance(reviews, list):
+        raise ValueError("reviews must be a list")
+    by_id = {}
+    for review in reviews:
+        if not isinstance(review, dict):
+            raise ValueError("each reference review must be an object")
+        ident = review.get("task_id")
+        if ident not in templates or ident in by_id:
+            raise ValueError("unknown or duplicate reference review")
+        by_id[ident] = review
+    rows = []
+    for ident, row in templates.items():
+        ir = build_ir(record(row))
+        source = emit(ir)
+        receipt = checked(source, project, output, cache)
+        evidence = assess(ir, ir, source, review=by_id.get(ident))
+        if not receipt["ok"]:
+            evidence.update(level="unresolved", basis="typecheck failed")
+        rows.append({"task_id": ident, "equivalence": evidence, "typecheck": receipt})
+    return rows
+
+
+def run(output, *, count=100, project=None, reviews=None):
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     project = project or Path(__file__).resolve().parents[1] / "lean"
+    packet = load_packet()
     tasks, retrieval, split = build_tasks(count)
     catalog = examples(retrieval, split)
     (output / "split.json").write_text(split.payload)
@@ -95,26 +123,38 @@ def run(output, *, count=100, project=None):
         evaluate_task(r, catalog, i, project, output, cache)
         for i, r in enumerate(tasks)
     ]
-    for i, record in enumerate(tasks):
-        (output / f"task-{i:03}.json").write_text(record.to_json())
-    report = summarize(rows, cache, split)
-    (output / "tasks.json").write_text(
-        json.dumps(rows, sort_keys=True, separators=(",", ":")) + "\n"
+    references = evaluate_references(
+        packet["references"], [] if reviews is None else reviews, project, output, cache
     )
-    (output / "g3.json").write_text(json.dumps(report, sort_keys=True, indent=2) + "\n")
+    for i, rec in enumerate(tasks):
+        (output / f"task-{i:03}.json").write_text(rec.to_json())
+    write_review_sheet(packet["references"], output)
+    report = summarize(rows, references, cache, split, packet)
+    for name, data in [("tasks", rows), ("references", references), ("g3", report)]:
+        (output / f"{name}.json").write_text(
+            json.dumps(data, sort_keys=True, indent=2) + "\n"
+        )
     return report
 
 
-def summarize(rows, cache, split):
-    references = rows[:50]
+def gate(*, tasks, unique, first, post, references, semantic):
+    checks = [
+        (tasks == 100 and unique == 100, "need 100 distinct sealed statements"),
+        (first >= 80, "need at least 80/100 first-pass well-typed statements"),
+        (post >= 95, "need at least 95/100 post-repair well-typed statements"),
+        (references == 50, "need 50 retrieval-disjoint references"),
+        (
+            semantic >= 20,
+            "need at least 20/50 blinded semantic rubric passes; "
+            "without human reviews G3 is not established",
+        ),
+    ]
+    reasons = [reason for ok, reason in checks if not ok]
+    return {"g3_pass": not reasons, "g3_reasons": reasons}
+
+
+def evidence_summary(rows, references):
     return {
-        "schema": "mve-g3-offline-v1",
-        "tasks": len(rows),
-        "first_pass_well_typed": sum(r["first_pass"]["ok"] for r in rows),
-        "post_repair_well_typed": sum(r["post_repair"]["ok"] for r in rows),
-        "injected_syntax_faults": sum(r["syntax_fault_injected"] for r in rows),
-        "reference_tasks": len(references),
-        "semantic_rubric_passes": 0,
         "equivalence_counts": {
             level: sum(r["equivalence"]["level"] == level for r in references)
             for level in LEVELS
@@ -126,19 +166,49 @@ def summarize(rows, cache, split):
             }
             for name in rows[0]["controls"]
         },
+    }
+
+
+def summarize(rows, references, cache, split, packet):
+    first = sum(r["first_pass"]["ok"] for r in rows)
+    post = sum(r["post_repair"]["ok"] for r in rows)
+    unique = len({r["canonical_statement_sha256"] for r in rows})
+    semantic = sum(r["equivalence"]["semantic_acceptance"] for r in references)
+    return {
+        "schema": "mve-g3-offline-v2",
+        "tasks": len(rows),
+        "first_pass_well_typed": first,
+        "post_repair_well_typed": post,
+        "first_pass_rate": first / len(rows),
+        "post_repair_rate": post / len(rows),
+        "injected_syntax_faults": sum(r["syntax_fault_injected"] for r in rows),
+        "reference_tasks": len(references),
+        "semantic_rubric_passes": semantic,
+        "human_reviews": sum("review" in r["equivalence"] for r in references),
+        **evidence_summary(rows, references),
         "unique_compiler_inputs": len(cache),
         "compiler_error_inputs": sum(not r["ok"] for r in cache.values()),
-        "unique_canonical_statements": len(
-            {r["post_repair"]["statement_sha256"] for r in rows}
-        ),
+        "unique_canonical_statements": unique,
+        "per_predicate_counts": {
+            p: sum(r["predicate"] == p for r in rows) for p in PREDICATES
+        },
+        "quota_gaps": packet["summary"]["quota_gaps"],
         "split_sha256": split.sha256,
+        "wp2_split_sha256": packet["wp2_split_sha256"],
         "null": "N/A",
         "hosted_calls": 0,
         "proof_checked": False,
-        "g3_pass": False,
-        "scope": "WP-2 exact-positive constructions; 3 authored task templates; first 50 are structural reference comparisons only",
+        **gate(
+            tasks=len(rows),
+            unique=unique,
+            first=first,
+            post=post,
+            references=len(references),
+            semantic=semantic,
+        ),
+        "scope": "WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, "
+        "not a model formalization benchmark; exact truth is not a derivability claim",
         "gaps": [
-            "no independent blinded semantic rubric",
             "no kernel equivalence evidence",
             "no model formalization or repair evaluation",
             "LeanGeo absent",
@@ -150,9 +220,13 @@ def main(argv=None):
     import argparse
 
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--output", type=Path, default=Path("/tmp/mve-g3"))
+    parser.add_argument(
+        "--reviews", type=Path, help="completed, blinded human rubric JSON"
+    )
     args = parser.parse_args(argv)
-    print(json.dumps(run(args.output), indent=2, sort_keys=True))
+    kwargs = {"reviews": json.loads(args.reviews.read_text())} if args.reviews else {}
+    print(json.dumps(run(args.output, **kwargs), indent=2, sort_keys=True))
 
 
 if __name__ == "__main__":

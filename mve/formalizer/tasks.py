@@ -1,12 +1,11 @@
-"""WP-2 constructions with explicit text tasks; no private candidate truth is consumed."""
+"""G3 corpus loader and the small legacy construction fixture used by unit tests."""
 
 from itertools import combinations
-from mve.generator.constructions import construct, FAMILIES
-from mve.generator.corpus import ALLOCATIONS
+from mve.generator.constructions import construct
 from mve.generator.render import render
 from mve.generator.records import record_from, AT
 from mve.generator.truth import build_truth
-from mve.evaluation.splits import freeze, FrozenSplit, canonical
+from mve.evaluation.splits import canonical
 from mve.predicates import canonical_proposition
 from mve.formalizer.runtime import sha
 from mve.record import create
@@ -60,32 +59,14 @@ def task(family, seed, variant, split="fit"):
 def build_tasks(count=100):
     if type(count) is not int or count < 2 or count > 100:
         raise ValueError("task count must be 2..100")
-    base = freeze(
-        [{"id": f, "family": f} for f in FAMILIES],
-        seed="mve-family-split-v1",
-        allocations=ALLOCATIONS,
+    from mve.formalizer.taskset import load_packet, record, image_split
+
+    packet = load_packet()
+    return (
+        [record(r) for r in packet["sealed"][:count]],
+        [record(r) for r in packet["retrieval"]],
+        image_split(packet),
     )
-    manifest = base.manifest()
-    roles = {
-        role: sorted(r["family"] for r in manifest["items"] if r["split"] == role)
-        for role in ALLOCATIONS
-    }
-    records, rows = {}, []
-    for role, families in roles.items():
-        records[role] = []
-        for index in range(count if role == "sealed" else len(families)):
-            family = families[index % len(families)]
-            record = task(family, index // len(families), index, role)
-            records[role].append(record)
-            rows.append(
-                {
-                    "id": record.to_dict()["image"]["sha256"],
-                    "family": family,
-                    "split": role,
-                }
-            )
-    manifest["items"] = rows
-    return records["sealed"], records["retrieval"], FrozenSplit(canonical(manifest))
 
 
 def problem(variant):
