@@ -6,7 +6,6 @@ WP-2 and WP-6a are rebased on github/mve/integration 8da83b3c2a2 and remain unme
 |---|---|---|
 | codex/mve-wp2-generator (`cfd40f80bb2`) | 364 full MVE tests; 88% generator coverage | E1 registry/universe/exact truth, computed coordinate collisions in acceptance, consistent split labels, negative scene-coordinate refusal |
 | codex/mve-wp6a-lean-spike (implementation `edaa4a26db4`) | 338 full MVE tests; 84% formalizer/shared-policy coverage, plus two added consistency tests; real Lean checks and Lake build pass | Explicit required nondegeneracy, lock-based compiler gate, relative pins/receipts, minimal environment, accurate network-only sandbox documentation, matching Spike HEADER |
-
 | codex/mve-wp4-geometry-guards (`a9ac0502255`) | 317 full MVE tests; 98% measurement coverage and 100% records.py coverage | All geometry-selection guards and unchanged content_hash/record_id |
 
 Counts are per branch and share baseline tests. Local validation is not an independent Opus PASS.
