@@ -1392,6 +1392,74 @@
       "schema": "mve-deps-v1",
       "status": "offline numerical fixtures implemented; JSXGraph deferred to A6/WP-7 by owner"
     },
+    "WP-6a": {
+      "JSXGraph": "failed: not present locally; vendoring deferred to owner-approved packet",
+      "LeanGeo": "failed: not present locally; vendoring deferred to owner-approved packet",
+      "base_git_sha": "e827c05717d23a1d570e49847918c8e7347313ec",
+      "files": [
+        {
+          "path": "mve/formalizer/__init__.py",
+          "sha256": "b27edb3978b419d2aac9e36f2db5034ba7fdc810f8263057242cd6f186e35f8c"
+        },
+        {
+          "path": "mve/formalizer/__main__.py",
+          "sha256": "ef75ddfa68fd225ffa8ddcb78fbfe02ad5f184e8d50d248150c092066059e53c"
+        },
+        {
+          "path": "mve/formalizer/emitter.py",
+          "sha256": "257af899e06afa7d2349599368c7abeb4403e115a24fb239f90ac19b541b6416"
+        },
+        {
+          "path": "mve/formalizer/ir.py",
+          "sha256": "ee4747cffeb1cc8f1c908ccec3fee49c6f572daa14464e67bdd6aeb43c92a779"
+        },
+        {
+          "path": "mve/formalizer/leangeo.py",
+          "sha256": "81ad1c745b1c87d18c8a2d65fade52e2a99229c8f7888e27876ea852b303fd0a"
+        },
+        {
+          "path": "mve/formalizer/runtime.py",
+          "sha256": "a2b072b1589361676dfad7056bb1e1ad69d0e52d938c791d02c9818a3c5284f9"
+        },
+        {
+          "path": "mve/lean/.gitignore",
+          "sha256": "f0f6cc7334a2aac480919b853c9eb967462a47dbccedf8f3cb9f19047849e0d5"
+        },
+        {
+          "path": "mve/lean/SemanticsMap.json",
+          "sha256": "3ad05c34c3031b50417192a84ef9e2388620c25ab51713f5b21b703e28db84f5"
+        },
+        {
+          "path": "mve/lean/lake-manifest.json",
+          "sha256": "7bd8ae8739e94b2603c380d011dcc9c1460a70320f27c416c5e5ab1e0a929a78"
+        },
+        {
+          "path": "mve/lean/lakefile.lean",
+          "sha256": "ddb57b04d444bca3389e741e1538aae5d9adcced863a1b3f942ebd33b24e83b2"
+        },
+        {
+          "path": "mve/lean/lock.json",
+          "sha256": "e419fc5109bd1fbbc1e2f49736bbf8f301309aff4230d38cf24cdc3ee431da51"
+        },
+        {
+          "path": "mve/lean/MVE/Spike.lean",
+          "sha256": "51c884411e14598d8efc724f7054c4d88f7338c8331f21fe33b1ac18175a954b"
+        },
+        {
+          "path": "tests/mve/test_formalizer_runtime.py",
+          "sha256": "e687242cb2d75814b9394c9544cbac8250df52fed0742f1fffd8110e2b3e1241"
+        },
+        {
+          "path": "tests/mve/test_formalizer_spike.py",
+          "sha256": "dc7a21172c9a8c75c04955bad40a45ca3fab7b3e39bc2d09ee45e07edb33e078"
+        }
+      ],
+      "hosted_calls": 0,
+      "lean_lock_sha256": "e419fc5109bd1fbbc1e2f49736bbf8f301309aff4230d38cf24cdc3ee431da51",
+      "native_mathlib": "isolated Lake build passed; all 11 active native targets typechecked",
+      "proof_checked": false,
+      "schema": "mve-deps-v1"
+    },
     "WP-9a": {
       "base_git_sha": "5645250003f129473919f4f32984c68a86e1c477",
       "files": [

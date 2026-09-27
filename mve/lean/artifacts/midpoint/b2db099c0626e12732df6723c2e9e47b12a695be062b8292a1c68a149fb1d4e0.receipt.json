@@ -1,0 +1,12 @@
+{
+  "hosted_calls": 0,
+  "lock_sha256": "e419fc5109bd1fbbc1e2f49736bbf8f301309aff4230d38cf24cdc3ee431da51",
+  "log_path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/lean/artifacts/midpoint/429c4754b604ccd923d126f49768e72ff8757eee8d789322cd7ad1c5c64059a6.log",
+  "log_sha256": "429c4754b604ccd923d126f49768e72ff8757eee8d789322cd7ad1c5c64059a6",
+  "ok": true,
+  "outcome": "typechecked",
+  "proof_checked": false,
+  "statement_path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/lean/artifacts/midpoint/b2db099c0626e12732df6723c2e9e47b12a695be062b8292a1c68a149fb1d4e0.lean",
+  "statement_sha256": "b2db099c0626e12732df6723c2e9e47b12a695be062b8292a1c68a149fb1d4e0",
+  "toolchain": "leanprover/lean4:v4.29.0"
+}

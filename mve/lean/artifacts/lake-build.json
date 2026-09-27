@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/usr/bin/sandbox-exec",
+    "-p",
+    "(version 1) (allow default) (deny network*)",
+    "/Users/applefamily/.elan/toolchains/leanprover--lean4---v4.29.0/bin/lake",
+    "-d",
+    "mve/lean",
+    "build"
+  ],
+  "returncode": 0,
+  "log_sha256": "8b77ac217a76b3800ff0b4f2222edbbb92e060299c91370148b91cf10f2424a1",
+  "network": "denied by sandbox-exec",
+  "native_predicate_targets": 11,
+  "proof_checked": false
+}
