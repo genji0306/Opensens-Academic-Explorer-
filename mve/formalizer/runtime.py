@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 from mve.formalizer.ir import build_ir
@@ -22,11 +23,11 @@ def verify_project(project):
         for name, expected in lock["project_files"].items():
             if sha((project / name).read_bytes()) != expected:
                 raise ValueError("project pin mismatch")
-        binary = Path(lock["lean_binary"])
+        binary = project_path(project, lock["lean_binary"])
         if sha(binary.read_bytes()) != lock["lean_binary_sha256"]:
             raise ValueError("Lean binary pin mismatch")
         for package in lock["packages"]:
-            path = package["path"]
+            path = str(project_path(project, package["path"]))
             head = subprocess.check_output(
                 ["git", "-C", path, "rev-parse", "HEAD"], text=True
             ).strip()
@@ -56,17 +57,13 @@ def compile_source(source, project, output, *, timeout=60):
     output.mkdir(parents=True, exist_ok=True)
     statement = output / (sha(source.encode()) + ".lean")
     statement.write_text(source)
-    paths = [str(Path(p["path"]) / ".lake/build/lib/lean") for p in lock["packages"]]
-    import os
-
-    env = os.environ.copy()
-    env["LEAN_PATH"] = ":".join(paths)
+    env = lean_environment(project, lock)
     command = [
         "/usr/bin/sandbox-exec",
         "-p",
         "(version 1) (allow default) (deny network*)",
-        lock["lean_binary"],
-        str(statement.resolve()),
+        str(project_path(project, lock["lean_binary"])),
+        os.path.relpath(statement.resolve(), Path(project).resolve()),
     ]
     try:
         result = subprocess.run(
@@ -99,8 +96,8 @@ def save_receipt(source, project, output, lock, log, ok, outcome):
         "lock_sha256": sha((Path(project) / "lock.json").read_bytes()),
         "proof_checked": False,
         "hosted_calls": 0,
-        "statement_path": str((output / (sha(source.encode()) + ".lean")).resolve()),
-        "log_path": str(log_path.resolve()),
+        "statement_path": sha(source.encode()) + ".lean",
+        "log_path": log_path.name,
     }
     (output / (sha(source.encode()) + ".receipt.json")).write_text(
         json.dumps(receipt, indent=2, sort_keys=True) + "\n"
@@ -183,3 +180,31 @@ def typecheck_record(record, project, output, *, timeout=60, at=None):
         },
     )
     return checked, receipt
+
+
+def project_path(project, relative):
+    if Path(relative).is_absolute():
+        raise ValueError("lock paths must be project-relative")
+    return (Path(project) / relative).resolve()
+
+
+def lean_available(project):
+    try:
+        lock = json.loads((Path(project) / "lock.json").read_text())
+        binary = project_path(project, lock["lean_binary"])
+        return binary.is_file() and os.access(binary, os.X_OK)
+    except (OSError, ValueError, KeyError):
+        return False
+
+
+def lean_environment(project, lock):
+    binary = project_path(project, lock["lean_binary"])
+    paths = [
+        str(project_path(project, p["path"]) / ".lake/build/lib/lean")
+        for p in lock["packages"]
+    ]
+    return {
+        "PATH": str(binary.parent) + os.pathsep + os.defpath,
+        "HOME": str(Path.home()),
+        "LEAN_PATH": os.pathsep.join(paths),
+    }

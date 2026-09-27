@@ -1398,6 +1398,10 @@
       "base_git_sha": "e827c05717d23a1d570e49847918c8e7347313ec",
       "files": [
         {
+          "path": "mve/degeneracy.py",
+          "sha256": "94028b7f505a0672122b7a23a00018960d02a75a780dafdcda4c72403b16076f"
+        },
+        {
           "path": "mve/formalizer/__init__.py",
           "sha256": "b27edb3978b419d2aac9e36f2db5034ba7fdc810f8263057242cd6f186e35f8c"
         },
@@ -1407,7 +1411,11 @@
         },
         {
           "path": "mve/formalizer/emitter.py",
-          "sha256": "257af899e06afa7d2349599368c7abeb4403e115a24fb239f90ac19b541b6416"
+          "sha256": "5a325e05937b5e91f132e769b198d51d78d8bb0f4ca69056450d41efb353469e"
+        },
+        {
+          "path": "mve/formalizer/guards.py",
+          "sha256": "366d7c79a4da22f3eae4fdca5fcb41d1d139cccbf425d9b9f63d98684b69d424"
         },
         {
           "path": "mve/formalizer/ir.py",
@@ -1419,15 +1427,19 @@
         },
         {
           "path": "mve/formalizer/runtime.py",
-          "sha256": "a2b072b1589361676dfad7056bb1e1ad69d0e52d938c791d02c9818a3c5284f9"
+          "sha256": "beecf4987e6f9f9decf1708e53b5fec484cb7458a72c9b29f9eed0b457c1b53f"
         },
         {
           "path": "mve/lean/.gitignore",
           "sha256": "f0f6cc7334a2aac480919b853c9eb967462a47dbccedf8f3cb9f19047849e0d5"
         },
         {
+          "path": "mve/lean/MVE/Spike.lean",
+          "sha256": "2e0406d3d0bcf91d1d58128e5e2115861fe5c1687012236768de606fe33e9e0a"
+        },
+        {
           "path": "mve/lean/SemanticsMap.json",
-          "sha256": "3ad05c34c3031b50417192a84ef9e2388620c25ab51713f5b21b703e28db84f5"
+          "sha256": "43e5d8a12c08b962f8f3871dd0192ed74064e165a3099e682ba3b4bac49682d8"
         },
         {
           "path": "mve/lean/lake-manifest.json",
@@ -1439,25 +1451,42 @@
         },
         {
           "path": "mve/lean/lock.json",
-          "sha256": "e419fc5109bd1fbbc1e2f49736bbf8f301309aff4230d38cf24cdc3ee431da51"
+          "sha256": "db58c7b90f174ee8eba0c314a7809369ecde10cea47a24085c78f85d10c6096b"
         },
         {
-          "path": "mve/lean/MVE/Spike.lean",
-          "sha256": "51c884411e14598d8efc724f7054c4d88f7338c8331f21fe33b1ac18175a954b"
+          "path": "mve/measurement/numpy_kernel.py",
+          "sha256": "84e1b7e65ba2371603d80df0866bb9f19685b6940ed674a7efbb978657da6892"
+        },
+        {
+          "path": "mve/registry/predicates_v1.json",
+          "sha256": "b9f510d3a728a9a51c685ea0805d37bc74879727bb16fe8298aaf859b41332f1"
+        },
+        {
+          "path": "tests/mve/formalizer_fixtures.py",
+          "sha256": "5ec187de6d576830569618235ce624dc34a006d4633664c0e0ac96d8b25fd9f1"
+        },
+        {
+          "path": "tests/mve/test_degeneracy_e1.py",
+          "sha256": "0890b0fde50b647f0c65ae4105cc77755ca3028208a65f063c03743581282801"
+        },
+        {
+          "path": "tests/mve/test_formalizer_guards.py",
+          "sha256": "43eef1593f1ba78b72a4d641cd9b26bfef57d035ed4ea144eeded6fc5eec3db2"
         },
         {
           "path": "tests/mve/test_formalizer_runtime.py",
-          "sha256": "e687242cb2d75814b9394c9544cbac8250df52fed0742f1fffd8110e2b3e1241"
+          "sha256": "74dd48decbb82fac6675438f705586ec5235bb3c0d2ab68216dd0f797ae9bb03"
         },
         {
           "path": "tests/mve/test_formalizer_spike.py",
-          "sha256": "dc7a21172c9a8c75c04955bad40a45ca3fab7b3e39bc2d09ee45e07edb33e078"
+          "sha256": "d5dbc6c8ef5266860d6ab0b0ccbf88135d909f81fff4914f95978e74c51287de"
         }
       ],
       "hosted_calls": 0,
-      "lean_lock_sha256": "e419fc5109bd1fbbc1e2f49736bbf8f301309aff4230d38cf24cdc3ee431da51",
+      "lean_lock_sha256": "db58c7b90f174ee8eba0c314a7809369ecde10cea47a24085c78f85d10c6096b",
       "native_mathlib": "isolated Lake build passed; all 11 active native targets typechecked",
       "proof_checked": false,
+      "review_base_git_sha": "8da83b3c2a26d92b827b9b6a30da342236a7b5ad",
       "schema": "mve-deps-v1"
     },
     "WP-9a": {

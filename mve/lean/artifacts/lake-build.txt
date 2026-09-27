@@ -1,13 +1,13 @@
-ℹ [2342/2343] Replayed MVE.Spike
-info: MVE/Spike.lean:18:0: collinear (A B C : Point) : Prop
-info: MVE/Spike.lean:19:0: concyclic (A B C D : Point) : Prop
-info: MVE/Spike.lean:20:0: parallel (A B C D : Point) : Prop
-info: MVE/Spike.lean:21:0: perpendicular (A B C D : Point) : Prop
-info: MVE/Spike.lean:22:0: equalLength (A B C D : Point) : Prop
-info: MVE/Spike.lean:23:0: equalAngle (A B C D E F : Point) : Prop
-info: MVE/Spike.lean:24:0: mid (M A B : Point) : Prop
-info: MVE/Spike.lean:25:0: between (B A C : Point) : Prop
-info: MVE/Spike.lean:26:0: right (A B C : Point) : Prop
-info: MVE/Spike.lean:27:0: distinct (A B : Point) : Prop
-info: MVE/Spike.lean:28:0: notCollinear (A B C : Point) : Prop
+ℹ [2342/2343] Built MVE.Spike (3.5s)
+info: MVE/Spike.lean:17:0: collinear (A B C : Point) : Prop
+info: MVE/Spike.lean:18:0: concyclic (A B C D : Point) : Prop
+info: MVE/Spike.lean:19:0: parallel (A B C D : Point) : Prop
+info: MVE/Spike.lean:20:0: perpendicular (A B C D : Point) : Prop
+info: MVE/Spike.lean:21:0: equalLength (A B C D : Point) : Prop
+info: MVE/Spike.lean:22:0: equalAngle (A B C D E F : Point) : Prop
+info: MVE/Spike.lean:23:0: mid (M A B : Point) : Prop
+info: MVE/Spike.lean:24:0: between (B A C : Point) : Prop
+info: MVE/Spike.lean:25:0: right (A B C : Point) : Prop
+info: MVE/Spike.lean:26:0: distinct (A B : Point) : Prop
+info: MVE/Spike.lean:27:0: notCollinear (A B C : Point) : Prop
 Build completed successfully (2343 jobs).

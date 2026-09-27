@@ -2,6 +2,7 @@
 
 import re
 from mve.predicates import canonical_proposition
+from mve.formalizer.guards import require_nondegeneracy
 
 HEADER = """import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
 import Mathlib.Geometry.Euclidean.Sphere.Basic
@@ -59,6 +60,7 @@ def emit(ir):
     for i, binder in enumerate(binders):
         if binder.get("entity"):
             mapping.setdefault(binder["entity"], f"p{i}")
+    require_nondegeneracy(ir, mapping)
     premises = [native(n["proposition"], mapping) for n in ir["premises"]]
     if ir["goal"] is None:
         if not premises:

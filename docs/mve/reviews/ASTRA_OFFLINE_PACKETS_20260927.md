@@ -1,18 +1,18 @@
-# Offline packet handoff for Opus
+# Offline packet review-fix handoff for Opus
 
-All four branches fork github/mve/integration at e827c05717d; none is merged. Work was confined to ~/Developer/Opensens/worktrees/oae-mve-integration. Hosted calls and API cost: zero.
+WP-2 and WP-6a are rebased on github/mve/integration 8da83b3c2a2 and remain unmerged. Boundary/symlink follow-ups and WP-4a are already merged by Opus. Work was confined to ~/Developer/Opensens/worktrees/oae-mve-integration. Hosted calls and API cost: zero.
 
-| Branch | Review head | Validation | Packet |
-|---|---|---|---|
-| codex/mve-review-boundary-tests | 58c4bef8496 | 41 related tests pass | WP-9a boundaries/zero-token refusal; WP-11a runtime-created symlink denial |
-| codex/mve-wp2-generator | c7661da4c11 | 303 full MVE tests, 91% generator coverage | In-house algebraic evaluator, 517-candidate universe, frozen unsupported DDAR, controls, visible scene JSON contract; 2,000 unique fit + 500 unique evaluation configurations and PNGs |
-| codex/mve-wp4a-fixtures | efa459a3847 | 299 full MVE tests, 95% measurement coverage | Deterministic NumPy coordinate fixtures and explicit v5 geometry dependencies; JSXGraph deferred to A6/WP-7 per owner |
-| codex/mve-wp6a-lean-spike | this branch | 266 full MVE tests, 82% formalizer coverage; isolated Lake build passes | Native Mathlib IR/emission, all 11 active targets typechecked, trusted midpoint record receipt, disabled LeanGeo interface |
+| Branch | Validation | Review fixes |
+|---|---|---|
+| codex/mve-wp2-generator | 364 full MVE tests; 88% generator coverage | E1 registry/universe/exact truth, computed coordinate collisions in acceptance, consistent split labels, negative scene-coordinate refusal |
+| codex/mve-wp6a-lean-spike | 338 full MVE tests; 84% formalizer/shared-policy coverage, plus two added consistency tests; real Lean checks and Lake build pass | Explicit required nondegeneracy, lock-based compiler gate, relative pins/receipts, minimal environment, accurate network-only sandbox documentation, matching Spike HEADER |
 
-The counts are per branch and share baseline tests; do not add them together. Local review is not an independent Opus PASS.
+Counts are per branch and share baseline tests. Local validation is not an independent Opus PASS.
 
-WP-2's original corpus receipt is retired for duplicate PNGs. Use `WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json` and the local ignored directory `mve/generated/wp2-corpus-render-v2-20260927/`. Every one of its 2,560 records and visible scenes validates; all 10,240 artifact hashes match; no image or coordinate hash crosses splits. Family assignments were retained when the render recipe changed. No sealed truth was inspected to tune the implementation. The old artifacts remain auditable with a retired split receipt.
+Both branches contain an identical shared E1 policy change (WP-2 a27e1eb04c7; WP-6a a4ff9b68eb3). Preserve that policy and both aggregate DEPS.lock packet entries when integrating.
 
-Euclid discovery is failed: no local checkout; no network fetch in offline packets. Newclid still does not import; exact-true non-premise candidates are incidental_unproved with DDAR unsupported, never silently promoted. LeanGeo and JSXGraph are failed: not present locally; vendoring deferred to owner-approved packet. LeanGeo integration stays open; only its interface/unavailable fixture is tested. JSXGraph was neither downloaded nor represented as tested. Typechecked Mathlib statements are not proved theorems.
+The E1 corpus was generated from immutable WP-2 source 110df922429418b34a0812007351ac30f85092ce. Use the regenerated WP2_CORPUS_RECEIPT_20260927.json and WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json on the WP-2 branch. The old pre-E1 receipts are archived there. Local artifacts are under mve/generated/wp2-corpus-e1-20260927/. There are 2,560 diagrams, including 2,000 fit and 500 sealed; all records/scenes validate, all 10,240 hashes match, and computed cross-split image and coordinate collisions are zero. Every record label matches its manifest and frozen split. The six-point universe has 4,507 candidates, including shared-point isosceles/bisector instances. No sealed truth was inspected for tuning.
 
-WP-0b's verified-price refusal must precede any hosted transport. No hosted adapter was added here. Preserve aggregate DEPS.lock packet entries when resolving independent branch additions. Shared wiki refresh tooling is absent from this integration checkout; durable handoffs are under docs/mve/.
+Euclid discovery failed: no local checkout; no network fetch in offline packets. Newclid still does not import; exact-true non-premise candidates remain incidental_unproved with DDAR unsupported. LeanGeo and JSXGraph are failed: not present locally; vendoring deferred to an owner-approved packet. LeanGeo integration stays open, JSXGraph stays deferred to A6/WP-7. Native Mathlib statement typechecks are not theorem proofs.
+
+WP-4's geometry-selection guard and unchanged-identity tests are the next small follow-up branch. WP-0b's verified-price refusal must precede any hosted transport. No hosted adapter was added. Shared wiki refresh tooling is absent from this checkout; durable handoffs are under docs/mve/.

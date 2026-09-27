@@ -2,7 +2,6 @@ import Mathlib.Geometry.Euclidean.Angle.Unoriented.Affine
 import Mathlib.Geometry.Euclidean.Sphere.Basic
 import Mathlib.Analysis.InnerProductSpace.PiL2
 set_option autoImplicit false
-open scoped RealInnerProductSpace
 abbrev Point := EuclideanSpace ℝ (Fin 2)
 def collinear (A B C : Point) : Prop := Collinear ℝ ({A,B,C} : Set Point)
 def concyclic (A B C D : Point) : Prop := EuclideanGeometry.Concyclic ({A,B,C,D} : Set Point)

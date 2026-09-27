@@ -1,8 +1,9 @@
 {
-  "source": "WP-2 fit artifact, never sealed evaluation",
-  "generator_commit": "342451c8bdefb952f69e342300e061e16c56499a",
-  "diagram_id": "fd7041a9a46777fa24fba5d6f443fa47",
-  "truth_sha256": "204813665c5b40e6271d43a8cb30c03198f1d82a69331ea8320885534bc21bc6",
-  "fixture_role": "trusted generator premise Midpoint(C,A,B), explicit Distinct(A,B); new goal Collinear(A,B,C)",
-  "source_record_id": "0275f46af3ccfcdc6e6ca9a61d76150dd339bec36a75944e1dfe5b0f593997b7"
+  "source": "WP-2 E1 fit artifact, never sealed evaluation",
+  "generator_commit": "110df922429418b34a0812007351ac30f85092ce",
+  "diagram_id": "00f144ca7200db23e4600f327248bc4d",
+  "truth_sha256": "25dc387c87a0d6548d8085c73ca82b0f318fa1011a0caa2129e3681da5a0c28b",
+  "fixture_role": "Midpoint(C,A,B), explicit Distinct(A,B), Distinct(A,C), Distinct(B,C); goal Collinear(A,B,C)",
+  "exact_fixture_check": "Fraction arithmetic verifies midpoint and pairwise distinctness",
+  "source_record_id": "3e122288d6d5fa40dd5e509de60a9725ad8c7b82ed90f0f17238d162dec4bba6"
 }

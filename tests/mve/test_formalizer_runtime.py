@@ -1,22 +1,23 @@
 from pathlib import Path
 import json
 import pytest
-from mve.formalizer.runtime import typecheck_record, verify_project, compile_source
+from mve.formalizer.runtime import (
+    typecheck_record,
+    verify_project,
+    compile_source,
+    lean_available,
+)
 from mve.formalizer.emitter import HEADER, native
 from mve.predicates import REGISTRY
 from mve.record import Record
-from tests.mve.fixtures import populated
+from tests.mve.formalizer_fixtures import trusted_record
 
 PROJECT = Path(__file__).resolve().parents[2] / "mve/lean"
 
 
-def available():
-    return Path(
-        "/Users/applefamily/.elan/toolchains/leanprover--lean4---v4.29.0/bin/lean"
-    ).exists()
-
-
-@pytest.mark.skipif(not available(), reason="requires pinned local Lean cache")
+@pytest.mark.skipif(
+    not lean_available(PROJECT), reason="requires pinned local Lean cache"
+)
 def test_native_targets_compile_without_proofs(tmp_path):
     source = HEADER
     for pred, row in REGISTRY.items():
@@ -33,9 +34,11 @@ def test_native_targets_compile_without_proofs(tmp_path):
     assert receipt["hosted_calls"] == 0
 
 
-@pytest.mark.skipif(not available(), reason="requires pinned local Lean cache")
+@pytest.mark.skipif(
+    not lean_available(PROJECT), reason="requires pinned local Lean cache"
+)
 def test_typecheck_record_keeps_proof_separate(tmp_path):
-    original = Record.from_dict(populated())
+    original = trusted_record()
     result, receipt = typecheck_record(original, PROJECT, tmp_path, timeout=60)
     data = result.to_dict()
     assert receipt["ok"]
@@ -86,9 +89,98 @@ def test_failed_typecheck_leaves_record_emitted(tmp_path, monkeypatch):
     import mve.formalizer.runtime as runtime
 
     monkeypatch.setattr(
+        runtime,
+        "verify_project",
+        lambda project: json.loads((PROJECT / "lock.json").read_text()),
+    )
+
+    monkeypatch.setattr(
         runtime, "compile_source", lambda *a, **kw: {"ok": False, "outcome": "error"}
     )
-    result, receipt = typecheck_record(Record.from_dict(populated()), PROJECT, tmp_path)
+    result, receipt = typecheck_record(trusted_record(), PROJECT, tmp_path)
     assert result.to_dict()["formal"]["status"] == "emitted"
     assert not receipt["ok"]
     assert "typecheck" not in result.to_dict()["formal"]
+
+
+def test_real_lean_gate_uses_configured_relative_binary(tmp_path):
+    (tmp_path / "bin").mkdir()
+    binary = tmp_path / "bin/lean"
+    binary.touch()
+    binary.chmod(0o700)
+    (tmp_path / "lock.json").write_text(json.dumps({"lean_binary": "bin/lean"}))
+    assert lean_available(tmp_path)
+    binary.unlink()
+    assert not lean_available(tmp_path)
+
+
+def test_compiler_gets_only_minimal_env_and_relative_receipt_paths(
+    tmp_path, monkeypatch
+):
+    import subprocess
+    import mve.formalizer.runtime as runtime
+
+    lock = json.loads((PROJECT / "lock.json").read_text())
+    monkeypatch.setattr(runtime, "verify_project", lambda project: lock)
+    monkeypatch.setenv("MVE_TEST_SECRET", "must-not-reach-lean")
+
+    def compiler(*args, **kwargs):
+        assert set(kwargs["env"]) == {"PATH", "HOME", "LEAN_PATH"}
+        assert "must-not-reach-lean" not in str(kwargs["env"])
+        return subprocess.CompletedProcess(args, 0, "statement : Prop\n", "")
+
+    monkeypatch.setattr(runtime.subprocess, "run", compiler)
+    receipt = compile_source(HEADER, PROJECT, tmp_path)
+    for field in ("statement_path", "log_path"):
+        assert not Path(receipt[field]).is_absolute()
+        assert (tmp_path / receipt[field]).is_file()
+
+
+def test_missing_nondegeneracy_prevents_record_emission(tmp_path, monkeypatch):
+    import mve.formalizer.runtime as runtime
+    from tests.mve.fixtures import populated
+
+    monkeypatch.setattr(
+        runtime,
+        "verify_project",
+        lambda project: json.loads((PROJECT / "lock.json").read_text()),
+    )
+
+    def never(*args, **kwargs):
+        raise AssertionError("compiler must not run")
+
+    monkeypatch.setattr(runtime, "compile_source", never)
+    with pytest.raises(ValueError, match="missing.*Distinct"):
+        typecheck_record(Record.from_dict(populated()), PROJECT, tmp_path)
+    assert list(tmp_path.iterdir()) == []
+
+
+def test_spike_import_header_matches_emitter():
+    assert (PROJECT / "MVE/Spike.lean").read_text().startswith(HEADER)
+
+
+def test_lock_and_stored_receipts_have_no_absolute_paths():
+    lock = json.loads((PROJECT / "lock.json").read_text())
+    assert not Path(lock["lean_binary"]).is_absolute()
+    assert all(not Path(row["path"]).is_absolute() for row in lock["packages"])
+
+
+def test_committed_typecheck_receipts_resolve_from_output_directory():
+    for path in (PROJECT / "artifacts").rglob("*.receipt.json"):
+        receipt = json.loads(path.read_text())
+        for key in ("statement_path", "log_path"):
+            assert not Path(receipt[key]).is_absolute()
+            assert (path.parent / receipt[key]).is_file()
+
+
+def test_absolute_lock_path_is_refused(tmp_path):
+    from mve.formalizer.runtime import project_path
+
+    with pytest.raises(ValueError, match="project-relative"):
+        project_path(tmp_path, str(tmp_path / "lean"))
+
+
+def test_semantics_map_uses_current_registry_degeneracy():
+    data = json.loads((PROJECT / "SemanticsMap.json").read_text())
+    for pred, row in data["predicates"].items():
+        assert row["registry_degeneracy"] == REGISTRY[pred]["degeneracy"]
