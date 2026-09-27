@@ -26,7 +26,7 @@ def ir_for(pred, args):
         ("Parallel", "ABCD", 6),
         ("Perpendicular", "ABCD", 6),
         ("EqualLength", "ABAC", 2),
-        ("EqualAngle", "BADDAC", 3),
+        ("EqualAngle", "BADDAC", 5),
         ("RightAngle", "ABC", 3),
         ("SBetween", "ABC", 3),
         ("Midpoint", "CAB", 3),
@@ -63,3 +63,19 @@ def test_equal_angle_cross_half_sharing_does_not_require_false_distinctness():
         {"proposition": p} for p in required_nondegeneracy(ir["goal"]["proposition"])
     ]
     assert "EuclideanGeometry.angle" in emit(ir)
+
+
+@pytest.mark.parametrize("missing", [("A", "C"), ("D", "F")])
+def test_e1a_angle_endpoint_distinctness_is_required_before_emission(missing):
+    ir = ir_for("EqualAngle", "ABCDEF")
+    # Independent six-pair oracle, rather than deriving the fixture from production.
+    pairs = [("A", "B"), ("B", "C"), ("A", "C"), ("D", "E"), ("E", "F"), ("D", "F")]
+    ir["premises"] = [
+        {"proposition": {"pred": "Distinct", "args": list(pair)}}
+        for pair in pairs
+        if pair != missing
+    ]
+    with pytest.raises(ValueError, match="Distinct\\(" + ",".join(missing) + "\\)"):
+        emit(ir)
+    ir["premises"].append({"proposition": {"pred": "Distinct", "args": list(missing)}})
+    assert "def statement" in emit(ir)

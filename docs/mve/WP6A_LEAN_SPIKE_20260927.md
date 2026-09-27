@@ -4,9 +4,9 @@ Rebased on github/mve/integration 8da83b3c2a2. Branch codex/mve-wp6a-lean-spike 
 
 ## Nondegeneracy guard (B1)
 
-The same E1 registry policy used by WP-2 now supplies the formalizer's required Distinct pairs and NotCollinear triples. Before emission, every hypothesis and goal is checked against the **explicit hypothesis set**. Missing requirements raise a ValueError naming each missing Distinct/NotCollinear proposition. The guard never adds premises, and a goal cannot authorize a hypothesis. Binder/entity aliases are normalized with the same precedence as emission.
+The same E1a registry policy used by WP-2 now supplies the formalizer's required Distinct pairs and NotCollinear triples. Before emission, every hypothesis and goal is checked against the **explicit hypothesis set**. Missing requirements raise a ValueError naming each missing Distinct/NotCollinear proposition. The guard never adds premises, and a goal cannot authorize a hypothesis. Binder/entity aliases are normalized with the same precedence as emission.
 
-Tests exercise each active geometric row, remove each requirement in turn, cover no-goal assumptions, and show that shared-point EqualLength/EqualAngle need only their nonzero segments/arms. Parallel/Perpendicular require full distinctness; Concyclic additionally requires every three-point subset noncollinear. Measurements/observations remain excluded from the authorized premise set.
+Tests exercise each active geometric row, remove each requirement in turn, cover no-goal assumptions, and show that shared-point EqualLength/EqualAngle require nonzero segments/arms and, for each angle, distinct endpoints (A≠C and D≠F). Cross-half sharing remains permitted. Parallel/Perpendicular require full distinctness; Concyclic additionally requires every three-point subset noncollinear. Measurements/observations remain excluded from the authorized premise set.
 
 The retained midpoint fixture is regenerated from a completed **fit** artifact in the E1 corpus, not sealed evaluation. Fraction arithmetic independently verifies its midpoint and three distinct points before the fixture explicitly states all three Distinct premises. Its lineage/source receipt remains in `mve/lean/fixtures/provenance.json`. No implicit nondegeneracy is invented by the runtime.
 

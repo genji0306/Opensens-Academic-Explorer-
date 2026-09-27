@@ -1363,6 +1363,160 @@
       "python": "3.13.2",
       "schema": "mve-deps-v1"
     },
+    "WP-2": {
+      "Euclid generator discovery": "failed: no local checkout; no network fetch in offline packets",
+      "JSXGraph": "failed: not present locally; vendoring deferred to owner-approved packet",
+      "Newclid": "failed: does not import; exact-true non-premise candidates remain incidental_unproved (DDAR unsupported)",
+      "backend": "inhouse-plane-v1; local Euclid absent; frozen DDAR unsupported",
+      "base_git_sha": "e827c05717d23a1d570e49847918c8e7347313ec",
+      "corpus_source_git_sha": "0e6abed36b39736043375855fff1fb131734f3eb",
+      "erratum": "r5 E1a; 2257 candidates; exact evaluator v1-e1a",
+      "files": [
+        {
+          "path": "mve/degeneracy.py",
+          "sha256": "a72a47ecacb68ed9913e9e9d245ea2b6f283bb5ac34cc66666540d6477ecb66b"
+        },
+        {
+          "path": "mve/evaluation/manifest.py",
+          "sha256": "2610d173463295f91ad3f7bde0d77e48f91ae3ba38223a3a54052820e4d90c77"
+        },
+        {
+          "path": "mve/evaluation/splits.py",
+          "sha256": "367ff90790a7e5745cf711577888e30ec7496ec9d954c0f67e0ed503e72f45c9"
+        },
+        {
+          "path": "mve/generator/__init__.py",
+          "sha256": "eaeef33c6c394cf1520662dd171a97e1df9ead1153b4bfdf858c1c4fcd62ab78"
+        },
+        {
+          "path": "mve/generator/__main__.py",
+          "sha256": "ad9214b1165e60e9716c1345f4a7c17431448db127c43f20726321d5fbbcb4c0"
+        },
+        {
+          "path": "mve/generator/constructions.py",
+          "sha256": "aaf8bc844ec61bfcb54cfc4063ae18f5698fd06869ad664071f2a4efd7686236"
+        },
+        {
+          "path": "mve/generator/corpus.py",
+          "sha256": "dd7cac618f4267af8ca6eb7af13c8b25017e270fdfd689ac9aa5a107f6f74f52"
+        },
+        {
+          "path": "mve/generator/exact.py",
+          "sha256": "a965bb50886fe6e18a8cf0792c3d869e23e0438019cecb284447b6e8536f4204"
+        },
+        {
+          "path": "mve/generator/pipeline.py",
+          "sha256": "3f475bcb1899f9a4c1a989cc79df383e5e8066d39a9148ba30169259003473eb"
+        },
+        {
+          "path": "mve/generator/receipts.py",
+          "sha256": "5974abdd99eb05ff951266f318b43c1b52d8b4441b1da2aaf5e74940525e8e18"
+        },
+        {
+          "path": "mve/generator/records.py",
+          "sha256": "66e9273787d633b3a7d46adda50429cf841bf9f33f77c13d2e49908254ca8909"
+        },
+        {
+          "path": "mve/generator/render.py",
+          "sha256": "b96ba4075fae2032838906d106de582678d04d21d95bc30da5242d18e0086620"
+        },
+        {
+          "path": "mve/generator/scene.py",
+          "sha256": "9cee65a9cb086ae4268a910c2699f0a25b4fe03e72324eda135942bdf7746fcc"
+        },
+        {
+          "path": "mve/generator/truth.py",
+          "sha256": "0e26b6e1baf0a09cba1fbeb189b3dc833f3852fcd343cbf2088b302a0e3a1512"
+        },
+        {
+          "path": "mve/generator/universe.py",
+          "sha256": "299791baf80e602725cfa58bc3d924ceeadb59a01e1489766d0720c4e63b26b8"
+        },
+        {
+          "path": "mve/lean/SemanticsMap.json",
+          "sha256": "af41aa01e2b10da3a0ee0ce12e6524e86a179b723ad0296ba061e2e7dab5a0d4"
+        },
+        {
+          "path": "mve/measurement/numpy_kernel.py",
+          "sha256": "84e1b7e65ba2371603d80df0866bb9f19685b6940ed674a7efbb978657da6892"
+        },
+        {
+          "path": "mve/registry/predicates_v1.json",
+          "sha256": "28cc10c86c7d53de7c1d75472660ffa678a97fc7efdd8523fc7a89d3ffc15c7b"
+        },
+        {
+          "path": "schemas/mve_observation_record.json",
+          "sha256": "136c93ede51599c735f819b05552a31350a28f0faacd7e3449a774c412d6043f"
+        },
+        {
+          "path": "schemas/mve_render_scene.json",
+          "sha256": "bf1e18ab29eb16527b74c07dc2561d2d3e8c2beaa9fd0fabfed2b5ad6a77c2bd"
+        },
+        {
+          "path": "tests/mve/test_degeneracy_e1.py",
+          "sha256": "f723a452ebb6491703dbeebb4bdd85dda0a4c82bf4670af85987ef43125cae53"
+        },
+        {
+          "path": "tests/mve/test_formalizer_guards.py",
+          "sha256": "21b99ca5f0c20033aae1876bcf1a13c357f1f3e774c8d685a0c83adb4394bd97"
+        },
+        {
+          "path": "tests/mve/test_generator_corpus.py",
+          "sha256": "87e3816dce5829b56d8210c2e8e9b79542253d8eea0e4cb06eec776643fd1ca2"
+        },
+        {
+          "path": "tests/mve/test_generator_exact.py",
+          "sha256": "016bffacc94bd5fa3d109b0fca9ecc7686309966e00680f4be4efb4f0a899575"
+        },
+        {
+          "path": "tests/mve/test_generator_pipeline.py",
+          "sha256": "e2a7edcbdfe0a32a2ca25fa385197af3efe5a35e583aee381e44a90b832b6025"
+        },
+        {
+          "path": "tests/mve/test_generator_review.py",
+          "sha256": "e1accccfb875949de152e471c04e40ff8be57f16167a9f4ca614be781e65a052"
+        },
+        {
+          "path": "tests/mve/test_generator_truth.py",
+          "sha256": "45b600677832b1030551c65559b9717727adba483d73dc11c45911d290337542"
+        },
+        {
+          "path": "tests/mve/test_render_scene.py",
+          "sha256": "d503b6007db7d21a0772db83f3323e79a8a6000f8ded49de9c8a18fe97367752"
+        }
+      ],
+      "hosted_calls": 0,
+      "packages": {
+        "Pillow": "12.2.0",
+        "jsonschema": "4.26.0",
+        "pytest": "8.4.2",
+        "sympy": "1.14.0"
+      },
+      "receipts": [
+        {
+          "path": "docs/mve/reviews/WP2_CORPUS_RECEIPT_20260927.json",
+          "sha256": "4795282bf1aad58553744316a518fa326eb8178de3d8ca3e9652370635d68db8"
+        },
+        {
+          "path": "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json",
+          "sha256": "fcf71b95df8dac21e240607d57d333aaad2e841fe843d47c01dea4ba7e569f54"
+        }
+      ],
+      "render_recipe": "pillow-lines-v2; deterministic seed rotation and scale; render_pinned=false",
+      "review_base_git_sha": "0550144a89543c0e6cd214fb89324537eb6f2b2e",
+      "schema": "mve-deps-v1",
+      "superseded_E1_corpus_source_git_sha": "110df922429418b34a0812007351ac30f85092ce",
+      "superseded_E1_receipts": [
+        {
+          "path": "docs/mve/archive/WP2_CORPUS_RECEIPT_E1_SUPERSEDED.json",
+          "sha256": "3f97daea237ecdd4105c14f1582fe355e74742323fcd514c0bc2e17c0c0ba7da"
+        },
+        {
+          "path": "docs/mve/archive/WP2_CORPUS_RENDER_V2_RECEIPT_E1_SUPERSEDED.json",
+          "sha256": "41b72484805c20dea24935b6e2f8c431adee60e098a17e43cc50e7fcf2a9e39a"
+        }
+      ]
+    },
     "WP-4-review-followups": {
       "base_git_sha": "8da83b3c2a26d92b827b9b6a30da342236a7b5ad",
       "files": [

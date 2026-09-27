@@ -1,4 +1,4 @@
-"""Shared executable r5 E1 requirements, indexed by the frozen predicate registry."""
+"""Shared executable r5 E1a requirements, indexed by the frozen predicate registry."""
 
 from mve.predicates import REGISTRY, canonical_proposition
 
@@ -12,6 +12,8 @@ def repeated_degenerate(pred, args):
 
 
 def excluded_identity(pred, args):
+    if REGISTRY[pred].get("exclude_self_segment", False):
+        return sorted(args[:2]) == sorted(args[2:])
     if not REGISTRY[pred]["exclude_self_angle"]:
         return False
     a, b, c, d, e, f = args

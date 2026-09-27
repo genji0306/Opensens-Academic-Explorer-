@@ -5,7 +5,7 @@
     "circle": "[cx,cy,r]",
     "incidence": "PointLiesOnLine(P,AB) = Collinear(P,A,B) with Distinct(A,B)",
     "inactive_rows": "registered names only; typed use rejected until semantics are frozen",
-    "erratum": "r5 E1: Degeneracy column overrides default; self-EqualAngle excluded from universe"
+    "erratum": "r5 E1a: each EqualAngle triple has distinct points; self-EqualLength and self-EqualAngle excluded from universe; cross-half sharing allowed"
   },
   "predicates": {
     "Collinear": {
@@ -203,7 +203,7 @@
       "active": true,
       "category": "P1",
       "symmetry": "pairs",
-      "degeneracy": "A=B or C=D; cross-pair sharing allowed",
+      "degeneracy": "A=B or C=D; cross-pair sharing allowed; same segment up to symmetry excluded from universe",
       "mathlib_target": "dist A B = dist C D",
       "target_compiled": false,
       "scalar_value": false,
@@ -218,7 +218,8 @@
         ]
       ],
       "noncollinear_arguments": [],
-      "exclude_self_angle": false
+      "exclude_self_angle": false,
+      "exclude_self_segment": true
     },
     "EqualAngle": {
       "arity": 6,
@@ -233,7 +234,7 @@
       "active": true,
       "category": "P1",
       "symmetry": "angles",
-      "degeneracy": "A=B, B=C, D=E or E=F; cross-triple sharing allowed",
+      "degeneracy": "A=B, B=C, A=C, D=E, E=F or D=F; cross-triple sharing allowed; same angle up to symmetry excluded from universe",
       "mathlib_target": "\u2220 A B C = \u2220 D E F",
       "target_compiled": false,
       "scalar_value": false,
@@ -247,11 +248,19 @@
           2
         ],
         [
+          0,
+          2
+        ],
+        [
           3,
           4
         ],
         [
           4,
+          5
+        ],
+        [
+          3,
           5
         ]
       ],
