@@ -32,7 +32,7 @@ def canonical_proposition(prop, mapping=None):
     if row is None or not row["active"]:
         raise RecordError("unsupported predicate")
     if any(prop.get(k) is not None for k in ("value", "value_exact", "unit")):
-        raise RecordError("P1 predicates do not accept scalar values")
+        raise RecordError("active predicates do not accept scalar values")
     args = [(mapping or {}).get(a, a) for a in prop["args"]]
     if len(args) != row["arity"]:
         raise RecordError("wrong predicate arity")

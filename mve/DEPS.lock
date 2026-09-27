@@ -1272,6 +1272,25 @@
       },
       "schema": "mve-deps-v1"
     },
+    "WP-1-review-followups": {
+      "base_git_sha": "ab3b8dd3e84d338a70df471273dff047284994d4",
+      "files": [
+        {
+          "path": "mve/validation.py",
+          "sha256": "32751a041a19dca1dcb2f0a0f680de1e7df95afee9df7b833718262d065bbeeb"
+        },
+        {
+          "path": "mve/predicates.py",
+          "sha256": "031e3c974a45c49688823788278b0ceefd52687cb7e3bf156977cd9aacee464a"
+        },
+        {
+          "path": "tests/mve/test_review_followups.py",
+          "sha256": "d4a3b443a12dd22b70f73c75c8c56b66f96dcd826b96e59cae3744c8acf47f96"
+        }
+      ],
+      "note": "Review fixes 1-3 plus diagnostic wording 4. These source revisions supersede matching original WP-1 file pins; original packet receipts remain intact.",
+      "schema": "mve-deps-v1"
+    },
     "WP-11a": {
       "base_git_sha": "5645250003f129473919f4f32984c68a86e1c477",
       "files": [
