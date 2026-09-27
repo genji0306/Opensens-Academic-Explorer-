@@ -1,0 +1,66 @@
+{
+  "acceptance": "generated_counts_met",
+  "api_cost_usd": 0,
+  "artifact_hashes_verified": 10240,
+  "class_counts": {
+    "false": 1035994,
+    "incidental_unproved": 132334,
+    "premise": 3587,
+    "unknown": 151605
+  },
+  "code_sha": "342451c8bdefb952f69e342300e061e16c56499a",
+  "controls": {
+    "calibration:adversarial_negative": 4,
+    "calibration:degenerate": 4,
+    "calibration:exact_positive": 4,
+    "calibration:near_miss_negative": 4,
+    "calibration:not_to_scale": 4,
+    "development:adversarial_negative": 4,
+    "development:degenerate": 4,
+    "development:exact_positive": 4,
+    "development:near_miss_negative": 4,
+    "development:not_to_scale": 4,
+    "evaluation:adversarial_negative": 100,
+    "evaluation:degenerate": 100,
+    "evaluation:exact_positive": 100,
+    "evaluation:near_miss_negative": 100,
+    "evaluation:not_to_scale": 100,
+    "fit:adversarial_negative": 399,
+    "fit:degenerate": 399,
+    "fit:exact_positive": 404,
+    "fit:near_miss_negative": 399,
+    "fit:not_to_scale": 399,
+    "retrieval:adversarial_negative": 4,
+    "retrieval:degenerate": 4,
+    "retrieval:exact_positive": 4,
+    "retrieval:near_miss_negative": 4,
+    "retrieval:not_to_scale": 4
+  },
+  "counts": {
+    "calibration": 20,
+    "development": 20,
+    "evaluation": 500,
+    "fit": 2000,
+    "retrieval": 20
+  },
+  "cross_split_coordinate_collisions": 0,
+  "ddar_note": "All DDAR receipts unsupported until a local backend passes preflight; no consequence claims.",
+  "hosted_calls": 0,
+  "local_artifact_root": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/generated/wp2-corpus-20260927",
+  "manifest_sha256": "3448442268aa53fcd19e79d838025bbc36213d0b1768e3e7a69fcedcf8c8d657",
+  "records_validated": 2560,
+  "render_pinned": false,
+  "schema": "mve-corpus-v1",
+  "sealed_truth_inspected_for_tuning": false,
+  "split_sha256": "0ab27e2a8318ccf10c14fdd43173f0d647cfe496041597ad50b54a1174d0b1c4",
+  "styles": [
+    "thin"
+  ],
+  "unique_mathematical_diagrams": {
+    "calibration": 20,
+    "development": 20,
+    "evaluation": 500,
+    "fit": 2000,
+    "retrieval": 20
+  }
+}
