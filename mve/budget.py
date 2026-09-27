@@ -157,6 +157,7 @@ class BudgetLedger:
     def reserve_tokens(
         self, attempt, phase, model, *, input_tokens, output_tokens, wave, when=None
     ):
+        """Reserve a positive paid-call ceiling; zero-token/zero-rate bounds are refused."""
         prices = self.snapshot()["configuration"]["prices"]
         amount = token_ceiling(
             prices, model, input_tokens=input_tokens, output_tokens=output_tokens
