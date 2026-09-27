@@ -261,3 +261,16 @@ matches the individual reviews.
 Opus spot-check follow-up: G0 reports 1/1/4 because the validation-negatives evidence is not
 wired into the report, although WP-1 tests cover it. Wire the WP-1 negative-fixture receipts as
 G0 evidence in a later reporting pass.
+
+## Addendum 11: WP-10 topology (f518aba116e): PASS, merged; G5 not established
+
+855 passed in a git worktree outside the builder sandbox; 71 topology tests. All 30 fixture PD
+codes are valid (each arc label exactly twice). The trefoil has writhe −3 and its mirror +3; the
+figure-eight has writhe 0. Geometry decoding reproduces the symbolic truth for all 30. Linking
+numbers are invariant across R1/R2/near-miss variants and flip only under mirror. R1/R2 are
+literal Markov stabilisation and σσ⁻¹ insertion. Canonicalisation does not equate a knot with
+its mirror or its R-variants. Non-transverse and triple crossings are rejected. G5 is forced
+"not established" while any criterion is unevidenced.
+Follow-ups: (1) `mve-oriented-pd-v1` breaks arcs at every crossing visit, unlike classical PD;
+any SnapPy/KnotTheory adapter must convert, never pass it straight to `snappy.Link()`;
+(2) document or align the `arc_labels` anchor (the first visit vs the underpass tie-break).
