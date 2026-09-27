@@ -2,6 +2,7 @@
 
 import math
 from mve.errors import RecordError
+from mve.exact import canonical_exact
 from mve.predicates import REGISTRY, canonical_proposition
 
 
@@ -15,6 +16,13 @@ def active(node):
 
 
 def proposition(prop, data, allowed_binders=False, formal=False):
+    value_exact = prop.get("value_exact")
+    if value_exact is not None:
+        try:
+            canonical = canonical_exact(value_exact)
+        except ValueError as exc:
+            raise RecordError(f"invalid exact expression: {exc}") from exc
+        require(canonical == value_exact, "noncanonical exact expression")
     binders = {b["name"]: b for b in data["problem"]["binders"]}
     entities = {e["id"]: e for e in data["entities"]}
     require(canonical_proposition(prop) == prop, "noncanonical proposition")
