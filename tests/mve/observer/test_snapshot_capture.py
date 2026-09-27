@@ -2,6 +2,7 @@ import io
 import json
 import os
 from pathlib import Path
+import site
 import tempfile
 from types import SimpleNamespace
 from unittest.mock import Mock
@@ -315,6 +316,29 @@ def test_run_browser_lifecycle(tmp_path, monkeypatch, private_runtime):
         "HOME": str(private_runtime / "h"),
         "TMPDIR": str(private_runtime / "t"),
     }
+
+
+@pytest.mark.parametrize("inherited_userbase", [None, "/unused-stale-userbase"])
+def test_worker_preserves_parent_userbase_with_private_home(
+    tmp_path, monkeypatch, inherited_userbase
+):
+    if inherited_userbase is None:
+        monkeypatch.delenv("PYTHONUSERBASE", raising=False)
+    else:
+        monkeypatch.setenv("PYTHONUSERBASE", inherited_userbase)
+    monkeypatch.setattr(c, "readonly_probe", Mock())
+    run = Mock(return_value=SimpleNamespace(returncode=0))
+    monkeypatch.setattr(c.subprocess, "run", run)
+    repos = {"atlas": tmp_path / "atlas", "lab": tmp_path / "lab"}
+
+    c.isolated_capture(c.parse_args([]), tmp_path, repos, {})
+
+    env = run.call_args.kwargs["env"]
+    private = Path(env["MVE_WO1_PRIVATE_DIR"])
+    assert env["PYTHONUSERBASE"] == site.USER_BASE
+    assert env["HOME"] == str(private / "h")
+    assert env["TMPDIR"] == str(private / "t")
+    assert env["PYTHONDONTWRITEBYTECODE"] == "1"
 
 
 @pytest.mark.parametrize("failure", [None, "probe", "returncode", "launch"])

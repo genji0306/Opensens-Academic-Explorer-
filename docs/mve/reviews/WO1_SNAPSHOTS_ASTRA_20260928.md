@@ -6,6 +6,30 @@ No atlas/lab build, publish, download, hosted call, or source-worktree edit was 
 
 ## Delivery and validation boundary
 
+Python user-site follow-up to `f3992721a338d75578a477b96470ef4ab9ecd099`
+(2026-09-28): Opus reports that the short private Chrome runtime now works,
+but the sandboxed Python worker fails importing Pillow: the framework `_imaging`
+extension is x86_64 while the process needs arm64. Opus verified that working
+arm64 Pillow and Playwright are installed in the parent's user site; changing
+HOME hid that site and exposed the stale framework installation.
+
+The worker environment now explicitly sets `PYTHONUSERBASE` to the parent's
+`site.USER_BASE`, preserving access to those installed packages. HOME and TMPDIR
+remain the private `h` and `t` directories, and `PYTHONDONTWRITEBYTECODE=1` remains
+set. The sandbox grants no writes to the real user base. The write allowlist,
+network denial, runtime cleanup, socket length guard, pinned pathspec archives,
+500 MiB generated-output limit and 5 GiB free-disk floor are unchanged.
+
+Validation for this follow-up: **36 passed, 1 skipped** in the focused fixture
+suite; combined Python coverage **98%** (rounded); Ruff and `git diff --check`
+pass. The new parameterized regression test failed before the fix for both an
+absent and a stale inherited PYTHONUSERBASE; it now verifies the parent's resolved
+user base together with private HOME/TMPDIR and disabled bytecode writes. The
+OS denial test remains skipped because nested `sandbox-exec` is unavailable.
+No native capture was attempted here; Opus must retry outside the builder sandbox
+to verify worker imports, completed capture and byte-identical repeat hashes.
+Earlier validation counts and the evidence JSON remain historical receipts.
+
 Isolation follow-up to `7233da17d5f` (2026-09-28): Opus reported **940 passed**
 outside the builder sandbox, but native capture failed inside the adapter's own
 profile: Chrome could not create its ProcessSingleton socket directory and tried

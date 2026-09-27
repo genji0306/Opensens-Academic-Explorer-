@@ -11,6 +11,7 @@ import json
 import os
 from pathlib import Path
 import shutil
+import site
 import subprocess
 import sys
 import tempfile
@@ -205,6 +206,9 @@ def isolated_capture(args, out, repos, receipt):
             "MVE_WO1_SANDBOX_WORKER": "1",
             "MVE_WO1_PRIVATE_DIR": str(private),
             "PYTHONDONTWRITEBYTECODE": "1",
+            # Keep the parent's installed packages visible with a private HOME.
+            # The sandbox still denies writes to the real user base.
+            "PYTHONUSERBASE": site.USER_BASE,
             "HOME": str(home),
             "TMPDIR": str(tmp),
         }
