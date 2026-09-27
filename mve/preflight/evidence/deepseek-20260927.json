@@ -1,0 +1,30 @@
+{
+  "fetch_date": "2026-09-27",
+  "image_input_supported": true,
+  "image_wire_format_verified": false,
+  "page_last_updated": null,
+  "price_verified": true,
+  "prices_usd_per_million": {
+    "off_peak": {
+      "input_cache_hit": "0.003",
+      "input_cache_miss": "0.15",
+      "output": "0.6"
+    },
+    "peak": {
+      "input_cache_hit": "0.006",
+      "input_cache_miss": "0.3",
+      "output": "1.2"
+    }
+  },
+  "source_url": "https://api-docs.deepseek.com/quick_start/pricing",
+  "verbatim": [
+    "deepseek-flash: image input supported. USD per 1M tokens: input cache hit 0.003 off-peak / 0.006 peak; input cache miss 0.15 off-peak / 0.3 peak; output 0.6 off-peak / 1.2 peak.",
+    "deepseek-v4-pro: no image input (refuse it, as already done).",
+    "Peak: 01:00–04:00 and 06:00–10:00 UTC, Monday–Friday, excluding Chinese public holidays; all other hours off-peak. Keep the existing UTC window as the dispatch policy (holidays treated as peak = conservative), and mark it verified against this source.",
+    "Ceiling: compute with the PEAK cache-miss input and PEAK output prices, whatever the time, so it is conservative.",
+    "API: base https://api.deepseek.com, POST /chat/completions, header `Authorization: Bearer <key>`, model id `deepseek-flash`. The image goes as OpenAI-compatible content `{\"type\":\"image_url\",\"image_url\":{\"url\":\"data:image/png;base64,...\"}}`; that exact format is unverified and is part of what the probe tests. Send `\"thinking\": {\"type\": \"disabled\"}` (no chain of thought) and a bounded `max_tokens`. Parse `usage` (prompt_tokens, completion_tokens, and any image or cached fields) defensively. There is no billing field in the reply: derive billed cost from usage × the pinned price, labelled `derived_from_usage`, never as vendor-billed."
+  ],
+  "verification_provenance": "Owner-supplied verbatim evidence verified by Opus; Astra did not fetch the page or call the API.",
+  "verified_by": "Opus",
+  "window_verified": true
+}
