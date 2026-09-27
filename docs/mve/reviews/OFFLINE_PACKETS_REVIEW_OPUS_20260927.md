@@ -114,3 +114,23 @@ angle). EqualLength is excluded when both sides are the same segment up to symme
 self-EqualAngle). Update `mve/degeneracy.py`, the registry strings, `required_nondegeneracy`
 (EqualAngle now requires `Distinct(A,C)` and `Distinct(D,F)`), and the universe, truth and corpus;
 add tests for both exclusions. WP-6a's guard picks up the change through `mve/degeneracy.py`.
+
+## Addendum 2: WP-2 E1a and portable Lean (base 0550144a895)
+
+| Branch | Head | Re-run | Verdict |
+|---|---|---|---|
+| codex/mve-wp2-generator | 998ffdcb2f0 | 413 passed, 2 skipped (real-Lean, pre-portable) | **PASS, merged** |
+| codex/mve-wp6-portable-discovery | 360ef0ab4ec | 354 passed, 3 skipped without `MVE_LEAN_PACKAGES`; 22/22 runtime+discovery with it, from a scratch path | **PASS, merged** |
+
+Combined mve/integration, with `MVE_LEAN_PACKAGES` set: 424 passed, 0 skipped, 92% coverage.
+
+E1a probe on four points A–D: 158 candidates; EqualAngle 66 = C(12,2) (12 proper angles, distinct
+unordered pairs), EqualLength 15 = C(6,2); zero self-EqualLength, zero zero-angle candidates;
+`EqualAngle(A,B,A,C,D,C)` → degenerate; bisector `EqualAngle(B,A,D,D,A,C)` and isosceles
+`EqualLength(A,B,A,C)` → true. Schema v5 gains `development` / `retrieval` in the truth split enum
+(additive; docs copy byte-equal). Lean discovery: toolchain from `ELAN_HOME`, packages from
+`MVE_LEAN_PACKAGES`, pins verified, explicit missing roots never replaced, skips print a reason,
+compiler env is PATH/HOME/LEAN_PATH only, no `/Users/` in the lock.
+
+Build order next (r5 §7): WP-0b probe (verified-price refusal before any hosted transport), then
+WP-3 / WP-4b, WP-8a / WP-5.
