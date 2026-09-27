@@ -1,0 +1,718 @@
+{
+  "design": {
+    "clusters": [
+      {
+        "baseline_seeds": [
+          0,
+          1
+        ],
+        "contrast": false,
+        "discovery": "spectral-0-discovery",
+        "donor": "spectral-0-donor",
+        "family": "zero spacings",
+        "id": "c28062c59a962ccb",
+        "null_discovery": "spectral-0-discovery-null",
+        "null_replication": "spectral-0-replication-null",
+        "replication": "spectral-0-replication",
+        "stratum": "spectral × zero spacings"
+      }
+    ],
+    "config": {
+      "checks": {"zero spacings":{"artifacts":[],"card_id":"hyp_1","check_spec":{"alpha":0.01,"baselines":[{"name":"gaudin","parameters":0,"role":"primary","version":"v1"},{"name":"cue","parameters":0,"role":"primary","version":"v1"},{"name":"wigner","parameters":0,"role":"secondary","version":"v1"},{"name":"planck","parameters":2,"role":"primary","version":"v1"}],"calibration":{"joint_replicates":3,"method":"rank_moving_block_refit","replicates":3,"size_trials":3},"check_id":"spacing","dependence":{"block_len":12,"thin":3},"development":[{"min_gaps":120,"role":"development","sha256":"39cce9577049801392e41688eb58dab1142a2954ec2759ee36855412d281cd56","source_block_id":"cue_development"}],"estimator":"conditional_power_mle","fitting_interval":[0,0.6],"kill_rule":{"components":[{"alpha":0.005,"statistic":"ks"},{"alpha":0.005,"statistic":"exponent_difference"}],"method":"bonferroni","overall_alpha":0.01},"lambda_bogomolny":1.57314,"library_version":"spacing-v1","model":"planck","replication":[{"min_gaps":120,"role":"replication","sha256":"5a25bba70dd273550cf58e09f585dfae7bec0b446802b337a5b1c60bb6e13d6d","source_block_id":"cue_replication"}],"seed":20260929,"spec_sha256":"e824b9dac29a262e41bfcfa4d48a6c13067979c7a4169f88782a6aa3158efe0f","unfolding":"already_unfolded"},"claim":"Unfolded zeta-zero gaps follow a Planck-shaped law rather than the GUE law.","content_hash":"ef101d5f75b540a08381d1f7e33543af6dbfae50b86e355be9b9dd1915a0be05","context":{"evidence":[{"path":"docs/mve/observer/card001_hawking/ODLYZKO_SHA256SUMS","sha256":"c5e41be29493586ebd7ffefdd8f1f2818e8dad4ef314f52561e54a376e7e32be"},{"path":"docs/mve/observer/card001_hawking/hawking_check.json","sha256":"1029bb6ed791372b48d0a1548b0d7985c53d1e7cd1afcf76881e2951e0ab4d19"},{"path":"docs/mve/observer/card001_hawking/hawking_check.py","sha256":"4d927134ff80776e703d12696c7b12b8c585b00227789ab14fbbe5c98b8a5e06"},{"path":"docs/mve/observer/card001_hawking/lane_check.json","sha256":"3342f52eae1b00f5c45be5c69c46d53717f3af186461e8f0fd4d9cb4cb2807f4"},{"path":"docs/mve/observer/card001_hawking/lane_check.py","sha256":"6e74cc4f78dea9d83f4e78ae41c42de3dbf56d439f83732cad4b866594cf2898"},{"path":"docs/mve/observer/card001_hawking/lane_check_v2.json","sha256":"1c7547e7f0c0c762feb7d17319cbf67ca09bde2336c48824d2c89bf891e81a7c"},{"path":"docs/mve/observer/card001_hawking/lane_check_v2.py","sha256":"1d51ec45de452821be2112e72b46e7430a9c937e1721df953e7462fc233da63b"},{"path":"docs/mve/observer/card001_hawking/lane_check_v2_sanity.json","sha256":"9085abc5cf798472eff7d625b3d8aa4908b37e691401020d48be7606db5791b6"},{"path":"docs/mve/observer/card001_hawking/lane_check_v2_sanity.py","sha256":"db48316bc819d94385e0033dbbbd377193606212821055b12b2bd03b7b61032f"},{"path":"docs/mve/observer/card001_hawking/lane_check_v2_status.json","sha256":"59b8ed56de18379268af42b717994ffd31d039cdf380afaf4dfe0cb42da8194e"}],"limitations":["Retrospective, unblinded owner observation; excluded from prospective GO gates.","Original screenshot unavailable; no invented PNG hash.","All v2 p-values nominal; 9999 replication gaps below 10000.","Machine rule is a retrospectively corrected Bonferroni rule, not the historical v2 rule.","Original stage 1 used mpmath low zeros; zeros1 is a later development block."],"original_kill_rule":{"exponent_ci":0.95,"ks_alpha":0.01,"overall_alpha":null},"original_png_available":false,"retrospective":true},"history":[],"judgments":[],"kill_criterion":{"components":[{"alpha":0.005,"statistic":"ks"},{"alpha":0.005,"statistic":"exponent_difference"}],"method":"bonferroni","overall_alpha":0.01},"novelty":{"index_shas":[],"planted_control_hit":false,"queries":[],"status":"unchecked"},"observer":{"blinded":true,"id":"human:fixture-author","kind":"human"},"observer_reliability":"not_established","prediction":"Planck not rejected at replication on at least 10000 gaps per block.","primary_statistic":"fitted_planck_ks","prior_plausibility":{"by":"human:fixture-author","value":"low"},"resemblance_target":{"mapping":"Resemblance of emitted-energy density to level-spacing density; no physical identification.","target":"Hawking/Planck spectrum"},"revision":1,"schema":"oae-mve-hypothesis-card-v1","sources":[{"data_sha256":"0d17d50f8b2a8bd128219ea03c8bce55d7d947ec8f27d7f56f30973c2e91bad0","png_sha256":null,"snapshot_id":"card001_hawking:owner-unarchived"},{"data_sha256":"75a1f1a978d5e3eddd16518f661d41a95a40b33782389ba02ec4ed0ce0764807","png_sha256":null,"snapshot_id":"card001_hawking:owner-unarchived"},{"data_sha256":"10d9f7dab2bbfff6b8befbe6f765969b0b3f38f6110ed1df423931addd52da8f","png_sha256":null,"snapshot_id":"card001_hawking:owner-unarchived"},{"data_sha256":"250ac4ba722c6face4d07c05777376fc2b9bc021b05232e8f53c91b1eb2b7e0d","png_sha256":null,"snapshot_id":"card001_hawking:owner-unarchived"}],"status":"draft","suggested_lane":"spacing statistics (not handed off)","testable_form":{"baseline":"Gaudin GUE and finite-N CUE including Lambda","data":"Odlyzko zero-index blocks","direction":"model discrepancy consistent with zero","statistic":"KS and joint exponent discrepancy"}}},
+      "development_blocks": [],
+      "image_free": {
+        "zero spacings": [
+          {
+            "claim": "Unfolded zeta-zero gaps follow a Planck-shaped law rather than the GUE law.",
+            "prediction": "Planck not rejected at replication on at least 10000 gaps per block.",
+            "resemblance_target": {
+              "mapping": "Resemblance of emitted-energy density to level-spacing density; no physical identification.",
+              "target": "Hawking/Planck spectrum"
+            },
+            "testable_form": {
+              "baseline": "Gaudin GUE and finite-N CUE including Lambda",
+              "data": "Odlyzko zero-index blocks",
+              "direction": "model discrepancy consistent with zero",
+              "statistic": "KS and joint exponent discrepancy"
+            }
+          },
+          {
+            "claim": "Unfolded zeta-zero gaps follow a Planck-shaped law rather than the GUE law.",
+            "prediction": "Planck not rejected at replication on at least 10000 gaps per block.",
+            "resemblance_target": {
+              "mapping": "Resemblance of emitted-energy density to level-spacing density; no physical identification.",
+              "target": "Hawking/Planck spectrum"
+            },
+            "testable_form": {
+              "baseline": "Gaudin GUE and finite-N CUE including Lambda",
+              "data": "Odlyzko zero-index blocks",
+              "direction": "model discrepancy consistent with zero",
+              "statistic": "KS and joint exponent discrepancy"
+            }
+          },
+          {
+            "claim": "Unfolded zeta-zero gaps follow a Planck-shaped law rather than the GUE law.",
+            "prediction": "Planck not rejected at replication on at least 10000 gaps per block.",
+            "resemblance_target": {
+              "mapping": "Resemblance of emitted-energy density to level-spacing density; no physical identification.",
+              "target": "Hawking/Planck spectrum"
+            },
+            "testable_form": {
+              "baseline": "Gaudin GUE and finite-N CUE including Lambda",
+              "data": "Odlyzko zero-index blocks",
+              "direction": "model discrepancy consistent with zero",
+              "statistic": "KS and joint exponent discrepancy"
+            }
+          }
+        ]
+      },
+      "owner_questions": {
+        "Q2": null,
+        "Q3": null,
+        "Q4": null,
+        "Q5": null,
+        "Q6": null
+      },
+      "pilot": true,
+      "retries": 0,
+      "seed": 20260928,
+      "slots": 3,
+      "strata": [
+        {
+          "contrast_discovery": [],
+          "contrast_replication": [],
+          "discovery": [
+            "spectral-0-discovery"
+          ],
+          "donors": [
+            "spectral-0-donor"
+          ],
+          "family": "zero spacings",
+          "id": "spectral × zero spacings",
+          "module": "spectral",
+          "replication": [
+            "spectral-0-replication"
+          ]
+        }
+      ],
+      "views": 1
+    },
+    "jobs": [
+      {
+        "arm": "null_twin",
+        "cluster": "c28062c59a962ccb",
+        "discovery": "spectral-0-discovery-null",
+        "family": "zero spacings",
+        "id": "043d789701c6eb94",
+        "replication": "spectral-0-replication-null",
+        "slots": 3,
+        "snapshot_id": "spectral-0-discovery-0-1",
+        "view": 0
+      },
+      {
+        "arm": "real",
+        "cluster": "c28062c59a962ccb",
+        "discovery": "spectral-0-discovery",
+        "family": "zero spacings",
+        "id": "a62e149ee71509a4",
+        "replication": "spectral-0-replication",
+        "slots": 3,
+        "snapshot_id": "spectral-0-discovery-0-0",
+        "view": 0
+      },
+      {
+        "arm": "shuffled",
+        "cluster": "c28062c59a962ccb",
+        "discovery": "spectral-0-discovery",
+        "family": "zero spacings",
+        "id": "2fceebdb1a8c7995",
+        "replication": "spectral-0-replication",
+        "slots": 3,
+        "snapshot_id": "spectral-0-donor-0-0",
+        "view": 0
+      },
+      {
+        "arm": "image_free",
+        "cluster": "c28062c59a962ccb",
+        "discovery": "spectral-0-discovery",
+        "family": "zero spacings",
+        "id": "2be65370dcab3ba6",
+        "replication": "spectral-0-replication",
+        "slots": 3,
+        "snapshot_id": null,
+        "view": 0
+      }
+    ],
+    "manifest": {
+      "schema": "oae-mve-snapshots-v1",
+      "snapshots": [
+        {
+          "control": {
+            "cluster_id": "spectral-0-discovery",
+            "kind": "none",
+            "twin_snapshot_id": "spectral-0-discovery-0-1"
+          },
+          "data_ref": {
+            "generator": "archived lab numerical module; adapter-v1",
+            "path": "spectral-0-discovery-0.json",
+            "role": "discovery",
+            "seed": 0,
+            "sha256": "83242aa7de1d866ded90ec3a84675660afa7b8ec829abde8c04067aeece7df09",
+            "source_block_id": "spectral-0-discovery",
+            "stratum": "spectral × zero spacings",
+            "support": {
+              "population": "spectral",
+              "start": 0,
+              "stop": 10
+            }
+          },
+          "deep_link": "#labs/spectral",
+          "go2_eligible": true,
+          "lab_commit": {
+            "atlas": "97b1e48cb1075aea431cf754cc84f2eeabb3dfb9",
+            "lab": "c81510cd29b0fc666b1f171a9604a51be9661576"
+          },
+          "limitations": [
+            "Overlapping small catalogues across modules; no disjoint D/R/donor allocation.",
+            "Native renderer adapted for single-source/palette-matched display; not a baseline calibration."
+          ],
+          "module": "spectral",
+          "params": {
+            "seed": 0
+          },
+          "params_sha256": "bd0488843468e63c62bb6d1df790f0a83de90616c0906e9dbd3275d3b4100d97",
+          "png_blinded": {
+            "caption_free": true,
+            "chunks": [
+              "IHDR",
+              "IDAT",
+              "IEND"
+            ],
+            "crop_box": [
+              0,
+              0,
+              288,
+              288
+            ],
+            "h": 288,
+            "leakage": {
+              "ocr": "passed"
+            },
+            "masks": [],
+            "metadata_stripped": true,
+            "path": "spectral-0-discovery-0-0.png",
+            "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453",
+            "w": 288
+          },
+          "png_full": {
+            "h": 288,
+            "path": "spectral-0-discovery-0-0.png",
+            "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453",
+            "w": 288
+          },
+          "png_repeat_tolerance": {
+            "channel_difference_threshold": 8,
+            "channel_scale": 255,
+            "channels": "RGBA8",
+            "max_pixels_over_threshold_fraction": 0.001,
+            "require_same_dimensions": true
+          },
+          "renderer_versions": {
+            "fixture": "1"
+          },
+          "snapshot_id": "spectral-0-discovery-0-0",
+          "snapshot_sha256": "8bdf2c349b334e0887c4a60c1c2d84b206bb3c16e1e9617f64c08fcdaa1137ec",
+          "status": "checkable",
+          "withheld_text": [
+            "withheld secret"
+          ]
+        },
+        {
+          "control": {
+            "cluster_id": "spectral-0-discovery",
+            "kind": "null_twin",
+            "twin_snapshot_id": "spectral-0-discovery-0-0"
+          },
+          "data_ref": {
+            "generator": "archived lab numerical module; adapter-v1",
+            "path": "spectral-0-discovery-1.json",
+            "role": "discovery",
+            "seed": 0,
+            "sha256": "78f1f32418815096149e9fbcb57cb50bb0a27ad10781d9b802d731a230285251",
+            "source_block_id": "spectral-0-discovery-null",
+            "stratum": "spectral × zero spacings",
+            "support": {
+              "population": "spectral-null",
+              "start": 0,
+              "stop": 10
+            }
+          },
+          "deep_link": "#labs/spectral",
+          "go2_eligible": true,
+          "lab_commit": {
+            "atlas": "97b1e48cb1075aea431cf754cc84f2eeabb3dfb9",
+            "lab": "c81510cd29b0fc666b1f171a9604a51be9661576"
+          },
+          "limitations": [
+            "Overlapping small catalogues across modules; no disjoint D/R/donor allocation.",
+            "Native renderer adapted for single-source/palette-matched display; not a baseline calibration."
+          ],
+          "module": "spectral",
+          "params": {
+            "seed": 0
+          },
+          "params_sha256": "bd0488843468e63c62bb6d1df790f0a83de90616c0906e9dbd3275d3b4100d97",
+          "png_blinded": {
+            "caption_free": true,
+            "chunks": [
+              "IHDR",
+              "IDAT",
+              "IEND"
+            ],
+            "crop_box": [
+              0,
+              0,
+              288,
+              288
+            ],
+            "h": 288,
+            "leakage": {
+              "ocr": "passed"
+            },
+            "masks": [],
+            "metadata_stripped": true,
+            "path": "spectral-0-discovery-0-1.png",
+            "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453",
+            "w": 288
+          },
+          "png_full": {
+            "h": 288,
+            "path": "spectral-0-discovery-0-1.png",
+            "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453",
+            "w": 288
+          },
+          "png_repeat_tolerance": {
+            "channel_difference_threshold": 8,
+            "channel_scale": 255,
+            "channels": "RGBA8",
+            "max_pixels_over_threshold_fraction": 0.001,
+            "require_same_dimensions": true
+          },
+          "renderer_versions": {
+            "fixture": "1"
+          },
+          "snapshot_id": "spectral-0-discovery-0-1",
+          "snapshot_sha256": "c42c27fba7769565dc3dbf51a27b638d3e2c39b190ac71523aeeb1beee46c6b4",
+          "status": "checkable",
+          "withheld_text": [
+            "withheld secret"
+          ]
+        },
+        {
+          "control": {
+            "cluster_id": "spectral-0-replication",
+            "kind": "none",
+            "twin_snapshot_id": "spectral-0-replication-0-1"
+          },
+          "data_ref": {
+            "generator": "archived lab numerical module; adapter-v1",
+            "path": "spectral-0-replication-0.json",
+            "role": "replication",
+            "seed": 1,
+            "sha256": "4d4143c2ac5c020fa83158551c618a6f1a17039a750ee64d4225cef7d0267534",
+            "source_block_id": "spectral-0-replication",
+            "stratum": "spectral × zero spacings",
+            "support": {
+              "population": "spectral",
+              "start": 10,
+              "stop": 20
+            }
+          },
+          "deep_link": "#labs/spectral",
+          "go2_eligible": true,
+          "lab_commit": {
+            "atlas": "97b1e48cb1075aea431cf754cc84f2eeabb3dfb9",
+            "lab": "c81510cd29b0fc666b1f171a9604a51be9661576"
+          },
+          "limitations": [
+            "Overlapping small catalogues across modules; no disjoint D/R/donor allocation.",
+            "Native renderer adapted for single-source/palette-matched display; not a baseline calibration."
+          ],
+          "module": "spectral",
+          "params": {
+            "seed": 1
+          },
+          "params_sha256": "fbe47f6d82b435a89f6e6fca65ad16138195de06c5fc3ffb66826a76e64e479f",
+          "png_blinded": {
+            "caption_free": true,
+            "chunks": [
+              "IHDR",
+              "IDAT",
+              "IEND"
+            ],
+            "crop_box": [
+              0,
+              0,
+              288,
+              288
+            ],
+            "h": 288,
+            "leakage": {
+              "ocr": "passed"
+            },
+            "masks": [],
+            "metadata_stripped": true,
+            "path": "spectral-0-replication-0-0.png",
+            "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453",
+            "w": 288
+          },
+          "png_full": {
+            "h": 288,
+            "path": "spectral-0-replication-0-0.png",
+            "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453",
+            "w": 288
+          },
+          "png_repeat_tolerance": {
+            "channel_difference_threshold": 8,
+            "channel_scale": 255,
+            "channels": "RGBA8",
+            "max_pixels_over_threshold_fraction": 0.001,
+            "require_same_dimensions": true
+          },
+          "renderer_versions": {
+            "fixture": "1"
+          },
+          "snapshot_id": "spectral-0-replication-0-0",
+          "snapshot_sha256": "9390cf21cc8f4b45c62f802c3dadf40cc482bf081da429b7ab70fe7d5acb0bba",
+          "status": "checkable",
+          "withheld_text": [
+            "withheld secret"
+          ]
+        },
+        {
+          "control": {
+            "cluster_id": "spectral-0-replication",
+            "kind": "null_twin",
+            "twin_snapshot_id": "spectral-0-replication-0-0"
+          },
+          "data_ref": {
+            "generator": "archived lab numerical module; adapter-v1",
+            "path": "spectral-0-replication-1.json",
+            "role": "replication",
+            "seed": 1,
+            "sha256": "85ab1369c5ba7a971e78ede984f03a80fa5ce2146551ae2851da13274a4efad8",
+            "source_block_id": "spectral-0-replication-null",
+            "stratum": "spectral × zero spacings",
+            "support": {
+              "population": "spectral-null",
+              "start": 10,
+              "stop": 20
+            }
+          },
+          "deep_link": "#labs/spectral",
+          "go2_eligible": true,
+          "lab_commit": {
+            "atlas": "97b1e48cb1075aea431cf754cc84f2eeabb3dfb9",
+            "lab": "c81510cd29b0fc666b1f171a9604a51be9661576"
+          },
+          "limitations": [
+            "Overlapping small catalogues across modules; no disjoint D/R/donor allocation.",
+            "Native renderer adapted for single-source/palette-matched display; not a baseline calibration."
+          ],
+          "module": "spectral",
+          "params": {
+            "seed": 1
+          },
+          "params_sha256": "fbe47f6d82b435a89f6e6fca65ad16138195de06c5fc3ffb66826a76e64e479f",
+          "png_blinded": {
+            "caption_free": true,
+            "chunks": [
+              "IHDR",
+              "IDAT",
+              "IEND"
+            ],
+            "crop_box": [
+              0,
+              0,
+              288,
+              288
+            ],
+            "h": 288,
+            "leakage": {
+              "ocr": "passed"
+            },
+            "masks": [],
+            "metadata_stripped": true,
+            "path": "spectral-0-replication-0-1.png",
+            "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453",
+            "w": 288
+          },
+          "png_full": {
+            "h": 288,
+            "path": "spectral-0-replication-0-1.png",
+            "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453",
+            "w": 288
+          },
+          "png_repeat_tolerance": {
+            "channel_difference_threshold": 8,
+            "channel_scale": 255,
+            "channels": "RGBA8",
+            "max_pixels_over_threshold_fraction": 0.001,
+            "require_same_dimensions": true
+          },
+          "renderer_versions": {
+            "fixture": "1"
+          },
+          "snapshot_id": "spectral-0-replication-0-1",
+          "snapshot_sha256": "35c37b305802621ebed76af38493b9a02a411f9d83ddfb8aa4a68ce3277effc4",
+          "status": "checkable",
+          "withheld_text": [
+            "withheld secret"
+          ]
+        },
+        {
+          "control": {
+            "cluster_id": "spectral-0-donor",
+            "kind": "none",
+            "twin_snapshot_id": "spectral-0-donor-0-1"
+          },
+          "data_ref": {
+            "generator": "archived lab numerical module; adapter-v1",
+            "path": "spectral-0-donor-0.json",
+            "role": "donor",
+            "seed": 2,
+            "sha256": "cd5b73cbdaf53cc0ee91d63688ce54601c29fb303ede0b4bcf8042eb1cdd6b0d",
+            "source_block_id": "spectral-0-donor",
+            "stratum": "spectral × zero spacings",
+            "support": {
+              "population": "spectral",
+              "start": 20,
+              "stop": 30
+            }
+          },
+          "deep_link": "#labs/spectral",
+          "go2_eligible": true,
+          "lab_commit": {
+            "atlas": "97b1e48cb1075aea431cf754cc84f2eeabb3dfb9",
+            "lab": "c81510cd29b0fc666b1f171a9604a51be9661576"
+          },
+          "limitations": [
+            "Overlapping small catalogues across modules; no disjoint D/R/donor allocation.",
+            "Native renderer adapted for single-source/palette-matched display; not a baseline calibration."
+          ],
+          "module": "spectral",
+          "params": {
+            "seed": 2
+          },
+          "params_sha256": "a61e75dcd678010325906ec0497a92ff374228ab114bdf4eec89209e2576ebb2",
+          "png_blinded": {
+            "caption_free": true,
+            "chunks": [
+              "IHDR",
+              "IDAT",
+              "IEND"
+            ],
+            "crop_box": [
+              0,
+              0,
+              288,
+              288
+            ],
+            "h": 288,
+            "leakage": {
+              "ocr": "passed"
+            },
+            "masks": [],
+            "metadata_stripped": true,
+            "path": "spectral-0-donor-0-0.png",
+            "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453",
+            "w": 288
+          },
+          "png_full": {
+            "h": 288,
+            "path": "spectral-0-donor-0-0.png",
+            "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453",
+            "w": 288
+          },
+          "png_repeat_tolerance": {
+            "channel_difference_threshold": 8,
+            "channel_scale": 255,
+            "channels": "RGBA8",
+            "max_pixels_over_threshold_fraction": 0.001,
+            "require_same_dimensions": true
+          },
+          "renderer_versions": {
+            "fixture": "1"
+          },
+          "snapshot_id": "spectral-0-donor-0-0",
+          "snapshot_sha256": "41a458a85405360675a16c9fcb6efb7cb6d8ee0d5f0d3966f8901fe65831c95b",
+          "status": "checkable",
+          "withheld_text": [
+            "withheld secret"
+          ]
+        },
+        {
+          "control": {
+            "cluster_id": "spectral-0-donor",
+            "kind": "null_twin",
+            "twin_snapshot_id": "spectral-0-donor-0-0"
+          },
+          "data_ref": {
+            "generator": "archived lab numerical module; adapter-v1",
+            "path": "spectral-0-donor-1.json",
+            "role": "donor",
+            "seed": 2,
+            "sha256": "1ac73a3dd57da882c4899d6a1d69f1a2088d5f6c5b3b14925626f52280cafbe7",
+            "source_block_id": "spectral-0-donor-null",
+            "stratum": "spectral × zero spacings",
+            "support": {
+              "population": "spectral-null",
+              "start": 20,
+              "stop": 30
+            }
+          },
+          "deep_link": "#labs/spectral",
+          "go2_eligible": true,
+          "lab_commit": {
+            "atlas": "97b1e48cb1075aea431cf754cc84f2eeabb3dfb9",
+            "lab": "c81510cd29b0fc666b1f171a9604a51be9661576"
+          },
+          "limitations": [
+            "Overlapping small catalogues across modules; no disjoint D/R/donor allocation.",
+            "Native renderer adapted for single-source/palette-matched display; not a baseline calibration."
+          ],
+          "module": "spectral",
+          "params": {
+            "seed": 2
+          },
+          "params_sha256": "a61e75dcd678010325906ec0497a92ff374228ab114bdf4eec89209e2576ebb2",
+          "png_blinded": {
+            "caption_free": true,
+            "chunks": [
+              "IHDR",
+              "IDAT",
+              "IEND"
+            ],
+            "crop_box": [
+              0,
+              0,
+              288,
+              288
+            ],
+            "h": 288,
+            "leakage": {
+              "ocr": "passed"
+            },
+            "masks": [],
+            "metadata_stripped": true,
+            "path": "spectral-0-donor-0-1.png",
+            "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453",
+            "w": 288
+          },
+          "png_full": {
+            "h": 288,
+            "path": "spectral-0-donor-0-1.png",
+            "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453",
+            "w": 288
+          },
+          "png_repeat_tolerance": {
+            "channel_difference_threshold": 8,
+            "channel_scale": 255,
+            "channels": "RGBA8",
+            "max_pixels_over_threshold_fraction": 0.001,
+            "require_same_dimensions": true
+          },
+          "renderer_versions": {
+            "fixture": "1"
+          },
+          "snapshot_id": "spectral-0-donor-0-1",
+          "snapshot_sha256": "2a1a1d1e0d11463270efc67f3f4972169091646c6bcec73e1e106cf534838cbf",
+          "status": "checkable",
+          "withheld_text": [
+            "withheld secret"
+          ]
+        }
+      ]
+    },
+    "protocol_sha256": "e591100ebc0e1cc873a533401254664dfed490367a3165d230adc516f2b98d2c",
+    "schema": "mve-observer-design-v1",
+    "sha256": "f932d950aceb956738cdde85953cb140d97e9382def26efed528c5b15db43ab1"
+  },
+  "fixture_time": "2026-09-28T00:59:00+00:00",
+  "input_root": "inputs",
+  "ledger": "wo45-fixture.sqlite",
+  "prices": {
+    "deepseek-flash": {
+      "input_per_million": "1",
+      "output_per_million": "1",
+      "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "verified": true
+    }
+  },
+  "reconciliation": {
+    "known_spend_micro_usd": 0,
+    "mode": "offline_fixture",
+    "provider_records": [],
+    "provider_records_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "reconciled": true,
+    "remaining_micro_usd": 20000000,
+    "snapshot_sha256": "4fdb4ea64a2abdb165fb5507fba70ea9e458820c0493e4a503b83431242e6fa1"
+  },
+  "replays": {
+    "043d789701c6eb94": [
+      [
+        {
+          "billed_usd": "0.0018",
+          "raw": "{\"choices\": [{\"finish_reason\": \"stop\", \"message\": {\"content\": \"{\\\"entities\\\":[{\\\"id\\\":\\\"A\\\",\\\"label\\\":\\\"A\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[47.5,240.5]},{\\\"id\\\":\\\"B\\\",\\\"label\\\":\\\"B\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[232.386566,240.371054]},{\\\"id\\\":\\\"C\\\",\\\"label\\\":\\\"C\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[139.943283,240.435527]},{\\\"id\\\":\\\"D\\\",\\\"label\\\":\\\"D\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[143.799623,47.564473]},{\\\"id\\\":\\\"E\\\",\\\"label\\\":\\\"E\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[139.943283,240.435527]},{\\\"id\\\":\\\"F\\\",\\\"label\\\":\\\"F\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[236.242906,47.5]}],\\\"observations\\\":[{\\\"proposition\\\":{\\\"pred\\\":\\\"Parallel\\\",\\\"args\\\":[\\\"A\\\",\\\"B\\\",\\\"C\\\",\\\"D\\\"]},\\\"confidence\\\":0.8}]}\"}}], \"model\": \"deepseek-flash\", \"usage\": {\"completion_tokens\": 80, \"prompt_tokens\": 100, \"total_tokens\": 180}}"
+        },
+        {
+          "billed_usd": "0.0018",
+          "raw": "{\"choices\": [{\"finish_reason\": \"stop\", \"message\": {\"content\": \"{\\\"entities\\\":[{\\\"id\\\":\\\"p1\\\",\\\"label\\\":\\\"F\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[236.242906,47.5]},{\\\"id\\\":\\\"p2\\\",\\\"label\\\":\\\"E\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[139.943283,240.435527]},{\\\"id\\\":\\\"p3\\\",\\\"label\\\":\\\"D\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[143.799623,47.564473]},{\\\"id\\\":\\\"p4\\\",\\\"label\\\":\\\"C\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[139.943283,240.435527]},{\\\"id\\\":\\\"p5\\\",\\\"label\\\":\\\"B\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[232.386566,240.371054]},{\\\"id\\\":\\\"p6\\\",\\\"label\\\":\\\"A\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[47.5,240.5]}],\\\"observations\\\":[{\\\"proposition\\\":{\\\"pred\\\":\\\"Parallel\\\",\\\"args\\\":[\\\"p6\\\",\\\"p5\\\",\\\"p4\\\",\\\"p3\\\"]},\\\"confidence\\\":0.8}]}\"}}], \"model\": \"deepseek-flash\", \"usage\": {\"completion_tokens\": 80, \"prompt_tokens\": 100, \"total_tokens\": 180}}"
+        }
+      ],
+      [
+        {
+          "billed_usd": "0.0018",
+          "raw": "{\"choices\": [{\"finish_reason\": \"stop\", \"message\": {\"content\": \"{\\\"cards\\\": [{\\\"claim\\\": \\\"Unfolded zeta-zero gaps follow a Planck-shaped law rather than the GUE law.\\\", \\\"prediction\\\": \\\"Planck not rejected at replication on at least 10000 gaps per block.\\\", \\\"resemblance_target\\\": {\\\"mapping\\\": \\\"Resemblance of emitted-energy density to level-spacing density; no physical identification.\\\", \\\"target\\\": \\\"Hawking/Planck spectrum\\\"}, \\\"testable_form\\\": {\\\"baseline\\\": \\\"Gaudin GUE and finite-N CUE including Lambda\\\", \\\"data\\\": \\\"Odlyzko zero-index blocks\\\", \\\"direction\\\": \\\"model discrepancy consistent with zero\\\", \\\"statistic\\\": \\\"KS and joint exponent discrepancy\\\"}}, {\\\"claim\\\": \\\"Unfolded zeta-zero gaps follow a Planck-shaped law rather than the GUE law.\\\", \\\"prediction\\\": \\\"Planck not rejected at replication on at least 10000 gaps per block.\\\", \\\"resemblance_target\\\": {\\\"mapping\\\": \\\"Resemblance of emitted-energy density to level-spacing density; no physical identification.\\\", \\\"target\\\": \\\"Hawking/Planck spectrum\\\"}, \\\"testable_form\\\": {\\\"baseline\\\": \\\"Gaudin GUE and finite-N CUE including Lambda\\\", \\\"data\\\": \\\"Odlyzko zero-index blocks\\\", \\\"direction\\\": \\\"model discrepancy consistent with zero\\\", \\\"statistic\\\": \\\"KS and joint exponent discrepancy\\\"}}, {\\\"claim\\\": \\\"Unfolded zeta-zero gaps follow a Planck-shaped law rather than the GUE law.\\\", \\\"prediction\\\": \\\"Planck not rejected at replication on at least 10000 gaps per block.\\\", \\\"resemblance_target\\\": {\\\"mapping\\\": \\\"Resemblance of emitted-energy density to level-spacing density; no physical identification.\\\", \\\"target\\\": \\\"Hawking/Planck spectrum\\\"}, \\\"testable_form\\\": {\\\"baseline\\\": \\\"Gaudin GUE and finite-N CUE including Lambda\\\", \\\"data\\\": \\\"Odlyzko zero-index blocks\\\", \\\"direction\\\": \\\"model discrepancy consistent with zero\\\", \\\"statistic\\\": \\\"KS and joint exponent discrepancy\\\"}}]}\", \"refusal\": null}}], \"model\": \"deepseek-flash\", \"usage\": {\"completion_tokens\": 80, \"prompt_tokens\": 100, \"total_tokens\": 180}}"
+        }
+      ]
+    ],
+    "2fceebdb1a8c7995": [
+      [
+        {
+          "billed_usd": "0.0018",
+          "raw": "{\"choices\": [{\"finish_reason\": \"stop\", \"message\": {\"content\": \"{\\\"entities\\\":[{\\\"id\\\":\\\"A\\\",\\\"label\\\":\\\"A\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[47.5,240.5]},{\\\"id\\\":\\\"B\\\",\\\"label\\\":\\\"B\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[232.386566,240.371054]},{\\\"id\\\":\\\"C\\\",\\\"label\\\":\\\"C\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[139.943283,240.435527]},{\\\"id\\\":\\\"D\\\",\\\"label\\\":\\\"D\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[143.799623,47.564473]},{\\\"id\\\":\\\"E\\\",\\\"label\\\":\\\"E\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[139.943283,240.435527]},{\\\"id\\\":\\\"F\\\",\\\"label\\\":\\\"F\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[236.242906,47.5]}],\\\"observations\\\":[{\\\"proposition\\\":{\\\"pred\\\":\\\"Parallel\\\",\\\"args\\\":[\\\"A\\\",\\\"B\\\",\\\"C\\\",\\\"D\\\"]},\\\"confidence\\\":0.8}]}\"}}], \"model\": \"deepseek-flash\", \"usage\": {\"completion_tokens\": 80, \"prompt_tokens\": 100, \"total_tokens\": 180}}"
+        },
+        {
+          "billed_usd": "0.0018",
+          "raw": "{\"choices\": [{\"finish_reason\": \"stop\", \"message\": {\"content\": \"{\\\"entities\\\":[{\\\"id\\\":\\\"p1\\\",\\\"label\\\":\\\"F\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[236.242906,47.5]},{\\\"id\\\":\\\"p2\\\",\\\"label\\\":\\\"E\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[139.943283,240.435527]},{\\\"id\\\":\\\"p3\\\",\\\"label\\\":\\\"D\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[143.799623,47.564473]},{\\\"id\\\":\\\"p4\\\",\\\"label\\\":\\\"C\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[139.943283,240.435527]},{\\\"id\\\":\\\"p5\\\",\\\"label\\\":\\\"B\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[232.386566,240.371054]},{\\\"id\\\":\\\"p6\\\",\\\"label\\\":\\\"A\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[47.5,240.5]}],\\\"observations\\\":[{\\\"proposition\\\":{\\\"pred\\\":\\\"Parallel\\\",\\\"args\\\":[\\\"p6\\\",\\\"p5\\\",\\\"p4\\\",\\\"p3\\\"]},\\\"confidence\\\":0.8}]}\"}}], \"model\": \"deepseek-flash\", \"usage\": {\"completion_tokens\": 80, \"prompt_tokens\": 100, \"total_tokens\": 180}}"
+        }
+      ],
+      [
+        {
+          "billed_usd": "0.0018",
+          "raw": "{\"choices\": [{\"finish_reason\": \"stop\", \"message\": {\"content\": \"{\\\"cards\\\": [{\\\"claim\\\": \\\"Unfolded zeta-zero gaps follow a Planck-shaped law rather than the GUE law.\\\", \\\"prediction\\\": \\\"Planck not rejected at replication on at least 10000 gaps per block.\\\", \\\"resemblance_target\\\": {\\\"mapping\\\": \\\"Resemblance of emitted-energy density to level-spacing density; no physical identification.\\\", \\\"target\\\": \\\"Hawking/Planck spectrum\\\"}, \\\"testable_form\\\": {\\\"baseline\\\": \\\"Gaudin GUE and finite-N CUE including Lambda\\\", \\\"data\\\": \\\"Odlyzko zero-index blocks\\\", \\\"direction\\\": \\\"model discrepancy consistent with zero\\\", \\\"statistic\\\": \\\"KS and joint exponent discrepancy\\\"}}, {\\\"claim\\\": \\\"Unfolded zeta-zero gaps follow a Planck-shaped law rather than the GUE law.\\\", \\\"prediction\\\": \\\"Planck not rejected at replication on at least 10000 gaps per block.\\\", \\\"resemblance_target\\\": {\\\"mapping\\\": \\\"Resemblance of emitted-energy density to level-spacing density; no physical identification.\\\", \\\"target\\\": \\\"Hawking/Planck spectrum\\\"}, \\\"testable_form\\\": {\\\"baseline\\\": \\\"Gaudin GUE and finite-N CUE including Lambda\\\", \\\"data\\\": \\\"Odlyzko zero-index blocks\\\", \\\"direction\\\": \\\"model discrepancy consistent with zero\\\", \\\"statistic\\\": \\\"KS and joint exponent discrepancy\\\"}}, {\\\"claim\\\": \\\"Unfolded zeta-zero gaps follow a Planck-shaped law rather than the GUE law.\\\", \\\"prediction\\\": \\\"Planck not rejected at replication on at least 10000 gaps per block.\\\", \\\"resemblance_target\\\": {\\\"mapping\\\": \\\"Resemblance of emitted-energy density to level-spacing density; no physical identification.\\\", \\\"target\\\": \\\"Hawking/Planck spectrum\\\"}, \\\"testable_form\\\": {\\\"baseline\\\": \\\"Gaudin GUE and finite-N CUE including Lambda\\\", \\\"data\\\": \\\"Odlyzko zero-index blocks\\\", \\\"direction\\\": \\\"model discrepancy consistent with zero\\\", \\\"statistic\\\": \\\"KS and joint exponent discrepancy\\\"}}]}\", \"refusal\": null}}], \"model\": \"deepseek-flash\", \"usage\": {\"completion_tokens\": 80, \"prompt_tokens\": 100, \"total_tokens\": 180}}"
+        }
+      ]
+    ],
+    "a62e149ee71509a4": [
+      [
+        {
+          "billed_usd": "0.0018",
+          "raw": "{\"choices\": [{\"finish_reason\": \"stop\", \"message\": {\"content\": \"{\\\"entities\\\":[{\\\"id\\\":\\\"A\\\",\\\"label\\\":\\\"A\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[47.5,240.5]},{\\\"id\\\":\\\"B\\\",\\\"label\\\":\\\"B\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[232.386566,240.371054]},{\\\"id\\\":\\\"C\\\",\\\"label\\\":\\\"C\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[139.943283,240.435527]},{\\\"id\\\":\\\"D\\\",\\\"label\\\":\\\"D\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[143.799623,47.564473]},{\\\"id\\\":\\\"E\\\",\\\"label\\\":\\\"E\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[139.943283,240.435527]},{\\\"id\\\":\\\"F\\\",\\\"label\\\":\\\"F\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[236.242906,47.5]}],\\\"observations\\\":[{\\\"proposition\\\":{\\\"pred\\\":\\\"Parallel\\\",\\\"args\\\":[\\\"A\\\",\\\"B\\\",\\\"C\\\",\\\"D\\\"]},\\\"confidence\\\":0.8}]}\"}}], \"model\": \"deepseek-flash\", \"usage\": {\"completion_tokens\": 80, \"prompt_tokens\": 100, \"total_tokens\": 180}}"
+        },
+        {
+          "billed_usd": "0.0018",
+          "raw": "{\"choices\": [{\"finish_reason\": \"stop\", \"message\": {\"content\": \"{\\\"entities\\\":[{\\\"id\\\":\\\"p1\\\",\\\"label\\\":\\\"F\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[236.242906,47.5]},{\\\"id\\\":\\\"p2\\\",\\\"label\\\":\\\"E\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[139.943283,240.435527]},{\\\"id\\\":\\\"p3\\\",\\\"label\\\":\\\"D\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[143.799623,47.564473]},{\\\"id\\\":\\\"p4\\\",\\\"label\\\":\\\"C\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[139.943283,240.435527]},{\\\"id\\\":\\\"p5\\\",\\\"label\\\":\\\"B\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[232.386566,240.371054]},{\\\"id\\\":\\\"p6\\\",\\\"label\\\":\\\"A\\\",\\\"kind\\\":\\\"point\\\",\\\"params\\\":[47.5,240.5]}],\\\"observations\\\":[{\\\"proposition\\\":{\\\"pred\\\":\\\"Parallel\\\",\\\"args\\\":[\\\"p6\\\",\\\"p5\\\",\\\"p4\\\",\\\"p3\\\"]},\\\"confidence\\\":0.8}]}\"}}], \"model\": \"deepseek-flash\", \"usage\": {\"completion_tokens\": 80, \"prompt_tokens\": 100, \"total_tokens\": 180}}"
+        }
+      ],
+      [
+        {
+          "billed_usd": "0.0018",
+          "raw": "{\"choices\": [{\"finish_reason\": \"stop\", \"message\": {\"content\": \"{\\\"cards\\\": [{\\\"claim\\\": \\\"Unfolded zeta-zero gaps follow a Planck-shaped law rather than the GUE law.\\\", \\\"prediction\\\": \\\"Planck not rejected at replication on at least 10000 gaps per block.\\\", \\\"resemblance_target\\\": {\\\"mapping\\\": \\\"Resemblance of emitted-energy density to level-spacing density; no physical identification.\\\", \\\"target\\\": \\\"Hawking/Planck spectrum\\\"}, \\\"testable_form\\\": {\\\"baseline\\\": \\\"Gaudin GUE and finite-N CUE including Lambda\\\", \\\"data\\\": \\\"Odlyzko zero-index blocks\\\", \\\"direction\\\": \\\"model discrepancy consistent with zero\\\", \\\"statistic\\\": \\\"KS and joint exponent discrepancy\\\"}}, {\\\"claim\\\": \\\"Unfolded zeta-zero gaps follow a Planck-shaped law rather than the GUE law.\\\", \\\"prediction\\\": \\\"Planck not rejected at replication on at least 10000 gaps per block.\\\", \\\"resemblance_target\\\": {\\\"mapping\\\": \\\"Resemblance of emitted-energy density to level-spacing density; no physical identification.\\\", \\\"target\\\": \\\"Hawking/Planck spectrum\\\"}, \\\"testable_form\\\": {\\\"baseline\\\": \\\"Gaudin GUE and finite-N CUE including Lambda\\\", \\\"data\\\": \\\"Odlyzko zero-index blocks\\\", \\\"direction\\\": \\\"model discrepancy consistent with zero\\\", \\\"statistic\\\": \\\"KS and joint exponent discrepancy\\\"}}, {\\\"claim\\\": \\\"Unfolded zeta-zero gaps follow a Planck-shaped law rather than the GUE law.\\\", \\\"prediction\\\": \\\"Planck not rejected at replication on at least 10000 gaps per block.\\\", \\\"resemblance_target\\\": {\\\"mapping\\\": \\\"Resemblance of emitted-energy density to level-spacing density; no physical identification.\\\", \\\"target\\\": \\\"Hawking/Planck spectrum\\\"}, \\\"testable_form\\\": {\\\"baseline\\\": \\\"Gaudin GUE and finite-N CUE including Lambda\\\", \\\"data\\\": \\\"Odlyzko zero-index blocks\\\", \\\"direction\\\": \\\"model discrepancy consistent with zero\\\", \\\"statistic\\\": \\\"KS and joint exponent discrepancy\\\"}}]}\", \"refusal\": null}}], \"model\": \"deepseek-flash\", \"usage\": {\"completion_tokens\": 80, \"prompt_tokens\": 100, \"total_tokens\": 180}}"
+        }
+      ]
+    ]
+  },
+  "run_id": "wo45-reviewed-demo"
+}

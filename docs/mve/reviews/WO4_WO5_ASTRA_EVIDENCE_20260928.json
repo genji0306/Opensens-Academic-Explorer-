@@ -1,0 +1,376 @@
+{
+  "atlas_bundles": {
+    "H0": {
+      "path": "mve/generated/outbox/atlas/inbox/wo45-reviewed-H0.json",
+      "sha256": "11272bebcee0917c7c7fc38096d2f1ee93a84c47492ed3f76eb673edc43b8659",
+      "status": "inconclusive",
+      "validated": true
+    },
+    "H1": {
+      "path": "mve/generated/outbox/atlas/inbox/wo45-reviewed-H1.json",
+      "sha256": "ee2fddc0f0253fa7fa1570413ded4a8fa9a8764805ebd32daa98ba34508c8b1f",
+      "status": "completed",
+      "validated": true
+    }
+  },
+  "base_git_sha": "0952290880fea8cbca105ee231d0837bbe17d75e",
+  "disk": {
+    "generated_du_sh": "1.1M\tmve/generated",
+    "limit_bytes": 209715200,
+    "minimum_free_bytes": 5368709120,
+    "root_free_kib": 11560000
+  },
+  "focused": {
+    "passed": 103,
+    "seconds": 13.95,
+    "skipped": 2
+  },
+  "full_suite": {
+    "nested_sandbox_failures": [
+      "tests/mve/test_isolation.py::test_real_subprocess_cannot_read_gold_or_connect",
+      "tests/mve/test_isolation.py::test_public_staging_rejects_links_and_worker_timeout",
+      "tests/mve/test_open_review_followups.py::test_worker_created_runtime_symlink_cannot_read_private_gold"
+    ],
+    "passed": 1005,
+    "seconds": 65.04,
+    "skipped": 8
+  },
+  "gates": "not established; synthetic replay only",
+  "hosted_calls": 0,
+  "mode": "offline_only",
+  "modified_snapshot_coverage": {
+    "covered_branches": 117,
+    "covered_lines": 256,
+    "excluded_lines": 0,
+    "missing_branches": 3,
+    "missing_lines": 3,
+    "num_branches": 120,
+    "num_partial_branches": 3,
+    "num_statements": 259,
+    "percent_branches_covered": 97.5,
+    "percent_branches_covered_display": "98",
+    "percent_covered": 98.41688654353563,
+    "percent_covered_display": "98",
+    "percent_statements_covered": 98.84169884169884,
+    "percent_statements_covered_display": "99"
+  },
+  "network_calls": 0,
+  "new_code_coverage": {
+    "branches": 148,
+    "by_file": {
+      "mve/observer/design.py": {
+        "covered_branches": 28,
+        "covered_lines": 108,
+        "excluded_lines": 0,
+        "missing_branches": 0,
+        "missing_lines": 0,
+        "num_branches": 28,
+        "num_partial_branches": 0,
+        "num_statements": 108,
+        "percent_branches_covered": 100.0,
+        "percent_branches_covered_display": "100",
+        "percent_covered": 100.0,
+        "percent_covered_display": "100",
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100"
+      },
+      "mve/observer/dispatch.py": {
+        "covered_branches": 13,
+        "covered_lines": 75,
+        "excluded_lines": 0,
+        "missing_branches": 1,
+        "missing_lines": 0,
+        "num_branches": 14,
+        "num_partial_branches": 1,
+        "num_statements": 75,
+        "percent_branches_covered": 92.85714285714286,
+        "percent_branches_covered_display": "93",
+        "percent_covered": 98.87640449438203,
+        "percent_covered_display": "99",
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100"
+      },
+      "mve/observer/metrics.py": {
+        "covered_branches": 23,
+        "covered_lines": 78,
+        "excluded_lines": 0,
+        "missing_branches": 1,
+        "missing_lines": 0,
+        "num_branches": 24,
+        "num_partial_branches": 1,
+        "num_statements": 78,
+        "percent_branches_covered": 95.83333333333333,
+        "percent_branches_covered_display": "96",
+        "percent_covered": 99.01960784313725,
+        "percent_covered_display": "99",
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100"
+      },
+      "mve/observer/outbox.py": {
+        "covered_branches": 45,
+        "covered_lines": 113,
+        "excluded_lines": 0,
+        "missing_branches": 3,
+        "missing_lines": 5,
+        "num_branches": 48,
+        "num_partial_branches": 3,
+        "num_statements": 118,
+        "percent_branches_covered": 93.75,
+        "percent_branches_covered_display": "94",
+        "percent_covered": 95.18072289156626,
+        "percent_covered_display": "95",
+        "percent_statements_covered": 95.76271186440678,
+        "percent_statements_covered_display": "96"
+      },
+      "mve/observer/run.py": {
+        "covered_branches": 19,
+        "covered_lines": 161,
+        "excluded_lines": 0,
+        "missing_branches": 1,
+        "missing_lines": 3,
+        "num_branches": 20,
+        "num_partial_branches": 1,
+        "num_statements": 164,
+        "percent_branches_covered": 95.0,
+        "percent_branches_covered_display": "95",
+        "percent_covered": 97.82608695652173,
+        "percent_covered_display": "98",
+        "percent_statements_covered": 98.17073170731707,
+        "percent_statements_covered_display": "98"
+      },
+      "mve/observer/storage.py": {
+        "covered_branches": 14,
+        "covered_lines": 59,
+        "excluded_lines": 0,
+        "missing_branches": 0,
+        "missing_lines": 0,
+        "num_branches": 14,
+        "num_partial_branches": 0,
+        "num_statements": 59,
+        "percent_branches_covered": 100.0,
+        "percent_branches_covered_display": "100",
+        "percent_covered": 100.0,
+        "percent_covered_display": "100",
+        "percent_statements_covered": 100.0,
+        "percent_statements_covered_display": "100"
+      }
+    },
+    "combined_percent": 98.13333333333334,
+    "covered_total": 736,
+    "statements": 602
+  },
+  "schema": "mve-wo45-builder-evidence-v1",
+  "synthetic_run": {
+    "actual_spend_usd": "0",
+    "cards": 12,
+    "frozen_design_sha256": "f932d950aceb956738cdde85953cb140d97e9382def26efed528c5b15db43ab1",
+    "report": {
+      "GO1": {
+        "checkable_rate": 1.0,
+        "data_checkable": 12,
+        "data_checkable_interval": {
+          "lower95": 0.7353515306029488,
+          "method": "nominal descriptive Clopper-Pearson; clustering invalidates binomial coverage",
+          "upper95": 1.0
+        },
+        "image_free_origin": "frozen library author; shared control, no model call",
+        "origin_breakdown": {
+          "human:fixture-author": {
+            "checkable_rate": 1.0,
+            "data_checkable": 3,
+            "passed": true,
+            "requested": 3,
+            "well_formed": 3,
+            "well_formed_rate": 1.0
+          },
+          "model:O-DS": {
+            "checkable_rate": 1.0,
+            "data_checkable": 9,
+            "passed": true,
+            "requested": 9,
+            "well_formed": 9,
+            "well_formed_rate": 1.0
+          }
+        },
+        "passed": true,
+        "requested": 12,
+        "well_formed": 12,
+        "well_formed_interval": {
+          "lower95": 0.7353515306029488,
+          "method": "nominal descriptive Clopper-Pearson; clustering invalidates binomial coverage",
+          "upper95": 1.0
+        },
+        "well_formed_rate": 1.0
+      },
+      "GO2": {
+        "assumptions": [
+          "A1 independent clusters (not proven by disjointness)",
+          "A2 within-cluster exchangeability / symmetric differences; random call order does not prove this"
+        ],
+        "by_stratum": {
+          "spectral \u00d7 zero spacings": {
+            "image_free": {
+              "lower95": 0.0,
+              "method": "nominal descriptive Clopper-Pearson; clustering invalidates binomial coverage",
+              "rate": 0.0,
+              "slots": 3,
+              "survivors": 0,
+              "upper95": 0.7075982261787134
+            },
+            "null_twin": {
+              "lower95": 0.0,
+              "method": "nominal descriptive Clopper-Pearson; clustering invalidates binomial coverage",
+              "rate": 0.0,
+              "slots": 3,
+              "survivors": 0,
+              "upper95": 0.7075982261787134
+            },
+            "real": {
+              "lower95": 0.0,
+              "method": "nominal descriptive Clopper-Pearson; clustering invalidates binomial coverage",
+              "rate": 0.0,
+              "slots": 3,
+              "survivors": 0,
+              "upper95": 0.7075982261787134
+            },
+            "shuffled": {
+              "lower95": 0.0,
+              "method": "nominal descriptive Clopper-Pearson; clustering invalidates binomial coverage",
+              "rate": 0.0,
+              "slots": 3,
+              "survivors": 0,
+              "upper95": 0.7075982261787134
+            }
+          }
+        },
+        "cluster_outcomes": [
+          {
+            "baseline_seeds": [
+              0,
+              1
+            ],
+            "contrast": false,
+            "discovery": "spectral-0-discovery",
+            "donor": "spectral-0-donor",
+            "family": "zero spacings",
+            "id": "c28062c59a962ccb",
+            "null_discovery": "spectral-0-discovery-null",
+            "null_replication": "spectral-0-replication-null",
+            "replication": "spectral-0-replication",
+            "stratum": "spectral \u00d7 zero spacings",
+            "survivors": {
+              "image_free": 0,
+              "null_twin": 0,
+              "real": 0,
+              "shuffled": 0
+            }
+          }
+        ],
+        "clusters": 1,
+        "comparisons": {
+          "image_free": {
+            "draws": 2,
+            "exceedances": 2,
+            "mean_lift": 0.0,
+            "method": "exact sign-flip",
+            "nonzero": 0,
+            "p": 1.0,
+            "statistic": 0.0,
+            "unit": "survivors / S"
+          },
+          "null_twin": {
+            "draws": 2,
+            "exceedances": 2,
+            "mean_lift": 0.0,
+            "method": "exact sign-flip",
+            "nonzero": 0,
+            "p": 1.0,
+            "statistic": 0.0,
+            "unit": "survivors / S"
+          },
+          "shuffled": {
+            "draws": 2,
+            "exceedances": 2,
+            "mean_lift": 0.0,
+            "method": "exact sign-flip",
+            "nonzero": 0,
+            "p": 1.0,
+            "statistic": 0.0,
+            "unit": "survivors / S"
+          }
+        },
+        "comparisons_by_stratum": {
+          "spectral \u00d7 zero spacings": {
+            "image_free": {
+              "draws": 2,
+              "exceedances": 2,
+              "method": "exact sign-flip",
+              "nonzero": 0,
+              "p": 1.0
+            },
+            "null_twin": {
+              "draws": 2,
+              "exceedances": 2,
+              "method": "exact sign-flip",
+              "nonzero": 0,
+              "p": 1.0
+            },
+            "shuffled": {
+              "draws": 2,
+              "exceedances": 2,
+              "method": "exact sign-flip",
+              "nonzero": 0,
+              "p": 1.0
+            }
+          }
+        },
+        "contrast_clusters": 0,
+        "contrast_detected": 0,
+        "decision_rule": "one-sided alpha .05 for all three comparisons (intersection-union), K>=20, >=2 strata, >=8/10 contrasts",
+        "evidence": "synthetic replay is not a scientific GO2 certification",
+        "pooled": {
+          "image_free": {
+            "lower95": 0.0,
+            "method": "nominal descriptive Clopper-Pearson; clustering invalidates binomial coverage",
+            "slots": 3,
+            "survivors": 0,
+            "upper95": 0.7075982261787134
+          },
+          "null_twin": {
+            "lower95": 0.0,
+            "method": "nominal descriptive Clopper-Pearson; clustering invalidates binomial coverage",
+            "slots": 3,
+            "survivors": 0,
+            "upper95": 0.7075982261787134
+          },
+          "real": {
+            "lower95": 0.0,
+            "method": "nominal descriptive Clopper-Pearson; clustering invalidates binomial coverage",
+            "slots": 3,
+            "survivors": 0,
+            "upper95": 0.7075982261787134
+          },
+          "shuffled": {
+            "lower95": 0.0,
+            "method": "nominal descriptive Clopper-Pearson; clustering invalidates binomial coverage",
+            "slots": 3,
+            "survivors": 0,
+            "upper95": 0.7075982261787134
+          }
+        },
+        "slots_per_cluster_arm": 3,
+        "status": "descriptive_only"
+      },
+      "design_sha256": "f932d950aceb956738cdde85953cb140d97e9382def26efed528c5b15db43ab1",
+      "hosted_calls": 0,
+      "mode": "offline_replay",
+      "observer": "model:O-DS"
+    },
+    "result_path": "mve/generated/observer-runs/wo45-reviewed-demo/result.json",
+    "result_sha256": "4e1b6f23414dc94712eb5933813d7307ecc41adcb748820e3f530ee2525457a1",
+    "settled_calls": 9,
+    "simulated_settled_micro_usd": 16200,
+    "worst_case_micro_usd": 73728
+  },
+  "tests_first": true
+}

@@ -399,8 +399,16 @@ def make_entry(root, job, full, blind, data, versions, crop, masks, leakage, wit
     return e
 
 
-def validate_manifest(manifest, root):
-    """Validate records AND local bytes; a missing/full uncommitted artifact fails."""
+def validate_manifest(
+    manifest, root, *, prospective=False, defer_replication_data=False
+):
+    """Validate records and bytes; WO-4 can defer R source reads until card freeze.
+
+    The default WO-1 path still verifies every byte. Deferral is only for explicit
+    prospective manifests; the two-stage loader must verify R hashes at stage 2.
+    """
+    if defer_replication_data and not prospective:
+        raise ValueError("replication deferral requires prospective mode")
     try:
         if manifest["schema"] != SCHEMA or not manifest["snapshots"]:
             raise ValueError("invalid manifest schema/empty capture")
@@ -441,7 +449,11 @@ def validate_manifest(manifest, root):
                 or ref.get("seed") != e["params"]["seed"]
             ):
                 raise ValueError("incomplete source data identity")
-            if e["status"] not in ("development_only", "not_checkable"):
+            if e["status"] not in (
+                ("checkable", "development_only", "not_checkable")
+                if prospective
+                else ("development_only", "not_checkable")
+            ):
                 raise ValueError("invalid snapshot status")
             if e["module"] not in MODULES or e["params_sha256"] != digest(e["params"]):
                 raise ValueError("params hash/module mismatch")
@@ -451,9 +463,26 @@ def validate_manifest(manifest, root):
                 or not e["withheld_text"]
             ):
                 raise ValueError("missing provenance")
-            if e["go2_eligible"] or e["data_ref"]["role"] != "development":
+            if prospective and e["data_ref"]["role"] != "development":
+                if (
+                    e["data_ref"]["role"] not in {"discovery", "replication", "donor"}
+                    or e["go2_eligible"] is not True
+                    or e["status"] != "checkable"
+                ):
+                    raise ValueError("invalid prospective partition")
+            elif e["go2_eligible"] or e["data_ref"]["role"] != "development":
                 raise ValueError("initial views cannot be GO2 clusters")
             for kind in ("data_ref", "png_full", "png_blinded"):
+                if (
+                    defer_replication_data
+                    and kind == "data_ref"
+                    and e["data_ref"]["role"] == "replication"
+                ):
+                    # Keep the declaration frozen; do not open the untouched partition.
+                    inside(root, e["data_ref"]["path"])
+                    if not re.fullmatch("[0-9a-f]{64}", e["data_ref"]["sha256"] or ""):
+                        raise ValueError("invalid deferred replication hash")
+                    continue
                 ref = e[kind]
                 if kind == "data_ref" and ref["sha256"] is None and ref["path"] is None:
                     if e["status"] != "not_checkable":

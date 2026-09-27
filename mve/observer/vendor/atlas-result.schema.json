@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RH fleet result staging contract",
+  "type": "object",
+  "required": [
+    "runId",
+    "taskId",
+    "statement",
+    "method",
+    "reproduce",
+    "schemaVersion",
+    "status",
+    "assumptions",
+    "sources",
+    "artifacts",
+    "results",
+    "counterexamples",
+    "limitations",
+    "proposedBlockerChanges",
+    "resources",
+    "review"
+  ],
+  "properties": {
+    "runId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "taskId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "statement": {
+      "type": "string",
+      "minLength": 1
+    },
+    "method": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reproduce": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "status": {
+      "enum": [
+        "proposal",
+        "completed",
+        "refuted_candidate",
+        "inconclusive",
+        "technical_failure"
+      ]
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "locator",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "results": {
+      "type": "array"
+    },
+    "counterexamples": {
+      "type": "array"
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "proposedBlockerChanges": {
+      "type": "array"
+    },
+    "resources": {
+      "type": "object"
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "state",
+        "reviewerId",
+        "reviewedRevision"
+      ]
+    }
+  }
+}
