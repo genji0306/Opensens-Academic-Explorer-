@@ -10,3 +10,4 @@ def offline(monkeypatch):
     monkeypatch.setattr(socket.socket, "connect", denied)
     monkeypatch.setattr(socket.socket, "connect_ex", denied)
     monkeypatch.setattr(socket, "create_connection", denied)
+    monkeypatch.delenv("DEEPSEEK_API_KEY", raising=False)
