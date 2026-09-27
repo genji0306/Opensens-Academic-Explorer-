@@ -249,3 +249,15 @@ formalization; G3's model-facing meaning needs the formalizer to be driven by pe
 `--reviews` command in docs/mve/reviews/G3_TASKSET_ASTRA_20260927.md.
 Follow-up: widen Collinear/Concyclic/Midpoint/SBetween coverage by adding sealed-family seeds or
 constructions (a WP-2 generator extension), without touching the frozen split.
+
+## Addendum 10: WP-9b/WP-11b reports (47e7e8d01d7): PASS, merged
+
+784 passed in a git worktree outside the builder sandbox. Regenerating the report changes only
+the recorded evidence-commit line, so it is deterministic given HEAD. Ledger: the live WP-0b charge
+is counted once (P0 settled USD 0.000268; aggregate 0.000268 of 20.00). The campaign-snapshot
+absence is stated, not zero-filled. Gates G0–G6 are all "not established", each with its null
+and the specific missing evidence. G3 is 4/4/5 criteria, pending the 0/50 human rubric. This
+matches the individual reviews.
+Opus spot-check follow-up: G0 reports 1/1/4 because the validation-negatives evidence is not
+wired into the report, although WP-1 tests cover it. Wire the WP-1 negative-fixture receipts as
+G0 evidence in a later reporting pass.
