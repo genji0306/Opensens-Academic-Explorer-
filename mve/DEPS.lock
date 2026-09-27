@@ -1364,6 +1364,7 @@
       "schema": "mve-deps-v1"
     },
     "WP-4a": {
+      "LeanGeo": "failed: not present locally; vendoring deferred to owner-approved packet",
       "base_git_sha": "e827c05717d23a1d570e49847918c8e7347313ec",
       "files": [
         {
@@ -1383,13 +1384,13 @@
           "sha256": "d43f4de5db51c40066ddde80f1b919dbddfbd183ea25296894ed6560918d4685"
         }
       ],
-      "jsxgraph": "unavailable offline; cross-kernel parity not run",
+      "jsxgraph": "failed: not present locally; vendoring deferred to owner-approved packet",
       "packages": {
         "numpy": "2.4.6",
         "pytest": "8.4.2"
       },
       "schema": "mve-deps-v1",
-      "status": "partial"
+      "status": "offline numerical fixtures implemented; JSXGraph deferred to A6/WP-7 by owner"
     },
     "WP-9a": {
       "base_git_sha": "5645250003f129473919f4f32984c68a86e1c477",

@@ -1,12 +1,12 @@
-# WP-4a deterministic coordinate fixtures — partial review packet
+# WP-4a deterministic coordinate fixtures — review packet
 
 Base e827c05717d; branch codex/mve-wp4a-fixtures. Offline only.
 
-## Status: NumPy fixtures implemented; JSXGraph parity BLOCKED
+## Status: offline NumPy fixtures implemented; JSXGraph deferred by owner
 
-A filesystem search of real Developer/Opensens directories (including node_modules), plus npm cache filenames and cache index content, found no local JSXGraph package. Desktop symlinks were not followed. No dependency was downloaded. Thus this packet does **not** claim a JSXGraph contract has been executed or cross-kernel parity has passed. A pinned local JSXGraph runtime is required to complete WP-4a. LeanGeo is unrelated to this packet.
+A filesystem search of real Developer/Opensens directories (including node_modules), plus npm cache filenames and cache index content, found no local JSXGraph package. Desktop symlinks were not followed. No dependency was downloaded. Owner follow-up confirms the absence and places JSXGraph in A6/WP-7, rather than this earlier fixture packet. No JSXGraph execution or cross-kernel parity is claimed. Those integration checks remain with the later owner-approved packet. LeanGeo is unrelated to this packet.
 
-The proposed numerical contract below is implemented and exercised by NumPy. It must remain versioned and subject to review when the second kernel becomes available. No learned tolerances, G1 FPR, image detection, or real-data transfer are claimed.
+The numerical fixture contract below is implemented and exercised by NumPy. It remains versioned and subject to review when the later scene/UI kernel becomes available. No learned tolerances, G1 FPR, image detection, or real-data transfer are claimed.
 
 ## Fixture contract `mve-coordinate-fixture-v1`
 
@@ -31,6 +31,8 @@ For geometry rows, repeated names/coincident points are degenerate. Concyclic al
 
 Tests independently specify positive/negative residuals, similarity transforms, near/fully degenerate cases, absent coordinates, tolerance boundaries, ground-truth fixtures and record lineage. A coordinate result may contradict a trusted given without rewriting that given. Full counts and coverage are recorded in the review receipt.
 
-No hosted calls or API cost. WP-0b's verified-price gate is still required before hosted transport. Leave this branch for Opus; do not merge as a complete WP-4a PASS.
+No hosted calls or API cost. WP-0b's verified-price gate is still required before hosted transport. Leave this branch for Opus review; no review PASS or merge is implied. The backend-neutral scene JSON contract is on the WP-2 branch and is tested without JSXGraph.
 
 Verification on this branch: **299 full MVE tests passed**, including 43 new numerical/record fixtures; measurement package **95% statement coverage** (99/104), Ruff and file/function size checks pass. Review was local; JSXGraph parity is not included in these numbers.
+
+Owner-confirmed dependency result in DEPS.lock: **failed: not present locally; vendoring deferred to owner-approved packet**. No download was attempted.
