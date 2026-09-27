@@ -1,0 +1,11 @@
+{
+  "version": "mve-perceiver-alignment-v1",
+  "algorithm": "Hungarian maximum gated cardinality, then minimum distance",
+  "threshold": 0.03,
+  "distance": "Euclidean distance of dimension-normalized parameter vectors",
+  "normalization": "x/width, y/height; radius/diagonal; arc angles/360; mark extents/width,height",
+  "symmetry": "segment and line endpoints reversible; all other parameter order retained",
+  "calibration": "uncalibrated engineering fixture threshold; no G1 claim",
+  "agreement_is_verification": false,
+  "ambiguity": "row or column distance ties within 1e-12 remain unmatched; no label tie-breaking"
+}

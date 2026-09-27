@@ -46,24 +46,26 @@ def verified_ceiling(ledger, request):
     return prices[request.model], ceiling
 
 
-def prepare_dispatch(ledger, request, output, clock):
+def prepare_dispatch(
+    ledger, request, output, clock, *, attempt=PROBE_ID, phase="P0", wave="wp0b"
+):
     ledger.reserve_tokens(
-        PROBE_ID,
-        "P0",
+        attempt,
+        phase,
         request.model,
         input_tokens=request.max_input_tokens,
         output_tokens=request.max_output_tokens,
-        wave="wp0b",
+        wave=wave,
         when=clock(),
     )
     try:
         output.mkdir(parents=True, exist_ok=False)
         write_json(output / "request.json", request.manifest())
         (output / "image.png").write_bytes(request.image)
-        ledger.mark_dispatched(PROBE_ID, when=clock())
+        ledger.mark_dispatched(attempt, when=clock())
     except Exception:
         # The ledger itself refuses cancellation if dispatch was durably committed.
-        ledger.cancel_unsent(PROBE_ID)
+        ledger.cancel_unsent(attempt)
         raise
 
 
@@ -105,15 +107,7 @@ def finish(ledger, request, output, price, ceiling, observation):
         "hosted_calls": 0,
     }
     receipt_sha = write_json(output / "receipt.json", receipt)
-    actual = observation["billed_micro_usd"]
-    if actual is not None:
-        ledger.reconcile(PROBE_ID, usd(actual), receipt_sha256=receipt_sha)
-    if observation["status"] in {
-        "usage_bound_exceeded",
-        "model_mismatch",
-        "invalid_billing",
-    }:
-        ledger.stop("mechanical_failure")
+    settle(ledger, PROBE_ID, observation, receipt_sha)
     result = {
         "schema": "mve-probe-cost-model-v1",
         "mode": "offline_fixture",
@@ -146,18 +140,61 @@ def run_probe(
     clock=utc_now,
     timer=time.monotonic,
 ):
+    price, ceiling, observation = dispatch_fixture(
+        ledger,
+        request,
+        output=output,
+        transport=transport,
+        mode=mode,
+        attempt=PROBE_ID,
+        phase="P0",
+        wave="wp0b",
+        clock=clock,
+        timer=timer,
+    )
+    return finish(ledger, request, Path(output), price, ceiling, observation)
+
+
+def settle(ledger, attempt, observation, receipt_sha):
+    actual = observation["billed_micro_usd"]
+    if actual is not None:
+        ledger.reconcile(attempt, usd(actual), receipt_sha256=receipt_sha)
+    if observation["status"] in {
+        "usage_bound_exceeded",
+        "model_mismatch",
+        "invalid_billing",
+    }:
+        ledger.stop("mechanical_failure")
+
+
+def dispatch_fixture(
+    ledger,
+    request,
+    *,
+    output,
+    transport,
+    attempt,
+    phase,
+    wave,
+    mode="offline_fixture",
+    clock=utc_now,
+    timer=time.monotonic,
+):
+    """Shared WP-0b boundary: no transport except the exact local fake."""
     if mode != "offline_fixture":
-        raise ProbeRefused(
-            "hosted probe disabled until Opus reviews refusal path and owner says go"
-        )
+        raise ProbeRefused("hosted probe disabled pending Opus review and owner go")
     if type(transport) is not FakeTransport:
         raise ProbeRefused("offline fixture mode requires the local FakeTransport")
+    if phase not in {"P0", "P1"}:
+        raise ProbeRefused("image dispatch requires P0 or P1")
     request.validate()
     price, ceiling = verified_ceiling(ledger, request)
     output = Path(output)
-    prepare_dispatch(ledger, request, output, clock)
+    prepare_dispatch(
+        ledger, request, output, clock, attempt=attempt, phase=phase, wave=wave
+    )
     observation = receive(transport, request, output, timer)
-    return finish(ledger, request, output, price, ceiling, observation)
+    return price, ceiling, observation
 
 
 def main():

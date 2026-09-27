@@ -1574,6 +1574,179 @@
         }
       ]
     },
+    "WP-3": {
+      "actual_api_cost_usd": "0",
+      "alignment_contract_sha256": "e2f4216b8e439336693c5ebe7c6c79b340ffa91956ada32db50d8b6eff0410e5",
+      "base_git_sha": "45b3b028fdd04b42d2dff868b882ca3d0ebcceca",
+      "contract_sha256": "f48016cbc6c3b5b964d176822cc6e4568e1676866f36f823a61a24e8a1552e7c",
+      "files": [
+        {
+          "path": "mve/budget.py",
+          "sha256": "51e7db89ad021143b86d83857cfa9287704305f7c0343a98744fd044f417bff0"
+        },
+        {
+          "path": "mve/graph.py",
+          "sha256": "e8f772def06c1fe922efd32c7471e14fb02b45f2588cae042d7a152e5399b2a5"
+        },
+        {
+          "path": "mve/identity.py",
+          "sha256": "9980da4703486d43348df7e6e5a3bf24313eb7db47d30fd47482e5694e390f64"
+        },
+        {
+          "path": "mve/measurement/perceiver_alignment_v1.json",
+          "sha256": "e2f4216b8e439336693c5ebe7c6c79b340ffa91956ada32db50d8b6eff0410e5"
+        },
+        {
+          "path": "mve/money.py",
+          "sha256": "0503706ad4f3f1f6308e3f9a6b58f68b303b0fc9ded526f818d2aa2390ea3b50"
+        },
+        {
+          "path": "mve/operations.py",
+          "sha256": "368b5194d379c0cca622eb5a86724b21206b2e83750c199fa136a6a2ed02aa21"
+        },
+        {
+          "path": "mve/perceiver/__init__.py",
+          "sha256": "0a5fe444ca48207fd10ec91d77df01873230ada8cf13140f095b2543b9c340a0"
+        },
+        {
+          "path": "mve/perceiver/adapter.py",
+          "sha256": "5731a4d81ca4804c658edce95799c4442199efe3107a92f2d0b5965a0664be0f"
+        },
+        {
+          "path": "mve/perceiver/alignment.py",
+          "sha256": "d37ab04579a96f514618a2abfc3d8e4e684403aeaeb56b9178d839315bdb3b9f"
+        },
+        {
+          "path": "mve/perceiver/contract.py",
+          "sha256": "80bb8084371f821574e188c459039881d91cffca171105b1b0d0317bef83e594"
+        },
+        {
+          "path": "mve/perceiver/parsing.py",
+          "sha256": "5e6cbadc3dc87743edcb3ccd66a095efa5f3b0b3f8d3a0ca7386708659d0abae"
+        },
+        {
+          "path": "mve/perceiver/records.py",
+          "sha256": "a59f13741b307022924e71f0bec72e1bbd42e7e6b306371d9692c5fd18db0b49"
+        },
+        {
+          "path": "mve/perceiver/replay.py",
+          "sha256": "cda02690f164fe9458383ade666cb1b24193b3627d9fd4cd8b75b8982ad6f32d"
+        },
+        {
+          "path": "mve/predicates.py",
+          "sha256": "031e3c974a45c49688823788278b0ceefd52687cb7e3bf156977cd9aacee464a"
+        },
+        {
+          "path": "mve/preflight/probe.py",
+          "sha256": "f313297e01f7c4cc1188960245342d5009ea889d13074ca88dfd5524b704f399"
+        },
+        {
+          "path": "mve/preflight/probe_contract.py",
+          "sha256": "8b181a1c87aee4b60fb7cdc37a99e2aa5a5655d2b2a65958865baf3be5af3b47"
+        },
+        {
+          "path": "mve/preflight/probe_fixtures.py",
+          "sha256": "bb5448bf2ce59726d5b33334a7c0136a472e716265b8f1cd3433cf780f0a287e"
+        },
+        {
+          "path": "mve/pricing.py",
+          "sha256": "de913a7451410bd52c10945b679d6876b8589e61b4669352cb08e4d2570107e3"
+        },
+        {
+          "path": "mve/record.py",
+          "sha256": "f64d52453c4dcfca0b5f8d140306505fffdc9aa03a2896a1acfa9a6dd1c663d8"
+        },
+        {
+          "path": "mve/registry/predicates_v1.json",
+          "sha256": "28cc10c86c7d53de7c1d75472660ffa678a97fc7efdd8523fc7a89d3ffc15c7b"
+        },
+        {
+          "path": "mve/semantics.py",
+          "sha256": "8c89b57f235e766d8421e6dfe609f36ccc7b46c15e3a4892d7e3bc5fb56291bb"
+        },
+        {
+          "path": "mve/validation.py",
+          "sha256": "32751a041a19dca1dcb2f0a0f680de1e7df95afee9df7b833718262d065bbeeb"
+        },
+        {
+          "path": "schemas/mve_observation_record.json",
+          "sha256": "136c93ede51599c735f819b05552a31350a28f0faacd7e3449a774c412d6043f"
+        },
+        {
+          "path": "tests/mve/perceiver_fixtures/manifest.json",
+          "sha256": "607631fc1ec0233e0772858643a5f0a4b22650867eef21f358cf62564c74c93b"
+        },
+        {
+          "path": "tests/mve/perceiver_helpers.py",
+          "sha256": "7015dded11854d24cddd6c322b20e5e235af78eba8b2e7163ebe76a9d1c18889"
+        },
+        {
+          "path": "tests/mve/test_perceiver_alignment.py",
+          "sha256": "f79d4fe56683a7ec1dc85a7e7509ecacaa7cff6f65a128312c187ef97a475793"
+        },
+        {
+          "path": "tests/mve/test_perceiver_boundary.py",
+          "sha256": "22e7994ba757d5ffd532e41f7e7426c59991aa908b8f74d148e91ac9b66bd4a6"
+        },
+        {
+          "path": "tests/mve/test_perceiver_contract.py",
+          "sha256": "f2d7fd6aa5de03348cf58acefcd31a6b20db8fd49d54168f931f407a50288390"
+        },
+        {
+          "path": "tests/mve/test_perceiver_failures.py",
+          "sha256": "2d621d1a1989e6713eb17e5909d8f86d9a1e0e709a20bd69f7141350606be845"
+        },
+        {
+          "path": "tests/mve/test_perceiver_replay.py",
+          "sha256": "630ea71ea6ff8c0362f5bd31738aa95f7b64fac84e078eaf5b4f3588746762ea"
+        }
+      ],
+      "fixtures": "WP-2 E1a development family oblique_parallelogram, seeds 0..4, frozen locally; authored responses are not vendor recordings",
+      "hosted_calls": 0,
+      "mode": "offline_fixture_only",
+      "package_files": [
+        {
+          "file": "__init__.py",
+          "module": "scipy",
+          "sha256": "335bc6e0a9909dc7534f9569a3685a92dc8001cb8c63a6da4c239849ff02d4d0"
+        },
+        {
+          "file": "_lsap.cpython-313-darwin.so",
+          "module": "scipy.optimize._lsap",
+          "sha256": "5ffc3678772789fc496ca582cf9848109a7fcecef70a8190b527768a61d8529c"
+        },
+        {
+          "file": "__init__.py",
+          "module": "numpy",
+          "sha256": "92a46f791e453926d3292af2582b89995a289475f0eaaea71a949823200b838a"
+        },
+        {
+          "file": "__init__.py",
+          "module": "PIL",
+          "sha256": "7361b6ad3878589affe5956e4a4da24d71398b0891fd3a8c15e9362217b4ca01"
+        },
+        {
+          "file": "__init__.py",
+          "module": "jsonschema",
+          "sha256": "a7e470e134bfd0e3c76482722260d6b1d5a099de823d61cc5cbabb06e4314c67"
+        }
+      ],
+      "packages": {
+        "Pillow": "12.2.0",
+        "jsonschema": "4.26.0",
+        "numpy": "2.4.6",
+        "pytest": "8.4.2",
+        "pytest-cov": "6.3.0",
+        "scipy": "1.17.1"
+      },
+      "price_verification": "synthetic fixture ledger verification only; no vendor assertion",
+      "prompt_sha256": "68c59621c11405da617607c72993760cc538ad4240774e1af0c89eab9b40cc75",
+      "schema": "mve-deps-v1",
+      "sealed_truth_read_for_tuning": false,
+      "threshold_calibration": "uncalibrated engineering threshold, no G1 claim",
+      "transport": "Replay -> exact FakeTransport -> shared WP-0b dispatch_fixture",
+      "vendor_mapping": "UNVERIFIED: DeepSeek V4.1 Flash / deepseek-flash"
+    },
     "WP-4-review-followups": {
       "base_git_sha": "8da83b3c2a26d92b827b9b6a30da342236a7b5ad",
       "files": [
