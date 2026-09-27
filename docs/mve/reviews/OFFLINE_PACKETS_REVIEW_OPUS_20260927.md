@@ -195,3 +195,17 @@ and a 50-task retrieval-disjoint blinded reference set; (2) regenerate the commi
 outside the Codex sandbox (Opus can run it) or drop them; (3) localise the pre-existing absolute
 `/Users/` paths in `mve/DEPS.lock` (184) and `mve/preflight/results/report.json` (19), which come
 from WP-0a.
+
+## Addendum 7: WP-5 classifier (9ef15969f01): PASS with follow-ups, merged; G2 NOT established
+
+Outside the Codex sandbox: 654 passed plus `test_paths_hashes_and_committed_artifacts`, which needs
+a git checkout (it passes in one; it fails in a `git archive` copy only). Classifier modules 95–100%.
+The 512-token cap uses the real openJev tokenizer with no truncation; over-cap abstains to a human.
+The LLM tier refuses offline and falls back to a human. Training reads only `fit`; human beats
+manager; the actor kind is checked. The spike is capped (≤ 3 epochs, 20 steps, 180 s, 64 rows) and
+trains only a separate 20-parameter head; base openJev is untouched. ONNX parity is computed (3/3,
+max diff 0.0). Weights are ignored and only hashes committed. All 487 prior DEPS.lock hashes are
+preserved; no `/Users/` remains in tracked `mve/` files.
+Follow-ups: (1) the parity and fit set (3 states, 4 rows, 1 family) is plumbing only, so G2 needs
+real WP-8a human labels; (2) rename or comment `epochs` vs `min(epochs, max_steps)` in spike.py;
+(3) make the no-`/Users/` test skip with a reason outside a git checkout.
