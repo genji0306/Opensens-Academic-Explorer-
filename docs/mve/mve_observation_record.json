@@ -383,7 +383,9 @@
                 "train",
                 "calibration",
                 "evaluation",
-                "sealed"
+                "sealed",
+                "development",
+                "retrieval"
               ]
             },
             "family": {

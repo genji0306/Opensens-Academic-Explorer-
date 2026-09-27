@@ -7,6 +7,14 @@ import json
 PARTITIONS = ("development", "retrieval", "fit", "calibration", "evaluation")
 
 
+def partition_names(allocations):
+    if isinstance(allocations, dict):
+        for names in (PARTITIONS, (*PARTITIONS[:-1], "sealed")):
+            if set(allocations) == set(names):
+                return names
+    raise SplitError("all five disjoint uses must be declared")
+
+
 class SplitError(ValueError):
     pass
 
@@ -38,8 +46,7 @@ def validate(manifest):
     if not isinstance(manifest["seed"], str) or not manifest["seed"]:
         raise SplitError("nonempty seed required")
     counts = manifest["allocations"]
-    if not isinstance(counts, dict) or set(counts) != set(PARTITIONS):
-        raise SplitError("all five disjoint uses must be declared")
+    partitions = partition_names(counts)
     if any(type(n) is not int or n <= 0 for n in counts.values()):
         raise SplitError("positive family counts required")
     seen, families = set(), {}
@@ -48,12 +55,12 @@ def validate(manifest):
             raise SplitError("invalid split row")
         if any(not isinstance(row[k], str) or not row[k] for k in row):
             raise SplitError("nonempty string identifiers required")
-        if row["id"] in seen or row["split"] not in PARTITIONS:
+        if row["id"] in seen or row["split"] not in partitions:
             raise SplitError("duplicate id or unknown partition")
         if families.setdefault(row["family"], row["split"]) != row["split"]:
             raise SplitError("family crosses partitions")
         seen.add(row["id"])
-    if {s: sum(v == s for v in families.values()) for s in PARTITIONS} != counts:
+    if {s: sum(v == s for v in families.values()) for s in partitions} != counts:
         raise SplitError("family allocation counts do not match")
     if type(manifest["retired"]) is not bool:
         raise SplitError("retirement flag must be boolean")
@@ -109,8 +116,7 @@ def freeze(items, *, seed, allocations):
             raise SplitError("input rows need only id and family")
         if any(not isinstance(v, str) or not v for v in row.values()):
             raise SplitError("nonempty string identifiers required")
-    if not isinstance(allocations, dict) or set(allocations) != set(PARTITIONS):
-        raise SplitError("all partitions required")
+    partitions = partition_names(allocations)
     if any(type(n) is not int or n <= 0 for n in allocations.values()):
         raise SplitError("positive family counts required")
     families = sorted(
@@ -119,7 +125,7 @@ def freeze(items, *, seed, allocations):
     if sum(allocations.values()) != len(families):
         raise SplitError("allocation must use each family exactly once")
     assignment, cursor = {}, 0
-    for split in PARTITIONS:
+    for split in partitions:
         for family in families[cursor : cursor + allocations[split]]:
             assignment[family] = split
         cursor += allocations[split]

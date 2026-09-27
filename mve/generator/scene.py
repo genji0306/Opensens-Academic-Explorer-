@@ -15,7 +15,7 @@ def validate_scene(scene):
         json.dumps(scene, allow_nan=False)
         Draft202012Validator(SCHEMA).validate(scene)
         if any(
-            x > scene["width"] or y > scene["height"]
+            not 0 <= x <= scene["width"] or not 0 <= y <= scene["height"]
             for x, y in scene["points"].values()
         ):
             raise ValueError("point outside scene frame")

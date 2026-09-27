@@ -5,9 +5,10 @@ from functools import lru_cache
 from itertools import combinations
 import sympy as sp
 from mve.exact import canonical_exact, _number
+from mve.degeneracy import repeated_degenerate, distinct_pairs
 from mve.predicates import REGISTRY, canonical_proposition
 
-VERSION = "mve-algebraic-plane-v1"
+VERSION = "mve-algebraic-plane-v1-e1"
 
 
 class ExactError(ValueError):
@@ -27,6 +28,8 @@ def parse_coordinate(text):
 def zero(value):
     if value.is_Rational:
         return value == 0
+    if value.is_zero is not None:
+        return bool(value.is_zero)
     value = sp.cancel(sp.expand(value))
     if value.is_zero is not None:
         return bool(value.is_zero)
@@ -123,6 +126,7 @@ class ExactEvaluator:
             ):
                 raise ExactError("two canonical exact strings per point required")
             self.points[name] = tuple(parse_coordinate(v) for v in values)
+        self.angles = {}
         self.coincident = set()
         for a, b in combinations(self.points, 2):
             if all(zero(x - y) for x, y in zip(self.points[a], self.points[b])):
@@ -136,12 +140,28 @@ class ExactEvaluator:
             raise ExactError("unsupported candidate or unknown point") from exc
         row = REGISTRY[prop["pred"]]
         if row["degeneracy"] != "none":
-            if len(set(prop["args"])) != len(prop["args"]) or any(
-                (a, b) in self.coincident for a, b in combinations(prop["args"], 2)
+            if repeated_degenerate(prop["pred"], prop["args"]) or any(
+                (a, b) in self.coincident
+                for a, b in distinct_pairs(prop["pred"], prop["args"])
             ):
                 return "degenerate"
             if prop["pred"] == "Concyclic" and any(
                 zero(area(*triple)) for triple in combinations(points, 3)
             ):
                 return "degenerate"
-        return "true" if relation(prop["pred"], points) else "false"
+        if prop["pred"] == "EqualAngle":
+            left = self.angle_signature(tuple(prop["args"][:3]))
+            right = self.angle_signature(tuple(prop["args"][3:]))
+            result = left[0] == right[0] and zero(left[1] - right[1])
+        else:
+            result = relation(prop["pred"], points)
+        return "true" if result else "false"
+
+    def angle_signature(self, names):
+        if names not in self.angles:
+            a, b, c = (self.points[n] for n in names)
+            u, v = sub(a, b), sub(c, b)
+            cosine_numerator = dot(u, v)
+            squared_cosine = sp.cancel(cosine_numerator**2 / (dot(u, u) * dot(v, v)))
+            self.angles[names] = (sign(cosine_numerator), squared_cosine)
+        return self.angles[names]

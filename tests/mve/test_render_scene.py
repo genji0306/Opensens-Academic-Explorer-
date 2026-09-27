@@ -33,3 +33,11 @@ def test_scene_rejects_missing_endpoint_nonfinite_and_out_of_frame():
     scene["points"]["A"] = [-1, 1]
     with pytest.raises(ValueError):
         validate_scene(scene)
+
+
+@pytest.mark.parametrize("point", [[-1, 0], [0, -1], [-1, -1]])
+def test_negative_scene_coordinates_are_rejected_on_both_axes(point):
+    scene = scene_from_render(generate("midpoint_grid", 0).render)
+    scene["points"]["A"] = point
+    with pytest.raises(ValueError):
+        validate_scene(scene)

@@ -1369,6 +1369,7 @@
       "Newclid": "failed: does not import; exact-true non-premise candidates remain incidental_unproved (DDAR unsupported)",
       "backend": "inhouse-plane-v1; local Euclid absent; frozen DDAR unsupported",
       "base_git_sha": "e827c05717d23a1d570e49847918c8e7347313ec",
+      "erratum": "r5 E1; 4507 candidates; exact evaluator v1-e1",
       "files": [
         {
           "path": "mve/generator/__init__.py",
@@ -1376,7 +1377,7 @@
         },
         {
           "path": "mve/generator/__main__.py",
-          "sha256": "5f235b400a3ad84da2d1d296cf99f29191d5412f235b0121598d59f403a41832"
+          "sha256": "ad9214b1165e60e9716c1345f4a7c17431448db127c43f20726321d5fbbcb4c0"
         },
         {
           "path": "mve/generator/constructions.py",
@@ -1384,15 +1385,19 @@
         },
         {
           "path": "mve/generator/corpus.py",
-          "sha256": "a8e771af65de99a3b8ecde8ce8cc77d839f30fab69fa66019962c21162ed8ed6"
+          "sha256": "ec655a335d11115dd16f219eb311ce6e3d91d49e462cf4faffe2bf208dd706c1"
         },
         {
           "path": "mve/generator/exact.py",
-          "sha256": "bb34d7adaeeca9f2f8dce012d31c8ecb190bbda638df9d78581c585a02b07aa5"
+          "sha256": "876c95228abd05043aebb7ccf1b378364c8db6277738b917e3e3aa9989d22418"
         },
         {
           "path": "mve/generator/pipeline.py",
           "sha256": "3f475bcb1899f9a4c1a989cc79df383e5e8066d39a9148ba30169259003473eb"
+        },
+        {
+          "path": "mve/generator/receipts.py",
+          "sha256": "5974abdd99eb05ff951266f318b43c1b52d8b4441b1da2aaf5e74940525e8e18"
         },
         {
           "path": "mve/generator/records.py",
@@ -1403,48 +1408,72 @@
           "sha256": "b96ba4075fae2032838906d106de582678d04d21d95bc30da5242d18e0086620"
         },
         {
+          "path": "mve/generator/scene.py",
+          "sha256": "9cee65a9cb086ae4268a910c2699f0a25b4fe03e72324eda135942bdf7746fcc"
+        },
+        {
           "path": "mve/generator/truth.py",
           "sha256": "0e26b6e1baf0a09cba1fbeb189b3dc833f3852fcd343cbf2088b302a0e3a1512"
         },
         {
           "path": "mve/generator/universe.py",
-          "sha256": "c045d26335f4364fa2d945a9b6ffbd0ecd0857e022a761c848c53038f1a7c8cb"
+          "sha256": "299791baf80e602725cfa58bc3d924ceeadb59a01e1489766d0720c4e63b26b8"
         },
         {
-          "path": "tests/mve/test_generator_corpus.py",
-          "sha256": "3e510f83511bf76356c533c229f2ff7ffd045c665393046b7441f6324258de1c"
+          "path": "mve/degeneracy.py",
+          "sha256": "94028b7f505a0672122b7a23a00018960d02a75a780dafdcda4c72403b16076f"
         },
         {
-          "path": "tests/mve/test_generator_exact.py",
-          "sha256": "15e07c7ca4f108ab8479890142a69e3aa10243a455bf60c2359d3552c6f307f6"
-        },
-        {
-          "path": "tests/mve/test_generator_pipeline.py",
-          "sha256": "e2a7edcbdfe0a32a2ca25fa385197af3efe5a35e583aee381e44a90b832b6025"
-        },
-        {
-          "path": "tests/mve/test_generator_truth.py",
-          "sha256": "e2c057b00a015aa8eba2186c316f801c9c8347253e196cfce1e48385d557647d"
-        },
-        {
-          "path": "schemas/mve_observation_record.json",
-          "sha256": "13ebcbe03ab718dd39844a65db7519cec370acdc7924555dece6d970414e46fc"
+          "path": "mve/measurement/numpy_kernel.py",
+          "sha256": "84e1b7e65ba2371603d80df0866bb9f19685b6940ed674a7efbb978657da6892"
         },
         {
           "path": "mve/registry/predicates_v1.json",
-          "sha256": "119440136269d3875c1c130cf4988a1b923d49f0acd09f94133d9882b76756a4"
+          "sha256": "b9f510d3a728a9a51c685ea0805d37bc74879727bb16fe8298aaf859b41332f1"
         },
         {
-          "path": "mve/generator/scene.py",
-          "sha256": "8b34c889fa20f70e79a8933fff8999aa48e7e71ee8f07097d75743d0631117db"
+          "path": "mve/evaluation/splits.py",
+          "sha256": "367ff90790a7e5745cf711577888e30ec7496ec9d954c0f67e0ed503e72f45c9"
+        },
+        {
+          "path": "mve/evaluation/manifest.py",
+          "sha256": "2610d173463295f91ad3f7bde0d77e48f91ae3ba38223a3a54052820e4d90c77"
+        },
+        {
+          "path": "schemas/mve_observation_record.json",
+          "sha256": "136c93ede51599c735f819b05552a31350a28f0faacd7e3449a774c412d6043f"
         },
         {
           "path": "schemas/mve_render_scene.json",
           "sha256": "bf1e18ab29eb16527b74c07dc2561d2d3e8c2beaa9fd0fabfed2b5ad6a77c2bd"
         },
         {
+          "path": "tests/mve/test_generator_corpus.py",
+          "sha256": "87e3816dce5829b56d8210c2e8e9b79542253d8eea0e4cb06eec776643fd1ca2"
+        },
+        {
+          "path": "tests/mve/test_generator_exact.py",
+          "sha256": "d48563ece61d446f16ef478bf34e0e535583f1c3950e59d14668716de7b8c660"
+        },
+        {
+          "path": "tests/mve/test_generator_pipeline.py",
+          "sha256": "e2a7edcbdfe0a32a2ca25fa385197af3efe5a35e583aee381e44a90b832b6025"
+        },
+        {
+          "path": "tests/mve/test_generator_review.py",
+          "sha256": "e1accccfb875949de152e471c04e40ff8be57f16167a9f4ca614be781e65a052"
+        },
+        {
+          "path": "tests/mve/test_generator_truth.py",
+          "sha256": "e2c057b00a015aa8eba2186c316f801c9c8347253e196cfce1e48385d557647d"
+        },
+        {
+          "path": "tests/mve/test_degeneracy_e1.py",
+          "sha256": "0890b0fde50b647f0c65ae4105cc77755ca3028208a65f063c03743581282801"
+        },
+        {
           "path": "tests/mve/test_render_scene.py",
-          "sha256": "9e21fcc49790b27b174ec2c852717b68a261ef612845b97b27ea3a7a591a8c5e"
+          "sha256": "d503b6007db7d21a0772db83f3323e79a8a6000f8ded49de9c8a18fe97367752"
         }
       ],
       "hosted_calls": 0,
@@ -1455,6 +1484,7 @@
         "sympy": "1.14.0"
       },
       "render_recipe": "pillow-lines-v2; deterministic seed rotation and scale; render_pinned=false",
+      "review_base_git_sha": "8da83b3c2a2",
       "schema": "mve-deps-v1"
     },
     "WP-4-review-followups": {

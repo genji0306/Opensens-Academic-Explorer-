@@ -1,6 +1,9 @@
 """Frozen family corpus; public PNGs and private truth/records live in separate roots."""
 
 from collections import Counter
+from concurrent.futures import ProcessPoolExecutor
+from itertools import islice
+import multiprocessing
 import gzip
 import hashlib
 import json
@@ -15,14 +18,14 @@ ALLOCATIONS = {
     "retrieval": 2,
     "fit": 7,
     "calibration": 2,
-    "evaluation": 2,
+    "sealed": 2,
 }
 DEFAULT_COUNTS = {
     "development": 20,
     "retrieval": 20,
     "fit": 2000,
     "calibration": 20,
-    "evaluation": 500,
+    "sealed": 500,
 }
 
 
@@ -43,7 +46,7 @@ def layout(counts, seed):
                 families[index % len(families)],
                 index // len(families),
             )
-            ident = digest([family, construction_seed, "pillow-lines-v2"])[:32]
+            ident = digest([family, construction_seed, "pillow-lines-v2:e1"])[:32]
             items.append({"id": ident, "family": family})
             jobs.append(
                 {
@@ -84,7 +87,13 @@ def write_diagram(root, job, result):
 
 
 def build_corpus(
-    output, *, counts=None, seed="mve-family-split-v1", code_sha, progress=None
+    output,
+    *,
+    counts=None,
+    seed="mve-family-split-v1",
+    code_sha,
+    progress=None,
+    workers=1,
 ):
     counts = dict(DEFAULT_COUNTS if counts is None else counts)
     frozen, jobs = layout(counts, seed)
@@ -94,13 +103,7 @@ def build_corpus(
     (root / "public").mkdir()
     (root / "private/split.json").write_text(frozen.payload)
     classes, controls, items = Counter(), Counter(), []
-    for index, job in enumerate(jobs):
-        split = (
-            job["split"]
-            if job["split"] in {"fit", "calibration", "evaluation"}
-            else "sealed"
-        )
-        result = generate(job["family"], job["seed"], split=split, code_sha=code_sha)
+    for index, (job, result) in enumerate(generated_jobs(jobs, code_sha, workers)):
         items.append(write_diagram(root, job, result))
         classes.update(row["class"] for row in result.truth.data()["candidates"])
         controls.update([job["split"] + ":" + result.render["control"]])
@@ -122,19 +125,18 @@ def corpus_report(counts, frozen, items, classes, controls, code_sha):
         role: len({r["image_sha256"] for r in items if r["split"] == role})
         for role in counts
     }
-    image_roles = {}
-    for row in items:
-        image_roles.setdefault(row["image_sha256"], set()).add(row["split"])
-    cross_split_images = sum(len(roles) > 1 for roles in image_roles.values())
+    cross_split_images = cross_split_collisions(items, "image_sha256")
+    cross_split_coordinates = cross_split_collisions(items, "math_coordinates_sha256")
     controls_complete = all(
-        controls[role + ":" + tag] for role in ("fit", "evaluation") for tag in CONTROLS
+        controls[role + ":" + tag] for role in ("fit", "sealed") for tag in CONTROLS
     )
     accepted = (
         unique_math["fit"] >= 2000
-        and unique_math["evaluation"] >= 500
+        and unique_math["sealed"] >= 500
         and unique_images["fit"] >= 2000
-        and unique_images["evaluation"] >= 500
+        and unique_images["sealed"] >= 500
         and cross_split_images == 0
+        and cross_split_coordinates == 0
         and controls_complete
     )
     return {
@@ -143,6 +145,7 @@ def corpus_report(counts, frozen, items, classes, controls, code_sha):
         "unique_mathematical_diagrams": unique_math,
         "unique_rendered_images": unique_images,
         "cross_split_image_collisions": cross_split_images,
+        "cross_split_coordinate_collisions": cross_split_coordinates,
         "split_sha256": frozen.sha256,
         "code_sha": code_sha,
         "controls": dict(controls),
@@ -155,3 +158,31 @@ def corpus_report(counts, frozen, items, classes, controls, code_sha):
         "acceptance": "generated_counts_met" if accepted else "fixture_only",
         "ddar_note": "All DDAR receipts unsupported until a local backend passes preflight; no consequence claims.",
     }
+
+
+def cross_split_collisions(items, field):
+    roles = {}
+    for row in items:
+        roles.setdefault(row[field], set()).add(row["split"])
+    return sum(len(splits) > 1 for splits in roles.values())
+
+
+def generate_job(job_and_sha):
+    job, code_sha = job_and_sha
+    return job, generate(
+        job["family"], job["seed"], split=job["split"], code_sha=code_sha
+    )
+
+
+def generated_jobs(jobs, code_sha, workers):
+    if type(workers) is not int or not 1 <= workers <= 8:
+        raise ValueError("workers must be 1..8")
+    if workers == 1:
+        yield from map(generate_job, ((job, code_sha) for job in jobs))
+        return
+    with ProcessPoolExecutor(
+        max_workers=workers, mp_context=multiprocessing.get_context("spawn")
+    ) as pool:
+        pending = iter((job, code_sha) for job in jobs)
+        while batch := list(islice(pending, workers * 2)):
+            yield from pool.map(generate_job, batch)

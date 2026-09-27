@@ -92,7 +92,9 @@ class FrozenEvaluation:
         validate_controls(controls)
         scoring.validate(gold, {}, mode, task)
         expected = {
-            r["id"] for r in split.manifest()["items"] if r["split"] == "evaluation"
+            r["id"]
+            for r in split.manifest()["items"]
+            if r["split"] in ("evaluation", "sealed")
         }
         if set(gold) != expected:
             raise ManifestError(

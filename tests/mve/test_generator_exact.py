@@ -1,8 +1,8 @@
-from itertools import permutations, product
+from itertools import combinations, combinations_with_replacement
 import pytest
 from mve.generator.exact import ExactEvaluator, ExactError
 from mve.generator.universe import candidate_universe
-from mve.predicates import REGISTRY, canonical_proposition
+from mve.predicates import canonical_proposition
 
 
 @pytest.mark.parametrize(
@@ -69,25 +69,53 @@ def test_unsupported_or_noncanonical_coordinates_are_excluded(bad):
 
 
 def test_candidate_universe_is_complete_canonical_and_stable():
-    names = ["A", "B", "C", "D", "E", "F"]
+    names = list("ABCDEF")
     actual = candidate_universe(names)
-    expected = set()
-    for pred, row in REGISTRY.items():
-        if row["active"]:
-            tuples = (
-                product(names, repeat=row["arity"])
-                if row["degeneracy"] == "none"
-                else permutations(names, row["arity"])
-            )
-            for args in tuples:
-                canonical = canonical_proposition({"pred": pred, "args": list(args)})
-                expected.add((pred, tuple(canonical["args"])))
-    assert {(p["pred"], tuple(p["args"])) for p in actual} == expected
-    assert len(actual) == len(expected) == 517
+    # Independently count unordered segments and unordered nonzero-arm angles.
+    angles = [
+        (a, b, c)
+        for b in names
+        for a, c in combinations_with_replacement([n for n in names if n != b], 2)
+    ]
+    lengths = list(combinations(names, 2))
+    assert len(angles) == 90 and len(lengths) == 15
+    assert sum(p["pred"] == "EqualAngle" for p in actual) == len(
+        list(combinations(angles, 2))
+    )
+    assert sum(p["pred"] == "EqualLength" for p in actual) == len(
+        list(combinations_with_replacement(lengths, 2))
+    )
+    assert len(actual) == 4507
     assert candidate_universe(list(reversed(names))) == actual
-    assert any(p == {"pred": "Distinct", "args": ["A", "A"]} for p in actual)
-    assert all(
-        len(set(p["args"])) == len(p["args"])
-        for p in actual
-        if REGISTRY[p["pred"]]["category"] == "P1"
+
+
+def test_erratum_e1_shared_points_and_excluded_duplicate_facts():
+    coords = {"A": ["0", "0"], "B": ["1", "0"], "C": ["0", "1"], "D": ["1", "1"]}
+    evaluator = ExactEvaluator(coords)
+    isosceles = {"pred": "EqualLength", "args": ["A", "B", "A", "C"]}
+    bisector = {"pred": "EqualAngle", "args": ["B", "A", "D", "D", "A", "C"]}
+    candidates = candidate_universe(coords)
+    for prop in (isosceles, bisector):
+        assert evaluator.classify(prop) == "true"
+        assert canonical_proposition(prop) in candidates
+    assert (
+        canonical_proposition(
+            {"pred": "EqualAngle", "args": ["B", "A", "C", "C", "A", "B"]}
+        )
+        not in candidates
+    )
+    for pred in ("Parallel", "Perpendicular"):
+        assert (
+            canonical_proposition({"pred": pred, "args": ["A", "B", "A", "C"]})
+            not in candidates
+        )
+    assert (
+        evaluator.classify({"pred": "EqualLength", "args": ["A", "A", "B", "C"]})
+        == "degenerate"
+    )
+    assert (
+        evaluator.classify(
+            {"pred": "EqualAngle", "args": ["A", "A", "B", "C", "A", "D"]}
+        )
+        == "degenerate"
     )

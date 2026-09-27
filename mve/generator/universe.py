@@ -1,6 +1,8 @@
 """Complete named-point universe under the frozen v1 predicate symmetries."""
 
-from itertools import permutations, product
+from itertools import product
+from functools import lru_cache
+from mve.degeneracy import repeated_degenerate, excluded_identity
 import re
 from mve.predicates import REGISTRY, canonical_proposition
 
@@ -15,17 +17,20 @@ def candidate_universe(names):
     ):
         raise ValueError("invalid point name")
     names = sorted(names)
-    result = {}
+    return [
+        {"pred": pred, "args": list(args)} for pred, args in _universe(tuple(names))
+    ]
+
+
+@lru_cache(maxsize=32)
+def _universe(names):
+    result = set()
     for pred, row in REGISTRY.items():
         if not row["active"]:
             continue
-        # Nondegeneracy rows explicitly allow repeats; e.g. Distinct(A,A) is false.
-        tuples = (
-            product(names, repeat=row["arity"])
-            if row["degeneracy"] == "none"
-            else permutations(names, row["arity"])
-        )
-        for args in tuples:
+        for args in product(names, repeat=row["arity"]):
+            if repeated_degenerate(pred, args) or excluded_identity(pred, args):
+                continue
             prop = canonical_proposition({"pred": pred, "args": list(args)})
-            result[(pred, tuple(prop["args"]))] = prop
-    return [result[key] for key in sorted(result)]
+            result.add((pred, tuple(prop["args"])))
+    return tuple(sorted(result))
