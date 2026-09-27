@@ -1,0 +1,11 @@
+{
+  "schema": "mve-observer-owner-questions-v1",
+  "Q1": {"proposed_modules": ["spectral", "field-dyson"], "confirmed": null},
+  "Q2": {"model_id": null, "family": null, "price_or_quota_verification": null},
+  "Q3": {"fleet_lane_owner": null, "go3_days": null, "clock_start": null, "answered_at": null},
+  "Q4": {"exchange_write_mode": null, "answered_at": null},
+  "Q5": {"status_mapping_confirmed": null, "technical_failure_defect_fixed": null, "answered_at": null},
+  "Q6": {"rh_visual_fields_permission": null, "human_blinded_session": null},
+  "status_mapping": "proposal pending atlas-owner confirmation (Q5)",
+  "execution": "Offline packet: O-M2 and relay always refuse; editing this file cannot enable hosted calls or external writes."
+}

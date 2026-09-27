@@ -4075,6 +4075,294 @@
           "sha256": "d7195b8c6a50fb07d065ac7b83b89da57d2a4fd4e8ddce26a0b421f989033fcf"
         }
       ]
+    },
+    "WO-4": {
+      "mode": "offline_only",
+      "hosted_calls": 0,
+      "base_git_sha": "0952290880fea8cbca105ee231d0837bbe17d75e",
+      "frozen_design_sha256s": [
+        "f932d950aceb956738cdde85953cb140d97e9382def26efed528c5b15db43ab1"
+      ],
+      "frozen_designs": [
+        {
+          "kind": "synthetic regression only",
+          "request": "tests/mve/observer/wo45_fixtures/request.json",
+          "sha256": "f932d950aceb956738cdde85953cb140d97e9382def26efed528c5b15db43ab1",
+          "strata": [
+            "spectral × zero spacings"
+          ],
+          "views": 1,
+          "slots_per_view": 3,
+          "clusters": 1,
+          "seed": 20260928
+        }
+      ],
+      "prospective_scientific_designs": [],
+      "owner_questions": "mve/observer/config/owner_questions.json",
+      "files": [
+        {
+          "path": "mve/observer/design.py",
+          "sha256": "d23d3e6eecb1b9116d00a598d65bc28b4acb5271bb1d9c7c87d1c10c88bee826"
+        },
+        {
+          "path": "mve/observer/dispatch.py",
+          "sha256": "e591100ebc0e1cc873a533401254664dfed490367a3165d230adc516f2b98d2c"
+        },
+        {
+          "path": "mve/observer/metrics.py",
+          "sha256": "cf64440be3505455f4406a4f5e7706af80345d0d1e306a45d807bace281152a4"
+        },
+        {
+          "path": "mve/observer/run.py",
+          "sha256": "9897fb13962af8b6e094871ea951dec41d964a633533ce004da8998e56ab7a5e"
+        },
+        {
+          "path": "mve/observer/storage.py",
+          "sha256": "ba6a537f50fd6972e938184bac4a67a330e01b0e68fce8e6e0f743b512e5e6f7"
+        },
+        {
+          "path": "mve/observer/snapshots.py",
+          "sha256": "9c7c5b18d27aafdceffc496bea864981876c1b54244a4049b16c842c9f5a8a8d"
+        },
+        {
+          "path": "mve/observer/config/owner_questions.json",
+          "sha256": "0fd562148068d7e0f6c67fb4de3bfe94da4c59094b03cdb8c1c1eaf8ebe18c95"
+        },
+        {
+          "path": "tests/mve/observer/test_observer_design.py",
+          "sha256": "ab1984aa2b7da046ec45508a93efed494bf0a5b63417d5ca69431df79f8b3ad7"
+        },
+        {
+          "path": "tests/mve/observer/test_observer_run.py",
+          "sha256": "af1df7ada7f247d09f72644e8e1417f6f03a17a6ae85a39f17af87dfb01f9bb9"
+        },
+        {
+          "path": "tests/mve/observer/wo45_helpers.py",
+          "sha256": "9c86ea7f97c0a2d41ea065e63b577da431f6c92c994dc83632fefc3b33805d19"
+        },
+        {
+          "path": "tests/mve/observer/wo45_fixtures/inputs/spectral-0-discovery-0-0.png",
+          "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453"
+        },
+        {
+          "path": "tests/mve/observer/wo45_fixtures/inputs/spectral-0-discovery-0-1.png",
+          "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453"
+        },
+        {
+          "path": "tests/mve/observer/wo45_fixtures/inputs/spectral-0-discovery-0.json",
+          "sha256": "83242aa7de1d866ded90ec3a84675660afa7b8ec829abde8c04067aeece7df09"
+        },
+        {
+          "path": "tests/mve/observer/wo45_fixtures/inputs/spectral-0-discovery-1.json",
+          "sha256": "78f1f32418815096149e9fbcb57cb50bb0a27ad10781d9b802d731a230285251"
+        },
+        {
+          "path": "tests/mve/observer/wo45_fixtures/inputs/spectral-0-donor-0-0.png",
+          "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453"
+        },
+        {
+          "path": "tests/mve/observer/wo45_fixtures/inputs/spectral-0-donor-0-1.png",
+          "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453"
+        },
+        {
+          "path": "tests/mve/observer/wo45_fixtures/inputs/spectral-0-donor-0.json",
+          "sha256": "cd5b73cbdaf53cc0ee91d63688ce54601c29fb303ede0b4bcf8042eb1cdd6b0d"
+        },
+        {
+          "path": "tests/mve/observer/wo45_fixtures/inputs/spectral-0-donor-1.json",
+          "sha256": "1ac73a3dd57da882c4899d6a1d69f1a2088d5f6c5b3b14925626f52280cafbe7"
+        },
+        {
+          "path": "tests/mve/observer/wo45_fixtures/inputs/spectral-0-replication-0-0.png",
+          "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453"
+        },
+        {
+          "path": "tests/mve/observer/wo45_fixtures/inputs/spectral-0-replication-0-1.png",
+          "sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453"
+        },
+        {
+          "path": "tests/mve/observer/wo45_fixtures/inputs/spectral-0-replication-0.json",
+          "sha256": "4d4143c2ac5c020fa83158551c618a6f1a17039a750ee64d4225cef7d0267534"
+        },
+        {
+          "path": "tests/mve/observer/wo45_fixtures/inputs/spectral-0-replication-1.json",
+          "sha256": "85ab1369c5ba7a971e78ede984f03a80fa5ce2146551ae2851da13274a4efad8"
+        },
+        {
+          "path": "tests/mve/observer/wo45_fixtures/request.json",
+          "sha256": "17a90d81d1a1f821b75e352dad88df3bdbcb1dced215e2576e8133958555106b"
+        },
+        {
+          "path": "docs/mve/reviews/WO4_WO5_ASTRA_20260928.md",
+          "sha256": "5bf134675a97791bd66759da91b37ceea06d9b8947b6650cf9ee133edd2ae4f3"
+        },
+        {
+          "path": "docs/mve/reviews/WO4_WO5_ASTRA_EVIDENCE_20260928.json",
+          "sha256": "b15156abea52c84ceb65b28b617dcd5a1d92d9820407b38be14f985236063b6f"
+        },
+        {
+          "path": "mve/observer/card.py",
+          "sha256": "01d4e89e5bd7e95e1c9f9ba45a3e2d290ee58037c136bd4ef51c6688e58295dc"
+        },
+        {
+          "path": "schemas/mve_hypothesis_card.json",
+          "sha256": "fae24b90caba4644e1c986fa6c45c187b5e4695aa4effa8b7c6fadd1a1ed1b5f"
+        },
+        {
+          "path": "mve/observer/checks/runner.py",
+          "sha256": "2dc927bcbecf5cbbbdaf454a137b261fbba6da3ccda4e15c416721e6efa10469"
+        },
+        {
+          "path": "mve/observer/checks/calibration.py",
+          "sha256": "5fede91432db9385f48243cb82be640ecd5b0f90db792a17a08c232cb1ed8338"
+        },
+        {
+          "path": "mve/observer/checks/spacing.py",
+          "sha256": "f77f6056c9fd1cc4ea7f6abfa8e2f4d9670a9c4c26b163f688fe7cb24ea445ba"
+        },
+        {
+          "path": "mve/budget.py",
+          "sha256": "f02ad5923cb25e16fd751f552f73a0989305d3855710c0fd3b2583c77e91ef51"
+        },
+        {
+          "path": "mve/pricing.py",
+          "sha256": "de913a7451410bd52c10945b679d6876b8589e61b4669352cb08e4d2570107e3"
+        },
+        {
+          "path": "mve/money.py",
+          "sha256": "0503706ad4f3f1f6308e3f9a6b58f68b303b0fc9ded526f818d2aa2390ea3b50"
+        },
+        {
+          "path": "mve/preflight/probe.py",
+          "sha256": "efaef5dca40c19af16e0e231e07aa92ab57a2295056b759f80286a8ef15938da"
+        },
+        {
+          "path": "mve/preflight/probe_contract.py",
+          "sha256": "8b181a1c87aee4b60fb7cdc37a99e2aa5a5655d2b2a65958865baf3be5af3b47"
+        },
+        {
+          "path": "mve/preflight/probe_fixtures.py",
+          "sha256": "bb5448bf2ce59726d5b33334a7c0136a472e716265b8f1cd3433cf780f0a287e"
+        },
+        {
+          "path": "mve/perceiver/__init__.py",
+          "sha256": "0a5fe444ca48207fd10ec91d77df01873230ada8cf13140f095b2543b9c340a0"
+        },
+        {
+          "path": "mve/perceiver/adapter.py",
+          "sha256": "89aa1a76beab61263b144193110a135b79f312ae2e61b47ab10cff63841ce3cb"
+        },
+        {
+          "path": "mve/perceiver/alignment.py",
+          "sha256": "d37ab04579a96f514618a2abfc3d8e4e684403aeaeb56b9178d839315bdb3b9f"
+        },
+        {
+          "path": "mve/perceiver/contract.py",
+          "sha256": "bf191df8ca5f7c1ba693580495c9b15d2d071c5a469e1e6d177b16d28fddcf07"
+        },
+        {
+          "path": "mve/perceiver/parsing.py",
+          "sha256": "5e6cbadc3dc87743edcb3ccd66a095efa5f3b0b3f8d3a0ca7386708659d0abae"
+        },
+        {
+          "path": "mve/perceiver/records.py",
+          "sha256": "a59f13741b307022924e71f0bec72e1bbd42e7e6b306371d9692c5fd18db0b49"
+        },
+        {
+          "path": "mve/perceiver/replay.py",
+          "sha256": "cda02690f164fe9458383ade666cb1b24193b3627d9fd4cd8b75b8982ad6f32d"
+        }
+      ],
+      "new_code_coverage_percent": 98.13333333333334,
+      "full_suite": {
+        "passed": 1005,
+        "skipped": 8,
+        "nested_sandbox_failures": 3
+      },
+      "first_views": "synthetic only; native WO-1 development views are not discovery clusters",
+      "data_checks": "WO-3 nominal; no baseline-specificity certification",
+      "disk": {
+        "generated_limit_bytes": 209715200,
+        "minimum_free_bytes": 5368709120
+      },
+      "aggregate_ledger": "synthetic fixture reconciled; real campaign reconciliation remains unestablished"
+    },
+    "WO-5": {
+      "mode": "offline_only",
+      "hosted_calls": 0,
+      "base_git_sha": "0952290880fea8cbca105ee231d0837bbe17d75e",
+      "atlas_commit": "17b5ca5dc34d7126b549a63b8a80c63bb3c59362",
+      "atlas_schema_pathspec": "data/riemann/evidence_atlas/schema/result.schema.json",
+      "vendored_schema": "mve/observer/vendor/atlas-result.schema.json",
+      "schema_sha256": "ca53b079ce0323b628b292ace76fd822ec804da3c138290bfd449c3ecec7c041",
+      "outbox": "mve/generated/outbox",
+      "status_mapping": "proposal pending atlas-owner confirmation (Q5)",
+      "technical_failure": "held: services.py:229 defect",
+      "relay": "disabled",
+      "files": [
+        {
+          "path": "mve/observer/outbox.py",
+          "sha256": "91e67045474c12b277dc3f4eb621421d8e754719804c81c8b9fe1ac82d0e4976"
+        },
+        {
+          "path": "mve/observer/storage.py",
+          "sha256": "ba6a537f50fd6972e938184bac4a67a330e01b0e68fce8e6e0f743b512e5e6f7"
+        },
+        {
+          "path": "mve/observer/vendor/atlas-result.schema.json",
+          "sha256": "ca53b079ce0323b628b292ace76fd822ec804da3c138290bfd449c3ecec7c041"
+        },
+        {
+          "path": "mve/observer/config/owner_questions.json",
+          "sha256": "0fd562148068d7e0f6c67fb4de3bfe94da4c59094b03cdb8c1c1eaf8ebe18c95"
+        },
+        {
+          "path": "tests/mve/observer/test_outbox.py",
+          "sha256": "d6005df8eb4bb0259f72860bbe74cb184b9770f43bd0992f87a13b45e9a0611e"
+        },
+        {
+          "path": "docs/mve/reviews/WO4_WO5_ASTRA_20260928.md",
+          "sha256": "5bf134675a97791bd66759da91b37ceea06d9b8947b6650cf9ee133edd2ae4f3"
+        },
+        {
+          "path": "docs/mve/reviews/WO4_WO5_ASTRA_EVIDENCE_20260928.json",
+          "sha256": "b15156abea52c84ceb65b28b617dcd5a1d92d9820407b38be14f985236063b6f"
+        },
+        {
+          "path": "mve/observer/card.py",
+          "sha256": "01d4e89e5bd7e95e1c9f9ba45a3e2d290ee58037c136bd4ef51c6688e58295dc"
+        },
+        {
+          "path": "schemas/mve_hypothesis_card.json",
+          "sha256": "fae24b90caba4644e1c986fa6c45c187b5e4695aa4effa8b7c6fadd1a1ed1b5f"
+        }
+      ],
+      "external_contract_sources": [
+        {
+          "repository": "atlas",
+          "git_sha": "17b5ca5dc34d7126b549a63b8a80c63bb3c59362",
+          "path": "rh_evidence/adapters/result_bundle.py",
+          "sha256": "6a00ed9a7c99b345b77284e56844f61a2e911083375cf6551e940223ca486972"
+        },
+        {
+          "repository": "atlas",
+          "git_sha": "17b5ca5dc34d7126b549a63b8a80c63bb3c59362",
+          "path": "rh_evidence/services.py",
+          "sha256": "3224108944ffb1c73969f4297738cb386ad13ee5b4726fdb20d35db4fee29fb5"
+        },
+        {
+          "repository": "handshake",
+          "git_sha": "aac7ea8fe0b7c137fc5e1dc5b0b2af49fce4c430",
+          "path": "scripts/rh_lane_handshake.py",
+          "sha256": "be9ce905e245159dc27921d4dc6230e906d793f7fafef0d575e935229045b458"
+        },
+        {
+          "repository": "handshake",
+          "git_sha": "aac7ea8fe0b7c137fc5e1dc5b0b2af49fce4c430",
+          "path": "scripts/agent_review_protocol.py",
+          "sha256": "e7e163564c078e1897d2738cdf92b68f309b8233422f74984b9415505ac727a4"
+        }
+      ]
     }
   },
   "schema": "mve-deps-v1"
