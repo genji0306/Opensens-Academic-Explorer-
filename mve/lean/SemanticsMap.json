@@ -1,0 +1,62 @@
+{
+  "version": "mve-native-p1-v1",
+  "point_type": "EuclideanSpace ℝ (Fin 2)",
+  "leangeo": "unsupported: no local runtime",
+  "predicates": {
+    "Collinear": {
+      "expression": "Collinear ℝ ({p0,p1,p2} : Set Point)",
+      "evidence": "native target typechecked; semantic equivalence not certified",
+      "registry_degeneracy": "any repeated point"
+    },
+    "Concyclic": {
+      "expression": "EuclideanGeometry.Concyclic ({p0,p1,p2,p3} : Set Point)",
+      "evidence": "native target typechecked; semantic equivalence not certified",
+      "registry_degeneracy": "any repeated point or any three collinear"
+    },
+    "Parallel": {
+      "expression": "AffineSubspace.Parallel (affineSpan ℝ ({p0,p1} : Set Point)) (affineSpan ℝ ({p2,p3} : Set Point))",
+      "evidence": "native target typechecked; semantic equivalence not certified",
+      "registry_degeneracy": "any repeated point; A=B or C=D"
+    },
+    "Perpendicular": {
+      "expression": "inner ℝ (p1-p0) (p3-p2) = 0",
+      "evidence": "native target typechecked; semantic equivalence not certified",
+      "registry_degeneracy": "any repeated point; A=B or C=D"
+    },
+    "EqualLength": {
+      "expression": "dist p0 p1 = dist p2 p3",
+      "evidence": "native target typechecked; semantic equivalence not certified",
+      "registry_degeneracy": "A=B or C=D; cross-pair sharing allowed"
+    },
+    "EqualAngle": {
+      "expression": "EuclideanGeometry.angle p0 p1 p2 = EuclideanGeometry.angle p3 p4 p5",
+      "evidence": "native target typechecked; semantic equivalence not certified",
+      "registry_degeneracy": "A=B, B=C, D=E or E=F; cross-triple sharing allowed"
+    },
+    "Midpoint": {
+      "expression": "p0 = midpoint ℝ p1 p2",
+      "evidence": "native target typechecked; semantic equivalence not certified",
+      "registry_degeneracy": "any repeated point; A=B"
+    },
+    "SBetween": {
+      "expression": "Sbtw ℝ p1 p0 p2",
+      "evidence": "native target typechecked; semantic equivalence not certified",
+      "registry_degeneracy": "any repeated point"
+    },
+    "RightAngle": {
+      "expression": "EuclideanGeometry.angle p0 p1 p2 = Real.pi / 2",
+      "evidence": "native target typechecked; semantic equivalence not certified",
+      "registry_degeneracy": "any repeated point; zero angle arms"
+    },
+    "Distinct": {
+      "expression": "p0 ≠ p1",
+      "evidence": "native target typechecked; semantic equivalence not certified",
+      "registry_degeneracy": "none"
+    },
+    "NotCollinear": {
+      "expression": "¬ Collinear ℝ ({p0,p1,p2} : Set Point)",
+      "evidence": "native target typechecked; semantic equivalence not certified",
+      "registry_degeneracy": "none"
+    }
+  }
+}

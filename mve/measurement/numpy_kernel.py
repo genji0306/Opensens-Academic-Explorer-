@@ -4,6 +4,7 @@ from itertools import combinations
 import math
 import numpy as np
 from mve.predicates import REGISTRY, canonical_proposition
+from mve.degeneracy import repeated_degenerate
 
 VERSION = "mve-coordinate-fixture-v1"
 ZERO = 1e-12
@@ -65,8 +66,11 @@ def residual(pred, p):
 def degeneracy(pred, p, args):
     if REGISTRY[pred]["degeneracy"] == "none":
         return None
-    distances = [float(np.linalg.norm(a - b)) for a, b in combinations(p, 2)]
-    if len(set(args)) < len(args) or min(distances) == 0:
+    distances = [
+        float(np.linalg.norm(p[i] - p[j]))
+        for i, j in REGISTRY[pred]["distinct_arguments"]
+    ]
+    if repeated_degenerate(pred, args) or min(distances) == 0:
         return "degenerate"
     if pred == "Concyclic":
         areas = [height(np.asarray(t)) for t in combinations(p, 3)]

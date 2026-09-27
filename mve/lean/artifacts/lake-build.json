@@ -1,0 +1,15 @@
+{
+  "command": [
+    "sandbox-exec",
+    "-p",
+    "(version 1) (allow default) (deny network*)",
+    "../../../../../../.elan/toolchains/leanprover--lean4---v4.29.0/bin/lake",
+    "build"
+  ],
+  "cwd": ". (relative to project)",
+  "returncode": 0,
+  "log_sha256": "76b99f93d3380e222114e76bd7af3255a3ea34fb1fda48d14f52b8a820204ab5",
+  "network": "denied by sandbox-exec; filesystem not restricted",
+  "native_predicate_targets": 11,
+  "proof_checked": false
+}

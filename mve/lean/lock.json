@@ -1,0 +1,73 @@
+{
+  "lean_binary": "../../../../../../.elan/toolchains/leanprover--lean4---v4.29.0/bin/lean",
+  "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+  "lean_toolchain": "leanprover/lean4:v4.29.0",
+  "leangeo": {
+    "adapter_enabled": false,
+    "revision": null,
+    "status": "failed: not present locally; vendoring deferred to owner-approved packet"
+  },
+  "mathlib_revision": "8a178386ffc0f5fef0b77738bb5449d50efeea95",
+  "packages": [
+    {
+      "manifest_sha256": "0c9dbccb6c8e01c84ea149fdb404df34162426e1b4c82ab3a1ebd3b6f46d3eba",
+      "name": "mathlib",
+      "path": "../../../../Opensens Academic Explorer/lean/.lake/packages/mathlib",
+      "rev": "8a178386ffc0f5fef0b77738bb5449d50efeea95"
+    },
+    {
+      "manifest_sha256": "99a17603b60cd9af445e5689b572b8441aaeaed149f3760dc52595a0c4b128db",
+      "name": "plausible",
+      "path": "../../../../Opensens Academic Explorer/lean/.lake/packages/plausible",
+      "rev": "83e90935a17ca19ebe4b7893c7f7066e266f50d3"
+    },
+    {
+      "manifest_sha256": "a9b5fc5e76254f415e49b04b7049f58c6cb42e76a0e31b0aed2ddf4af6882033",
+      "name": "LeanSearchClient",
+      "path": "../../../../Opensens Academic Explorer/lean/.lake/packages/LeanSearchClient",
+      "rev": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843"
+    },
+    {
+      "manifest_sha256": "e92239410474f8be29f252e0d3ed2fce35a74ca8f0475393dd735d25251f0a5f",
+      "name": "importGraph",
+      "path": "../../../../Opensens Academic Explorer/lean/.lake/packages/importGraph",
+      "rev": "48d5698bc464786347c1b0d859b18f938420f060"
+    },
+    {
+      "manifest_sha256": "cfa8a1535cd79fbd868bcc67eb22efdab57568248a437fa5dda567234f1f03e2",
+      "name": "proofwidgets",
+      "path": "../../../../Opensens Academic Explorer/lean/.lake/packages/proofwidgets",
+      "rev": "3c52dee17f0cd89c1ec14de78920d1bdaa3d26b3"
+    },
+    {
+      "manifest_sha256": "1ec8cd733a14b09e1b2485becd1bfcae20250188ef5c24102e43d1fc48ffaffb",
+      "name": "aesop",
+      "path": "../../../../Opensens Academic Explorer/lean/.lake/packages/aesop",
+      "rev": "7152850e7b216a0d409701617721b6e469d34bf6"
+    },
+    {
+      "manifest_sha256": "460e7ce76c58edfd8ba59428f23e908c5860e8bbca8883ff6c1262980e364d30",
+      "name": "Qq",
+      "path": "../../../../Opensens Academic Explorer/lean/.lake/packages/Qq",
+      "rev": "707efb56d0696634e9e965523a1bbe9ac6ce141d"
+    },
+    {
+      "manifest_sha256": "22a517fadc44c10f21330be6f4ec69d1f5026882e0d2b157d5459a8e7b720d09",
+      "name": "batteries",
+      "path": "../../../../Opensens Academic Explorer/lean/.lake/packages/batteries",
+      "rev": "756e3321fd3b02a85ffda19fef789916223e578c"
+    },
+    {
+      "manifest_sha256": "f608bac5ccb22b59292584eb7fb4497c327e780a17e7afb8d584ce5d79ad0b70",
+      "name": "Cli",
+      "path": "../../../../Opensens Academic Explorer/lean/.lake/packages/Cli",
+      "rev": "7802da01beb530bf051ab657443f9cd9bc3e1a29"
+    }
+  ],
+  "project_files": {
+    "lake-manifest.json": "7bd8ae8739e94b2603c380d011dcc9c1460a70320f27c416c5e5ab1e0a929a78",
+    "lakefile.lean": "ddb57b04d444bca3389e741e1538aae5d9adcced863a1b3f942ebd33b24e83b2",
+    "lean-toolchain": "651c8accb402b0c071cd336e9d3dc0a55516b1bfb434ddc4801f14936785b1d2"
+  },
+  "schema": "mve-lean-lock-v1"
+}
