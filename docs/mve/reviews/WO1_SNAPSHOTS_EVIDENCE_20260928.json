@@ -1,0 +1,220 @@
+{
+  "actual_lab_pngs": 0,
+  "browser_status": "Chrome TargetClosedError in builder sandbox; sandbox-exec write probe also blocked by nested sandbox",
+  "coverage": {
+    "covered_branches": 163,
+    "covered_lines": 486,
+    "excluded_lines": 0,
+    "missing_branches": 9,
+    "missing_lines": 5,
+    "num_branches": 172,
+    "num_partial_branches": 9,
+    "num_statements": 491,
+    "percent_branches_covered": 94.76744186046511,
+    "percent_branches_covered_display": "95",
+    "percent_covered": 97.88838612368023,
+    "percent_covered_display": "98",
+    "percent_statements_covered": 98.98167006109979,
+    "percent_statements_covered_display": "99"
+  },
+  "coverage_by_file": {
+    "mve/observer/snapshot_capture.py": {
+      "covered_branches": 35,
+      "covered_lines": 121,
+      "excluded_lines": 0,
+      "missing_branches": 5,
+      "missing_lines": 2,
+      "num_branches": 40,
+      "num_partial_branches": 5,
+      "num_statements": 123,
+      "percent_branches_covered": 87.5,
+      "percent_branches_covered_display": "88",
+      "percent_covered": 95.70552147239263,
+      "percent_covered_display": "96",
+      "percent_statements_covered": 98.3739837398374,
+      "percent_statements_covered_display": "98"
+    },
+    "mve/observer/snapshot_render.py": {
+      "covered_branches": 28,
+      "covered_lines": 142,
+      "excluded_lines": 0,
+      "missing_branches": 2,
+      "missing_lines": 1,
+      "num_branches": 30,
+      "num_partial_branches": 2,
+      "num_statements": 143,
+      "percent_branches_covered": 93.33333333333333,
+      "percent_branches_covered_display": "93",
+      "percent_covered": 98.26589595375722,
+      "percent_covered_display": "98",
+      "percent_statements_covered": 99.3006993006993,
+      "percent_statements_covered_display": "99"
+    },
+    "mve/observer/snapshots.py": {
+      "covered_branches": 100,
+      "covered_lines": 223,
+      "excluded_lines": 0,
+      "missing_branches": 2,
+      "missing_lines": 2,
+      "num_branches": 102,
+      "num_partial_branches": 2,
+      "num_statements": 225,
+      "percent_branches_covered": 98.03921568627452,
+      "percent_branches_covered_display": "98",
+      "percent_covered": 98.77675840978593,
+      "percent_covered_display": "99",
+      "percent_statements_covered": 99.11111111111111,
+      "percent_statements_covered_display": "99"
+    }
+  },
+  "full_tests": {
+    "nested_sandbox_failures": [
+      "tests/mve/test_isolation.py::test_real_subprocess_cannot_read_gold_or_connect",
+      "tests/mve/test_isolation.py::test_public_staging_rejects_links_and_worker_timeout",
+      "tests/mve/test_open_review_followups.py::test_worker_created_runtime_symlink_cannot_read_private_gold"
+    ],
+    "passed": 932,
+    "skipped": 7
+  },
+  "isolated_attempt_audit": {
+    "archive_unchanged": true,
+    "capture": "failed",
+    "failure_type": "ValueError",
+    "generated_bytes": 20017321,
+    "hosted_calls": 0,
+    "isolation_scope": "All files including ignored under both allowed source pathspec sets; full git status --ignored of both repos. Not a hash audit of unrelated repo directories.",
+    "mode": "offline_only",
+    "source_repos_unchanged": true
+  },
+  "numerical_sources": {
+    "mode": "offline numerical source check; no browser/PNG claim",
+    "modules": {
+      "dyson": [
+        {
+          "segments": 1,
+          "sha256": "e2869891ba19c4cbbcd03cbc5616aee423afcedc463b132eb4358e55665d2e03",
+          "values": 1000
+        },
+        {
+          "segments": 8,
+          "sha256": "b376986be56ea75e329833f43f19d86b4411dc90644c8ebf76ed6bd9a24307f7",
+          "values": 960
+        }
+      ],
+      "spectral": [
+        {
+          "segments": null,
+          "sha256": "3dd857b6a57fe24b475fde2c6c580071f49024c7c8c571117cafb185b593f18b",
+          "values": 89
+        },
+        {
+          "segments": null,
+          "sha256": "552b452318e1a87a52cfff96e4d41f9c02cd4904776b6a46b7d8dceb120bbb46",
+          "values": 89
+        }
+      ],
+      "sphere": [
+        {
+          "segments": null,
+          "sha256": "58d50e221dbd4709974e2282bdb5ff0b2f6758e34e8faa3e8387eb8ccca439d7",
+          "values": 9592
+        },
+        {
+          "segments": null,
+          "sha256": "545d68d4d41e54b7e08634ffb0b221bb98113ff14fce86e56d30caaef2595ec6",
+          "values": 9594
+        }
+      ],
+      "ulam": [
+        {
+          "segments": null,
+          "sha256": "5a170aca468fb70823d5dc98236c22482ac2eed92d77b7fc3f46c908d59ffb00",
+          "values": 3245
+        },
+        {
+          "segments": null,
+          "sha256": "9724db8f02029241f266ae2808fa92605d010faae8320db90d3e328ce7049aa8",
+          "values": 3284
+        }
+      ]
+    },
+    "node": "v22.22.2",
+    "repeat_equal": true
+  },
+  "ocr": "No tesseract executable on PATH or usual Homebrew locations; pixel-region fallback",
+  "packet": "WO-1",
+  "prepare_audit": {
+    "archive_unchanged": true,
+    "capture": "prepared_only",
+    "generated_bytes": 19304989,
+    "hosted_calls": 0,
+    "isolation_scope": "All files including ignored under both allowed source pathspec sets; full git status --ignored of both repos. Not a hash audit of unrelated repo directories.",
+    "mode": "offline_only",
+    "source_repos_unchanged": true
+  },
+  "source_patches": {
+    "field-lab.js": {
+      "node_syntax": "passed",
+      "render_response_sha256": "b39733a81ec0acc62ca7e3520652faa2954ecf0a290f6cd5da6b4a759e5526d6",
+      "source_sha256": "5ddadaa6c29f3cd2cd59249f94a3bf0f7f7465c4a411901d75c95d8eaef993cc"
+    },
+    "field-phase3-overlay.js": {
+      "node_syntax": "passed",
+      "render_response_sha256": "4bb44c894ccac163f5b3aad60fbc42799142c9e2d24c5550c2f7c63d10cb022f",
+      "source_sha256": "6c49599209afc2ea02e5c68d7bf3a8966b89657003ab675bc593e46e094b39fe"
+    },
+    "field-phase3.js": {
+      "node_syntax": "passed",
+      "render_response_sha256": "37dff4427df3d809eeed212e81648523b6bd2c3c8f60784d766068e7d362c733",
+      "source_sha256": "dbf122bce11156b4fb6d58a953a44fc9a17e451d270c09ca4d03ea93e13f4387"
+    },
+    "geometry.js": {
+      "node_syntax": "passed",
+      "render_response_sha256": "1cd40fc8bff62633808a9e02b11081064d7fa13001a3b968538d05ebd140761a",
+      "source_sha256": "d23db184c41641033fa492eccb2eb52818845bf281e2ba3d423b68041e55b77d"
+    },
+    "polar.js": {
+      "node_syntax": "passed",
+      "render_response_sha256": "e12b9b8c3a4846b7b14b0708c5cadef49f5153f56680b3742412a86bc1fb5342",
+      "source_sha256": "ca8e5289e15da2a7a97c4eeb6cc6faaa855c61e14b6116e6a2a5c0652aa21680"
+    },
+    "prime-sphere.js": {
+      "node_syntax": "passed",
+      "render_response_sha256": "9651b26000825fdfeaf28fb42aa8f7253b3fab7201a362e36901337bbd116932",
+      "source_sha256": "b2021e78b7a66772ca8b06007651cadc3f4cbbe20d8583a42f718da054f6147c"
+    },
+    "research.js": {
+      "node_syntax": "passed",
+      "render_response_sha256": "fff467c1efc2ae946bb2aceee44d22d91f3435265eeb314379ce7a020ac2f633",
+      "source_sha256": "74144f93ca57322d2dcaa30e1eae46f7d91e235f274e377dc8c82aecef32e5e4"
+    }
+  },
+  "whole_session_audit": {
+    "after_sha256": "032fc2b39d7138c3d9bdfcf93a5ad35cfa360f6990661b6f4c997c115015b980",
+    "before_sha256": "41dba5d46e22d22c73345328fd9fb91b322e7018f784e7fbcacd6f77ae0e876c",
+    "entries": {
+      "atlas": 372,
+      "lab": 383
+    },
+    "interpretation": "Whole-session unchanged-tree assertion failed. Per-command bounded prepare and failed isolated-capture audits matched. Source drift is recorded, not erased or attributed; no live worktree sources were rendered.",
+    "per_repo": {
+      "atlas": {
+        "changed_files": [
+          "vendor/zeta-explorer/dist/obligations-euler.js",
+          "vendor/zeta-explorer/dist/obligations-heat.js",
+          "vendor/zeta-explorer/dist/obligations-li-math.js",
+          "vendor/zeta-explorer/dist/obligations-li.js"
+        ],
+        "status_unchanged": true,
+        "tree_unchanged": false
+      },
+      "lab": {
+        "changed_files": [],
+        "status_unchanged": true,
+        "tree_unchanged": true
+      }
+    },
+    "scope": "Allowed source trees including ignored files; full repository git status --ignored. Unrelated directories not content-hashed.",
+    "unchanged": false
+  }
+}
