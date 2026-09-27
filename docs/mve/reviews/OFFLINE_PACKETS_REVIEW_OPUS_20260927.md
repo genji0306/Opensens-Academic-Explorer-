@@ -292,3 +292,20 @@ if candidates ever gain a consumer.
 Next (need owner answers, plan r6 §9): WO-1 snapshot adapter (first modules), WO-4 observer
 runner (second model observer), WO-5 fleet/atlas contracts (ownership, exchange writes, status
 mapping), then the WO-6 pilot (owner go; ≈ 102 calls).
+
+## Addendum 13: WO-1 lab snapshot adapter (a8183e43716): PASS, merged
+
+975 passed outside the sandbox. The first attempt archived the whole OAE repo (6.1 GB) and filled
+the disk. Opus deleted the generated tar; the relaunch uses pathspec-only archives (atlas 97b1e48cb10:
+vendor/zeta-explorer/dist, rh_evidence/labs, lab_snapshots.json; lab c81510cd29b) with a disk cap.
+Native capture was run by Opus outside the builder sandbox after four fixes found by running it:
+(1) short private HOME/TMPDIR with Chrome writes kept out of ~/Library; (2) PYTHONUSERBASE
+preserved, since a private HOME hid the arm64 Pillow; (3) the OS profile allows Unix-socket IPC
+and /private/var/folders, and uses Chrome `--no-sandbox` inside the OS sandbox. Opus verified
+that profile still refuses inet (curl to example.com fails). (4) A per-pass timeout and a PNG repeat
+tolerance: data.json stays byte-exact, while PNGs allow ≤ 0.1% of pixels over 8/255. The measured
+drift was one anti-aliased WebGL pixel. Final run: 8 snapshots (05 spectral, field-dyson, Ulam,
+space-08 prime sphere, each with its control twin), `capture: captured`, repeat verified,
+source repos unchanged, outside-write probe denied, 0 hosted calls, 7.6 MB generated (ignored).
+Blinded crops inspected by Opus: plot-only, no titles, captions or axis labels.
+The atlas-file drift during the first session was the atlas manager's v280 commit (02:46), not WO-1.
