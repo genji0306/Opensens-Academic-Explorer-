@@ -1204,6 +1204,102 @@
       },
       "schema": "mve-deps-v1"
     },
+    "WP-0b-live": {
+      "actual_api_spend_usd_during_build": "0",
+      "attempt_id": "wp0b:single-model-probe",
+      "base_git_sha": "ca7cbcf3ed738c9d10ac1ebb8bae8a234c0fbcf7",
+      "cap_micro_usd": 50000,
+      "files": [
+        {
+          "path": "docs/mve/reviews/WP0B_LIVE_ASTRA_20260927.md",
+          "sha256": "273eafa74a81fb54ea7d24deb909137b94ed3cbce21c06ecee13f16c4def637a"
+        },
+        {
+          "path": "mve/budget.py",
+          "sha256": "f02ad5923cb25e16fd751f552f73a0989305d3855710c0fd3b2583c77e91ef51"
+        },
+        {
+          "path": "mve/money.py",
+          "sha256": "0503706ad4f3f1f6308e3f9a6b58f68b303b0fc9ded526f818d2aa2390ea3b50"
+        },
+        {
+          "path": "mve/preflight/evidence/deepseek-20260927.json",
+          "sha256": "7e82f84f86abef7ff95eb3a54dc2928e39919b5d2c065b0242f8ac50a2248a4a"
+        },
+        {
+          "path": "mve/preflight/evidence/wp0b-fit.json",
+          "sha256": "d2b60a2595a5a5dfb6f3af9053d6710361c94deee2f2b4dbbe64d41b2c355fba"
+        },
+        {
+          "path": "mve/preflight/evidence/wp0b-fit.png",
+          "sha256": "15f0d4cda4c3677eda6f2e4bce9f1c43ee22ecf77c2dc11ebdb7ee346ad59371"
+        },
+        {
+          "path": "mve/preflight/probe.py",
+          "sha256": "efaef5dca40c19af16e0e231e07aa92ab57a2295056b759f80286a8ef15938da"
+        },
+        {
+          "path": "mve/preflight/probe_contract.py",
+          "sha256": "8b181a1c87aee4b60fb7cdc37a99e2aa5a5655d2b2a65958865baf3be5af3b47"
+        },
+        {
+          "path": "mve/preflight/probe_fixtures.py",
+          "sha256": "bb5448bf2ce59726d5b33334a7c0136a472e716265b8f1cd3433cf780f0a287e"
+        },
+        {
+          "path": "mve/preflight/probe_live.py",
+          "sha256": "85df0973ab7a7bccbcd262719e029e888cd37a59a3eafc5b5ef09381076cf4a0"
+        },
+        {
+          "path": "mve/preflight/probe_live_response.py",
+          "sha256": "ed937eefc9f57e4d46c3852b285bad9ac9fc7b5939372ed3c8fd34f6b9fe7b40"
+        },
+        {
+          "path": "mve/preflight/probe_live_transport.py",
+          "sha256": "6c16635bfca41bead3dbdf26c08a30a53ac6597728408288f0d402e8a907080b"
+        },
+        {
+          "path": "mve/preflight/probe_offline.py",
+          "sha256": "fae35edca1782af03221ceb4a4ebe5732f96dfc0b6e9d30a7dd9e735adfcac98"
+        },
+        {
+          "path": "mve/pricing.py",
+          "sha256": "de913a7451410bd52c10945b679d6876b8589e61b4669352cb08e4d2570107e3"
+        },
+        {
+          "path": "tests/mve/test_probe_live.py",
+          "sha256": "fc9ce8554089cf7bd18d0cccf8e65cc4c3a0ee0d319fa94e25707da63ba89515"
+        }
+      ],
+      "hosted_calls_during_build": 0,
+      "input_allowance_tokens": 131072,
+      "input_allowance_vendor_verified": false,
+      "ledger_path": "mve/generated/wp0b-live/campaign.sqlite",
+      "max_output_tokens": 512,
+      "new_external_dependencies": [],
+      "owner_approval": "2026-09-27",
+      "packet": "Owner-approved WP-0b one-shot live activation, built and tested offline",
+      "phase": "P0",
+      "python": "3.13.2",
+      "reservation_micro_usd": 39936,
+      "review_status": "awaiting Opus review and outside-sandbox validation; no live probe attempted",
+      "tests": {
+        "focused_passed": 55,
+        "full_coverage_percent": 95,
+        "full_failed_nested_sandbox_only": 7,
+        "full_passed": 688,
+        "full_skipped": 0,
+        "new_module_statement_coverage_percent": 100
+      },
+      "transport": "stdlib urllib; fixed HTTPS host; no retries or redirects",
+      "vendor_evidence": {
+        "fetch_date": "2026-09-27",
+        "path": "mve/preflight/evidence/deepseek-20260927.json",
+        "source_url": "https://api-docs.deepseek.com/quick_start/pricing",
+        "verified_by": "Opus",
+        "wire_format_verified": false
+      }
+    },
     "WP-0b-offline-refusal": {
       "actual_api_cost_usd": "0",
       "base_git_sha": "d9066f6e1aaca15823066c97865aa39a310a0588",

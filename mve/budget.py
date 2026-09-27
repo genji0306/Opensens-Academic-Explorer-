@@ -1,7 +1,8 @@
 """Offline WP-9a accounting primitives; this module contains no model transport.
 
 One campaign uses one SQLite file for every wave. The window below reproduces the
-borrowed runner's UTC policy; vendor agreement remains a WP-0b prerequisite.
+UTC policy verified by Opus against DeepSeek pricing on 2026-09-27.
+Chinese public holidays receive no exemption (conservative).
 """
 
 from contextlib import contextmanager
@@ -14,7 +15,9 @@ import sqlite3
 from mve.money import BudgetError as BudgetError, microdollars as microdollars
 from mve.pricing import normalize_prices, token_ceiling
 
-WINDOW_POLICY = "borrowed-runner-20260917:UTC:Mon-Fri:01-04,06-10:UNVERIFIED"
+WINDOW_POLICY = (
+    "deepseek-pricing-20260927:UTC:Mon-Fri:01-04,06-10:VERIFIED:holidays-conservative"
+)
 
 
 def offpeak(when):

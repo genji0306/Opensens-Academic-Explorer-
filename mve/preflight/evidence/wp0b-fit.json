@@ -1,0 +1,271 @@
+{
+  "family": "midpoint_grid",
+  "generator": "mve.generator.pipeline.generate",
+  "image_sha256": "15f0d4cda4c3677eda6f2e4bce9f1c43ee22ecf77c2dc11ebdb7ee346ad59371",
+  "record": {
+    "assumptions": [],
+    "content_hash": "0c642788b265c2adfd810682de8528484f45c5eb0e12266acd520bd26807d0d0",
+    "decisions": [],
+    "derivations": [],
+    "domain": "euclidean_plane",
+    "entities": [
+      {
+        "depends_on": [],
+        "geometries": [
+          {
+            "depends_on": [
+              "ent_1",
+              "geo_999999"
+            ],
+            "frame": "pixel_topleft_xy",
+            "id": "geo_1",
+            "params": [
+              34.0,
+              53.887846
+            ],
+            "source": "ground_truth"
+          }
+        ],
+        "id": "ent_1",
+        "kind": "point",
+        "label": "A"
+      },
+      {
+        "depends_on": [],
+        "geometries": [
+          {
+            "depends_on": [
+              "ent_2",
+              "geo_999999"
+            ],
+            "frame": "pixel_topleft_xy",
+            "id": "geo_2",
+            "params": [
+              69.335591,
+              254.0
+            ],
+            "source": "ground_truth"
+          }
+        ],
+        "id": "ent_2",
+        "kind": "point",
+        "label": "B"
+      },
+      {
+        "depends_on": [],
+        "geometries": [
+          {
+            "depends_on": [
+              "ent_3",
+              "geo_999999"
+            ],
+            "frame": "pixel_topleft_xy",
+            "id": "geo_3",
+            "params": [
+              51.667795,
+              153.943923
+            ],
+            "source": "ground_truth"
+          }
+        ],
+        "id": "ent_3",
+        "kind": "point",
+        "label": "C"
+      },
+      {
+        "depends_on": [],
+        "geometries": [
+          {
+            "depends_on": [
+              "ent_4",
+              "geo_999999"
+            ],
+            "frame": "pixel_topleft_xy",
+            "id": "geo_4",
+            "params": [
+              146.628645,
+              34.0
+            ],
+            "source": "ground_truth"
+          }
+        ],
+        "id": "ent_4",
+        "kind": "point",
+        "label": "D"
+      },
+      {
+        "depends_on": [],
+        "geometries": [
+          {
+            "depends_on": [
+              "ent_5",
+              "geo_999999"
+            ],
+            "frame": "pixel_topleft_xy",
+            "id": "geo_5",
+            "params": [
+              181.964236,
+              234.112154
+            ],
+            "source": "ground_truth"
+          }
+        ],
+        "id": "ent_5",
+        "kind": "point",
+        "label": "E"
+      },
+      {
+        "depends_on": [],
+        "geometries": [
+          {
+            "depends_on": [
+              "ent_6",
+              "geo_999999"
+            ],
+            "frame": "pixel_topleft_xy",
+            "id": "geo_6",
+            "params": [
+              164.296441,
+              134.056077
+            ],
+            "source": "ground_truth"
+          }
+        ],
+        "id": "ent_6",
+        "kind": "point",
+        "label": "F"
+      }
+    ],
+    "events": [
+      {
+        "actor": "ingest",
+        "at": "2026-09-27T00:00:00Z",
+        "from_revision": 0,
+        "id": "evt_1",
+        "kind": "created",
+        "to_revision": 1,
+        "touches": []
+      }
+    ],
+    "formal": {
+      "depends_on": [],
+      "propositions": [],
+      "status": "none"
+    },
+    "image": {
+      "eval_task": "appearance",
+      "ground_truth_ref": "geo_999999",
+      "height": 288,
+      "isolation": {
+        "hidden": [
+          "generator_premises",
+          "truth_classes",
+          "answer",
+          "reference_paths",
+          "consequences"
+        ],
+        "visible": [
+          "labels"
+        ]
+      },
+      "sha256": "15f0d4cda4c3677eda6f2e4bce9f1c43ee22ecf77c2dc11ebdb7ee346ad59371",
+      "source": "synthetic:mve-inhouse:seed0",
+      "track": "appearance_only",
+      "truth": {
+        "candidate_universe_sha256": "1c099592b432d42c94a3afe2a0895a46b0d0983541234e7d2fd0302e623f581a",
+        "family": "midpoint_grid",
+        "math_coordinates_sha256": "133a9047c97cfff62b9060898a8cabc86c7e75d63b8fefe09ef03b87f8cfd26c",
+        "render_pinned": false,
+        "source": "geo_999999",
+        "split": "fit"
+      },
+      "width": 288
+    },
+    "judgments": [],
+    "lineage": {
+      "parent_record_id": null,
+      "reason": null
+    },
+    "measurements": [],
+    "observations": [],
+    "problem": {
+      "binders": [
+        {
+          "entity": "ent_1",
+          "name": "A",
+          "type": "Point"
+        },
+        {
+          "entity": "ent_2",
+          "name": "B",
+          "type": "Point"
+        },
+        {
+          "entity": "ent_3",
+          "name": "C",
+          "type": "Point"
+        },
+        {
+          "entity": "ent_4",
+          "name": "D",
+          "type": "Point"
+        },
+        {
+          "entity": "ent_5",
+          "name": "E",
+          "type": "Point"
+        },
+        {
+          "entity": "ent_6",
+          "name": "F",
+          "type": "Point"
+        }
+      ],
+      "goal": null,
+      "nondegeneracy": [],
+      "premises": []
+    },
+    "provenance": {
+      "cost_usd": 0,
+      "created_at": "2026-09-27T00:00:00Z",
+      "perceiver_calls": 0,
+      "perceiver_model": null,
+      "prompt_sha256": null,
+      "raw_response_sha256": [],
+      "request_nonce": "b7b46a323fc425e4"
+    },
+    "record_id": "c29e2d10750b71dd2206d3862f5644405f2d3fbeaf2033660bc96a73aa1c11dd",
+    "revision": 1,
+    "schema": "oae-mve-observation-v5",
+    "sources": [
+      {
+        "depends_on": [],
+        "generator": {
+          "config_sha256": "f80b2ec3d5c79f1266b52f0a5927ed67eab356f07a03264f7df4bf85ca6c48bc",
+          "coordinates_exact": true,
+          "ddar_budget_s": 0,
+          "ddar_version": "unavailable:no-local-ddar",
+          "evaluator_version": "mve-algebraic-plane-v1-e1a",
+          "id": "mve-inhouse",
+          "seed": 0,
+          "version": "inhouse-plane-v1"
+        },
+        "id": "geo_999999",
+        "kind": "truth_artifact",
+        "path_hint": null,
+        "sha256": "e73c09eae36c4d22e5d2a89ba0c32e05d872760dc0a94ffff74d7e445e37eb8c"
+      }
+    ],
+    "stage": "ground_truth",
+    "versions": {
+      "calibration_lock": null,
+      "classifier_weights": null,
+      "code_sha": "0000000000000000000000000000000000000000",
+      "label_set": null,
+      "measurement_contract": null,
+      "predicate_registry": "v1"
+    }
+  },
+  "seed": 0,
+  "split": "fit"
+}

@@ -1,11 +1,11 @@
-"""WP-0b refusal boundary. Hosted mode is disabled pending Opus review and owner go."""
+"""WP-0b refusal boundary. Fixtures are offline; live activation requires reviewed HEAD."""
 
 from datetime import datetime, timezone
 import hashlib
 import json
 from pathlib import Path
 import time
-from mve.budget import WINDOW_POLICY
+from mve.budget import BudgetError, WINDOW_POLICY
 from mve.pricing import token_ceiling, PriceError
 from mve.preflight.probe_contract import ProbeRequest, ProbeRefused, inspect_reply
 from mve.preflight.probe_fixtures import FakeTransport
@@ -47,7 +47,15 @@ def verified_ceiling(ledger, request):
 
 
 def prepare_dispatch(
-    ledger, request, output, clock, *, attempt=PROBE_ID, phase="P0", wave="wp0b"
+    ledger,
+    request,
+    output,
+    clock,
+    *,
+    attempt=PROBE_ID,
+    phase="P0",
+    wave="wp0b",
+    prepare=None,
 ):
     ledger.reserve_tokens(
         attempt,
@@ -62,11 +70,13 @@ def prepare_dispatch(
         output.mkdir(parents=True, exist_ok=False)
         write_json(output / "request.json", request.manifest())
         (output / "image.png").write_bytes(request.image)
+        prepared = prepare() if prepare else None
         ledger.mark_dispatched(attempt, when=clock())
     except Exception:
         # The ledger itself refuses cancellation if dispatch was durably committed.
         ledger.cancel_unsent(attempt)
         raise
+    return prepared
 
 
 def receive(transport, request, output, timer):
@@ -202,13 +212,41 @@ def main():
     from mve.preflight.probe_offline import run_matrix
 
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--output", type=Path)
     parser.add_argument("--offline-fixture", action="store_true")
+    parser.add_argument("--live", action="store_true")
+    parser.add_argument("--owner-approval")
+    parser.add_argument("--reviewed-by-opus")
     args = parser.parse_args()
+    if args.live:
+        from mve.preflight.probe_live import run_live
+
+        if (
+            args.offline_fixture
+            or args.output
+            or not args.owner_approval
+            or not args.reviewed_by_opus
+        ):
+            parser.error(
+                "live requires both approval flags, no --output or --offline-fixture"
+            )
+        try:
+            report = run_live(
+                owner_approval=args.owner_approval,
+                reviewed_by_opus=args.reviewed_by_opus,
+            )
+        except BudgetError as exc:
+            parser.error(str(exc))
+        print(json.dumps(report, indent=2))
+        return 0 if report["status"] == "ok" else 1
+    if args.owner_approval or args.reviewed_by_opus:
+        parser.error("approval flags require --live")
     if not args.offline_fixture:
         parser.error(
             "hosted probe disabled pending Opus review and owner go; use --offline-fixture"
         )
+    if args.output is None:
+        parser.error("--output is required for --offline-fixture")
     report = run_matrix(args.output)
     print(
         json.dumps(
