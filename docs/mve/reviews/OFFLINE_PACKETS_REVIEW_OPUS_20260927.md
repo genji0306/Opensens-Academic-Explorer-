@@ -274,3 +274,21 @@ its mirror or its R-variants. Non-transverse and triple crossings are rejected. 
 Follow-ups: (1) `mve-oriented-pd-v1` breaks arcs at every crossing visit, unlike classical PD;
 any SnapPy/KnotTheory adapter must convert, never pass it straight to `snappy.Link()`;
 (2) document or align the `arc_labels` anchor (the first visit vs the underpass tie-break).
+
+## Addendum 12: WO-2 hypothesis cards + WO-3 spacing checks (cbe161e4248): PASS, merged
+
+909 passed plus 2 opt-in skips in a git worktree outside the sandbox. With `MVE_RUN_SLOW=1` the
+full v2 regression reproduces card #1's receipts (2 passed, 152 s). Hypotheses never authorise:
+`graph.reject_hypothesis_support` walks the `depends_on` closure and is called at every
+formalisation entry (formal, validation, IR, guards, emitter, runtime), with direct and transitive
+tests. Card hash covers `check_spec`, `prediction` and `primary_statistic`; revisions invalidate
+downstream; `preliminary` is in the lifecycle; human and model origin are structurally distinct;
+GO1 denominators count requested slots. Gaudin law via the Bornemann Fredholm quadrature;
+N_eff includes Λ; the Planck normaliser is analytic; a single frozen kill rule. Everything
+defaults to `nominal` / `inferential: false`. Odlyzko tables are sha256-verified from the cache
+and never copied.
+Note: `check_candidates` has no hypothesis guard because candidates are non-authorising; re-check
+if candidates ever gain a consumer.
+Next (need owner answers, plan r6 §9): WO-1 snapshot adapter (first modules), WO-4 observer
+runner (second model observer), WO-5 fleet/atlas contracts (ownership, exchange writes, status
+mapping), then the WO-6 pilot (owner go; ≈ 102 calls).
