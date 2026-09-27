@@ -303,12 +303,14 @@ def capture_one(context, root, job, versions, ocr):
         page.close()
 
 
-def run_browser(dist, out, chrome, ocr):
+def run_browser(dist, out, chrome, ocr, private):
     from importlib.metadata import version
     from playwright.sync_api import sync_playwright
 
     s.disk_guard(Path(__file__).resolve().parents[2] / "mve/generated", 120 * 1024**2)
-    profile = out / "browser-profile"
+    # The parent supplies one short, private runtime per invocation. Each repeat
+    # gets its own profile. Playwright emits --user-data-dir from the first arg.
+    profile = private / out.name
     profile.mkdir()
     with sync_playwright() as p:
         context = p.chromium.launch_persistent_context(
@@ -320,13 +322,19 @@ def run_browser(dist, out, chrome, ocr):
             locale="en-US",
             timezone_id="UTC",
             service_workers="block",
-            env={"PATH": "/usr/bin:/bin", "TMPDIR": str(profile)},
+            env={
+                "PATH": "/usr/bin:/bin",
+                "HOME": str(private / "h"),
+                "TMPDIR": str(private / "t"),
+            },
             args=[
                 "--use-angle=swiftshader",
                 "--enable-unsafe-swiftshader",
                 "--ignore-gpu-blocklist",
                 "--disable-breakpad",
                 "--disable-crash-reporter",
+                "--no-first-run",
+                "--no-default-browser-check",
                 "--disable-background-networking",
             ],
         )

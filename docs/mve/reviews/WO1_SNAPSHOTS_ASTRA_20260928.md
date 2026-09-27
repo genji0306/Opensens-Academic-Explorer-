@@ -6,9 +6,38 @@ No atlas/lab build, publish, download, hosted call, or source-worktree edit was 
 
 ## Delivery and validation boundary
 
+Isolation follow-up to `7233da17d5f` (2026-09-28): Opus reported **940 passed**
+outside the builder sandbox, but native capture failed inside the adapter's own
+profile: Chrome could not create its ProcessSingleton socket directory and tried
+to write Crashpad settings in the real `~/Library`. This was an adapter isolation
+configuration defect, not evidence of an already-running capture profile.
+
+The wrapper now allocates a fresh mode-0700 directory using `mkdtemp` via
+`TemporaryDirectory(prefix="mvewo1-", dir="/private/tmp")`. Its short `h` and `t`
+children supply HOME and TMPDIR to both the worker and Chrome. Separate `capture`
+and `repeat` profiles live inside it; Playwright's persistent-context
+`user_data_dir` argument emits `--user-data-dir` for Chrome. Crash reporter,
+Breakpad, first-run and default-browser checks are disabled. The sandbox permits
+writes only to this run's output directory and this exact private runtime subpath
+(plus the existing `/dev/null` exception); network remains denied. A runtime guard
+reserves 64 suffix bytes and requires the encoded socket path to stay below 100
+bytes. The private runtime is removed on success, probe failure, launch exception,
+and nonzero worker exit, before the source-tree audit runs.
+
+Follow-up validation: **34 passed, 1 skipped** in the focused fixture suite;
+combined Python coverage **98%** (rounded); Ruff and `git diff --check` pass.
+Tests assert the complete sandbox profile, private directory permissions, socket
+length bound, browser flags/environment/profile placement, fresh allocation and
+cleanup on each exit. The pre-existing disk budget and pathspec archive tests still
+pass. **No Chrome launch or native capture was attempted during this follow-up.**
+The full suite was not rerun here; 940 passed is Opus's reported prior result.
+The evidence JSON and older verification counts below describe the original packet,
+not this follow-up. Native capture and byte-identical repeat results still require
+Opus's retry with the command below.
+
 Implemented the C1 adapter, bounded archive preparation, native render adaptations,
 blinding, manifest validation, WO-2 source bindings, and isolation receipts. **Native
-browser capture remains unverified here.** Installed Chrome exited with
+browser capture remains unverified here.** During the original build, installed Chrome exited with
 `TargetClosedError`; nested `sandbox-exec` also fails with
 `sandbox_apply: Operation not permitted`. The authorized fallback is exercised:
 fixture HTML tests, actual Node execution of its planted canvas text and suppression
@@ -97,8 +126,9 @@ Every command archives into its newly created `mve/generated/.../stage`, then de
 that stage, including on failure. Only allowlisted regular files/directories extract;
 links/traversal and archives over 64 MiB fail. Before writes, free disk must be at
 least 5 GiB and projected generated usage below 500 MiB. Browser capture additionally
-runs under `sandbox-exec`: network denied, writes denied outside this worktree
-(except `/dev/null`). The worker uses a worktree-local profile/TMPDIR. All page
+runs under `sandbox-exec`: network denied, writes denied outside this run's output
+and fresh `/private/tmp/mvewo1-*` subpath (except `/dev/null`). The worker and Chrome
+use the short private HOME/TMPDIR and private browser profiles described above. All page
 requests are fulfilled from the archive by Playwright; remote/missing paths abort.
 No local HTTP listener or download is needed.
 
@@ -132,7 +162,7 @@ staged or committed; full-page images and future large artifacts remain ignored.
 
 ## Verification and exact commands for Opus
 
-Focused: **30 passed, 1 skipped**; Python statement coverage **98.98%**, branch
+Original packet (before this isolation follow-up): **30 passed, 1 skipped**; Python statement coverage **98.98%**, branch
 coverage **94.77%**, combined **97.89%** (every new Python file >90% combined).
 Inline browser JS is not claimed covered by the Python percentage; the text hook
 is executed with the offline HTML fixture in Node. Ruff passes.
@@ -149,11 +179,15 @@ quiescent for the source-tree comparison. This command does not build or publish
 cd "$HOME/Developer/Opensens/worktrees/oae-mve-wo1"
 df -k /
 PYTHONDONTWRITEBYTECODE=1 python3 -m mve.observer.snapshot_capture \
-  --output mve/generated/wo1-opus-native --repeat \
+  --output mve/generated/wo1-opus-private-runtime --repeat \
   --chrome '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 ```
 
 The output directory must be new; choose another `mve/generated/...` name on retry.
+Keep the hard disk limits: only pinned pathspec archives, `mve/generated` below
+500 MiB, and abort if free disk is below 5 GiB. The existing guards remain enabled;
+do not make a whole-repository archive for this retry. Browser runtime directories
+are short, temporary and removed after the worker exits.
 Do not bypass OS isolation if Chrome fails. Inspect private `browser.log` and the
 failure receipt. A successful run emits `capture/manifest.json`, owner/full PNGs,
 blind PNGs, data JSON, `repeat-verification.json`, source and isolation receipts,

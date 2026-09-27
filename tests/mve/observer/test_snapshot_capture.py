@@ -1,5 +1,8 @@
 import io
+import json
+import os
 from pathlib import Path
+import tempfile
 from types import SimpleNamespace
 from unittest.mock import Mock
 
@@ -8,6 +11,12 @@ import pytest
 
 from mve.observer import snapshot_capture as c, snapshot_render as r
 from mve.observer import snapshots as s
+
+
+@pytest.fixture
+def private_runtime():
+    with tempfile.TemporaryDirectory(prefix="mvewo1-", dir="/private/tmp") as root:
+        yield Path(root)
 
 
 def test_source_patches_fail_closed_and_expose_single_source():
@@ -46,11 +55,27 @@ def test_virtual_route_never_falls_back_to_network(tmp_path):
     route.abort.assert_called_once()
 
 
-def test_sandbox_profile_and_cli_restrictions(tmp_path):
-    profile = c.sandbox_profile(tmp_path)
-    assert "(deny network*)" in profile
-    assert "(deny file-write*)" in profile
-    assert str(tmp_path) in profile
+def test_sandbox_profile_and_cli_restrictions(tmp_path, private_runtime):
+    out = tmp_path / "mve/generated/capture"
+    profile = c.sandbox_profile(out, private_runtime)
+    # Exact equality prevents accidental broad write exceptions, including the
+    # whole worktree, real HOME, shared /tmp, or shared /private/tmp.
+    assert profile == (
+        "(version 1)\n(allow default)\n(deny network*)\n(deny file-write*)\n"
+        f"(allow file-write* (subpath {json.dumps(str(out.resolve()))}) "
+        f"(subpath {json.dumps(str(private_runtime))}))\n"
+        '(allow file-write-data (literal "/dev/null"))\n'
+    )
+    home, tmp = c.private_paths(private_runtime)
+    assert home.parent == tmp.parent == private_runtime
+    assert private_runtime.stat().st_mode & 0o777 == 0o700
+    assert len(os.fsencode(tmp)) + 1 + 64 < 100
+    socket = tmp / ".org.chromium.Chromium.XXXXXX/SingletonSocket"
+    assert len(os.fsencode(socket)) < 100
+    with pytest.raises(ValueError, match="socket-path"):
+        c.sandbox_profile(out, Path("/private/tmp/mvewo1-" + "x" * 80))
+    with pytest.raises(ValueError, match="private"):
+        c.sandbox_profile(out, Path("/private/tmp"))
     assert c.parse_args(["--prepare-only"]).prepare_only
     with pytest.raises(ValueError):
         c.output_path(tmp_path, "../escape")
@@ -127,7 +152,7 @@ def test_masks_and_nonblank_detection():
         r.assert_nonblank(out.getvalue())
 
 
-def test_sandbox_denies_write_to_outside_fixture(tmp_path):
+def test_sandbox_denies_write_to_outside_fixture(tmp_path, private_runtime):
     """Real OS denial test; nested-sandbox refusal is a named skip, not a pass."""
     import shutil
     import subprocess
@@ -144,7 +169,7 @@ def test_sandbox_denies_write_to_outside_fixture(tmp_path):
         [
             "sandbox-exec",
             "-p",
-            c.sandbox_profile(allowed),
+            c.sandbox_profile(allowed, private_runtime),
             sys.executable,
             "-c",
             code,
@@ -215,11 +240,12 @@ def test_javascript_route_and_png_nonblank(tmp_path):
     r.assert_nonblank(out.getvalue())
 
 
-def test_worker_and_browser_orchestration(tmp_path, monkeypatch):
+def test_worker_and_browser_orchestration(tmp_path, monkeypatch, private_runtime):
     args = c.parse_args(["--worker", "--repeat"])
     with pytest.raises(ValueError, match="parent"):
         c.run_worker(args, tmp_path)
     monkeypatch.setenv("MVE_WO1_SANDBOX_WORKER", "1")
+    monkeypatch.setenv("MVE_WO1_PRIVATE_DIR", str(private_runtime))
     manifest = {
         "snapshots": [
             {
@@ -252,7 +278,7 @@ def test_worker_and_browser_orchestration(tmp_path, monkeypatch):
         c.run_worker(args, tmp_path)
 
 
-def test_run_browser_lifecycle(tmp_path, monkeypatch):
+def test_run_browser_lifecycle(tmp_path, monkeypatch, private_runtime):
     import playwright.sync_api
 
     context = Mock()
@@ -266,12 +292,75 @@ def test_run_browser_lifecycle(tmp_path, monkeypatch):
     monkeypatch.setattr(s, "disk_guard", lambda *a: None)
     monkeypatch.setattr(s, "validate_manifest", lambda *a: None)
     monkeypatch.setattr(r, "capture_one", lambda context, out, job, *args: job)
-    manifest = r.run_browser(tmp_path, tmp_path, "chrome", None)
+    out = tmp_path / "capture"
+    out.mkdir()
+    manifest = r.run_browser(tmp_path, out, "chrome", None, private_runtime)
     assert len(manifest["snapshots"]) == 8
     context.close.assert_called_once()
     kwargs = launcher.chromium.launch_persistent_context.call_args.kwargs
     assert kwargs["device_scale_factor"] == 1 and kwargs["service_workers"] == "block"
     assert "--use-angle=swiftshader" in kwargs["args"]
+    assert {
+        "--disable-crash-reporter",
+        "--disable-breakpad",
+        "--no-first-run",
+        "--no-default-browser-check",
+    }.issubset(kwargs["args"])
+    # Persistent-context user_data_dir is Playwright's --user-data-dir flag.
+    assert launcher.chromium.launch_persistent_context.call_args.args == (
+        str(private_runtime / "capture"),
+    )
+    assert kwargs["env"] == {
+        "PATH": "/usr/bin:/bin",
+        "HOME": str(private_runtime / "h"),
+        "TMPDIR": str(private_runtime / "t"),
+    }
+
+
+@pytest.mark.parametrize("failure", [None, "probe", "returncode", "launch"])
+def test_private_runtime_cleanup_and_worker_environment(tmp_path, monkeypatch, failure):
+    """No browser: inspect the subprocess boundary and all cleanup exits."""
+    seen = []
+
+    def probe(profile, files):
+        # Recover the exact fresh path from the generated allowlist.
+        import re
+
+        runtime = Path(json.loads(re.findall(r'\(subpath ("[^"]+")\)', profile)[1]))
+        seen.append(runtime)
+        assert runtime.exists()
+        if failure == "probe":
+            raise ValueError("fixture probe failure")
+
+    def run(command, **kwargs):
+        runtime = seen[-1]
+        env = kwargs["env"]
+        assert command[:2] == ["sandbox-exec", "-p"]
+        assert command[2] == c.sandbox_profile(tmp_path, runtime)
+        assert command[-1] == "--repeat"
+        assert env["MVE_WO1_PRIVATE_DIR"] == str(runtime)
+        assert env["HOME"] == str(runtime / "h")
+        assert env["TMPDIR"] == str(runtime / "t")
+        assert (runtime / "h").is_dir() and (runtime / "t").is_dir()
+        (runtime / "t/fixture-socket").write_text("cleanup fixture")
+        if failure == "launch":
+            raise OSError("fixture launch failure")
+        return SimpleNamespace(returncode=int(failure == "returncode"))
+
+    monkeypatch.setattr(c, "readonly_probe", probe)
+    monkeypatch.setattr(c.subprocess, "run", run)
+    args = c.parse_args(["--repeat"])
+    repos = {"atlas": tmp_path / "atlas", "lab": tmp_path / "lab"}
+    receipt = {}
+    if failure:
+        with pytest.raises((ValueError, OSError)):
+            c.isolated_capture(args, tmp_path, repos, receipt)
+    else:
+        c.isolated_capture(args, tmp_path, repos, receipt)
+        c.isolated_capture(args, tmp_path, repos, receipt)
+        assert seen[0] != seen[1]
+    assert seen and all(not path.exists() for path in seen)
+    assert ("outside_write_probe" in receipt) == (failure != "probe")
 
 
 def test_capture_failures_close_page(tmp_path):

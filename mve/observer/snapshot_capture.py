@@ -13,6 +13,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import tempfile
 
 from mve.observer import snapshots as s
 from mve.observer import snapshot_render as render
@@ -31,13 +32,29 @@ def output_path(worktree, value):
     return p
 
 
-def sandbox_profile(worktree):
-    # deny-default for writes and network; allow ordinary read/process/Mach APIs
-    # needed by installed Chrome. No /tmp write exception or external HOME.
-    path = json.dumps(str(Path(worktree).resolve()))
+def private_paths(private):
+    private = Path(private).resolve()
+    if private.parent != Path("/private/tmp") or not private.name.startswith("mvewo1-"):
+        raise ValueError(
+            "browser runtime must be a private /private/tmp/mvewo1-* directory"
+        )
+    home, tmp = private / "h", private / "t"
+    # Reserve 64 bytes for Chromium's scoped directory and SingletonSocket name.
+    # Keep the full encoded Unix socket path strictly below 100 bytes.
+    if len(os.fsencode(tmp)) + 1 + 64 >= 100:
+        raise ValueError("browser runtime exceeds socket-path length bound")
+    return home, tmp
+
+
+def sandbox_profile(out, private):
+    # Only this run's output and freshly allocated runtime are writable; source
+    # worktrees, the real HOME and the rest of /private/tmp remain denied.
+    private_paths(private)
+    output = json.dumps(str(Path(out).resolve()))
+    runtime = json.dumps(str(Path(private).resolve()))
     return (
         "(version 1)\n(allow default)\n(deny network*)\n(deny file-write*)\n"
-        f"(allow file-write* (subpath {path}))\n"
+        f"(allow file-write* (subpath {output}) (subpath {runtime}))\n"
         '(allow file-write-data (literal "/dev/null"))\n'
     )
 
@@ -122,14 +139,18 @@ def run_worker(args, out):
     # its environment; it still only writes to validated generated output paths.
     if os.environ.get("MVE_WO1_SANDBOX_WORKER") != "1":
         raise ValueError("worker requires sandboxed parent")
+    private = Path(os.environ["MVE_WO1_PRIVATE_DIR"])
+    private_paths(private)
     dist = out / "stage/atlas/vendor/zeta-explorer/dist"
     first = out / "capture"
     first.mkdir()
-    a = render.run_browser(dist, first, args.chrome, shutil.which("tesseract"))
+    a = render.run_browser(dist, first, args.chrome, shutil.which("tesseract"), private)
     if args.repeat:
         second = out / "repeat"
         second.mkdir()
-        b = render.run_browser(dist, second, args.chrome, shutil.which("tesseract"))
+        b = render.run_browser(
+            dist, second, args.chrome, shutil.which("tesseract"), private
+        )
 
         def hashes(manifest):
             return [
@@ -148,6 +169,52 @@ def run_worker(args, out):
         )
         shutil.rmtree(second)
     return 0
+
+
+def isolated_capture(args, out, repos, receipt):
+    # TemporaryDirectory uses mkdtemp (mode 0700). Cleanup also covers probe and
+    # launch failures, before the caller attempts its source-tree audit.
+    with tempfile.TemporaryDirectory(prefix="mvewo1-", dir="/private/tmp") as root:
+        private = Path(root)
+        home, tmp = private_paths(private)
+        home.mkdir()
+        tmp.mkdir()
+        profile = sandbox_profile(out, private)
+        readonly_probe(
+            profile,
+            [repos["atlas"] / s.PATHS["atlas"][2], repos["lab"] / "dist/index.html"],
+        )
+        receipt["outside_write_probe"] = "denied_for_both_repos"
+        command = [
+            "sandbox-exec",
+            "-p",
+            profile,
+            sys.executable,
+            "-m",
+            "mve.observer.snapshot_capture",
+            "--worker",
+            "--output",
+            args.output,
+            "--chrome",
+            args.chrome,
+        ]
+        if args.repeat:
+            command.append("--repeat")
+        env = {
+            **os.environ,
+            "MVE_WO1_SANDBOX_WORKER": "1",
+            "MVE_WO1_PRIVATE_DIR": str(private),
+            "PYTHONDONTWRITEBYTECODE": "1",
+            "HOME": str(home),
+            "TMPDIR": str(tmp),
+        }
+        # Logs stay private; do not echo installed paths or inherited values.
+        with (out / "browser.log").open("w") as log:
+            result = subprocess.run(
+                command, cwd=WORKTREE, env=env, stdout=log, stderr=log
+            )
+        if result.returncode:
+            raise ValueError("isolated capture failed; inspect private browser.log")
 
 
 def main(argv=None):
@@ -183,43 +250,7 @@ def main(argv=None):
                 raise ValueError(
                     "OS write/network isolation unavailable; capture refused"
                 )
-            profile = sandbox_profile(WORKTREE)
-            readonly_probe(
-                profile,
-                [
-                    repos["atlas"] / s.PATHS["atlas"][2],
-                    repos["lab"] / "dist/index.html",
-                ],
-            )
-            receipt["outside_write_probe"] = "denied_for_both_repos"
-            command = [
-                "sandbox-exec",
-                "-p",
-                profile,
-                sys.executable,
-                "-m",
-                "mve.observer.snapshot_capture",
-                "--worker",
-                "--output",
-                args.output,
-                "--chrome",
-                args.chrome,
-            ]
-            if args.repeat:
-                command.append("--repeat")
-            env = {
-                **os.environ,
-                "MVE_WO1_SANDBOX_WORKER": "1",
-                "PYTHONDONTWRITEBYTECODE": "1",
-                "TMPDIR": str(out),
-            }
-            # Logs stay private; do not echo installed paths or inherited values.
-            with (out / "browser.log").open("w") as log:
-                result = subprocess.run(
-                    command, cwd=WORKTREE, env=env, stdout=log, stderr=log
-                )
-            if result.returncode:
-                raise ValueError("isolated capture failed; inspect private browser.log")
+            isolated_capture(args, out, repos, receipt)
             receipt["capture"] = "captured"
     except Exception as exc:
         receipt["capture"] = "failed"
@@ -234,12 +265,9 @@ def main(argv=None):
         )
         if archive_before is not None:
             receipt["archive_unchanged"] = archive_before == s.tree_listing(stage)
-        # Delete only this run's fresh archive/profile dirs, never a caller's existing output.
+        # Delete only this run's fresh archive, never a caller's existing output.
         if stage.exists():
             shutil.rmtree(stage)
-        for folder in (out / "capture/browser-profile", out / "repeat/browser-profile"):
-            if folder.exists():
-                shutil.rmtree(folder)
         receipt["generated_bytes"] = s.tree_bytes(generated)
         write_json(out / "receipt.json", receipt)
         if (
