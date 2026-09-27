@@ -3007,6 +3007,126 @@
           "sha256": "c6734e5964178841b770e49c80c12c988e432099ea9b57ccf90effbf959e5099"
         }
       ]
+    },
+    "WP-9b-WP-11b": {
+      "base_git_sha": "ea621a8918e5bb22c5ed53a1d3c30bfb5b09f7d7",
+      "campaign_ledger_status": "absent from evidence commit; known P0 exposure 268 micro-USD carried once",
+      "combined_branch_coverage_percent": 99,
+      "evidence_git_sha": "ea621a8918e5bb22c5ed53a1d3c30bfb5b09f7d7",
+      "files": [
+        {
+          "path": "docs/mve/MVE_PLAN.md",
+          "sha256": "f073240be638b9225b5f6f33da4bbe34ef75d2ba71087da7b39b2ab9d9b61908"
+        },
+        {
+          "path": "docs/mve/REPORTING.md",
+          "sha256": "eb7782bb78681494cc2aaa347d59c79c4fc1e989703784392b03dee92f67b024"
+        },
+        {
+          "path": "docs/mve/reports/SUMMARY.json",
+          "sha256": "8d7aa3cd779fc385390cc739e84cbb1d2101a960b96b5848ae2576f364ff1ccd"
+        },
+        {
+          "path": "docs/mve/reports/SUMMARY.md",
+          "sha256": "4fc220d52ff56394f0556fb6cb5be589a740899ae272c0a838d35c25948d6d7a"
+        },
+        {
+          "path": "docs/mve/reviews/OFFLINE_PACKETS_REVIEW_OPUS_20260927.md",
+          "sha256": "5546164a1a8dfe9b727da17b8c5b11faf84c032b928e185799ce9198f61e3bbe"
+        },
+        {
+          "path": "docs/mve/reviews/REPORTS_ASTRA_20260928.md",
+          "sha256": "d4f81ee9a9ce96a8e3314c76f1ed818f82331d684e49050a34980f85c864ebc7"
+        },
+        {
+          "path": "docs/mve/reviews/WP2_CORPUS_RECEIPT_20260927.json",
+          "sha256": "4795282bf1aad58553744316a518fa326eb8178de3d8ca3e9652370635d68db8"
+        },
+        {
+          "path": "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json",
+          "sha256": "fcf71b95df8dac21e240607d57d333aaad2e841fe843d47c01dea4ba7e569f54"
+        },
+        {
+          "path": "docs/mve/reviews/wp0b-live/ledger.json",
+          "sha256": "b6a03a43f9bff4907d15b3a27f609dc9b2e12b0dcc9830170c02f5388c11553c"
+        },
+        {
+          "path": "docs/mve/reviews/wp0b-live/receipt.json",
+          "sha256": "f328968f5e3ef6ebacff4cc1226b7e90485c9eefaff0722c5285aa1f88e18cc8"
+        },
+        {
+          "path": "mve/classifier/spike_receipt.json",
+          "sha256": "c500766cafb72ad782be2ecd41fa05af60d90e86f10d46a12f5d797d06ccc9a0"
+        },
+        {
+          "path": "mve/evaluation/scoring.py",
+          "sha256": "ecea445caf42bfff81d5784d8100a9d794b4da6b644c486dc5d79f20d6151e60"
+        },
+        {
+          "path": "mve/lean/artifacts/g3-taskset/g3.json",
+          "sha256": "e2f13af8c85d41020ca96f5041bbc55bd9c47f44a00671dfbd687e98a8f69853"
+        },
+        {
+          "path": "mve/lean/artifacts/g3-taskset/references.json",
+          "sha256": "b16bf256dc447cc425de7546d676d94a4b66cf16685b0a97c6769cfbed2fb03d"
+        },
+        {
+          "path": "mve/lean/artifacts/g3-taskset/tasks.json",
+          "sha256": "19b833bf4c05e0cdb8e60684a239c1eb6c4083c9dfca6528eaf8a1611b2591da"
+        },
+        {
+          "path": "mve/preflight/results/report.json",
+          "sha256": "f5e55b7b10e57f4c2fcf0695c3a7b7a182edff6dbee809a15afba85ccc3051a5"
+        },
+        {
+          "path": "mve/reporting/__init__.py",
+          "sha256": "0cb433020740f843e6ec09dcee0a46738a7460c70a02b277e136e8a4fcbcae18"
+        },
+        {
+          "path": "mve/reporting/__main__.py",
+          "sha256": "57565dee6d1793fb900b0d14063a0040c65b45e8769a1b682c8655aae726e12f"
+        },
+        {
+          "path": "mve/reporting/current.py",
+          "sha256": "943b3e03c04941f2bb24d0ee19c67b269a23f4c2e40d8a474b9cb7225e9993e4"
+        },
+        {
+          "path": "mve/reporting/gates.py",
+          "sha256": "d1eafaa996e19ab5a25b97ae954f8372a3ab83399fca4275919c4e19492c0bfe"
+        },
+        {
+          "path": "mve/reporting/ledger.py",
+          "sha256": "a7436928a8f2b8cec4e79ac21fc09bb408625114e7c06479cc97aa4ca1a9a453"
+        },
+        {
+          "path": "mve/reporting/render.py",
+          "sha256": "0d89cb41709faa1bacc604d1b038d3a3a6a8015fcf69fd7c15b88c64237d44d1"
+        },
+        {
+          "path": "mve/reporting/sources.py",
+          "sha256": "660a9e019c2644f00011320fdf8bb8f5613e7e2347af429c49d370c500ac155b"
+        },
+        {
+          "path": "mve/reporting/tables.py",
+          "sha256": "c34343beca40a950e1e081676cb5be9c559e9ce96c60b5efdafba5c89f1b3ad0"
+        },
+        {
+          "path": "tests/mve/test_reporting.py",
+          "sha256": "32302b24b441c770252b31f5836a0ba84d78a131ed7edf7aa51bd833527b56e0"
+        }
+      ],
+      "full_suite": {
+        "failed_nested_sandbox": 6,
+        "passed": 778,
+        "skipped": 0
+      },
+      "g2_status": "not established",
+      "g3_status": "not established: pending human rubric (0/50 reviews)",
+      "hosted_calls": 0,
+      "mode": "offline_only",
+      "new_external_dependencies": [],
+      "reporting_tests": 59,
+      "statement_coverage_percent": 100
     }
   },
   "schema": "mve-deps-v1"
