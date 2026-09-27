@@ -1204,6 +1204,63 @@
       },
       "schema": "mve-deps-v1"
     },
+    "WP-0b-offline-refusal": {
+      "actual_api_cost_usd": "0",
+      "base_git_sha": "d9066f6e1aaca15823066c97865aa39a310a0588",
+      "files": [
+        {
+          "path": "mve/budget.py",
+          "sha256": "51e7db89ad021143b86d83857cfa9287704305f7c0343a98744fd044f417bff0"
+        },
+        {
+          "path": "mve/money.py",
+          "sha256": "0503706ad4f3f1f6308e3f9a6b58f68b303b0fc9ded526f818d2aa2390ea3b50"
+        },
+        {
+          "path": "mve/preflight/probe.py",
+          "sha256": "7e1ddde322738a6dccc14d6c0b1cc3f4f5595fa4cf82b381fe4a81948ebfab82"
+        },
+        {
+          "path": "mve/preflight/probe_contract.py",
+          "sha256": "5055108120ce9a1c511cd06da24d2190391a7a7558a7ceef156eb2508294a340"
+        },
+        {
+          "path": "mve/preflight/probe_fixtures.py",
+          "sha256": "bb5448bf2ce59726d5b33334a7c0136a472e716265b8f1cd3433cf780f0a287e"
+        },
+        {
+          "path": "mve/preflight/probe_offline.py",
+          "sha256": "fae35edca1782af03221ceb4a4ebe5732f96dfc0b6e9d30a7dd9e735adfcac98"
+        },
+        {
+          "path": "mve/pricing.py",
+          "sha256": "de913a7451410bd52c10945b679d6876b8589e61b4669352cb08e4d2570107e3"
+        },
+        {
+          "path": "tests/mve/test_probe_cli.py",
+          "sha256": "ebff14a096d26a9c4dacc7a80c50d385783f54c485d40dcef14cb6e1c67e7c94"
+        },
+        {
+          "path": "tests/mve/test_probe_failures.py",
+          "sha256": "3bcaa217cf3a146bfd3c363c2c5706793ef5af96c4ead51d5e9162f45823c01e"
+        },
+        {
+          "path": "tests/mve/test_probe_guards.py",
+          "sha256": "39ca17f98577d296ff0f82bc06121982eee34c786821baef2c87736aac9e9361"
+        }
+      ],
+      "hosted_calls": 0,
+      "live_cost_model": "pending real probe after review and owner go",
+      "live_price_verified": false,
+      "receipts": [
+        {
+          "path": "docs/mve/reviews/WP0B_OFFLINE_REFUSAL_RECEIPT_20260927.json",
+          "sha256": "224d73f9339916157817e28ba8db4f744e7d40f32ca87d140040170eafc79db9"
+        }
+      ],
+      "status": "offline refusal path only; hosted mode disabled pending Opus review and owner go",
+      "vendor_window_verified": false
+    },
     "WP-1": {
       "base_git_sha": "5645250003f129473919f4f32984c68a86e1c477",
       "files": [
