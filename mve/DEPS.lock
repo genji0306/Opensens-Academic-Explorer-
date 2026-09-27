@@ -1514,6 +1514,504 @@
       "note": "Review fixes 1-3 plus diagnostic wording 4. These source revisions supersede matching original WP-1 file pins; original packet receipts remain intact.",
       "schema": "mve-deps-v1"
     },
+    "WP-10": {
+      "base_git_sha": "1e6db728bd0a674738e1a89cc9522ed724525725",
+      "files": [
+        {
+          "path": "docs/mve/MVE_PLAN.md",
+          "sha256": "f073240be638b9225b5f6f33da4bbe34ef75d2ba71087da7b39b2ab9d9b61908"
+        },
+        {
+          "path": "docs/mve/REPORTING.md",
+          "sha256": "4a17f3a4ee3e6d7ce2a08ce1b7b2bcd200f4398bb72d4d34c1c8fb0a98716f08"
+        },
+        {
+          "path": "docs/mve/TOPOLOGY.md",
+          "sha256": "d9df94bbb4bef9cdf0db01bc0be8623fac4304975a60cf80d4a85960272e6ec5"
+        },
+        {
+          "path": "docs/mve/reviews/OFFLINE_PACKETS_REVIEW_OPUS_20260927.md",
+          "sha256": "01d05c2e4c3b79b86c8ccab76edcf356d462ae706314bcc1318459804eac6aba"
+        },
+        {
+          "path": "docs/mve/reviews/WP10_TOPOLOGY_ASTRA_20260928.md",
+          "sha256": "2f258eb8cd0803bbfe326d8359bf99ffc8ecf1ffff340b96cbc46ea56605d989"
+        },
+        {
+          "path": "mve/evaluation/splits.py",
+          "sha256": "367ff90790a7e5745cf711577888e30ec7496ec9d954c0f67e0ed503e72f45c9"
+        },
+        {
+          "path": "mve/formalizer/runtime.py",
+          "sha256": "c1ebe550b392f1a4e1ccca75b4bcedb9a5feb835480c2569971667f874e7e857"
+        },
+        {
+          "path": "mve/lean/lock.json",
+          "sha256": "4286213ae6b98e8f9b94882487c634392e9c21eac4e7709f257cd6e4bec297a9"
+        },
+        {
+          "path": "mve/reporting/current.py",
+          "sha256": "6e4973c3982899518e8c3acccc35eb04e8e495f8e6e4bf2424ab5e301564bd97"
+        },
+        {
+          "path": "mve/reporting/render.py",
+          "sha256": "1ed75ceacb78628dd04bfb377a0c7f9d527c555759adc0310c6f9ee74d5ee13a"
+        },
+        {
+          "path": "mve/reporting/topology.py",
+          "sha256": "924aaa1349796d2784e38fb21e62c1351cea84f63530184142968869506045f5"
+        },
+        {
+          "path": "mve/topology/__init__.py",
+          "sha256": "e9faa60ed46864451b370d1a5d82855ebc374569fa7b78bd411dcd42c7d65b25"
+        },
+        {
+          "path": "mve/topology/__main__.py",
+          "sha256": "c5bc5d92f738fda1f91d2c1eac433e12a3c642f95791151c82f5a638a992386b"
+        },
+        {
+          "path": "mve/topology/artifacts/certificate.json",
+          "sha256": "26b671059793f8468b83a4b6bf84090df7539fdfa4cfbb7766916956ba87c7b6"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/figure_eight-base.json",
+          "sha256": "8ed035ed56963adf4a792e1ec496998c4be137e398618443765ba3d2ff6fd0f6"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/figure_eight-mirror.json",
+          "sha256": "5d8b09e15f474ffa7f51c19cbba6153383ade389ba5409c22bb36559e9606180"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/figure_eight-near_miss.json",
+          "sha256": "d63b90ead85c89a998afa353faf084dc40c8a7df165eef8ecd8eb66825d2f6dd"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/figure_eight-r1.json",
+          "sha256": "97656a3a3fdfffe34fc99a6638d4ef4a2c631d084273e15ecd2effccf1535436"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/figure_eight-r1_negative.json",
+          "sha256": "a0d2ea0f8b3692f1dfeef7d87079f2e18542d1fb5bb5195fe7dc174879365f0e"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/figure_eight-r2.json",
+          "sha256": "25926c28e286ee3c147858145d66063f080ec5d9844d4476b49542f40eef9ab4"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/hopf-base.json",
+          "sha256": "34f2881e27b45709dc2a5f8cf999f6c0e27035d96fd556ae03693d8a21d9bf5c"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/hopf-mirror.json",
+          "sha256": "d4121ee90754491d111c440a53b680d4733fdf97639577cf22e08ffce774563f"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/hopf-near_miss.json",
+          "sha256": "9831dd569bff0327d63a03dcd5e362afbf848951ba1d2b6218fca9ebd36031f3"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/hopf-r1.json",
+          "sha256": "624902f9a01b9e249f783e5051eef3ca981d094fcf5ed45e9c8c7c5932668b2f"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/hopf-r1_negative.json",
+          "sha256": "2e600a1822ce6867a32f261bc92e13e8784d59e96153a7db6df36c9610f0041f"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/hopf-r2.json",
+          "sha256": "0ac9703a11766c33d29b50c44f34f1fc9256954620e592c0ea5e72cfe2490d22"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/trefoil-base.json",
+          "sha256": "fb82e85b3ce5b2c6ea8a20f0df35a23e20b7a8dd1b5cc44adc1c91a8d3581f5d"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/trefoil-mirror.json",
+          "sha256": "39e2d39696876b7fa2353516eef1828b47dc365719a13c19844ad9c383881775"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/trefoil-near_miss.json",
+          "sha256": "a1505f7e38f7004cbe2f9e8a116c2f09c3d5b9d74c683af6a336de6ed875c79f"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/trefoil-r1.json",
+          "sha256": "a26d300f64436dfdef9389579c643dee1b2b63e5922e4c486f5e2cfb084e30b7"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/trefoil-r1_negative.json",
+          "sha256": "efeb0a006c00ebbb2574c0c3a0faed49664f0f017353073cec42ed8707e368d6"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/trefoil-r2.json",
+          "sha256": "5366cca43022f8a015492b869d9420703864a21168b41b5ab99563c949269f0d"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/unknot-base.json",
+          "sha256": "b36e2d52ae3109c9bc8385f7ddec3a1b74647464c99c6e99768db2d24da9d836"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/unknot-mirror.json",
+          "sha256": "c714ebd02585cc1399d2f5ca8ae97d9b53222faef56cba3ce7cde16672f40c33"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/unknot-near_miss.json",
+          "sha256": "f96b839cf4ecb0a56311a33edb418940c0bae0116500186b7c8e31bb1db58cc6"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/unknot-r1.json",
+          "sha256": "adb10e8dcf5ed92920cf89c2b1df2ef1ac05f330f465d0fb9a609e2f1ff75ef4"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/unknot-r1_negative.json",
+          "sha256": "acec1fbc9454712cbed49f23d675b1889e1baba2fe978c1ac02e694510340313"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/unknot-r2.json",
+          "sha256": "fbc55da54bfbe68686ea0fa414ffa6673b0aa3a69081ff259d1c3f2a8be7baad"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/unlink-base.json",
+          "sha256": "f36a320755af10649b3fecf9b8a92efb47fd729b79d26d7b4e69a1d3edebd7ca"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/unlink-mirror.json",
+          "sha256": "aefc85fd0a9903c0cde1066fd5dec052600db603787b46c51430517a45e45e99"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/unlink-near_miss.json",
+          "sha256": "1bd574e3c4d56a0209c98c615e7103c949e59d3f1efbef0a10218871f915dedc"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/unlink-r1.json",
+          "sha256": "db1309d51467d665db6e0069032ec10da9ebad8be1fdf3fe62f64ebc238d7795"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/unlink-r1_negative.json",
+          "sha256": "2d2d58cb27f4343c9802484f666957c73af7d89958b16d52a003bcd43d6fb7fb"
+        },
+        {
+          "path": "mve/topology/artifacts/geometry/unlink-r2.json",
+          "sha256": "bddf8f39ddd8ee8cf95b4eaa77cc464308542c8e1e3a09b5393d66d553d9333d"
+        },
+        {
+          "path": "mve/topology/artifacts/images/figure_eight-base.png",
+          "sha256": "de89df377cc79219816c1697e86bb8995c69985805e6af6df5747b2eecd1a0bc"
+        },
+        {
+          "path": "mve/topology/artifacts/images/figure_eight-mirror.png",
+          "sha256": "bd5b221a82dacbb041d100d4bd9f51192be13ecd6e9f90401a0bf2751ea680c8"
+        },
+        {
+          "path": "mve/topology/artifacts/images/figure_eight-near_miss.png",
+          "sha256": "994e43c3734b4b613a97f4d2ad76c21e72adbe9d3f5c83d829105640397279fa"
+        },
+        {
+          "path": "mve/topology/artifacts/images/figure_eight-r1.png",
+          "sha256": "bfc9643985ed88aaa3482df91ffeb58bcd3e10d17f38f60fb2f1ca5c15e720ef"
+        },
+        {
+          "path": "mve/topology/artifacts/images/figure_eight-r1_negative.png",
+          "sha256": "4858755b6275d4ed834ace7ba8d867d8a003a26d5e97bf5d6e6216499e4f5992"
+        },
+        {
+          "path": "mve/topology/artifacts/images/figure_eight-r2.png",
+          "sha256": "342fb31ae85036ebf13dc72c49f27c3d382d51a3e75e7a171b6749f29f3c9bd0"
+        },
+        {
+          "path": "mve/topology/artifacts/images/hopf-base.png",
+          "sha256": "7abba01b65fb7ae18bd8915156c82bc836b33662da132b0dccc30ea23b643f8e"
+        },
+        {
+          "path": "mve/topology/artifacts/images/hopf-mirror.png",
+          "sha256": "93b8bdb08267e657d736091e92b85db3be9f3c8a71e3ab201540f7e1ca8f9b00"
+        },
+        {
+          "path": "mve/topology/artifacts/images/hopf-near_miss.png",
+          "sha256": "b18354d5f00847b162abbfa9b046d47f5059f8239b6ccb5361a655053ca398d0"
+        },
+        {
+          "path": "mve/topology/artifacts/images/hopf-r1.png",
+          "sha256": "73941238ae7d8c2167d466e4eee87bd0f9561b65ea195746acd6fb90fff20759"
+        },
+        {
+          "path": "mve/topology/artifacts/images/hopf-r1_negative.png",
+          "sha256": "017f63a09be6050ce9d6a306b62360d68772ad5d383b7bc8f36f86b922dda968"
+        },
+        {
+          "path": "mve/topology/artifacts/images/hopf-r2.png",
+          "sha256": "1f4535dec8317c98aacced4cd1509a087b6114f4504f3401ff1d7f058bc3dab2"
+        },
+        {
+          "path": "mve/topology/artifacts/images/trefoil-base.png",
+          "sha256": "3d93fcf03e0f8f87bec8d791591fb1cce5263e4db3e733e3d980d36a6de48cb5"
+        },
+        {
+          "path": "mve/topology/artifacts/images/trefoil-mirror.png",
+          "sha256": "a057e96f690a2b852515757d239eac6e4d5c01b5e42b7fa6e5a4a9a2a924d60b"
+        },
+        {
+          "path": "mve/topology/artifacts/images/trefoil-near_miss.png",
+          "sha256": "9d15abf95beb82612fe0027916254f8db129f9a9b0a86a56837e6e0eb4609b44"
+        },
+        {
+          "path": "mve/topology/artifacts/images/trefoil-r1.png",
+          "sha256": "f26e464406f7f592ff38ddf30da97375a0c8e6999a34f1461f205c57faf1dc46"
+        },
+        {
+          "path": "mve/topology/artifacts/images/trefoil-r1_negative.png",
+          "sha256": "b4d689eb7bb83edfc517b2adb85bdef305d81a62729f7d58e333c718ad3c02d1"
+        },
+        {
+          "path": "mve/topology/artifacts/images/trefoil-r2.png",
+          "sha256": "a8f85cfbcc2af225652d71cfe337536c63f4398d7940f2d99fa945a0b8136d15"
+        },
+        {
+          "path": "mve/topology/artifacts/images/unknot-base.png",
+          "sha256": "48fa2a2958e8d77793f93a0a772769ddf870ec03b5e635eca5d6c29062371df8"
+        },
+        {
+          "path": "mve/topology/artifacts/images/unknot-mirror.png",
+          "sha256": "48fa2a2958e8d77793f93a0a772769ddf870ec03b5e635eca5d6c29062371df8"
+        },
+        {
+          "path": "mve/topology/artifacts/images/unknot-near_miss.png",
+          "sha256": "693e124f3ab1cba84a6cdd07821a7a9629cd5529ae4f6cfae44bf6a26d883690"
+        },
+        {
+          "path": "mve/topology/artifacts/images/unknot-r1.png",
+          "sha256": "01e0cb29a3472251fd4dd77b62c97cba7c4a171d12b50725e42cb31a9e5cc8b4"
+        },
+        {
+          "path": "mve/topology/artifacts/images/unknot-r1_negative.png",
+          "sha256": "27a7df4f987699bdd9fd1b071a4a4ea3722e724b7a0daf735ed5eafc3221cc7a"
+        },
+        {
+          "path": "mve/topology/artifacts/images/unknot-r2.png",
+          "sha256": "f7ba9321a00e3cf74681cc9ea176789ead3a8c5e25e75939d03b2b7012d3e3ac"
+        },
+        {
+          "path": "mve/topology/artifacts/images/unlink-base.png",
+          "sha256": "d2eec54956101c27181e6f52231c124663460c1d9701e76445242bd7420193c0"
+        },
+        {
+          "path": "mve/topology/artifacts/images/unlink-mirror.png",
+          "sha256": "d2eec54956101c27181e6f52231c124663460c1d9701e76445242bd7420193c0"
+        },
+        {
+          "path": "mve/topology/artifacts/images/unlink-near_miss.png",
+          "sha256": "19955c51c31a22783136ce0ddd0bb854a05a3bb73a8697bae42a4804ac9fe412"
+        },
+        {
+          "path": "mve/topology/artifacts/images/unlink-r1.png",
+          "sha256": "bd425e20c36692bc44490bae0ce4ec41f5cc6728484d1abbbd8b13ed1df43e13"
+        },
+        {
+          "path": "mve/topology/artifacts/images/unlink-r1_negative.png",
+          "sha256": "f05a9fea6ae50133474923466423261f1843fe9efdb92436ab01e41d981ce77c"
+        },
+        {
+          "path": "mve/topology/artifacts/images/unlink-r2.png",
+          "sha256": "4e7643946606a8d48dd582007cf6c5eca75d1270128da3526f175c7b77e31d1a"
+        },
+        {
+          "path": "mve/topology/artifacts/manifest.json",
+          "sha256": "34fd3dd2f2acae16726f168b84410abfdbf9f84a465d34cfed3d733738c5350d"
+        },
+        {
+          "path": "mve/topology/artifacts/receipt.json",
+          "sha256": "cc705e18143a78eb691c8cc00ed7fbc34a8537bdff1c8cf87ec5750ad19427f9"
+        },
+        {
+          "path": "mve/topology/artifacts/snappy.json",
+          "sha256": "42c1d70bd1d70a680f9c1172788d67a22559f97d68ca272673741cb3e8f108e5"
+        },
+        {
+          "path": "mve/topology/artifacts/split.json",
+          "sha256": "0b58ec98fba40f88880db0d38871d596d37f4bbd956c1ddacd95cdf54d5230ad"
+        },
+        {
+          "path": "mve/topology/artifacts/trefoil.lean",
+          "sha256": "9d59478178a74be5e308d6a5425147646ee6817adb9092005f6346b70a3441f6"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/figure_eight-base.json",
+          "sha256": "70416b0832c73b624e61847f93b0774cfd52beab9dfec92ce02c6f6f5ab62721"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/figure_eight-mirror.json",
+          "sha256": "3837e2ab556152eefd32fa68c1532b8fe7dc9a61a3f568eef3975ab442a64758"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/figure_eight-near_miss.json",
+          "sha256": "70416b0832c73b624e61847f93b0774cfd52beab9dfec92ce02c6f6f5ab62721"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/figure_eight-r1.json",
+          "sha256": "4e39b7c1b91e6d639298c639ea02ffbe72ac7485088ca4fee7e1813a1d1d3570"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/figure_eight-r1_negative.json",
+          "sha256": "055b7de24c1f652509a626a973a225447ef5444dd0b29b466338ae4bacb10d56"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/figure_eight-r2.json",
+          "sha256": "5d853c8ef2b26a560730e6dde43200933fe7eaea34f8eceedbde563a68ddf8d1"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/hopf-base.json",
+          "sha256": "df2610d667b251af2b278b2167b9aae7ea4d4976a5232e65d2a000f6c9ec21a5"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/hopf-mirror.json",
+          "sha256": "e605e3f31a65b92a2541764a2bc389f76050d2c32fc6bb899dd69687205a3393"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/hopf-near_miss.json",
+          "sha256": "df2610d667b251af2b278b2167b9aae7ea4d4976a5232e65d2a000f6c9ec21a5"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/hopf-r1.json",
+          "sha256": "387fb63f05c912ec975b12a78f82eadad6bc432a86207531e349ae5e871bec4a"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/hopf-r1_negative.json",
+          "sha256": "3da9c4bd897cd9639b97dbe9787cdfe9458dc47e104519cd98fe69f9bd50b5d0"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/hopf-r2.json",
+          "sha256": "aaff96810e4204e7a811485ea99e321faf37d8ddbc25444bca7be172a49a5330"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/trefoil-base.json",
+          "sha256": "07b8b236b0ec15971f2a0b83ff63a5e56eb29bef4a7ed890692d88ece2e357f4"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/trefoil-mirror.json",
+          "sha256": "9e7d0a2f02f3394c78300fc2517ea5683fa933f508faa05268772cbe6b5c4a3b"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/trefoil-near_miss.json",
+          "sha256": "07b8b236b0ec15971f2a0b83ff63a5e56eb29bef4a7ed890692d88ece2e357f4"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/trefoil-r1.json",
+          "sha256": "8fe6e71dfd846a5662590dce9202d9a8569d0319574eaee444b6da1f413dadd0"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/trefoil-r1_negative.json",
+          "sha256": "894dd5e988e460427d5d44d606f8c9b6e78a07d1675273af0425c5c0db8fb0c0"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/trefoil-r2.json",
+          "sha256": "128df64a313e53e66559f1789d9184406741e691f29faa1be2cc30264455fac6"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/unknot-base.json",
+          "sha256": "443b7e4afc7c94d5332d0eb602ba1ed329e341ed5b9604bba9e4aec27b92bc72"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/unknot-mirror.json",
+          "sha256": "efd291993737781db5c3406595bf974cd82ba49d8b0f15a34e723949a479d6fb"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/unknot-near_miss.json",
+          "sha256": "21fcef5ad3ae0a2eed4682e4cf01dd879df79d335e71a2fd29dfc57f9fa34c7b"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/unknot-r1.json",
+          "sha256": "21fcef5ad3ae0a2eed4682e4cf01dd879df79d335e71a2fd29dfc57f9fa34c7b"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/unknot-r1_negative.json",
+          "sha256": "77419ad42b08f7d24c582cf45119f1e04dac3e6de7d897d6983b30b3b1eeac01"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/unknot-r2.json",
+          "sha256": "758a4e622f9209b5cac62bdba6ecc1d702c7ea71f84d55a6f42e1ce50a75cde9"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/unlink-base.json",
+          "sha256": "9d425a8f7bd718c79b7716131758b70380d58f844822d884e9bd07f94e3f98f1"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/unlink-mirror.json",
+          "sha256": "f6a88a50e7c9a3fb7aee13d987a2935b7d06f45538a9fff853e94822e52696a3"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/unlink-near_miss.json",
+          "sha256": "9d425a8f7bd718c79b7716131758b70380d58f844822d884e9bd07f94e3f98f1"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/unlink-r1.json",
+          "sha256": "859517bcf0078a901020dade176aee6d29dc1530f2de33810a004e5b57c6c717"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/unlink-r1_negative.json",
+          "sha256": "761043e52c03d2a2eabb058ae3919bda76f842aeef685c46ce2db4e4fad84761"
+        },
+        {
+          "path": "mve/topology/artifacts/truth/unlink-r2.json",
+          "sha256": "2acbb03ef8856eb22d4c4628063b878f3df2b281fbe604b68be9f76077fab225"
+        },
+        {
+          "path": "mve/topology/checks.py",
+          "sha256": "098a15670b2edf6294aa9ab2b17326626fc3ad6713c29e5f1e6f6893ff82fb2f"
+        },
+        {
+          "path": "mve/topology/generator.py",
+          "sha256": "5cabf80ae230af16adceabade53c3258203ec4551b23ba268ac15f6fc2a22a7d"
+        },
+        {
+          "path": "mve/topology/geometry.py",
+          "sha256": "603cfd2f3844788146caa6219f289bcb95ac07e8760ab2d3eec178338874735c"
+        },
+        {
+          "path": "mve/topology/model.py",
+          "sha256": "a8b0f12e455d1b8e97e0e941a1ae0420a81c982045b51011c0c9456a503a38b6"
+        },
+        {
+          "path": "mve/topology/render.py",
+          "sha256": "600e145795fce597cf90f92917b95775ca7bc247d0a571037d0e79fa98d4b817"
+        },
+        {
+          "path": "mve/topology/scoring.py",
+          "sha256": "4351475f933a28cfe6d2862dc0dba5fb9758b9940bdc8f58ed74de188c19bae4"
+        },
+        {
+          "path": "tests/mve/test_topology.py",
+          "sha256": "e599ab34de3b53fcec59c4563718c0bd1aa834910acf500dbac9bcbe21d95bca"
+        }
+      ],
+      "g5_status": "not established",
+      "hosted_calls": 0,
+      "lean_lock": "mve/lean/lock.json",
+      "mode": "offline_only",
+      "network_operations": 0,
+      "new_external_dependencies": [],
+      "packages": {
+        "Pillow": "12.2.0",
+        "coverage": "7.13.5",
+        "pytest": "8.4.2",
+        "pytest-cov": "6.3.0",
+        "ruff": "0.8.6"
+      },
+      "python": "3.13.2",
+      "scope": "synthetic_coordinate_self_consistency",
+      "snappy": "unavailable; not installed or implemented",
+      "split_sha256": "0b58ec98fba40f88880db0d38871d596d37f4bbd956c1ddacd95cdf54d5230ad",
+      "validation": {
+        "branches": 170,
+        "branches_covered": 168,
+        "combined_coverage_percent": 99.37791601866252,
+        "focused_passed": 130,
+        "full_suite_passed": 849,
+        "full_suite_skipped": 0,
+        "nested_sandbox_failures": 6,
+        "statements": 473,
+        "statements_covered": 471
+      },
+      "zlib": "1.2.12"
+    },
     "WP-11a": {
       "base_git_sha": "5645250003f129473919f4f32984c68a86e1c477",
       "files": [

@@ -1,6 +1,7 @@
 """Canonical JSON and Markdown from the same report object."""
 
 import json
+from mve.reporting.topology import topology_markdown
 
 
 def serialize(report):
@@ -241,6 +242,7 @@ def markdown(report):
         "",
     ]
     lines += budget_markdown(report) + gate_markdown(report) + evidence_markdown(report)
+    lines += topology_markdown(report)
     lines += [
         "## Source hashes",
         "",

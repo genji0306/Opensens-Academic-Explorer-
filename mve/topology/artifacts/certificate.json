@@ -1,0 +1,11 @@
+{
+  "axioms": [],
+  "binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+  "hosted_calls": 0,
+  "log": "'MVETopology.one_component' does not depend on any axioms\n",
+  "log_sha256": "9a55057a28ee28c5de1db2d8ef668904e6623f9fab77f6110bf4b4ca801c7247",
+  "scope": "decoded_record_only",
+  "statement_sha256": "9d59478178a74be5e308d6a5425147646ee6817adb9092005f6346b70a3441f6",
+  "status": "kernel_checked",
+  "toolchain": "leanprover/lean4:v4.29.0"
+}

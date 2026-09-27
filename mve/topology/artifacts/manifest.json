@@ -1,0 +1,212 @@
+[
+  {
+    "family": "unknot",
+    "generator": "closed-braid-v1",
+    "id": "unknot-base",
+    "knot_type": "unknot",
+    "variant": "base"
+  },
+  {
+    "family": "unknot",
+    "generator": "closed-braid-v1",
+    "id": "unknot-mirror",
+    "knot_type": "unknot",
+    "variant": "mirror"
+  },
+  {
+    "family": "unknot",
+    "generator": "closed-braid-v1",
+    "id": "unknot-r1",
+    "knot_type": "unknot",
+    "variant": "r1"
+  },
+  {
+    "family": "unknot",
+    "generator": "closed-braid-v1",
+    "id": "unknot-r1_negative",
+    "knot_type": "unknot",
+    "variant": "r1_negative"
+  },
+  {
+    "family": "unknot",
+    "generator": "closed-braid-v1",
+    "id": "unknot-r2",
+    "knot_type": "unknot",
+    "variant": "r2"
+  },
+  {
+    "family": "unknot",
+    "generator": "closed-braid-v1",
+    "id": "unknot-near_miss",
+    "knot_type": "unknot",
+    "variant": "near_miss"
+  },
+  {
+    "family": "trefoil",
+    "generator": "closed-braid-v1",
+    "id": "trefoil-base",
+    "knot_type": "trefoil_negative",
+    "variant": "base"
+  },
+  {
+    "family": "trefoil",
+    "generator": "closed-braid-v1",
+    "id": "trefoil-mirror",
+    "knot_type": "trefoil_positive",
+    "variant": "mirror"
+  },
+  {
+    "family": "trefoil",
+    "generator": "closed-braid-v1",
+    "id": "trefoil-r1",
+    "knot_type": "trefoil_negative",
+    "variant": "r1"
+  },
+  {
+    "family": "trefoil",
+    "generator": "closed-braid-v1",
+    "id": "trefoil-r1_negative",
+    "knot_type": "trefoil_negative",
+    "variant": "r1_negative"
+  },
+  {
+    "family": "trefoil",
+    "generator": "closed-braid-v1",
+    "id": "trefoil-r2",
+    "knot_type": "trefoil_negative",
+    "variant": "r2"
+  },
+  {
+    "family": "trefoil",
+    "generator": "closed-braid-v1",
+    "id": "trefoil-near_miss",
+    "knot_type": "trefoil_negative",
+    "variant": "near_miss"
+  },
+  {
+    "family": "figure_eight",
+    "generator": "closed-braid-v1",
+    "id": "figure_eight-base",
+    "knot_type": "figure_eight",
+    "variant": "base"
+  },
+  {
+    "family": "figure_eight",
+    "generator": "closed-braid-v1",
+    "id": "figure_eight-mirror",
+    "knot_type": "figure_eight",
+    "variant": "mirror"
+  },
+  {
+    "family": "figure_eight",
+    "generator": "closed-braid-v1",
+    "id": "figure_eight-r1",
+    "knot_type": "figure_eight",
+    "variant": "r1"
+  },
+  {
+    "family": "figure_eight",
+    "generator": "closed-braid-v1",
+    "id": "figure_eight-r1_negative",
+    "knot_type": "figure_eight",
+    "variant": "r1_negative"
+  },
+  {
+    "family": "figure_eight",
+    "generator": "closed-braid-v1",
+    "id": "figure_eight-r2",
+    "knot_type": "figure_eight",
+    "variant": "r2"
+  },
+  {
+    "family": "figure_eight",
+    "generator": "closed-braid-v1",
+    "id": "figure_eight-near_miss",
+    "knot_type": "figure_eight",
+    "variant": "near_miss"
+  },
+  {
+    "family": "hopf",
+    "generator": "closed-braid-v1",
+    "id": "hopf-base",
+    "knot_type": "hopf",
+    "variant": "base"
+  },
+  {
+    "family": "hopf",
+    "generator": "closed-braid-v1",
+    "id": "hopf-mirror",
+    "knot_type": "hopf",
+    "variant": "mirror"
+  },
+  {
+    "family": "hopf",
+    "generator": "closed-braid-v1",
+    "id": "hopf-r1",
+    "knot_type": "hopf",
+    "variant": "r1"
+  },
+  {
+    "family": "hopf",
+    "generator": "closed-braid-v1",
+    "id": "hopf-r1_negative",
+    "knot_type": "hopf",
+    "variant": "r1_negative"
+  },
+  {
+    "family": "hopf",
+    "generator": "closed-braid-v1",
+    "id": "hopf-r2",
+    "knot_type": "hopf",
+    "variant": "r2"
+  },
+  {
+    "family": "hopf",
+    "generator": "closed-braid-v1",
+    "id": "hopf-near_miss",
+    "knot_type": "hopf",
+    "variant": "near_miss"
+  },
+  {
+    "family": "unlink",
+    "generator": "closed-braid-v1",
+    "id": "unlink-base",
+    "knot_type": "unlink",
+    "variant": "base"
+  },
+  {
+    "family": "unlink",
+    "generator": "closed-braid-v1",
+    "id": "unlink-mirror",
+    "knot_type": "unlink",
+    "variant": "mirror"
+  },
+  {
+    "family": "unlink",
+    "generator": "closed-braid-v1",
+    "id": "unlink-r1",
+    "knot_type": "unlink",
+    "variant": "r1"
+  },
+  {
+    "family": "unlink",
+    "generator": "closed-braid-v1",
+    "id": "unlink-r1_negative",
+    "knot_type": "unlink",
+    "variant": "r1_negative"
+  },
+  {
+    "family": "unlink",
+    "generator": "closed-braid-v1",
+    "id": "unlink-r2",
+    "knot_type": "unlink",
+    "variant": "r2"
+  },
+  {
+    "family": "unlink",
+    "generator": "closed-braid-v1",
+    "id": "unlink-near_miss",
+    "knot_type": "unlink",
+    "variant": "near_miss"
+  }
+]

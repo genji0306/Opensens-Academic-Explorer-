@@ -1,0 +1,23 @@
+{
+  "construction": {
+    "meaning": "construction validity, not picture transcription",
+    "operation": "snappy.Link(pd)",
+    "reason": "SnapPy not installed or pinned in WP-10; not executed",
+    "status": "unavailable",
+    "value": null
+  },
+  "identification": {
+    "meaning": "candidate identification, not truth",
+    "operation": "Link.exterior().identify()",
+    "reason": "SnapPy not installed or pinned in WP-10; not executed",
+    "status": "unavailable",
+    "value": null
+  },
+  "invariant": {
+    "meaning": "invariant consistency, not transcript verification",
+    "operation": "Link.jones_polynomial()",
+    "reason": "SnapPy not installed or pinned in WP-10; not executed",
+    "status": "unavailable",
+    "value": null
+  }
+}

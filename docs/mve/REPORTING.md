@@ -101,3 +101,13 @@ ruff check mve/reporting tests/mve/test_reporting.py
 
 The handoff in `reviews/REPORTS_ASTRA_20260928.md` records the full-suite result and
 names the nested-sandbox failures for Opus to rerun outside the builder sandbox.
+
+## WP-10 topology evidence
+
+When the evidence revision includes `mve/topology/artifacts/receipt.json`, the
+report adds a separate coordinate self-consistency section with crossing micro,
+diagram macro, exact/canonicalized PD, orientation nulls and component counts.
+This public fixture census is not G5 perception evidence. Its family split is
+retired; external data and real perception runs are absent. Only G5's grammar
+criterion is evidenced. The details and the deliberately narrow canonicalization
+convention are frozen in [TOPOLOGY.md](TOPOLOGY.md).
