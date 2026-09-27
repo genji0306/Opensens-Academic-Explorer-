@@ -1,0 +1,349 @@
+{
+  "actual_api_cost_usd": "0",
+  "artifacts": [
+    {
+      "path": "boundary/probe/image.png",
+      "sha256": "74b0c61828abf9c34abcaef98e33d0512e72427975827ef36c41c73e4df479e5"
+    },
+    {
+      "path": "boundary/probe/request.json",
+      "sha256": "7df02833ee3682b7fccbaa3c32cbd9d7b2d7306a7a93820745815741aee22043"
+    },
+    {
+      "path": "price-evidence.fixture.txt",
+      "sha256": "ddf167afda4c2e90e3b62662d0bdd82b439cf8b53b22670af4f37bc3dc62a52b"
+    },
+    {
+      "path": "success/probe/cost_model.json",
+      "sha256": "89fa8ee02fe1f7704ba09ea5b2fa71a7ced6d4f28fac98f63bd68b1677cef532"
+    },
+    {
+      "path": "success/probe/image.png",
+      "sha256": "74b0c61828abf9c34abcaef98e33d0512e72427975827ef36c41c73e4df479e5"
+    },
+    {
+      "path": "success/probe/receipt.json",
+      "sha256": "bf3286915943a951158354e7c3f906462c469a887cfc2cdb9fd79401e8088a2a"
+    },
+    {
+      "path": "success/probe/request.json",
+      "sha256": "7df02833ee3682b7fccbaa3c32cbd9d7b2d7306a7a93820745815741aee22043"
+    },
+    {
+      "path": "success/probe/response.raw",
+      "sha256": "785dd3d778ac85e3516be1985859f9b59685c3bb747ff90d3143246a1d9fc716"
+    },
+    {
+      "path": "timeout/probe/cost_model.json",
+      "sha256": "e4b036fe2e2eee6d7dbfc2e0802e5071dd1b95e8c2b0edab414c236b59c8db65"
+    },
+    {
+      "path": "timeout/probe/image.png",
+      "sha256": "74b0c61828abf9c34abcaef98e33d0512e72427975827ef36c41c73e4df479e5"
+    },
+    {
+      "path": "timeout/probe/receipt.json",
+      "sha256": "058a951355010b009d8a8577d93750416d1d1505d4cd232d200063ae93dd2671"
+    },
+    {
+      "path": "timeout/probe/request.json",
+      "sha256": "7df02833ee3682b7fccbaa3c32cbd9d7b2d7306a7a93820745815741aee22043"
+    }
+  ],
+  "cases": [
+    {
+      "case": "unverified_price",
+      "fake_calls": 0,
+      "reason": "probe refuses missing or unverified price",
+      "snapshot": {
+        "attempts": [],
+        "configuration": {
+          "caps": {
+            "P0": 2000000,
+            "P1": 8000000,
+            "aggregate": 20000000
+          },
+          "prices": {
+            "deepseek-fixture": {
+              "input_micro_usd_per_million": 10000000,
+              "output_micro_usd_per_million": 10000000,
+              "source_sha256": "ddf167afda4c2e90e3b62662d0bdd82b439cf8b53b22670af4f37bc3dc62a52b",
+              "verified": false
+            }
+          },
+          "window": "borrowed-runner-20260917:UTC:Mon-Fri:01-04,06-10:UNVERIFIED"
+        },
+        "events": [],
+        "exposure_micro_usd": 0,
+        "frozen": false,
+        "quota": []
+      },
+      "status": "refused"
+    },
+    {
+      "case": "peak",
+      "fake_calls": 0,
+      "reason": "peak-hour dispatch refused",
+      "snapshot": {
+        "attempts": [],
+        "configuration": {
+          "caps": {
+            "P0": 2000000,
+            "P1": 8000000,
+            "aggregate": 20000000
+          },
+          "prices": {
+            "deepseek-fixture": {
+              "input_micro_usd_per_million": 10000000,
+              "output_micro_usd_per_million": 10000000,
+              "source_sha256": "ddf167afda4c2e90e3b62662d0bdd82b439cf8b53b22670af4f37bc3dc62a52b",
+              "verified": true
+            }
+          },
+          "window": "borrowed-runner-20260917:UTC:Mon-Fri:01-04,06-10:UNVERIFIED"
+        },
+        "events": [],
+        "exposure_micro_usd": 0,
+        "frozen": false,
+        "quota": []
+      },
+      "status": "refused"
+    },
+    {
+      "case": "boundary",
+      "fake_calls": 0,
+      "reason": "peak-hour dispatch refused",
+      "snapshot": {
+        "attempts": [
+          {
+            "actual": null,
+            "created": "2026-09-28T00:59:00+00:00",
+            "dispatched": null,
+            "id": "wp0b:single-model-probe",
+            "phase": "P0",
+            "receipt": null,
+            "reserved": 20000,
+            "state": "cancelled",
+            "wave": "wp0b"
+          }
+        ],
+        "configuration": {
+          "caps": {
+            "P0": 2000000,
+            "P1": 8000000,
+            "aggregate": 20000000
+          },
+          "prices": {
+            "deepseek-fixture": {
+              "input_micro_usd_per_million": 10000000,
+              "output_micro_usd_per_million": 10000000,
+              "source_sha256": "ddf167afda4c2e90e3b62662d0bdd82b439cf8b53b22670af4f37bc3dc62a52b",
+              "verified": true
+            }
+          },
+          "window": "borrowed-runner-20260917:UTC:Mon-Fri:01-04,06-10:UNVERIFIED"
+        },
+        "events": [],
+        "exposure_micro_usd": 0,
+        "frozen": false,
+        "quota": []
+      },
+      "status": "refused"
+    },
+    {
+      "case": "inflight",
+      "fake_calls": 0,
+      "reason": "phase cap including in-flight reservations exceeded",
+      "snapshot": {
+        "attempts": [
+          {
+            "actual": null,
+            "created": "2026-09-28T00:59:00+00:00",
+            "dispatched": null,
+            "id": "prior",
+            "phase": "P0",
+            "receipt": null,
+            "reserved": 1990000,
+            "state": "reserved",
+            "wave": "fixture"
+          }
+        ],
+        "configuration": {
+          "caps": {
+            "P0": 2000000,
+            "P1": 8000000,
+            "aggregate": 20000000
+          },
+          "prices": {
+            "deepseek-fixture": {
+              "input_micro_usd_per_million": 10000000,
+              "output_micro_usd_per_million": 10000000,
+              "source_sha256": "ddf167afda4c2e90e3b62662d0bdd82b439cf8b53b22670af4f37bc3dc62a52b",
+              "verified": true
+            }
+          },
+          "window": "borrowed-runner-20260917:UTC:Mon-Fri:01-04,06-10:UNVERIFIED"
+        },
+        "events": [],
+        "exposure_micro_usd": 1990000,
+        "frozen": false,
+        "quota": []
+      },
+      "status": "refused"
+    },
+    {
+      "case": "probe_cap",
+      "fake_calls": 0,
+      "reason": "positive probe reservation must not exceed USD 0.05",
+      "snapshot": {
+        "attempts": [],
+        "configuration": {
+          "caps": {
+            "P0": 2000000,
+            "P1": 8000000,
+            "aggregate": 20000000
+          },
+          "prices": {
+            "deepseek-fixture": {
+              "input_micro_usd_per_million": 10000000,
+              "output_micro_usd_per_million": 10000000,
+              "source_sha256": "ddf167afda4c2e90e3b62662d0bdd82b439cf8b53b22670af4f37bc3dc62a52b",
+              "verified": true
+            }
+          },
+          "window": "borrowed-runner-20260917:UTC:Mon-Fri:01-04,06-10:UNVERIFIED"
+        },
+        "events": [],
+        "exposure_micro_usd": 0,
+        "frozen": false,
+        "quota": []
+      },
+      "status": "refused"
+    },
+    {
+      "case": "success",
+      "fake_calls": 1,
+      "reason": null,
+      "snapshot": {
+        "attempts": [
+          {
+            "actual": 1500,
+            "created": "2026-09-28T00:59:00+00:00",
+            "dispatched": "2026-09-28T00:59:00+00:00",
+            "id": "wp0b:single-model-probe",
+            "phase": "P0",
+            "receipt": "bf3286915943a951158354e7c3f906462c469a887cfc2cdb9fd79401e8088a2a",
+            "reserved": 20000,
+            "state": "settled",
+            "wave": "wp0b"
+          }
+        ],
+        "configuration": {
+          "caps": {
+            "P0": 2000000,
+            "P1": 8000000,
+            "aggregate": 20000000
+          },
+          "prices": {
+            "deepseek-fixture": {
+              "input_micro_usd_per_million": 10000000,
+              "output_micro_usd_per_million": 10000000,
+              "source_sha256": "ddf167afda4c2e90e3b62662d0bdd82b439cf8b53b22670af4f37bc3dc62a52b",
+              "verified": true
+            }
+          },
+          "window": "borrowed-runner-20260917:UTC:Mon-Fri:01-04,06-10:UNVERIFIED"
+        },
+        "events": [],
+        "exposure_micro_usd": 1500,
+        "frozen": false,
+        "quota": []
+      },
+      "status": "ok"
+    },
+    {
+      "case": "timeout",
+      "fake_calls": 1,
+      "reason": null,
+      "snapshot": {
+        "attempts": [
+          {
+            "actual": null,
+            "created": "2026-09-28T00:59:00+00:00",
+            "dispatched": "2026-09-28T00:59:00+00:00",
+            "id": "wp0b:single-model-probe",
+            "phase": "P0",
+            "receipt": null,
+            "reserved": 20000,
+            "state": "dispatched",
+            "wave": "wp0b"
+          }
+        ],
+        "configuration": {
+          "caps": {
+            "P0": 2000000,
+            "P1": 8000000,
+            "aggregate": 20000000
+          },
+          "prices": {
+            "deepseek-fixture": {
+              "input_micro_usd_per_million": 10000000,
+              "output_micro_usd_per_million": 10000000,
+              "source_sha256": "ddf167afda4c2e90e3b62662d0bdd82b439cf8b53b22670af4f37bc3dc62a52b",
+              "verified": true
+            }
+          },
+          "window": "borrowed-runner-20260917:UTC:Mon-Fri:01-04,06-10:UNVERIFIED"
+        },
+        "events": [],
+        "exposure_micro_usd": 20000,
+        "frozen": false,
+        "quota": []
+      },
+      "status": "timeout"
+    }
+  ],
+  "fixture_inputs_only": true,
+  "hosted_calls": 0,
+  "latency_is_simulated": true,
+  "live_api_cost_usd": null,
+  "live_image_support": "unverified",
+  "live_latency_s": null,
+  "live_model_id": null,
+  "live_price_verified": false,
+  "live_probe_status": "disabled: requires Opus refusal-path review and owner go",
+  "live_tokens_per_image": null,
+  "mode": "offline_fixture",
+  "refusal_checks_passed": true,
+  "schema": "mve-probe-offline-review-v1",
+  "source_pins": [
+    {
+      "path": "mve/budget.py",
+      "sha256": "51e7db89ad021143b86d83857cfa9287704305f7c0343a98744fd044f417bff0"
+    },
+    {
+      "path": "mve/money.py",
+      "sha256": "0503706ad4f3f1f6308e3f9a6b58f68b303b0fc9ded526f818d2aa2390ea3b50"
+    },
+    {
+      "path": "mve/preflight/probe.py",
+      "sha256": "7e1ddde322738a6dccc14d6c0b1cc3f4f5595fa4cf82b381fe4a81948ebfab82"
+    },
+    {
+      "path": "mve/preflight/probe_contract.py",
+      "sha256": "5055108120ce9a1c511cd06da24d2190391a7a7558a7ceef156eb2508294a340"
+    },
+    {
+      "path": "mve/preflight/probe_fixtures.py",
+      "sha256": "bb5448bf2ce59726d5b33334a7c0136a472e716265b8f1cd3433cf780f0a287e"
+    },
+    {
+      "path": "mve/preflight/probe_offline.py",
+      "sha256": "fae35edca1782af03221ceb4a4ebe5732f96dfc0b6e9d30a7dd9e735adfcac98"
+    },
+    {
+      "path": "mve/pricing.py",
+      "sha256": "de913a7451410bd52c10945b679d6876b8589e61b4669352cb08e4d2570107e3"
+    }
+  ]
+}
