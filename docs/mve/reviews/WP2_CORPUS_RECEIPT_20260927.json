@@ -1,5 +1,5 @@
 {
-  "acceptance": "generated_counts_met",
+  "acceptance": "retired_duplicate_renders",
   "api_cost_usd": 0,
   "artifact_hashes_verified": 10240,
   "class_counts": {
@@ -48,8 +48,10 @@
   "hosted_calls": 0,
   "local_artifact_root": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/generated/wp2-corpus-20260927",
   "manifest_sha256": "3448442268aa53fcd19e79d838025bbc36213d0b1768e3e7a69fcedcf8c8d657",
+  "reason": "Superseded by render-v2; mathematical configurations were unique but rendered images were not.",
   "records_validated": 2560,
   "render_pinned": false,
+  "retired_split_sha256": "1913313d1dab2dabc5b4042076b1f856ed22c076dc615e6ff31b5be92f2fab31",
   "schema": "mve-corpus-v1",
   "sealed_truth_inspected_for_tuning": false,
   "split_sha256": "0ab27e2a8318ccf10c14fdd43173f0d647cfe496041597ad50b54a1174d0b1c4",
@@ -62,5 +64,9 @@
     "evaluation": 500,
     "fit": 2000,
     "retrieval": 20
+  },
+  "unique_rendered_images": {
+    "evaluation": 345,
+    "fit": 1134
   }
 }

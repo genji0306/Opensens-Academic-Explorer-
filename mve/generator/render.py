@@ -1,6 +1,8 @@
 """Pinned raster recipe; pixel coordinates are separate from exact mathematical truth."""
 
 from io import BytesIO
+import math
+from mve.identity import digest
 from PIL import Image, ImageDraw, ImageFont, __version__ as PILLOW_VERSION
 from mve.generator.exact import ExactEvaluator
 
@@ -8,16 +10,27 @@ from mve.generator.exact import ExactEvaluator
 EDGES = (("A", "B"), ("B", "D"), ("D", "E"), ("E", "F"), ("F", "A"), ("A", "C"))
 
 
-def pixel_projection(construction):
+def oriented_points(construction):
     exact = ExactEvaluator(construction["coordinates"])
-    points = {name: [float(v) for v in xy] for name, xy in exact.points.items()}
+    code = int(digest(construction["generator"]), 16)
+    angle = (code % 1000003) / 1000003 * 2 * math.pi
+    cosine, sine = math.cos(angle), math.sin(angle)
+    points = {
+        name: [cosine * float(x) - sine * float(y), sine * float(x) + cosine * float(y)]
+        for name, (x, y) in exact.points.items()
+    }
+    return points, 192 + ((code >> 20) % 33)
+
+
+def pixel_projection(construction):
+    points, extent = oriented_points(construction)
     low = [min(p[i] for p in points.values()) for i in (0, 1)]
     high = [max(p[i] for p in points.values()) for i in (0, 1)]
     span = max(high[i] - low[i] for i in (0, 1)) or 1
     pixels = {
         name: [
-            round(32 + 224 * (p[0] - low[0]) / span, 6),
-            round(256 - 224 * (p[1] - low[1]) / span, 6),
+            round((288 - extent) / 2 + extent * (p[0] - low[0]) / span, 6),
+            round((288 + extent) / 2 - extent * (p[1] - low[1]) / span, 6),
         ]
         for name, p in points.items()
     }
@@ -58,7 +71,7 @@ def render(construction, *, style="thin"):
         "pixels": pixels,
         "width": 288,
         "height": 288,
-        "renderer": "pillow-lines-v1",
+        "renderer": "pillow-lines-v2",
         "pillow_version": PILLOW_VERSION,
         "style": style,
         "render_pinned": False,

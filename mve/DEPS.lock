@@ -1364,6 +1364,9 @@
       "schema": "mve-deps-v1"
     },
     "WP-2": {
+      "Euclid generator discovery": "failed: no local checkout; no network fetch in offline packets",
+      "JSXGraph": "failed: not present locally; vendoring deferred to owner-approved packet",
+      "Newclid": "failed: does not import; exact-true non-premise candidates remain incidental_unproved (DDAR unsupported)",
       "backend": "inhouse-plane-v1; local Euclid absent; frozen DDAR unsupported",
       "base_git_sha": "e827c05717d23a1d570e49847918c8e7347313ec",
       "files": [
@@ -1381,7 +1384,7 @@
         },
         {
           "path": "mve/generator/corpus.py",
-          "sha256": "91df495713df5eda6d181ae3cd36d520d418de3bfb328aae8e4690aefd1bff17"
+          "sha256": "a8e771af65de99a3b8ecde8ce8cc77d839f30fab69fa66019962c21162ed8ed6"
         },
         {
           "path": "mve/generator/exact.py",
@@ -1397,7 +1400,7 @@
         },
         {
           "path": "mve/generator/render.py",
-          "sha256": "15168fdbfce0a8440325c004d0587d2b60f4ae52509ec8e7f24118f714d6a0d7"
+          "sha256": "b96ba4075fae2032838906d106de582678d04d21d95bc30da5242d18e0086620"
         },
         {
           "path": "mve/generator/truth.py",
@@ -1417,7 +1420,7 @@
         },
         {
           "path": "tests/mve/test_generator_pipeline.py",
-          "sha256": "d1d08f5579d7ccee474e3d558394b9370d172e70445d4b1472f4b90d6236458b"
+          "sha256": "e2a7edcbdfe0a32a2ca25fa385197af3efe5a35e583aee381e44a90b832b6025"
         },
         {
           "path": "tests/mve/test_generator_truth.py",
@@ -1430,6 +1433,18 @@
         {
           "path": "mve/registry/predicates_v1.json",
           "sha256": "119440136269d3875c1c130cf4988a1b923d49f0acd09f94133d9882b76756a4"
+        },
+        {
+          "path": "mve/generator/scene.py",
+          "sha256": "8b34c889fa20f70e79a8933fff8999aa48e7e71ee8f07097d75743d0631117db"
+        },
+        {
+          "path": "schemas/mve_render_scene.json",
+          "sha256": "bf1e18ab29eb16527b74c07dc2561d2d3e8c2beaa9fd0fabfed2b5ad6a77c2bd"
+        },
+        {
+          "path": "tests/mve/test_render_scene.py",
+          "sha256": "9e21fcc49790b27b174ec2c852717b68a261ef612845b97b27ea3a7a591a8c5e"
         }
       ],
       "hosted_calls": 0,
@@ -1439,6 +1454,7 @@
         "pytest": "8.4.2",
         "sympy": "1.14.0"
       },
+      "render_recipe": "pillow-lines-v2; deterministic seed rotation and scale; render_pinned=false",
       "schema": "mve-deps-v1"
     },
     "WP-4-review-followups": {

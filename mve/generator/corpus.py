@@ -43,7 +43,7 @@ def layout(counts, seed):
                 families[index % len(families)],
                 index // len(families),
             )
-            ident = digest([family, construction_seed])[:32]
+            ident = digest([family, construction_seed, "pillow-lines-v2"])[:32]
             items.append({"id": ident, "family": family})
             jobs.append(
                 {
@@ -118,18 +118,31 @@ def corpus_report(counts, frozen, items, classes, controls, code_sha):
         role: len({r["math_coordinates_sha256"] for r in items if r["split"] == role})
         for role in counts
     }
+    unique_images = {
+        role: len({r["image_sha256"] for r in items if r["split"] == role})
+        for role in counts
+    }
+    image_roles = {}
+    for row in items:
+        image_roles.setdefault(row["image_sha256"], set()).add(row["split"])
+    cross_split_images = sum(len(roles) > 1 for roles in image_roles.values())
     controls_complete = all(
         controls[role + ":" + tag] for role in ("fit", "evaluation") for tag in CONTROLS
     )
     accepted = (
         unique_math["fit"] >= 2000
         and unique_math["evaluation"] >= 500
+        and unique_images["fit"] >= 2000
+        and unique_images["evaluation"] >= 500
+        and cross_split_images == 0
         and controls_complete
     )
     return {
         "schema": "mve-corpus-v1",
         "counts": counts,
         "unique_mathematical_diagrams": unique_math,
+        "unique_rendered_images": unique_images,
+        "cross_split_image_collisions": cross_split_images,
         "split_sha256": frozen.sha256,
         "code_sha": code_sha,
         "controls": dict(controls),

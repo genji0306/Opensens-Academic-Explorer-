@@ -105,3 +105,10 @@ def test_evidence_rerun_is_explicit_record_revision():
     assert original.truth.sha256 != revised.truth.sha256
     assert after["events"][-1]["kind"] == "edited"
     assert revised.png == original.png
+
+
+def test_render_variation_preserves_distinct_seed_fixtures():
+    from mve.generator.render import render
+
+    images = [render(construct("collinear_extension", seed))[0] for seed in range(40)]
+    assert len(set(images)) == 40
