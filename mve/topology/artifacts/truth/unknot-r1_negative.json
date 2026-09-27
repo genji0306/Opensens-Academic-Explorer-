@@ -1,0 +1,21 @@
+{
+  "components": [
+    [
+      1,
+      2
+    ]
+  ],
+  "mirror": false,
+  "pd": [
+    [
+      1,
+      1,
+      2,
+      2
+    ]
+  ],
+  "schema": "mve-oriented-pd-v1",
+  "signs": [
+    1
+  ]
+}

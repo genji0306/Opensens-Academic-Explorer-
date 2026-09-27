@@ -1,6 +1,7 @@
 """Assemble the present committed evidence; never run a model, compiler or corpus."""
 
 from mve.reporting.sources import Evidence
+from mve.reporting.topology import TOPOLOGY, GRAMMAR_DOC, topology_evidence
 from mve.reporting.ledger import summarize_budget
 from mve.reporting.gates import PLAN, G3, SPECS, evaluate_gate, g3_checks
 from mve.reporting.tables import (
@@ -27,7 +28,7 @@ REVIEW = "docs/mve/reviews/OFFLINE_PACKETS_REVIEW_OPUS_20260927.md"
 def collect_tables(evidence):
     data = {
         p: evidence.optional(p)
-        for p in (PREFLIGHT, CORPUS, GENERATION, SPIKE, LIVE, G3, TASKS, REFERENCES)
+        for p in (PREFLIGHT, CORPUS, GENERATION, SPIKE, LIVE, G3, TASKS, REFERENCES, TOPOLOGY)
     }
     tables = {}
     for name, path, builder in [
@@ -68,6 +69,7 @@ def build_gates(data, tables):
                 + "; ".join(data[SPIKE]["learning"]["gaps"]),
                 "sources": [SPIKE + "#/learning"],
             }
+    _, checks["G5"] = topology_evidence(data[TOPOLOGY])
     return {gate: evaluate_gate(gate, checks[gate]) for gate in SPECS}
 
 
@@ -76,6 +78,9 @@ def build_report(root, revision="HEAD", *, campaign_path=CAMPAIGN):
     evidence.read(PLAN)
     evidence.read(REVIEW)
     data, tables = collect_tables(evidence)
+    topology, _ = topology_evidence(data[TOPOLOGY])
+    if data[TOPOLOGY] is not None:
+        evidence.read(GRAMMAR_DOC)
     campaign = evidence.optional(campaign_path)
     live = evidence.json(LIVE_LEDGER)
     budget = summarize_budget(campaign, live)
@@ -103,6 +108,7 @@ def build_report(root, revision="HEAD", *, campaign_path=CAMPAIGN):
         "budget": budget,
         "gates": build_gates(data, tables),
         "tables": tables,
+        "topology": topology,
         "relation_scores": missing_scores(),
         "sources": dict(sorted(evidence.sources.items())),
         "missing_sources": sorted(evidence.missing),

@@ -1,6 +1,6 @@
 # MVE SUMMARY and gate report
 
-Evidence commit: `ea621a8918e5bb22c5ed53a1d3c30bfb5b09f7d7`
+Evidence commit: `413a5daf49b9cf4f5d8d6f37372cf962b219a44b`
 
 Committed receipts only. No new model, Lean, corpus, benchmark or ingest run. No P6 submission.
 
@@ -20,10 +20,10 @@ Null: N/A (accounting census). Micro over relations / macro over diagrams: N/A; 
 
 | Phase | Reserved USD | Settled USD | Uncertain USD | Known exposure USD | Remaining USD | Attempts | Attempts by state | Sources |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| P0 | 0.000000 | 0.000268 | 0.000000 | 0.000268 | unknown | 1 | {"cancelled": 0, "dispatched": 0, "reserved": 0, "settled": 1} | S05#/, S01#0, S06#/observation/derived_micro_usd |
-| P1 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | unknown | 0 | {"cancelled": 0, "dispatched": 0, "reserved": 0, "settled": 0} | S05#/, S01#0, S06#/observation/derived_micro_usd |
-| P2 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | unknown | 0 | {"cancelled": 0, "dispatched": 0, "reserved": 0, "settled": 0} | S05#/, S01#0, S06#/observation/derived_micro_usd |
-| aggregate | 0.000000 | 0.000268 | 0.000000 | 0.000268 | unknown | 1 | {"cancelled": 0, "dispatched": 0, "reserved": 0, "settled": 1} | S05#/, S01#0, S06#/observation/derived_micro_usd |
+| P0 | 0.000000 | 0.000268 | 0.000000 | 0.000268 | unknown | 1 | {"cancelled": 0, "dispatched": 0, "reserved": 0, "settled": 1} | S06#/, S01#0, S07#/observation/derived_micro_usd |
+| P1 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | unknown | 0 | {"cancelled": 0, "dispatched": 0, "reserved": 0, "settled": 0} | S06#/, S01#0, S07#/observation/derived_micro_usd |
+| P2 | 0.000000 | 0.000000 | 0.000000 | 0.000000 | unknown | 0 | {"cancelled": 0, "dispatched": 0, "reserved": 0, "settled": 0} | S06#/, S01#0, S07#/observation/derived_micro_usd |
+| aggregate | 0.000000 | 0.000268 | 0.000000 | 0.000268 | unknown | 1 | {"cancelled": 0, "dispatched": 0, "reserved": 0, "settled": 1} | S06#/, S01#0, S07#/observation/derived_micro_usd |
 
 same attempt ID with byte-equivalent parsed row counted once; conflicting copies refused. P2 shares the remaining aggregate, not a separate fixed cap.
 
@@ -47,7 +47,7 @@ Missing evidence takes precedence over a failed component; all criteria must be 
 | G3 | not established | 4/4/5 | N/A; empty/trivial, nearest-retrieval, weakened/strengthened/vacuous/unrelated-but-provable controls | N/A / N/A | 0/50 human reviews; 0/50 rubric passes; pending human rubric | S01#8, S01#11 |
 | G4a | not established | 0/0/5 | N/A; fixed trivial-tactic baseline | N/A / N/A | Missing evidence: 50 semantically accepted statements frozen before tuning; Missing evidence: both provers, 120 s, declared resources; proved/timeout/error, latency, memory; Missing evidence: default >= 15/50 proved with checked dependency closures; Missing evidence: proved count then latency; DeepSeek on exact tie; Missing evidence: end-to-end success and trivial-tactic baseline reported | S01#8, S01#11 |
 | G4b | not established | 0/0/5 | N/A; previous lock and unchanged-record round trip | N/A / N/A | Missing evidence: 30-minute, 20-diagram session; Missing evidence: persisted verdicts, not_visible abstention, revision invalidation, label provenance; Missing evidence: routing effects replayable; Missing evidence: floor-conditional refit or documented no-update; Missing evidence: pinned atlas integration test passes from archived build | S01#8, S01#11 |
-| G5 | not established | 0/0/4 | N/A general PD; conditional orientation-only 2^(-c); knot-type 1/k plus majority | N/A / N/A | Missing evidence: frozen diagram grammar and PD scorer; Missing evidence: >= 30% complete PD on separate synthetic <= 7-crossing set; Missing evidence: >= 30% complete PD on permitted external <= 7-crossing set; missing external incomplete; Missing evidence: exact/canonicalized apart; component validity, crossing/orientation errors, unknowns, invariant consistency | S01#8, S01#11 |
+| G5 | not established | 1/1/4 | N/A general PD; conditional orientation-only 2^(-c); knot-type 1/k plus majority | N/A / N/A | No real perception run; coordinate self-consistency is not G5 evidence; No permitted external perception set or scored run; Perception scores absent; fixture scores are reported separately | S01#8, S01#11 |
 | G6 | not established | 0/0/3 | N/A integration; each scientific claim declares its own null and unit | N/A / N/A | Missing evidence: one reproducible record: image, revisions, evidence, assumptions, statement hash, actual statuses and baselines; Missing evidence: Sol review; Missing evidence: real ingest/validation contract passes; negative or inconclusive science is acceptable | S01#8, S01#11 |
 
 ### G0 criteria
@@ -55,7 +55,7 @@ Missing evidence takes precedence over a failed component; all criteria must be 
 - comparison: **not established** — 300 frozen Geoperception items, three pinned models and pinned scorer within USD 2; comparison incomplete without results. Missing evidence: 300 frozen Geoperception items, three pinned models and pinned scorer within USD 2; comparison incomplete without results (no result evidence).
 - coverage: **not established** — coverage target met. Missing evidence: coverage target met (no result evidence).
 - negative_fixtures: **not established** — bad references, arities, unauthorized support and invalid transitions rejected. Missing evidence: bad references, arities, unauthorized support and invalid transitions rejected (no result evidence).
-- records: **met** — 100 independently generated records validate. WP-2 artifact audit records validated; does not replace negative fixtures or model comparison (S04#/records_validated).
+- records: **met** — 100 independently generated records validate. WP-2 artifact audit records validated; does not replace negative fixtures or model comparison (S05#/records_validated).
 
 ### G1 criteria
 
@@ -67,20 +67,20 @@ Missing evidence takes precedence over a failed component; all criteria must be 
 
 ### G2 criteria
 
-- floors: **not established** — only floor-met questions active with three family-disjoint splits. spike fixture is not an activation dataset; no production promotion; independent evaluation gold and paired Opus predictions absent; calibration promotion/rollback evidence absent; original openJev head refit with ONNX parity absent (S07#/learning).
+- floors: **not established** — only floor-met questions active with three family-disjoint splits. spike fixture is not an activation dataset; no production promotion; independent evaluation gold and paired Opus predictions absent; calibration promotion/rollback evidence absent; original openJev head refit with ONNX parity absent (S08#/learning).
 - paired_accuracy: **not established** — independent gold: paired 95% lower bound cascade minus Opus >= -0.03. Missing evidence: independent gold: paired 95% lower bound cascade minus Opus >= -0.03 (no result evidence).
-- promotion: **not established** — promote/rollback decision on calibration evidence. spike fixture is not an activation dataset; no production promotion; independent evaluation gold and paired Opus predictions absent; calibration promotion/rollback evidence absent; original openJev head refit with ONNX parity absent (S07#/learning).
+- promotion: **not established** — promote/rollback decision on calibration evidence. spike fixture is not an activation dataset; no production promotion; independent evaluation gold and paired Opus predictions absent; calibration promotion/rollback evidence absent; original openJev head refit with ONNX parity absent (S08#/learning).
 - queue: **not established** — human queue <= 25%. Missing evidence: human queue <= 25% (no result evidence).
 - route_error: **not established** — per active question one-sided 95% automatic-route error upper bound <= 5%. Missing evidence: per active question one-sided 95% automatic-route error upper bound <= 5% (no result evidence).
-- weight_refit: **not established** — real production weight refit, ONNX export and inference parity. spike fixture is not an activation dataset; no production promotion; independent evaluation gold and paired Opus predictions absent; calibration promotion/rollback evidence absent; original openJev head refit with ONNX parity absent (S07#/learning).
+- weight_refit: **not established** — real production weight refit, ONNX export and inference parity. spike fixture is not an activation dataset; no production promotion; independent evaluation gold and paired Opus predictions absent; calibration promotion/rollback evidence absent; original openJev head refit with ONNX parity absent (S08#/learning).
 
 ### G3 criteria
 
-- first_pass: **met** — at least 80/100 first-pass well-typed artifacts. 80/100 first-pass (S08#/, S02#addendum-9, S10#/, S09#/).
-- post_repair: **met** — at least 95/100 post-repair well-typed artifacts. 100/100 post-repair (S08#/, S02#addendum-9, S10#/, S09#/).
-- references: **met** — 50 retrieval-disjoint blinded reference tasks. 50/50 retrieval-disjoint references (S08#/, S02#addendum-9, S10#/, S09#/).
-- semantic_rubric: **not established** — at least 20/50 human rubric passes: binders, premises, goal, nondegeneracy. 0/50 human reviews; 0/50 rubric passes; pending human rubric (S08#/, S02#addendum-9, S10#/, S09#/).
-- tasks: **met** — 100 distinct sealed statements with explicit premises and goals. 100/100 unique sealed statements (S08#/, S02#addendum-9, S10#/, S09#/).
+- first_pass: **met** — at least 80/100 first-pass well-typed artifacts. 80/100 first-pass (S09#/, S03#addendum-9, S11#/, S10#/).
+- post_repair: **met** — at least 95/100 post-repair well-typed artifacts. 100/100 post-repair (S09#/, S03#addendum-9, S11#/, S10#/).
+- references: **met** — 50 retrieval-disjoint blinded reference tasks. 50/50 retrieval-disjoint references (S09#/, S03#addendum-9, S11#/, S10#/).
+- semantic_rubric: **not established** — at least 20/50 human rubric passes: binders, premises, goal, nondegeneracy. 0/50 human reviews; 0/50 rubric passes; pending human rubric (S09#/, S03#addendum-9, S11#/, S10#/).
+- tasks: **met** — 100 distinct sealed statements with explicit premises and goals. 100/100 unique sealed statements (S09#/, S03#addendum-9, S11#/, S10#/).
 
 ### G4a criteria
 
@@ -100,10 +100,10 @@ Missing evidence takes precedence over a failed component; all criteria must be 
 
 ### G5 criteria
 
-- external: **not established** — >= 30% complete PD on permitted external <= 7-crossing set; missing external incomplete. Missing evidence: >= 30% complete PD on permitted external <= 7-crossing set; missing external incomplete (no result evidence).
-- grammar: **not established** — frozen diagram grammar and PD scorer. Missing evidence: frozen diagram grammar and PD scorer (no result evidence).
-- scores: **not established** — exact/canonicalized apart; component validity, crossing/orientation errors, unknowns, invariant consistency. Missing evidence: exact/canonicalized apart; component validity, crossing/orientation errors, unknowns, invariant consistency (no result evidence).
-- synthetic: **not established** — >= 30% complete PD on separate synthetic <= 7-crossing set. Missing evidence: >= 30% complete PD on separate synthetic <= 7-crossing set (no result evidence).
+- external: **not established** — >= 30% complete PD on permitted external <= 7-crossing set; missing external incomplete. No permitted external perception set or scored run (S13#/, S02#).
+- grammar: **met** — frozen diagram grammar and PD scorer. Frozen coordinate-fixture grammar and PD scorer; evaluation split retired (S13#/, S02#).
+- scores: **not established** — exact/canonicalized apart; component validity, crossing/orientation errors, unknowns, invariant consistency. Perception scores absent; fixture scores are reported separately (S13#/, S02#).
+- synthetic: **not established** — >= 30% complete PD on separate synthetic <= 7-crossing set. No real perception run; coordinate self-consistency is not G5 evidence (S13#/, S02#).
 
 ### G6 criteria
 
@@ -121,112 +121,112 @@ Every table below is a receipt census, not a scored relation benchmark. Micro/ma
 
 | Measure | Count | Denominator | Unit | Null | Micro / macro | Evidence / limits | Sources |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ONNX argmax parity | 3 | 3 | fixture states | N/A: structural or operational census | N/A / N/A | new linear head over frozen openJev logits; not original-head refit; fixture only, not G2 | S07#/onnx_parity |
-| training rows | 4 | 4 | fixture rows | N/A: structural or operational census | N/A / N/A |  | S07#/training_rows |
-| training families | 1 | not established | families | N/A: structural or operational census | N/A / N/A |  | S07#/training_families |
-| Q-agree-action/calibration | 0 | not established | label rows | uniform 1/k = 0.3333333333333333 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-agree-action/counts/calibration |
-| Q-agree-action/evaluation | 0 | not established | label rows | uniform 1/k = 0.3333333333333333 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-agree-action/counts/evaluation |
-| Q-agree-action/training | 4 | not established | label rows | uniform 1/k = 0.3333333333333333 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-agree-action/counts/training |
-| Q-claim-workflow/calibration | 0 | not established | label rows | uniform 1/k = 0.25 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-claim-workflow/counts/calibration |
-| Q-claim-workflow/evaluation | 0 | not established | label rows | uniform 1/k = 0.25 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-claim-workflow/counts/evaluation |
-| Q-claim-workflow/training | 0 | not established | label rows | uniform 1/k = 0.25 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-claim-workflow/counts/training |
-| Q-domain/calibration | 0 | not established | label rows | uniform 1/k = 0.1111111111111111 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-domain/counts/calibration |
-| Q-domain/evaluation | 0 | not established | label rows | uniform 1/k = 0.1111111111111111 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-domain/counts/evaluation |
-| Q-domain/training | 0 | not established | label rows | uniform 1/k = 0.1111111111111111 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-domain/counts/training |
-| Q-drift-flag/calibration | 0 | not established | label rows | uniform 1/k = 0.5 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-drift-flag/counts/calibration |
-| Q-drift-flag/evaluation | 0 | not established | label rows | uniform 1/k = 0.5 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-drift-flag/counts/evaluation |
-| Q-drift-flag/training | 0 | not established | label rows | uniform 1/k = 0.5 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-drift-flag/counts/training |
-| Q-mark-type/calibration | 0 | not established | label rows | uniform 1/k = 0.2 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-mark-type/counts/calibration |
-| Q-mark-type/evaluation | 0 | not established | label rows | uniform 1/k = 0.2 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-mark-type/counts/evaluation |
-| Q-mark-type/training | 0 | not established | label rows | uniform 1/k = 0.2 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-mark-type/counts/training |
-| Q-shape/calibration | 0 | not established | label rows | uniform 1/k = 0.16666666666666666 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-shape/counts/calibration |
-| Q-shape/evaluation | 0 | not established | label rows | uniform 1/k = 0.16666666666666666 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-shape/counts/evaluation |
-| Q-shape/training | 0 | not established | label rows | uniform 1/k = 0.16666666666666666 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-shape/counts/training |
-| Q-solver/calibration | 0 | not established | label rows | uniform 1/k = 0.2 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-solver/counts/calibration |
-| Q-solver/evaluation | 0 | not established | label rows | uniform 1/k = 0.2 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-solver/counts/evaluation |
-| Q-solver/training | 0 | not established | label rows | uniform 1/k = 0.2 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-solver/counts/training |
-| Q-topo-workflow/calibration | 0 | not established | label rows | uniform 1/k = 0.25 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-topo-workflow/counts/calibration |
-| Q-topo-workflow/evaluation | 0 | not established | label rows | uniform 1/k = 0.25 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-topo-workflow/counts/evaluation |
-| Q-topo-workflow/training | 0 | not established | label rows | uniform 1/k = 0.25 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-topo-workflow/counts/training |
-| Q-track/calibration | 0 | not established | label rows | uniform 1/k = 0.5 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-track/counts/calibration |
-| Q-track/evaluation | 0 | not established | label rows | uniform 1/k = 0.5 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-track/counts/evaluation |
-| Q-track/training | 0 | not established | label rows | uniform 1/k = 0.5 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S07#/learning/support/Q-track/counts/training |
+| ONNX argmax parity | 3 | 3 | fixture states | N/A: structural or operational census | N/A / N/A | new linear head over frozen openJev logits; not original-head refit; fixture only, not G2 | S08#/onnx_parity |
+| training rows | 4 | 4 | fixture rows | N/A: structural or operational census | N/A / N/A |  | S08#/training_rows |
+| training families | 1 | not established | families | N/A: structural or operational census | N/A / N/A |  | S08#/training_families |
+| Q-agree-action/calibration | 0 | not established | label rows | uniform 1/k = 0.3333333333333333 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-agree-action/counts/calibration |
+| Q-agree-action/evaluation | 0 | not established | label rows | uniform 1/k = 0.3333333333333333 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-agree-action/counts/evaluation |
+| Q-agree-action/training | 4 | not established | label rows | uniform 1/k = 0.3333333333333333 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-agree-action/counts/training |
+| Q-claim-workflow/calibration | 0 | not established | label rows | uniform 1/k = 0.25 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-claim-workflow/counts/calibration |
+| Q-claim-workflow/evaluation | 0 | not established | label rows | uniform 1/k = 0.25 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-claim-workflow/counts/evaluation |
+| Q-claim-workflow/training | 0 | not established | label rows | uniform 1/k = 0.25 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-claim-workflow/counts/training |
+| Q-domain/calibration | 0 | not established | label rows | uniform 1/k = 0.1111111111111111 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-domain/counts/calibration |
+| Q-domain/evaluation | 0 | not established | label rows | uniform 1/k = 0.1111111111111111 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-domain/counts/evaluation |
+| Q-domain/training | 0 | not established | label rows | uniform 1/k = 0.1111111111111111 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-domain/counts/training |
+| Q-drift-flag/calibration | 0 | not established | label rows | uniform 1/k = 0.5 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-drift-flag/counts/calibration |
+| Q-drift-flag/evaluation | 0 | not established | label rows | uniform 1/k = 0.5 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-drift-flag/counts/evaluation |
+| Q-drift-flag/training | 0 | not established | label rows | uniform 1/k = 0.5 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-drift-flag/counts/training |
+| Q-mark-type/calibration | 0 | not established | label rows | uniform 1/k = 0.2 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-mark-type/counts/calibration |
+| Q-mark-type/evaluation | 0 | not established | label rows | uniform 1/k = 0.2 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-mark-type/counts/evaluation |
+| Q-mark-type/training | 0 | not established | label rows | uniform 1/k = 0.2 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-mark-type/counts/training |
+| Q-shape/calibration | 0 | not established | label rows | uniform 1/k = 0.16666666666666666 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-shape/counts/calibration |
+| Q-shape/evaluation | 0 | not established | label rows | uniform 1/k = 0.16666666666666666 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-shape/counts/evaluation |
+| Q-shape/training | 0 | not established | label rows | uniform 1/k = 0.16666666666666666 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-shape/counts/training |
+| Q-solver/calibration | 0 | not established | label rows | uniform 1/k = 0.2 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-solver/counts/calibration |
+| Q-solver/evaluation | 0 | not established | label rows | uniform 1/k = 0.2 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-solver/counts/evaluation |
+| Q-solver/training | 0 | not established | label rows | uniform 1/k = 0.2 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-solver/counts/training |
+| Q-topo-workflow/calibration | 0 | not established | label rows | uniform 1/k = 0.25 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-topo-workflow/counts/calibration |
+| Q-topo-workflow/evaluation | 0 | not established | label rows | uniform 1/k = 0.25 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-topo-workflow/counts/evaluation |
+| Q-topo-workflow/training | 0 | not established | label rows | uniform 1/k = 0.25 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-topo-workflow/counts/training |
+| Q-track/calibration | 0 | not established | label rows | uniform 1/k = 0.5 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-track/counts/calibration |
+| Q-track/evaluation | 0 | not established | label rows | uniform 1/k = 0.5 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-track/counts/evaluation |
+| Q-track/training | 0 | not established | label rows | uniform 1/k = 0.5 | N/A / N/A | No independent gold accuracy; majority/code-only/previous-lock unavailable | S08#/learning/support/Q-track/counts/training |
 
 ### corpus
 
 | Measure | Count | Denominator | Unit | Null | Micro / macro | Evidence / limits | Sources |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| corpus/calibration | 20 | 2560 | diagrams | N/A: structural or operational census | N/A / N/A |  | S04#/counts/calibration |
-| corpus/development | 20 | 2560 | diagrams | N/A: structural or operational census | N/A / N/A |  | S04#/counts/development |
-| corpus/fit | 2000 | 2560 | diagrams | N/A: structural or operational census | N/A / N/A |  | S04#/counts/fit |
-| corpus/retrieval | 20 | 2560 | diagrams | N/A: structural or operational census | N/A / N/A |  | S04#/counts/retrieval |
-| corpus/sealed | 500 | 2560 | diagrams | N/A: structural or operational census | N/A / N/A |  | S04#/counts/sealed |
-| records validated | 2560 | 2560 | records | N/A: structural or operational census | N/A / N/A | Receipt evidence; generated private corpus not re-audited by this report | S04#/records_validated |
-| truth class/false | 4881465 | 5777920 | candidate relations | N/A: structural or operational census | N/A / N/A | Truth census, not perception scores; per-diagram truth counts unavailable in receipt | S04#/class_counts/false |
-| truth class/incidental_unproved | 341223 | 5777920 | candidate relations | N/A: structural or operational census | N/A / N/A | Truth census, not perception scores; per-diagram truth counts unavailable in receipt | S04#/class_counts/incidental_unproved |
-| truth class/premise | 3587 | 5777920 | candidate relations | N/A: structural or operational census | N/A / N/A | Truth census, not perception scores; per-diagram truth counts unavailable in receipt | S04#/class_counts/premise |
-| truth class/unknown | 551645 | 5777920 | candidate relations | N/A: structural or operational census | N/A / N/A | Truth census, not perception scores; per-diagram truth counts unavailable in receipt | S04#/class_counts/unknown |
-| cross_split_coordinate_collisions | 0 | not established | cross-split collisions | N/A: structural or operational census | N/A / N/A | Pair denominator not retained by receipt | S04#/cross_split_coordinate_collisions |
-| cross_split_image_collisions | 0 | not established | cross-split collisions | N/A: structural or operational census | N/A / N/A | Pair denominator not retained by receipt | S04#/cross_split_image_collisions |
+| corpus/calibration | 20 | 2560 | diagrams | N/A: structural or operational census | N/A / N/A |  | S05#/counts/calibration |
+| corpus/development | 20 | 2560 | diagrams | N/A: structural or operational census | N/A / N/A |  | S05#/counts/development |
+| corpus/fit | 2000 | 2560 | diagrams | N/A: structural or operational census | N/A / N/A |  | S05#/counts/fit |
+| corpus/retrieval | 20 | 2560 | diagrams | N/A: structural or operational census | N/A / N/A |  | S05#/counts/retrieval |
+| corpus/sealed | 500 | 2560 | diagrams | N/A: structural or operational census | N/A / N/A |  | S05#/counts/sealed |
+| records validated | 2560 | 2560 | records | N/A: structural or operational census | N/A / N/A | Receipt evidence; generated private corpus not re-audited by this report | S05#/records_validated |
+| truth class/false | 4881465 | 5777920 | candidate relations | N/A: structural or operational census | N/A / N/A | Truth census, not perception scores; per-diagram truth counts unavailable in receipt | S05#/class_counts/false |
+| truth class/incidental_unproved | 341223 | 5777920 | candidate relations | N/A: structural or operational census | N/A / N/A | Truth census, not perception scores; per-diagram truth counts unavailable in receipt | S05#/class_counts/incidental_unproved |
+| truth class/premise | 3587 | 5777920 | candidate relations | N/A: structural or operational census | N/A / N/A | Truth census, not perception scores; per-diagram truth counts unavailable in receipt | S05#/class_counts/premise |
+| truth class/unknown | 551645 | 5777920 | candidate relations | N/A: structural or operational census | N/A / N/A | Truth census, not perception scores; per-diagram truth counts unavailable in receipt | S05#/class_counts/unknown |
+| cross_split_coordinate_collisions | 0 | not established | cross-split collisions | N/A: structural or operational census | N/A / N/A | Pair denominator not retained by receipt | S05#/cross_split_coordinate_collisions |
+| cross_split_image_collisions | 0 | not established | cross-split collisions | N/A: structural or operational census | N/A / N/A | Pair denominator not retained by receipt | S05#/cross_split_image_collisions |
 
 ### formalization
 
 | Measure | Count | Denominator | Unit | Null | Micro / macro | Evidence / limits | Sources |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| first_pass_well_typed | 80 | 100 | statements | N/A: structural or operational census | N/A / N/A | WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance | S08#/first_pass_well_typed, S10#/, S09#/ |
-| post_repair_well_typed | 100 | 100 | statements | N/A: structural or operational census | N/A / N/A | WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance | S08#/post_repair_well_typed, S10#/, S09#/ |
-| unique_canonical_statements | 100 | 100 | statements | N/A: structural or operational census | N/A / N/A | WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance | S08#/unique_canonical_statements, S10#/, S09#/ |
-| human_reviews | 0 | 50 | reference tasks | N/A: structural or operational census | N/A / N/A | WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance | S08#/human_reviews, S10#/, S09#/ |
-| semantic_rubric_passes | 0 | 50 | reference tasks | N/A: structural or operational census | N/A / N/A | WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance | S08#/semantic_rubric_passes, S10#/, S09#/ |
-| control/empty | 100 | 100 | control statements | N/A: structural or operational census | N/A / N/A |  | S08#/controls/empty, S10#/, S09#/ |
-| control/nearest_retrieval | 100 | 100 | control statements | N/A: structural or operational census | N/A / N/A |  | S08#/controls/nearest_retrieval, S10#/, S09#/ |
-| control/strengthened | 100 | 100 | control statements | N/A: structural or operational census | N/A / N/A |  | S08#/controls/strengthened, S10#/, S09#/ |
-| control/trivial | 100 | 100 | control statements | N/A: structural or operational census | N/A / N/A |  | S08#/controls/trivial, S10#/, S09#/ |
-| control/unrelated_but_provable | 100 | 100 | control statements | N/A: structural or operational census | N/A / N/A |  | S08#/controls/unrelated_but_provable, S10#/, S09#/ |
-| control/vacuous | 100 | 100 | control statements | N/A: structural or operational census | N/A / N/A |  | S08#/controls/vacuous, S10#/, S09#/ |
-| control/weakened | 100 | 100 | control statements | N/A: structural or operational census | N/A / N/A |  | S08#/controls/weakened, S10#/, S09#/ |
-| equivalence/kernel_checked | 0 | 50 | reference tasks | N/A: structural or operational census | N/A / N/A |  | S08#/equivalence_counts/kernel_checked, S10#/, S09#/ |
-| equivalence/machine_supported | 50 | 50 | reference tasks | N/A: structural or operational census | N/A / N/A |  | S08#/equivalence_counts/machine_supported, S10#/, S09#/ |
-| equivalence/reviewer_judged | 0 | 50 | reference tasks | N/A: structural or operational census | N/A / N/A |  | S08#/equivalence_counts/reviewer_judged, S10#/, S09#/ |
-| equivalence/unresolved | 0 | 50 | reference tasks | N/A: structural or operational census | N/A / N/A |  | S08#/equivalence_counts/unresolved, S10#/, S09#/ |
-| predicate/Collinear | 5 | 100 | statements | N/A: structural or operational census | N/A / N/A | {'available': 5, 'quota': 12, 'reason': 'Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.', 'selected': 5} | S08#/per_predicate_counts/Collinear, S10#/, S09#/ |
-| predicate/Concyclic | 4 | 100 | statements | N/A: structural or operational census | N/A / N/A | {'available': 4, 'quota': 11, 'reason': 'Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.', 'selected': 4} | S08#/per_predicate_counts/Concyclic, S10#/, S09#/ |
-| predicate/EqualAngle | 17 | 100 | statements | N/A: structural or operational census | N/A / N/A |  | S08#/per_predicate_counts/EqualAngle, S10#/, S09#/ |
-| predicate/EqualLength | 17 | 100 | statements | N/A: structural or operational census | N/A / N/A |  | S08#/per_predicate_counts/EqualLength, S10#/, S09#/ |
-| predicate/Midpoint | 3 | 100 | statements | N/A: structural or operational census | N/A / N/A | {'available': 3, 'quota': 11, 'reason': 'Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.', 'selected': 3} | S08#/per_predicate_counts/Midpoint, S10#/, S09#/ |
-| predicate/Parallel | 18 | 100 | statements | N/A: structural or operational census | N/A / N/A |  | S08#/per_predicate_counts/Parallel, S10#/, S09#/ |
-| predicate/Perpendicular | 14 | 100 | statements | N/A: structural or operational census | N/A / N/A |  | S08#/per_predicate_counts/Perpendicular, S10#/, S09#/ |
-| predicate/RightAngle | 17 | 100 | statements | N/A: structural or operational census | N/A / N/A |  | S08#/per_predicate_counts/RightAngle, S10#/, S09#/ |
-| predicate/SBetween | 5 | 100 | statements | N/A: structural or operational census | N/A / N/A | {'available': 5, 'quota': 11, 'reason': 'Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.', 'selected': 5} | S08#/per_predicate_counts/SBetween, S10#/, S09#/ |
+| first_pass_well_typed | 80 | 100 | statements | N/A: structural or operational census | N/A / N/A | WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance | S09#/first_pass_well_typed, S11#/, S10#/ |
+| post_repair_well_typed | 100 | 100 | statements | N/A: structural or operational census | N/A / N/A | WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance | S09#/post_repair_well_typed, S11#/, S10#/ |
+| unique_canonical_statements | 100 | 100 | statements | N/A: structural or operational census | N/A / N/A | WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance | S09#/unique_canonical_statements, S11#/, S10#/ |
+| human_reviews | 0 | 50 | reference tasks | N/A: structural or operational census | N/A / N/A | WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance | S09#/human_reviews, S11#/, S10#/ |
+| semantic_rubric_passes | 0 | 50 | reference tasks | N/A: structural or operational census | N/A / N/A | WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance | S09#/semantic_rubric_passes, S11#/, S10#/ |
+| control/empty | 100 | 100 | control statements | N/A: structural or operational census | N/A / N/A |  | S09#/controls/empty, S11#/, S10#/ |
+| control/nearest_retrieval | 100 | 100 | control statements | N/A: structural or operational census | N/A / N/A |  | S09#/controls/nearest_retrieval, S11#/, S10#/ |
+| control/strengthened | 100 | 100 | control statements | N/A: structural or operational census | N/A / N/A |  | S09#/controls/strengthened, S11#/, S10#/ |
+| control/trivial | 100 | 100 | control statements | N/A: structural or operational census | N/A / N/A |  | S09#/controls/trivial, S11#/, S10#/ |
+| control/unrelated_but_provable | 100 | 100 | control statements | N/A: structural or operational census | N/A / N/A |  | S09#/controls/unrelated_but_provable, S11#/, S10#/ |
+| control/vacuous | 100 | 100 | control statements | N/A: structural or operational census | N/A / N/A |  | S09#/controls/vacuous, S11#/, S10#/ |
+| control/weakened | 100 | 100 | control statements | N/A: structural or operational census | N/A / N/A |  | S09#/controls/weakened, S11#/, S10#/ |
+| equivalence/kernel_checked | 0 | 50 | reference tasks | N/A: structural or operational census | N/A / N/A |  | S09#/equivalence_counts/kernel_checked, S11#/, S10#/ |
+| equivalence/machine_supported | 50 | 50 | reference tasks | N/A: structural or operational census | N/A / N/A |  | S09#/equivalence_counts/machine_supported, S11#/, S10#/ |
+| equivalence/reviewer_judged | 0 | 50 | reference tasks | N/A: structural or operational census | N/A / N/A |  | S09#/equivalence_counts/reviewer_judged, S11#/, S10#/ |
+| equivalence/unresolved | 0 | 50 | reference tasks | N/A: structural or operational census | N/A / N/A |  | S09#/equivalence_counts/unresolved, S11#/, S10#/ |
+| predicate/Collinear | 5 | 100 | statements | N/A: structural or operational census | N/A / N/A | {'available': 5, 'quota': 12, 'reason': 'Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.', 'selected': 5} | S09#/per_predicate_counts/Collinear, S11#/, S10#/ |
+| predicate/Concyclic | 4 | 100 | statements | N/A: structural or operational census | N/A / N/A | {'available': 4, 'quota': 11, 'reason': 'Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.', 'selected': 4} | S09#/per_predicate_counts/Concyclic, S11#/, S10#/ |
+| predicate/EqualAngle | 17 | 100 | statements | N/A: structural or operational census | N/A / N/A |  | S09#/per_predicate_counts/EqualAngle, S11#/, S10#/ |
+| predicate/EqualLength | 17 | 100 | statements | N/A: structural or operational census | N/A / N/A |  | S09#/per_predicate_counts/EqualLength, S11#/, S10#/ |
+| predicate/Midpoint | 3 | 100 | statements | N/A: structural or operational census | N/A / N/A | {'available': 3, 'quota': 11, 'reason': 'Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.', 'selected': 3} | S09#/per_predicate_counts/Midpoint, S11#/, S10#/ |
+| predicate/Parallel | 18 | 100 | statements | N/A: structural or operational census | N/A / N/A |  | S09#/per_predicate_counts/Parallel, S11#/, S10#/ |
+| predicate/Perpendicular | 14 | 100 | statements | N/A: structural or operational census | N/A / N/A |  | S09#/per_predicate_counts/Perpendicular, S11#/, S10#/ |
+| predicate/RightAngle | 17 | 100 | statements | N/A: structural or operational census | N/A / N/A |  | S09#/per_predicate_counts/RightAngle, S11#/, S10#/ |
+| predicate/SBetween | 5 | 100 | statements | N/A: structural or operational census | N/A / N/A | {'available': 5, 'quota': 11, 'reason': 'Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.', 'selected': 5} | S09#/per_predicate_counts/SBetween, S11#/, S10#/ |
 
 ### live_probe
 
 | Measure | Count | Denominator | Unit | Null | Micro / macro | Evidence / limits | Sources |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| image accepted | 1 | 1 | live probe | N/A: structural or operational census | N/A / N/A | No truth-scored accuracy from the probe | S06#/observation/image_accepted |
-| prompt_tokens | 236 | 1 | tokens per probe | N/A: structural or operational census | N/A / N/A |  | S06#/observation/usage/prompt_tokens |
-| completion_tokens | 164 | 1 | tokens per probe | N/A: structural or operational census | N/A / N/A |  | S06#/observation/usage/completion_tokens |
-| total_tokens | 400 | 1 | tokens per probe | N/A: structural or operational census | N/A / N/A |  | S06#/observation/usage/total_tokens |
-| latency_s | 1.4512553750537336 | 1 | seconds per probe | N/A: structural or operational census | N/A / N/A |  | S06#/observation/latency_s |
+| image accepted | 1 | 1 | live probe | N/A: structural or operational census | N/A / N/A | No truth-scored accuracy from the probe | S07#/observation/image_accepted |
+| prompt_tokens | 236 | 1 | tokens per probe | N/A: structural or operational census | N/A / N/A |  | S07#/observation/usage/prompt_tokens |
+| completion_tokens | 164 | 1 | tokens per probe | N/A: structural or operational census | N/A / N/A |  | S07#/observation/usage/completion_tokens |
+| total_tokens | 400 | 1 | tokens per probe | N/A: structural or operational census | N/A / N/A |  | S07#/observation/usage/total_tokens |
+| latency_s | 1.4512553750537336 | 1 | seconds per probe | N/A: structural or operational census | N/A / N/A |  | S07#/observation/latency_s |
 
 ### preflight
 
 | Measure | Count | Denominator | Unit | Null | Micro / macro | Evidence / limits | Sources |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| vision_and_runner_contract | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S11#/checks/0 |
-| rhjev_tests | 1 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: ran; capability-specific only | S11#/checks/1 |
-| openjev_fixture | 1 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: ran; capability-specific only | S11#/checks/2 |
-| newclid_import | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S11#/checks/3 |
-| atlas_ingest_contract | 1 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: ran; capability-specific only | S11#/checks/4 |
-| codex_cli | 1 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: ran; capability-specific only | S11#/checks/5 |
-| lean_toolchain_presence | 1 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: ran; capability-specific only | S11#/checks/6 |
-| euclid_generator_discovery | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S11#/checks/7 |
-| newclid_jgex_roundtrip | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S11#/checks/8 |
-| newclid_geogebra_terms | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S11#/checks/9 |
-| rhvf_isolation | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S11#/checks/10 |
-| explorer_scenes | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S11#/checks/11 |
-| local_prover_host | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S11#/checks/12 |
-| human_latency | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S11#/checks/13 |
+| vision_and_runner_contract | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S12#/checks/0 |
+| rhjev_tests | 1 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: ran; capability-specific only | S12#/checks/1 |
+| openjev_fixture | 1 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: ran; capability-specific only | S12#/checks/2 |
+| newclid_import | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S12#/checks/3 |
+| atlas_ingest_contract | 1 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: ran; capability-specific only | S12#/checks/4 |
+| codex_cli | 1 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: ran; capability-specific only | S12#/checks/5 |
+| lean_toolchain_presence | 1 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: ran; capability-specific only | S12#/checks/6 |
+| euclid_generator_discovery | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S12#/checks/7 |
+| newclid_jgex_roundtrip | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S12#/checks/8 |
+| newclid_geogebra_terms | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S12#/checks/9 |
+| rhvf_isolation | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S12#/checks/10 |
+| explorer_scenes | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S12#/checks/11 |
+| local_prover_host | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S12#/checks/12 |
+| human_latency | 0 | 1 | capability check | N/A: structural or operational census | N/A / N/A | WP-0a historical status: failed; capability-specific only | S12#/checks/13 |
 
 ## Relation scoring availability
 
@@ -247,20 +247,42 @@ Query-set and full-record scoring remain separate, as do each measurement stage 
 | real_data_transfer | image_measurement | query_set | unknown / unknown | not established | not established | independent query guesses: recall/FPR 1/2, precision prevalence (unknown) | No committed scored predictions; corpus availability is not scored evidence |
 | real_data_transfer | image_measurement | full_record | unknown / unknown | not established | not established | N/A: no universal full-record random-set null | No committed scored predictions; corpus availability is not scored evidence |
 
+## Topology coordinate self-consistency (not G5)
+
+Exact render geometry → crossings → PD. No image perception; public family split retired. No external set. Invariant agreement would not verify transcription.
+
+| Metric | Numerator / denominator | Value |
+| --- | --- | --- |
+| Exact PD lists | 30 / 30 | 1.0 |
+| Canonicalized PD lists | 30 / 30 | 1.0 |
+| Crossing micro | 76 / 76 | 1.0 |
+| Crossing macro | 25.0 / 25 | 1.0 |
+| Orientation micro | 76 / 76 | 1.0 |
+| Orientation macro | 25.0 / 25 | 1.0 |
+| Component validity | 30 / 30 | 1.0 |
+| Knot type | 0 / 30 | 0.0 |
+| Invariant consistency | 0 / 0 | None |
+
+Nulls: exact PD N/A; conditional complete orientation 2^(-c) per diagram, mean 0.32447916666666665; knot-type {'counts': {'figure_eight': 6, 'hopf': 6, 'trefoil_negative': 5, 'trefoil_positive': 1, 'unknot': 6, 'unlink': 6}, 'k': 6, 'majority': 0.2, 'uniform': 0.16666666666666666}.
+
+Intervals unavailable: finite public regression census. Full row counts and unknowns are retained in SUMMARY.json.
+
 ## Source hashes
 
 SHA-256 covers the exact bytes in the evidence commit. JSON field pointers and policy section references accompany derived numbers. The source inventory is provenance metadata, not a statistical table.
 
 - S01: `docs/mve/MVE_PLAN.md` — `f073240be638b9225b5f6f33da4bbe34ef75d2ba71087da7b39b2ab9d9b61908`
-- S02: `docs/mve/reviews/OFFLINE_PACKETS_REVIEW_OPUS_20260927.md` — `5546164a1a8dfe9b727da17b8c5b11faf84c032b928e185799ce9198f61e3bbe`
-- S03: `docs/mve/reviews/WP2_CORPUS_RECEIPT_20260927.json` — `4795282bf1aad58553744316a518fa326eb8178de3d8ca3e9652370635d68db8`
-- S04: `docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json` — `fcf71b95df8dac21e240607d57d333aaad2e841fe843d47c01dea4ba7e569f54`
-- S05: `docs/mve/reviews/wp0b-live/ledger.json` — `b6a03a43f9bff4907d15b3a27f609dc9b2e12b0dcc9830170c02f5388c11553c`
-- S06: `docs/mve/reviews/wp0b-live/receipt.json` — `f328968f5e3ef6ebacff4cc1226b7e90485c9eefaff0722c5285aa1f88e18cc8`
-- S07: `mve/classifier/spike_receipt.json` — `c500766cafb72ad782be2ecd41fa05af60d90e86f10d46a12f5d797d06ccc9a0`
-- S08: `mve/lean/artifacts/g3-taskset/g3.json` — `e2f13af8c85d41020ca96f5041bbc55bd9c47f44a00671dfbd687e98a8f69853`
-- S09: `mve/lean/artifacts/g3-taskset/references.json` — `b16bf256dc447cc425de7546d676d94a4b66cf16685b0a97c6769cfbed2fb03d`
-- S10: `mve/lean/artifacts/g3-taskset/tasks.json` — `19b833bf4c05e0cdb8e60684a239c1eb6c4083c9dfca6528eaf8a1611b2591da`
-- S11: `mve/preflight/results/report.json` — `f5e55b7b10e57f4c2fcf0695c3a7b7a182edff6dbee809a15afba85ccc3051a5`
+- S02: `docs/mve/TOPOLOGY.md` — `d9df94bbb4bef9cdf0db01bc0be8623fac4304975a60cf80d4a85960272e6ec5`
+- S03: `docs/mve/reviews/OFFLINE_PACKETS_REVIEW_OPUS_20260927.md` — `01d05c2e4c3b79b86c8ccab76edcf356d462ae706314bcc1318459804eac6aba`
+- S04: `docs/mve/reviews/WP2_CORPUS_RECEIPT_20260927.json` — `4795282bf1aad58553744316a518fa326eb8178de3d8ca3e9652370635d68db8`
+- S05: `docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json` — `fcf71b95df8dac21e240607d57d333aaad2e841fe843d47c01dea4ba7e569f54`
+- S06: `docs/mve/reviews/wp0b-live/ledger.json` — `b6a03a43f9bff4907d15b3a27f609dc9b2e12b0dcc9830170c02f5388c11553c`
+- S07: `docs/mve/reviews/wp0b-live/receipt.json` — `f328968f5e3ef6ebacff4cc1226b7e90485c9eefaff0722c5285aa1f88e18cc8`
+- S08: `mve/classifier/spike_receipt.json` — `c500766cafb72ad782be2ecd41fa05af60d90e86f10d46a12f5d797d06ccc9a0`
+- S09: `mve/lean/artifacts/g3-taskset/g3.json` — `e2f13af8c85d41020ca96f5041bbc55bd9c47f44a00671dfbd687e98a8f69853`
+- S10: `mve/lean/artifacts/g3-taskset/references.json` — `b16bf256dc447cc425de7546d676d94a4b66cf16685b0a97c6769cfbed2fb03d`
+- S11: `mve/lean/artifacts/g3-taskset/tasks.json` — `19b833bf4c05e0cdb8e60684a239c1eb6c4083c9dfca6528eaf8a1611b2591da`
+- S12: `mve/preflight/results/report.json` — `f5e55b7b10e57f4c2fcf0695c3a7b7a182edff6dbee809a15afba85ccc3051a5`
+- S13: `mve/topology/artifacts/receipt.json` — `cc705e18143a78eb691c8cc00ed7fbc34a8537bdff1c8cf87ec5750ad19427f9`
 
 Missing committed sources: `mve/campaign/ledger.json`.
