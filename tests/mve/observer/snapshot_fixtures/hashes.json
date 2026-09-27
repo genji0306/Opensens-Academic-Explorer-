@@ -1,0 +1,26 @@
+{
+  "scope": "Synthetic pixel-region fixture only; not a lab capture or HTML rasterization",
+  "blinded.png": {
+    "sha256": "8c17971885cdf5c5313fac7809b1092894bacea97846f00f6d7dcf80bd7d0334",
+    "bytes": 611,
+    "chunks": [
+      "IHDR",
+      "IDAT",
+      "IEND"
+    ],
+    "crop_box": [
+      0,
+      0,
+      320,
+      240
+    ],
+    "masks": [
+      [
+        0,
+        0,
+        320,
+        50
+      ]
+    ]
+  }
+}
