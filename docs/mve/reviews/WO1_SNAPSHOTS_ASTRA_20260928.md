@@ -6,6 +6,36 @@ No atlas/lab build, publish, download, hosted call, or source-worktree edit was 
 
 ## Delivery and validation boundary
 
+Per-pass timeout follow-up to `ebf704002c1` (2026-09-28): Opus reports a
+**successful first native pass** outside the builder sandbox. All eight snapshots
+(four modules plus control twins) produced `full.png`, `blind.png` and `data.json`;
+Opus inspected the blinded crops and found them clean. The repeat pass then hit
+the old 300-second deadline shared by both passes. Byte-identical native repeat
+verification remains pending. This report supersedes the older native-capture
+status below; the historical evidence JSON is unchanged.
+
+Each pass now receives a fresh wall-clock timer, default **300 seconds**,
+configurable with `--timeout-per-pass` (integer seconds, 1–900). The worker arms
+the timer around each browser pass and cancels it on exit. The parent independently
+enforces a **900-second overall worker cap**, even if configured pass budgets sum
+to more than 900 seconds. Existing worker/Chrome process-group cleanup and the
+five-second reap bound are unchanged. Rendering, blinding and hash comparison are
+unchanged.
+
+Focused validation: **55 passed, 2 skipped** across `test_snapshot_capture.py`
+and `test_snapshots.py`; Ruff lint/format checks and `git diff --check` pass.
+Regression tests cover two passes whose combined duration exceeds one pass's
+budget, default/custom budgets, first/second-pass expiry, a real wall-clock timer,
+argument validation, worker argument forwarding and the overall cap with group
+cleanup. The two native OS sandbox tests remain skipped in this nested sandbox.
+No native capture was rerun here. Opus should retry with a new output directory:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m mve.observer.snapshot_capture \
+  --output mve/generated/wo1-opus-per-pass-timeout --repeat --timeout-per-pass 300 \
+  --chrome '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+```
+
 Chrome OS-sandbox follow-up to `8b5c09a9238` (2026-09-28): the Pillow fix works,
 but Chrome ignores TMPDIR for its SingletonSocket and uses the Darwin user temp
 directory. Its own sandbox also cannot initialize inside `sandbox-exec`. Opus
@@ -29,8 +59,8 @@ only because the enclosing OS sandbox continues to deny internet access and
 writes outside its explicit output/runtime allowlist.** Do not run this capture
 without that OS sandbox. Private HOME/TMPDIR and the parent Python user base remain.
 
-The worker has a 300-second wall-clock deadline covering both captures when
-`--repeat` is selected, with at most five seconds to reap after termination. A
+At that revision, the worker had a 300-second wall-clock deadline covering both
+captures with `--repeat`, superseded by the per-pass fix above. A
 short launcher records Chrome's group ID before exec: Playwright launches POSIX
 browsers in separate process groups, so killing just the worker is insufficient.
 The parent always SIGKILLs the worker group and every recorded Chrome group on

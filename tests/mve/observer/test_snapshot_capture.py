@@ -304,6 +304,68 @@ def test_worker_and_browser_orchestration(tmp_path, monkeypatch, private_runtime
         c.run_worker(args, tmp_path)
 
 
+@pytest.mark.parametrize("seconds", [300, 450])
+@pytest.mark.parametrize("slow_pass", [None, "capture", "repeat"])
+def test_each_capture_pass_gets_a_fresh_deadline(
+    tmp_path, monkeypatch, private_runtime, seconds, slow_pass
+):
+    monkeypatch.setenv("MVE_WO1_SANDBOX_WORKER", "1")
+    monkeypatch.setenv("MVE_WO1_PRIVATE_DIR", str(private_runtime))
+    argv = ["--repeat"]
+    if seconds != 300:
+        argv += ["--timeout-per-pass", str(seconds)]
+    args = c.parse_args(argv)
+    assert args.timeout_per_pass == seconds
+    now, deadline = 0, None
+    armed = []
+    previous = signal.getsignal(signal.SIGALRM)
+
+    def set_timer(which, duration):
+        nonlocal deadline
+        assert which == signal.ITIMER_REAL
+        deadline = now + duration if duration else None
+        armed.append(duration)
+
+    def capture(dist, out, *unused):
+        nonlocal now
+        now += seconds + 1 if out.name == slow_pass else seconds - 1
+        if now >= deadline:
+            signal.raise_signal(signal.SIGALRM)
+        return {"snapshots": []}
+
+    monkeypatch.setattr(c.signal, "setitimer", set_timer)
+    monkeypatch.setattr(r, "run_browser", capture)
+    if slow_pass:
+        with pytest.raises(ValueError, match=f"{slow_pass} pass exceeded {seconds}"):
+            c.run_worker(args, tmp_path)
+        assert not (tmp_path / "repeat-verification.json").exists()
+    else:
+        assert c.run_worker(args, tmp_path) == 0
+        assert now > seconds  # Both passes together exceed the old shared bound.
+        assert (tmp_path / "repeat-verification.json").exists()
+    assert armed == [seconds, 0] * (1 if slow_pass == "capture" else 2)
+    assert deadline is None
+    assert signal.getsignal(signal.SIGALRM) == previous
+
+
+def test_capture_pass_real_wall_clock_timeout(tmp_path, monkeypatch):
+    import time
+
+    previous = signal.getsignal(signal.SIGALRM)
+    monkeypatch.setattr(r, "run_browser", lambda *args: time.sleep(1))
+    args = SimpleNamespace(timeout_per_pass=0.01, chrome="unused")
+    with pytest.raises(ValueError, match="wall-clock timeout"):
+        c.capture_pass(args, tmp_path, tmp_path / "capture", tmp_path)
+    assert signal.getitimer(signal.ITIMER_REAL) == (0, 0)
+    assert signal.getsignal(signal.SIGALRM) == previous
+
+
+@pytest.mark.parametrize("value", ["0", "-1", "901", "nan"])
+def test_invalid_pass_timeout(value):
+    with pytest.raises(SystemExit):
+        c.parse_args(["--timeout-per-pass", value])
+
+
 def test_run_browser_lifecycle(tmp_path, monkeypatch, private_runtime):
     import playwright.sync_api
 
@@ -572,10 +634,12 @@ def test_worker_kills_all_groups_even_after_normal_exit(tmp_path, monkeypatch, t
     )
     proc = Mock(pid=12345, returncode=0)
     if timeout:
-        proc.wait.side_effect = [subprocess.TimeoutExpired("worker", 300), -9]
+        proc.wait.side_effect = [subprocess.TimeoutExpired("worker", 900), -9]
 
     def launch(*args, **kwargs):
         assert kwargs["start_new_session"] is True
+        command = args[0]
+        assert command[command.index("--timeout-per-pass") + 1] == "600"
         private = Path(kwargs["env"]["MVE_WO1_PRIVATE_DIR"])
         (private / "capture-chrome.pgid").write_text("12346\n")
         (private / "repeat-chrome.pgid").write_text("12347\n")
@@ -585,17 +649,18 @@ def test_worker_kills_all_groups_even_after_normal_exit(tmp_path, monkeypatch, t
     kill = Mock()
     monkeypatch.setattr(c.os, "killpg", kill)
     repos = {"atlas": tmp_path / "atlas", "lab": tmp_path / "lab"}
+    args = c.parse_args(["--repeat", "--timeout-per-pass", "600"])
     if timeout:
         with pytest.raises(ValueError, match="wall-clock timeout"):
-            c.isolated_capture(c.parse_args([]), tmp_path, repos, {})
+            c.isolated_capture(args, tmp_path, repos, {})
     else:
-        c.isolated_capture(c.parse_args([]), tmp_path, repos, {})
+        c.isolated_capture(args, tmp_path, repos, {})
     assert {call.args for call in kill.call_args_list} == {
         (12345, signal.SIGKILL),
         (12346, signal.SIGKILL),
         (12347, signal.SIGKILL),
     }
-    assert proc.wait.call_args_list[0].kwargs == {"timeout": 300}
+    assert proc.wait.call_args_list[0].kwargs == {"timeout": 900}
     assert proc.wait.call_args_list[1].kwargs == {"timeout": 5}
 
 

@@ -25,7 +25,8 @@ DEFAULT_REPOS = {
     "atlas": "~/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924",
     "lab": "~/Developer/Opensens/worktrees/zeta-explorer-main",
 }
-CAPTURE_TIMEOUT_SECONDS = 300
+PASS_TIMEOUT_SECONDS = 300
+CAPTURE_TIMEOUT_SECONDS = 900
 
 
 def darwin_runtime_paths():
@@ -99,12 +100,21 @@ def parse_args(argv=None):
     )
     ap.add_argument("--prepare-only", action="store_true")
     ap.add_argument(
+        "--timeout-per-pass",
+        type=int,
+        default=PASS_TIMEOUT_SECONDS,
+        help="wall-clock seconds per capture pass (default: 300; overall cap: 900)",
+    )
+    ap.add_argument(
         "--repeat",
         action="store_true",
         help="capture twice and compare all PNG/data hashes",
     )
     ap.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
-    return ap.parse_args(argv)
+    args = ap.parse_args(argv)
+    if not 0 < args.timeout_per_pass <= CAPTURE_TIMEOUT_SECONDS:
+        ap.error("--timeout-per-pass must be between 1 and 900 seconds")
+    return args
 
 
 def write_json(path, value):
@@ -164,6 +174,23 @@ def readonly_probe(profile, repo_files):
         )
 
 
+def capture_pass(args, dist, out, private):
+    def expired(signum, frame):
+        raise ValueError(
+            f"{out.name} pass exceeded {args.timeout_per_pass}-second wall-clock timeout"
+        )
+
+    previous = signal.signal(signal.SIGALRM, expired)
+    try:
+        signal.setitimer(signal.ITIMER_REAL, args.timeout_per_pass)
+        return render.run_browser(
+            dist, out, args.chrome, shutil.which("tesseract"), private
+        )
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, 0)
+        signal.signal(signal.SIGALRM, previous)
+
+
 def run_worker(args, out):
     # Internal worker is deliberately unusable unless the parent explicitly seals
     # its environment; it still only writes to validated generated output paths.
@@ -174,13 +201,11 @@ def run_worker(args, out):
     dist = out / "stage/atlas/vendor/zeta-explorer/dist"
     first = out / "capture"
     first.mkdir()
-    a = render.run_browser(dist, first, args.chrome, shutil.which("tesseract"), private)
+    a = capture_pass(args, dist, first, private)
     if args.repeat:
         second = out / "repeat"
         second.mkdir()
-        b = render.run_browser(
-            dist, second, args.chrome, shutil.which("tesseract"), private
-        )
+        b = capture_pass(args, dist, second, private)
 
         def hashes(manifest):
             return [
@@ -227,6 +252,8 @@ def isolated_capture(args, out, repos, receipt):
             args.output,
             "--chrome",
             args.chrome,
+            "--timeout-per-pass",
+            str(args.timeout_per_pass),
         ]
         if args.repeat:
             command.append("--repeat")
@@ -255,7 +282,7 @@ def isolated_capture(args, out, repos, receipt):
                 result.wait(timeout=CAPTURE_TIMEOUT_SECONDS)
             except subprocess.TimeoutExpired as exc:
                 raise ValueError(
-                    "isolated capture exceeded 300-second wall-clock timeout"
+                    "isolated capture exceeded 900-second overall wall-clock timeout"
                 ) from exc
             finally:
                 # Stop worker/driver before collecting separately detached Chrome
