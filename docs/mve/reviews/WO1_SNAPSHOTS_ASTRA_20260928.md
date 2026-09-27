@@ -6,6 +6,53 @@ No atlas/lab build, publish, download, hosted call, or source-worktree edit was 
 
 ## Delivery and validation boundary
 
+Chrome OS-sandbox follow-up to `8b5c09a9238` (2026-09-28): the Pillow fix works,
+but Chrome ignores TMPDIR for its SingletonSocket and uses the Darwin user temp
+directory. Its own sandbox also cannot initialize inside `sandbox-exec`. Opus
+reports an outside-builder-sandbox headless screenshot with the supplied OS
+profile and `--no-sandbox`, while curl to `https://example.com` remained refused.
+That reported smoke result is not a completed WO-1 capture or repeat receipt.
+
+The profile now denies `network*` with only local/remote **Unix socket** exceptions;
+there is no inet allowance. It retains this run's worktree output, fresh private
+runtime and `/dev/null` write exceptions, and adds the canonical paths returned by
+`getconf DARWIN_USER_TEMP_DIR` and `DARWIN_USER_CACHE_DIR`. If either lookup fails
+or returns a path outside `/private/var/folders`, it uses the authorized
+`/private/var/folders` fallback. Here the temp lookup succeeds but the cache lookup
+reports `Input/output error`, so the fallback applies. The narrow pair still needs
+native verification on a host where both lookups succeed; it does not silently
+broaden on a Chrome failure. These allowances supersede the earlier profile below.
+
+Chrome explicitly receives `--headless=new`, `--no-sandbox`, crash-reporter and
+Breakpad disable flags, and a private user-data directory. **`--no-sandbox` is safe
+only because the enclosing OS sandbox continues to deny internet access and
+writes outside its explicit output/runtime allowlist.** Do not run this capture
+without that OS sandbox. Private HOME/TMPDIR and the parent Python user base remain.
+
+The worker has a 300-second wall-clock deadline covering both captures when
+`--repeat` is selected, with at most five seconds to reap after termination. A
+short launcher records Chrome's group ID before exec: Playwright launches POSIX
+browsers in separate process groups, so killing just the worker is insufficient.
+The parent always SIGKILLs the worker group and every recorded Chrome group on
+success, nonzero exit, timeout or wait exception, including when Chrome's leader
+has exited but an updater remains. Cleanup precedes deletion of the private runtime
+and the existing source-tree audit. Runtime lookups and the write probe are also
+bounded. The 500 MiB generated-output cap, 5 GiB free-disk floor and bounded pinned
+archives are unchanged.
+
+Focused validation: **44 passed, 2 skipped**. The complete observer suite has
+**98 passed, 4 skipped**, with **98%** combined coverage of the three snapshot
+modules. Ruff and `git diff --check` pass. Tests assert the complete profile,
+canonical narrow paths and fallback, explicit browser flags, deadline and group
+kills on normal completion/timeout. A real subprocess fixture leaves a child
+holding a pipe after its leader exits; group cleanup kills that child and releases
+the pipe. Real OS tests for Unix IPC, IPv4/IPv6 denial and outside-write denial are
+skipped here with the explicit nested `sandbox_apply` restriction. The write-denial
+fixture now lives outside Darwin's allowed temp tree. No native Chrome capture was
+attempted here; Opus must rerun native capture and byte-identical repeats outside
+the builder sandbox using a new output directory. Earlier counts and the evidence
+JSON remain historical receipts.
+
 Python user-site follow-up to `f3992721a338d75578a477b96470ef4ab9ecd099`
 (2026-09-28): Opus reports that the short private Chrome runtime now works,
 but the sandboxed Python worker fails importing Pillow: the framework `_imaging`
@@ -150,8 +197,9 @@ Every command archives into its newly created `mve/generated/.../stage`, then de
 that stage, including on failure. Only allowlisted regular files/directories extract;
 links/traversal and archives over 64 MiB fail. Before writes, free disk must be at
 least 5 GiB and projected generated usage below 500 MiB. Browser capture additionally
-runs under `sandbox-exec`: network denied, writes denied outside this run's output
-and fresh `/private/tmp/mvewo1-*` subpath (except `/dev/null`). The worker and Chrome
+runs under `sandbox-exec`: inet denied, Unix IPC allowed, writes denied outside this
+run's output, fresh `/private/tmp/mvewo1-*` subpath, Darwin temp/cache paths (or the
+documented `/private/var/folders` fallback) and `/dev/null`. The worker and Chrome
 use the short private HOME/TMPDIR and private browser profiles described above. All page
 requests are fulfilled from the archive by Playwright; remote/missing paths abort.
 No local HTTP listener or download is needed.

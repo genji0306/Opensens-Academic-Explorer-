@@ -8,7 +8,10 @@ import io
 import json
 import math
 import mimetypes
+import os
 from pathlib import Path
+import shlex
+import signal
 from urllib.parse import unquote, urlsplit
 
 from PIL import Image
@@ -303,6 +306,34 @@ def capture_one(context, root, job, versions, ocr):
         page.close()
 
 
+def chrome_launcher(private, name, chrome):
+    """Playwright's POSIX launcher creates a session/group before exec.
+
+    Record its PID before Chrome starts so the parent can kill the whole group
+    even if Chrome exits first or Playwright's close hangs on a lingering updater.
+    """
+    launcher = private / f"{name}-chrome.sh"
+    pidfile = private / f"{name}-chrome.pgid"
+    launcher.write_text(
+        "#!/bin/sh\nset -eu\n"
+        f"echo $$ > {shlex.quote(str(pidfile))}\n"
+        f'exec {shlex.quote(chrome)} "$@"\n'
+    )
+    launcher.chmod(0o700)
+    return launcher
+
+
+def kill_browser_groups(private):
+    for pidfile in private.glob("*-chrome.pgid"):
+        pgid = int(pidfile.read_text().strip())
+        if pgid <= 1 or pgid == os.getpgrp():
+            raise ValueError("invalid Chrome process group")
+        try:
+            os.killpg(pgid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+
+
 def run_browser(dist, out, chrome, ocr, private):
     from importlib.metadata import version
     from playwright.sync_api import sync_playwright
@@ -315,8 +346,11 @@ def run_browser(dist, out, chrome, ocr, private):
     with sync_playwright() as p:
         context = p.chromium.launch_persistent_context(
             str(profile),
-            executable_path=chrome,
+            executable_path=str(chrome_launcher(private, out.name, chrome)),
             headless=True,
+            # Safe only under the parent's OS sandbox: internet and writes
+            # outside the explicit output/runtime allowlist remain denied.
+            chromium_sandbox=False,
             viewport={"width": 1440, "height": 1100},
             device_scale_factor=1,
             locale="en-US",
@@ -328,6 +362,8 @@ def run_browser(dist, out, chrome, ocr, private):
                 "TMPDIR": str(private / "t"),
             },
             args=[
+                "--headless=new",
+                "--no-sandbox",
                 "--use-angle=swiftshader",
                 "--enable-unsafe-swiftshader",
                 "--ignore-gpu-blocklist",

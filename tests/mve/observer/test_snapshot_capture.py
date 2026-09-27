@@ -3,6 +3,9 @@ import json
 import os
 from pathlib import Path
 import site
+import signal
+import subprocess
+import sys
 import tempfile
 from types import SimpleNamespace
 from unittest.mock import Mock
@@ -17,6 +20,15 @@ from mve.observer import snapshots as s
 @pytest.fixture
 def private_runtime():
     with tempfile.TemporaryDirectory(prefix="mvewo1-", dir="/private/tmp") as root:
+        yield Path(root)
+
+
+@pytest.fixture
+def outside_runtime():
+    # pytest's default tmp_path lives inside the Darwin temp write allowance.
+    with tempfile.TemporaryDirectory(
+        prefix="mvewo1-outside-", dir="/private/tmp"
+    ) as root:
         yield Path(root)
 
 
@@ -56,15 +68,26 @@ def test_virtual_route_never_falls_back_to_network(tmp_path):
     route.abort.assert_called_once()
 
 
-def test_sandbox_profile_and_cli_restrictions(tmp_path, private_runtime):
+def test_sandbox_profile_and_cli_restrictions(tmp_path, private_runtime, monkeypatch):
+    monkeypatch.setattr(
+        c,
+        "darwin_runtime_paths",
+        lambda: [
+            Path("/private/var/folders/user/T"),
+            Path("/private/var/folders/user/C"),
+        ],
+    )
     out = tmp_path / "mve/generated/capture"
     profile = c.sandbox_profile(out, private_runtime)
     # Exact equality prevents accidental broad write exceptions, including the
     # whole worktree, real HOME, shared /tmp, or shared /private/tmp.
     assert profile == (
-        "(version 1)\n(allow default)\n(deny network*)\n(deny file-write*)\n"
+        "(version 1)\n(allow default)\n(deny network*)\n"
+        "(allow network* (local unix-socket))\n"
+        "(allow network* (remote unix-socket))\n(deny file-write*)\n"
         f"(allow file-write* (subpath {json.dumps(str(out.resolve()))}) "
-        f"(subpath {json.dumps(str(private_runtime))}))\n"
+        f"(subpath {json.dumps(str(private_runtime))}) "
+        '(subpath "/private/var/folders/user/T") (subpath "/private/var/folders/user/C"))\n'
         '(allow file-write-data (literal "/dev/null"))\n'
     )
     home, tmp = c.private_paths(private_runtime)
@@ -153,7 +176,9 @@ def test_masks_and_nonblank_detection():
         r.assert_nonblank(out.getvalue())
 
 
-def test_sandbox_denies_write_to_outside_fixture(tmp_path, private_runtime):
+def test_sandbox_denies_write_to_outside_fixture(
+    tmp_path, private_runtime, outside_runtime
+):
     """Real OS denial test; nested-sandbox refusal is a named skip, not a pass."""
     import shutil
     import subprocess
@@ -163,7 +188,7 @@ def test_sandbox_denies_write_to_outside_fixture(tmp_path, private_runtime):
         pytest.skip("sandbox-exec unavailable")
     allowed = tmp_path / "allowed"
     allowed.mkdir()
-    outside = tmp_path / "outside"
+    outside = outside_runtime / "outside"
     outside.write_text("untouched")
     code = "import os,sys\ntry: os.open(sys.argv[1],os.O_WRONLY)\nexcept PermissionError: sys.exit(0)\nsys.exit(2)"
     proc = subprocess.run(
@@ -299,9 +324,13 @@ def test_run_browser_lifecycle(tmp_path, monkeypatch, private_runtime):
     assert len(manifest["snapshots"]) == 8
     context.close.assert_called_once()
     kwargs = launcher.chromium.launch_persistent_context.call_args.kwargs
+    assert kwargs["chromium_sandbox"] is False
+    assert Path(kwargs["executable_path"]).read_text().endswith('exec chrome "$@"\n')
     assert kwargs["device_scale_factor"] == 1 and kwargs["service_workers"] == "block"
     assert "--use-angle=swiftshader" in kwargs["args"]
     assert {
+        "--headless=new",
+        "--no-sandbox",
         "--disable-crash-reporter",
         "--disable-breakpad",
         "--no-first-run",
@@ -322,13 +351,17 @@ def test_run_browser_lifecycle(tmp_path, monkeypatch, private_runtime):
 def test_worker_preserves_parent_userbase_with_private_home(
     tmp_path, monkeypatch, inherited_userbase
 ):
+    monkeypatch.setattr(
+        c, "darwin_runtime_paths", lambda: [Path("/private/var/folders")]
+    )
     if inherited_userbase is None:
         monkeypatch.delenv("PYTHONUSERBASE", raising=False)
     else:
         monkeypatch.setenv("PYTHONUSERBASE", inherited_userbase)
     monkeypatch.setattr(c, "readonly_probe", Mock())
-    run = Mock(return_value=SimpleNamespace(returncode=0))
-    monkeypatch.setattr(c.subprocess, "run", run)
+    run = Mock(return_value=Mock(returncode=0, pid=12345))
+    monkeypatch.setattr(c.subprocess, "Popen", run)
+    monkeypatch.setattr(c.os, "killpg", Mock())
     repos = {"atlas": tmp_path / "atlas", "lab": tmp_path / "lab"}
 
     c.isolated_capture(c.parse_args([]), tmp_path, repos, {})
@@ -344,6 +377,9 @@ def test_worker_preserves_parent_userbase_with_private_home(
 @pytest.mark.parametrize("failure", [None, "probe", "returncode", "launch"])
 def test_private_runtime_cleanup_and_worker_environment(tmp_path, monkeypatch, failure):
     """No browser: inspect the subprocess boundary and all cleanup exits."""
+    monkeypatch.setattr(
+        c, "darwin_runtime_paths", lambda: [Path("/private/var/folders")]
+    )
     seen = []
 
     def probe(profile, files):
@@ -369,10 +405,11 @@ def test_private_runtime_cleanup_and_worker_environment(tmp_path, monkeypatch, f
         (runtime / "t/fixture-socket").write_text("cleanup fixture")
         if failure == "launch":
             raise OSError("fixture launch failure")
-        return SimpleNamespace(returncode=int(failure == "returncode"))
+        return Mock(returncode=int(failure == "returncode"), pid=12345)
 
     monkeypatch.setattr(c, "readonly_probe", probe)
-    monkeypatch.setattr(c.subprocess, "run", run)
+    monkeypatch.setattr(c.subprocess, "Popen", run)
+    monkeypatch.setattr(c.os, "killpg", Mock())
     args = c.parse_args(["--repeat"])
     repos = {"atlas": tmp_path / "atlas", "lab": tmp_path / "lab"}
     receipt = {}
@@ -425,6 +462,10 @@ def fake_archive(repo, name, dest, generated):
 
 
 def test_prepare_and_parent_orchestration(tmp_path, monkeypatch):
+    monkeypatch.setattr(
+        c, "darwin_runtime_paths", lambda: [Path("/private/var/folders")]
+    )
+    monkeypatch.setattr(c.os, "killpg", Mock())
     monkeypatch.setattr(c, "WORKTREE", tmp_path)
     monkeypatch.setattr(s, "disk_guard", lambda *a: None)
     monkeypatch.setattr(s, "isolation_state", lambda *a: {"fixture": "unchanged"})
@@ -432,7 +473,7 @@ def test_prepare_and_parent_orchestration(tmp_path, monkeypatch):
     monkeypatch.setattr(c, "readonly_probe", lambda *a: None)
     monkeypatch.setattr(c.shutil, "which", lambda _: "sandbox-exec")
     monkeypatch.setattr(
-        c.subprocess, "run", lambda *a, **k: SimpleNamespace(returncode=0)
+        c.subprocess, "Popen", lambda *a, **k: Mock(returncode=0, pid=12345)
     )
     assert c.main(["--prepare-only"]) == 0
     assert not (tmp_path / "mve/generated/wo1-capture/stage").exists()
@@ -446,6 +487,10 @@ def test_prepare_and_parent_orchestration(tmp_path, monkeypatch):
 
 
 def test_parent_failure_receipts_and_cleanup(tmp_path, monkeypatch):
+    monkeypatch.setattr(
+        c, "darwin_runtime_paths", lambda: [Path("/private/var/folders")]
+    )
+    monkeypatch.setattr(c.os, "killpg", Mock())
     import json
 
     monkeypatch.setattr(c, "WORKTREE", tmp_path)
@@ -460,7 +505,7 @@ def test_parent_failure_receipts_and_cleanup(tmp_path, monkeypatch):
     monkeypatch.setattr(c.shutil, "which", lambda _: "sandbox-exec")
     monkeypatch.setattr(c, "readonly_probe", lambda *a: None)
     monkeypatch.setattr(
-        c.subprocess, "run", lambda *a, **kw: SimpleNamespace(returncode=1)
+        c.subprocess, "Popen", lambda *a, **kw: Mock(returncode=1, pid=12345)
     )
     with pytest.raises(ValueError, match="capture failed"):
         c.main(["--output", "mve/generated/failed"])
@@ -479,3 +524,148 @@ def test_readonly_probe_outcomes(monkeypatch):
     )
     with pytest.raises(ValueError, match="probe"):
         c.readonly_probe("profile", ["a", "b"])
+
+
+def test_darwin_paths_are_canonical_and_narrow(monkeypatch):
+    run = Mock(
+        side_effect=[
+            SimpleNamespace(stdout="/var/folders/user/T/\n"),
+            SimpleNamespace(stdout="/var/folders/user/C/\n"),
+        ]
+    )
+    monkeypatch.setattr(c.subprocess, "run", run)
+    assert c.darwin_runtime_paths() == [
+        Path("/var/folders/user/T").resolve(),
+        Path("/var/folders/user/C").resolve(),
+    ]
+    assert [call.args[0][-1] for call in run.call_args_list] == [
+        "DARWIN_USER_TEMP_DIR",
+        "DARWIN_USER_CACHE_DIR",
+    ]
+    assert all(call.kwargs["timeout"] == 5 for call in run.call_args_list)
+
+
+@pytest.mark.parametrize(
+    "result",
+    [
+        subprocess.CalledProcessError(1, "getconf"),
+        subprocess.TimeoutExpired("getconf", 5),
+        SimpleNamespace(stdout="/\n"),
+        SimpleNamespace(stdout="\n"),
+    ],
+)
+def test_darwin_paths_fallback(monkeypatch, result):
+    run = (
+        Mock(side_effect=result)
+        if isinstance(result, Exception)
+        else Mock(return_value=result)
+    )
+    monkeypatch.setattr(c.subprocess, "run", run)
+    assert c.darwin_runtime_paths() == [Path("/private/var/folders")]
+
+
+@pytest.mark.parametrize("timeout", [False, True])
+def test_worker_kills_all_groups_even_after_normal_exit(tmp_path, monkeypatch, timeout):
+    monkeypatch.setattr(c, "readonly_probe", Mock())
+    monkeypatch.setattr(
+        c, "darwin_runtime_paths", lambda: [Path("/private/var/folders")]
+    )
+    proc = Mock(pid=12345, returncode=0)
+    if timeout:
+        proc.wait.side_effect = [subprocess.TimeoutExpired("worker", 300), -9]
+
+    def launch(*args, **kwargs):
+        assert kwargs["start_new_session"] is True
+        private = Path(kwargs["env"]["MVE_WO1_PRIVATE_DIR"])
+        (private / "capture-chrome.pgid").write_text("12346\n")
+        (private / "repeat-chrome.pgid").write_text("12347\n")
+        return proc
+
+    monkeypatch.setattr(c.subprocess, "Popen", launch)
+    kill = Mock()
+    monkeypatch.setattr(c.os, "killpg", kill)
+    repos = {"atlas": tmp_path / "atlas", "lab": tmp_path / "lab"}
+    if timeout:
+        with pytest.raises(ValueError, match="wall-clock timeout"):
+            c.isolated_capture(c.parse_args([]), tmp_path, repos, {})
+    else:
+        c.isolated_capture(c.parse_args([]), tmp_path, repos, {})
+    assert {call.args for call in kill.call_args_list} == {
+        (12345, signal.SIGKILL),
+        (12346, signal.SIGKILL),
+        (12347, signal.SIGKILL),
+    }
+    assert proc.wait.call_args_list[0].kwargs == {"timeout": 300}
+    assert proc.wait.call_args_list[1].kwargs == {"timeout": 5}
+
+
+def test_chrome_group_cleanup_kills_lingering_child(private_runtime):
+    """A real Chrome substitute exits, leaving a child holding its stdout pipe."""
+    launcher = r.chrome_launcher(private_runtime, "capture", sys.executable)
+    proc = subprocess.Popen(
+        [
+            str(launcher),
+            "-c",
+            "import subprocess,sys; subprocess.Popen([sys.executable,'-c','import time; time.sleep(60)']); print('ready',flush=True)",
+        ],
+        start_new_session=True,
+        stdout=subprocess.PIPE,
+        text=True,
+    )
+    try:
+        proc.wait(timeout=5)
+        assert int((private_runtime / "capture-chrome.pgid").read_text()) == proc.pid
+        r.kill_browser_groups(private_runtime)
+        # EOF only arrives after the lingering child loses its inherited pipe.
+        stdout, _ = proc.communicate(timeout=5)
+        assert stdout == "ready\n"
+    finally:
+        try:
+            os.killpg(proc.pid, signal.SIGKILL)
+        except ProcessLookupError:
+            pass
+        proc.wait(timeout=5)
+
+
+def test_sandbox_unix_ipc_allowed_inet_denied(tmp_path, private_runtime):
+    import shutil
+
+    if not shutil.which("sandbox-exec"):
+        pytest.skip("sandbox-exec unavailable")
+    # No remote service or internet request: local Unix pair must connect; even
+    # binding an IPv4/IPv6 loopback listener must fail with PermissionError.
+    code = """
+import socket, sys
+path = sys.argv[1]
+with socket.socket(socket.AF_UNIX) as server, socket.socket(socket.AF_UNIX) as client:
+    server.bind(path)
+    server.listen(1)
+    client.connect(path)
+    peer, _ = server.accept()
+    peer.close()
+for family, addr in [(socket.AF_INET, ('127.0.0.1', 0)), (socket.AF_INET6, ('::1', 0))]:
+    for operation in ('bind', 'connect'):
+        try:
+            with socket.socket(family) as inet:
+                getattr(inet, operation)(addr)
+        except PermissionError:
+            continue
+        raise AssertionError('inet was allowed')
+"""
+    proc = subprocess.run(
+        [
+            "sandbox-exec",
+            "-p",
+            c.sandbox_profile(tmp_path, private_runtime),
+            sys.executable,
+            "-c",
+            code,
+            str(private_runtime / "test.sock"),
+        ],
+        capture_output=True,
+        text=True,
+        timeout=10,
+    )
+    if "sandbox_apply: Operation not permitted" in proc.stderr:
+        pytest.skip("nested-sandbox-only: sandbox_apply Operation not permitted")
+    assert proc.returncode == 0, proc.stderr

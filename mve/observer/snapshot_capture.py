@@ -3,7 +3,7 @@
 Run from this worktree: python3 -m mve.observer.snapshot_capture --prepare-only
 Omit --prepare-only for capture (requires macOS sandbox-exec and system Chrome).
 No build/publish command or network listener is used. All browser requests are
-fulfilled from the archive by Playwright; the OS also denies network access.
+fulfilled from the archive by Playwright; the OS denies inet access (Unix IPC allowed).
 """
 
 import argparse
@@ -11,6 +11,7 @@ import json
 import os
 from pathlib import Path
 import shutil
+import signal
 import site
 import subprocess
 import sys
@@ -24,6 +25,31 @@ DEFAULT_REPOS = {
     "atlas": "~/Developer/Opensens/worktrees/oae-rh-atlas-p0-20260924",
     "lab": "~/Developer/Opensens/worktrees/zeta-explorer-main",
 }
+CAPTURE_TIMEOUT_SECONDS = 300
+
+
+def darwin_runtime_paths():
+    """Chrome uses confstr paths for singleton sockets, ignoring TMPDIR."""
+    paths = []
+    for key in ("DARWIN_USER_TEMP_DIR", "DARWIN_USER_CACHE_DIR"):
+        try:
+            result = subprocess.run(
+                ["/usr/bin/getconf", key],
+                capture_output=True,
+                text=True,
+                check=True,
+                timeout=5,
+            )
+            path = Path(result.stdout.strip()).resolve()
+            if not path.is_relative_to("/private/var/folders") or path == Path(
+                "/private/var/folders"
+            ):
+                raise ValueError("invalid Darwin runtime path")
+        except (OSError, subprocess.SubprocessError, ValueError):
+            # Authorized compatibility fallback when confstr is unavailable.
+            return [Path("/private/var/folders")]
+        paths.append(path)
+    return paths
 
 
 def output_path(worktree, value):
@@ -48,14 +74,16 @@ def private_paths(private):
 
 
 def sandbox_profile(out, private):
-    # Only this run's output and freshly allocated runtime are writable; source
-    # worktrees, the real HOME and the rest of /private/tmp remain denied.
+    # Unix IPC is needed for Chrome's singleton socket; inet stays denied.
     private_paths(private)
     output = json.dumps(str(Path(out).resolve()))
     runtime = json.dumps(str(Path(private).resolve()))
+    darwin = " ".join(f"(subpath {json.dumps(str(p))})" for p in darwin_runtime_paths())
     return (
-        "(version 1)\n(allow default)\n(deny network*)\n(deny file-write*)\n"
-        f"(allow file-write* (subpath {output}) (subpath {runtime}))\n"
+        "(version 1)\n(allow default)\n(deny network*)\n"
+        "(allow network* (local unix-socket))\n"
+        "(allow network* (remote unix-socket))\n(deny file-write*)\n"
+        f"(allow file-write* (subpath {output}) (subpath {runtime}) {darwin})\n"
         '(allow file-write-data (literal "/dev/null"))\n'
     )
 
@@ -128,6 +156,7 @@ def readonly_probe(profile, repo_files):
         ],
         capture_output=True,
         text=True,
+        timeout=10,
     )
     if result.returncode:
         raise ValueError(
@@ -214,9 +243,32 @@ def isolated_capture(args, out, repos, receipt):
         }
         # Logs stay private; do not echo installed paths or inherited values.
         with (out / "browser.log").open("w") as log:
-            result = subprocess.run(
-                command, cwd=WORKTREE, env=env, stdout=log, stderr=log
+            result = subprocess.Popen(
+                command,
+                cwd=WORKTREE,
+                env=env,
+                stdout=log,
+                stderr=log,
+                start_new_session=True,
             )
+            try:
+                result.wait(timeout=CAPTURE_TIMEOUT_SECONDS)
+            except subprocess.TimeoutExpired as exc:
+                raise ValueError(
+                    "isolated capture exceeded 300-second wall-clock timeout"
+                ) from exc
+            finally:
+                # Stop worker/driver before collecting separately detached Chrome
+                # groups. Always kill, even after the group leader has exited:
+                # Chrome's updater may still be running in that group.
+                try:
+                    os.killpg(result.pid, signal.SIGKILL)
+                except ProcessLookupError:
+                    pass
+                try:
+                    render.kill_browser_groups(private)
+                finally:
+                    result.wait(timeout=5)
         if result.returncode:
             raise ValueError("isolated capture failed; inspect private browser.log")
 
