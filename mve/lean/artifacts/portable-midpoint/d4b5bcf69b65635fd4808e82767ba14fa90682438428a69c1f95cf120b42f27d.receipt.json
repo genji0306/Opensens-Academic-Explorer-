@@ -1,0 +1,12 @@
+{
+  "hosted_calls": 0,
+  "lock_sha256": "4286213ae6b98e8f9b94882487c634392e9c21eac4e7709f257cd6e4bec297a9",
+  "log_path": "808c9715296ce3d90d9984c02c49f52f0b7ed7edd5f451bc0fcbd3f699e1781f.log",
+  "log_sha256": "808c9715296ce3d90d9984c02c49f52f0b7ed7edd5f451bc0fcbd3f699e1781f",
+  "ok": true,
+  "outcome": "typechecked",
+  "proof_checked": false,
+  "statement_path": "d4b5bcf69b65635fd4808e82767ba14fa90682438428a69c1f95cf120b42f27d.lean",
+  "statement_sha256": "d4b5bcf69b65635fd4808e82767ba14fa90682438428a69c1f95cf120b42f27d",
+  "toolchain": "leanprover/lean4:v4.29.0"
+}

@@ -3,6 +3,7 @@
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 from mve.formalizer.ir import build_ir
@@ -23,20 +24,11 @@ def verify_project(project):
         for name, expected in lock["project_files"].items():
             if sha((project / name).read_bytes()) != expected:
                 raise ValueError("project pin mismatch")
-        binary = project_path(project, lock["lean_binary"])
+        binary = lean_binary_path(lock)
         if sha(binary.read_bytes()) != lock["lean_binary_sha256"]:
             raise ValueError("Lean binary pin mismatch")
         for package in lock["packages"]:
-            path = str(project_path(project, package["path"]))
-            head = subprocess.check_output(
-                ["git", "-C", path, "rev-parse", "HEAD"], text=True
-            ).strip()
-            dirty = subprocess.run(
-                ["git", "-C", path, "diff", "--quiet", "HEAD", "--"],
-                capture_output=True,
-            )
-            if head != package["rev"] or dirty.returncode:
-                raise ValueError("dependency pin mismatch")
+            verify_package(project, package)
         if not Path("/usr/bin/sandbox-exec").exists():
             raise ValueError("offline subprocess sandbox unavailable")
     except (
@@ -62,7 +54,7 @@ def compile_source(source, project, output, *, timeout=60):
         "/usr/bin/sandbox-exec",
         "-p",
         "(version 1) (allow default) (deny network*)",
-        str(project_path(project, lock["lean_binary"])),
+        str(lean_binary_path(lock)),
         os.path.relpath(statement.resolve(), Path(project).resolve()),
     ]
     try:
@@ -183,28 +175,72 @@ def typecheck_record(record, project, output, *, timeout=60, at=None):
 
 
 def project_path(project, relative):
-    if Path(relative).is_absolute():
+    if Path(relative).is_absolute() or ".." in Path(relative).parts:
         raise ValueError("lock paths must be project-relative")
     return (Path(project) / relative).resolve()
 
 
 def lean_available(project):
+    return lean_unavailable_reason(project) is None
+
+
+def lean_unavailable_reason(project):
     try:
         lock = json.loads((Path(project) / "lock.json").read_text())
-        binary = project_path(project, lock["lean_binary"])
-        return binary.is_file() and os.access(binary, os.X_OK)
+        binary = lean_binary_path(lock)
+        if not binary.is_file() or not os.access(binary, os.X_OK):
+            return "local Lean binary missing; set ELAN_HOME for the pinned toolchain"
+        for package in lock["packages"]:
+            path = package_path(project, package)
+            if not (path / "lake-manifest.json").is_file() or (
+                package["name"] == "mathlib"
+                and not (path / ".lake/build/lib/lean").is_dir()
+            ):
+                return "local package cache missing; set MVE_LEAN_PACKAGES"
+        if not Path("/usr/bin/sandbox-exec").is_file():
+            return "network-denying sandbox unavailable"
     except (OSError, ValueError, KeyError):
-        return False
+        return "missing or invalid Lean lock configuration"
+    return None
 
 
 def lean_environment(project, lock):
-    binary = project_path(project, lock["lean_binary"])
+    binary = lean_binary_path(lock)
     paths = [
-        str(project_path(project, p["path"]) / ".lake/build/lib/lean")
-        for p in lock["packages"]
+        str(package_path(project, p) / ".lake/build/lib/lean") for p in lock["packages"]
     ]
     return {
         "PATH": str(binary.parent) + os.pathsep + os.defpath,
         "HOME": str(Path.home()),
         "LEAN_PATH": os.pathsep.join(paths),
     }
+
+
+def lean_binary_path(lock):
+    toolchain = lock["lean_toolchain"]
+    if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+:[A-Za-z0-9_.-]+", toolchain):
+        raise ValueError("invalid pinned Lean toolchain name")
+    folder = toolchain.replace("/", "--").replace(":", "---")
+    root = Path(os.environ.get("ELAN_HOME", str(Path.home() / ".elan"))).expanduser()
+    return project_path(root / "toolchains" / folder, lock["lean_binary"])
+
+
+def package_path(project, package):
+    root = Path(
+        os.environ.get("MVE_LEAN_PACKAGES", str(Path(project) / ".lake/packages"))
+    ).expanduser()
+    return project_path(root, package["path"])
+
+
+def verify_package(project, package):
+    path = package_path(project, package)
+    if sha((path / "lake-manifest.json").read_bytes()) != package["manifest_sha256"]:
+        raise ValueError("dependency manifest pin mismatch")
+    head = subprocess.check_output(
+        ["git", "-C", str(path), "rev-parse", "HEAD"], text=True
+    ).strip()
+    dirty = subprocess.run(
+        ["git", "-C", str(path), "diff", "--quiet", "HEAD", "--"], capture_output=True
+    )
+    if head != package["rev"] or dirty.returncode:
+        raise ValueError("dependency pin mismatch")

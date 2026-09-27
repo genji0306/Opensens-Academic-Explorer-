@@ -6,6 +6,8 @@ from mve.formalizer.runtime import (
     verify_project,
     compile_source,
     lean_available,
+    lean_unavailable_reason,
+    package_path,
 )
 from mve.formalizer.emitter import HEADER, native
 from mve.predicates import REGISTRY
@@ -15,10 +17,17 @@ from tests.mve.formalizer_fixtures import trusted_record
 PROJECT = Path(__file__).resolve().parents[2] / "mve/lean"
 
 
-@pytest.mark.skipif(
-    not lean_available(PROJECT), reason="requires pinned local Lean cache"
-)
-def test_native_targets_compile_without_proofs(tmp_path):
+@pytest.fixture(scope="module")
+def real_lean(request):
+    reason = lean_unavailable_reason(PROJECT)
+    if reason:
+        terminal = request.config.pluginmanager.get_plugin("terminalreporter")
+        if terminal:
+            terminal.write_line("MVE real-Lean checks skipped: " + reason)
+        pytest.skip(reason)
+
+
+def test_native_targets_compile_without_proofs(tmp_path, real_lean):
     source = HEADER
     for pred, row in REGISTRY.items():
         if row["active"]:
@@ -34,10 +43,7 @@ def test_native_targets_compile_without_proofs(tmp_path):
     assert receipt["hosted_calls"] == 0
 
 
-@pytest.mark.skipif(
-    not lean_available(PROJECT), reason="requires pinned local Lean cache"
-)
-def test_typecheck_record_keeps_proof_separate(tmp_path):
+def test_typecheck_record_keeps_proof_separate(tmp_path, real_lean):
     original = trusted_record()
     result, receipt = typecheck_record(original, PROJECT, tmp_path, timeout=60)
     data = result.to_dict()
@@ -103,12 +109,21 @@ def test_failed_typecheck_leaves_record_emitted(tmp_path, monkeypatch):
     assert "typecheck" not in result.to_dict()["formal"]
 
 
-def test_real_lean_gate_uses_configured_relative_binary(tmp_path):
-    (tmp_path / "bin").mkdir()
-    binary = tmp_path / "bin/lean"
+def test_real_lean_gate_uses_configured_relative_binary(tmp_path, monkeypatch):
+    binary = tmp_path / "elan/toolchains/leanprover--lean4---v4.29.0/bin/lean"
+    binary.parent.mkdir(parents=True)
     binary.touch()
     binary.chmod(0o700)
-    (tmp_path / "lock.json").write_text(json.dumps({"lean_binary": "bin/lean"}))
+    monkeypatch.setenv("ELAN_HOME", str(tmp_path / "elan"))
+    (tmp_path / "lock.json").write_text(
+        json.dumps(
+            {
+                "lean_binary": "bin/lean",
+                "lean_toolchain": "leanprover/lean4:v4.29.0",
+                "packages": [],
+            }
+        )
+    )
     assert lean_available(tmp_path)
     binary.unlink()
     assert not lean_available(tmp_path)
@@ -184,3 +199,51 @@ def test_semantics_map_uses_current_registry_degeneracy():
     data = json.loads((PROJECT / "SemanticsMap.json").read_text())
     for pred, row in data["predicates"].items():
         assert row["registry_degeneracy"] == REGISTRY[pred]["degeneracy"]
+
+
+def test_real_lean_typechecks_from_relocated_project(tmp_path, monkeypatch, real_lean):
+    import shutil
+
+    lock = json.loads((PROJECT / "lock.json").read_text())
+    packages = package_path(PROJECT, lock["packages"][0]).parent
+    monkeypatch.setenv("MVE_LEAN_PACKAGES", str(packages))
+    relocated = tmp_path / "arbitrary/checkout/depth/lean"
+    relocated.mkdir(parents=True)
+    for name in ["lock.json", *lock["project_files"]]:
+        shutil.copyfile(PROJECT / name, relocated / name)
+    checked, receipt = typecheck_record(
+        trusted_record(), relocated, tmp_path / "output"
+    )
+    assert receipt["ok"]
+    assert checked.to_dict()["formal"]["status"] == "typechecked"
+    assert not receipt["proof_checked"]
+
+
+def test_missing_cache_prints_one_skip_diagnostic(tmp_path):
+    import os
+    import subprocess
+    import sys
+
+    env = dict(os.environ, ELAN_HOME=str(tmp_path / "absent"), PYTEST_ADDOPTS="")
+    tests = [
+        "test_native_targets_compile_without_proofs",
+        "test_typecheck_record_keeps_proof_separate",
+        "test_real_lean_typechecks_from_relocated_project",
+    ]
+    result = subprocess.run(
+        [
+            sys.executable,
+            "-m",
+            "pytest",
+            "-q",
+            *[str(Path(__file__)) + "::" + t for t in tests],
+        ],
+        cwd=PROJECT.parents[1],
+        env=env,
+        text=True,
+        capture_output=True,
+        timeout=60,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "3 skipped" in result.stdout
+    assert result.stdout.count("MVE real-Lean checks skipped:") == 1
