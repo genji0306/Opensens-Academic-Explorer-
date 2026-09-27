@@ -309,3 +309,16 @@ space-08 prime sphere, each with its control twin), `capture: captured`, repeat 
 source repos unchanged, outside-write probe denied, 0 hosted calls, 7.6 MB generated (ignored).
 Blinded crops inspected by Opus: plot-only, no titles, captions or axis labels.
 The atlas-file drift during the first session was the atlas manager's v280 commit (02:46), not WO-1.
+
+## Addendum 14: WO-4 observer runner + WO-5 outbox contracts (5cd566250b1 + Opus 567bfc0050b): PASS, merged
+
+1014 passed outside the sandbox, after one Opus one-line fix: storage.py's own `/Users/` guard
+literal tripped the repo-wide committed-path lint, so the literal was split. Dispatch uses only the
+WP-0b FakeTransport in P1 behind the ledger; no live mode exists, and the second observer refuses
+('owner Q2 unanswered'). All writes go through `storage.local`: inside `mve/generated` only, no
+absolute paths or `..`, symlinks refused, with a 200 MiB cap and a free-disk guard. The outbox holds
+handshake submissions and atlas result bundles (validated against a pinned, vendored copy of the
+atlas result schema); nothing is written to the review-exchange or the atlas. The status mapping
+is a proposal pending the atlas owner (Q5); technical_failure bundles are held back.
+**All offline packets of plan r6 are now merged.** Remaining work needs the owner: §9 Q1–Q6,
+the second-observer choice, and the go for the WO-6 pilot (hosted calls).
