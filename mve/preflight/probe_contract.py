@@ -121,10 +121,20 @@ def inspect_reply(reply, request):
             return result
     try:
         body = json.loads(reply.raw)
-        result["returned_model"] = body.get("model")
+        returned_model = body.get("model")
+        if returned_model is not None and not isinstance(returned_model, str):
+            return result
+        result["returned_model"] = returned_model
         result["status"] = response_status(body, request)
         result["usage"] = usage_from(body)
-    except (ValueError, TypeError, KeyError, IndexError, AttributeError):
+    except (
+        ValueError,
+        TypeError,
+        KeyError,
+        IndexError,
+        AttributeError,
+        RecursionError,
+    ):
         if result["status"] == "ok":
             result["status"] = "usage_missing"
         return result
