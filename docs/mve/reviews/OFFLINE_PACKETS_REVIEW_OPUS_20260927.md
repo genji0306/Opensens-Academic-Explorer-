@@ -177,3 +177,21 @@ dated changelog block to the schema description and to MVE_PLAN §13 naming each
 future non-additive change bumps to v6. (2) VERDICTS.md says a model may not decline, but only
 adopt is blocked. Fix the doc, or refuse model `decline` as well. (3) "human:" is a local
 operator assertion, not authentication; keep that stated wherever labels are exported.
+
+## Addendum 6: WP-6b formalizer (7b9c53e3021): PASS with follow-ups, merged; G3 NOT established
+
+From a clean archive outside the Codex sandbox: 640 passed, 0 skipped, 95%; new formalizer
+modules 98–100%; schema copies byte-equal; WP-8a follow-ups closed (dated v5 changelog; model
+decline refused and pinned). The committed `mve/lean/artifacts/wp6b-g3/` receipts were produced
+inside the Codex sandbox and record `sandbox_apply: Operation not permitted` for every compile.
+Opus re-ran `python3 -m mve.formalizer.g3` outside it (real pinned Lean):
+`WP6B_G3_OUTSIDE_SANDBOX_RUN_OPUS_20260927.json`: first-pass 80/100 (exactly the 20 injected
+syntax faults), post-repair 100/100, all 7 control kinds 100/100 detected, `g3_pass: false`,
+semantic rubric 0. Only 3 unique canonical statements across 100 tasks, so these rates measure
+the repair rules, not formalization. **G3 is not established**, and the harness says so.
+Follow-ups (next formalizer branch): (1) a G3 task corpus of ≥ 100 distinct statements from WP-2
+exact-true candidates across all P1 predicates, with explicit premises and goals, family-split,
+and a 50-task retrieval-disjoint blinded reference set; (2) regenerate the committed G3 receipts
+outside the Codex sandbox (Opus can run it) or drop them; (3) localise the pre-existing absolute
+`/Users/` paths in `mve/DEPS.lock` (184) and `mve/preflight/results/report.json` (19), which come
+from WP-0a.
