@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import subprocess
 import time
+from mve.classifier.artifacts import portable
 
 
 def pin(path):
@@ -95,10 +96,10 @@ def write_report(output, checks, dependencies):
             "p1_cap_usd": 8,
         },
     }
-    (output / "report.json").write_text(json.dumps(report, indent=2) + "\n")
+    (output / "report.json").write_text(json.dumps(portable(report), indent=2) + "\n")
     lock = {
         "schema": "mve-deps-v1",
-        "files": dependencies,
+        "files": portable(dependencies),
         "note": "File hashes pin actual bytes; git SHA alone does not exclude dirty edits.",
     }
     (output / "DEPS.lock").write_text(json.dumps(lock, separators=(",", ":")) + "\n")

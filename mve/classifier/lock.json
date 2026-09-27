@@ -1,0 +1,113 @@
+{
+  "activation_policy": "disabled until all per-label floors and calibration promotion evidence exist; no manual threshold refit",
+  "artifacts": [
+    {
+      "path": "$HOME/Developer/Opensens/models/openjev/model_fp16.onnx",
+      "role": "model",
+      "sha256": "4db28305590c714e33c2cacb75a57ec941c72bb210e1266ba2c7d77e85ddc526"
+    },
+    {
+      "path": "$HOME/Developer/Opensens/models/openjev/tokenizer.json",
+      "role": "tokenizer",
+      "sha256": "8bb449eb0c037aae44115b65905bb339b8f3f74eb37067c19127feb3c0755723"
+    },
+    {
+      "path": "$HOME/Developer/Opensens/models/openjev/calibrator.json",
+      "role": "calibrator",
+      "sha256": "af2a876993148efa0726b6ccf710fe2303897d20c0ce8c7c9036eb50f64d23de"
+    },
+    {
+      "path": "mve/classifier/fixtures/training.json",
+      "role": "data",
+      "sha256": "0bdf4b173915e25bcccfc5b06d8d6fe9d605f283184c00dfa84792738231e64a"
+    },
+    {
+      "path": "mve/classifier/fixtures/config.json",
+      "role": "data",
+      "sha256": "a0848430c0adf88cf919aa9e19e2d526171442a8f0f2c22bccdd4be443dcb9b4"
+    },
+    {
+      "path": "mve/classifier/fixtures/split.json",
+      "role": "data",
+      "sha256": "2a6e2afd8dbbc35d5b66b2990528fb266b4c442b321fd3275d2343929ef73e58"
+    },
+    {
+      "path": "mve/questions/catalogue.json",
+      "role": "data",
+      "sha256": "c92c9a890c04ff4a568c808d8427ced8da319de4bbb262f35539443065bbd883"
+    },
+    {
+      "path": "mve/questions/routing.json",
+      "role": "data",
+      "sha256": "9cacdd61eb80e2f4d4ae091064bf1ae7131a2e00ff7a0c98c1a4a85813ffbe66"
+    },
+    {
+      "path": "mve/classifier/fixtures/labels.json",
+      "role": "labels",
+      "sha256": "b86de48dc10acb7c91756aa3e9dcdf623fb9838d15b963726fd2708bc08f200d"
+    }
+  ],
+  "confidence": "selected-label probability including abstention mass; pinned per-k temperature",
+  "label_set_sha256": "5fb0bccd1c59dca43946a7835fa0afb4aabee6089f2ea88fddfc349314b73bcf",
+  "mode": "offline_only",
+  "questions": {
+    "Q-agree-action": {
+      "enabled": false,
+      "high": 0.7,
+      "low": 0.5,
+      "reason": "support floors unmet; no calibration acceptance"
+    },
+    "Q-claim-workflow": {
+      "enabled": false,
+      "high": 0.7,
+      "low": 0.5,
+      "reason": "support floors unmet; no calibration acceptance"
+    },
+    "Q-domain": {
+      "enabled": false,
+      "high": 0.7,
+      "low": 0.5,
+      "reason": "support floors unmet; no calibration acceptance"
+    },
+    "Q-drift-flag": {
+      "enabled": false,
+      "high": 0.9,
+      "low": 0.5,
+      "reason": "support floors unmet; no calibration acceptance"
+    },
+    "Q-mark-type": {
+      "enabled": false,
+      "high": 0.7,
+      "low": 0.5,
+      "reason": "support floors unmet; no calibration acceptance"
+    },
+    "Q-shape": {
+      "enabled": false,
+      "high": 0.7,
+      "low": 0.5,
+      "reason": "support floors unmet; no calibration acceptance"
+    },
+    "Q-solver": {
+      "enabled": false,
+      "high": 0.9,
+      "low": 0.5,
+      "reason": "support floors unmet; no calibration acceptance"
+    },
+    "Q-topo-workflow": {
+      "enabled": false,
+      "high": 0.7,
+      "low": 0.5,
+      "reason": "support floors unmet; no calibration acceptance"
+    },
+    "Q-track": {
+      "enabled": false,
+      "high": 0.7,
+      "low": 0.5,
+      "reason": "support floors unmet; no calibration acceptance"
+    }
+  },
+  "schema": "mve-classifier-lock-v1",
+  "split_sha256": "2a6e2afd8dbbc35d5b66b2990528fb266b4c442b321fd3275d2343929ef73e58",
+  "wave": "wp5-offline-spike",
+  "weights_sha256": "4db28305590c714e33c2cacb75a57ec941c72bb210e1266ba2c7d77e85ddc526"
+}

@@ -1,0 +1,189 @@
+{
+  "version": "mve-questions-r5-v1",
+  "questions": {
+    "Q-domain": {
+      "primitive": "choice",
+      "labels": [
+        "euclidean_plane",
+        "solid",
+        "function_plot",
+        "chart",
+        "graph",
+        "knot",
+        "surface",
+        "braid",
+        "unsupported"
+      ],
+      "abstention": "abstain",
+      "question": "Which visual domain workflow applies?",
+      "state_template": "{state}",
+      "activation_stage": 2,
+      "target_label_source": "synthetic truth + human",
+      "risk": "read_only",
+      "threshold_low": 0.5,
+      "threshold_high": 0.7,
+      "track": "any",
+      "token_limit": 512,
+      "overflow": "abstain_without_truncation"
+    },
+    "Q-track": {
+      "primitive": "choice",
+      "labels": [
+        "appearance_only",
+        "annotated_problem"
+      ],
+      "abstention": "abstain",
+      "question": "Which input track applies?",
+      "state_template": "{state}",
+      "activation_stage": 2,
+      "target_label_source": "ingest metadata",
+      "risk": "read_only",
+      "threshold_low": 0.5,
+      "threshold_high": 0.7,
+      "track": "any",
+      "token_limit": 512,
+      "overflow": "abstain_without_truncation"
+    },
+    "Q-shape": {
+      "primitive": "choice",
+      "labels": [
+        "triangle",
+        "quadrilateral",
+        "circle",
+        "polygon_n",
+        "line_config",
+        "mixed"
+      ],
+      "abstention": "abstain",
+      "question": "Which shape workflow applies?",
+      "state_template": "{state}",
+      "activation_stage": 2,
+      "target_label_source": "synthetic truth; single closed figure with most vertices; n >= 5 polygon_n; none line_config; >= 2 closed figures or circle plus polygon mixed",
+      "risk": "read_only",
+      "threshold_low": 0.5,
+      "threshold_high": 0.7,
+      "track": "any",
+      "token_limit": 512,
+      "overflow": "abstain_without_truncation"
+    },
+    "Q-claim-workflow": {
+      "primitive": "choice",
+      "labels": [
+        "restates_measured",
+        "propose_new_measurement",
+        "contradicts_measured",
+        "discard"
+      ],
+      "abstention": "abstain",
+      "question": "What should happen to this free-text claim?",
+      "state_template": "{state}",
+      "activation_stage": 2,
+      "target_label_source": "explicit four-button human label on a free-text claim only; visibility clicks label nothing",
+      "risk": "read_only",
+      "threshold_low": 0.5,
+      "threshold_high": 0.7,
+      "track": "any",
+      "token_limit": 512,
+      "overflow": "abstain_without_truncation"
+    },
+    "Q-mark-type": {
+      "primitive": "choice",
+      "labels": [
+        "tick_equal",
+        "arc_equal",
+        "right_angle_box",
+        "arrow_parallel",
+        "none"
+      ],
+      "abstention": "abstain",
+      "question": "Which rendered annotation mark is present?",
+      "state_template": "{state}",
+      "activation_stage": 2,
+      "target_label_source": "synthetic rendered marks",
+      "risk": "read_only",
+      "threshold_low": 0.5,
+      "threshold_high": 0.7,
+      "track": "annotated_problem",
+      "token_limit": 512,
+      "overflow": "abstain_without_truncation"
+    },
+    "Q-agree-action": {
+      "primitive": "choice",
+      "labels": [
+        "merge",
+        "remeasure",
+        "human"
+      ],
+      "abstention": "abstain",
+      "question": "What action should reconcile the two observations?",
+      "state_template": "{state}",
+      "activation_stage": 2,
+      "target_label_source": "human",
+      "risk": "read_only",
+      "threshold_low": 0.5,
+      "threshold_high": 0.7,
+      "track": "any",
+      "token_limit": 512,
+      "overflow": "abstain_without_truncation"
+    },
+    "Q-solver": {
+      "primitive": "choice",
+      "labels": [
+        "newclid",
+        "lean_typecheck_only",
+        "prover",
+        "human",
+        "none"
+      ],
+      "abstention": "abstain",
+      "question": "Which solver workflow should run?",
+      "state_template": "{state}",
+      "activation_stage": 3,
+      "target_label_source": "outcome-derived successful route",
+      "risk": "formal",
+      "threshold_low": 0.5,
+      "threshold_high": 0.9,
+      "track": "any",
+      "token_limit": 512,
+      "overflow": "abstain_without_truncation"
+    },
+    "Q-drift-flag": {
+      "primitive": "noul",
+      "labels": [
+        "yes",
+        "no"
+      ],
+      "abstention": "abstain",
+      "question": "The goal has drifted from the problem text.",
+      "state_template": "{state}",
+      "activation_stage": 3,
+      "target_label_source": "Sol judgment + human; review flag only",
+      "risk": "formal",
+      "threshold_low": 0.5,
+      "threshold_high": 0.9,
+      "track": "any",
+      "token_limit": 512,
+      "overflow": "abstain_without_truncation"
+    },
+    "Q-topo-workflow": {
+      "primitive": "choice",
+      "labels": [
+        "pd_transcribe",
+        "invariants_only",
+        "reject_diagram",
+        "human"
+      ],
+      "abstention": "abstain",
+      "question": "Which topology workflow should run?",
+      "state_template": "{state}",
+      "activation_stage": 5,
+      "target_label_source": "human",
+      "risk": "read_only",
+      "threshold_low": 0.5,
+      "threshold_high": 0.7,
+      "track": "any",
+      "token_limit": 512,
+      "overflow": "abstain_without_truncation"
+    }
+  }
+}

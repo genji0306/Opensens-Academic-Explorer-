@@ -1,0 +1,123 @@
+{
+  "version": "mve-routing-r5-v1",
+  "mechanical_stop_precedence": true,
+  "questions": {
+    "Q-domain": {
+      "order": [
+        "code",
+        "openJev",
+        "LLM",
+        "human"
+      ],
+      "act": "confidence > high",
+      "llm": "low < confidence <= high",
+      "human": "confidence <= low OR abstention OR missing evidence OR disabled OR inactive",
+      "offline_llm": "refuse then human",
+      "formal_authority": false
+    },
+    "Q-track": {
+      "order": [
+        "code",
+        "openJev",
+        "LLM",
+        "human"
+      ],
+      "act": "confidence > high",
+      "llm": "low < confidence <= high",
+      "human": "confidence <= low OR abstention OR missing evidence OR disabled OR inactive",
+      "offline_llm": "refuse then human",
+      "formal_authority": false
+    },
+    "Q-shape": {
+      "order": [
+        "code",
+        "openJev",
+        "LLM",
+        "human"
+      ],
+      "act": "confidence > high",
+      "llm": "low < confidence <= high",
+      "human": "confidence <= low OR abstention OR missing evidence OR disabled OR inactive",
+      "offline_llm": "refuse then human",
+      "formal_authority": false
+    },
+    "Q-claim-workflow": {
+      "order": [
+        "code",
+        "openJev",
+        "LLM",
+        "human"
+      ],
+      "act": "confidence > high",
+      "llm": "low < confidence <= high",
+      "human": "confidence <= low OR abstention OR missing evidence OR disabled OR inactive",
+      "offline_llm": "refuse then human",
+      "formal_authority": false
+    },
+    "Q-mark-type": {
+      "order": [
+        "code",
+        "openJev",
+        "LLM",
+        "human"
+      ],
+      "act": "confidence > high",
+      "llm": "low < confidence <= high",
+      "human": "confidence <= low OR abstention OR missing evidence OR disabled OR inactive",
+      "offline_llm": "refuse then human",
+      "formal_authority": false
+    },
+    "Q-agree-action": {
+      "order": [
+        "code",
+        "openJev",
+        "LLM",
+        "human"
+      ],
+      "act": "confidence > high",
+      "llm": "low < confidence <= high",
+      "human": "confidence <= low OR abstention OR missing evidence OR disabled OR inactive",
+      "offline_llm": "refuse then human",
+      "formal_authority": false
+    },
+    "Q-solver": {
+      "order": [
+        "code",
+        "openJev",
+        "LLM",
+        "human"
+      ],
+      "act": "confidence > high",
+      "llm": "low < confidence <= high",
+      "human": "confidence <= low OR abstention OR missing evidence OR disabled OR inactive",
+      "offline_llm": "refuse then human",
+      "formal_authority": false
+    },
+    "Q-drift-flag": {
+      "order": [
+        "code",
+        "openJev",
+        "LLM",
+        "human"
+      ],
+      "act": "confidence > high",
+      "llm": "low < confidence <= high",
+      "human": "confidence <= low OR abstention OR missing evidence OR disabled OR inactive",
+      "offline_llm": "refuse then human",
+      "formal_authority": false
+    },
+    "Q-topo-workflow": {
+      "order": [
+        "code",
+        "openJev",
+        "LLM",
+        "human"
+      ],
+      "act": "confidence > high",
+      "llm": "low < confidence <= high",
+      "human": "confidence <= low OR abstention OR missing evidence OR disabled OR inactive",
+      "offline_llm": "refuse then human",
+      "formal_authority": false
+    }
+  }
+}

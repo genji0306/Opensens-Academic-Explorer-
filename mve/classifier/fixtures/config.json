@@ -1,0 +1,6 @@
+{
+  "epochs": 2,
+  "max_steps": 4,
+  "learning_rate": 0.01,
+  "max_seconds": 120.0
+}
