@@ -1,5 +1,6 @@
 """Evidence authorization is not a substitute for an independent Lean receipt."""
 
+from mve.graph import reject_hypothesis_support
 from mve.validation import require, active, proposition, equivalent
 
 AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
@@ -7,6 +8,7 @@ AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
 
 def check_formal(data, graph):
     formal = data["formal"]
+    reject_hypothesis_support(formal["depends_on"], graph)
     for prop in formal["propositions"]:
         check_authorization(prop, data, graph)
     props = {p["id"] for p in formal["propositions"] if active(p)}
@@ -27,6 +29,7 @@ def check_formal(data, graph):
 def check_authorization(prop, data, graph):
     if not active(prop):
         return
+    reject_hypothesis_support(prop["depends_on"], graph)
     proposition(prop["proposition"], data, formal=True)
     require(
         len(prop["depends_on"]) == 1,

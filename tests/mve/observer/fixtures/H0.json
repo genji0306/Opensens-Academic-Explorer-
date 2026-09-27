@@ -1,0 +1,227 @@
+{
+  "schema": "oae-mve-hypothesis-card-v1",
+  "card_id": "hyp_1",
+  "revision": 1,
+  "claim": "Unfolded zeta-zero gaps follow a Planck-shaped law rather than the GUE law.",
+  "testable_form": {
+    "statistic": "KS and joint exponent discrepancy",
+    "data": "Odlyzko zero-index blocks",
+    "baseline": "Gaudin GUE and finite-N CUE including Lambda",
+    "direction": "model discrepancy consistent with zero"
+  },
+  "prediction": "Planck not rejected at replication on at least 10000 gaps per block.",
+  "primary_statistic": "fitted_planck_ks",
+  "kill_criterion": {
+    "method": "bonferroni",
+    "overall_alpha": 0.01,
+    "components": [
+      {
+        "statistic": "ks",
+        "alpha": 0.005
+      },
+      {
+        "statistic": "exponent_difference",
+        "alpha": 0.005
+      }
+    ]
+  },
+  "check_spec": {
+    "check_id": "spacing",
+    "library_version": "spacing-v1",
+    "estimator": "conditional_power_mle",
+    "fitting_interval": [
+      0,
+      0.3
+    ],
+    "baselines": [
+      {
+        "name": "gaudin",
+        "version": "v1",
+        "parameters": 0,
+        "role": "primary"
+      },
+      {
+        "name": "cue",
+        "version": "v1",
+        "parameters": 0,
+        "role": "primary"
+      },
+      {
+        "name": "wigner",
+        "version": "v1",
+        "parameters": 0,
+        "role": "secondary"
+      },
+      {
+        "name": "planck",
+        "version": "v1",
+        "parameters": 2,
+        "role": "primary"
+      }
+    ],
+    "alpha": 0.01,
+    "calibration": {
+      "method": "rank_moving_block_refit",
+      "replicates": 400,
+      "joint_replicates": 1000,
+      "size_trials": 2000
+    },
+    "dependence": {
+      "thin": 3,
+      "block_len": 100
+    },
+    "development": [
+      {
+        "source_block_id": "zeros1.gz:1001-100000",
+        "sha256": "0d17d50f8b2a8bd128219ea03c8bce55d7d947ec8f27d7f56f30973c2e91bad0",
+        "role": "development",
+        "min_gaps": 1979
+      }
+    ],
+    "replication": [
+      {
+        "source_block_id": "zeros3:1-10000",
+        "sha256": "75a1f1a978d5e3eddd16518f661d41a95a40b33782389ba02ec4ed0ce0764807",
+        "role": "replication",
+        "min_gaps": 10000
+      },
+      {
+        "source_block_id": "zeros4:1-10000",
+        "sha256": "10d9f7dab2bbfff6b8befbe6f765969b0b3f38f6110ed1df423931addd52da8f",
+        "role": "replication",
+        "min_gaps": 10000
+      },
+      {
+        "source_block_id": "zeros5:1-10000",
+        "sha256": "250ac4ba722c6face4d07c05777376fc2b9bc021b05232e8f53c91b1eb2b7e0d",
+        "role": "replication",
+        "min_gaps": 10000
+      }
+    ],
+    "seed": 20260929,
+    "kill_rule": {
+      "method": "bonferroni",
+      "overall_alpha": 0.01,
+      "components": [
+        {
+          "statistic": "ks",
+          "alpha": 0.005
+        },
+        {
+          "statistic": "exponent_difference",
+          "alpha": 0.005
+        }
+      ]
+    },
+    "unfolding": "already_unfolded",
+    "lambda_bogomolny": 1.57314,
+    "spec_sha256": "d3241b959f31a0cdc5fa32984026e7f4406dfd4e70361a9374cdf2a671859c20",
+    "model": "planck"
+  },
+  "sources": [
+    {
+      "snapshot_id": "card001_hawking:owner-unarchived",
+      "png_sha256": null,
+      "data_sha256": "0d17d50f8b2a8bd128219ea03c8bce55d7d947ec8f27d7f56f30973c2e91bad0"
+    },
+    {
+      "snapshot_id": "card001_hawking:owner-unarchived",
+      "png_sha256": null,
+      "data_sha256": "75a1f1a978d5e3eddd16518f661d41a95a40b33782389ba02ec4ed0ce0764807"
+    },
+    {
+      "snapshot_id": "card001_hawking:owner-unarchived",
+      "png_sha256": null,
+      "data_sha256": "10d9f7dab2bbfff6b8befbe6f765969b0b3f38f6110ed1df423931addd52da8f"
+    },
+    {
+      "snapshot_id": "card001_hawking:owner-unarchived",
+      "png_sha256": null,
+      "data_sha256": "250ac4ba722c6face4d07c05777376fc2b9bc021b05232e8f53c91b1eb2b7e0d"
+    }
+  ],
+  "observer": {
+    "id": "human:owner",
+    "kind": "human",
+    "blinded": false
+  },
+  "resemblance_target": {
+    "target": "Hawking/Planck spectrum",
+    "mapping": "Resemblance of emitted-energy density to level-spacing density; no physical identification."
+  },
+  "novelty": {
+    "status": "unchecked",
+    "queries": [],
+    "index_shas": [],
+    "planted_control_hit": false
+  },
+  "suggested_lane": "spacing statistics (not handed off)",
+  "prior_plausibility": {
+    "value": "low",
+    "by": "human:owner"
+  },
+  "observer_reliability": "not_established",
+  "status": "checked:inconclusive",
+  "judgments": [],
+  "artifacts": [],
+  "history": [],
+  "context": {
+    "retrospective": true,
+    "original_png_available": false,
+    "limitations": [
+      "Retrospective, unblinded owner observation; excluded from prospective GO gates.",
+      "Original screenshot unavailable; no invented PNG hash.",
+      "All v2 p-values nominal; 9999 replication gaps below 10000.",
+      "Machine rule is a retrospectively corrected Bonferroni rule, not the historical v2 rule.",
+      "Original stage 1 used mpmath low zeros; zeros1 is a later development block."
+    ],
+    "original_kill_rule": {
+      "ks_alpha": 0.01,
+      "exponent_ci": 0.95,
+      "overall_alpha": null
+    },
+    "evidence": [
+      {
+        "path": "docs/mve/observer/card001_hawking/ODLYZKO_SHA256SUMS",
+        "sha256": "c5e41be29493586ebd7ffefdd8f1f2818e8dad4ef314f52561e54a376e7e32be"
+      },
+      {
+        "path": "docs/mve/observer/card001_hawking/hawking_check.json",
+        "sha256": "1029bb6ed791372b48d0a1548b0d7985c53d1e7cd1afcf76881e2951e0ab4d19"
+      },
+      {
+        "path": "docs/mve/observer/card001_hawking/hawking_check.py",
+        "sha256": "4d927134ff80776e703d12696c7b12b8c585b00227789ab14fbbe5c98b8a5e06"
+      },
+      {
+        "path": "docs/mve/observer/card001_hawking/lane_check.json",
+        "sha256": "3342f52eae1b00f5c45be5c69c46d53717f3af186461e8f0fd4d9cb4cb2807f4"
+      },
+      {
+        "path": "docs/mve/observer/card001_hawking/lane_check.py",
+        "sha256": "6e74cc4f78dea9d83f4e78ae41c42de3dbf56d439f83732cad4b866594cf2898"
+      },
+      {
+        "path": "docs/mve/observer/card001_hawking/lane_check_v2.json",
+        "sha256": "1c7547e7f0c0c762feb7d17319cbf67ca09bde2336c48824d2c89bf891e81a7c"
+      },
+      {
+        "path": "docs/mve/observer/card001_hawking/lane_check_v2.py",
+        "sha256": "1d51ec45de452821be2112e72b46e7430a9c937e1721df953e7462fc233da63b"
+      },
+      {
+        "path": "docs/mve/observer/card001_hawking/lane_check_v2_sanity.json",
+        "sha256": "9085abc5cf798472eff7d625b3d8aa4908b37e691401020d48be7606db5791b6"
+      },
+      {
+        "path": "docs/mve/observer/card001_hawking/lane_check_v2_sanity.py",
+        "sha256": "db48316bc819d94385e0033dbbbd377193606212821055b12b2bd03b7b61032f"
+      },
+      {
+        "path": "docs/mve/observer/card001_hawking/lane_check_v2_status.json",
+        "sha256": "59b8ed56de18379268af42b717994ffd31d039cdf380afaf4dfe0cb42da8194e"
+      }
+    ]
+  },
+  "content_hash": "7be1ecbbbfe5497991160287231b313c39c71ba13f9f03095ab61e190b7a7117"
+}

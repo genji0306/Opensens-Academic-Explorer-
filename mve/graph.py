@@ -79,3 +79,19 @@ def downstream(graph, roots):
         if added <= affected:
             return affected - set(roots)
         affected |= added
+
+
+def reject_hypothesis_support(refs, graph):
+    """Reject hyp_N anywhere in an authorization closure, including dangling hyp ids.
+
+    Cards deliberately remain outside schema v5. This guard also protects callers
+    of individual semantic/formalization functions before whole-record validation.
+    """
+    pending, seen = list(refs), set()
+    while pending:
+        key = pending.pop()
+        if key.startswith("hyp_"):
+            raise RecordError("hypothesis evidence never authorizes formalization")
+        if key not in seen:
+            seen.add(key)
+            pending.extend(graph.get(key, {}).get("depends_on", []))

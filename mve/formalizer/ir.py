@@ -1,5 +1,6 @@
 """IR from validated, explicit problem evidence; numerical measurements are never premises."""
 
+from mve.graph import nodes, reject_hypothesis_support
 from mve.predicates import canonical_proposition
 
 
@@ -7,7 +8,15 @@ def build_ir(record):
     data = record.to_dict()
     if data["domain"] != "euclidean_plane":
         raise ValueError("unsupported formal domain")
+    graph = nodes(data)
     problem = data["problem"]
+    for p in (
+        problem["premises"]
+        + problem["nondegeneracy"]
+        + data["assumptions"]
+        + ([problem["goal"]] if problem["goal"] else [])
+    ):
+        reject_hypothesis_support(p["depends_on"], graph)
     if any(b["type"] != "Point" for b in problem["binders"]):
         raise ValueError("spike supports Point binders only")
     goal = problem["goal"]

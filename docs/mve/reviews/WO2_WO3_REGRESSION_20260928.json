@@ -1,0 +1,420 @@
+{
+  "card": "card001_hawking",
+  "version": "lane_check_v2",
+  "status": "retrospective_exploratory",
+  "spec": {
+    "lambda_bogomolny": 1.57314,
+    "thin": 3,
+    "s_max_exponent": 0.3,
+    "exp_block_len": 100,
+    "exp_boot": 2000,
+    "planck_boot": 200,
+    "cue_surrogates": 200,
+    "cue_limit_proxy_n": 50,
+    "cue_reference_gaps": 1000000,
+    "calibration_n_thinned": 3333,
+    "alpha": 0.01,
+    "seed": 20260928,
+    "low_skip": 1000
+  },
+  "spec_sha256": "f8adee32e18548d16f5fd652a756426e5d38bdc32f15e2c952db4f23124d50f0",
+  "p_value_floor": {
+    "planck_bootstrap": 0.005,
+    "cue_surrogates": 0.005,
+    "note": "a calibrated p equal to the floor means no replicate reached the observed statistic"
+  },
+  "script_sha256": "1d51ec45de452821be2112e72b46e7430a9c937e1721df953e7462fc233da63b",
+  "inputs_sha256": {
+    "zeros1.gz": "0d17d50f8b2a8bd128219ea03c8bce55d7d947ec8f27d7f56f30973c2e91bad0",
+    "zeros3": "75a1f1a978d5e3eddd16518f661d41a95a40b33782389ba02ec4ed0ce0764807",
+    "zeros4": "10d9f7dab2bbfff6b8befbe6f765969b0b3f38f6110ed1df423931addd52da8f",
+    "zeros5": "250ac4ba722c6face4d07c05777376fc2b9bc021b05232e8f53c91b1eb2b7e0d"
+  },
+  "env": {
+    "python": "3.13.2",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "mpmath": "1.3.0",
+    "platform": "macOS-27.0-arm64-arm-64bit-Mach-O"
+  },
+  "dependence_check": {
+    "cue50_thinned_sqrtnD_q95": 1.3439,
+    "kolmogorov_iid_q95": 1.3581,
+    "cue50_acf_all": {
+      "1": -0.3068,
+      "2": -0.0721,
+      "3": -0.0272
+    },
+    "cue50_acf_thinned": {
+      "1": -0.026,
+      "2": -0.0039,
+      "3": -0.0063
+    }
+  },
+  "gaudin_check": {
+    "mean_gap": 1.0,
+    "cdf_at_6": 1.0
+  },
+  "blocks": [
+    {
+      "block": "zeros #1001..#100000",
+      "first_zero_index": 1001,
+      "zeros": 99000,
+      "gaps_all": 98999,
+      "gaps_thinned": 33000,
+      "height_median": 40792.210325485,
+      "height_range": [
+        1420.416526324,
+        74920.827498994
+      ],
+      "unfolded_mean_gap": 1.000001,
+      "n_eff": 2.02,
+      "n_eff_range_over_block": [
+        1.248,
+        2.16
+      ],
+      "cue_n_used": 2,
+      "acf_all": {
+        "1": -0.3567,
+        "2": -0.0782,
+        "3": -0.041
+      },
+      "acf_thinned": {
+        "1": -0.046,
+        "2": -0.0047,
+        "3": 0.0115
+      },
+      "gue_limit_ks": {
+        "D": 0.01711,
+        "sqrtn_D": 3.108,
+        "p_calibrated": 0.005,
+        "p_nominal_iid": 8.044539473675573e-09,
+        "calibration": "CUE(50) surrogates, n=3333 thinned; sqrt(n)*D transferred to this n"
+      },
+      "cue_neff_ks": {
+        "N": 2,
+        "D": 0.03602,
+        "p_calibrated": 0.005,
+        "p_nominal_iid": 1.2505229934987786e-37
+      },
+      "planck": {
+        "a": 4.8414,
+        "T": 0.17262,
+        "cdf_exponent_a": 4.8414,
+        "normaliser_numeric_over_analytic": 1.0,
+        "ks_D": 0.02319,
+        "ks_p_nominal_fixed_cdf_INVALID": 7.656882399022134e-16,
+        "ks_p_bootstrap_refit": 0.005,
+        "boot_replicates": 200,
+        "boot_D_max": 0.00589,
+        "boot_D_q95": 0.00522,
+        "fit_denominator": 33000
+      },
+      "marginal_loglik_thinned": {
+        "note": "sum of marginal log densities; a composite score, not a joint likelihood",
+        "planck_minus_wigner": -182.1,
+        "planck_minus_gaudin": -166.1,
+        "gaudin_minus_wigner": -16.0,
+        "bic_penalty_planck_2p_vs_0p": 10.4
+      },
+      "cdf_exponent": {
+        "interval": [
+          0,
+          0.3
+        ],
+        "estimator": "conditional power-law MLE",
+        "n_small": 2095,
+        "b_hat": 3.0419,
+        "ci95_block_bootstrap": [
+          2.9175,
+          3.1736
+        ],
+        "se": 0.0662,
+        "implied_by_model_same_estimator": {
+          "gue_limit_gaudin": 2.9162,
+          "wigner_surmise": 2.9189,
+          "cue_N2": 2.9164,
+          "planck_fitted": 4.1583
+        },
+        "planck_a_inside_ci": false,
+        "planck_implied_inside_ci": false,
+        "gaudin_implied_inside_ci": false
+      }
+    },
+    {
+      "block": "zeros #10^12+1..#10^12+10000",
+      "first_zero_index": 1000000000001,
+      "zeros": 10000,
+      "gaps_all": 9999,
+      "gaps_thinned": 3333,
+      "height_median": 267653396932.3282,
+      "height_range": [
+        "267653395648.8475231278",
+        "267653398216.0462708995"
+      ],
+      "unfolded_mean_gap": 1.000109,
+      "n_eff": 5.633,
+      "n_eff_range_over_block": [
+        5.633,
+        5.633
+      ],
+      "cue_n_used": 6,
+      "acf_all": {
+        "1": -0.3314,
+        "2": -0.0823,
+        "3": -0.0191
+      },
+      "acf_thinned": {
+        "1": -0.0155,
+        "2": 0.0033,
+        "3": -0.0385
+      },
+      "gue_limit_ks": {
+        "D": 0.01815,
+        "sqrtn_D": 1.0479,
+        "p_calibrated": 0.2239,
+        "p_nominal_iid": 0.2195180875387306,
+        "calibration": "CUE(50) surrogates, n=3333 thinned"
+      },
+      "cue_neff_ks": {
+        "N": 6,
+        "D": 0.01382,
+        "p_calibrated": 0.597,
+        "p_nominal_iid": 0.5429822196014578
+      },
+      "planck": {
+        "a": 4.3269,
+        "T": 0.19206,
+        "cdf_exponent_a": 4.3269,
+        "normaliser_numeric_over_analytic": 1.0,
+        "ks_D": 0.03273,
+        "ks_p_nominal_fixed_cdf_INVALID": 0.0015495384675129587,
+        "ks_p_bootstrap_refit": 0.005,
+        "boot_replicates": 200,
+        "boot_D_max": 0.01931,
+        "boot_D_q95": 0.01526,
+        "fit_denominator": 3333
+      },
+      "marginal_loglik_thinned": {
+        "note": "sum of marginal log densities; a composite score, not a joint likelihood",
+        "planck_minus_wigner": -38.45,
+        "planck_minus_gaudin": -38.16,
+        "gaudin_minus_wigner": -0.28,
+        "bic_penalty_planck_2p_vs_0p": 8.11
+      },
+      "cdf_exponent": {
+        "interval": [
+          0,
+          0.3
+        ],
+        "estimator": "conditional power-law MLE",
+        "n_small": 262,
+        "b_hat": 2.8472,
+        "ci95_block_bootstrap": [
+          2.5314,
+          3.2004
+        ],
+        "se": 0.1713,
+        "implied_by_model_same_estimator": {
+          "gue_limit_gaudin": 2.9162,
+          "wigner_surmise": 2.9189,
+          "cue_N6": 2.8952,
+          "planck_fitted": 3.7495
+        },
+        "planck_a_inside_ci": false,
+        "planck_implied_inside_ci": false,
+        "gaudin_implied_inside_ci": true
+      }
+    },
+    {
+      "block": "zeros #10^21+1..#10^21+10000",
+      "first_zero_index": 1000000000000000000001,
+      "zeros": 10000,
+      "gaps_all": 9999,
+      "gaps_thinned": 3333,
+      "height_median": 1.4417689750954697e+20,
+      "height_range": [
+        "144176897509546973538.4981",
+        "144176897509546974947.7423"
+      ],
+      "unfolded_mean_gap": 0.99997,
+      "n_eff": 10.26,
+      "n_eff_range_over_block": [
+        10.26,
+        10.26
+      ],
+      "cue_n_used": 10,
+      "acf_all": {
+        "1": -0.3168,
+        "2": -0.0832,
+        "3": -0.0343
+      },
+      "acf_thinned": {
+        "1": -0.0393,
+        "2": 0.005,
+        "3": -0.0066
+      },
+      "gue_limit_ks": {
+        "D": 0.01198,
+        "sqrtn_D": 0.6918,
+        "p_calibrated": 0.7114,
+        "p_nominal_iid": 0.7201104495309332,
+        "calibration": "CUE(50) surrogates, n=3333 thinned"
+      },
+      "cue_neff_ks": {
+        "N": 10,
+        "D": 0.01257,
+        "p_calibrated": 0.6716,
+        "p_nominal_iid": 0.6636309568352725
+      },
+      "planck": {
+        "a": 4.304,
+        "T": 0.1906,
+        "cdf_exponent_a": 4.304,
+        "normaliser_numeric_over_analytic": 1.0,
+        "ks_D": 0.02705,
+        "ks_p_nominal_fixed_cdf_INVALID": 0.01496834244607243,
+        "ks_p_bootstrap_refit": 0.005,
+        "boot_replicates": 200,
+        "boot_D_max": 0.02067,
+        "boot_D_q95": 0.0155,
+        "fit_denominator": 3333
+      },
+      "marginal_loglik_thinned": {
+        "note": "sum of marginal log densities; a composite score, not a joint likelihood",
+        "planck_minus_wigner": -27.47,
+        "planck_minus_gaudin": -27.55,
+        "gaudin_minus_wigner": 0.09,
+        "bic_penalty_planck_2p_vs_0p": 8.11
+      },
+      "cdf_exponent": {
+        "interval": [
+          0,
+          0.3
+        ],
+        "estimator": "conditional power-law MLE",
+        "n_small": 257,
+        "b_hat": 2.8956,
+        "ci95_block_bootstrap": [
+          2.5644,
+          3.2607
+        ],
+        "se": 0.1757,
+        "implied_by_model_same_estimator": {
+          "gue_limit_gaudin": 2.9162,
+          "wigner_surmise": 2.9189,
+          "cue_N10": 2.899,
+          "planck_fitted": 3.7232
+        },
+        "planck_a_inside_ci": false,
+        "planck_implied_inside_ci": false,
+        "gaudin_implied_inside_ci": true
+      }
+    },
+    {
+      "block": "zeros #10^22+1..#10^22+10000",
+      "first_zero_index": 10000000000000000000001,
+      "zeros": 10000,
+      "gaps_all": 9999,
+      "gaps_thinned": 3333,
+      "height_median": 1.3709199099319954e+21,
+      "height_range": [
+        "1370919909931995308226.68",
+        "1370919909931995309568.335"
+      ],
+      "unfolded_mean_gap": 1.000106,
+      "n_eff": 10.779,
+      "n_eff_range_over_block": [
+        10.779,
+        10.779
+      ],
+      "cue_n_used": 11,
+      "acf_all": {
+        "1": -0.3048,
+        "2": -0.0935,
+        "3": -0.035
+      },
+      "acf_thinned": {
+        "1": -0.0423,
+        "2": -0.0063,
+        "3": -0.0075
+      },
+      "gue_limit_ks": {
+        "D": 0.01502,
+        "sqrtn_D": 0.8672,
+        "p_calibrated": 0.3881,
+        "p_nominal_iid": 0.4353486967887349,
+        "calibration": "CUE(50) surrogates, n=3333 thinned"
+      },
+      "cue_neff_ks": {
+        "N": 11,
+        "D": 0.01474,
+        "p_calibrated": 0.398,
+        "p_nominal_iid": 0.4595152929205436
+      },
+      "planck": {
+        "a": 4.3751,
+        "T": 0.18873,
+        "cdf_exponent_a": 4.3751,
+        "normaliser_numeric_over_analytic": 1.0,
+        "ks_D": 0.03387,
+        "ks_p_nominal_fixed_cdf_INVALID": 0.0009307631661401562,
+        "ks_p_bootstrap_refit": 0.005,
+        "boot_replicates": 200,
+        "boot_D_max": 0.02091,
+        "boot_D_q95": 0.01621,
+        "fit_denominator": 3333
+      },
+      "marginal_loglik_thinned": {
+        "note": "sum of marginal log densities; a composite score, not a joint likelihood",
+        "planck_minus_wigner": -30.3,
+        "planck_minus_gaudin": -30.11,
+        "gaudin_minus_wigner": -0.19,
+        "bic_penalty_planck_2p_vs_0p": 8.11
+      },
+      "cdf_exponent": {
+        "interval": [
+          0,
+          0.3
+        ],
+        "estimator": "conditional power-law MLE",
+        "n_small": 266,
+        "b_hat": 3.0453,
+        "ci95_block_bootstrap": [
+          2.7466,
+          3.4306
+        ],
+        "se": 0.1716,
+        "implied_by_model_same_estimator": {
+          "gue_limit_gaudin": 2.9162,
+          "wigner_surmise": 2.9189,
+          "cue_N11": 2.9404,
+          "planck_fitted": 3.7835
+        },
+        "planck_a_inside_ci": false,
+        "planck_implied_inside_ci": false,
+        "gaudin_implied_inside_ci": true
+      }
+    }
+  ],
+  "runtime_s": 150.3,
+  "inferential": false,
+  "label": "nominal",
+  "fixture_role": "regression_only",
+  "verified_inputs": {
+    "zeros1.gz": "0d17d50f8b2a8bd128219ea03c8bce55d7d947ec8f27d7f56f30973c2e91bad0",
+    "zeros3": "75a1f1a978d5e3eddd16518f661d41a95a40b33782389ba02ec4ed0ce0764807",
+    "zeros4": "10d9f7dab2bbfff6b8befbe6f765969b0b3f38f6110ed1df423931addd52da8f",
+    "zeros5": "250ac4ba722c6face4d07c05777376fc2b9bc021b05232e8f53c91b1eb2b7e0d"
+  },
+  "shared_kernel_sha256": "f77f6056c9fd1cc4ea7f6abfa8e2f4d9670a9c4c26b163f688fe7cb24ea445ba",
+  "comparison": {
+    "passed": true,
+    "failures": [],
+    "blocks": 4,
+    "inferential": false,
+    "label": "nominal",
+    "all_block_fields_exact": true,
+    "dependence_diagnostics_exact": true
+  }
+}
