@@ -1,6 +1,8 @@
 """Semantic checks that JSON Schema cannot express."""
 
 import math
+import re
+from datetime import datetime
 from mve.errors import RecordError
 from mve.exact import canonical_exact
 from mve.predicates import REGISTRY, canonical_proposition
@@ -291,9 +293,15 @@ def equivalent(left, right, data):
 
 
 def check_judgments(data, graph):
+    from mve.verdicts.catalogue import check_label
+
     for jud in data["judgments"]:
         if not active(jud):
             continue
+        timestamp(jud["at"])
+        check_label(jud, graph)
+        if jud["judge"].startswith("model:"):
+            require(jud["weight"] == 0.5, "model judgment weight must be one half")
         if jud["question"] == "review":
             require(
                 jud["judge"].startswith("human:")
@@ -362,3 +370,30 @@ def check_decisions(data):
                 else ("llm" if dec["confidence"] > low else "human")
             )
             require(dec["route"] == expected, "incorrect boundary routing")
+
+
+def check_candidates(data, graph):
+    for candidate in data.get("candidates", []):
+        if not active(candidate):
+            continue
+        timestamp(candidate["at"])
+        proposition(candidate["proposition"], data)
+        require(
+            set(candidate["proposition"]["args"]) <= set(candidate["depends_on"]),
+            "candidate must depend on its proposition entities",
+        )
+
+
+def timestamp(value):
+    require(
+        isinstance(value, str)
+        and re.fullmatch(
+            r"[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\.[0-9]+)?(?:Z|[+-](?:[01][0-9]|2[0-3]):[0-5][0-9])",
+            value,
+        ),
+        "timestamp must be an RFC 3339 date-time with timezone",
+    )
+    try:
+        datetime.fromisoformat(value)
+    except ValueError as exc:
+        raise RecordError("invalid timestamp") from exc

@@ -3,6 +3,7 @@
 from mve.errors import RecordError
 
 COLLECTIONS = {
+    "candidates": ("can",),
     "sources": ("txt", "geo"),
     "entities": ("ent",),
     "observations": ("obs",),
@@ -23,7 +24,7 @@ def nodes(data):
         result[node["id"]] = node
 
     for collection, prefixes in COLLECTIONS.items():
-        for node in data[collection]:
+        for node in data.get(collection, []):
             add(node, prefixes)
     for entity in data["entities"]:
         for geometry in entity["geometries"]:

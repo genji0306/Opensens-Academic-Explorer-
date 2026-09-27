@@ -83,8 +83,8 @@ def validate_options(replay, nonce, phase, retries, code_sha):
         raise ProbeRefused("only immutable local Replay accepted")
     if type(retries) is not int or not 0 <= retries <= 2:
         raise ProbeRefused("retries must be 0..2")
-    if phase not in {"P0", "P1"}:
-        raise ProbeRefused("perceiver phase must be P0 or P1")
+    if phase != "P1":
+        raise ProbeRefused("perceiver phase must be P1; P0 is reserved for the probe")
     if not isinstance(nonce, str) or not re.fullmatch("[0-9a-f]{16}", nonce):
         raise ProbeRefused("nonce must be 16 lowercase hex digits")
     if not isinstance(code_sha, str) or not re.fullmatch("[0-9a-f]{40}", code_sha):

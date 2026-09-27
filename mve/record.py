@@ -82,7 +82,7 @@ def transition(record, operation, *, actor, expected_revision, at, payload):
     try:
         invalid = set()
         if operation == "edit":
-            data, touched, invalid = edit(data, payload)
+            data, touched, invalid = edit(data, payload, actor)
         elif operation in COLLECTION:
             touched = append_evidence(data, operation, payload)
         else:
