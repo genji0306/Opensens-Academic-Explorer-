@@ -48,8 +48,11 @@ def native(proposition, mapping):
 
 
 def emit(ir):
+    from mve.formalizer.guards import reject_hypothesis_ir
+
     if ir.get("schema") != "mve-formal-ir-v1" or ir.get("exact_constants") != []:
         raise ValueError("unsupported IR or scalar constants")
+    reject_hypothesis_ir(ir)
     binders = ir["binders"]
     if not binders or any(b["type"] != "Point" for b in binders):
         raise ValueError("nonempty Point binders required")

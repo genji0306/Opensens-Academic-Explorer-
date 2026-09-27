@@ -27,3 +27,25 @@ def require_nondegeneracy(ir, mapping):
         raise ValueError(
             "missing registry-required premises: " + ", ".join(sorted(missing.values()))
         )
+
+
+def reject_hypothesis_ir(ir):
+    """Defense for raw IR callers; record-built IR already checks full closure."""
+    from mve.graph import reject_hypothesis_support
+
+    items = [*ir["premises"]] + ([ir["goal"]] if ir["goal"] else [])
+    graph = {
+        node.get("evidence", node.get("id")): {
+            "depends_on": [*node.get("source_refs", []), *node.get("depends_on", [])]
+        }
+        for node in items
+        if node.get("evidence", node.get("id")) is not None
+    }
+    for node in items:
+        ident = node.get("evidence", node.get("id"))
+        refs = (
+            ([ident] if ident is not None else [])
+            + node.get("source_refs", [])
+            + node.get("depends_on", [])
+        )
+        reject_hypothesis_support(refs, graph)

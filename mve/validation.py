@@ -4,6 +4,7 @@ import math
 import re
 from datetime import datetime
 from mve.errors import RecordError
+from mve.graph import reject_hypothesis_support
 from mve.exact import canonical_exact
 from mve.predicates import REGISTRY, canonical_proposition
 
@@ -60,6 +61,7 @@ def check_problem(data, graph):
     for item in groups:
         if not active(item):
             continue
+        reject_hypothesis_support(item["depends_on"], graph)
         proposition(item["proposition"], data, allowed_binders=True, formal=True)
         deps = item["depends_on"]
         require(
@@ -253,6 +255,7 @@ def check_adoptions(data, graph):
     for asm in data["assumptions"]:
         if not active(asm):
             continue
+        reject_hypothesis_support(asm["depends_on"], graph)
         proposition(asm["proposition"], data, formal=True)
         deps = [graph[x] for x in asm["depends_on"]]
         if asm["adopted_by"].startswith("human:"):
@@ -324,6 +327,7 @@ def check_derivations(data, graph):
     for der in data["derivations"]:
         if not active(der):
             continue
+        reject_hypothesis_support(der["depends_on"], graph)
         proposition(der["target"], data, formal=True)
         require(
             der["depends_on"]

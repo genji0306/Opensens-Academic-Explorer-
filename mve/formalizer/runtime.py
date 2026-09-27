@@ -98,6 +98,9 @@ def save_receipt(source, project, output, lock, log, ok, outcome):
 
 
 def formal_payload(ir, source):
+    from mve.formalizer.guards import reject_hypothesis_ir
+
+    reject_hypothesis_ir(ir)
     mapping = {b["name"]: b["entity"] for b in ir["binders"]}
     if any(value is None for value in mapping.values()):
         raise ValueError("formal record requires bound point entities")
