@@ -1363,6 +1363,21 @@
       "python": "3.13.2",
       "schema": "mve-deps-v1"
     },
+    "WP-4-review-followups": {
+      "base_git_sha": "8da83b3c2a26d92b827b9b6a30da342236a7b5ad",
+      "files": [
+        {
+          "path": "mve/measurement/records.py",
+          "sha256": "0a8366bdd0e4627f3c02ff04e5d77468bfd19177da54bf982576368a12913373"
+        },
+        {
+          "path": "tests/mve/test_measurement_geometry_guards.py",
+          "sha256": "1389599c9bd783c88741db01f55e323c7e178be1fd9a7d66eb033672266b1351"
+        }
+      ],
+      "hosted_calls": 0,
+      "note": "Tests only: all geometry-selection guards and unchanged record/content identities; 317 full MVE tests passed, 100% records.py coverage."
+    },
     "WP-4a": {
       "LeanGeo": "failed: not present locally; vendoring deferred to owner-approved packet",
       "base_git_sha": "e827c05717d23a1d570e49847918c8e7347313ec",
