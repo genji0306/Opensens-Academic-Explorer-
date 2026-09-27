@@ -1,0 +1,100 @@
+{
+  "acceptance": "full-suite green remains blocked by nested sandbox restriction; Opus rerun required",
+  "actual_api_cost_usd": "0",
+  "base": "45b3b028fdd",
+  "baseline_reproduction": {
+    "failed": 6,
+    "root_cause": "sandbox-exec: sandbox_apply: Operation not permitted",
+    "sandbox_bypassed": false,
+    "selected_tests": 6
+  },
+  "focused": {
+    "failed": 0,
+    "passed": 135,
+    "skipped": 0
+  },
+  "full_suite": {
+    "coverage_percent": 93.7062937062937,
+    "failed": 6,
+    "passed": 553,
+    "skipped": 0,
+    "total": 559
+  },
+  "hosted_calls": 0,
+  "implementation_commit": "ab1e384e7a054b02f04b5b65517e86bbe765da52",
+  "new_module_coverage": {
+    "mve/perceiver/__init__.py": {
+      "covered_lines": 4,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 4,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "mve/perceiver/adapter.py": {
+      "covered_lines": 64,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 64,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "mve/perceiver/alignment.py": {
+      "covered_lines": 37,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 37,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "mve/perceiver/contract.py": {
+      "covered_lines": 55,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 55,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "mve/perceiver/parsing.py": {
+      "covered_lines": 70,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 70,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "mve/perceiver/records.py": {
+      "covered_lines": 48,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 48,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "mve/perceiver/replay.py": {
+      "covered_lines": 24,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 24,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    }
+  },
+  "schema": "mve-wp3-validation-v1",
+  "sealed_truth_read_for_tuning": false,
+  "tests_first_commit": "3e8449d0738"
+}
