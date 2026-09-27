@@ -12,6 +12,7 @@ test/verify/create attack lanes → report to the Atlas."
 
 | # | Astra r6.1 finding | Fixed in |
 |---|---|---|
+| r6.2 notes | Astra r6.2 PASS WITH CHANGES: power wording, A1/A2 conditionality, Monte Carlo convention, nominal CP | Applied in §5 (Opus, 2026-09-28). |
 | B2 (partial) | iid refit bootstrap, unvalidated dependence and 3,333→33,000 transfer; no joint exponent test; "KS 1% OR 95% CI" has no overall α | Honest route. §3: every card-#1 v2 p-value is **nominal/exploratory**; Monte Carlo p = 1/201 with one-sided 95% upper bound 0.01487; H0 stays `inconclusive`. §7 WO-3: v2 is a **regression fixture**, not inferential certification (`C1H/lane_check_v2_status.json`, `inferential: false`). §2c rules 4, 5, 5a for future checks: dependence-preserving refit calibration at the actual n with a size check, joint bootstrap of (measured − model-implied) exponent, one kill rule with one overall α. Sanity addendum `C1H/lane_check_v2_sanity.py` (91 s) demonstrates both devices, exploratory |
 | B4 (partial) | binomial/CP unit assumes iid Bernoulli trials; opportunities per cluster unfrozen; image-free arm not budget-matched | §5 rewritten as a **fixed stratified cluster design**: strata (module × family), clusters (discovery/replication block pairs), fixed V views × C card slots × 1 check per slot in every arm, image-free and shuffled arms budget-matched, seeded allocation, exact cluster-level sign-flip permutation test per control arm (one-sided 0.05, intersection–union), K ≥ 20 clusters, detectable effect stated; CP descriptive only; pilot descriptive only (§5, §6 GO2, §7 WO-4/WO-6) |
 
@@ -435,9 +436,14 @@ disjoint blocks do not make iid Bernoulli trials and pooled families share no co
   With equal-size differences the test is the sign test: it rejects only if ≥ 9 of 10, ≥ 15 of 20
   or ≥ 26 of 40 non-zero clusters favour the real arm. If each cluster (no ties) favours real with
   probability q, power is 0.38 (K = 10) and 0.80 (K = 20) at q = 0.8; at q = 0.7 it is 0.42 (K = 20)
-  and 0.81 (K = 40). Weaker effects are not detectable at these sizes.
+  and 0.81 (K = 40). These are single-comparison, equal-magnitude, independent, no-tie illustrations:
+  twenty clusters do not guarantee 80% overall GO2 power (all three comparisons must reject), and
+  weaker effects have lower power. For unequal magnitudes or K > 20 the sign-flip p-value is computed
+  by Monte Carlo over 2^K sign vectors as (1 + r)/(B + 1), B ≥ 10,000, with its one-sided 95% upper
+  bound reported. A GO2 superiority conclusion is conditional on A1/A2: rejecting the symmetry null
+  is not an assumption-free test of a non-positive mean lift.
 - **Descriptive only.** Clopper–Pearson intervals on pooled slot proportions per arm and stratum are
-  reported for description. They do not decide GO2 (r6.1's 7/10, 8/20, 8/40, 9/100 were binomial
+  reported for description and labelled nominal: clustering prevents guaranteed binomial coverage. They do not decide GO2 (r6.1's 7/10, 8/20, 8/40, 9/100 were binomial
   rejection thresholds and are retired as decision rules).
 
 **Pilot (WO-6): descriptive only.** K = 10 clusters (2 strata × 5), V = 1, S = 3, plus 4 contrast
