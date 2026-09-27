@@ -1,0 +1,86 @@
+{
+  "schema": "mve-wp3-authored-replay-v1",
+  "origin": "authored fake replies, not vendor recordings; WP-2 frozen E1a generator development subset",
+  "base": "45b3b028fdd",
+  "split_seed": "mve-family-split-v1",
+  "sealed_truth_read": false,
+  "items": [
+    {
+      "id": "cc3a991adc69ddd872e8a1a2cd6bf75d",
+      "family": "oblique_parallelogram",
+      "seed": 0,
+      "split": "development",
+      "name": "development_0",
+      "control": "exact_positive",
+      "image_sha256": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453",
+      "truth_sha256": "32769677fe5636e10e81612336e3bc3bdfa6af67e57c3058f6d144378301661d",
+      "simulated_billed_usd_per_call": "0.0018"
+    },
+    {
+      "id": "0ca7a7fdba3d7fb63678196e81cc1b23",
+      "family": "oblique_parallelogram",
+      "seed": 1,
+      "split": "development",
+      "name": "development_1",
+      "control": "near_miss_negative",
+      "image_sha256": "d176dacee8fba7ca3333e73269ca9cfa0799d0e18939e5b15c3ecf50012e3457",
+      "truth_sha256": "c545ccf247a83fe03ba7d0f8a1e2d0b9aa290263bff2369d08ad13aaf80d91cf",
+      "simulated_billed_usd_per_call": "0.0018"
+    },
+    {
+      "id": "327b8656f83e41768485b08c6d135edd",
+      "family": "oblique_parallelogram",
+      "seed": 2,
+      "split": "development",
+      "name": "development_2",
+      "control": "adversarial_negative",
+      "image_sha256": "d4774b0c0691525fd514ad8ee0f34dfe5915e4bbb2367e1932409f33944837fd",
+      "truth_sha256": "856fb5d7df0ab44ff3d74c42a68046d265cc2dc15dfc245b527fcfec239bc0cf",
+      "simulated_billed_usd_per_call": "0.0018"
+    },
+    {
+      "id": "e5ecf05542f9608179e2f78957622813",
+      "family": "oblique_parallelogram",
+      "seed": 3,
+      "split": "development",
+      "name": "development_3",
+      "control": "not_to_scale",
+      "image_sha256": "d3335b93d7ea014640ca1ef56056825f316ee2bcc050b0cddbc9bee47c8a62ec",
+      "truth_sha256": "fe78e2c701a82e7cbd455a5206e73033e58998339eaa76d22aad4ccb7e499664",
+      "simulated_billed_usd_per_call": "0.0018"
+    },
+    {
+      "id": "d29e0d417e4a068f6e70b4aa5e70242a",
+      "family": "oblique_parallelogram",
+      "seed": 4,
+      "split": "development",
+      "name": "development_4",
+      "control": "degenerate",
+      "image_sha256": "334a0a61eb51d04d047417fab8e89ad9ae6a782b08db60da4af5663494f2078f",
+      "truth_sha256": "a4ff0214b85d70399d802b9035ef05a18ef390b29d7c680fdc24177420116b28",
+      "simulated_billed_usd_per_call": "0.0018"
+    }
+  ],
+  "files": {
+    "public/development_0.call1.raw": "49c740d6925439f48acd3507684248db5e82eab2a1c56dfcde4ffbdae4b740fe",
+    "public/development_0.call2.raw": "2ba037607ee8a6fd97086d3a219eb9ab8135b56b0fe85426b9af697785416720",
+    "public/development_0.png": "0b20c07721ed99a83a053e264ca40e425ffc4dafb809a84e7b5c65fda4d36453",
+    "public/development_1.call1.raw": "44d4c705a8ea1f4364b65f9633ba9ea734531ad3c1db5cda48f32411ce0876d7",
+    "public/development_1.call2.raw": "883c788695e99d6ae1fce5ba0f133306c26a3956b2a88e1d477b14dc1a4a9979",
+    "public/development_1.png": "d176dacee8fba7ca3333e73269ca9cfa0799d0e18939e5b15c3ecf50012e3457",
+    "public/development_2.call1.raw": "390738b383480a034b343f65c5c3740b68b684c92d3e9a8f369a2e5d888e354e",
+    "public/development_2.call2.raw": "8e5e96b7313ca359314cd7fe78c9828e05ed95c408965f2731dd48483d860180",
+    "public/development_2.png": "d4774b0c0691525fd514ad8ee0f34dfe5915e4bbb2367e1932409f33944837fd",
+    "public/development_3.call1.raw": "254d396fcb1f2f00c07ad3a84e9fb6e827906088e65e662f926ccdc84eacfc99",
+    "public/development_3.call2.raw": "51ea9304d8e41aab641845eea16af9b0a3e78a46298d8e7e35698b26fa0c185e",
+    "public/development_3.png": "d3335b93d7ea014640ca1ef56056825f316ee2bcc050b0cddbc9bee47c8a62ec",
+    "public/development_4.call1.raw": "6e42cdbd1f8d22d26a13c5a74bc5ce46ede594f626872fd23b09b0da4f53b04a",
+    "public/development_4.call2.raw": "5467348ce3fcd8439299dc00c5745c73687b1e213986cd3049aa2feb08aac6f1",
+    "public/development_4.png": "334a0a61eb51d04d047417fab8e89ad9ae6a782b08db60da4af5663494f2078f",
+    "truth/development_0.json.gz": "b6133722a489986ad0ac62b8a121b082a45c814136f0b88257794447fb54cf1d",
+    "truth/development_1.json.gz": "8edc37d5449e55ff18eba54dc7a7dcd919b982c7bd33c82fdc4837883229060a",
+    "truth/development_2.json.gz": "fd9844a6c00b1722de8c3eb089661c84ccbaa8f54102a14fcf312416b2282501",
+    "truth/development_3.json.gz": "e596f57910004d48c9a42f2a454aaab53ccf56b64cf968e040a97b1ed72ba805",
+    "truth/development_4.json.gz": "b4dc9a43f1a5b62586210d91df43a0a6b1e27d0861a835306e7d01c091861c2e"
+  }
+}
