@@ -4,7 +4,8 @@
     "angles": "undirected degrees",
     "circle": "[cx,cy,r]",
     "incidence": "PointLiesOnLine(P,AB) = Collinear(P,A,B) with Distinct(A,B)",
-    "inactive_rows": "registered names only; typed use rejected until semantics are frozen"
+    "inactive_rows": "registered names only; typed use rejected until semantics are frozen",
+    "erratum": "r5 E1: Degeneracy column overrides default; self-EqualAngle excluded from universe"
   },
   "predicates": {
     "Collinear": {
@@ -20,7 +21,23 @@
       "degeneracy": "any repeated point",
       "mathlib_target": "Collinear \u211d {A,B,C}",
       "target_compiled": false,
-      "scalar_value": false
+      "scalar_value": false,
+      "distinct_arguments": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "noncollinear_arguments": [],
+      "exclude_self_angle": false
     },
     "Concyclic": {
       "arity": 4,
@@ -36,7 +53,56 @@
       "degeneracy": "any repeated point or any three collinear",
       "mathlib_target": "Concyclic {A,B,C,D}",
       "target_compiled": false,
-      "scalar_value": false
+      "scalar_value": false,
+      "distinct_arguments": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "noncollinear_arguments": [
+        [
+          0,
+          1,
+          2
+        ],
+        [
+          0,
+          1,
+          3
+        ],
+        [
+          0,
+          2,
+          3
+        ],
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "exclude_self_angle": false
     },
     "Parallel": {
       "arity": 4,
@@ -52,7 +118,35 @@
       "degeneracy": "any repeated point; A=B or C=D",
       "mathlib_target": "line[\u211d,A,B] \u2225 line[\u211d,C,D]",
       "target_compiled": false,
-      "scalar_value": false
+      "scalar_value": false,
+      "distinct_arguments": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "noncollinear_arguments": [],
+      "exclude_self_angle": false
     },
     "Perpendicular": {
       "arity": 4,
@@ -68,7 +162,35 @@
       "degeneracy": "any repeated point; A=B or C=D",
       "mathlib_target": "orthogonal line AB CD",
       "target_compiled": false,
-      "scalar_value": false
+      "scalar_value": false,
+      "distinct_arguments": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "noncollinear_arguments": [],
+      "exclude_self_angle": false
     },
     "EqualLength": {
       "arity": 4,
@@ -81,10 +203,22 @@
       "active": true,
       "category": "P1",
       "symmetry": "pairs",
-      "degeneracy": "any repeated point",
+      "degeneracy": "A=B or C=D; cross-pair sharing allowed",
       "mathlib_target": "dist A B = dist C D",
       "target_compiled": false,
-      "scalar_value": false
+      "scalar_value": false,
+      "distinct_arguments": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "noncollinear_arguments": [],
+      "exclude_self_angle": false
     },
     "EqualAngle": {
       "arity": 6,
@@ -99,10 +233,30 @@
       "active": true,
       "category": "P1",
       "symmetry": "angles",
-      "degeneracy": "any repeated point; zero angle arms",
+      "degeneracy": "A=B, B=C, D=E or E=F; cross-triple sharing allowed",
       "mathlib_target": "\u2220 A B C = \u2220 D E F",
       "target_compiled": false,
-      "scalar_value": false
+      "scalar_value": false,
+      "distinct_arguments": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "noncollinear_arguments": [],
+      "exclude_self_angle": true
     },
     "Midpoint": {
       "arity": 3,
@@ -117,7 +271,23 @@
       "degeneracy": "any repeated point; A=B",
       "mathlib_target": "M = midpoint \u211d A B",
       "target_compiled": false,
-      "scalar_value": false
+      "scalar_value": false,
+      "distinct_arguments": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "noncollinear_arguments": [],
+      "exclude_self_angle": false
     },
     "SBetween": {
       "arity": 3,
@@ -132,7 +302,23 @@
       "degeneracy": "any repeated point",
       "mathlib_target": "Sbtw \u211d A B C",
       "target_compiled": false,
-      "scalar_value": false
+      "scalar_value": false,
+      "distinct_arguments": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "noncollinear_arguments": [],
+      "exclude_self_angle": false
     },
     "RightAngle": {
       "arity": 3,
@@ -147,7 +333,23 @@
       "degeneracy": "any repeated point; zero angle arms",
       "mathlib_target": "\u2220 A B C = \u03c0/2",
       "target_compiled": false,
-      "scalar_value": false
+      "scalar_value": false,
+      "distinct_arguments": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "noncollinear_arguments": [],
+      "exclude_self_angle": false
     },
     "Distinct": {
       "arity": 2,
@@ -161,7 +363,10 @@
       "degeneracy": "none",
       "mathlib_target": "A \u2260 B",
       "target_compiled": false,
-      "scalar_value": false
+      "scalar_value": false,
+      "distinct_arguments": [],
+      "noncollinear_arguments": [],
+      "exclude_self_angle": false
     },
     "NotCollinear": {
       "arity": 3,
@@ -176,7 +381,10 @@
       "degeneracy": "none",
       "mathlib_target": "\u00ac Collinear \u211d {A,B,C}",
       "target_compiled": false,
-      "scalar_value": false
+      "scalar_value": false,
+      "distinct_arguments": [],
+      "noncollinear_arguments": [],
+      "exclude_self_angle": false
     },
     "AngleValue": {
       "arity": null,
