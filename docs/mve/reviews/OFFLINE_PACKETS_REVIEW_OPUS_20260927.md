@@ -134,3 +134,18 @@ compiler env is PATH/HOME/LEAN_PATH only, no `/Users/` in the lock.
 
 Build order next (r5 §7): WP-0b probe (verified-price refusal before any hosted transport), then
 WP-3 / WP-4b, WP-8a / WP-5.
+
+## Addendum 3: WP-0b offline refusal path (ee727aa1f39): PASS, merged
+
+Re-run from archive: 463 passed, 0 skipped, 93%; probe modules 96–100%. No network, SDK or key
+reader. Hosted mode refused unless the mode is literally `offline_fixture` with an exact
+`FakeTransport` (not isinstance). Verified price is read from the ledger's pinned configuration,
+with a strict bool; checked before reservation. Order: validate → verified ceiling (0 < c ≤ USD 0.05)
+→ atomic P0 reserve → persist → `mark_dispatched` (off-peak rechecked) → send. After dispatch,
+cancellation is structurally impossible. One-shot id enforced by primary key + `BEGIN IMMEDIATE`
+under real threads. Missing billing is never zero; overcharge unclamped and freezes; Decimal money.
+Receipt hashes computed by code; nothing claims vendor verification.
+Follow-ups for the live-activation packet: (1) `resume(actor)` is a role string, never an auth
+path; (2) the window policy is `UNVERIFIED` and a new ledger could pin another string, so the
+live packet must verify the vendor window and price source. **The single hosted probe still needs
+the owner's go.**
