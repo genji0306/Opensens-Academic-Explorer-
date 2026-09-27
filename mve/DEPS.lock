@@ -1408,6 +1408,19 @@
       "python": "3.13.2",
       "schema": "mve-deps-v1",
       "sqlite": "3.45.3"
+    },
+    "WP-9a-WP-11a-review-followups": {
+      "base_git_sha": "e827c05717d23a1d570e49847918c8e7347313ec",
+      "files": [
+        {
+          "path": "mve/budget.py",
+          "sha256": "51e7db89ad021143b86d83857cfa9287704305f7c0343a98744fd044f417bff0"
+        },
+        {
+          "path": "tests/mve/test_open_review_followups.py",
+          "sha256": "c6734e5964178841b770e49c80c12c988e432099ea9b57ccf90effbf959e5099"
+        }
+      ]
     }
   },
   "schema": "mve-deps-v1"
