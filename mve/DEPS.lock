@@ -1,6 +1,76 @@
 {
   "note": "Per-packet dependency locks preserved verbatim at merge into mve/integration; each packet pins the files it was built and reviewed against.",
   "packets": {
+    "G3-taskset": {
+      "base_git_sha": "c3075d8bed30446b9a53fd5e07e10d1006c02094",
+      "files": [
+        {
+          "path": "docs/mve/FORMALIZER.md",
+          "sha256": "753b5a8baf2b29df50acddb14d4caf74a99baafebdfb2cca510152c923f8b359"
+        },
+        {
+          "path": "docs/mve/reviews/G3_TASKSET_ASTRA_20260927.md",
+          "sha256": "f607050e7bccbf9bf3d1d1c2413577f2279b5dc5fc625fd0d7daa4f69c408868"
+        },
+        {
+          "path": "mve/formalizer/fixtures/g3-taskset/packet.json.gz",
+          "sha256": "a5f527f9ec2e2869e120063914af2c6a43a2b0a5c04128b21af03950baedeb2b"
+        },
+        {
+          "path": "mve/formalizer/fixtures/g3-taskset/rubric-template.csv",
+          "sha256": "c4234d3066ec70f95da7fe41344b70237642516d429daa661476f4f0f867bcbb"
+        },
+        {
+          "path": "mve/formalizer/fixtures/g3-taskset/rubric-template.json",
+          "sha256": "060ecb57889cf6d10dc071ffc29837fbbe50b8d6bb98d56c007c2a956d3133f4"
+        },
+        {
+          "path": "mve/formalizer/fixtures/g3-taskset/summary.json",
+          "sha256": "694b9c85800e0229f5e7aa8fa9bc7cf22c75da80fedb99c706cb5e3eab744f5a"
+        },
+        {
+          "path": "mve/formalizer/g3.py",
+          "sha256": "e3de17c605a8d67af174fdc65c1ef39b3da2b786603e784ddb5483a569757e70"
+        },
+        {
+          "path": "mve/formalizer/tasks.py",
+          "sha256": "a48b6aceb64d1e150607882a84673c2dac6329f182b2534ed069fa204c5b0627"
+        },
+        {
+          "path": "mve/formalizer/taskset.py",
+          "sha256": "0e819f19a056f9a253c5d2244fd9684794af7cad9ac88dda48d25f23f3e2abbe"
+        },
+        {
+          "path": "tests/mve/test_formalizer_g3.py",
+          "sha256": "4d9f84137c92f8dc5d380d92b87300796e6d38c6abe254bb29cb1cbdb6cc848c"
+        },
+        {
+          "path": "tests/mve/test_g3_taskset.py",
+          "sha256": "10f03dc6828bc3837ff8404b5d9effcfbb5984e4bdcaf1863705eab48ff47368"
+        }
+      ],
+      "hosted_calls": 0,
+      "mode": "offline_only",
+      "new_external_dependencies": [],
+      "real_lean_receipts": "pending Opus outside builder sandbox",
+      "reference_tasks": 50,
+      "removed_stale_artifacts": "mve/lean/artifacts/wp6b-g3/",
+      "sealed_tasks": 100,
+      "semantic_rubric_passes": 0,
+      "unique_canonical_statements": 100,
+      "validation": {
+        "coverage_percent": {
+          "g3.py": 99,
+          "tasks.py": 100,
+          "taskset.py": 99
+        },
+        "focused_deselected": 1,
+        "focused_passed": 23,
+        "full_suite_passed": 718,
+        "nested_sandbox_failures": 7
+      },
+      "wp2_split_sha256": "63da5b93adce004b172d9c6ddd182227d6c22c9adb482fddfa8d263795dff909"
+    },
     "WP-0a": {
       "files": [
         {

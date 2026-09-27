@@ -1,0 +1,76 @@
+{
+  "tasks": 100,
+  "reference_tasks": 50,
+  "unique_canonical_statements": 100,
+  "per_predicate_counts": {
+    "Collinear": 5,
+    "Concyclic": 4,
+    "Parallel": 18,
+    "Perpendicular": 14,
+    "EqualLength": 17,
+    "EqualAngle": 17,
+    "Midpoint": 3,
+    "SBetween": 5,
+    "RightAngle": 17
+  },
+  "quotas": {
+    "Collinear": 12,
+    "Concyclic": 11,
+    "Parallel": 11,
+    "Perpendicular": 11,
+    "EqualLength": 11,
+    "EqualAngle": 11,
+    "Midpoint": 11,
+    "SBetween": 11,
+    "RightAngle": 11
+  },
+  "available_unique_per_predicate": {
+    "Collinear": 5,
+    "EqualAngle": 411,
+    "EqualLength": 40,
+    "Parallel": 25,
+    "Perpendicular": 14,
+    "RightAngle": 27,
+    "SBetween": 5,
+    "Concyclic": 4,
+    "Midpoint": 3
+  },
+  "search_seeds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "quota_gaps": {
+    "Collinear": {
+      "quota": 12,
+      "selected": 5,
+      "available": 5,
+      "reason": "Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin."
+    },
+    "Concyclic": {
+      "quota": 11,
+      "selected": 4,
+      "available": 4,
+      "reason": "Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin."
+    },
+    "Midpoint": {
+      "quota": 11,
+      "selected": 3,
+      "available": 3,
+      "reason": "Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin."
+    },
+    "SBetween": {
+      "quota": 11,
+      "selected": 5,
+      "available": 5,
+      "reason": "Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin."
+    }
+  }
+}

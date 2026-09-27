@@ -61,7 +61,7 @@ def test_harness_counts_and_no_semantic_acceptance(tmp_path, monkeypatch):
     assert report["semantic_rubric_passes"] == 0
     assert report["g3_pass"] is False and report["null"] == "N/A"
     assert report["hosted_calls"] == 0
-    assert report["reference_tasks"] == 6
+    assert report["reference_tasks"] == 50
     assert all(r["detected"] == r["total"] == 6 for r in report["controls"].values())
     assert len(calls) == report["unique_compiler_inputs"]
     assert json.loads((tmp_path / "g3.json").read_text()) == report
@@ -81,7 +81,7 @@ def test_failed_compiler_is_unresolved_and_mismatch_refused(tmp_path, monkeypatc
     monkeypatch.setattr(module, "compile_source", compile)
     report = run(tmp_path, count=2)
     assert report["post_repair_well_typed"] == 0
-    assert report["equivalence_counts"]["unresolved"] == 2
+    assert report["equivalence_counts"]["unresolved"] == 50
     monkeypatch.setattr(
         module, "compile_source", lambda *a: {**compile("bad"), "proof_checked": True}
     )
@@ -119,3 +119,64 @@ def test_real_lean_repairs_statement_without_proof(tmp_path):
     assert [a["typecheck"]["ok"] for a in report["attempts"]] == [False, True]
     assert checked.to_dict()["formal"]["status"] == "typechecked"
     assert not report["proof_checked"]
+
+
+def test_full_gate_requires_bound_human_reviews(tmp_path, monkeypatch):
+    import mve.formalizer.g3 as module
+    from mve.formalizer.taskset import load_packet, review_rows
+
+    monkeypatch.setattr(
+        module,
+        "compile_source",
+        lambda source, *args: {
+            "ok": "statement Prop" not in source,
+            "outcome": "fixture",
+            "statement_sha256": sha(source.encode()),
+            "proof_checked": False,
+        },
+    )
+    templates = review_rows(load_packet()["references"])
+    # Explicit synthetic reviewer evidence exercises plumbing, never persisted as real judgments.
+    reviews = [
+        {
+            **r,
+            "reviewer": "test-only",
+            "rationale": "fixture evidence",
+            "blinded": True,
+            "rubric": dict.fromkeys(r["rubric"], True),
+        }
+        for r in templates[:20]
+    ]
+    report = module.run(tmp_path, reviews=reviews)
+    assert report["first_pass_well_typed"] == 80
+    assert (
+        report["post_repair_well_typed"] == report["unique_canonical_statements"] == 100
+    )
+    assert report["first_pass_rate"] == 0.8 and report["post_repair_rate"] == 1
+    assert report["semantic_rubric_passes"] == report["human_reviews"] == 20
+    assert report["g3_pass"] and not report["g3_reasons"]
+    assert all(r["detected"] == r["total"] == 100 for r in report["controls"].values())
+    assert report["equivalence_counts"]["machine_supported"] == 50
+    assert report["equivalence_counts"]["reviewer_judged"] == 0
+    for invalid, match in [
+        ({}, "list"),
+        ([None], "object"),
+        ([reviews[0], reviews[0]], "duplicate"),
+        ([{**reviews[0], "task_id": "sealed-000"}], "unknown"),
+        ([{**reviews[0], "statement_sha256": "0" * 64}], "bind"),
+        ([templates[0]], "reviewer identity"),
+    ]:
+        with pytest.raises(ValueError, match=match):
+            module.evaluate_references(
+                load_packet()["references"], invalid, tmp_path, tmp_path, {}
+            )
+
+
+def test_g3_cli_review_file(tmp_path, monkeypatch, capsys):
+    import mve.formalizer.g3 as module
+
+    reviews = tmp_path / "reviews.json"
+    reviews.write_text("[]")
+    monkeypatch.setattr(module, "run", lambda output, reviews: {"reviews": reviews})
+    module.main(["--reviews", str(reviews)])
+    assert json.loads(capsys.readouterr().out) == {"reviews": []}

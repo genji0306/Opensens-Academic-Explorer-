@@ -1,0 +1,103 @@
+{
+  "compiler_error_inputs": 20,
+  "controls": {
+    "empty": {
+      "detected": 100,
+      "total": 100
+    },
+    "nearest_retrieval": {
+      "detected": 100,
+      "total": 100
+    },
+    "strengthened": {
+      "detected": 100,
+      "total": 100
+    },
+    "trivial": {
+      "detected": 100,
+      "total": 100
+    },
+    "unrelated_but_provable": {
+      "detected": 100,
+      "total": 100
+    },
+    "vacuous": {
+      "detected": 100,
+      "total": 100
+    },
+    "weakened": {
+      "detected": 100,
+      "total": 100
+    }
+  },
+  "equivalence_counts": {
+    "kernel_checked": 0,
+    "machine_supported": 50,
+    "reviewer_judged": 0,
+    "unresolved": 0
+  },
+  "first_pass_rate": 0.8,
+  "first_pass_well_typed": 80,
+  "g3_pass": false,
+  "g3_reasons": [
+    "need at least 20/50 blinded semantic rubric passes; without human reviews G3 is not established"
+  ],
+  "gaps": [
+    "no kernel equivalence evidence",
+    "no model formalization or repair evaluation",
+    "LeanGeo absent"
+  ],
+  "hosted_calls": 0,
+  "human_reviews": 0,
+  "injected_syntax_faults": 20,
+  "null": "N/A",
+  "per_predicate_counts": {
+    "Collinear": 5,
+    "Concyclic": 4,
+    "EqualAngle": 17,
+    "EqualLength": 17,
+    "Midpoint": 3,
+    "Parallel": 18,
+    "Perpendicular": 14,
+    "RightAngle": 17,
+    "SBetween": 5
+  },
+  "post_repair_rate": 1.0,
+  "post_repair_well_typed": 100,
+  "proof_checked": false,
+  "quota_gaps": {
+    "Collinear": {
+      "available": 5,
+      "quota": 12,
+      "reason": "Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.",
+      "selected": 5
+    },
+    "Concyclic": {
+      "available": 4,
+      "quota": 11,
+      "reason": "Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.",
+      "selected": 4
+    },
+    "Midpoint": {
+      "available": 3,
+      "quota": 11,
+      "reason": "Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.",
+      "selected": 3
+    },
+    "SBetween": {
+      "available": 5,
+      "quota": 11,
+      "reason": "Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.",
+      "selected": 5
+    }
+  },
+  "reference_tasks": 50,
+  "schema": "mve-g3-offline-v2",
+  "scope": "WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim",
+  "semantic_rubric_passes": 0,
+  "split_sha256": "f450c6281785ca81f83d40382b7e48bdff9b637d74a9eac9d874b54d080895d2",
+  "tasks": 100,
+  "unique_canonical_statements": 100,
+  "unique_compiler_inputs": 170,
+  "wp2_split_sha256": "63da5b93adce004b172d9c6ddd182227d6c22c9adb482fddfa8d263795dff909"
+}
