@@ -1,6 +1,7 @@
 # WP-0a offline preflight — r5, 2026-09-27
 
-Base: `5645250003f` (r5 PASS), authoritative observation schema v5. The packet was
+Original probe base: `5645250003f` (r5 PASS), authoritative observation schema v5.
+Review-fix branch rebased onto `github/mve/integration` at `ab3b8dd3e84`. The packet was
 re-read after the owner's correction. The superseded builder r2 self-check commit
 `0a338dc305e` is absent from this branch's ancestry; the reviewed r5 packet is unchanged.
 
@@ -39,11 +40,24 @@ Euclid's two-engineer-hour stop criterion is recorded but has **not** been exhau
 No in-house fallback has been selected. An available checkout and executable fixture
 remain discovery work; directory absence does not establish generator incompatibility.
 
-Validation: 9 offline tests pass; 98% statement coverage of core/dispatcher. Probe scripts
-are exercised by recorded subprocess runs outside that unit-coverage denominator. Tests
-for the new r5 scope failed before the corresponding code changes. Schema v5 passes
-JSON Schema meta-validation and is byte-identical to the packet copy. Python files and
-functions satisfy the 800/50-line limits; diff whitespace check passes.
+Review-fix validation: **18 offline preflight tests**, **160/171 covered statements
+(93.6%) across all preflight code, including the child-only audit guard**.
+Combined with the merged packets: **245 passed, 94% coverage**, no pytest warnings with
+`COVERAGE_CORE=pytrace python3 -m pytest tests/mve -q --cov=mve --cov-report=term-missing`.
+The earlier 98% number covered only core/dispatcher; Opus correctly measured 65% for
+that original packet as a whole. This revision tests `vision_contract.exercise()` with
+an injected runner stub and openJev's extracted `exercise(backend, request)` with fake
+backends. The CLI entry points are thin and tested with injected modules. Real dependency
+capability receipts above remain the original offline run, not newly claimed executions.
+
+The fake runner test exercises execution beyond the plan's import-only wording, as accepted
+in Opus's review; it performs no HTTP. Both findings remain reproduced with fake responses.
+The temporary peak-rate override is restored after execution. Dependency paths now share
+`mve/preflight/config.py`; schema checks work after changing cwd away from the repository.
+Default preflight publication preserves other reviewed packets in the aggregate DEPS.lock.
+The warning came from an incompatible native coverage tracer in this Python installation;
+using its supported Python tracer produced the warning-free validation above.
+Ruff and the 800/50-line checks pass.
 
 Manual review covered fake-only transport, guard propagation, explicit failure labels,
 actual-byte pins and separation of executable inference from measured accuracy. No
@@ -55,4 +69,4 @@ Handoff: the unfinished r2 WP-1 tests are preserved in the local stash named
 `mve: preserve unfinished r2 semantics tests before r5 rebase`; they are not implementation
 of the v5 contract. The owner subsequently authorized continued development. WP-0a corrections are
 committed on the r5-based preflight branch for Opus review; the earlier r2-based remote
-head is superseded using a lease-protected update. Nothing has merged into `mve/integration`.
+head is superseded using a lease-protected update. WP-0a remains unmerged for re-review; Opus has merged WP-1, WP-9a and WP-11a separately.

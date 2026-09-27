@@ -697,48 +697,6 @@
           "status": "pinned"
         },
         {
-          "bytes": 68,
-          "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
-          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/__init__.py",
-          "sha256": "f89051b5140cc466f5d4bb91e15781427bfbfab80db214040cc089dadf50ab9e",
-          "status": "pinned"
-        },
-        {
-          "bytes": 3314,
-          "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
-          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/core.py",
-          "sha256": "3d5fc2fd0e471f6261de1277356a66aac8b692bdb6ad9a92a41bba8adc2d15f3",
-          "status": "pinned"
-        },
-        {
-          "bytes": 438,
-          "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
-          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/guard/sitecustomize.py",
-          "sha256": "212358db3a9c95ee7da482fcaa35c0a4e78c01e9d204bd0dae29333209b6e20e",
-          "status": "pinned"
-        },
-        {
-          "bytes": 5587,
-          "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
-          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/offline.py",
-          "sha256": "4fdf74443adf8925d4da72504bb9a0dca8cd920477ced05daf6f79cba23ffeb5",
-          "status": "pinned"
-        },
-        {
-          "bytes": 955,
-          "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
-          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/openjev_fixture.py",
-          "sha256": "c2d11188b298c9a60a3721d53086aedc9ea82755811930e5e883caaf8a742c47",
-          "status": "pinned"
-        },
-        {
-          "bytes": 2630,
-          "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
-          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/vision_contract.py",
-          "sha256": "ea1e81eb05a6a6a712f2262b571dec91d409a56d4da907bd5699c04b5a17f498",
-          "status": "pinned"
-        },
-        {
           "bytes": 51576,
           "git_sha": "0db057c79dca09b1deb0a6654b42061141f1fe24",
           "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/schemas/mve_observation_record.json",
@@ -1178,9 +1136,72 @@
           "path": "/Users/applefamily/Developer/Opensens/worktrees/zeta-explorer-main/dist/index.html",
           "sha256": "0097f9484ce147a64d56142a0c3bd53e227aa404dc643bfcf96937b7d812f771",
           "status": "pinned"
+        },
+        {
+          "bytes": 68,
+          "git_sha": "f2eed1e4ab38b93cf405090ba71466f902a639e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/__init__.py",
+          "sha256": "f89051b5140cc466f5d4bb91e15781427bfbfab80db214040cc089dadf50ab9e",
+          "status": "pinned"
+        },
+        {
+          "bytes": 933,
+          "git_sha": "f2eed1e4ab38b93cf405090ba71466f902a639e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/config.py",
+          "sha256": "5b85adc23fb70083e97a0709aa7ff01f27c1d04190d072f1dee56fc4b86bafeb",
+          "status": "pinned"
+        },
+        {
+          "bytes": 4094,
+          "git_sha": "f2eed1e4ab38b93cf405090ba71466f902a639e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/core.py",
+          "sha256": "7d9e99c5b8ffd54cb4b9cd23b2c56fb5e82010e61e6b0a03e0002b38570ae554",
+          "status": "pinned"
+        },
+        {
+          "bytes": 83,
+          "git_sha": "f2eed1e4ab38b93cf405090ba71466f902a639e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/guard/__init__.py",
+          "sha256": "cc5d5153484754579f92b0fcb810c2a6cbac9a755adecc41ea3825bdc2a80d9f",
+          "status": "pinned"
+        },
+        {
+          "bytes": 439,
+          "git_sha": "f2eed1e4ab38b93cf405090ba71466f902a639e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/guard/sitecustomize.py",
+          "sha256": "406e9521cbae53dc32b56519870a2877766018c13f4e9d7ff8d2cc6f61cf941c",
+          "status": "pinned"
+        },
+        {
+          "bytes": 6231,
+          "git_sha": "f2eed1e4ab38b93cf405090ba71466f902a639e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/offline.py",
+          "sha256": "8dec6a7e3ea4ecc135613c0ed9241558a0e47f0e184cac8104d098b796bff9b8",
+          "status": "pinned"
+        },
+        {
+          "bytes": 1053,
+          "git_sha": "f2eed1e4ab38b93cf405090ba71466f902a639e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/openjev_fixture.py",
+          "sha256": "b2fe622be76b1f57c6be1423960e88b06e0b2be11a09045b67fdd15bbb9536f6",
+          "status": "pinned"
+        },
+        {
+          "bytes": 3182,
+          "git_sha": "f2eed1e4ab38b93cf405090ba71466f902a639e4",
+          "path": "/Users/applefamily/Developer/Opensens/worktrees/oae-mve-integration/mve/preflight/vision_contract.py",
+          "sha256": "7be37398f6d7810005793c6ba20492a724a5c93f70534b9f5861a32465eb8a2d",
+          "status": "pinned"
         }
       ],
       "note": "File hashes pin actual bytes; git SHA alone does not exclude dirty edits.",
+      "review_fix": {
+        "base_git_sha": "ab3b8dd3e84d338a70df471273dff047284994d4",
+        "combined_tests": 245,
+        "note": "External capability receipts are retained from the original offline run; helper regression tests use fake backends only.",
+        "preflight_covered_statements": 160,
+        "preflight_total_statements": 171
+      },
       "schema": "mve-deps-v1"
     },
     "WP-1": {
