@@ -28,4 +28,8 @@ Euclid generator discovery: failed: no local checkout; no network fetch in offli
 
 E1a regression tests independently count the segment/angle pairs, reproduce both four-point reviewer probes, reject both forms of repeated angle endpoints (including distinct names at coincident coordinates), and verify frozen truth excludes the trivial facts. The shared required_nondegeneracy policy now requires all six within-angle Distinct pairs. Formalizer tests independently remove A≠C and D≠F in turn and confirm emission refuses each missing premise. The coordinate kernel and native semantics map follow the same registry.
 
-The E1 corpus receipts are archived as superseded. E1a regeneration and audit run from a committed immutable source snapshot; the current receipts will pin that snapshot and contain the computed final counts.
+The E1 corpus receipts are archived as superseded. E1a regeneration and audit run from a committed immutable source snapshot; the current receipts pin that snapshot and contain the computed final counts.
+
+E1a validation: **415 full MVE tests passed**, including real Lean checks, with **88% combined generator/shared-policy coverage** and **100% degeneracy.py coverage**. Ruff, file/function limits, source pins and schema-copy equality pass.
+
+Regeneration completed from source `0e6abed36b39736043375855fff1fb131734f3eb`. Both receipts report `generated_counts_met`: **2,560 diagrams**, **5,777,920 candidate outcomes**, **2,000 unique fit and 500 unique sealed configurations/PNGs**, and **zero cross-split image or coordinate collisions**. The audit validates all 2,560 records, scenes and split labels, plus 10,240 artifact hashes. Frozen split SHA-256: `63da5b93adce004b172d9c6ddd182227d6c22c9adb482fddfa8d263795dff909`. Local artifacts are under `mve/generated/wp2-corpus-e1a-20260927/`. All five controls remain represented, DDAR remains unsupported, and no sealed truth was inspected for tuning.

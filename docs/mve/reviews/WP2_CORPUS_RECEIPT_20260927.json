@@ -1,0 +1,72 @@
+{
+  "acceptance": "generated_counts_met",
+  "api_cost_usd": 0,
+  "artifact_root": "wp2-corpus-e1a-20260927",
+  "class_counts": {
+    "false": 4881465,
+    "incidental_unproved": 341223,
+    "premise": 3587,
+    "unknown": 551645
+  },
+  "code_sha": "0e6abed36b39736043375855fff1fb131734f3eb",
+  "controls": {
+    "calibration:adversarial_negative": 4,
+    "calibration:degenerate": 4,
+    "calibration:exact_positive": 4,
+    "calibration:near_miss_negative": 4,
+    "calibration:not_to_scale": 4,
+    "development:adversarial_negative": 4,
+    "development:degenerate": 4,
+    "development:exact_positive": 4,
+    "development:near_miss_negative": 4,
+    "development:not_to_scale": 4,
+    "fit:adversarial_negative": 399,
+    "fit:degenerate": 399,
+    "fit:exact_positive": 404,
+    "fit:near_miss_negative": 399,
+    "fit:not_to_scale": 399,
+    "retrieval:adversarial_negative": 4,
+    "retrieval:degenerate": 4,
+    "retrieval:exact_positive": 4,
+    "retrieval:near_miss_negative": 4,
+    "retrieval:not_to_scale": 4,
+    "sealed:adversarial_negative": 100,
+    "sealed:degenerate": 100,
+    "sealed:exact_positive": 100,
+    "sealed:near_miss_negative": 100,
+    "sealed:not_to_scale": 100
+  },
+  "counts": {
+    "calibration": 20,
+    "development": 20,
+    "fit": 2000,
+    "retrieval": 20,
+    "sealed": 500
+  },
+  "cross_split_coordinate_collisions": 0,
+  "cross_split_image_collisions": 0,
+  "ddar_note": "All DDAR receipts unsupported until a local backend passes preflight; no consequence claims.",
+  "hosted_calls": 0,
+  "manifest_sha256": "ba70632b07f3f814d712aecb43facdc7a99c01c296e9f20851fb84bc0ecc762a",
+  "receipt_kind": "generation",
+  "render_pinned": false,
+  "schema": "mve-corpus-v1",
+  "split_sha256": "63da5b93adce004b172d9c6ddd182227d6c22c9adb482fddfa8d263795dff909",
+  "styles": [
+    "thin"
+  ],
+  "unique_mathematical_diagrams": {
+    "calibration": 20,
+    "development": 20,
+    "fit": 2000,
+    "retrieval": 20,
+    "sealed": 500
+  },
+  "unique_rendered_images": {
+    "calibration": 20,
+    "development": 20,
+    "fit": 2000,
+    "retrieval": 20,
+    "sealed": 500
+  }
+}
