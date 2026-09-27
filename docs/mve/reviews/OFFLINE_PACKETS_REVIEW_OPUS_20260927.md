@@ -149,3 +149,16 @@ Follow-ups for the live-activation packet: (1) `resume(actor)` is a role string,
 path; (2) the window policy is `UNVERIFIED` and a new ledger could pin another string, so the
 live packet must verify the vendor window and price source. **The single hosted probe still needs
 the owner's go.**
+
+## Addendum 4: WP-3 offline perceiver (5fa1724555d): PASS with follow-ups, merged
+
+Built by a headless Astra session launched by Opus (network-off Codex sandbox). The 6 failures
+it reported were nested `sandbox-exec` inside that sandbox. From a clean archive outside it:
+559 passed, 0 skipped, 94%; `mve/perceiver/*` 100%. The WP-0b refactor (parametrised attempt /
+phase / wave, `dispatch_fixture`, `settle`) keeps every refusal-path guarantee. Phases limited to
+P0/P1 with caps enforced by the ledger. Retries 0..2, each a distinct reserved attempt (≤ 6 per
+image). Nonce reuse refused by the ledger. The two calls get identical requests. Raw bytes are
+saved before parsing. Output goes only to observations.
+Follow-ups (next perceiver branch): (a) WP-3 dispatch fixed to P1, since P0 is the WP-0b
+probe's pool; (b) remove the dead `model=` kwarg on `perceive()`, or assert it equals
+`deepseek-flash`.
