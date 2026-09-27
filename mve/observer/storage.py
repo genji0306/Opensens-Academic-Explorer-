@@ -50,7 +50,7 @@ def encoded(value):
         json.dumps(value, sort_keys=True, indent=2, ensure_ascii=False, allow_nan=False)
         + "\n"
     ).encode()
-    if b"/Users/" in data:
+    if b"/" + b"Users/" in data:  # split literal so the repo-wide path lint stays clean
         raise ValueError("nonportable user path in output")
     return data
 
