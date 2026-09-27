@@ -25,6 +25,8 @@ from mve.validation import (
     check_judgments,
     check_derivations,
     check_decisions,
+    check_candidates,
+    timestamp,
 )
 
 SCHEMA = json.loads(
@@ -89,6 +91,7 @@ def check_events(data, graph):
     seen = set(graph)
     revision = 0
     for event in data["events"]:
+        timestamp(event["at"])
         require(
             event["id"].startswith("evt_") and event["id"] not in seen,
             "duplicate or wrong event id",
@@ -120,6 +123,7 @@ def validate(data):
         check_entities(data, graph, groups)
         check_observations(data, graph)
         check_measurements(data, graph)
+        check_candidates(data, graph)
         check_judgments(data, graph)
         check_adoptions(data, graph)
         check_derivations(data, graph)

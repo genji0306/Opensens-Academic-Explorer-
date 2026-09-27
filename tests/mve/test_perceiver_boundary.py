@@ -56,7 +56,7 @@ def test_request_guards(tmp_path, options):
     assert ledger.snapshot()["attempts"] == []
 
 
-@pytest.mark.parametrize("phase", ["P0", "P1"])
+@pytest.mark.parametrize("phase", ["P1"])
 def test_durable_intent_before_send_and_raw_before_inspection(
     tmp_path, monkeypatch, phase
 ):
@@ -153,3 +153,18 @@ def test_returned_wrong_model_and_overcharge_stop_before_second_call(tmp_path):
         assert result.record is None
         if name == "overcharge":
             assert ledger.snapshot()["exposure_micro_usd"] == 100_000
+
+
+def test_wp3_p0_refused_before_any_reservation_or_output(tmp_path):
+    ledger = book(tmp_path)
+    with pytest.raises(BudgetError, match='P1'):
+        invoke(ledger, tmp_path, phase='P0')
+    assert ledger.snapshot()['attempts'] == []
+    assert not (tmp_path / 'run').exists()
+
+
+def test_wp3_explicit_flash_model_is_pinned(tmp_path):
+    ledger = book(tmp_path)
+    result = invoke(ledger, tmp_path, model='deepseek-flash')
+    assert result.record.to_dict()['provenance']['perceiver_model'] == 'deepseek-flash'
+    assert all(a['phase'] == 'P1' for a in ledger.snapshot()['attempts'])

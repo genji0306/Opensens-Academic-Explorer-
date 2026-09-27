@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "oae-mve-observation-v5",
   "title": "MVE observation record (oae-mve-observation-v5)",
-  "description": "Authoritative schema (docs/mve/ holds a derived copy checked equal). One diagram, one record, five evidence classes. Every node of the dependency graph has an id and a `depends_on`; the graph's nodes are: sources (txt/geo), problem propositions (prm/ndg/goal), entities (ent) and their geometries (geo), obs, mea, der, asm, jud, dec, formal propositions (prop), typecheck (tc), proof (prf), equivalence (eqv), render (rnd). Invalidation is transitive over depends_on; an invalidated node gets valid=false and can no longer be cited. Structural rules live here; referential integrity, uniqueness across arrays, authorisation (MVE_PLAN §4a), stage invariants and canonical-form checks live in mve/record.py. Older schema versions are rejected, not migrated.",
+  "description": "Authoritative schema (docs/mve/ holds a derived copy checked equal). One diagram, one record, five evidence classes. Every node of the dependency graph has an id and a `depends_on`; the graph's nodes are: sources (txt/geo), problem propositions (prm/ndg/goal), entities (ent) and their geometries (geo), obs, mea, der, asm, jud, dec, formal propositions (prop), typecheck (tc), proof (prf), equivalence (eqv), render (rnd). Invalidation is transitive over depends_on; an invalidated node gets valid=false and can no longer be cited. Structural rules live here; referential integrity, uniqueness across arrays, authorisation (MVE_PLAN §4a), stage invariants and canonical-form checks live in mve/record.py. Older schema versions are rejected, not migrated. Optional candidates (can) are non-authorizing proposals, not a sixth evidence class.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -35,7 +35,7 @@
     },
     "id": {
       "type": "string",
-      "pattern": "^(ent|obs|mea|der|asm|jud|dec|prop|evt|prm|ndg|goal|txt|geo|src|tc|prf|eqv|rnd)_[0-9]{1,6}$"
+      "pattern": "^(can|ent|obs|mea|der|asm|jud|dec|prop|evt|prm|ndg|goal|txt|geo|src|tc|prf|eqv|rnd)_[0-9]{1,6}$"
     },
     "unit01": {
       "type": "number",
@@ -1048,7 +1048,7 @@
           },
           "adopted_by": {
             "type": "string",
-            "pattern": "^(human:[a-z0-9_-]+|policy:[a-z0-9_-]+|text)$"
+            "pattern": "^(human:[A-Za-z0-9._-]+|policy:[a-z0-9_-]+|text)$"
           },
           "depends_on": {
             "$ref": "#/$defs/deps",
@@ -1675,7 +1675,8 @@
               "edited",
               "invalidated",
               "ingested",
-              "reviewed"
+              "reviewed",
+              "proposed"
             ]
           },
           "from_revision": {
@@ -1923,6 +1924,51 @@
             "truth_identity_edit",
             null
           ]
+        }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "description": "Non-authorizing proposals; adoption still requires a human judgment and a separate assumption.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "proposition",
+          "proposed_by",
+          "at",
+          "depends_on"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/id"
+          },
+          "proposition": {
+            "$ref": "#/$defs/proposition"
+          },
+          "proposed_by": {
+            "type": "string",
+            "pattern": "^(human|model):[A-Za-z0-9._-]+$"
+          },
+          "at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "text": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 600
+          },
+          "depends_on": {
+            "$ref": "#/$defs/deps",
+            "minItems": 1
+          },
+          "valid": {
+            "type": "boolean"
+          }
         }
       }
     }

@@ -1913,6 +1913,128 @@
       "note": "Portable ELAN_HOME/toolchain and MVE_LEAN_PACKAGES discovery; existing dependency hashes retained and verified.",
       "proof_checked": false
     },
+    "WP-8a": {
+      "base_git_sha": "0be52713584ac62338e877b3197dfbef7d466b82",
+      "files": [
+        {
+          "path": "docs/mve/VERDICTS.md",
+          "sha256": "abcacf22af4fc52476f7ebeb487a1a1621da14c1088fd01a9d91190a919b1718"
+        },
+        {
+          "path": "docs/mve/mve_observation_record.json",
+          "sha256": "ecc73bbb06051c212c1e5cb0f9df5af3c3fa297c0c4af9b569e0f1ffe9f0c11f"
+        },
+        {
+          "path": "mve/errors.py",
+          "sha256": "326a016d2b764ec6ce470823bc6b59c007714875001b8a637e9e600e4985a7ef"
+        },
+        {
+          "path": "mve/evaluation/splits.py",
+          "sha256": "367ff90790a7e5745cf711577888e30ec7496ec9d954c0f67e0ed503e72f45c9"
+        },
+        {
+          "path": "mve/formal.py",
+          "sha256": "e6d162ee2d0e8ef21701f32c25286ffc3e3d53a9b36c63d28b4eba14f2b6dd38"
+        },
+        {
+          "path": "mve/graph.py",
+          "sha256": "a696d6826d4cb94b2715c4faf7f3862f96495f94cdab2bff0dbd24adedc6c2a4"
+        },
+        {
+          "path": "mve/identity.py",
+          "sha256": "9980da4703486d43348df7e6e5a3bf24313eb7db47d30fd47482e5694e390f64"
+        },
+        {
+          "path": "mve/operations.py",
+          "sha256": "87523c5eed83909dfbbb5f02bd8d03474e58af3d84bf18508c7c273fec856bfe"
+        },
+        {
+          "path": "mve/patch.py",
+          "sha256": "cce0d2998ad5efd3662e0ca1ce588d564396b7886425186b03d611817f529b6f"
+        },
+        {
+          "path": "mve/perceiver/adapter.py",
+          "sha256": "89aa1a76beab61263b144193110a135b79f312ae2e61b47ab10cff63841ce3cb"
+        },
+        {
+          "path": "mve/perceiver/contract.py",
+          "sha256": "bf191df8ca5f7c1ba693580495c9b15d2d071c5a469e1e6d177b16d28fddcf07"
+        },
+        {
+          "path": "mve/predicates.py",
+          "sha256": "031e3c974a45c49688823788278b0ceefd52687cb7e3bf156977cd9aacee464a"
+        },
+        {
+          "path": "mve/record.py",
+          "sha256": "3531961939443c31702d09cef67751456be9415f885226c32ea8000c6e7bee4c"
+        },
+        {
+          "path": "mve/semantics.py",
+          "sha256": "467bc5940378a714e6f95ec9323d8f5b838316f7d65d83468cebe04f08e4462f"
+        },
+        {
+          "path": "mve/validation.py",
+          "sha256": "26be63f2dc1626673e141b11ae40349dc6ec1b280095c987d9493d7d0e003f71"
+        },
+        {
+          "path": "mve/verdicts/__init__.py",
+          "sha256": "bbc456be717e96b3494478cca5ae29190e3f0c6d97fe6640db26d271a5293f84"
+        },
+        {
+          "path": "mve/verdicts/__main__.py",
+          "sha256": "ae186193342fb0cfa960d768f4a8c12b8722c9cab4066b3994a1ca89fab5eafa"
+        },
+        {
+          "path": "mve/verdicts/capture.py",
+          "sha256": "2a59c347b2cf92637739841d841e7b4ac43005230ea4dbe022e93a53feea6d32"
+        },
+        {
+          "path": "mve/verdicts/catalogue.py",
+          "sha256": "e7076626c421d5b47ace990ebe73f63180aaa48e980eb09f82067e0dd52a94f2"
+        },
+        {
+          "path": "mve/verdicts/labels.py",
+          "sha256": "d3f565e52aafd1457afc71d3868427fa67f4f302ce2d885f35bd2eb565a9ff37"
+        },
+        {
+          "path": "mve/verdicts/store.py",
+          "sha256": "460f8aa8ece1dea444053d9e264588c9eb4457a8c70f8e3e369e5fc1ab3f6336"
+        },
+        {
+          "path": "schemas/mve_observation_record.json",
+          "sha256": "ecc73bbb06051c212c1e5cb0f9df5af3c3fa297c0c4af9b569e0f1ffe9f0c11f"
+        },
+        {
+          "path": "tests/mve/test_perceiver_boundary.py",
+          "sha256": "2dee03040a805dc96f162661cea54659760f490bf5aa02ae735ab96dff5bc14e"
+        },
+        {
+          "path": "tests/mve/test_verdict_capture.py",
+          "sha256": "0ff056e61c94c04ad15b271d8e7d2f09e23570cbb071df5641d5151aba667931"
+        },
+        {
+          "path": "tests/mve/test_verdict_cli.py",
+          "sha256": "4417f41585285e629733ddd9fc441af93c50432d6cb0e65bbcc2b3fc6489946c"
+        },
+        {
+          "path": "tests/mve/test_verdict_labels.py",
+          "sha256": "c54c0bba4b23f386b58b03a9c319b7a8cdef7f314ba2340dbee6ea34f1b3fb49"
+        }
+      ],
+      "hosted_calls": 0,
+      "mode": "offline_only",
+      "new_external_dependencies": [],
+      "packages": {
+        "jsonschema": "4.26.0",
+        "pytest": "8.4.2",
+        "pytest-cov": "6.3.0"
+      },
+      "packet": "WP-8a minimal human verdict capture and WP-3 follow-ups",
+      "python": "3.13.2",
+      "schema": "mve-deps-v1",
+      "schema_extension": "optional non-authorizing can_N candidates and proposed events; human identity grammar aligned; schema copies byte-equal",
+      "scope": "local actor assertions; no authentication, training, routing execution or G4b session claim"
+    },
     "WP-9a": {
       "base_git_sha": "5645250003f129473919f4f32984c68a86e1c477",
       "files": [

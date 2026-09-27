@@ -36,14 +36,14 @@ class PerceptionResult:
         return json.loads(self._report)
 
 
-def attempt(ledger, request, transport, *, folder, ident, phase, clock, size):
+def attempt(ledger, request, transport, *, folder, ident, clock, size):
     price, ceiling, outcome = dispatch_fixture(
         ledger,
         request,
         output=folder,
         transport=transport,
         attempt=ident,
-        phase=phase,
+        phase="P1",
         wave="wp3:simulated",
         clock=clock,
     )
@@ -58,7 +58,7 @@ def attempt(ledger, request, transport, *, folder, ident, phase, clock, size):
         "hosted_calls": 0,
         "actual_api_cost_usd": "0",
         "attempt": ident,
-        "phase": phase,
+        "phase": "P1",
         "reserved_micro_usd": ceiling,
         "price": price,
         "window_policy": ledger.snapshot()["configuration"]["window"],
@@ -71,7 +71,7 @@ def attempt(ledger, request, transport, *, folder, ident, phase, clock, size):
     return {**receipt, "receipt_sha256": receipt_sha, "path": folder.name}, parsed
 
 
-def calls(ledger, request, replay, root, nonce, phase, retries, clock, size):
+def calls(ledger, request, replay, root, nonce, retries, clock, size):
     attempts, selected, contents = [], [], []
     for call in (1, 2):
         for retry in range(retries + 1):
@@ -82,7 +82,6 @@ def calls(ledger, request, replay, root, nonce, phase, retries, clock, size):
                 replay.transport(len(attempts)),
                 folder=root / name,
                 ident=f"wp3:{nonce}:{name}",
-                phase=phase,
                 clock=clock,
                 size=size,
             )
@@ -126,6 +125,8 @@ def perceive(
 ):
     if type(image) is not ImageInput:
         raise ProbeRefused("only the immutable ImageInput is accepted")
+    if model != MODEL:
+        raise ProbeRefused("perceiver model must equal deepseek-flash")
     validate_options(replay, nonce, phase, retries, code_sha)
     request = image.request(model)
     base = ingested(image, nonce, code_sha, utc_now().isoformat())
@@ -133,7 +134,7 @@ def perceive(
     root.mkdir(parents=True, exist_ok=False)
     write_json(root / "contract.json", CONTRACT)
     attempts, selected, contents = calls(
-        ledger, request, replay, root, nonce, phase, retries, clock, image.size()
+        ledger, request, replay, root, nonce, retries, clock, image.size()
     )
     record, alignment = None, None
     if len(selected) == 2 and all(s["status"] == "ok" for s in selected):

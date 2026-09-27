@@ -7,6 +7,7 @@ from mve.patch import apply_patch, tokens
 from mve.validation import require, active
 
 PERMISSIONS = {
+    "propose": ("human:", "model:"),
     "perceive": ("A1",),
     "measure": ("A2",),
     "derive": ("A2c",),
@@ -20,6 +21,7 @@ PERMISSIONS = {
     "ingest": ("A7",),
 }
 KINDS = {
+    "propose": "proposed",
     "perceive": "perceived",
     "measure": "measured",
     "derive": "derived",
@@ -33,6 +35,7 @@ KINDS = {
     "ingest": "ingested",
 }
 COLLECTION = {
+    "propose": "candidates",
     "perceive": "observations",
     "measure": "measurements",
     "derive": "derivations",
@@ -91,18 +94,23 @@ def check_operation(data, operation, actor, payload):
         )
     if operation == "ingest":
         require(data["stage"] == "reviewed", "ingest requires review")
-    if operation in ("judge", "adopt", "review"):
+    check_owner(operation, actor, payload)
+
+
+def check_owner(operation, actor, payload):
+    if operation in ("judge", "adopt", "review", "propose"):
         for node in payload.get(COLLECTION[operation], []):
-            owner = (
-                node.get("adopted_by") if operation == "adopt" else node.get("judge")
+            owner_field = {"adopt": "adopted_by", "propose": "proposed_by"}.get(
+                operation, "judge"
             )
+            owner = node.get(owner_field)
             expected = actor if actor not in ("Opus", "Sol") else f"audit:{actor}"
             require(owner == expected, "actor cannot impersonate evidence owner")
             if operation == "review":
                 require(node["question"] == "review", "review question required")
 
 
-def edit(data, payload):
+def edit(data, payload, actor):
     patch = checked_patch(payload)
     previous = nodes(data)
     updated = apply_patch(data, patch)
@@ -122,6 +130,18 @@ def edit(data, payload):
         roots |= {
             key for key in previous if key.startswith(("prm_", "ndg_", "goal_", "ent_"))
         }
+    for key in roots:
+        for owner in ("judge", "proposed_by", "adopted_by"):
+            if owner in previous[key]:
+                require(
+                    previous[key][owner] == current[key].get(owner),
+                    "edit cannot rewrite evidence owner",
+                )
+                if owner != "adopted_by":
+                    require(
+                        actor == previous[key][owner],
+                        "cannot impersonate original owner; append an override",
+                    )
     invalid = downstream(previous, roots) | downstream(current, roots)
     for key in invalid:
         current[key]["valid"] = False
@@ -138,7 +158,7 @@ def edit(data, payload):
 def append_evidence(data, operation, payload):
     collection = COLLECTION[operation]
     require(payload.get(collection), "operation requires evidence to append")
-    data[collection].extend(deepcopy(payload[collection]))
+    data.setdefault(collection, []).extend(deepcopy(payload[collection]))
     if operation == "perceive":
         data["entities"].extend(deepcopy(payload.get("entities", [])))
     for entity_id, geometries in payload.get("geometries", {}).items():
@@ -232,6 +252,7 @@ def checked_patch(payload):
     require(isinstance(patch, list) and patch, "edit requires nonempty RFC 6902 patch")
     allowed = {
         "sources",
+        "candidates",
         "problem",
         "entities",
         "observations",
