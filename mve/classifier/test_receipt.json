@@ -1,0 +1,111 @@
+{
+  "failed_nested_sandbox_exec": 7,
+  "failures": [
+    "tests/mve/test_formalizer_g3.py::test_real_lean_repairs_statement_without_proof",
+    "tests/mve/test_formalizer_runtime.py::test_native_targets_compile_without_proofs",
+    "tests/mve/test_formalizer_runtime.py::test_typecheck_record_keeps_proof_separate",
+    "tests/mve/test_formalizer_runtime.py::test_real_lean_typechecks_from_relocated_project",
+    "tests/mve/test_isolation.py::test_real_subprocess_cannot_read_gold_or_connect",
+    "tests/mve/test_isolation.py::test_public_staging_rejects_links_and_worker_timeout",
+    "tests/mve/test_open_review_followups.py::test_worker_created_runtime_symlink_cannot_read_private_gold"
+  ],
+  "hosted_calls": 0,
+  "modules": {
+    "mve/classifier/__init__.py": {
+      "covered_lines": 0,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 0,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "mve/classifier/artifacts.py": {
+      "covered_lines": 35,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 35,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "mve/classifier/audit.py": {
+      "covered_lines": 14,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 14,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "mve/classifier/catalogue.py": {
+      "covered_lines": 13,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 13,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "mve/classifier/learning.py": {
+      "covered_lines": 28,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 28,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "mve/classifier/onnx_head.py": {
+      "covered_lines": 28,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 28,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "mve/classifier/run_spike.py": {
+      "covered_lines": 63,
+      "excluded_lines": 0,
+      "missing_lines": 3,
+      "num_statements": 66,
+      "percent_covered": 95.45454545454545,
+      "percent_covered_display": "95",
+      "percent_statements_covered": 95.45454545454545,
+      "percent_statements_covered_display": "95"
+    },
+    "mve/classifier/runtime.py": {
+      "covered_lines": 113,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 113,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    },
+    "mve/classifier/spike.py": {
+      "covered_lines": 44,
+      "excluded_lines": 0,
+      "missing_lines": 0,
+      "num_statements": 44,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100"
+    }
+  },
+  "new_module_coverage_percent": 99.12023460410558,
+  "new_module_covered": 338,
+  "new_module_statements": 341,
+  "passed": 648,
+  "schema": "mve-wp5-validation-v1",
+  "skipped": 0
+}

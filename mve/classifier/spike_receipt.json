@@ -1,0 +1,336 @@
+{
+  "actor_identity": "synthetic fixture assertions, not authenticated people or gold",
+  "artifacts": [
+    {
+      "path": "mve/generated/wp5-spike/checkpoint.npz",
+      "sha256": "c7d90e057b88ac61697e85e435e7efe02be17982acce88b33d3b9fc58bf7596f"
+    },
+    {
+      "path": "mve/generated/wp5-spike/head.onnx",
+      "sha256": "805bc0a90ea54cadaf8aa9985555d11941f0c5b989e40f35bca67f85040cd0d6"
+    }
+  ],
+  "checkpoint_array_equal": true,
+  "config": {
+    "epochs": 2,
+    "learning_rate": 0.01,
+    "max_seconds": 120.0,
+    "max_steps": 4
+  },
+  "duration_s": 0.5564254999626428,
+  "fit": {
+    "changed_parameters": 20,
+    "encoder_trainable": false,
+    "losses": [
+      1.7108593583106995,
+      1.679007311662038
+    ],
+    "objective": "human=1.0, manager=0.5 weighted cross-entropy",
+    "original_openjev_head_trainable": false,
+    "steps": 2,
+    "trainable_parameters": 20
+  },
+  "fixture_only": true,
+  "hosted_calls": 0,
+  "human_rows": 2,
+  "label_set_sha256": "5fb0bccd1c59dca43946a7835fa0afb4aabee6089f2ea88fddfc349314b73bcf",
+  "learning": {
+    "accuracy": null,
+    "automatic_error_upper95": null,
+    "baselines": {
+      "code_only": null,
+      "majority": null,
+      "previous_lock": null
+    },
+    "decision": "no_update",
+    "floor_unmet_questions": [
+      "Q-agree-action",
+      "Q-claim-workflow",
+      "Q-domain",
+      "Q-drift-flag",
+      "Q-mark-type",
+      "Q-shape",
+      "Q-solver",
+      "Q-topo-workflow",
+      "Q-track"
+    ],
+    "g2": "G2 not established",
+    "gaps": [
+      "independent evaluation gold and paired Opus predictions absent",
+      "calibration promotion/rollback evidence absent",
+      "original openJev head refit with ONNX parity absent"
+    ],
+    "human_queue_rate": null,
+    "nulls": {
+      "Q-agree-action": 0.3333333333333333,
+      "Q-claim-workflow": 0.25,
+      "Q-domain": 0.1111111111111111,
+      "Q-drift-flag": 0.5,
+      "Q-mark-type": 0.2,
+      "Q-shape": 0.16666666666666666,
+      "Q-solver": 0.2,
+      "Q-topo-workflow": 0.25,
+      "Q-track": 0.5
+    },
+    "production_weight_refit": false,
+    "reason": "spike fixture is not an activation dataset; no production promotion",
+    "support": {
+      "Q-agree-action": {
+        "counts": {
+          "calibration": {
+            "human": 0,
+            "merge": 0,
+            "remeasure": 0
+          },
+          "evaluation": {
+            "human": 0,
+            "merge": 0,
+            "remeasure": 0
+          },
+          "training": {
+            "human": 1,
+            "merge": 1,
+            "remeasure": 2
+          }
+        },
+        "enabled": false,
+        "minimum_per_label_per_split": 10
+      },
+      "Q-claim-workflow": {
+        "counts": {
+          "calibration": {
+            "contradicts_measured": 0,
+            "discard": 0,
+            "propose_new_measurement": 0,
+            "restates_measured": 0
+          },
+          "evaluation": {
+            "contradicts_measured": 0,
+            "discard": 0,
+            "propose_new_measurement": 0,
+            "restates_measured": 0
+          },
+          "training": {
+            "contradicts_measured": 0,
+            "discard": 0,
+            "propose_new_measurement": 0,
+            "restates_measured": 0
+          }
+        },
+        "enabled": false,
+        "minimum_per_label_per_split": 10
+      },
+      "Q-domain": {
+        "counts": {
+          "calibration": {
+            "braid": 0,
+            "chart": 0,
+            "euclidean_plane": 0,
+            "function_plot": 0,
+            "graph": 0,
+            "knot": 0,
+            "solid": 0,
+            "surface": 0,
+            "unsupported": 0
+          },
+          "evaluation": {
+            "braid": 0,
+            "chart": 0,
+            "euclidean_plane": 0,
+            "function_plot": 0,
+            "graph": 0,
+            "knot": 0,
+            "solid": 0,
+            "surface": 0,
+            "unsupported": 0
+          },
+          "training": {
+            "braid": 0,
+            "chart": 0,
+            "euclidean_plane": 0,
+            "function_plot": 0,
+            "graph": 0,
+            "knot": 0,
+            "solid": 0,
+            "surface": 0,
+            "unsupported": 0
+          }
+        },
+        "enabled": false,
+        "minimum_per_label_per_split": 10
+      },
+      "Q-drift-flag": {
+        "counts": {
+          "calibration": {
+            "no": 0,
+            "yes": 0
+          },
+          "evaluation": {
+            "no": 0,
+            "yes": 0
+          },
+          "training": {
+            "no": 0,
+            "yes": 0
+          }
+        },
+        "enabled": false,
+        "minimum_per_label_per_split": 10
+      },
+      "Q-mark-type": {
+        "counts": {
+          "calibration": {
+            "arc_equal": 0,
+            "arrow_parallel": 0,
+            "none": 0,
+            "right_angle_box": 0,
+            "tick_equal": 0
+          },
+          "evaluation": {
+            "arc_equal": 0,
+            "arrow_parallel": 0,
+            "none": 0,
+            "right_angle_box": 0,
+            "tick_equal": 0
+          },
+          "training": {
+            "arc_equal": 0,
+            "arrow_parallel": 0,
+            "none": 0,
+            "right_angle_box": 0,
+            "tick_equal": 0
+          }
+        },
+        "enabled": false,
+        "minimum_per_label_per_split": 10
+      },
+      "Q-shape": {
+        "counts": {
+          "calibration": {
+            "circle": 0,
+            "line_config": 0,
+            "mixed": 0,
+            "polygon_n": 0,
+            "quadrilateral": 0,
+            "triangle": 0
+          },
+          "evaluation": {
+            "circle": 0,
+            "line_config": 0,
+            "mixed": 0,
+            "polygon_n": 0,
+            "quadrilateral": 0,
+            "triangle": 0
+          },
+          "training": {
+            "circle": 0,
+            "line_config": 0,
+            "mixed": 0,
+            "polygon_n": 0,
+            "quadrilateral": 0,
+            "triangle": 0
+          }
+        },
+        "enabled": false,
+        "minimum_per_label_per_split": 10
+      },
+      "Q-solver": {
+        "counts": {
+          "calibration": {
+            "human": 0,
+            "lean_typecheck_only": 0,
+            "newclid": 0,
+            "none": 0,
+            "prover": 0
+          },
+          "evaluation": {
+            "human": 0,
+            "lean_typecheck_only": 0,
+            "newclid": 0,
+            "none": 0,
+            "prover": 0
+          },
+          "training": {
+            "human": 0,
+            "lean_typecheck_only": 0,
+            "newclid": 0,
+            "none": 0,
+            "prover": 0
+          }
+        },
+        "enabled": false,
+        "minimum_per_label_per_split": 10
+      },
+      "Q-topo-workflow": {
+        "counts": {
+          "calibration": {
+            "human": 0,
+            "invariants_only": 0,
+            "pd_transcribe": 0,
+            "reject_diagram": 0
+          },
+          "evaluation": {
+            "human": 0,
+            "invariants_only": 0,
+            "pd_transcribe": 0,
+            "reject_diagram": 0
+          },
+          "training": {
+            "human": 0,
+            "invariants_only": 0,
+            "pd_transcribe": 0,
+            "reject_diagram": 0
+          }
+        },
+        "enabled": false,
+        "minimum_per_label_per_split": 10
+      },
+      "Q-track": {
+        "counts": {
+          "calibration": {
+            "annotated_problem": 0,
+            "appearance_only": 0
+          },
+          "evaluation": {
+            "annotated_problem": 0,
+            "appearance_only": 0
+          },
+          "training": {
+            "annotated_problem": 0,
+            "appearance_only": 0
+          }
+        },
+        "enabled": false,
+        "minimum_per_label_per_split": 10
+      }
+    }
+  },
+  "manager_rows": 2,
+  "mode": "offline_only",
+  "model_sha256": "4db28305590c714e33c2cacb75a57ec941c72bb210e1266ba2c7d77e85ddc526",
+  "onnx_parity": {
+    "argmax_matches": 3,
+    "atol": 1e-05,
+    "fixtures": 3,
+    "max_abs_error": 0.0,
+    "passed": true
+  },
+  "parity_tokens": [
+    44,
+    47,
+    44
+  ],
+  "production_lock_sha256": "553c0f83404fb252c7b580c03849326053d9c2e027b3011ccf18e68cdf74eac5",
+  "production_promotion": false,
+  "question": "Q-agree-action",
+  "schema": "mve-classifier-spike-v1",
+  "scope": "new linear head over frozen openJev logits; not original-head refit",
+  "training_families": 1,
+  "training_rows": 4,
+  "training_tokens": [
+    48,
+    50,
+    46,
+    48
+  ]
+}
