@@ -6,6 +6,49 @@ No atlas/lab build, publish, download, hosted call, or source-worktree edit was 
 
 ## Delivery and validation boundary
 
+PNG repeat-tolerance follow-up to `e621db7b841` (2026-09-28): Opus reports
+that **both native passes completed**, then the old byte-hash comparison failed.
+All eight `data.json` files were byte-identical. Six of eight blind PNGs were
+byte-identical; the two prime-sphere crops differed at one anti-aliased pixel
+`(1085, 9)`, with no channel difference above 8/255. Two full PNGs also differed,
+with zero pixels above that threshold. These are Opus's measurements; no native
+capture was rerun for this change. This update supersedes the historical repeat
+status below; the original evidence JSON remains historical.
+
+Every snapshot manifest entry now declares `png_repeat_tolerance`: compare decoded
+RGBA8 channels, count each pixel once if any absolute channel difference is
+**greater than 8/255**, and accept only when that count is **at most 0.1%** of all
+pixels. Dimensions must match. `data.json` is compared byte-for-byte, including
+whitespace; any difference fails. Both full and blind PNGs use the same rule.
+`repeat-verification.json` records each image's first/repeat hashes, dimensions,
+pixel count, over-threshold count/fraction, maximum channel difference (integer
+0–255), and result, plus each snapshot's data equality and the overall result.
+A dimension mismatch fails with null difference metrics. Comparison failures
+write the report and retain the second pass for inspection; successful repeats
+remove the second pass as before.
+
+The first pass's files and manifest remain unchanged by verification. Each entry's
+`snapshot_sha256` hashes the capture-job ID, exact SHA-256 hashes of its first-pass
+full PNG, blind PNG and data JSON, and the tolerance declaration. The existing
+manifest `snapshot_id` remains the stable capture-job/twin matching key.
+`card_source()` uses `snapshot_sha256` as the card source's `snapshot_id`, binding
+the card hash to those first-pass bytes and the declared tolerance without a card
+schema change. Card source IDs therefore resolve against manifest
+`snapshot_sha256`; they are content identities, not directory names. Neither
+repeat PNGs nor repeat metrics enter that identity. Manifest validation still
+checks exact artifact hashes and additionally verifies the tolerance and content
+identity.
+
+Validation: **104 passed, 2 skipped** across `test_snapshot_capture.py`,
+`test_snapshots.py`, and `test_cards.py`. Synthetic PNG cases cover identical
+images, a one-pixel 8/255 AA difference, a 1% changed block, and a dimension
+change. Additional checks cover exact 0.1% acceptance, exceeding that boundary,
+alpha-channel differences, byte-different but equivalent JSON rejection,
+first-pass preservation, and snapshot/card identity changes for each artifact or
+tolerance edit. The skips are the existing native sandbox tests. Ruff lint/format
+and `git diff --check` pass. Native acceptance of the revised verifier remains for
+Opus's next capture using a fresh output directory and `--repeat`.
+
 Per-pass timeout follow-up to `ebf704002c1` (2026-09-28): Opus reports a
 **successful first native pass** outside the builder sandbox. All eight snapshots
 (four modules plus control twins) produced `full.png`, `blind.png` and `data.json`;

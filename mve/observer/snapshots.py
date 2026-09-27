@@ -16,11 +16,18 @@ import struct
 import subprocess
 import tarfile
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageChops, ImageDraw
 
 from mve.observer.card import digest
 
 SCHEMA = "oae-mve-snapshots-v1"
+PNG_REPEAT_TOLERANCE = {
+    "channels": "RGBA8",
+    "channel_difference_threshold": 8,
+    "channel_scale": 255,
+    "max_pixels_over_threshold_fraction": 0.001,
+    "require_same_dimensions": True,
+}
 COMMITS = {
     "atlas": "97b1e48cb1075aea431cf754cc84f2eeabb3dfb9",
     "lab": "c81510cd29b0fc666b1f171a9604a51be9661576",
@@ -308,6 +315,52 @@ def image_ref(root, path):
     )
 
 
+def compare_png(first, second):
+    """Count pixels whose largest absolute RGBA8 channel delta exceeds 8."""
+    with Image.open(first) as a, Image.open(second) as b:
+        metrics = {
+            "first_size": list(a.size),
+            "repeat_size": list(b.size),
+            "same_dimensions": a.size == b.size,
+            "total_pixels": a.width * a.height,
+            "pixels_over_threshold": None,
+            "pixels_over_threshold_fraction": None,
+            "max_channel_difference": None,
+            "passed": False,
+        }
+        if a.size != b.size:
+            return metrics
+        bands = ImageChops.difference(a.convert("RGBA"), b.convert("RGBA")).split()
+        largest = bands[0]
+        for band in bands[1:]:
+            largest = ImageChops.lighter(largest, band)
+        histogram = largest.histogram()
+    threshold = PNG_REPEAT_TOLERANCE["channel_difference_threshold"]
+    count = sum(histogram[threshold + 1 :])
+    fraction = count / metrics["total_pixels"]
+    metrics.update(
+        pixels_over_threshold=count,
+        pixels_over_threshold_fraction=fraction,
+        max_channel_difference=max(i for i, n in enumerate(histogram) if n),
+        passed=fraction <= PNG_REPEAT_TOLERANCE["max_pixels_over_threshold_fraction"],
+    )
+    return metrics
+
+
+def snapshot_hash(entry):
+    """Content identity binds exact retained bytes and the declared repeat rule."""
+    return digest(
+        {
+            "capture_id": entry["snapshot_id"],
+            "artifact_sha256": {
+                kind: entry[kind]["sha256"]
+                for kind in ("png_full", "png_blinded", "data_ref")
+            },
+            "png_repeat_tolerance": entry["png_repeat_tolerance"],
+        }
+    )
+
+
 def make_entry(root, job, full, blind, data, versions, crop, masks, leakage, withheld):
     e = deepcopy(job)
     cfg = MODULES[e["module"]]
@@ -341,6 +394,8 @@ def make_entry(root, job, full, blind, data, versions, crop, masks, leakage, wit
         chunks=png_chunks(Path(blind).read_bytes()),
         leakage=leakage,
     )
+    e["png_repeat_tolerance"] = deepcopy(PNG_REPEAT_TOLERANCE)
+    e["snapshot_sha256"] = snapshot_hash(e)
     return e
 
 
@@ -427,6 +482,10 @@ def validate_manifest(manifest, root):
             if (r - left, b - t) != (blind["w"], blind["h"]):
                 raise ValueError("crop dimensions mismatch")
             assert_regions_clean(data, blind["masks"])
+            if e["png_repeat_tolerance"] != PNG_REPEAT_TOLERANCE:
+                raise ValueError("unsupported PNG repeat tolerance")
+            if e["snapshot_sha256"] != snapshot_hash(e):
+                raise ValueError("snapshot identity hash mismatch")
             twin = by_id[e["control"]["twin_snapshot_id"]]
             if (
                 twin["control"]["twin_snapshot_id"] != e["snapshot_id"]
@@ -449,7 +508,7 @@ def card_source(entry):
     if entry["status"] == "not_checkable" or not entry["data_ref"]["sha256"]:
         raise ValueError("source not checkable")
     return dict(
-        snapshot_id=entry["snapshot_id"],
+        snapshot_id=snapshot_hash(entry),
         png_sha256=entry["png_blinded"]["sha256"],
         data_sha256=entry["data_ref"]["sha256"],
     )

@@ -252,6 +252,7 @@ def test_manifest_negative_guards(tmp_path):
     with pytest.raises(ValueError):
         s.validate_manifest(bad, tmp_path)
     bad["snapshots"][0]["status"] = "not_checkable"
+    bad["snapshots"][0]["snapshot_sha256"] = s.snapshot_hash(bad["snapshots"][0])
     s.validate_manifest(bad, tmp_path)
     dirty = tmp_path / entries[0]["png_blinded"]["path"]
     dirty.write_bytes(png())
@@ -370,4 +371,60 @@ def test_required_source_identity_and_crop_dimensions(tmp_path):
     bad = deepcopy(base)
     bad["snapshots"][0]["png_blinded"]["crop_box"] = [0, 0, 300, 240]
     with pytest.raises(ValueError, match="crop dimensions"):
+        s.validate_manifest(bad, tmp_path)
+
+
+@pytest.mark.parametrize(
+    "count,delta,passed", [(10, 9, True), (11, 9, False), (100, 8, True)]
+)
+def test_png_tolerance_boundaries(tmp_path, count, delta, passed):
+    first, second = tmp_path / "first.png", tmp_path / "second.png"
+    image = Image.new("RGBA", (100, 100), (0, 0, 0, 255))
+    image.save(first)
+    for x in range(count):
+        # Alpha is a channel too; no RGB-only shortcut may ignore it.
+        image.putpixel((x % 100, x // 100), (0, 0, 0, 255 - delta))
+    image.save(second)
+    result = s.compare_png(first, second)
+    assert result["passed"] is passed
+    assert result["max_channel_difference"] == delta
+    assert result["pixels_over_threshold"] == (count if delta > 8 else 0)
+
+
+def test_snapshot_and_card_identity_bind_bytes_and_tolerance(tmp_path):
+    from mve.observer.card import card_hash
+    from tests.mve.observer.test_cards import draft
+
+    entry = make_entry(tmp_path, s.capture_jobs()[0])
+    card = draft().to_dict()
+    card["sources"] = [s.card_source(entry)]
+    original_card_hash = card_hash(card)
+    assert entry["snapshot_sha256"] == s.snapshot_hash(entry)
+    assert card["sources"][0]["snapshot_id"] == entry["snapshot_sha256"]
+    for kind in ("png_full", "png_blinded", "data_ref", "png_repeat_tolerance"):
+        changed = deepcopy(entry)
+        if kind == "png_repeat_tolerance":
+            changed[kind]["channel_difference_threshold"] = 9
+        else:
+            changed[kind]["sha256"] = "a" * 64
+        assert s.snapshot_hash(changed) != entry["snapshot_sha256"]
+        card["sources"] = [s.card_source(changed)]
+        assert card_hash(card) != original_card_hash
+
+
+def test_manifest_requires_bound_tolerance(tmp_path):
+    entries = [make_entry(tmp_path, j) for j in s.capture_jobs()[:2]]
+    base = {"schema": s.SCHEMA, "snapshots": entries}
+    for field in ("png_repeat_tolerance", "snapshot_sha256"):
+        bad = deepcopy(base)
+        del bad["snapshots"][0][field]
+        with pytest.raises(ValueError):
+            s.validate_manifest(bad, tmp_path)
+    bad = deepcopy(base)
+    bad["snapshots"][0]["png_repeat_tolerance"]["channel_difference_threshold"] = 9
+    with pytest.raises(ValueError, match="tolerance"):
+        s.validate_manifest(bad, tmp_path)
+    bad = deepcopy(base)
+    bad["snapshots"][0]["snapshot_sha256"] = "a" * 64
+    with pytest.raises(ValueError, match="identity"):
         s.validate_manifest(bad, tmp_path)

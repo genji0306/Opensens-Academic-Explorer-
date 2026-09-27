@@ -266,42 +266,101 @@ def test_javascript_route_and_png_nonblank(tmp_path):
     r.assert_nonblank(out.getvalue())
 
 
-def test_worker_and_browser_orchestration(tmp_path, monkeypatch, private_runtime):
+def repeat_fixture(out, *, change=None):
+    image = Image.new("RGB", (100, 100), (0, 0, 0))
+    if change == "aa":
+        image.putpixel((9, 9), (8, 0, 0))
+    elif change == "block":
+        image.paste((255, 0, 0), (0, 0, 10, 10))
+    elif change == "size":
+        image = image.resize((101, 100))
+    image.save(out / "full.png")
+    image.save(out / "blind.png")
+    (out / "data.json").write_text("[1, 2]" if change == "data" else "[1,2]")
+    entry = {
+        "snapshot_id": "x",
+        "png_full": s.image_ref(out, out / "full.png"),
+        "png_blinded": s.image_ref(out, out / "blind.png"),
+        "data_ref": {"path": "data.json", "sha256": s.sha256(out / "data.json")},
+        "png_repeat_tolerance": dict(s.PNG_REPEAT_TOLERANCE),
+        "status": "development_only",
+    }
+    entry["snapshot_sha256"] = s.snapshot_hash(entry)
+    manifest = {"snapshots": [entry]}
+    c.write_json(out / "manifest.json", manifest)
+    return manifest
+
+
+@pytest.mark.parametrize(
+    "change,passed",
+    [
+        (None, True),
+        ("aa", True),
+        ("block", False),
+        ("size", False),
+        ("data", False),
+    ],
+)
+def test_worker_and_browser_orchestration(
+    tmp_path, monkeypatch, private_runtime, change, passed
+):
     args = c.parse_args(["--worker", "--repeat"])
     with pytest.raises(ValueError, match="parent"):
         c.run_worker(args, tmp_path)
     monkeypatch.setenv("MVE_WO1_SANDBOX_WORKER", "1")
     monkeypatch.setenv("MVE_WO1_PRIVATE_DIR", str(private_runtime))
-    manifest = {
-        "snapshots": [
-            {
-                "snapshot_id": "x",
-                **{
-                    k: {"sha256": "hash"}
-                    for k in ("png_full", "png_blinded", "data_ref")
-                },
-            }
-        ]
-    }
-    monkeypatch.setattr(r, "run_browser", lambda *a: manifest)
-    assert c.run_worker(args, tmp_path) == 0
-    assert (tmp_path / "repeat-verification.json").exists()
-    assert not (tmp_path / "repeat").exists()
-    (tmp_path / "capture").rmdir()
-    changed = {
-        "snapshots": [
-            {
-                "snapshot_id": "x",
-                **{
-                    k: {"sha256": "bad"}
-                    for k in ("png_full", "png_blinded", "data_ref")
-                },
-            }
-        ]
-    }
-    monkeypatch.setattr(r, "run_browser", Mock(side_effect=[manifest, changed]))
-    with pytest.raises(ValueError, match="mismatch"):
-        c.run_worker(args, tmp_path)
+    retained = {}
+
+    def capture(dist, out, *args):
+        manifest = repeat_fixture(out, change=change if out.name == "repeat" else None)
+        if out.name == "capture":
+            retained.update({p.name: p.read_bytes() for p in out.iterdir()})
+        return manifest
+
+    monkeypatch.setattr(r, "run_browser", capture)
+    if passed:
+        assert c.run_worker(args, tmp_path) == 0
+        assert not (tmp_path / "repeat").exists()
+    else:
+        with pytest.raises(ValueError, match="mismatch"):
+            c.run_worker(args, tmp_path)
+        assert (tmp_path / "repeat").exists()
+    report = json.loads((tmp_path / "repeat-verification.json").read_text())
+    assert report["passed"] is passed
+    assert report["png_repeat_tolerance"] == s.PNG_REPEAT_TOLERANCE
+    row = report["snapshots"][0]
+    assert row["data_bytes_equal"] is (change != "data")
+    for kind in ("png_full", "png_blinded"):
+        metrics = row["images"][kind]
+        assert metrics["passed"] is (change not in ("block", "size"))
+        assert (
+            metrics["max_channel_difference"]
+            == {
+                None: 0,
+                "aa": 8,
+                "block": 255,
+                "size": None,
+                "data": 0,
+            }[change]
+        )
+        assert (
+            metrics["pixels_over_threshold"]
+            == {
+                None: 0,
+                "aa": 0,
+                "block": 100,
+                "size": None,
+                "data": 0,
+            }[change]
+        )
+        if change == "aa":
+            assert metrics["first_sha256"] != metrics["repeat_sha256"]
+    assert {
+        p.name: p.read_bytes() for p in (tmp_path / "capture").iterdir()
+    } == retained
+    first = json.loads(retained["manifest.json"])["snapshots"][0]
+    assert row["first_snapshot_sha256"] == first["snapshot_sha256"]
+    assert s.card_source(first)["snapshot_id"] == first["snapshot_sha256"]
 
 
 @pytest.mark.parametrize("seconds", [300, 450])
@@ -331,7 +390,7 @@ def test_each_capture_pass_gets_a_fresh_deadline(
         now += seconds + 1 if out.name == slow_pass else seconds - 1
         if now >= deadline:
             signal.raise_signal(signal.SIGALRM)
-        return {"snapshots": []}
+        return repeat_fixture(out)
 
     monkeypatch.setattr(c.signal, "setitimer", set_timer)
     monkeypatch.setattr(r, "run_browser", capture)

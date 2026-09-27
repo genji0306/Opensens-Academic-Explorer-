@@ -108,7 +108,7 @@ def parse_args(argv=None):
     ap.add_argument(
         "--repeat",
         action="store_true",
-        help="capture twice and compare all PNG/data hashes",
+        help="capture twice; require exact data bytes and declared PNG tolerance",
     )
     ap.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
     args = ap.parse_args(argv)
@@ -191,6 +191,55 @@ def capture_pass(args, dist, out, private):
         signal.signal(signal.SIGALRM, previous)
 
 
+def verify_repeat(first, second, first_root, second_root):
+    """Compare repeats without replacing the first pass's artifacts or identities."""
+    a = {e["snapshot_id"]: e for e in first["snapshots"]}
+    b = {e["snapshot_id"]: e for e in second["snapshots"]}
+    if (
+        not a
+        or a.keys() != b.keys()
+        or len(a) != len(first["snapshots"])
+        or len(b) != len(second["snapshots"])
+    ):
+        raise ValueError("repeat capture snapshot set mismatch")
+    rows = []
+    for ident, entry in a.items():
+        other = b[ident]
+        if any(
+            e["png_repeat_tolerance"] != s.PNG_REPEAT_TOLERANCE for e in (entry, other)
+        ):
+            raise ValueError("repeat capture tolerance mismatch")
+        data_equal = (
+            s.inside(first_root, entry["data_ref"]["path"]).read_bytes()
+            == s.inside(second_root, other["data_ref"]["path"]).read_bytes()
+        )
+        images = {}
+        for kind in ("png_full", "png_blinded"):
+            first_path = s.inside(first_root, entry[kind]["path"])
+            second_path = s.inside(second_root, other[kind]["path"])
+            images[kind] = {
+                "first_sha256": s.sha256(first_path),
+                "repeat_sha256": s.sha256(second_path),
+                **s.compare_png(first_path, second_path),
+            }
+        rows.append(
+            {
+                "snapshot_id": ident,
+                "first_snapshot_sha256": entry["snapshot_sha256"],
+                "data_bytes_equal": data_equal,
+                "images": images,
+                "passed": data_equal
+                and all(image["passed"] for image in images.values()),
+            }
+        )
+    return {
+        "png_repeat_tolerance": s.PNG_REPEAT_TOLERANCE,
+        "identity_pass": "first",
+        "snapshots": rows,
+        "passed": all(row["passed"] for row in rows),
+    }
+
+
 def run_worker(args, out):
     # Internal worker is deliberately unusable unless the parent explicitly seals
     # its environment; it still only writes to validated generated output paths.
@@ -207,21 +256,10 @@ def run_worker(args, out):
         second.mkdir()
         b = capture_pass(args, dist, second, private)
 
-        def hashes(manifest):
-            return [
-                (
-                    e["snapshot_id"],
-                    *[e[k]["sha256"] for k in ("png_full", "png_blinded", "data_ref")],
-                )
-                for e in manifest["snapshots"]
-            ]
-
-        if hashes(a) != hashes(b):
-            raise ValueError("repeat capture PNG/data hash mismatch")
-        write_json(
-            out / "repeat-verification.json",
-            {"all_hashes_equal": True, "snapshots": len(a["snapshots"])},
-        )
+        report = verify_repeat(a, b, first, second)
+        write_json(out / "repeat-verification.json", report)
+        if not report["passed"]:
+            raise ValueError("repeat capture data bytes/PNG tolerance mismatch")
         shutil.rmtree(second)
     return 0
 
