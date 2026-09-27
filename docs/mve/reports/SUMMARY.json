@@ -1,0 +1,2490 @@
+{
+  "budget": {
+    "aggregate": {
+      "attempts": 1,
+      "attempts_by_state": {
+        "cancelled": 0,
+        "dispatched": 0,
+        "reserved": 0,
+        "settled": 1
+      },
+      "exposure": {
+        "micro_usd": 268,
+        "usd": "0.000268"
+      },
+      "remaining": null,
+      "reserved": {
+        "micro_usd": 0,
+        "usd": "0.000000"
+      },
+      "settled": {
+        "micro_usd": 268,
+        "usd": "0.000268"
+      },
+      "uncertain": {
+        "micro_usd": 0,
+        "usd": "0.000000"
+      }
+    },
+    "aggregation_reason": "monetary sums and attempt counts, not relation scoring",
+    "attempts": [
+      {
+        "actual": 268,
+        "created": "2026-09-27T12:28:42.706105+00:00",
+        "dispatched": "2026-09-27T12:28:42.741874+00:00",
+        "id": "wp0b:single-model-probe",
+        "origins": [
+          "live"
+        ],
+        "phase": "P0",
+        "receipt": "f328968f5e3ef6ebacff4cc1226b7e90485c9eefaff0722c5285aa1f88e18cc8",
+        "reserved": 39936,
+        "state": "settled",
+        "wave": "wp0b"
+      }
+    ],
+    "caps": {
+      "P0": 2000000,
+      "P1": 8000000,
+      "aggregate": 20000000
+    },
+    "caps_basis": "plan D4 authorization, not a ledger",
+    "carry_policy": "same attempt ID with byte-equivalent parsed row counted once; conflicting copies refused",
+    "complete": false,
+    "frozen": null,
+    "ledgers": {
+      "live": {
+        "events": [],
+        "frozen": false,
+        "quota": [],
+        "window_policy": "deepseek-pricing-20260927:UTC:Mon-Fri:01-04,06-10:VERIFIED:holidays-conservative"
+      }
+    },
+    "live_caps": {
+      "P0": 50000,
+      "P1": 8000000,
+      "aggregate": 50000
+    },
+    "live_cost_basis": "peak cache-miss input and peak output; cache discounts not assumed; derived upper estimate, not vendor-billed",
+    "macro": null,
+    "micro": null,
+    "null": "N/A: accounting census",
+    "p2_policy": "P2 shares the remaining aggregate, not a separate fixed cap",
+    "phases": {
+      "P0": {
+        "attempts": 1,
+        "attempts_by_state": {
+          "cancelled": 0,
+          "dispatched": 0,
+          "reserved": 0,
+          "settled": 1
+        },
+        "exposure": {
+          "micro_usd": 268,
+          "usd": "0.000268"
+        },
+        "remaining": null,
+        "reserved": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "settled": {
+          "micro_usd": 268,
+          "usd": "0.000268"
+        },
+        "uncertain": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        }
+      },
+      "P1": {
+        "attempts": 0,
+        "attempts_by_state": {
+          "cancelled": 0,
+          "dispatched": 0,
+          "reserved": 0,
+          "settled": 0
+        },
+        "exposure": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "remaining": null,
+        "reserved": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "settled": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "uncertain": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        }
+      },
+      "P2": {
+        "attempts": 0,
+        "attempts_by_state": {
+          "cancelled": 0,
+          "dispatched": 0,
+          "reserved": 0,
+          "settled": 0
+        },
+        "exposure": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "remaining": null,
+        "reserved": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "settled": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "uncertain": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        }
+      }
+    },
+    "quota_by_provider": {},
+    "quota_scope": "ledger quota rows have no phase field; per-phase attribution and quota limits are not established",
+    "scope": "known exposure only; campaign snapshot absent",
+    "sources": [
+      "docs/mve/reviews/wp0b-live/ledger.json#/",
+      "docs/mve/MVE_PLAN.md#0",
+      "docs/mve/reviews/wp0b-live/receipt.json#/observation/derived_micro_usd"
+    ],
+    "stop_state": "unknown: campaign snapshot absent",
+    "uncertain_policy": "dispatched without settlement retains full reservation; actual cost unknown"
+  },
+  "confidence_policy": "95% intervals are null where no independent sampling design is committed; fixture counts are descriptive, not population confidence claims.",
+  "evidence_commit": "ea621a8918e5bb22c5ed53a1d3c30bfb5b09f7d7",
+  "gates": {
+    "G0": {
+      "aggregation_reason": "gate criteria are conjunctions, not relation or diagram scores",
+      "counts": {
+        "criteria_evidenced": 1,
+        "criteria_expected": 4,
+        "criteria_met": 1
+      },
+      "criteria": {
+        "comparison": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: 300 frozen Geoperception items, three pinned models and pinned scorer within USD 2; comparison incomplete without results",
+          "requirement": "300 frozen Geoperception items, three pinned models and pinned scorer within USD 2; comparison incomplete without results",
+          "sources": []
+        },
+        "coverage": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: coverage target met",
+          "requirement": "coverage target met",
+          "sources": []
+        },
+        "negative_fixtures": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: bad references, arities, unauthorized support and invalid transitions rejected",
+          "requirement": "bad references, arities, unauthorized support and invalid transitions rejected",
+          "sources": []
+        },
+        "records": {
+          "outcome": true,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "WP-2 artifact audit records validated; does not replace negative fixtures or model comparison",
+          "requirement": "100 independently generated records validate",
+          "sources": [
+            "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json#/records_validated"
+          ]
+        }
+      },
+      "interval95": null,
+      "interval_reason": "gate decision is not a sampled accuracy",
+      "macro": null,
+      "micro": null,
+      "null": "Validation N/A; Geoperception weighted per-item 1/k_i and majority baseline (sample absent)",
+      "reasons": [
+        "Missing evidence: bad references, arities, unauthorized support and invalid transitions rejected",
+        "Missing evidence: coverage target met",
+        "Missing evidence: 300 frozen Geoperception items, three pinned models and pinned scorer within USD 2; comparison incomplete without results"
+      ],
+      "sources": [
+        "docs/mve/MVE_PLAN.md#8",
+        "docs/mve/MVE_PLAN.md#11"
+      ],
+      "status": "not established"
+    },
+    "G1": {
+      "aggregation_reason": "gate criteria are conjunctions, not relation or diagram scores",
+      "counts": {
+        "criteria_evidenced": 0,
+        "criteria_expected": 5,
+        "criteria_met": 0
+      },
+      "criteria": {
+        "fpr": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: per-predicate suitable negatives: one-sided 95% FPR upper bound <= 0.02; otherwise insufficient evidence",
+          "requirement": "per-predicate suitable negatives: one-sided 95% FPR upper bound <= 0.02; otherwise insufficient evidence",
+          "sources": []
+        },
+        "precision": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: precision >= 0.90",
+          "requirement": "precision >= 0.90",
+          "sources": []
+        },
+        "recall": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: recall >= 0.70",
+          "requirement": "recall >= 0.70",
+          "sources": []
+        },
+        "sealed": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: 500 sealed incidence diagrams; fixed queries, family split, no tolerance fitting on evaluation",
+          "requirement": "500 sealed incidence diagrams; fixed queries, family split, no tolerance fitting on evaluation",
+          "sources": []
+        },
+        "separate_scores": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: raw, coordinate-consistency, image-measurement; micro/macro; query/full-record; separate real-data transfer",
+          "requirement": "raw, coordinate-consistency, image-measurement; micro/macro; query/full-record; separate real-data transfer",
+          "sources": []
+        }
+      },
+      "interval95": null,
+      "interval_reason": "gate decision is not a sampled accuracy",
+      "macro": null,
+      "micro": null,
+      "null": "Query-set independent guessing: recall=FPR=1/2, precision=prevalence; all-positive precision=prevalence, recall=1. Full-record random-set null N/A.",
+      "reasons": [
+        "Missing evidence: 500 sealed incidence diagrams; fixed queries, family split, no tolerance fitting on evaluation",
+        "Missing evidence: precision >= 0.90",
+        "Missing evidence: recall >= 0.70",
+        "Missing evidence: per-predicate suitable negatives: one-sided 95% FPR upper bound <= 0.02; otherwise insufficient evidence",
+        "Missing evidence: raw, coordinate-consistency, image-measurement; micro/macro; query/full-record; separate real-data transfer"
+      ],
+      "sources": [
+        "docs/mve/MVE_PLAN.md#8",
+        "docs/mve/MVE_PLAN.md#11"
+      ],
+      "status": "not established"
+    },
+    "G2": {
+      "aggregation_reason": "gate criteria are conjunctions, not relation or diagram scores",
+      "counts": {
+        "criteria_evidenced": 0,
+        "criteria_expected": 6,
+        "criteria_met": 0
+      },
+      "criteria": {
+        "floors": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "spike fixture is not an activation dataset; no production promotion; independent evaluation gold and paired Opus predictions absent; calibration promotion/rollback evidence absent; original openJev head refit with ONNX parity absent",
+          "requirement": "only floor-met questions active with three family-disjoint splits",
+          "sources": [
+            "mve/classifier/spike_receipt.json#/learning"
+          ]
+        },
+        "paired_accuracy": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: independent gold: paired 95% lower bound cascade minus Opus >= -0.03",
+          "requirement": "independent gold: paired 95% lower bound cascade minus Opus >= -0.03",
+          "sources": []
+        },
+        "promotion": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "spike fixture is not an activation dataset; no production promotion; independent evaluation gold and paired Opus predictions absent; calibration promotion/rollback evidence absent; original openJev head refit with ONNX parity absent",
+          "requirement": "promote/rollback decision on calibration evidence",
+          "sources": [
+            "mve/classifier/spike_receipt.json#/learning"
+          ]
+        },
+        "queue": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: human queue <= 25%",
+          "requirement": "human queue <= 25%",
+          "sources": []
+        },
+        "route_error": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: per active question one-sided 95% automatic-route error upper bound <= 5%",
+          "requirement": "per active question one-sided 95% automatic-route error upper bound <= 5%",
+          "sources": []
+        },
+        "weight_refit": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "spike fixture is not an activation dataset; no production promotion; independent evaluation gold and paired Opus predictions absent; calibration promotion/rollback evidence absent; original openJev head refit with ONNX parity absent",
+          "requirement": "real production weight refit, ONNX export and inference parity",
+          "sources": [
+            "mve/classifier/spike_receipt.json#/learning"
+          ]
+        }
+      },
+      "interval95": null,
+      "interval_reason": "gate decision is not a sampled accuracy",
+      "macro": null,
+      "micro": null,
+      "null": "Balanced binary 1/2; uniform k-class 1/k; majority, code-only and previous-lock baselines",
+      "reasons": [
+        "spike fixture is not an activation dataset; no production promotion; independent evaluation gold and paired Opus predictions absent; calibration promotion/rollback evidence absent; original openJev head refit with ONNX parity absent",
+        "Missing evidence: independent gold: paired 95% lower bound cascade minus Opus >= -0.03",
+        "Missing evidence: human queue <= 25%",
+        "Missing evidence: per active question one-sided 95% automatic-route error upper bound <= 5%",
+        "spike fixture is not an activation dataset; no production promotion; independent evaluation gold and paired Opus predictions absent; calibration promotion/rollback evidence absent; original openJev head refit with ONNX parity absent",
+        "spike fixture is not an activation dataset; no production promotion; independent evaluation gold and paired Opus predictions absent; calibration promotion/rollback evidence absent; original openJev head refit with ONNX parity absent"
+      ],
+      "sources": [
+        "docs/mve/MVE_PLAN.md#8",
+        "docs/mve/MVE_PLAN.md#11"
+      ],
+      "status": "not established"
+    },
+    "G3": {
+      "aggregation_reason": "gate criteria are conjunctions, not relation or diagram scores",
+      "counts": {
+        "criteria_evidenced": 4,
+        "criteria_expected": 5,
+        "criteria_met": 4
+      },
+      "criteria": {
+        "first_pass": {
+          "outcome": true,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "80/100 first-pass",
+          "requirement": "at least 80/100 first-pass well-typed artifacts",
+          "sources": [
+            "mve/lean/artifacts/g3-taskset/g3.json#/",
+            "docs/mve/reviews/OFFLINE_PACKETS_REVIEW_OPUS_20260927.md#addendum-9",
+            "mve/lean/artifacts/g3-taskset/tasks.json#/",
+            "mve/lean/artifacts/g3-taskset/references.json#/"
+          ]
+        },
+        "post_repair": {
+          "outcome": true,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "100/100 post-repair",
+          "requirement": "at least 95/100 post-repair well-typed artifacts",
+          "sources": [
+            "mve/lean/artifacts/g3-taskset/g3.json#/",
+            "docs/mve/reviews/OFFLINE_PACKETS_REVIEW_OPUS_20260927.md#addendum-9",
+            "mve/lean/artifacts/g3-taskset/tasks.json#/",
+            "mve/lean/artifacts/g3-taskset/references.json#/"
+          ]
+        },
+        "references": {
+          "outcome": true,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "50/50 retrieval-disjoint references",
+          "requirement": "50 retrieval-disjoint blinded reference tasks",
+          "sources": [
+            "mve/lean/artifacts/g3-taskset/g3.json#/",
+            "docs/mve/reviews/OFFLINE_PACKETS_REVIEW_OPUS_20260927.md#addendum-9",
+            "mve/lean/artifacts/g3-taskset/tasks.json#/",
+            "mve/lean/artifacts/g3-taskset/references.json#/"
+          ]
+        },
+        "semantic_rubric": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "0/50 human reviews; 0/50 rubric passes; pending human rubric",
+          "requirement": "at least 20/50 human rubric passes: binders, premises, goal, nondegeneracy",
+          "sources": [
+            "mve/lean/artifacts/g3-taskset/g3.json#/",
+            "docs/mve/reviews/OFFLINE_PACKETS_REVIEW_OPUS_20260927.md#addendum-9",
+            "mve/lean/artifacts/g3-taskset/tasks.json#/",
+            "mve/lean/artifacts/g3-taskset/references.json#/"
+          ]
+        },
+        "tasks": {
+          "outcome": true,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "100/100 unique sealed statements",
+          "requirement": "100 distinct sealed statements with explicit premises and goals",
+          "sources": [
+            "mve/lean/artifacts/g3-taskset/g3.json#/",
+            "docs/mve/reviews/OFFLINE_PACKETS_REVIEW_OPUS_20260927.md#addendum-9",
+            "mve/lean/artifacts/g3-taskset/tasks.json#/",
+            "mve/lean/artifacts/g3-taskset/references.json#/"
+          ]
+        }
+      },
+      "interval95": null,
+      "interval_reason": "gate decision is not a sampled accuracy",
+      "macro": null,
+      "micro": null,
+      "null": "N/A; empty/trivial, nearest-retrieval, weakened/strengthened/vacuous/unrelated-but-provable controls",
+      "reasons": [
+        "0/50 human reviews; 0/50 rubric passes; pending human rubric"
+      ],
+      "sources": [
+        "docs/mve/MVE_PLAN.md#8",
+        "docs/mve/MVE_PLAN.md#11"
+      ],
+      "status": "not established"
+    },
+    "G4a": {
+      "aggregation_reason": "gate criteria are conjunctions, not relation or diagram scores",
+      "counts": {
+        "criteria_evidenced": 0,
+        "criteria_expected": 5,
+        "criteria_met": 0
+      },
+      "criteria": {
+        "comparison": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: both provers, 120 s, declared resources; proved/timeout/error, latency, memory",
+          "requirement": "both provers, 120 s, declared resources; proved/timeout/error, latency, memory",
+          "sources": []
+        },
+        "eligible": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: 50 semantically accepted statements frozen before tuning",
+          "requirement": "50 semantically accepted statements frozen before tuning",
+          "sources": []
+        },
+        "end_to_end": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: end-to-end success and trivial-tactic baseline reported",
+          "requirement": "end-to-end success and trivial-tactic baseline reported",
+          "sources": []
+        },
+        "proofs": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: default >= 15/50 proved with checked dependency closures",
+          "requirement": "default >= 15/50 proved with checked dependency closures",
+          "sources": []
+        },
+        "selection": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: proved count then latency; DeepSeek on exact tie",
+          "requirement": "proved count then latency; DeepSeek on exact tie",
+          "sources": []
+        }
+      },
+      "interval95": null,
+      "interval_reason": "gate decision is not a sampled accuracy",
+      "macro": null,
+      "micro": null,
+      "null": "N/A; fixed trivial-tactic baseline",
+      "reasons": [
+        "Missing evidence: 50 semantically accepted statements frozen before tuning",
+        "Missing evidence: both provers, 120 s, declared resources; proved/timeout/error, latency, memory",
+        "Missing evidence: default >= 15/50 proved with checked dependency closures",
+        "Missing evidence: proved count then latency; DeepSeek on exact tie",
+        "Missing evidence: end-to-end success and trivial-tactic baseline reported"
+      ],
+      "sources": [
+        "docs/mve/MVE_PLAN.md#8",
+        "docs/mve/MVE_PLAN.md#11"
+      ],
+      "status": "not established"
+    },
+    "G4b": {
+      "aggregation_reason": "gate criteria are conjunctions, not relation or diagram scores",
+      "counts": {
+        "criteria_evidenced": 0,
+        "criteria_expected": 5,
+        "criteria_met": 0
+      },
+      "criteria": {
+        "atlas": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: pinned atlas integration test passes from archived build",
+          "requirement": "pinned atlas integration test passes from archived build",
+          "sources": []
+        },
+        "refit": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: floor-conditional refit or documented no-update",
+          "requirement": "floor-conditional refit or documented no-update",
+          "sources": []
+        },
+        "routing": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: routing effects replayable",
+          "requirement": "routing effects replayable",
+          "sources": []
+        },
+        "session": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: 30-minute, 20-diagram session",
+          "requirement": "30-minute, 20-diagram session",
+          "sources": []
+        },
+        "verdicts": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: persisted verdicts, not_visible abstention, revision invalidation, label provenance",
+          "requirement": "persisted verdicts, not_visible abstention, revision invalidation, label provenance",
+          "sources": []
+        }
+      },
+      "interval95": null,
+      "interval_reason": "gate decision is not a sampled accuracy",
+      "macro": null,
+      "micro": null,
+      "null": "N/A; previous lock and unchanged-record round trip",
+      "reasons": [
+        "Missing evidence: 30-minute, 20-diagram session",
+        "Missing evidence: persisted verdicts, not_visible abstention, revision invalidation, label provenance",
+        "Missing evidence: routing effects replayable",
+        "Missing evidence: floor-conditional refit or documented no-update",
+        "Missing evidence: pinned atlas integration test passes from archived build"
+      ],
+      "sources": [
+        "docs/mve/MVE_PLAN.md#8",
+        "docs/mve/MVE_PLAN.md#11"
+      ],
+      "status": "not established"
+    },
+    "G5": {
+      "aggregation_reason": "gate criteria are conjunctions, not relation or diagram scores",
+      "counts": {
+        "criteria_evidenced": 0,
+        "criteria_expected": 4,
+        "criteria_met": 0
+      },
+      "criteria": {
+        "external": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: >= 30% complete PD on permitted external <= 7-crossing set; missing external incomplete",
+          "requirement": ">= 30% complete PD on permitted external <= 7-crossing set; missing external incomplete",
+          "sources": []
+        },
+        "grammar": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: frozen diagram grammar and PD scorer",
+          "requirement": "frozen diagram grammar and PD scorer",
+          "sources": []
+        },
+        "scores": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: exact/canonicalized apart; component validity, crossing/orientation errors, unknowns, invariant consistency",
+          "requirement": "exact/canonicalized apart; component validity, crossing/orientation errors, unknowns, invariant consistency",
+          "sources": []
+        },
+        "synthetic": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: >= 30% complete PD on separate synthetic <= 7-crossing set",
+          "requirement": ">= 30% complete PD on separate synthetic <= 7-crossing set",
+          "sources": []
+        }
+      },
+      "interval95": null,
+      "interval_reason": "gate decision is not a sampled accuracy",
+      "macro": null,
+      "micro": null,
+      "null": "N/A general PD; conditional orientation-only 2^(-c); knot-type 1/k plus majority",
+      "reasons": [
+        "Missing evidence: frozen diagram grammar and PD scorer",
+        "Missing evidence: >= 30% complete PD on separate synthetic <= 7-crossing set",
+        "Missing evidence: >= 30% complete PD on permitted external <= 7-crossing set; missing external incomplete",
+        "Missing evidence: exact/canonicalized apart; component validity, crossing/orientation errors, unknowns, invariant consistency"
+      ],
+      "sources": [
+        "docs/mve/MVE_PLAN.md#8",
+        "docs/mve/MVE_PLAN.md#11"
+      ],
+      "status": "not established"
+    },
+    "G6": {
+      "aggregation_reason": "gate criteria are conjunctions, not relation or diagram scores",
+      "counts": {
+        "criteria_evidenced": 0,
+        "criteria_expected": 3,
+        "criteria_met": 0
+      },
+      "criteria": {
+        "ingest": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: real ingest/validation contract passes; negative or inconclusive science is acceptable",
+          "requirement": "real ingest/validation contract passes; negative or inconclusive science is acceptable",
+          "sources": []
+        },
+        "record": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: one reproducible record: image, revisions, evidence, assumptions, statement hash, actual statuses and baselines",
+          "requirement": "one reproducible record: image, revisions, evidence, assumptions, statement hash, actual statuses and baselines",
+          "sources": []
+        },
+        "review": {
+          "outcome": null,
+          "policy_source": "docs/mve/MVE_PLAN.md#8",
+          "reason": "Missing evidence: Sol review",
+          "requirement": "Sol review",
+          "sources": []
+        }
+      },
+      "interval95": null,
+      "interval_reason": "gate decision is not a sampled accuracy",
+      "macro": null,
+      "micro": null,
+      "null": "N/A integration; each scientific claim declares its own null and unit",
+      "reasons": [
+        "Missing evidence: one reproducible record: image, revisions, evidence, assumptions, statement hash, actual statuses and baselines",
+        "Missing evidence: Sol review",
+        "Missing evidence: real ingest/validation contract passes; negative or inconclusive science is acceptable"
+      ],
+      "sources": [
+        "docs/mve/MVE_PLAN.md#8",
+        "docs/mve/MVE_PLAN.md#11"
+      ],
+      "status": "not established"
+    }
+  },
+  "missing_sources": [
+    "mve/campaign/ledger.json"
+  ],
+  "relation_scores": [
+    {
+      "count": null,
+      "denominator": null,
+      "interval95": null,
+      "macro": null,
+      "micro": null,
+      "mode": "query_set",
+      "null": "independent query guesses: recall/FPR 1/2, precision prevalence (unknown)",
+      "population": "sealed_synthetic",
+      "reason": "No committed scored predictions; corpus availability is not scored evidence",
+      "sources": [],
+      "stage": "raw_perception",
+      "task": "appearance"
+    },
+    {
+      "count": null,
+      "denominator": null,
+      "interval95": null,
+      "macro": null,
+      "micro": null,
+      "mode": "full_record",
+      "null": "N/A: no universal full-record random-set null",
+      "population": "sealed_synthetic",
+      "reason": "No committed scored predictions; corpus availability is not scored evidence",
+      "sources": [],
+      "stage": "raw_perception",
+      "task": "appearance"
+    },
+    {
+      "count": null,
+      "denominator": null,
+      "interval95": null,
+      "macro": null,
+      "micro": null,
+      "mode": "query_set",
+      "null": "independent query guesses: recall/FPR 1/2, precision prevalence (unknown)",
+      "population": "sealed_synthetic",
+      "reason": "No committed scored predictions; corpus availability is not scored evidence",
+      "sources": [],
+      "stage": "coordinate_consistency",
+      "task": "appearance"
+    },
+    {
+      "count": null,
+      "denominator": null,
+      "interval95": null,
+      "macro": null,
+      "micro": null,
+      "mode": "full_record",
+      "null": "N/A: no universal full-record random-set null",
+      "population": "sealed_synthetic",
+      "reason": "No committed scored predictions; corpus availability is not scored evidence",
+      "sources": [],
+      "stage": "coordinate_consistency",
+      "task": "appearance"
+    },
+    {
+      "count": null,
+      "denominator": null,
+      "interval95": null,
+      "macro": null,
+      "micro": null,
+      "mode": "query_set",
+      "null": "independent query guesses: recall/FPR 1/2, precision prevalence (unknown)",
+      "population": "sealed_synthetic",
+      "reason": "No committed scored predictions; corpus availability is not scored evidence",
+      "sources": [],
+      "stage": "image_measurement",
+      "task": "appearance"
+    },
+    {
+      "count": null,
+      "denominator": null,
+      "interval95": null,
+      "macro": null,
+      "micro": null,
+      "mode": "full_record",
+      "null": "N/A: no universal full-record random-set null",
+      "population": "sealed_synthetic",
+      "reason": "No committed scored predictions; corpus availability is not scored evidence",
+      "sources": [],
+      "stage": "image_measurement",
+      "task": "appearance"
+    },
+    {
+      "count": null,
+      "denominator": null,
+      "interval95": null,
+      "macro": null,
+      "micro": null,
+      "mode": "query_set",
+      "null": "independent query guesses: recall/FPR 1/2, precision prevalence (unknown)",
+      "population": "real_data_transfer",
+      "reason": "No committed scored predictions; corpus availability is not scored evidence",
+      "sources": [],
+      "stage": "raw_perception",
+      "task": "appearance"
+    },
+    {
+      "count": null,
+      "denominator": null,
+      "interval95": null,
+      "macro": null,
+      "micro": null,
+      "mode": "full_record",
+      "null": "N/A: no universal full-record random-set null",
+      "population": "real_data_transfer",
+      "reason": "No committed scored predictions; corpus availability is not scored evidence",
+      "sources": [],
+      "stage": "raw_perception",
+      "task": "appearance"
+    },
+    {
+      "count": null,
+      "denominator": null,
+      "interval95": null,
+      "macro": null,
+      "micro": null,
+      "mode": "query_set",
+      "null": "independent query guesses: recall/FPR 1/2, precision prevalence (unknown)",
+      "population": "real_data_transfer",
+      "reason": "No committed scored predictions; corpus availability is not scored evidence",
+      "sources": [],
+      "stage": "coordinate_consistency",
+      "task": "appearance"
+    },
+    {
+      "count": null,
+      "denominator": null,
+      "interval95": null,
+      "macro": null,
+      "micro": null,
+      "mode": "full_record",
+      "null": "N/A: no universal full-record random-set null",
+      "population": "real_data_transfer",
+      "reason": "No committed scored predictions; corpus availability is not scored evidence",
+      "sources": [],
+      "stage": "coordinate_consistency",
+      "task": "appearance"
+    },
+    {
+      "count": null,
+      "denominator": null,
+      "interval95": null,
+      "macro": null,
+      "micro": null,
+      "mode": "query_set",
+      "null": "independent query guesses: recall/FPR 1/2, precision prevalence (unknown)",
+      "population": "real_data_transfer",
+      "reason": "No committed scored predictions; corpus availability is not scored evidence",
+      "sources": [],
+      "stage": "image_measurement",
+      "task": "appearance"
+    },
+    {
+      "count": null,
+      "denominator": null,
+      "interval95": null,
+      "macro": null,
+      "micro": null,
+      "mode": "full_record",
+      "null": "N/A: no universal full-record random-set null",
+      "population": "real_data_transfer",
+      "reason": "No committed scored predictions; corpus availability is not scored evidence",
+      "sources": [],
+      "stage": "image_measurement",
+      "task": "appearance"
+    }
+  ],
+  "schema": "mve-offline-report-v1",
+  "scope": "Committed receipts only. No new model, Lean, corpus, benchmark or ingest run. No P6 submission.",
+  "sources": {
+    "docs/mve/MVE_PLAN.md": {
+      "sha256": "f073240be638b9225b5f6f33da4bbe34ef75d2ba71087da7b39b2ab9d9b61908"
+    },
+    "docs/mve/reviews/OFFLINE_PACKETS_REVIEW_OPUS_20260927.md": {
+      "sha256": "5546164a1a8dfe9b727da17b8c5b11faf84c032b928e185799ce9198f61e3bbe"
+    },
+    "docs/mve/reviews/WP2_CORPUS_RECEIPT_20260927.json": {
+      "sha256": "4795282bf1aad58553744316a518fa326eb8178de3d8ca3e9652370635d68db8"
+    },
+    "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json": {
+      "sha256": "fcf71b95df8dac21e240607d57d333aaad2e841fe843d47c01dea4ba7e569f54"
+    },
+    "docs/mve/reviews/wp0b-live/ledger.json": {
+      "sha256": "b6a03a43f9bff4907d15b3a27f609dc9b2e12b0dcc9830170c02f5388c11553c"
+    },
+    "docs/mve/reviews/wp0b-live/receipt.json": {
+      "sha256": "f328968f5e3ef6ebacff4cc1226b7e90485c9eefaff0722c5285aa1f88e18cc8"
+    },
+    "mve/classifier/spike_receipt.json": {
+      "sha256": "c500766cafb72ad782be2ecd41fa05af60d90e86f10d46a12f5d797d06ccc9a0"
+    },
+    "mve/lean/artifacts/g3-taskset/g3.json": {
+      "sha256": "e2f13af8c85d41020ca96f5041bbc55bd9c47f44a00671dfbd687e98a8f69853"
+    },
+    "mve/lean/artifacts/g3-taskset/references.json": {
+      "sha256": "b16bf256dc447cc425de7546d676d94a4b66cf16685b0a97c6769cfbed2fb03d"
+    },
+    "mve/lean/artifacts/g3-taskset/tasks.json": {
+      "sha256": "19b833bf4c05e0cdb8e60684a239c1eb6c4083c9dfca6528eaf8a1611b2591da"
+    },
+    "mve/preflight/results/report.json": {
+      "sha256": "f5e55b7b10e57f4c2fcf0695c3a7b7a182edff6dbee809a15afba85ccc3051a5"
+    }
+  },
+  "tables": {
+    "classifier_spike": [
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 3,
+        "denominator": 3,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "ONNX argmax parity",
+        "note": "new linear head over frozen openJev logits; not original-head refit; fixture only, not G2",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/onnx_parity"
+        ],
+        "unit": "fixture states"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 4,
+        "denominator": 4,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "training rows",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/training_rows"
+        ],
+        "unit": "fixture rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 1,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "training families",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/training_families"
+        ],
+        "unit": "families"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "human": 0,
+          "merge": 0,
+          "remeasure": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-agree-action/calibration",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.3333333333333333",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-agree-action/counts/calibration"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "human": 0,
+          "merge": 0,
+          "remeasure": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-agree-action/evaluation",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.3333333333333333",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-agree-action/counts/evaluation"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 4,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "human": 1,
+          "merge": 1,
+          "remeasure": 2
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-agree-action/training",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.3333333333333333",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-agree-action/counts/training"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "contradicts_measured": 0,
+          "discard": 0,
+          "propose_new_measurement": 0,
+          "restates_measured": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-claim-workflow/calibration",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.25",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-claim-workflow/counts/calibration"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "contradicts_measured": 0,
+          "discard": 0,
+          "propose_new_measurement": 0,
+          "restates_measured": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-claim-workflow/evaluation",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.25",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-claim-workflow/counts/evaluation"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "contradicts_measured": 0,
+          "discard": 0,
+          "propose_new_measurement": 0,
+          "restates_measured": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-claim-workflow/training",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.25",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-claim-workflow/counts/training"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "braid": 0,
+          "chart": 0,
+          "euclidean_plane": 0,
+          "function_plot": 0,
+          "graph": 0,
+          "knot": 0,
+          "solid": 0,
+          "surface": 0,
+          "unsupported": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-domain/calibration",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.1111111111111111",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-domain/counts/calibration"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "braid": 0,
+          "chart": 0,
+          "euclidean_plane": 0,
+          "function_plot": 0,
+          "graph": 0,
+          "knot": 0,
+          "solid": 0,
+          "surface": 0,
+          "unsupported": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-domain/evaluation",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.1111111111111111",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-domain/counts/evaluation"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "braid": 0,
+          "chart": 0,
+          "euclidean_plane": 0,
+          "function_plot": 0,
+          "graph": 0,
+          "knot": 0,
+          "solid": 0,
+          "surface": 0,
+          "unsupported": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-domain/training",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.1111111111111111",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-domain/counts/training"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "no": 0,
+          "yes": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-drift-flag/calibration",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.5",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-drift-flag/counts/calibration"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "no": 0,
+          "yes": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-drift-flag/evaluation",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.5",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-drift-flag/counts/evaluation"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "no": 0,
+          "yes": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-drift-flag/training",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.5",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-drift-flag/counts/training"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "arc_equal": 0,
+          "arrow_parallel": 0,
+          "none": 0,
+          "right_angle_box": 0,
+          "tick_equal": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-mark-type/calibration",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.2",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-mark-type/counts/calibration"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "arc_equal": 0,
+          "arrow_parallel": 0,
+          "none": 0,
+          "right_angle_box": 0,
+          "tick_equal": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-mark-type/evaluation",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.2",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-mark-type/counts/evaluation"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "arc_equal": 0,
+          "arrow_parallel": 0,
+          "none": 0,
+          "right_angle_box": 0,
+          "tick_equal": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-mark-type/training",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.2",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-mark-type/counts/training"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "circle": 0,
+          "line_config": 0,
+          "mixed": 0,
+          "polygon_n": 0,
+          "quadrilateral": 0,
+          "triangle": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-shape/calibration",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.16666666666666666",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-shape/counts/calibration"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "circle": 0,
+          "line_config": 0,
+          "mixed": 0,
+          "polygon_n": 0,
+          "quadrilateral": 0,
+          "triangle": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-shape/evaluation",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.16666666666666666",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-shape/counts/evaluation"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "circle": 0,
+          "line_config": 0,
+          "mixed": 0,
+          "polygon_n": 0,
+          "quadrilateral": 0,
+          "triangle": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-shape/training",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.16666666666666666",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-shape/counts/training"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "human": 0,
+          "lean_typecheck_only": 0,
+          "newclid": 0,
+          "none": 0,
+          "prover": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-solver/calibration",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.2",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-solver/counts/calibration"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "human": 0,
+          "lean_typecheck_only": 0,
+          "newclid": 0,
+          "none": 0,
+          "prover": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-solver/evaluation",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.2",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-solver/counts/evaluation"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "human": 0,
+          "lean_typecheck_only": 0,
+          "newclid": 0,
+          "none": 0,
+          "prover": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-solver/training",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.2",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-solver/counts/training"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "human": 0,
+          "invariants_only": 0,
+          "pd_transcribe": 0,
+          "reject_diagram": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-topo-workflow/calibration",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.25",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-topo-workflow/counts/calibration"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "human": 0,
+          "invariants_only": 0,
+          "pd_transcribe": 0,
+          "reject_diagram": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-topo-workflow/evaluation",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.25",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-topo-workflow/counts/evaluation"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "human": 0,
+          "invariants_only": 0,
+          "pd_transcribe": 0,
+          "reject_diagram": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-topo-workflow/training",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.25",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-topo-workflow/counts/training"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "annotated_problem": 0,
+          "appearance_only": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-track/calibration",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.5",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-track/counts/calibration"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "annotated_problem": 0,
+          "appearance_only": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-track/evaluation",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.5",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-track/counts/evaluation"
+        ],
+        "unit": "label rows"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "label_counts": {
+          "annotated_problem": 0,
+          "appearance_only": 0
+        },
+        "macro": null,
+        "micro": null,
+        "name": "Q-track/training",
+        "note": "No independent gold accuracy; majority/code-only/previous-lock unavailable",
+        "null": "uniform 1/k = 0.5",
+        "sources": [
+          "mve/classifier/spike_receipt.json#/learning/support/Q-track/counts/training"
+        ],
+        "unit": "label rows"
+      }
+    ],
+    "corpus": [
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 20,
+        "denominator": 2560,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "corpus/calibration",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json#/counts/calibration"
+        ],
+        "unit": "diagrams"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 20,
+        "denominator": 2560,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "corpus/development",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json#/counts/development"
+        ],
+        "unit": "diagrams"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 2000,
+        "denominator": 2560,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "corpus/fit",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json#/counts/fit"
+        ],
+        "unit": "diagrams"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 20,
+        "denominator": 2560,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "corpus/retrieval",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json#/counts/retrieval"
+        ],
+        "unit": "diagrams"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 500,
+        "denominator": 2560,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "corpus/sealed",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json#/counts/sealed"
+        ],
+        "unit": "diagrams"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 2560,
+        "denominator": 2560,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "records validated",
+        "note": "Receipt evidence; generated private corpus not re-audited by this report",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json#/records_validated"
+        ],
+        "unit": "records"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 4881465,
+        "denominator": 5777920,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "truth class/false",
+        "note": "Truth census, not perception scores; per-diagram truth counts unavailable in receipt",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json#/class_counts/false"
+        ],
+        "unit": "candidate relations"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 341223,
+        "denominator": 5777920,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "truth class/incidental_unproved",
+        "note": "Truth census, not perception scores; per-diagram truth counts unavailable in receipt",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json#/class_counts/incidental_unproved"
+        ],
+        "unit": "candidate relations"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 3587,
+        "denominator": 5777920,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "truth class/premise",
+        "note": "Truth census, not perception scores; per-diagram truth counts unavailable in receipt",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json#/class_counts/premise"
+        ],
+        "unit": "candidate relations"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 551645,
+        "denominator": 5777920,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "truth class/unknown",
+        "note": "Truth census, not perception scores; per-diagram truth counts unavailable in receipt",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json#/class_counts/unknown"
+        ],
+        "unit": "candidate relations"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "cross_split_coordinate_collisions",
+        "note": "Pair denominator not retained by receipt",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json#/cross_split_coordinate_collisions"
+        ],
+        "unit": "cross-split collisions"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": null,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "cross_split_image_collisions",
+        "note": "Pair denominator not retained by receipt",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/WP2_CORPUS_RENDER_V2_RECEIPT_20260927.json#/cross_split_image_collisions"
+        ],
+        "unit": "cross-split collisions"
+      }
+    ],
+    "formalization": [
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 80,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "first_pass_well_typed",
+        "note": "WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/first_pass_well_typed",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 100,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "post_repair_well_typed",
+        "note": "WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/post_repair_well_typed",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 100,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "unique_canonical_statements",
+        "note": "WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/unique_canonical_statements",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": 50,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "human_reviews",
+        "note": "WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/human_reviews",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "reference tasks"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": 50,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "semantic_rubric_passes",
+        "note": "WP-2 exact-true non-premise goals; deterministic emitter and syntax repair, not a model formalization benchmark; exact truth is not a derivability claim; typechecking is not proof or semantic acceptance",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/semantic_rubric_passes",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "reference tasks"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 100,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "control/empty",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/controls/empty",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "control statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 100,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "control/nearest_retrieval",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/controls/nearest_retrieval",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "control statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 100,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "control/strengthened",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/controls/strengthened",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "control statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 100,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "control/trivial",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/controls/trivial",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "control statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 100,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "control/unrelated_but_provable",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/controls/unrelated_but_provable",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "control statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 100,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "control/vacuous",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/controls/vacuous",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "control statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 100,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "control/weakened",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/controls/weakened",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "control statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": 50,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "equivalence/kernel_checked",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/equivalence_counts/kernel_checked",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "reference tasks"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 50,
+        "denominator": 50,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "equivalence/machine_supported",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/equivalence_counts/machine_supported",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "reference tasks"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": 50,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "equivalence/reviewer_judged",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/equivalence_counts/reviewer_judged",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "reference tasks"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": 50,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "equivalence/unresolved",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/equivalence_counts/unresolved",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "reference tasks"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 5,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "predicate/Collinear",
+        "note": "{'available': 5, 'quota': 12, 'reason': 'Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.', 'selected': 5}",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/per_predicate_counts/Collinear",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 4,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "predicate/Concyclic",
+        "note": "{'available': 4, 'quota': 11, 'reason': 'Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.', 'selected': 4}",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/per_predicate_counts/Concyclic",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 17,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "predicate/EqualAngle",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/per_predicate_counts/EqualAngle",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 17,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "predicate/EqualLength",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/per_predicate_counts/EqualLength",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 3,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "predicate/Midpoint",
+        "note": "{'available': 3, 'quota': 11, 'reason': 'Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.', 'selected': 3}",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/per_predicate_counts/Midpoint",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 18,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "predicate/Parallel",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/per_predicate_counts/Parallel",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 14,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "predicate/Perpendicular",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/per_predicate_counts/Perpendicular",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 17,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "predicate/RightAngle",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/per_predicate_counts/RightAngle",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "statements"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 5,
+        "denominator": 100,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "predicate/SBetween",
+        "note": "{'available': 5, 'quota': 11, 'reason': 'Insufficient distinct statements in frozen sealed families at seeds 0..9 (all five WP-2 controls); repeated sources are deduplicated. Unfilled quota redistributed round-robin.', 'selected': 5}",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/lean/artifacts/g3-taskset/g3.json#/per_predicate_counts/SBetween",
+          "mve/lean/artifacts/g3-taskset/tasks.json#/",
+          "mve/lean/artifacts/g3-taskset/references.json#/"
+        ],
+        "unit": "statements"
+      }
+    ],
+    "live_probe": [
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 1,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "image accepted",
+        "note": "No truth-scored accuracy from the probe",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/wp0b-live/receipt.json#/observation/image_accepted"
+        ],
+        "unit": "live probe"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 236,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "prompt_tokens",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/wp0b-live/receipt.json#/observation/usage/prompt_tokens"
+        ],
+        "unit": "tokens per probe"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 164,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "completion_tokens",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/wp0b-live/receipt.json#/observation/usage/completion_tokens"
+        ],
+        "unit": "tokens per probe"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 400,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "total_tokens",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/wp0b-live/receipt.json#/observation/usage/total_tokens"
+        ],
+        "unit": "tokens per probe"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 1.4512553750537336,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "latency_s",
+        "note": "",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "docs/mve/reviews/wp0b-live/receipt.json#/observation/latency_s"
+        ],
+        "unit": "seconds per probe"
+      }
+    ],
+    "preflight": [
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "vision_and_runner_contract",
+        "note": "WP-0a historical status: failed; capability-specific only",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/preflight/results/report.json#/checks/0"
+        ],
+        "unit": "capability check"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 1,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "rhjev_tests",
+        "note": "WP-0a historical status: ran; capability-specific only",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/preflight/results/report.json#/checks/1"
+        ],
+        "unit": "capability check"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 1,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "openjev_fixture",
+        "note": "WP-0a historical status: ran; capability-specific only",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/preflight/results/report.json#/checks/2"
+        ],
+        "unit": "capability check"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "newclid_import",
+        "note": "WP-0a historical status: failed; capability-specific only",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/preflight/results/report.json#/checks/3"
+        ],
+        "unit": "capability check"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 1,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "atlas_ingest_contract",
+        "note": "WP-0a historical status: ran; capability-specific only",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/preflight/results/report.json#/checks/4"
+        ],
+        "unit": "capability check"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 1,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "codex_cli",
+        "note": "WP-0a historical status: ran; capability-specific only",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/preflight/results/report.json#/checks/5"
+        ],
+        "unit": "capability check"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 1,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "lean_toolchain_presence",
+        "note": "WP-0a historical status: ran; capability-specific only",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/preflight/results/report.json#/checks/6"
+        ],
+        "unit": "capability check"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "euclid_generator_discovery",
+        "note": "WP-0a historical status: failed; capability-specific only",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/preflight/results/report.json#/checks/7"
+        ],
+        "unit": "capability check"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "newclid_jgex_roundtrip",
+        "note": "WP-0a historical status: failed; capability-specific only",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/preflight/results/report.json#/checks/8"
+        ],
+        "unit": "capability check"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "newclid_geogebra_terms",
+        "note": "WP-0a historical status: failed; capability-specific only",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/preflight/results/report.json#/checks/9"
+        ],
+        "unit": "capability check"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "rhvf_isolation",
+        "note": "WP-0a historical status: failed; capability-specific only",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/preflight/results/report.json#/checks/10"
+        ],
+        "unit": "capability check"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "explorer_scenes",
+        "note": "WP-0a historical status: failed; capability-specific only",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/preflight/results/report.json#/checks/11"
+        ],
+        "unit": "capability check"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "local_prover_host",
+        "note": "WP-0a historical status: failed; capability-specific only",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/preflight/results/report.json#/checks/12"
+        ],
+        "unit": "capability check"
+      },
+      {
+        "aggregation_reason": "not scored relations; no micro/macro relation score implied",
+        "count": 0,
+        "denominator": 1,
+        "interval95": null,
+        "interval_reason": "finite committed fixture census; independent sampling design not established",
+        "macro": null,
+        "micro": null,
+        "name": "human_latency",
+        "note": "WP-0a historical status: failed; capability-specific only",
+        "null": "N/A: structural or operational census",
+        "sources": [
+          "mve/preflight/results/report.json#/checks/13"
+        ],
+        "unit": "capability check"
+      }
+    ]
+  }
+}
