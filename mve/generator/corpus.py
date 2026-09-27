@@ -46,7 +46,7 @@ def layout(counts, seed):
                 families[index % len(families)],
                 index // len(families),
             )
-            ident = digest([family, construction_seed, "pillow-lines-v2:e1"])[:32]
+            ident = digest([family, construction_seed, "pillow-lines-v2:e1a"])[:32]
             items.append({"id": ident, "family": family})
             jobs.append(
                 {

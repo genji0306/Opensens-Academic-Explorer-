@@ -8,7 +8,7 @@ from mve.exact import canonical_exact, _number
 from mve.degeneracy import repeated_degenerate, distinct_pairs
 from mve.predicates import REGISTRY, canonical_proposition
 
-VERSION = "mve-algebraic-plane-v1-e1"
+VERSION = "mve-algebraic-plane-v1-e1a"
 
 
 class ExactError(ValueError):

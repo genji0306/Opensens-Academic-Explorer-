@@ -1,4 +1,4 @@
-from itertools import combinations, combinations_with_replacement
+from itertools import combinations
 import pytest
 from mve.generator.exact import ExactEvaluator, ExactError
 from mve.generator.universe import candidate_universe
@@ -71,21 +71,21 @@ def test_unsupported_or_noncanonical_coordinates_are_excluded(bad):
 def test_candidate_universe_is_complete_canonical_and_stable():
     names = list("ABCDEF")
     actual = candidate_universe(names)
-    # Independently count unordered segments and unordered nonzero-arm angles.
+    # Independently count unordered segments and unordered angles with three distinct points.
     angles = [
         (a, b, c)
         for b in names
-        for a, c in combinations_with_replacement([n for n in names if n != b], 2)
+        for a, c in combinations([n for n in names if n != b], 2)
     ]
     lengths = list(combinations(names, 2))
-    assert len(angles) == 90 and len(lengths) == 15
+    assert len(angles) == 60 and len(lengths) == 15
     assert sum(p["pred"] == "EqualAngle" for p in actual) == len(
         list(combinations(angles, 2))
     )
     assert sum(p["pred"] == "EqualLength" for p in actual) == len(
-        list(combinations_with_replacement(lengths, 2))
+        list(combinations(lengths, 2))
     )
-    assert len(actual) == 4507
+    assert len(actual) == 2257
     assert candidate_universe(list(reversed(names))) == actual
 
 
@@ -119,3 +119,36 @@ def test_erratum_e1_shared_points_and_excluded_duplicate_facts():
         )
         == "degenerate"
     )
+
+
+@pytest.mark.parametrize("args", ["ABACDC", "ABACBD", "ABCCDC"])
+def test_e1a_zero_angle_endpoints_are_degenerate_and_excluded(args):
+    coords = {"A": ["0", "0"], "B": ["1", "0"], "C": ["0", "1"], "D": ["1", "1"]}
+    prop = {"pred": "EqualAngle", "args": list(args)}
+    assert ExactEvaluator(coords).classify(prop) == "degenerate"
+    assert canonical_proposition(prop) not in candidate_universe(coords)
+
+
+def test_e1a_distinct_names_at_coincident_angle_endpoints_are_degenerate():
+    coords = dict(
+        zip(
+            "ABCDEF",
+            [["1", "0"], ["0", "0"], ["1", "0"], ["0", "1"], ["1", "1"], ["0", "1"]],
+        )
+    )
+    assert (
+        ExactEvaluator(coords).classify({"pred": "EqualAngle", "args": list("ABCDEF")})
+        == "degenerate"
+    )
+
+
+@pytest.mark.parametrize("args", ["ABAB", "ABBA", "BAAB", "BABA"])
+def test_e1a_same_segment_equality_is_not_a_candidate(args):
+    prop = {"pred": "EqualLength", "args": list(args)}
+    assert canonical_proposition(prop) not in candidate_universe("ABCD")
+
+
+def test_e1a_four_point_probe_has_no_trivial_angle_or_length_identities():
+    actual = candidate_universe("ABCD")
+    assert sum(p["pred"] == "EqualAngle" for p in actual) == 66
+    assert sum(p["pred"] == "EqualLength" for p in actual) == 15

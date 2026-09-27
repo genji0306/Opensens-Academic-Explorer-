@@ -84,3 +84,25 @@ def test_universe_and_coordinate_bytes_are_pinned():
         build_truth(
             COORDS, [{"pred": "NotCollinear", "args": ["A", "B", "C"]}], GENERATOR
         )
+
+
+def test_e1a_frozen_truth_omits_zero_angles_and_same_segment_equalities():
+    coordinates = {"A": ["0", "0"], "B": ["1", "0"], "C": ["0", "1"], "D": ["1", "1"]}
+    truth = build_truth(coordinates, [], GENERATOR).data()
+    for row in truth["candidates"]:
+        prop = row["proposition"]
+        args = prop["args"]
+        if prop["pred"] == "EqualAngle":
+            assert len(set(args[:3])) == len(set(args[3:])) == 3
+        if prop["pred"] == "EqualLength":
+            assert sorted(args[:2]) != sorted(args[2:])
+    assert truth["generator"]["evaluator_version"] == "mve-algebraic-plane-v1-e1a"
+    assert truth["candidate_universe_sha256"] == digest(
+        [r["proposition"] for r in truth["candidates"]]
+    )
+    for excluded in [
+        {"pred": "EqualLength", "args": list("ABBA")},
+        {"pred": "EqualAngle", "args": list("ABACDC")},
+    ]:
+        with pytest.raises(TruthError, match="exact-true candidate"):
+            build_truth(coordinates, [excluded], GENERATOR)

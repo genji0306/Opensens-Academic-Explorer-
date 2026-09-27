@@ -26,12 +26,12 @@
     "EqualLength": {
       "expression": "dist p0 p1 = dist p2 p3",
       "evidence": "native target typechecked; semantic equivalence not certified",
-      "registry_degeneracy": "A=B or C=D; cross-pair sharing allowed"
+      "registry_degeneracy": "A=B or C=D; cross-pair sharing allowed; same segment up to symmetry excluded from universe"
     },
     "EqualAngle": {
       "expression": "EuclideanGeometry.angle p0 p1 p2 = EuclideanGeometry.angle p3 p4 p5",
       "evidence": "native target typechecked; semantic equivalence not certified",
-      "registry_degeneracy": "A=B, B=C, D=E or E=F; cross-triple sharing allowed"
+      "registry_degeneracy": "A=B, B=C, A=C, D=E, E=F or D=F; cross-triple sharing allowed; same angle up to symmetry excluded from universe"
     },
     "Midpoint": {
       "expression": "p0 = midpoint ℝ p1 p2",
