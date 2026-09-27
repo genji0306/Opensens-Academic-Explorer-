@@ -107,7 +107,13 @@ def formal_payload(ir, source):
             "id": f"prop_{i}",
             "role": n["role"],
             "proposition": canonical_proposition(n["proposition"], mapping),
-            "support": "goal_source" if n["role"] == "goal" else "problem_text",
+            "support": (
+                "goal_source"
+                if n["role"] == "goal"
+                else "assumption"
+                if n["evidence"].startswith("asm_")
+                else "problem_text"
+            ),
             "depends_on": [n["evidence"]],
         }
         for i, n in enumerate(nodes, 1)

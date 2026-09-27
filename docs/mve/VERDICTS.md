@@ -15,7 +15,8 @@ updated = capture(record, target="obs_1", verdict="confirm", actor="human:alice"
 
 `capture` accepts observations, measurements, derivations, judgments, candidates, and
 existing formal propositions. Verdicts are `confirm`, `reject`, `not_visible`, `unsure`,
-`adopt`, `decline`, and `label`. A model may neither adopt nor decline. Confirmation is
+`adopt`, `decline`, and `label`. A model may neither adopt nor decline; the core semantic validator refuses both,
+including direct transition calls. Confirmation is
 visibility evidence. Only human adoption through this API appends an assumption. Adoption
 requires a proposition-bearing target, so adopting a judgment itself is refused: adopt its
 underlying candidate/observation/measurement/derivation instead. No `human_confirmed`

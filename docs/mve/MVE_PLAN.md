@@ -574,6 +574,13 @@ codex exec -m gpt-6-astra -C docs/mve --sandbox read-only --skip-git-repo-check 
 
 ## 13. Verdict log and risks
 
+**2026-09-27 — v5 additive schema changelog (WP-2 / WP-8a, recorded in WP-6b).**
+The unchanged `oae-mve-observation-v5` adds `development` / `retrieval` truth split labels,
+optional non-authorizing `can_N` candidate nodes, the `proposed` event, and a wider
+`human:` identity pattern. Existing v5 records remain valid. Any future non-additive
+change requires v6. `human:` is a local operator assertion, not authentication.
+The authoritative `schemas/` and derived `docs/mve/` schema copies remain byte-equal.
+
 **Astra r1 verdict (2026-09-27, sha256 844f67c3…): "revise before implementation".**
 Applied in r2: WP-1 evidence model and registry (§4a, schema v2); WP-2 candidate universe,
 determinism definition, disjoint family splits, controls; WP-3 two charged calls, alignment,
