@@ -1,0 +1,78 @@
+[
+ {
+  "set": "low zeros 1001-100000",
+  "height_T": 40792.210325485,
+  "gaps": 98999,
+  "n_eff_BK": 2.53,
+  "cdf_small_gap_exponent": 2.995,
+  "ks_p": {
+   "wigner_surmise": 7.745264605995434e-06,
+   "cue_N200": 1.6336241059823372e-25,
+   "cue_Neff": 2.3863889536919916e-15,
+   "planck_fitted": 0.0007885888102257828
+  },
+  "planck": {
+   "a": 4.993,
+   "T": 0.169,
+   "density_small_exponent": 3.993,
+   "dloglik_vs_wigner": -18.52
+  }
+ },
+ {
+  "set": "zeros 1e12+",
+  "height_T": 267653396932.4621,
+  "gaps": 9999,
+  "n_eff_BK": 7.07,
+  "cdf_small_gap_exponent": 3.207,
+  "ks_p": {
+   "wigner_surmise": 0.8987415134470484,
+   "cue_N200": 0.7015551913241519,
+   "cue_Neff": 0.8219953109211368,
+   "planck_fitted": 3.103022006587025e-07
+  },
+  "planck": {
+   "a": 4.383,
+   "T": 0.1884,
+   "density_small_exponent": 3.383,
+   "dloglik_vs_wigner": -92.38
+  }
+ },
+ {
+  "set": "zeros 1e21+",
+  "height_T": 1.4417689750954697e+20,
+  "gaps": 9999,
+  "n_eff_BK": 12.87,
+  "cdf_small_gap_exponent": 2.948,
+  "ks_p": {
+   "wigner_surmise": 0.585472165180778,
+   "cue_N200": 0.6467387299525778,
+   "cue_Neff": 0.6376861963912674,
+   "planck_fitted": 7.01229431293896e-07
+  },
+  "planck": {
+   "a": 4.319,
+   "T": 0.1909,
+   "density_small_exponent": 3.319,
+   "dloglik_vs_wigner": -88.23
+  }
+ },
+ {
+  "set": "zeros 1e22+",
+  "height_T": 1.3709199099319954e+21,
+  "gaps": 9999,
+  "n_eff_BK": 13.52,
+  "cdf_small_gap_exponent": 3.129,
+  "ks_p": {
+   "wigner_surmise": 0.64960277162538,
+   "cue_N200": 0.5958053460863075,
+   "cue_Neff": 0.5998805207822457,
+   "planck_fitted": 2.5794960948937354e-08
+  },
+  "planck": {
+   "a": 4.422,
+   "T": 0.187,
+   "density_small_exponent": 3.422,
+   "dloglik_vs_wigner": -85.09
+  }
+ }
+]

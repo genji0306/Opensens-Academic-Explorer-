@@ -1,0 +1,24 @@
+{
+ "zeros": 2000,
+ "gaps": 1979,
+ "planck_fit": {
+  "a": 5.482,
+  "T": 0.1553
+ },
+ "loglik": {
+  "gue_wigner": -888.57,
+  "planck_family_2param": -876.09,
+  "delta_planck_minus_gue": 12.49
+ },
+ "ks_pvalue": {
+  "gue": 0.0024,
+  "planck": 0.5739
+ },
+ "frac_below_half": 0.0808,
+ "tail": {
+  "frac_gt_2": 0.01010611419909045,
+  "gue_gt_2": 0.01705012317016097,
+  "planck_gt_2": 0.017785883241901113,
+  "poisson_gt_2": 0.1353352832366127
+ }
+}
