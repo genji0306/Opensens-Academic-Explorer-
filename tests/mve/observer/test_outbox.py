@@ -153,11 +153,11 @@ def test_disk_limit(monkeypatch, tmp_path):
     import mve.observer.storage as s
 
     monkeypatch.setattr(s.shutil, "disk_usage", lambda _: (10**11, 0, 1))
-    with pytest.raises(ValueError, match="5 GiB"):
+    with pytest.raises(ValueError, match="disk_free"):
         disk_guard(tmp_path, 1)
     monkeypatch.setattr(s.shutil, "disk_usage", lambda _: (10**11, 0, 10**11))
     monkeypatch.setattr(s, "tree_bytes", lambda _: 200 * 1024**2)
-    with pytest.raises(ValueError, match="200 MiB"):
+    with pytest.raises(ValueError, match="generated_cap"):
         disk_guard(tmp_path, 1)
 
 
@@ -215,6 +215,6 @@ def test_storage_paths_portability_and_lock(outbox):
     with pytest.raises(ValueError, match="nonportable"):
         s.encoded({"path": "/" + "Users/" + "fixture/file"})
     with s.lock():
-        with pytest.raises(ValueError, match="another"):
+        with pytest.raises(ValueError, match="lock_held"):
             with s.lock():
                 pass

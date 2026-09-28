@@ -127,7 +127,7 @@ def test_raw_first_redacted_no_retry(local, monkeypatch):
 def test_peak_refused_before_key_and_dispatch_recheck(local, monkeypatch):
     opener = setup_wire(monkeypatch, b"{}")
     book = ledger(local)
-    with pytest.raises(BudgetError, match="peak"):
+    with pytest.raises(ValueError, match="peak_window"):
         transport.dispatch(
             book,
             request(),
@@ -137,7 +137,7 @@ def test_peak_refused_before_key_and_dispatch_recheck(local, monkeypatch):
             live=True,
         )
     times = iter([OFF, PEAK])
-    with pytest.raises(BudgetError, match="peak"):
+    with pytest.raises(ValueError, match="peak_window"):
         transport.dispatch(
             book,
             request(),
@@ -162,7 +162,7 @@ def test_call_cap_and_budget_before_transport(local, monkeypatch):
         clock=lambda: OFF,
         live=True,
     )
-    with pytest.raises(ValueError, match="call cap"):
+    with pytest.raises(ValueError, match="call_cap"):
         transport.dispatch(
             book,
             request(),
@@ -175,7 +175,7 @@ def test_call_cap_and_budget_before_transport(local, monkeypatch):
     low = BudgetLedger(
         storage.local("mve/generated/low.sqlite"), p1="0.001", price_table=price_table()
     )
-    with pytest.raises(BudgetError, match="cap"):
+    with pytest.raises(ValueError, match="budget_cap"):
         transport.dispatch(
             low,
             request(),
@@ -216,7 +216,7 @@ def test_malformed_reply_retains_slots(local, monkeypatch):
     assert len(visual) == 24 and all(s["card"] is None for s in visual)
     assert result["calls"] == 24
     assert result["budget"]["aggregate"]["exposure"]["micro_usd"] == 147724
-    with pytest.raises(ValueError, match="already"):
+    with pytest.raises(ValueError, match="run_exists"):
         pilot.execute(live=True, reviewed_head="a" * 40, clock=lambda: OFF)
 
 
@@ -263,7 +263,7 @@ def test_wo3_diagnostic_uses_sorted_gaps():
     "approval,commit", [("2026-09-27", "a" * 40), ("2026-09-28", "HEAD"), (None, None)]
 )
 def test_review_requires_exact_assertions(approval, commit):
-    with pytest.raises(ValueError, match="approval"):
+    with pytest.raises(ValueError, match="owner_approval|review_head"):
         pilot.require_review(approval, commit)
 
 
@@ -275,7 +275,7 @@ def test_review_refuses_dirty_or_wrong_head(monkeypatch, dirty, head):
     monkeypatch.setattr(
         pilot.subprocess, "run", lambda *a, **kw: SimpleNamespace(stdout=next(values))
     )
-    with pytest.raises(ValueError, match="clean"):
+    with pytest.raises(ValueError, match="clean_tree|review_head"):
         pilot.require_review("2026-09-28", "a" * 40)
 
 
@@ -292,7 +292,7 @@ def test_review_clean_and_git_failure(monkeypatch):
         raise OSError("private-path")
 
     monkeypatch.setattr(pilot.subprocess, "run", failed)
-    with pytest.raises(ValueError, match="cannot verify"):
+    with pytest.raises(ValueError, match="review_head"):
         pilot.require_review("2026-09-28", "a" * 40)
 
 
@@ -385,7 +385,7 @@ def test_dispatch_failure_and_disk_failure_not_swallowed(local, monkeypatch):
 
 def test_disk_failure_aborts_pipeline(local, monkeypatch):
     def failed(*a, **kw):
-        raise storage.DiskLimitError("disk")
+        raise storage.DiskLimitError("disk_free")
 
     monkeypatch.setattr(pilot, "observe", failed)
     with pytest.raises(storage.DiskLimitError):
@@ -448,7 +448,7 @@ def test_low_disk_and_generated_limit(local, monkeypatch):
         pilot.execute(live=False, clock=lambda: OFF)
     monkeypatch.setattr(storage.shutil, "disk_usage", lambda p: (0, 0, 10 * 1024**3))
     monkeypatch.setattr(storage, "tree_bytes", lambda p: 301 * 1024**2)
-    with pytest.raises(storage.DiskLimitError, match="exceed"):
+    with pytest.raises(storage.DiskLimitError, match="generated_cap"):
         pilot.execute(live=False, clock=lambda: OFF)
 
 

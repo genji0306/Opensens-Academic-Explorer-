@@ -8,6 +8,7 @@ from pathlib import Path
 import re
 import shutil
 from mve.observer.snapshots import tree_bytes
+from mve.observer.refusals import Refusal
 
 WORKTREE = Path(__file__).resolve().parents[2]
 OUTBOX = Path("mve/generated/outbox")
@@ -34,15 +35,15 @@ def local(relative):
     return current
 
 
-class DiskLimitError(ValueError):
+class DiskLimitError(Refusal):
     """Hard stop: never convert disk exhaustion into an ordinary failed slot."""
 
 
 def disk_guard(generated, incoming=0):
     if shutil.disk_usage("/")[2] < 5 * 1024**3:
-        raise DiskLimitError("less than 5 GiB free; abort")
+        raise DiskLimitError("disk_free")
     if tree_bytes(generated) + incoming > 200 * 1024**2:
-        raise DiskLimitError("mve/generated would exceed 200 MiB; abort")
+        raise DiskLimitError("generated_cap")
 
 
 def encoded(value):
@@ -77,7 +78,7 @@ def lock():
         try:
             fcntl.flock(stream, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError:
-            raise ValueError("another WO-4/5 writer holds the lock") from None
+            raise Refusal("lock_held") from None
         try:
             yield
         finally:

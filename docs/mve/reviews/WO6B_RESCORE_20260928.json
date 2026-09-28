@@ -1,0 +1,1729 @@
+{
+  "by_arm": {
+    "image_free": {
+      "contradictory": 0,
+      "grounded": 0,
+      "malformed": 0,
+      "slots": 12,
+      "underpowered": 6,
+      "ungrounded": 12
+    },
+    "null_twin": {
+      "contradictory": 0,
+      "grounded": 0,
+      "malformed": 0,
+      "slots": 12,
+      "underpowered": 1,
+      "ungrounded": 12
+    },
+    "real": {
+      "contradictory": 2,
+      "grounded": 0,
+      "malformed": 3,
+      "slots": 12,
+      "underpowered": 0,
+      "ungrounded": 9
+    },
+    "shuffled": {
+      "contradictory": 0,
+      "grounded": 0,
+      "malformed": 0,
+      "slots": 12,
+      "underpowered": 0,
+      "ungrounded": 0
+    }
+  },
+  "contract_sha256": "e5742bfbe493c4c8caed0ba9e9f26f3680f35c15b1597c3744b545da057f6e24",
+  "hosted_calls": 0,
+  "malformed_slots": [
+    {
+      "arm": "real",
+      "detail": "prediction is a JSON number; v1 and v2 require a replication-condition string",
+      "job": "69f0e3feb043ead0",
+      "module": "space-08",
+      "reason": "bad_type",
+      "slot": 0
+    },
+    {
+      "arm": "real",
+      "detail": "prediction is a JSON number; v1 and v2 require a replication-condition string",
+      "job": "69f0e3feb043ead0",
+      "module": "space-08",
+      "reason": "bad_type",
+      "slot": 1
+    },
+    {
+      "arm": "real",
+      "detail": "prediction is a JSON number; v1 and v2 require a replication-condition string",
+      "job": "69f0e3feb043ead0",
+      "module": "space-08",
+      "reason": "bad_type",
+      "slot": 2
+    }
+  ],
+  "meaning": "Retrospective diagnostic only. Status precedence: malformed, contradictory, ungrounded; flags overlap. No invented observations, citations, feature tags or survivors.",
+  "power_sha256": "ec42c799fa22224cfa0943778138754da8b5253d5f7998b16b39c24cfb29f98b",
+  "repeatability": {
+    "by_arm": {
+      "null_twin": {
+        "mean_tag_jaccard": null,
+        "valid_pairs": 0
+      },
+      "real": {
+        "mean_tag_jaccard": null,
+        "valid_pairs": 0
+      }
+    },
+    "jobs": {
+      "210903571ae0f66f": {
+        "arm": "null_twin",
+        "module": "space-08",
+        "reason": "v1 contains strings, no versioned feature tags; not inferred after seeing outcomes",
+        "tag_jaccard": null
+      },
+      "469861a3a73becca": {
+        "arm": "null_twin",
+        "module": "polar-ulam",
+        "reason": "v1 contains strings, no versioned feature tags; not inferred after seeing outcomes",
+        "tag_jaccard": null
+      },
+      "518ef22877fb0da2": {
+        "arm": "null_twin",
+        "module": "field-dyson",
+        "reason": "v1 contains strings, no versioned feature tags; not inferred after seeing outcomes",
+        "tag_jaccard": null
+      },
+      "57ca345effa88400": {
+        "arm": "real",
+        "module": "polar-ulam",
+        "reason": "v1 contains strings, no versioned feature tags; not inferred after seeing outcomes",
+        "tag_jaccard": null
+      },
+      "69f0e3feb043ead0": {
+        "arm": "real",
+        "module": "space-08",
+        "reason": "v1 contains strings, no versioned feature tags; not inferred after seeing outcomes",
+        "tag_jaccard": null
+      },
+      "7775256302a44f18": {
+        "arm": "real",
+        "module": "spectral",
+        "reason": "v1 contains strings, no versioned feature tags; not inferred after seeing outcomes",
+        "tag_jaccard": null
+      },
+      "aee9b8f1478f3e32": {
+        "arm": "null_twin",
+        "module": "spectral",
+        "reason": "v1 contains strings, no versioned feature tags; not inferred after seeing outcomes",
+        "tag_jaccard": null
+      },
+      "d98cb0eb7218ffa2": {
+        "arm": "real",
+        "module": "field-dyson",
+        "reason": "v1 contains strings, no versioned feature tags; not inferred after seeing outcomes",
+        "tag_jaccard": null
+      }
+    },
+    "label": "descriptive; tag agreement verifies nothing"
+  },
+  "schema": "mve-wo6b-offline-rescore-v1",
+  "sha256": "44ceec1bd0dea11a82a839ae8544164b1d3015fb937cfd242c338317c4d18a25",
+  "slots": [
+    {
+      "arm": "image_free",
+      "check": {
+        "alternatives": [
+          {
+            "alternative": "Poisson",
+            "detected": 128,
+            "lower_critical": 0.013078928480553809,
+            "module": "field-dyson",
+            "n": 999,
+            "null": "GUE",
+            "power": 1.0,
+            "power_interval95": [
+              0.970863,
+              1.0
+            ],
+            "size": 0.046875,
+            "statistic": "gaudin_ks",
+            "upper_critical": 0.032500313478892484,
+            "upper_critical95": 0.030580386910159685,
+            "upper_detected": 128,
+            "upper_power": 1.0,
+            "upper_power_interval95": [
+              0.970863,
+              1.0
+            ],
+            "upper_size": 0.0390625
+          },
+          {
+            "alternative": "native",
+            "detected": 4,
+            "lower_critical": 0.013078928480553809,
+            "module": "field-dyson",
+            "n": 999,
+            "null": "GUE",
+            "power": 0.03125,
+            "power_interval95": [
+              0.012218,
+              0.077598
+            ],
+            "size": 0.046875,
+            "statistic": "gaudin_ks",
+            "upper_critical": 0.032500313478892484,
+            "upper_critical95": 0.030580386910159685,
+            "upper_detected": 3,
+            "upper_power": 0.0234375,
+            "upper_power_interval95": [
+              0.008002,
+              0.066644
+            ],
+            "upper_size": 0.0390625
+          }
+        ],
+        "data_sha256": "1a8bdc6b8cbbc6d4e50a1d786465cd3f00a300b737b75cf9c9ef2e07bb80c12d",
+        "inferential": false,
+        "label": "descriptive",
+        "lifecycle": "preliminary",
+        "n": 999,
+        "power": 0.0234375,
+        "power_complete": true,
+        "power_study_sha256": "ec42c799fa22224cfa0943778138754da8b5253d5f7998b16b39c24cfb29f98b",
+        "reason": "Minimum upper-tail power across both pinned alternatives at alpha .05; no replication or survival inference.",
+        "statistic": "gaudin_ks",
+        "status": "underpowered",
+        "value": 0.04457291076185381
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "9dae9a25316c4173",
+      "module": "field-dyson",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The gaudin_ks discrepancy from Gaudin GUE is at most 0.1.",
+        "kill_threshold": 0.1,
+        "prediction": "Discrepancy at most 0.1 on untouched replication data.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Gaudin GUE",
+          "data": "source gaps",
+          "direction": "greater",
+          "statistic": "gaudin_ks"
+        }
+      },
+      "reason": null,
+      "slot": 0,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "image_free",
+      "check": {
+        "alternatives": [
+          {
+            "alternative": "Poisson",
+            "detected": 128,
+            "lower_critical": 0.013078928480553809,
+            "module": "field-dyson",
+            "n": 999,
+            "null": "GUE",
+            "power": 1.0,
+            "power_interval95": [
+              0.970863,
+              1.0
+            ],
+            "size": 0.046875,
+            "statistic": "gaudin_ks",
+            "upper_critical": 0.032500313478892484,
+            "upper_critical95": 0.030580386910159685,
+            "upper_detected": 128,
+            "upper_power": 1.0,
+            "upper_power_interval95": [
+              0.970863,
+              1.0
+            ],
+            "upper_size": 0.0390625
+          },
+          {
+            "alternative": "native",
+            "detected": 4,
+            "lower_critical": 0.013078928480553809,
+            "module": "field-dyson",
+            "n": 999,
+            "null": "GUE",
+            "power": 0.03125,
+            "power_interval95": [
+              0.012218,
+              0.077598
+            ],
+            "size": 0.046875,
+            "statistic": "gaudin_ks",
+            "upper_critical": 0.032500313478892484,
+            "upper_critical95": 0.030580386910159685,
+            "upper_detected": 3,
+            "upper_power": 0.0234375,
+            "upper_power_interval95": [
+              0.008002,
+              0.066644
+            ],
+            "upper_size": 0.0390625
+          }
+        ],
+        "data_sha256": "1a8bdc6b8cbbc6d4e50a1d786465cd3f00a300b737b75cf9c9ef2e07bb80c12d",
+        "inferential": false,
+        "label": "descriptive",
+        "lifecycle": "preliminary",
+        "n": 999,
+        "power": 0.0234375,
+        "power_complete": true,
+        "power_study_sha256": "ec42c799fa22224cfa0943778138754da8b5253d5f7998b16b39c24cfb29f98b",
+        "reason": "Minimum upper-tail power across both pinned alternatives at alpha .05; no replication or survival inference.",
+        "statistic": "gaudin_ks",
+        "status": "underpowered",
+        "value": 0.04457291076185381
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "9dae9a25316c4173",
+      "module": "field-dyson",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The gaudin_ks discrepancy from Gaudin GUE is at most 0.15.",
+        "kill_threshold": 0.15,
+        "prediction": "Discrepancy at most 0.15 on untouched replication data.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Gaudin GUE",
+          "data": "source gaps",
+          "direction": "greater",
+          "statistic": "gaudin_ks"
+        }
+      },
+      "reason": null,
+      "slot": 1,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "image_free",
+      "check": {
+        "alternatives": [
+          {
+            "alternative": "Poisson",
+            "detected": 128,
+            "lower_critical": 0.013078928480553809,
+            "module": "field-dyson",
+            "n": 999,
+            "null": "GUE",
+            "power": 1.0,
+            "power_interval95": [
+              0.970863,
+              1.0
+            ],
+            "size": 0.046875,
+            "statistic": "gaudin_ks",
+            "upper_critical": 0.032500313478892484,
+            "upper_critical95": 0.030580386910159685,
+            "upper_detected": 128,
+            "upper_power": 1.0,
+            "upper_power_interval95": [
+              0.970863,
+              1.0
+            ],
+            "upper_size": 0.0390625
+          },
+          {
+            "alternative": "native",
+            "detected": 4,
+            "lower_critical": 0.013078928480553809,
+            "module": "field-dyson",
+            "n": 999,
+            "null": "GUE",
+            "power": 0.03125,
+            "power_interval95": [
+              0.012218,
+              0.077598
+            ],
+            "size": 0.046875,
+            "statistic": "gaudin_ks",
+            "upper_critical": 0.032500313478892484,
+            "upper_critical95": 0.030580386910159685,
+            "upper_detected": 3,
+            "upper_power": 0.0234375,
+            "upper_power_interval95": [
+              0.008002,
+              0.066644
+            ],
+            "upper_size": 0.0390625
+          }
+        ],
+        "data_sha256": "1a8bdc6b8cbbc6d4e50a1d786465cd3f00a300b737b75cf9c9ef2e07bb80c12d",
+        "inferential": false,
+        "label": "descriptive",
+        "lifecycle": "preliminary",
+        "n": 999,
+        "power": 0.0234375,
+        "power_complete": true,
+        "power_study_sha256": "ec42c799fa22224cfa0943778138754da8b5253d5f7998b16b39c24cfb29f98b",
+        "reason": "Minimum upper-tail power across both pinned alternatives at alpha .05; no replication or survival inference.",
+        "statistic": "gaudin_ks",
+        "status": "underpowered",
+        "value": 0.04457291076185381
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "9dae9a25316c4173",
+      "module": "field-dyson",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The gaudin_ks discrepancy from Gaudin GUE is at most 0.2.",
+        "kill_threshold": 0.2,
+        "prediction": "Discrepancy at most 0.2 on untouched replication data.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Gaudin GUE",
+          "data": "source gaps",
+          "direction": "greater",
+          "statistic": "gaudin_ks"
+        }
+      },
+      "reason": null,
+      "slot": 2,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "image_free",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "1d4f75f732a6aab4",
+      "module": "polar-ulam",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The residue_count_discrepancy discrepancy from Cramer random primes is at most 0.1.",
+        "kill_threshold": 0.1,
+        "prediction": "Discrepancy at most 0.1 on untouched replication data.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Cramer random primes",
+          "data": "source prime indices",
+          "direction": "greater",
+          "statistic": "residue_count_discrepancy"
+        }
+      },
+      "reason": null,
+      "slot": 0,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "image_free",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "1d4f75f732a6aab4",
+      "module": "polar-ulam",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The residue_count_discrepancy discrepancy from Cramer random primes is at most 0.15.",
+        "kill_threshold": 0.15,
+        "prediction": "Discrepancy at most 0.15 on untouched replication data.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Cramer random primes",
+          "data": "source prime indices",
+          "direction": "greater",
+          "statistic": "residue_count_discrepancy"
+        }
+      },
+      "reason": null,
+      "slot": 1,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "image_free",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "1d4f75f732a6aab4",
+      "module": "polar-ulam",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The residue_count_discrepancy discrepancy from Cramer random primes is at most 0.2.",
+        "kill_threshold": 0.2,
+        "prediction": "Discrepancy at most 0.2 on untouched replication data.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Cramer random primes",
+          "data": "source prime indices",
+          "direction": "greater",
+          "statistic": "residue_count_discrepancy"
+        }
+      },
+      "reason": null,
+      "slot": 2,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "shuffled",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "job": "2cb0e913345adb09",
+      "module": "space-08",
+      "slot": 0,
+      "status": "unavailable_donor"
+    },
+    {
+      "arm": "shuffled",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "job": "2cb0e913345adb09",
+      "module": "space-08",
+      "slot": 1,
+      "status": "unavailable_donor"
+    },
+    {
+      "arm": "shuffled",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "job": "2cb0e913345adb09",
+      "module": "space-08",
+      "slot": 2,
+      "status": "unavailable_donor"
+    },
+    {
+      "arm": "image_free",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "84bccef1749a7741",
+      "module": "space-08",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The residue_count_discrepancy discrepancy from Cramer random primes is at most 0.1.",
+        "kill_threshold": 0.1,
+        "prediction": "Discrepancy at most 0.1 on untouched replication data.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Cramer random primes",
+          "data": "source prime indices",
+          "direction": "greater",
+          "statistic": "residue_count_discrepancy"
+        }
+      },
+      "reason": null,
+      "slot": 0,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "image_free",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "84bccef1749a7741",
+      "module": "space-08",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The residue_count_discrepancy discrepancy from Cramer random primes is at most 0.15.",
+        "kill_threshold": 0.15,
+        "prediction": "Discrepancy at most 0.15 on untouched replication data.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Cramer random primes",
+          "data": "source prime indices",
+          "direction": "greater",
+          "statistic": "residue_count_discrepancy"
+        }
+      },
+      "reason": null,
+      "slot": 1,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "image_free",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "84bccef1749a7741",
+      "module": "space-08",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The residue_count_discrepancy discrepancy from Cramer random primes is at most 0.2.",
+        "kill_threshold": 0.2,
+        "prediction": "Discrepancy at most 0.2 on untouched replication data.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Cramer random primes",
+          "data": "source prime indices",
+          "direction": "greater",
+          "statistic": "residue_count_discrepancy"
+        }
+      },
+      "reason": null,
+      "slot": 2,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "image_free",
+      "check": {
+        "alternatives": [
+          {
+            "alternative": "Poisson",
+            "detected": 128,
+            "lower_critical": 0.0437478501864052,
+            "module": "spectral",
+            "n": 89,
+            "null": "GUE",
+            "power": 1.0,
+            "power_interval95": [
+              0.970863,
+              1.0
+            ],
+            "size": 0.0234375,
+            "statistic": "gaudin_ks",
+            "upper_critical": 0.1091673353210032,
+            "upper_critical95": 0.1001547119626825,
+            "upper_detected": 128,
+            "upper_power": 1.0,
+            "upper_power_interval95": [
+              0.970863,
+              1.0
+            ],
+            "upper_size": 0.0390625
+          },
+          {
+            "alternative": "native",
+            "detected": 10,
+            "lower_critical": 0.0437478501864052,
+            "module": "spectral",
+            "n": 89,
+            "null": "GUE",
+            "power": 0.078125,
+            "power_interval95": [
+              0.042987,
+              0.137847
+            ],
+            "size": 0.0234375,
+            "statistic": "gaudin_ks",
+            "upper_critical": 0.1091673353210032,
+            "upper_critical95": 0.1001547119626825,
+            "upper_detected": 12,
+            "upper_power": 0.09375,
+            "upper_power_interval95": [
+              0.054444,
+              0.15673
+            ],
+            "upper_size": 0.0390625
+          }
+        ],
+        "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+        "inferential": false,
+        "label": "descriptive",
+        "lifecycle": "preliminary",
+        "n": 89,
+        "power": 0.09375,
+        "power_complete": true,
+        "power_study_sha256": "ec42c799fa22224cfa0943778138754da8b5253d5f7998b16b39c24cfb29f98b",
+        "reason": "Minimum upper-tail power across both pinned alternatives at alpha .05; no replication or survival inference.",
+        "statistic": "gaudin_ks",
+        "status": "underpowered",
+        "value": 0.06113726544807788
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "5d21d27902633a7d",
+      "module": "spectral",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The gaudin_ks discrepancy from Gaudin GUE is at most 0.1.",
+        "kill_threshold": 0.1,
+        "prediction": "Discrepancy at most 0.1 on untouched replication data.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Gaudin GUE",
+          "data": "source gaps",
+          "direction": "greater",
+          "statistic": "gaudin_ks"
+        }
+      },
+      "reason": null,
+      "slot": 0,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "image_free",
+      "check": {
+        "alternatives": [
+          {
+            "alternative": "Poisson",
+            "detected": 128,
+            "lower_critical": 0.0437478501864052,
+            "module": "spectral",
+            "n": 89,
+            "null": "GUE",
+            "power": 1.0,
+            "power_interval95": [
+              0.970863,
+              1.0
+            ],
+            "size": 0.0234375,
+            "statistic": "gaudin_ks",
+            "upper_critical": 0.1091673353210032,
+            "upper_critical95": 0.1001547119626825,
+            "upper_detected": 128,
+            "upper_power": 1.0,
+            "upper_power_interval95": [
+              0.970863,
+              1.0
+            ],
+            "upper_size": 0.0390625
+          },
+          {
+            "alternative": "native",
+            "detected": 10,
+            "lower_critical": 0.0437478501864052,
+            "module": "spectral",
+            "n": 89,
+            "null": "GUE",
+            "power": 0.078125,
+            "power_interval95": [
+              0.042987,
+              0.137847
+            ],
+            "size": 0.0234375,
+            "statistic": "gaudin_ks",
+            "upper_critical": 0.1091673353210032,
+            "upper_critical95": 0.1001547119626825,
+            "upper_detected": 12,
+            "upper_power": 0.09375,
+            "upper_power_interval95": [
+              0.054444,
+              0.15673
+            ],
+            "upper_size": 0.0390625
+          }
+        ],
+        "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+        "inferential": false,
+        "label": "descriptive",
+        "lifecycle": "preliminary",
+        "n": 89,
+        "power": 0.09375,
+        "power_complete": true,
+        "power_study_sha256": "ec42c799fa22224cfa0943778138754da8b5253d5f7998b16b39c24cfb29f98b",
+        "reason": "Minimum upper-tail power across both pinned alternatives at alpha .05; no replication or survival inference.",
+        "statistic": "gaudin_ks",
+        "status": "underpowered",
+        "value": 0.06113726544807788
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "5d21d27902633a7d",
+      "module": "spectral",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The gaudin_ks discrepancy from Gaudin GUE is at most 0.15.",
+        "kill_threshold": 0.15,
+        "prediction": "Discrepancy at most 0.15 on untouched replication data.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Gaudin GUE",
+          "data": "source gaps",
+          "direction": "greater",
+          "statistic": "gaudin_ks"
+        }
+      },
+      "reason": null,
+      "slot": 1,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "image_free",
+      "check": {
+        "alternatives": [
+          {
+            "alternative": "Poisson",
+            "detected": 128,
+            "lower_critical": 0.0437478501864052,
+            "module": "spectral",
+            "n": 89,
+            "null": "GUE",
+            "power": 1.0,
+            "power_interval95": [
+              0.970863,
+              1.0
+            ],
+            "size": 0.0234375,
+            "statistic": "gaudin_ks",
+            "upper_critical": 0.1091673353210032,
+            "upper_critical95": 0.1001547119626825,
+            "upper_detected": 128,
+            "upper_power": 1.0,
+            "upper_power_interval95": [
+              0.970863,
+              1.0
+            ],
+            "upper_size": 0.0390625
+          },
+          {
+            "alternative": "native",
+            "detected": 10,
+            "lower_critical": 0.0437478501864052,
+            "module": "spectral",
+            "n": 89,
+            "null": "GUE",
+            "power": 0.078125,
+            "power_interval95": [
+              0.042987,
+              0.137847
+            ],
+            "size": 0.0234375,
+            "statistic": "gaudin_ks",
+            "upper_critical": 0.1091673353210032,
+            "upper_critical95": 0.1001547119626825,
+            "upper_detected": 12,
+            "upper_power": 0.09375,
+            "upper_power_interval95": [
+              0.054444,
+              0.15673
+            ],
+            "upper_size": 0.0390625
+          }
+        ],
+        "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+        "inferential": false,
+        "label": "descriptive",
+        "lifecycle": "preliminary",
+        "n": 89,
+        "power": 0.09375,
+        "power_complete": true,
+        "power_study_sha256": "ec42c799fa22224cfa0943778138754da8b5253d5f7998b16b39c24cfb29f98b",
+        "reason": "Minimum upper-tail power across both pinned alternatives at alpha .05; no replication or survival inference.",
+        "statistic": "gaudin_ks",
+        "status": "underpowered",
+        "value": 0.06113726544807788
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "5d21d27902633a7d",
+      "module": "spectral",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The gaudin_ks discrepancy from Gaudin GUE is at most 0.2.",
+        "kill_threshold": 0.2,
+        "prediction": "Discrepancy at most 0.2 on untouched replication data.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Gaudin GUE",
+          "data": "source gaps",
+          "direction": "greater",
+          "statistic": "gaudin_ks"
+        }
+      },
+      "reason": null,
+      "slot": 2,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "null_twin",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "469861a3a73becca",
+      "module": "polar-ulam",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The point set in the central square exhibits a nearest-neighbor spacing distribution consistent with the Gaussian Unitary Ensemble (GUE) rather than a Poisson process.",
+        "kill_threshold": 0.05,
+        "prediction": "-",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Gaudin GUE",
+          "data": "nearest-neighbor spacings of points within the central square region",
+          "direction": "greater",
+          "statistic": "gaudin_ks"
+        }
+      },
+      "reason": null,
+      "slot": 0,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "null_twin",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "469861a3a73becca",
+      "module": "polar-ulam",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The number of points within the central square region is significantly greater than the number expected from a uniform random distribution over the entire image.",
+        "kill_threshold": 0.1,
+        "prediction": "+",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "uniform random distribution",
+          "data": "count of points in central square divided by total image area",
+          "direction": "greater",
+          "statistic": "point_count_ratio"
+        }
+      },
+      "reason": null,
+      "slot": 1,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "null_twin",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "469861a3a73becca",
+      "module": "polar-ulam",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The spatial distribution of points within the central square shows clustering at small scales compared to a homogeneous Poisson process.",
+        "kill_threshold": 0.2,
+        "prediction": "+",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Poisson process",
+          "data": "pair correlation function of points in central square at small radii",
+          "direction": "greater",
+          "statistic": "pair_correlation_function"
+        }
+      },
+      "reason": null,
+      "slot": 2,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "real",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "d98cb0eb7218ffa2",
+      "module": "field-dyson",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The left histogram's spacing distribution follows a Gaudin GUE spacing law rather than a Poisson law.",
+        "kill_threshold": 0.05,
+        "prediction": "+",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Gaudin GUE",
+          "data": "left histogram bin counts",
+          "direction": "greater",
+          "statistic": "gaudin_ks"
+        }
+      },
+      "reason": null,
+      "slot": 0,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "real",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "d98cb0eb7218ffa2",
+      "module": "field-dyson",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The right histogram's spacing distribution is better fit by a Gaussian curve than by a Poisson curve.",
+        "kill_threshold": 0.05,
+        "prediction": "+",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Poisson",
+          "data": "right histogram bin counts",
+          "direction": "greater",
+          "statistic": "gaussian_poisson_ks"
+        }
+      },
+      "reason": null,
+      "slot": 1,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "real",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "d98cb0eb7218ffa2",
+      "module": "field-dyson",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The right histogram's spacing distribution has a larger mean than the left histogram's spacing distribution.",
+        "kill_threshold": 0.1,
+        "prediction": "+",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "zero difference",
+          "data": "left and right histogram bin counts",
+          "direction": "greater",
+          "statistic": "mean_difference"
+        }
+      },
+      "reason": null,
+      "slot": 2,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "null_twin",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "518ef22877fb0da2",
+      "module": "field-dyson",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The left histogram's spacing distribution follows the Gaudin GUE curve more closely than a flat baseline.",
+        "kill_threshold": 0.15,
+        "prediction": "+",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Gaudin GUE",
+          "data": "left histogram bin counts",
+          "direction": "greater",
+          "statistic": "gaudin_ks"
+        }
+      },
+      "reason": null,
+      "slot": 0,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "null_twin",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "518ef22877fb0da2",
+      "module": "field-dyson",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The right histogram's spacing distribution is better fit by a single peaked curve than by a monotone decreasing curve.",
+        "kill_threshold": 0.2,
+        "prediction": "+",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "monotone decreasing curve",
+          "data": "right histogram bin counts",
+          "direction": "greater",
+          "statistic": "ks"
+        }
+      },
+      "reason": null,
+      "slot": 1,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "null_twin",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "518ef22877fb0da2",
+      "module": "field-dyson",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The right histogram's peak location is lower than the left histogram's peak location.",
+        "kill_threshold": 0.1,
+        "prediction": "-",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "zero difference",
+          "data": "histogram bin centers",
+          "direction": "less",
+          "statistic": "peak_location_difference"
+        }
+      },
+      "reason": null,
+      "slot": 2,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "shuffled",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "job": "37a63a1a51bbe8a9",
+      "module": "field-dyson",
+      "slot": 0,
+      "status": "unavailable_donor"
+    },
+    {
+      "arm": "shuffled",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "job": "37a63a1a51bbe8a9",
+      "module": "field-dyson",
+      "slot": 1,
+      "status": "unavailable_donor"
+    },
+    {
+      "arm": "shuffled",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "job": "37a63a1a51bbe8a9",
+      "module": "field-dyson",
+      "slot": 2,
+      "status": "unavailable_donor"
+    },
+    {
+      "arm": "null_twin",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "aee9b8f1478f3e32",
+      "module": "spectral",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The histogram of spacings is unimodal with a single interior mode.",
+        "kill_threshold": 0.5,
+        "prediction": "1",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "1",
+          "data": "histogram bin counts",
+          "direction": "equal",
+          "statistic": "number_of_interior_modes"
+        }
+      },
+      "reason": null,
+      "slot": 0,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "null_twin",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "aee9b8f1478f3e32",
+      "module": "spectral",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The distribution of spacings is right-skewed.",
+        "kill_threshold": 0.5,
+        "prediction": "positive",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "0",
+          "data": "histogram bin counts",
+          "direction": "greater",
+          "statistic": "sample_skewness"
+        }
+      },
+      "reason": null,
+      "slot": 1,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "null_twin",
+      "check": {
+        "alternatives": [
+          {
+            "alternative": "Poisson",
+            "detected": 128,
+            "lower_critical": 0.0437478501864052,
+            "module": "spectral",
+            "n": 89,
+            "null": "GUE",
+            "power": 1.0,
+            "power_interval95": [
+              0.970863,
+              1.0
+            ],
+            "size": 0.0234375,
+            "statistic": "gaudin_ks",
+            "upper_critical": 0.1091673353210032,
+            "upper_critical95": 0.1001547119626825,
+            "upper_detected": 128,
+            "upper_power": 1.0,
+            "upper_power_interval95": [
+              0.970863,
+              1.0
+            ],
+            "upper_size": 0.0390625
+          },
+          {
+            "alternative": "native",
+            "detected": 10,
+            "lower_critical": 0.0437478501864052,
+            "module": "spectral",
+            "n": 89,
+            "null": "GUE",
+            "power": 0.078125,
+            "power_interval95": [
+              0.042987,
+              0.137847
+            ],
+            "size": 0.0234375,
+            "statistic": "gaudin_ks",
+            "upper_critical": 0.1091673353210032,
+            "upper_critical95": 0.1001547119626825,
+            "upper_detected": 12,
+            "upper_power": 0.09375,
+            "upper_power_interval95": [
+              0.054444,
+              0.15673
+            ],
+            "upper_size": 0.0390625
+          }
+        ],
+        "data_sha256": "1c492bd4071a53fcc40b26fc1f5833d70e5690515c6e551409111b8642438464",
+        "inferential": false,
+        "label": "descriptive",
+        "lifecycle": "preliminary",
+        "n": 89,
+        "power": 0.09375,
+        "power_complete": true,
+        "power_study_sha256": "ec42c799fa22224cfa0943778138754da8b5253d5f7998b16b39c24cfb29f98b",
+        "reason": "Minimum upper-tail power across both pinned alternatives at alpha .05; no replication or survival inference.",
+        "statistic": "gaudin_ks",
+        "status": "underpowered",
+        "value": 0.05918150968283986
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "aee9b8f1478f3e32",
+      "module": "spectral",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The spacings follow a Gaudin distribution (GUE).",
+        "kill_threshold": 0.1,
+        "prediction": "greater",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Gaudin GUE",
+          "data": "spacing values",
+          "direction": "greater",
+          "statistic": "gaudin_ks"
+        }
+      },
+      "reason": null,
+      "slot": 2,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "shuffled",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "job": "09bbcf9e1a9ef681",
+      "module": "spectral",
+      "slot": 0,
+      "status": "unavailable_donor"
+    },
+    {
+      "arm": "shuffled",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "job": "09bbcf9e1a9ef681",
+      "module": "spectral",
+      "slot": 1,
+      "status": "unavailable_donor"
+    },
+    {
+      "arm": "shuffled",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "job": "09bbcf9e1a9ef681",
+      "module": "spectral",
+      "slot": 2,
+      "status": "unavailable_donor"
+    },
+    {
+      "arm": "real",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "7775256302a44f18",
+      "module": "spectral",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The visible histogram is unimodal with a single peak near the center of the occupied range.",
+        "kill_threshold": 0.5,
+        "prediction": "1",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "1",
+          "data": "histogram bin heights",
+          "direction": "equal",
+          "statistic": "number_of_local_maxima"
+        }
+      },
+      "reason": null,
+      "slot": 0,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "real",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "7775256302a44f18",
+      "module": "spectral",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The visible histogram is right-skewed, with a longer tail on the right side.",
+        "kill_threshold": 0.5,
+        "prediction": "positive",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "0",
+          "data": "histogram bin heights",
+          "direction": "greater",
+          "statistic": "skewness"
+        }
+      },
+      "reason": null,
+      "slot": 1,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "real",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "7775256302a44f18",
+      "module": "spectral",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The visible histogram has a central peak flanked by lower bars on both sides.",
+        "kill_threshold": 0.5,
+        "prediction": "positive",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "0",
+          "data": "histogram bin heights",
+          "direction": "greater",
+          "statistic": "peak_prominence"
+        }
+      },
+      "reason": null,
+      "slot": 2,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "null_twin",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "210903571ae0f66f",
+      "module": "space-08",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The projected point cloud forms a self-intersecting surface with a waist at the center.",
+        "kill_threshold": 0.5,
+        "prediction": "ratio > 1.5",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "uniform density",
+          "data": "point coordinates",
+          "direction": "greater",
+          "statistic": "radial_density_ratio"
+        }
+      },
+      "reason": null,
+      "slot": 0,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "null_twin",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "210903571ae0f66f",
+      "module": "space-08",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The point distribution is consistent with eigenvalues of a random matrix ensemble.",
+        "kill_threshold": 0.1,
+        "prediction": "KS < 0.05",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Gaudin GUE",
+          "data": "point spacings",
+          "direction": "greater",
+          "statistic": "gaudin_ks"
+        }
+      },
+      "reason": null,
+      "slot": 1,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "null_twin",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "210903571ae0f66f",
+      "module": "space-08",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The shape has approximate rotational symmetry about the vertical axis.",
+        "kill_threshold": 0.2,
+        "prediction": "variance < 0.1",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "zero variance",
+          "data": "point angles",
+          "direction": "greater",
+          "statistic": "angular_variance"
+        }
+      },
+      "reason": null,
+      "slot": 2,
+      "status": "ungrounded"
+    },
+    {
+      "arm": "real",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "69f0e3feb043ead0",
+      "module": "space-08",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The point cloud's radial density near the waist follows a Gaudin-measure spacing distribution.",
+        "kill_threshold": 0.15,
+        "prediction": 0.05,
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Gaudin GUE",
+          "data": "radial spacings of points within the central waist region",
+          "direction": "greater",
+          "statistic": "gaudin_ks"
+        }
+      },
+      "reason": "bad_type",
+      "slot": 0,
+      "status": "malformed"
+    },
+    {
+      "arm": "real",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "69f0e3feb043ead0",
+      "module": "space-08",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The point cloud exhibits approximate rotational symmetry about the vertical axis.",
+        "kill_threshold": 0.2,
+        "prediction": 0.1,
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "uniform distribution",
+          "data": "azimuthal angles of points projected onto the horizontal plane",
+          "direction": "greater",
+          "statistic": "angular_uniformity_chi2"
+        }
+      },
+      "reason": "bad_type",
+      "slot": 1,
+      "status": "malformed"
+    },
+    {
+      "arm": "real",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "69f0e3feb043ead0",
+      "module": "space-08",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The point cloud's vertical density profile is bimodal with a central minimum.",
+        "kill_threshold": 0.1,
+        "prediction": 0.05,
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "unimodal distribution",
+          "data": "vertical coordinates of points",
+          "direction": "greater",
+          "statistic": "dip_test"
+        }
+      },
+      "reason": "bad_type",
+      "slot": 2,
+      "status": "malformed"
+    },
+    {
+      "arm": "shuffled",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "job": "137b57a186276cfe",
+      "module": "polar-ulam",
+      "slot": 0,
+      "status": "unavailable_donor"
+    },
+    {
+      "arm": "shuffled",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "job": "137b57a186276cfe",
+      "module": "polar-ulam",
+      "slot": 1,
+      "status": "unavailable_donor"
+    },
+    {
+      "arm": "shuffled",
+      "check": {
+        "inferential": false,
+        "status": "unavailable"
+      },
+      "job": "137b57a186276cfe",
+      "module": "polar-ulam",
+      "slot": 2,
+      "status": "unavailable_donor"
+    },
+    {
+      "arm": "real",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": true,
+      "grounded": false,
+      "job": "57ca345effa88400",
+      "module": "polar-ulam",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The point set in the central square region exhibits nearest-neighbor spacing statistics consistent with a Poisson process.",
+        "kill_threshold": 0.1,
+        "prediction": "KS p-value > 0.05",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Poisson exponential distribution",
+          "data": "nearest-neighbor distances of points in the central square",
+          "direction": "two-sided",
+          "statistic": "nearest_neighbor_spacing_ks"
+        }
+      },
+      "reason": null,
+      "slot": 0,
+      "status": "contradictory"
+    },
+    {
+      "arm": "real",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": true,
+      "grounded": false,
+      "job": "57ca345effa88400",
+      "module": "polar-ulam",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The point set in the central square region exhibits nearest-neighbor spacing statistics consistent with the Gaussian Unitary Ensemble (GUE).",
+        "kill_threshold": 0.05,
+        "prediction": "KS statistic < 0.05",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Gaudin GUE",
+          "data": "nearest-neighbor spacings of points in the central square",
+          "direction": "greater",
+          "statistic": "gaudin_ks"
+        }
+      },
+      "reason": null,
+      "slot": 1,
+      "status": "contradictory"
+    },
+    {
+      "arm": "real",
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "citations": [],
+      "contradictory": false,
+      "grounded": false,
+      "job": "57ca345effa88400",
+      "module": "polar-ulam",
+      "observations_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "proposal": {
+        "claim": "The point set in the central square region exhibits spatial clustering stronger than a homogeneous Poisson process at small scales.",
+        "kill_threshold": 0.2,
+        "prediction": "g(r) > 1 for r < 0.02",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "Poisson process pair correlation g(r)=1",
+          "data": "pairwise distances of points in the central square",
+          "direction": "greater",
+          "statistic": "pair_correlation_function"
+        }
+      },
+      "reason": null,
+      "slot": 2,
+      "status": "ungrounded"
+    }
+  ],
+  "sources": {
+    "docs/mve/reviews/wo6-live/attempts/210903571ae0f66f/2/response.raw": "940ae102d78ef67e494a2ba0c69c86a1bb1541c2e7b97e5a2cda39cfe6f0b0fb",
+    "docs/mve/reviews/wo6-live/attempts/469861a3a73becca/2/response.raw": "cc2e9acaaf180e274caea330764728d88dae5c017fd047b12e7929cccc0c545d",
+    "docs/mve/reviews/wo6-live/attempts/518ef22877fb0da2/2/response.raw": "bc30ec8fd4604804622921fcea69e331a82884e499dff7e0a7540de3bbb70fd7",
+    "docs/mve/reviews/wo6-live/attempts/57ca345effa88400/2/response.raw": "6b4d2a4bb30c4445bd926ce5b9c15a3b1d2cdfebdd7abc4c6f376f1caea62e40",
+    "docs/mve/reviews/wo6-live/attempts/69f0e3feb043ead0/2/response.raw": "4fad29ba3752e650d688721d6ea7d7dccdc83fe562ad552ed9379eb62d6779ac",
+    "docs/mve/reviews/wo6-live/attempts/7775256302a44f18/2/response.raw": "e0ab5d605ec4a83a75af4b4b13984d1db2cdc89a03c1f1dded3d5451f9a1d373",
+    "docs/mve/reviews/wo6-live/attempts/aee9b8f1478f3e32/2/response.raw": "3a84bf9d0728360e1631438aab0e3d0852f4cf4b87bfb030b3febb9ce25e66d7",
+    "docs/mve/reviews/wo6-live/attempts/d98cb0eb7218ffa2/2/response.raw": "30210731532a8bdc8c482d1f0a0bedaea1212c2adae573303f2b680050f5fe69"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schema": "mve-observation-vocabulary-v2",
+  "feature_tags": ["histogram_peak", "histogram_tail", "spacing_gap", "point_cluster", "void", "symmetry_axis", "spiral_arm", "curve_shape", "density_gradient", "intersection"],
+  "regions": ["whole", "top_left", "top_center", "top_right", "middle_left", "middle_center", "middle_right", "bottom_left", "bottom_center", "bottom_right"],
+  "exclusive_pairs": [["gue", "poisson"]],
+  "baseline_aliases": {"gaudin gue": "gue", "gue": "gue", "gaussian unitary ensemble": "gue", "poisson": "poisson", "poisson exponential distribution": "poisson", "exponential": "poisson", "poisson process": "poisson"},
+  "statistic_aliases": {"nearest_neighbor_spacing_ks": "poisson_ks", "exponential_ks": "poisson_ks"},
+  "spacing_statistics": ["gaudin_ks", "poisson_ks"],
+  "data_aliases": {"nearest-neighbor distances of points in the central square": "central_square_nn", "nearest-neighbor spacings of points in the central square": "central_square_nn", "spacing values": "source_gaps", "source gaps": "source_gaps"},
+  "semantics": "v2 baseline asserts fit to the named law for the declared data. Text alias matching is finite and pinned; arbitrary paraphrases are not resolved. Historical claims are audited only where an explicit alias exists."
+}

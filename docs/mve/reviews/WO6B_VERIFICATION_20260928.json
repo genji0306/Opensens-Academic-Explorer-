@@ -1,0 +1,89 @@
+{
+  "focused_tests": {
+    "coverage_by_file": {
+      "mve/observer/grounded.py": 98.246,
+      "mve/observer/native_nulls.py": 100.0,
+      "mve/observer/pilot.py": 99.078,
+      "mve/observer/pilot_b.py": 96.059,
+      "mve/observer/pilot_b_accounting.py": 100.0,
+      "mve/observer/pilot_transport.py": 100.0,
+      "mve/observer/power.py": 98.649,
+      "mve/observer/refusals.py": 100.0,
+      "mve/observer/rescore.py": 96.875,
+      "mve/observer/storage.py": 100.0
+    },
+    "coverage_percent": 98.46678023850085,
+    "passed": 92,
+    "seconds": 30.41
+  },
+  "full_tests": {
+    "failed": 7,
+    "failures": [
+      "tests/mve/test_formalizer_g3.py::test_real_lean_repairs_statement_without_proof",
+      "tests/mve/test_formalizer_runtime.py::test_native_targets_compile_without_proofs",
+      "tests/mve/test_formalizer_runtime.py::test_typecheck_record_keeps_proof_separate",
+      "tests/mve/test_formalizer_runtime.py::test_real_lean_typechecks_from_relocated_project",
+      "tests/mve/test_isolation.py::test_real_subprocess_cannot_read_gold_or_connect",
+      "tests/mve/test_isolation.py::test_public_staging_rejects_links_and_worker_timeout",
+      "tests/mve/test_open_review_followups.py::test_worker_created_runtime_symlink_cannot_read_private_gold"
+    ],
+    "passed": 1088,
+    "reason": "OS denies nested sandbox-exec: sandbox_apply: Operation not permitted",
+    "seconds": 118.95,
+    "skipped": 4
+  },
+  "generated_bytes": 10345300,
+  "hosted_calls": 0,
+  "owner_approval": null,
+  "power_json_sha256": "83fb7e7b0642ee53392eeb2ae029dd1e70726f7d19a55215022ccfe1065765ae",
+  "power_repeat_runtime_seconds": 39.34,
+  "power_reproduced_byte_exact": true,
+  "power_runtime_seconds": 43.78,
+  "registry_copy": {
+    "archive_bytes": 20480,
+    "archive_sha256": "e7d27f245d71f28091a00282d01545bb7d2235ab4db2d33fb51e1f423c949f93",
+    "index_tree": "1d01cca890ba909a04243b80e1f43eca04b8b38e",
+    "pathspecs": [
+      "mve/registry"
+    ]
+  },
+  "report_sha256": "a9c3c1363115bc178115898b976b38a19fc2e46e7c6d4e3dbe947bbd6df73022",
+  "rescore_sha256": "4b9bfc33bd76b0d99b39581e64029fb0f6b393f71c8fa74da1d520124c66a7a0",
+  "schema": "mve-wo6b-verification-v1",
+  "source_copy": {
+    "archive_bytes": 2263040,
+    "archive_sha256": "e42fb518e66eccb4a09c69618b4a4f116bfb6580f8556713346a77f989bbe49a",
+    "hosted_calls": 0,
+    "index_tree": "1d01cca890ba909a04243b80e1f43eca04b8b38e",
+    "pathspecs": [
+      "mve/patch.py",
+      "mve/predicates.py",
+      "mve/semantics.py",
+      "mve/budget.py",
+      "mve/graph.py",
+      "mve/formal.py",
+      "mve/__init__.py",
+      "mve/money.py",
+      "mve/operations.py",
+      "mve/exact.py",
+      "mve/degeneracy.py",
+      "mve/pricing.py",
+      "mve/record.py",
+      "mve/errors.py",
+      "mve/identity.py",
+      "mve/validation.py",
+      "mve/DEPS.lock",
+      "mve/observer",
+      "mve/preflight",
+      "mve/reporting",
+      "schemas",
+      "docs/mve/reviews/wo6-live",
+      "docs/mve/reviews/wp0b-live",
+      "tests/mve/observer/test_pilot.py",
+      "tests/mve/observer/test_wo6b.py",
+      "tests/mve/observer/test_observer_run.py",
+      "tests/mve/observer/test_outbox.py"
+    ],
+    "schema": "mve-wo6b-source-copy-v1"
+  }
+}

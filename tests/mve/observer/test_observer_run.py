@@ -299,7 +299,7 @@ def test_disk_drop_aborts_before_dispatch(tmp_path, monkeypatch):
 
     def drop(generated, incoming=0):
         if incoming == 6 * 1024**2:
-            raise storage.DiskLimitError("less than 5 GiB free; abort")
+            raise storage.DiskLimitError("disk_free")
         return real(generated, incoming)
 
     monkeypatch.setattr(storage, "disk_guard", drop)

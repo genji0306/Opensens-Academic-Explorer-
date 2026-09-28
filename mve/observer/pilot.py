@@ -1,6 +1,5 @@
 """Offline-buildable WO-6 activation. --live is exclusively for the reviewed operator."""
 
-import argparse
 from collections import Counter
 from datetime import datetime, timezone
 import hashlib
@@ -13,7 +12,8 @@ from mve.errors import RecordError
 from mve.money import BudgetError
 from mve.observer import storage, pilot_inputs as inputs, pilot_transport as transport
 from mve.observer import pilot_accounting as accounting, pilot_cards as cards
-from mve.observer.design import require, ARMS
+from mve.observer.design import ARMS
+from mve.observer.refusals import Refusal, require, boundary, guarded, Parser
 from mve.observer.metrics import sign_flip, interval
 from mve.preflight.probe import utc_now, usd, verified_ceiling
 from mve.preflight.probe_live import price_table
@@ -22,12 +22,10 @@ ROOT = Path(__file__).resolve().parents[2]
 BASE = storage.GENERATED / "wo6-pilot"
 
 
-def require_review(owner_approval, commit):
+def require_review(owner_approval, commit, *, expected_approval="2026-09-28"):
+    require(owner_approval == expected_approval, "owner_approval")
     require(
-        owner_approval == "2026-09-28"
-        and isinstance(commit, str)
-        and re.fullmatch("[0-9a-f]{40}", commit),
-        "live requires owner approval 2026-09-28 and full Opus-reviewed HEAD",
+        isinstance(commit, str) and re.fullmatch("[0-9a-f]{40}", commit), "review_head"
     )
     try:
         head = (
@@ -49,20 +47,19 @@ def require_review(owner_approval, commit):
             timeout=10,
         ).stdout
     except Exception:
-        raise ValueError("cannot verify reviewed HEAD") from None
-    require(
-        head == commit and not dirty,
-        "reviewed commit must equal HEAD and tree must be clean",
-    )
+        raise Refusal("review_head") from None
+    require(head == commit, "review_head")
+    require(not dirty, "clean_tree")
 
 
+@guarded("source_pin")
 def verify_pins(plan):
     packet = json.loads((ROOT / "mve/DEPS.lock").read_text())["packets"]["WO-6"]
-    require(packet["design_sha256"] == plan["sha256"], "WO-6 design pin mismatch")
+    require(packet["design_sha256"] == plan["sha256"], "design_pin")
     for path, sha in packet["files"].items():
         require(
             hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == sha,
-            "WO-6 source pin mismatch",
+            "source_pin",
         )
 
 
@@ -274,25 +271,29 @@ def markdown(result):
     return "\n".join(lines)
 
 
+@guarded("internal_error")
 def execute(*, live, owner_approval=None, reviewed_head=None, clock=utc_now):
     if live:
         require_review(owner_approval, reviewed_head)
-    plan = inputs.load_plan()
+    else:
+        require(owner_approval is None and reviewed_head is None, "arguments")
+    with boundary("source_pin"):
+        plan = inputs.load_plan()
     verify_pins(plan)
     relative = BASE / ("live" if live else "dry-run")
     with storage.lock():
         require(
             not storage.local(relative).exists(),
-            "immutable pilot run already exists; no retry or reset",
+            "run_exists",
         )
-        checked_time(clock())
-        reconciled = accounting.reconcile_campaign()
+        with boundary("peak_window"):
+            checked_time(clock())
+        with boundary("reconciliation"):
+            reconciled = accounting.reconcile_campaign()
         worst = plan["worst_case_micro_usd"]
+        require(plan["planned_calls"] <= transport.CALL_CAP, "call_cap")
         require(
-            plan["planned_calls"] <= transport.CALL_CAP
-            and worst <= 250000
-            and worst <= reconciled["remaining_micro_usd"],
-            "pilot budget or call cap exceeded",
+            worst <= 250000 and worst <= reconciled["remaining_micro_usd"], "budget_cap"
         )
         # Admit all raw prefixes, request images and reports before the first call.
         storage.disk_guard(
@@ -307,18 +308,21 @@ def execute(*, live, owner_approval=None, reviewed_head=None, clock=utc_now):
                 "mode": "live" if live else "dry_run",
             },
         )
-        book = BudgetLedger(
-            storage.local(relative / "pilot.sqlite"),
-            aggregate=usd(reconciled["remaining_micro_usd"]),
-            p1="0.25",
-            price_table=price_table(),
-        )
-        png = inputs.image_bytes(next(iter(plan["images"])))
-        _, ceiling = verified_ceiling(book, transport.request(png, cards.CARD_PROMPT))
-        require(
-            ceiling * plan["planned_calls"] == worst,
-            "reservation differs from frozen plan",
-        )
+        with boundary("budget_cap"):
+            book = BudgetLedger(
+                storage.local(relative / "pilot.sqlite"),
+                aggregate=usd(reconciled["remaining_micro_usd"]),
+                p1="0.25",
+                price_table=price_table(),
+            )
+            png = inputs.image_bytes(next(iter(plan["images"])))
+            _, ceiling = verified_ceiling(
+                book, transport.request(png, cards.CARD_PROMPT)
+            )
+            require(
+                ceiling * plan["planned_calls"] == worst,
+                "budget_cap",
+            )
         rows, agreements = [], {}
         for job in plan["jobs"]:
             calls = []
@@ -339,7 +343,7 @@ def execute(*, live, owner_approval=None, reviewed_head=None, clock=utc_now):
                         clock=clock,
                         live=live,
                     )
-                except storage.DiskLimitError:
+                except Refusal:
                     raise
                 except (BudgetError, ValueError, OSError):
                     # No retry or replacement slot. Exception text can contain paths: never persist it.
@@ -387,7 +391,7 @@ def execute(*, live, owner_approval=None, reviewed_head=None, clock=utc_now):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description=__doc__)
+    ap = Parser(description=__doc__)
     mode = ap.add_mutually_exclusive_group(required=True)
     mode.add_argument("--live", action="store_true")
     mode.add_argument("--dry-run", action="store_true")
@@ -404,17 +408,14 @@ def main(argv=None):
         else:
             require(
                 not args.owner_approval and not args.reviewed_by_opus,
-                "approval flags require --live",
+                "arguments",
             )
             result = execute(
                 live=False, clock=lambda: datetime(2026, 9, 28, 12, tzinfo=timezone.utc)
             )
-    except (ValueError, BudgetError, OSError):
-        # No dynamic exception text or traceback from the credential/transport path.
-        ap.exit(
-            2,
-            "WO-6 refused: review/clean-tree, pins, time, budget, disk or immutable-run precondition failed.\n",
-        )
+    except Exception as exc:
+        label = exc.label if isinstance(exc, Refusal) else "internal_error"
+        ap.exit(2, "WO-6 refused: " + label + "\n")
     print(
         json.dumps(
             {
