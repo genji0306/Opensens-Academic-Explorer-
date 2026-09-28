@@ -1,0 +1,64 @@
+{
+  "alpha": 0.05,
+  "coordinates": "Ulam ulamCoord(n) divided by fixed ring radius. Sphere toDisplay(conePoints(n)) at scale 1.1/N, camera [.55,.45,3.5], target zero, up [0,1,0], FOV42. Projected x/y in vertical image units.",
+  "data_fields": {
+    "histograms": "source_gaps",
+    "points": "display_coordinates"
+  },
+  "definitions": {
+    "density": "abs Spearman(equal-volume bin counts, x/y or distance from fixed center); 16 bins per axis; zeros retained",
+    "modality": "128-bin Gaussian KDE on fixed support; sigma6 bins, constant zero padding, peak prominence10% maximum, minimum distance12 bins",
+    "reflection": "1-total variation of histogram and fixed-axis reflection; 128 bins in 1D, 32x32 joint bins in 2D",
+    "spacing_ks": "two-sample KS of exported histogram spacings; direction from empirical CDF sign at maximum absolute difference; not a claim of stochastic dominance"
+  },
+  "exclusions": {
+    "colour_class": "Sphere classColour depends on n mod q, but no colour-class check is in this packet; force identical plain colour on all sources.",
+    "curve_shape/outline/ellipse": "prime-sphere.js guides(o,d) draws meridians, parallels and the rim curve from o/d.rates without sel.n; suppress guides in blinded redraw.",
+    "grid/axis/frame": "research.js chart line() and field-phase3-overlay.js panel strokeRect() are independent of samples; suppressed while blind; existing WO-1 text masks retained.",
+    "histogram_peak/histogram_tail": "Absolute peak location and an undefined right tail are not v3 differences; replace only well-defined peak COUNT with modality_x; no tail-region substitution.",
+    "intersection": "The Viviani crossing ray/marker and origin point are fixed guides, suppressed with guides().",
+    "panel_layout": "Dyson layout() uses only canvas dimensions; drop entire left panel; panel layout cannot be a feature.",
+    "reference_curve": "Dyson side overlay draws fixed montgomery/goePairCorrelation/wignerGUE/wignerGOE/poissonSpacing curves; line() suppressed while blind.",
+    "void/point_cluster/spiral_arm/symmetry_axis": "Broad v2 labels are ambiguous or can refer to coordinate support shared by both arms; use density/modality/joint reflection numeric checks only. Data-dependent differences in these features remain allowed."
+  },
+  "limitations": [
+    "Density uses gradient magnitude, not signed inward/outward direction.",
+    "Reflection center and KDE bandwidth fixed before scoring; no axis fitting.",
+    "Common renderer geometry is not banned if a data-dependent difference can be tested.",
+    "Checks use whole exported samples; a local feature alone cannot establish the whole-sample claim."
+  ],
+  "minimum_power": 0.8,
+  "renderer_sources": {
+    "field-dyson-math.js": "288309c4e3b097de59effedcbe8c13384eef1ceccab242242a2fec01f80b0901",
+    "field-lab.js": "5ddadaa6c29f3cd2cd59249f94a3bf0f7f7465c4a411901d75c95d8eaef993cc",
+    "field-phase3-overlay.js": "6c49599209afc2ea02e5c68d7bf3a8966b89657003ab675bc593e46e094b39fe",
+    "field-phase3.js": "dbf122bce11156b4fb6d58a953a44fc9a17e451d270c09ca4d03ea93e13f4387",
+    "geometry.js": "d23db184c41641033fa492eccb2eb52818845bf281e2ba3d423b68041e55b77d",
+    "polar.js": "ca8e5289e15da2a7a97c4eeb6cc6faaa855c61e14b6116e6a2a5c0652aa21680",
+    "prime-sphere-math.js": "78e7fec7c03d4a8bcb489724909dbf0ef08a6b7d8a2f93a8b18dc68d4e8d7f0c",
+    "prime-sphere.js": "b2021e78b7a66772ca8b06007651cadc3f4cbbe20d8583a42f718da054f6147c",
+    "research.js": "74144f93ca57322d2dcaa30e1eae46f7d91e235f274e377dc8c82aecef32e5e4",
+    "ulam-math.js": "4901f6c7324842fb9e53ca45701f5222af6530ba70b7c180491c10d345b48c97"
+  },
+  "schema": "mve-comparative-vocabulary-v3",
+  "support": {
+    "histograms": [
+      0,
+      3
+    ],
+    "points": [
+      -1,
+      1
+    ]
+  },
+  "tags": [
+    "density_linear_x",
+    "density_linear_y",
+    "density_radial",
+    "modality_x",
+    "modality_y",
+    "reflection_x",
+    "reflection_y",
+    "spacing_ks"
+  ]
+}

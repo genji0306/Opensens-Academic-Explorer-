@@ -1,0 +1,107 @@
+{
+  "nulls": [
+    {
+      "data_sha256": "cf6f234330e607a54f02fc76279ff37ded10c9f3aab3444d14ff6751bd417d48",
+      "id": "spectral-null-0",
+      "interval": null,
+      "module": "spectral",
+      "population": "simulation",
+      "role": "development",
+      "seed": 63000000
+    },
+    {
+      "data_sha256": "9e21a248ed6f76dfdeb92157af398ccfbf7340fcf119ffb2f51958d39657ecee",
+      "id": "spectral-null-1",
+      "interval": null,
+      "module": "spectral",
+      "population": "simulation",
+      "role": "development",
+      "seed": 63000001
+    },
+    {
+      "data_sha256": "38608c2a41c0e835527cc454b46ffa59217307f2e02cf9b76e7fa2b05ee6b785",
+      "id": "field-dyson-null-0",
+      "interval": null,
+      "module": "field-dyson",
+      "population": "simulation",
+      "role": "development",
+      "seed": 63000002
+    },
+    {
+      "data_sha256": "5d908f5fe0681b52ae7963cd0a8e20359c084355b1651f299dbe352c48950721",
+      "id": "field-dyson-null-1",
+      "interval": null,
+      "module": "field-dyson",
+      "population": "simulation",
+      "role": "development",
+      "seed": 63000003
+    },
+    {
+      "data_sha256": "dde544f9aa86dd1fa0ba10762eff1b3fc40d410035faee57bd45462e5c81e3ec",
+      "id": "polar-ulam-null-0",
+      "interval": [
+        1,
+        30001
+      ],
+      "module": "polar-ulam",
+      "population": "integer-index",
+      "role": "development",
+      "seed": 63000004
+    },
+    {
+      "data_sha256": "3657f2253804d549e5b352a8bd4628b767026d618a0a50d37001571d3e6e44ed",
+      "id": "polar-ulam-null-1",
+      "interval": [
+        1,
+        30001
+      ],
+      "module": "polar-ulam",
+      "population": "integer-index",
+      "role": "development",
+      "seed": 63000005
+    },
+    {
+      "data_sha256": "d12063188be28aa573aac6224bb02d0c0e453991c27dc332bedf7042678b2fa2",
+      "id": "space-08-null-0",
+      "interval": [
+        1,
+        100001
+      ],
+      "module": "space-08",
+      "population": "integer-index",
+      "role": "development",
+      "seed": 63000006
+    },
+    {
+      "data_sha256": "9208e8d6b2596729be1f79afc89a7f47460090013e94c3a833a038ac13c618c9",
+      "id": "space-08-null-1",
+      "interval": [
+        1,
+        100001
+      ],
+      "module": "space-08",
+      "population": "integer-index",
+      "role": "development",
+      "seed": 63000007
+    }
+  ],
+  "order_seed": 63001000,
+  "original_snapshots": [
+    "e7e62f118767a71e4f9f5667",
+    "ad3e2d070bf2281c2f4e5776",
+    "72a4faadef98a29892dbaabf",
+    "4fa1ba104ef92cc9974a34d0",
+    "26273407940f612fa020ca13",
+    "f3252b4209f5b923c2742faf",
+    "c850cba22bfce83c435c9b3b",
+    "f65fc613988149f3756457a3"
+  ],
+  "prospective_access": false,
+  "purpose": "development only; excluded from GO2",
+  "schema": "mve-wo6c-development-v1",
+  "sha256": "81a843b789c92983a1d574e3403a40b1edff9ad808addec854daf3b9b887c175",
+  "study_seeds": [
+    63100000,
+    63200000
+  ]
+}

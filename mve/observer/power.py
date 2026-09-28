@@ -249,14 +249,31 @@ def check(proposal, job, study_result=None):
     )
 
 
+# WO-6c is isolated from prospective_study: only WO-1 development data and
+# registered new native draws are consumed here.
+def comparative_study(*, repeats=32, modules=inputs.MODULES):
+    from mve.observer import feature_power as fp
+
+    return fp.study(repeats=repeats, modules=modules)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=OUTPUT)
     parser.add_argument("--prospective", action="store_true")
+    parser.add_argument("--comparative", action="store_true")
     args = parser.parse_args(argv)
-    if args.prospective and args.output == OUTPUT:
+    if (args.prospective or args.comparative) and args.output == OUTPUT:
         parser.error("prospective study requires an explicit output path")
-    result = prospective_study() if args.prospective else study()
+    if args.prospective and args.comparative:
+        parser.error("choose one study")
+    result = (
+        comparative_study()
+        if args.comparative
+        else prospective_study()
+        if args.prospective
+        else study()
+    )
     args.output.write_text(json.dumps(result, sort_keys=True, indent=2) + "\n")
     print(
         json.dumps(

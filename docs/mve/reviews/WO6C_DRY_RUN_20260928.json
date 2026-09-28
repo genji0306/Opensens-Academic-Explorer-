@@ -1,0 +1,1460 @@
+{
+  "GO2": "not established; descriptive only",
+  "budget": {
+    "actual_new_spend_micro_usd": 0,
+    "aggregate_micro_usd": 24259,
+    "pilot_micro_usd": 7920,
+    "prior_micro_usd": 16339
+  },
+  "by_pair_type": {
+    "null-null": {
+      "claims": 12,
+      "false_difference_rate": 1.0,
+      "non-separating": 9,
+      "separating": 0,
+      "separating_false_difference_rate": 0.0,
+      "slots": 12,
+      "underpowered": 3,
+      "ungrounded": 0,
+      "wrong-side": 0
+    },
+    "real-null": {
+      "claims": 12,
+      "non-separating": 9,
+      "separating": 0,
+      "slots": 12,
+      "underpowered": 3,
+      "ungrounded": 0,
+      "wrong-side": 0
+    }
+  },
+  "calls": 24,
+  "hosted_calls": 0,
+  "limitations": [
+    "Dry-run uses WO-1 image proxies for uncaptured new draws; numeric checks use registered numbers. No perception evidence.",
+    "Null-null false-difference numerator counts every proposed textual claim, including malformed cards, whether check agrees or not; denominator all 12 allocated slots."
+  ],
+  "mode": "dry_run",
+  "planned_calls": 24,
+  "schema": "mve-wo6c-report-v3",
+  "slots": [
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "source_gaps",
+          "data_sha256": "c60d62f3a2652b37eeb151fe505e34c18cf1ed20fcd961d6685692b27f1f2c69",
+          "detected": false,
+          "inferential": false,
+          "n_a": 89,
+          "n_b": 89,
+          "p_value": 1.0,
+          "power": 0.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "330aae70469b41b6",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "source_gaps",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "4de6b0eef29ace1e00358b11cd07475e2b26646f659b35524a61b43ec745dc0c",
+        "status": "underpowered"
+      },
+      "claimed_difference": true,
+      "job": "330aae70469b41b6",
+      "module": "spectral",
+      "pair_type": "real-null",
+      "reason": null,
+      "slot": 0,
+      "status": "underpowered"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "source_gaps",
+          "data_sha256": "c60d62f3a2652b37eeb151fe505e34c18cf1ed20fcd961d6685692b27f1f2c69",
+          "detected": false,
+          "inferential": false,
+          "n_a": 89,
+          "n_b": 89,
+          "p_value": 1.0,
+          "power": 0.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "330aae70469b41b6",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "source_gaps",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "4de6b0eef29ace1e00358b11cd07475e2b26646f659b35524a61b43ec745dc0c",
+        "status": "underpowered"
+      },
+      "claimed_difference": true,
+      "job": "330aae70469b41b6",
+      "module": "spectral",
+      "pair_type": "real-null",
+      "reason": null,
+      "slot": 1,
+      "status": "underpowered"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "source_gaps",
+          "data_sha256": "c60d62f3a2652b37eeb151fe505e34c18cf1ed20fcd961d6685692b27f1f2c69",
+          "detected": false,
+          "inferential": false,
+          "n_a": 89,
+          "n_b": 89,
+          "p_value": 1.0,
+          "power": 0.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "330aae70469b41b6",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "source_gaps",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "4de6b0eef29ace1e00358b11cd07475e2b26646f659b35524a61b43ec745dc0c",
+        "status": "underpowered"
+      },
+      "claimed_difference": true,
+      "job": "330aae70469b41b6",
+      "module": "spectral",
+      "pair_type": "real-null",
+      "reason": null,
+      "slot": 2,
+      "status": "underpowered"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "source_gaps",
+          "data_sha256": "85d225cc556d467bcfc4e666e7deaf473f0f312f1fa3c2afb13e9d72cf0045a1",
+          "detected": false,
+          "inferential": false,
+          "n_a": 89,
+          "n_b": 89,
+          "p_value": 1.0,
+          "power": 0.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "a74bf7236fa76271",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "source_gaps",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "3e02a51bfc2f0eded7cace73901f412b9d065a3349b9f6e20e8413862436a7f5",
+        "status": "underpowered"
+      },
+      "claimed_difference": true,
+      "job": "a74bf7236fa76271",
+      "module": "spectral",
+      "pair_type": "null-null",
+      "reason": null,
+      "slot": 0,
+      "status": "underpowered"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "source_gaps",
+          "data_sha256": "85d225cc556d467bcfc4e666e7deaf473f0f312f1fa3c2afb13e9d72cf0045a1",
+          "detected": false,
+          "inferential": false,
+          "n_a": 89,
+          "n_b": 89,
+          "p_value": 1.0,
+          "power": 0.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "a74bf7236fa76271",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "source_gaps",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "3e02a51bfc2f0eded7cace73901f412b9d065a3349b9f6e20e8413862436a7f5",
+        "status": "underpowered"
+      },
+      "claimed_difference": true,
+      "job": "a74bf7236fa76271",
+      "module": "spectral",
+      "pair_type": "null-null",
+      "reason": null,
+      "slot": 1,
+      "status": "underpowered"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "source_gaps",
+          "data_sha256": "85d225cc556d467bcfc4e666e7deaf473f0f312f1fa3c2afb13e9d72cf0045a1",
+          "detected": false,
+          "inferential": false,
+          "n_a": 89,
+          "n_b": 89,
+          "p_value": 1.0,
+          "power": 0.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "a74bf7236fa76271",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "source_gaps",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "3e02a51bfc2f0eded7cace73901f412b9d065a3349b9f6e20e8413862436a7f5",
+        "status": "underpowered"
+      },
+      "claimed_difference": true,
+      "job": "a74bf7236fa76271",
+      "module": "spectral",
+      "pair_type": "null-null",
+      "reason": null,
+      "slot": 2,
+      "status": "underpowered"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "source_gaps",
+          "data_sha256": "f6be060639a14e93bd53e55711be053e537084d3d3427c560559660a90a9ba31",
+          "detected": false,
+          "inferential": false,
+          "n_a": 952,
+          "n_b": 999,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "e9cc2c0e538237c5",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "source_gaps",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "dd854a770598e4dbb23c3004daab7b336254fac4a4a49bf3c24f5a2f26c405f4",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "e9cc2c0e538237c5",
+      "module": "field-dyson",
+      "pair_type": "real-null",
+      "reason": null,
+      "slot": 0,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "source_gaps",
+          "data_sha256": "f6be060639a14e93bd53e55711be053e537084d3d3427c560559660a90a9ba31",
+          "detected": false,
+          "inferential": false,
+          "n_a": 952,
+          "n_b": 999,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "e9cc2c0e538237c5",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "source_gaps",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "dd854a770598e4dbb23c3004daab7b336254fac4a4a49bf3c24f5a2f26c405f4",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "e9cc2c0e538237c5",
+      "module": "field-dyson",
+      "pair_type": "real-null",
+      "reason": null,
+      "slot": 1,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "source_gaps",
+          "data_sha256": "f6be060639a14e93bd53e55711be053e537084d3d3427c560559660a90a9ba31",
+          "detected": false,
+          "inferential": false,
+          "n_a": 952,
+          "n_b": 999,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "e9cc2c0e538237c5",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "source_gaps",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "dd854a770598e4dbb23c3004daab7b336254fac4a4a49bf3c24f5a2f26c405f4",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "e9cc2c0e538237c5",
+      "module": "field-dyson",
+      "pair_type": "real-null",
+      "reason": null,
+      "slot": 2,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "source_gaps",
+          "data_sha256": "be9e6c3fa02e341218b01beb5efe191ad65db6579ef49e20e16d749f1f18e350",
+          "detected": false,
+          "inferential": false,
+          "n_a": 952,
+          "n_b": 952,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "22c9de27f5834a05",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "source_gaps",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "bc07ca2e83532fea47ed62d7fa0fe0dbebed5618fb288f807b2d441d994f06ff",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "22c9de27f5834a05",
+      "module": "field-dyson",
+      "pair_type": "null-null",
+      "reason": null,
+      "slot": 0,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "source_gaps",
+          "data_sha256": "be9e6c3fa02e341218b01beb5efe191ad65db6579ef49e20e16d749f1f18e350",
+          "detected": false,
+          "inferential": false,
+          "n_a": 952,
+          "n_b": 952,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "22c9de27f5834a05",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "source_gaps",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "bc07ca2e83532fea47ed62d7fa0fe0dbebed5618fb288f807b2d441d994f06ff",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "22c9de27f5834a05",
+      "module": "field-dyson",
+      "pair_type": "null-null",
+      "reason": null,
+      "slot": 1,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "source_gaps",
+          "data_sha256": "be9e6c3fa02e341218b01beb5efe191ad65db6579ef49e20e16d749f1f18e350",
+          "detected": false,
+          "inferential": false,
+          "n_a": 952,
+          "n_b": 952,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "22c9de27f5834a05",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "source_gaps",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "bc07ca2e83532fea47ed62d7fa0fe0dbebed5618fb288f807b2d441d994f06ff",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "22c9de27f5834a05",
+      "module": "field-dyson",
+      "pair_type": "null-null",
+      "reason": null,
+      "slot": 2,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "display_coordinates",
+          "data_sha256": "ea88867a7e3c5fb4654a74627875c9fb54f3c37eef438799683e49dacb25a32d",
+          "detected": false,
+          "inferential": false,
+          "n_a": 3245,
+          "n_b": 3284,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "458243fa23853028",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "display_coordinates",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "efe7fd4f28cbedc2b649f5de7f783aa6c53e1b16205a41ce7122d7fb1035cdad",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "458243fa23853028",
+      "module": "polar-ulam",
+      "pair_type": "real-null",
+      "reason": null,
+      "slot": 0,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "display_coordinates",
+          "data_sha256": "ea88867a7e3c5fb4654a74627875c9fb54f3c37eef438799683e49dacb25a32d",
+          "detected": false,
+          "inferential": false,
+          "n_a": 3245,
+          "n_b": 3284,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "458243fa23853028",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "display_coordinates",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "efe7fd4f28cbedc2b649f5de7f783aa6c53e1b16205a41ce7122d7fb1035cdad",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "458243fa23853028",
+      "module": "polar-ulam",
+      "pair_type": "real-null",
+      "reason": null,
+      "slot": 1,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "display_coordinates",
+          "data_sha256": "ea88867a7e3c5fb4654a74627875c9fb54f3c37eef438799683e49dacb25a32d",
+          "detected": false,
+          "inferential": false,
+          "n_a": 3245,
+          "n_b": 3284,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "458243fa23853028",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "display_coordinates",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "efe7fd4f28cbedc2b649f5de7f783aa6c53e1b16205a41ce7122d7fb1035cdad",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "458243fa23853028",
+      "module": "polar-ulam",
+      "pair_type": "real-null",
+      "reason": null,
+      "slot": 2,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "display_coordinates",
+          "data_sha256": "919d8c22a94caa4bbb18d6fc3cd7cd2a1d1e271aebcdf3491ce23e4ee613db06",
+          "detected": false,
+          "inferential": false,
+          "n_a": 3282,
+          "n_b": 3282,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "002a1cc34632d49b",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "display_coordinates",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "fb108196bce053cef825177cb18b8310796a1417e998e82ec592be9e28f1661b",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "002a1cc34632d49b",
+      "module": "polar-ulam",
+      "pair_type": "null-null",
+      "reason": null,
+      "slot": 0,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "display_coordinates",
+          "data_sha256": "919d8c22a94caa4bbb18d6fc3cd7cd2a1d1e271aebcdf3491ce23e4ee613db06",
+          "detected": false,
+          "inferential": false,
+          "n_a": 3282,
+          "n_b": 3282,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "002a1cc34632d49b",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "display_coordinates",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "fb108196bce053cef825177cb18b8310796a1417e998e82ec592be9e28f1661b",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "002a1cc34632d49b",
+      "module": "polar-ulam",
+      "pair_type": "null-null",
+      "reason": null,
+      "slot": 1,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "display_coordinates",
+          "data_sha256": "919d8c22a94caa4bbb18d6fc3cd7cd2a1d1e271aebcdf3491ce23e4ee613db06",
+          "detected": false,
+          "inferential": false,
+          "n_a": 3282,
+          "n_b": 3282,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "002a1cc34632d49b",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "display_coordinates",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "fb108196bce053cef825177cb18b8310796a1417e998e82ec592be9e28f1661b",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "002a1cc34632d49b",
+      "module": "polar-ulam",
+      "pair_type": "null-null",
+      "reason": null,
+      "slot": 2,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "display_coordinates",
+          "data_sha256": "e1c64f05a7cf3b3884fbefa413bdcc4781385ac55d00c3674d2554d381d4377b",
+          "detected": false,
+          "inferential": false,
+          "n_a": 9594,
+          "n_b": 9592,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "0835af3eb5d1ece2",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "display_coordinates",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "e0e40a52541bd514349b3211a8cfba976dc8a8844e374ae20403232fd75ef445",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "0835af3eb5d1ece2",
+      "module": "space-08",
+      "pair_type": "real-null",
+      "reason": null,
+      "slot": 0,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "display_coordinates",
+          "data_sha256": "e1c64f05a7cf3b3884fbefa413bdcc4781385ac55d00c3674d2554d381d4377b",
+          "detected": false,
+          "inferential": false,
+          "n_a": 9594,
+          "n_b": 9592,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "0835af3eb5d1ece2",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "display_coordinates",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "e0e40a52541bd514349b3211a8cfba976dc8a8844e374ae20403232fd75ef445",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "0835af3eb5d1ece2",
+      "module": "space-08",
+      "pair_type": "real-null",
+      "reason": null,
+      "slot": 1,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "display_coordinates",
+          "data_sha256": "e1c64f05a7cf3b3884fbefa413bdcc4781385ac55d00c3674d2554d381d4377b",
+          "detected": false,
+          "inferential": false,
+          "n_a": 9594,
+          "n_b": 9592,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "0835af3eb5d1ece2",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "display_coordinates",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "e0e40a52541bd514349b3211a8cfba976dc8a8844e374ae20403232fd75ef445",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "0835af3eb5d1ece2",
+      "module": "space-08",
+      "pair_type": "real-null",
+      "reason": null,
+      "slot": 2,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "display_coordinates",
+          "data_sha256": "c8c862bae17a39a049f7da652cb57a43dfa3613461ee6d8af246e379f4d686b4",
+          "detected": false,
+          "inferential": false,
+          "n_a": 9651,
+          "n_b": 9631,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "76bdb3d94c8a2a7c",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "display_coordinates",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "3849ce7d95dd802aaf4dbc6f9080d6a1249ee7da8b844a77e70a95ae07722287",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "76bdb3d94c8a2a7c",
+      "module": "space-08",
+      "pair_type": "null-null",
+      "reason": null,
+      "slot": 0,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "display_coordinates",
+          "data_sha256": "c8c862bae17a39a049f7da652cb57a43dfa3613461ee6d8af246e379f4d686b4",
+          "detected": false,
+          "inferential": false,
+          "n_a": 9651,
+          "n_b": 9631,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "76bdb3d94c8a2a7c",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "display_coordinates",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "3849ce7d95dd802aaf4dbc6f9080d6a1249ee7da8b844a77e70a95ae07722287",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "76bdb3d94c8a2a7c",
+      "module": "space-08",
+      "pair_type": "null-null",
+      "reason": null,
+      "slot": 1,
+      "status": "non-separating"
+    },
+    {
+      "card": {
+        "check": {
+          "alpha": 0.05,
+          "data": "display_coordinates",
+          "data_sha256": "c8c862bae17a39a049f7da652cb57a43dfa3613461ee6d8af246e379f4d686b4",
+          "detected": false,
+          "inferential": false,
+          "n_a": 9651,
+          "n_b": 9631,
+          "p_value": 1.0,
+          "power": 1.0,
+          "power_study_sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8",
+          "sample": "two",
+          "side": null,
+          "status": "checked",
+          "tag": "modality_x",
+          "value": 0.0
+        },
+        "inferential": false,
+        "job": "76bdb3d94c8a2a7c",
+        "lifecycle": "preliminary",
+        "observations": [
+          {
+            "feature_tag": "modality_x",
+            "id": "p0:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          },
+          {
+            "feature_tag": "modality_x",
+            "id": "p1:1",
+            "region": "whole",
+            "side": "A",
+            "text": "Authored fixture: more peaks in A."
+          }
+        ],
+        "proposal": {
+          "claim": "A has more peaks.",
+          "data": "display_coordinates",
+          "feature_tag": "modality_x",
+          "observation_ids": [
+            "p0:1"
+          ],
+          "side": "A"
+        },
+        "schema": "oae-mve-grounded-card-v3",
+        "sha256": "3849ce7d95dd802aaf4dbc6f9080d6a1249ee7da8b844a77e70a95ae07722287",
+        "status": "non-separating"
+      },
+      "claimed_difference": true,
+      "job": "76bdb3d94c8a2a7c",
+      "module": "space-08",
+      "pair_type": "null-null",
+      "reason": null,
+      "slot": 2,
+      "status": "non-separating"
+    }
+  ],
+  "survivors": 0,
+  "worst_case_micro_usd": 147456
+}

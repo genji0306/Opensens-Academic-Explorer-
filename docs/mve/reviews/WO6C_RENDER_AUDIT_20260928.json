@@ -1,0 +1,49 @@
+{
+  "browser_calls": 0,
+  "files": [
+    {
+      "file": "field-lab.js",
+      "node_syntax": "passed",
+      "patched_sha256": "b39733a81ec0acc62ca7e3520652faa2954ecf0a290f6cd5da6b4a759e5526d6",
+      "source_sha256": "5ddadaa6c29f3cd2cd59249f94a3bf0f7f7465c4a411901d75c95d8eaef993cc"
+    },
+    {
+      "file": "field-phase3-overlay.js",
+      "node_syntax": "passed",
+      "patched_sha256": "a34b0caa2e6963e7253214d744813ce698fe343860d1fc8727ed198a46ae573f",
+      "source_sha256": "6c49599209afc2ea02e5c68d7bf3a8966b89657003ab675bc593e46e094b39fe"
+    },
+    {
+      "file": "field-phase3.js",
+      "node_syntax": "passed",
+      "patched_sha256": "f0686dda19251ac2cc94fa915b9d3574176c066a738d16515936e9991768e6f5",
+      "source_sha256": "dbf122bce11156b4fb6d58a953a44fc9a17e451d270c09ca4d03ea93e13f4387"
+    },
+    {
+      "file": "polar.js",
+      "node_syntax": "passed",
+      "patched_sha256": "7d126b9fc8202fd71cb8eb4769b40b454bc9fe04a4ed7fe95249261d7b8e8227",
+      "source_sha256": "ca8e5289e15da2a7a97c4eeb6cc6faaa855c61e14b6116e6a2a5c0652aa21680"
+    },
+    {
+      "file": "prime-sphere.js",
+      "node_syntax": "passed",
+      "patched_sha256": "c294df39d93cf83798899a0ab9bc49fbc1f465a0713c62c27358c0169b3fb5d8",
+      "source_sha256": "b2021e78b7a66772ca8b06007651cadc3f4cbbe20d8583a42f718da054f6147c"
+    },
+    {
+      "file": "research.js",
+      "node_syntax": "passed",
+      "patched_sha256": "043322a98f9773a66786b876955c3a37c03e8cd538de32e1e7b1002ef9e2c3b9",
+      "source_sha256": "74144f93ca57322d2dcaa30e1eae46f7d91e235f274e377dc8c82aecef32e5e4"
+    }
+  ],
+  "hosted_calls": 0,
+  "native_capture": "pending Opus; syntax and formula checks are not browser verification",
+  "schema": "mve-wo6c-render-audit-v1",
+  "source": "Pathspec-only pinned atlas archive; in-memory response patches; source tree unchanged.",
+  "ulam_python_vs_native_js": {
+    "exact": true,
+    "n": 30000
+  }
+}

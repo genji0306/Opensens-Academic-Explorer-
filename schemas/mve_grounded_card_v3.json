@@ -1,0 +1,261 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "oae-mve-grounded-card-v3",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "const": "oae-mve-grounded-card-v3"
+    },
+    "job": {
+      "type": "string",
+      "minLength": 1
+    },
+    "proposal": {
+      "type": "object",
+      "properties": {
+        "claim": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "side": {
+          "enum": [
+            "A",
+            "B"
+          ]
+        },
+        "feature_tag": {
+          "enum": [
+            "density_linear_x",
+            "density_linear_y",
+            "density_radial",
+            "modality_x",
+            "modality_y",
+            "reflection_x",
+            "reflection_y",
+            "spacing_ks"
+          ]
+        },
+        "data": {
+          "enum": [
+            "source_gaps",
+            "display_coordinates"
+          ]
+        },
+        "observation_ids": {
+          "type": "array",
+          "maxItems": 6,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "claim",
+        "side",
+        "feature_tag",
+        "data",
+        "observation_ids"
+      ],
+      "additionalProperties": false
+    },
+    "observations": {
+      "type": "array",
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^p[01]:[1-3]$"
+          },
+          "side": {
+            "enum": [
+              "A",
+              "B",
+              "both"
+            ]
+          },
+          "feature_tag": {
+            "enum": [
+              "density_linear_x",
+              "density_linear_y",
+              "density_radial",
+              "modality_x",
+              "modality_y",
+              "reflection_x",
+              "reflection_y",
+              "spacing_ks"
+            ]
+          },
+          "region": {
+            "enum": [
+              "bottom_center",
+              "bottom_left",
+              "bottom_right",
+              "middle_center",
+              "middle_left",
+              "middle_right",
+              "top_center",
+              "top_left",
+              "top_right",
+              "whole"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64
+          }
+        },
+        "required": [
+          "id",
+          "side",
+          "feature_tag",
+          "region",
+          "text"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "check": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "unavailable"
+            },
+            "inferential": {
+              "const": false
+            }
+          },
+          "required": [
+            "status",
+            "inferential"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "status": {
+              "const": "checked"
+            },
+            "inferential": {
+              "const": false
+            },
+            "value": {
+              "type": "number"
+            },
+            "side": {
+              "enum": [
+                "A",
+                "B",
+                null
+              ]
+            },
+            "p_value": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "alpha": {
+              "const": 0.05
+            },
+            "detected": {
+              "type": "boolean"
+            },
+            "power": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "power_study_sha256": {},
+            "n_a": {
+              "type": "integer",
+              "minimum": 4
+            },
+            "n_b": {
+              "type": "integer",
+              "minimum": 4
+            },
+            "tag": {
+              "enum": [
+                "density_linear_x",
+                "density_linear_y",
+                "density_radial",
+                "modality_x",
+                "modality_y",
+                "reflection_x",
+                "reflection_y",
+                "spacing_ks"
+              ]
+            },
+            "data": {
+              "enum": [
+                "source_gaps",
+                "display_coordinates"
+              ]
+            },
+            "data_sha256": {},
+            "sample": {
+              "const": "two"
+            }
+          },
+          "required": [
+            "status",
+            "inferential",
+            "value",
+            "side",
+            "p_value",
+            "alpha",
+            "detected",
+            "power",
+            "power_study_sha256",
+            "n_a",
+            "n_b",
+            "tag",
+            "data",
+            "data_sha256",
+            "sample"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "status": {
+      "enum": [
+        "separating",
+        "non-separating",
+        "wrong-side",
+        "ungrounded",
+        "underpowered"
+      ]
+    },
+    "lifecycle": {
+      "const": "preliminary"
+    },
+    "inferential": {
+      "const": false
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "schema",
+    "job",
+    "proposal",
+    "observations",
+    "check",
+    "status",
+    "lifecycle",
+    "inferential",
+    "sha256"
+  ],
+  "additionalProperties": false
+}

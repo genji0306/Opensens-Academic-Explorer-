@@ -1,0 +1,55 @@
+{
+  "browser_calls": 0,
+  "focused": {
+    "combined_statement_branch_percent": 97.59926131117267,
+    "modules": {
+      "mve/observer/capture_c.py": 92.46231155778895,
+      "mve/observer/comparative.py": 98.38709677419355,
+      "mve/observer/development_c.py": 100.0,
+      "mve/observer/feature_power.py": 100.0,
+      "mve/observer/features.py": 100.0,
+      "mve/observer/pilot_c.py": 98.20359281437126,
+      "mve/observer/pilot_c_accounting.py": 100.0,
+      "mve/observer/render_c.py": 95.65217391304348,
+      "mve/observer/rescore_c.py": 92.3076923076923
+    },
+    "passed": 28,
+    "power_changed_executable_coverage_percent": 100,
+    "seconds": 14.59
+  },
+  "free_bytes": 118374400000,
+  "full": {
+    "command": "python3 -m pytest tests/mve -q -p tests.mve.wo6c_guard",
+    "failed": 7,
+    "limitation": "Not an unqualified full-suite pass. The 77 WO-1b tests are deliberately skipped to obey the no-prospective-data instruction.",
+    "nested_sandbox_failure_names": [
+      "tests/mve/test_formalizer_g3.py::test_real_lean_repairs_statement_without_proof",
+      "tests/mve/test_formalizer_runtime.py::test_native_targets_compile_without_proofs",
+      "tests/mve/test_formalizer_runtime.py::test_typecheck_record_keeps_proof_separate",
+      "tests/mve/test_formalizer_runtime.py::test_real_lean_typechecks_from_relocated_project",
+      "tests/mve/test_isolation.py::test_real_subprocess_cannot_read_gold_or_connect",
+      "tests/mve/test_isolation.py::test_public_staging_rejects_links_and_worker_timeout",
+      "tests/mve/test_open_review_followups.py::test_worker_created_runtime_symlink_cannot_read_private_gold"
+    ],
+    "note": "Final added comparative CLI unit test passed separately after this full suite; runtime unchanged.",
+    "passed": 1117,
+    "prospective_deferred": 77,
+    "seconds": 102.46,
+    "skipped": 81
+  },
+  "generated_bytes": 1812218,
+  "go_gates_established": false,
+  "hosted_calls": 0,
+  "offline": true,
+  "power": {
+    "build_seconds": 73.81575970887206,
+    "independent_repeat_byte_identical": true,
+    "rows": 107,
+    "sha256": "7d1924c30227dc1975a92798e8df1fbe277e11f0cddfcbdbcc9bc59e479af7d8"
+  },
+  "previous_evidence_modified": false,
+  "schema": "mve-wo6c-verification-v1",
+  "self_review": "Sole-builder local review: raw exported scale, joint reflection, fixed source allowlist, seed separation, side grounding, power matching, accounting, source patches, immutable capture acceptance and live refusal.",
+  "tests_first": "Initial collection failed because comparative/development_c/features/pilot_c did not exist.",
+  "wo6c_bytes": 1812218
+}

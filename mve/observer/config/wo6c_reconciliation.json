@@ -1,0 +1,1008 @@
+{
+  "basis": "Committed usage-derived peak exposure; supplied campaign cut, not an invoice or account balance.",
+  "prior_micro_usd": 16339,
+  "remaining_micro_usd": 19983661,
+  "report": {
+    "aggregate": {
+      "attempts": 49,
+      "attempts_by_state": {
+        "cancelled": 0,
+        "dispatched": 0,
+        "reserved": 0,
+        "settled": 49
+      },
+      "exposure": {
+        "micro_usd": 16339,
+        "usd": "0.016339"
+      },
+      "remaining": {
+        "micro_usd": 19983661,
+        "usd": "19.983661"
+      },
+      "reserved": {
+        "micro_usd": 0,
+        "usd": "0.000000"
+      },
+      "settled": {
+        "micro_usd": 16339,
+        "usd": "0.016339"
+      },
+      "uncertain": {
+        "micro_usd": 0,
+        "usd": "0.000000"
+      }
+    },
+    "aggregation_reason": "monetary sums and attempt counts, not relation scoring",
+    "attempts": [
+      {
+        "actual": 180,
+        "created": "2026-09-28T04:37:27.796348+00:00",
+        "dispatched": "2026-09-28T04:37:27.909787+00:00",
+        "id": "wo6:210903571ae0f66f:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "c99267509ebcce7d9f9b7e7fe680629b8305e30e6db58098d707a8180ed5ac02",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 161,
+        "created": "2026-09-28T04:37:29.197351+00:00",
+        "dispatched": "2026-09-28T04:37:29.276722+00:00",
+        "id": "wo6:210903571ae0f66f:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "f1087add813cdb8bdeb1ff99bf761744713477848419539b157b37ba45e3bb85",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 402,
+        "created": "2026-09-28T04:37:30.710725+00:00",
+        "dispatched": "2026-09-28T04:37:30.791423+00:00",
+        "id": "wo6:210903571ae0f66f:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "185863fc79f7f31d02bdf8504658f39603b82cd61ba9a9cf188c3ed3d92035f8",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 185,
+        "created": "2026-09-28T04:37:03.436385+00:00",
+        "dispatched": "2026-09-28T04:37:03.504999+00:00",
+        "id": "wo6:469861a3a73becca:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "b750251898dea6441e461f44f203aa14c8f3b1872e06180cd88b8b3264e6d2ba",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 192,
+        "created": "2026-09-28T04:37:05.088411+00:00",
+        "dispatched": "2026-09-28T04:37:05.147679+00:00",
+        "id": "wo6:469861a3a73becca:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "af36ac3c118863d9a3d4860efe099bc3e17c6d578a73e47d0b0c8733b51f33d6",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 485,
+        "created": "2026-09-28T04:37:06.435017+00:00",
+        "dispatched": "2026-09-28T04:37:06.598371+00:00",
+        "id": "wo6:469861a3a73becca:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "53d34626a1e034f17577e51d0de958dcafa0e83c00b83668969150e6168b54e7",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 266,
+        "created": "2026-09-28T04:37:14.624889+00:00",
+        "dispatched": "2026-09-28T04:37:14.677983+00:00",
+        "id": "wo6:518ef22877fb0da2:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "7b4055c1747609911ed5d55d61debc94f867c254f642184bf47acc6222b394da",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 236,
+        "created": "2026-09-28T04:37:16.219003+00:00",
+        "dispatched": "2026-09-28T04:37:16.276802+00:00",
+        "id": "wo6:518ef22877fb0da2:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "7d0afc45d4e33c9413ab19ac91bd8eebb358758cd86b6d3c416728cd950b1e8f",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 384,
+        "created": "2026-09-28T04:37:17.762016+00:00",
+        "dispatched": "2026-09-28T04:37:17.814609+00:00",
+        "id": "wo6:518ef22877fb0da2:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "c36d5840cdd965bd3538768455eaaaba7c34858ccfcb5c30770031bb7920844c",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 203,
+        "created": "2026-09-28T04:37:38.230349+00:00",
+        "dispatched": "2026-09-28T04:37:38.279705+00:00",
+        "id": "wo6:57ca345effa88400:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "4acffb277d2d3611694f05309a4c09ff620f9969b51d882a5e6cc38647927124",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 225,
+        "created": "2026-09-28T04:37:39.572180+00:00",
+        "dispatched": "2026-09-28T04:37:39.615758+00:00",
+        "id": "wo6:57ca345effa88400:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "67d7d3b066a699f38c6be380d61b670595ee1d65da869006a1bf1463ea314f00",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 511,
+        "created": "2026-09-28T04:37:40.876544+00:00",
+        "dispatched": "2026-09-28T04:37:40.919360+00:00",
+        "id": "wo6:57ca345effa88400:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "a0729b3f2e993463c0fb8f31b6dab1d33db64c7c9f9f7383ddf20e4db871ff17",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 217,
+        "created": "2026-09-28T04:37:32.650345+00:00",
+        "dispatched": "2026-09-28T04:37:32.723314+00:00",
+        "id": "wo6:69f0e3feb043ead0:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "2c9461744d8cfe4ee91b302d662020e207e9a48a2759b849d3221e01107a387e",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 206,
+        "created": "2026-09-28T04:37:34.414424+00:00",
+        "dispatched": "2026-09-28T04:37:34.468719+00:00",
+        "id": "wo6:69f0e3feb043ead0:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "d53baca09d35bb358ae74a0bd0bbb5e7765871bff5d8a577fc15a260f1eba795",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 420,
+        "created": "2026-09-28T04:37:36.443769+00:00",
+        "dispatched": "2026-09-28T04:37:36.500661+00:00",
+        "id": "wo6:69f0e3feb043ead0:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "ededeb2cc68fb159e7c579336acf169cdf94c145b595ba4cad4ac442c5964cef",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 192,
+        "created": "2026-09-28T04:37:24.161450+00:00",
+        "dispatched": "2026-09-28T04:37:24.218781+00:00",
+        "id": "wo6:7775256302a44f18:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "7988c685a8b6ffa9c13c3bc5e9f79ff63843efcdc69b1f19a1c1b223d80eaa34",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 192,
+        "created": "2026-09-28T04:37:25.116838+00:00",
+        "dispatched": "2026-09-28T04:37:25.165783+00:00",
+        "id": "wo6:7775256302a44f18:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "6dd2c392019f1dda224b2a1d30fd25b2b73d1f50e87362e1c865669f14bbdd18",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 377,
+        "created": "2026-09-28T04:37:26.222971+00:00",
+        "dispatched": "2026-09-28T04:37:26.290222+00:00",
+        "id": "wo6:7775256302a44f18:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "7a8b93bca4f863a6df41ef0920fd335f42bc24958b418b7dbfa58471c292c65a",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 191,
+        "created": "2026-09-28T04:37:19.994962+00:00",
+        "dispatched": "2026-09-28T04:37:20.051899+00:00",
+        "id": "wo6:aee9b8f1478f3e32:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "3b29613386b131b9cbc40858e9ab7af663a6de6e4279d4fe8809ef839ff90bb6",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 180,
+        "created": "2026-09-28T04:37:21.115758+00:00",
+        "dispatched": "2026-09-28T04:37:21.224196+00:00",
+        "id": "wo6:aee9b8f1478f3e32:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "f82a9c6fdeb9b1d03570e30cf65e7c81499a9412d96d66534b70862a593c875e",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 366,
+        "created": "2026-09-28T04:37:22.444042+00:00",
+        "dispatched": "2026-09-28T04:37:22.534016+00:00",
+        "id": "wo6:aee9b8f1478f3e32:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "0a3ed56990c84cba2a27a1b32ae3680893af4bc5ad29d7b6db9b7807a51192e7",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 260,
+        "created": "2026-09-28T04:37:09.304300+00:00",
+        "dispatched": "2026-09-28T04:37:09.452117+00:00",
+        "id": "wo6:d98cb0eb7218ffa2:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "90ce25cee5dd13670ec9d6a3d287c7d4cf045d9a2f5190375962d35cecbc4e74",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 209,
+        "created": "2026-09-28T04:37:11.156713+00:00",
+        "dispatched": "2026-09-28T04:37:11.225739+00:00",
+        "id": "wo6:d98cb0eb7218ffa2:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "56d377f9dee4b051d0f1367dded030aa416c88f23ccfcf1e5c73e8abcc593279",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 387,
+        "created": "2026-09-28T04:37:12.556216+00:00",
+        "dispatched": "2026-09-28T04:37:12.641850+00:00",
+        "id": "wo6:d98cb0eb7218ffa2:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "336c967ed038e86b5d4c3b2e6b58da51533644e64e89916ccf8e15bd90e9343f",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 266,
+        "created": "2026-09-28T13:22:17.525660+00:00",
+        "dispatched": "2026-09-28T13:22:17.571976+00:00",
+        "id": "wo6b:210903571ae0f66f:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "dca2e838b0203d820e3edffbe5d4db54cf86bf7991fa1bb35c51420cca98573a",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 262,
+        "created": "2026-09-28T13:22:19.239233+00:00",
+        "dispatched": "2026-09-28T13:22:19.275371+00:00",
+        "id": "wo6b:210903571ae0f66f:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "6cd2dd93b2ed7fd26a5f127b3fd3875b2ba6f3e279b4f4f5eaf49a1b3309b7f9",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 597,
+        "created": "2026-09-28T13:22:20.641255+00:00",
+        "dispatched": "2026-09-28T13:22:20.684375+00:00",
+        "id": "wo6b:210903571ae0f66f:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "2f0a99454acce595b43ba9fe4101ce136762a67bae5dfa8b6f1875742dde04b5",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 289,
+        "created": "2026-09-28T13:21:49.638845+00:00",
+        "dispatched": "2026-09-28T13:21:49.669248+00:00",
+        "id": "wo6b:469861a3a73becca:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "9af3e12bcab1b83b71775b74a62e5ecf273a2065b0d4791a3e780b0579c87c59",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 283,
+        "created": "2026-09-28T13:21:51.669814+00:00",
+        "dispatched": "2026-09-28T13:21:51.697858+00:00",
+        "id": "wo6b:469861a3a73becca:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "b789b87b30c61e8a45ec14f75bb89eb912b71b0a3599d17312bc538a3b68fc4f",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 737,
+        "created": "2026-09-28T13:21:53.401438+00:00",
+        "dispatched": "2026-09-28T13:21:53.430173+00:00",
+        "id": "wo6b:469861a3a73becca:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "3cf6fdef739da7559b811a886bd9fa91fadc74a6b8bbe855043eaca234d2d2c2",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 249,
+        "created": "2026-09-28T13:22:01.285111+00:00",
+        "dispatched": "2026-09-28T13:22:01.327294+00:00",
+        "id": "wo6b:518ef22877fb0da2:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "24479cb005bbd3ba5b62f33a418324c588a390df7d7673d3ef2d4d76da423877",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 245,
+        "created": "2026-09-28T13:22:02.599414+00:00",
+        "dispatched": "2026-09-28T13:22:02.631411+00:00",
+        "id": "wo6b:518ef22877fb0da2:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "1d0c0850307b3e82a888476da3ad562c6b027ab00387770d7fd3d29b9d393798",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 647,
+        "created": "2026-09-28T13:22:04.449413+00:00",
+        "dispatched": "2026-09-28T13:22:04.528574+00:00",
+        "id": "wo6b:518ef22877fb0da2:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "0e619ca6a82f2288c4aba589b4a64d73b076b5c991401c3c8ad825a851211b16",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 283,
+        "created": "2026-09-28T13:22:28.698441+00:00",
+        "dispatched": "2026-09-28T13:22:28.725796+00:00",
+        "id": "wo6b:57ca345effa88400:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "954c52cbdf2cc5d8add8311cd98374c814bfd200c5b90ee333a77c44db2272d2",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 288,
+        "created": "2026-09-28T13:22:30.057728+00:00",
+        "dispatched": "2026-09-28T13:22:30.086522+00:00",
+        "id": "wo6b:57ca345effa88400:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "92135c2e68adaf86ed93b6b2b25b618b414343e2ef234585822972c09df5fa78",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 758,
+        "created": "2026-09-28T13:22:31.913002+00:00",
+        "dispatched": "2026-09-28T13:22:31.945868+00:00",
+        "id": "wo6b:57ca345effa88400:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "f6cc912d95dc0dbeed1907c475e43c69f10bad3067994f377742b91427808aff",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 260,
+        "created": "2026-09-28T13:22:23.252771+00:00",
+        "dispatched": "2026-09-28T13:22:23.283909+00:00",
+        "id": "wo6b:69f0e3feb043ead0:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "8fd382fac7826a3464eb767dcd0cdbcce466a08a9c21936531c1c72f5db63244",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 262,
+        "created": "2026-09-28T13:22:24.575686+00:00",
+        "dispatched": "2026-09-28T13:22:24.614797+00:00",
+        "id": "wo6b:69f0e3feb043ead0:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "e8c631e27c46e95399f7c5a078e671329e5f9527bdd3da0379bb2ed78e630a7a",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 694,
+        "created": "2026-09-28T13:22:25.859736+00:00",
+        "dispatched": "2026-09-28T13:22:25.888993+00:00",
+        "id": "wo6b:69f0e3feb043ead0:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "03183807662cce0276103f22f74279e6513ee35490f98362f36708cad256fa8e",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 246,
+        "created": "2026-09-28T13:22:12.829743+00:00",
+        "dispatched": "2026-09-28T13:22:12.862034+00:00",
+        "id": "wo6b:7775256302a44f18:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "974411d5dad637f5dbdfaff1c6e80ed0d7e2e5523c4eea0da36a85bb4b1f178c",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 246,
+        "created": "2026-09-28T13:22:14.047170+00:00",
+        "dispatched": "2026-09-28T13:22:14.086701+00:00",
+        "id": "wo6b:7775256302a44f18:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "26d7c6a7c77da6719c85a417fe6dcac02d534400e4b564587fc088e36732763f",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 609,
+        "created": "2026-09-28T13:22:15.362972+00:00",
+        "dispatched": "2026-09-28T13:22:15.394358+00:00",
+        "id": "wo6b:7775256302a44f18:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "cbb65d35c0ed17e782c432baa2c1a66b1335e97cbebe812759464c67b0e43334",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 241,
+        "created": "2026-09-28T13:22:07.324860+00:00",
+        "dispatched": "2026-09-28T13:22:07.402117+00:00",
+        "id": "wo6b:aee9b8f1478f3e32:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "70414b11ab5e41865503f80ab88d1709db6edf81a715955f9a6076e7f2fa8f15",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 253,
+        "created": "2026-09-28T13:22:09.068166+00:00",
+        "dispatched": "2026-09-28T13:22:09.260265+00:00",
+        "id": "wo6b:aee9b8f1478f3e32:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "a301b04ec398018588af2cf2132618a078dc700b47014723c53d3cfb5395b744",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 619,
+        "created": "2026-09-28T13:22:10.427510+00:00",
+        "dispatched": "2026-09-28T13:22:10.461618+00:00",
+        "id": "wo6b:aee9b8f1478f3e32:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "5aca4e0383665068811d79dbece4695bf103639d16db182c09fcae56b3ef2abb",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 243,
+        "created": "2026-09-28T13:21:56.205858+00:00",
+        "dispatched": "2026-09-28T13:21:56.248742+00:00",
+        "id": "wo6b:d98cb0eb7218ffa2:0",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "3f1170dff2f245de10b9638e81083962f3880acfdf06749ff1112ce81f28b55a",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 243,
+        "created": "2026-09-28T13:21:57.539659+00:00",
+        "dispatched": "2026-09-28T13:21:57.574173+00:00",
+        "id": "wo6b:d98cb0eb7218ffa2:1",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "e342fe26c59fd3d175634de49125c677b87c0f7a7940fe854074af03e7c19737",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 624,
+        "created": "2026-09-28T13:21:58.784262+00:00",
+        "dispatched": "2026-09-28T13:21:58.824043+00:00",
+        "id": "wo6b:d98cb0eb7218ffa2:2",
+        "origins": [
+          "campaign"
+        ],
+        "phase": "P1",
+        "receipt": "7d0ac011dff0339afb00dd96918695ab0fffdbcfd15892f5bc3d4c9aa1081f80",
+        "reserved": 6144,
+        "state": "settled",
+        "wave": "wo6:pilot"
+      },
+      {
+        "actual": 268,
+        "created": "2026-09-27T12:28:42.706105+00:00",
+        "dispatched": "2026-09-27T12:28:42.741874+00:00",
+        "id": "wp0b:single-model-probe",
+        "origins": [
+          "campaign",
+          "live"
+        ],
+        "phase": "P0",
+        "receipt": "f328968f5e3ef6ebacff4cc1226b7e90485c9eefaff0722c5285aa1f88e18cc8",
+        "reserved": 39936,
+        "state": "settled",
+        "wave": "wp0b"
+      }
+    ],
+    "caps": {
+      "P0": 2000000,
+      "P1": 8000000,
+      "aggregate": 20000000
+    },
+    "caps_basis": "campaign configuration",
+    "carry_policy": "same attempt ID with byte-equivalent parsed row counted once; conflicting copies refused",
+    "complete": true,
+    "frozen": false,
+    "ledgers": {
+      "campaign": {
+        "events": [],
+        "frozen": false,
+        "quota": [],
+        "window_policy": "deepseek-pricing-20260927:UTC:Mon-Fri:01-04,06-10:VERIFIED:holidays-conservative"
+      },
+      "live": {
+        "events": [],
+        "frozen": false,
+        "quota": [],
+        "window_policy": "deepseek-pricing-20260927:UTC:Mon-Fri:01-04,06-10:VERIFIED:holidays-conservative"
+      }
+    },
+    "live_caps": {
+      "P0": 50000,
+      "P1": 8000000,
+      "aggregate": 50000
+    },
+    "macro": null,
+    "micro": null,
+    "null": "N/A: accounting census",
+    "p2_policy": "P2 shares the remaining aggregate, not a separate fixed cap",
+    "phases": {
+      "P0": {
+        "attempts": 1,
+        "attempts_by_state": {
+          "cancelled": 0,
+          "dispatched": 0,
+          "reserved": 0,
+          "settled": 1
+        },
+        "exposure": {
+          "micro_usd": 268,
+          "usd": "0.000268"
+        },
+        "remaining": {
+          "micro_usd": 1999732,
+          "usd": "1.999732"
+        },
+        "reserved": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "settled": {
+          "micro_usd": 268,
+          "usd": "0.000268"
+        },
+        "uncertain": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        }
+      },
+      "P1": {
+        "attempts": 48,
+        "attempts_by_state": {
+          "cancelled": 0,
+          "dispatched": 0,
+          "reserved": 0,
+          "settled": 48
+        },
+        "exposure": {
+          "micro_usd": 16071,
+          "usd": "0.016071"
+        },
+        "remaining": {
+          "micro_usd": 7983929,
+          "usd": "7.983929"
+        },
+        "reserved": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "settled": {
+          "micro_usd": 16071,
+          "usd": "0.016071"
+        },
+        "uncertain": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        }
+      },
+      "P2": {
+        "attempts": 0,
+        "attempts_by_state": {
+          "cancelled": 0,
+          "dispatched": 0,
+          "reserved": 0,
+          "settled": 0
+        },
+        "exposure": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "remaining": {
+          "micro_usd": 19983661,
+          "usd": "19.983661"
+        },
+        "reserved": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "settled": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "uncertain": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        }
+      }
+    },
+    "quota_by_provider": {},
+    "quota_scope": "ledger quota rows have no phase field; per-phase attribution and quota limits are not established",
+    "scope": "complete supplied snapshots",
+    "stop_state": "not frozen",
+    "uncertain_policy": "dispatched without settlement retains full reservation; actual cost unknown"
+  },
+  "schema": "mve-wo6c-reconciliation-v1",
+  "sha256": "f7fa953cf53479ce7bf4d57adb58296ac520c21ac72c6f25509a606bc8db24dd",
+  "sources": {
+    "docs/mve/reviews/wo6-live/attempts/210903571ae0f66f/0/receipt.json": "c99267509ebcce7d9f9b7e7fe680629b8305e30e6db58098d707a8180ed5ac02",
+    "docs/mve/reviews/wo6-live/attempts/210903571ae0f66f/0/request.json": "d8fee54841f2e91ee42488c54b0f68304635cfead49ce1fdc8adba6dc6cfc75f",
+    "docs/mve/reviews/wo6-live/attempts/210903571ae0f66f/0/response.raw": "cd4dcb9c5cf5b400ebaa4762b1de8a15db296a3f951337710de459feb3af7144",
+    "docs/mve/reviews/wo6-live/attempts/210903571ae0f66f/1/receipt.json": "f1087add813cdb8bdeb1ff99bf761744713477848419539b157b37ba45e3bb85",
+    "docs/mve/reviews/wo6-live/attempts/210903571ae0f66f/1/request.json": "d8fee54841f2e91ee42488c54b0f68304635cfead49ce1fdc8adba6dc6cfc75f",
+    "docs/mve/reviews/wo6-live/attempts/210903571ae0f66f/1/response.raw": "89e8d56153f3b8531dde09b5e33124b620d8026f5c37bfb4aa9fceddac9f45c7",
+    "docs/mve/reviews/wo6-live/attempts/210903571ae0f66f/2/receipt.json": "185863fc79f7f31d02bdf8504658f39603b82cd61ba9a9cf188c3ed3d92035f8",
+    "docs/mve/reviews/wo6-live/attempts/210903571ae0f66f/2/request.json": "1cac05ff6bcc77657974e4f4bd2f6a9d629a6bf5af2260037880e7930f22ed2d",
+    "docs/mve/reviews/wo6-live/attempts/210903571ae0f66f/2/response.raw": "940ae102d78ef67e494a2ba0c69c86a1bb1541c2e7b97e5a2cda39cfe6f0b0fb",
+    "docs/mve/reviews/wo6-live/attempts/469861a3a73becca/0/receipt.json": "b750251898dea6441e461f44f203aa14c8f3b1872e06180cd88b8b3264e6d2ba",
+    "docs/mve/reviews/wo6-live/attempts/469861a3a73becca/0/request.json": "f4c613a3ba58732b6c2e8db8334b124750a01efad263223745076a5efa92801e",
+    "docs/mve/reviews/wo6-live/attempts/469861a3a73becca/0/response.raw": "e9b56899e7957ded189c0b0857474571319a1f6f6c4386b3af7dafbfa9a4c0fe",
+    "docs/mve/reviews/wo6-live/attempts/469861a3a73becca/1/receipt.json": "af36ac3c118863d9a3d4860efe099bc3e17c6d578a73e47d0b0c8733b51f33d6",
+    "docs/mve/reviews/wo6-live/attempts/469861a3a73becca/1/request.json": "f4c613a3ba58732b6c2e8db8334b124750a01efad263223745076a5efa92801e",
+    "docs/mve/reviews/wo6-live/attempts/469861a3a73becca/1/response.raw": "7a9302f2774f1af2acd1275902d44e2bc8fe252805bd887f2ddef5158a8104b5",
+    "docs/mve/reviews/wo6-live/attempts/469861a3a73becca/2/receipt.json": "53d34626a1e034f17577e51d0de958dcafa0e83c00b83668969150e6168b54e7",
+    "docs/mve/reviews/wo6-live/attempts/469861a3a73becca/2/request.json": "f432edc53d6d74a4fc3a210ea421c4a06f2a610e36d77cd2391970b4a304ba74",
+    "docs/mve/reviews/wo6-live/attempts/469861a3a73becca/2/response.raw": "cc2e9acaaf180e274caea330764728d88dae5c017fd047b12e7929cccc0c545d",
+    "docs/mve/reviews/wo6-live/attempts/518ef22877fb0da2/0/receipt.json": "7b4055c1747609911ed5d55d61debc94f867c254f642184bf47acc6222b394da",
+    "docs/mve/reviews/wo6-live/attempts/518ef22877fb0da2/0/request.json": "c0a60696231d0fee4bf12f96c9411e549f9b560d7c8494f78e988ed91f8ac86c",
+    "docs/mve/reviews/wo6-live/attempts/518ef22877fb0da2/0/response.raw": "d655d5ae4fb3d1494cac45feb48d287dc5482261ddc3f8a1199eb3de6fdcd1b5",
+    "docs/mve/reviews/wo6-live/attempts/518ef22877fb0da2/1/receipt.json": "7d0afc45d4e33c9413ab19ac91bd8eebb358758cd86b6d3c416728cd950b1e8f",
+    "docs/mve/reviews/wo6-live/attempts/518ef22877fb0da2/1/request.json": "c0a60696231d0fee4bf12f96c9411e549f9b560d7c8494f78e988ed91f8ac86c",
+    "docs/mve/reviews/wo6-live/attempts/518ef22877fb0da2/1/response.raw": "f282876a2da996f40c1ec278217ab385b2d5f1460e71fa43398f6276b2264842",
+    "docs/mve/reviews/wo6-live/attempts/518ef22877fb0da2/2/receipt.json": "c36d5840cdd965bd3538768455eaaaba7c34858ccfcb5c30770031bb7920844c",
+    "docs/mve/reviews/wo6-live/attempts/518ef22877fb0da2/2/request.json": "0ca6c9bda4c628d8f230e07cc2f202c16b8547d98a7d3d0178c8ed4621154819",
+    "docs/mve/reviews/wo6-live/attempts/518ef22877fb0da2/2/response.raw": "bc30ec8fd4604804622921fcea69e331a82884e499dff7e0a7540de3bbb70fd7",
+    "docs/mve/reviews/wo6-live/attempts/57ca345effa88400/0/receipt.json": "4acffb277d2d3611694f05309a4c09ff620f9969b51d882a5e6cc38647927124",
+    "docs/mve/reviews/wo6-live/attempts/57ca345effa88400/0/request.json": "026ea989ac1a2e81a498b1d0c68d88d3782c24b7c7f5e2cc3a905b1ec15ec78c",
+    "docs/mve/reviews/wo6-live/attempts/57ca345effa88400/0/response.raw": "61627c6e65c90e3ee4da62b070f563e9279f3e5eedd435931d8cdd73ef165708",
+    "docs/mve/reviews/wo6-live/attempts/57ca345effa88400/1/receipt.json": "67d7d3b066a699f38c6be380d61b670595ee1d65da869006a1bf1463ea314f00",
+    "docs/mve/reviews/wo6-live/attempts/57ca345effa88400/1/request.json": "026ea989ac1a2e81a498b1d0c68d88d3782c24b7c7f5e2cc3a905b1ec15ec78c",
+    "docs/mve/reviews/wo6-live/attempts/57ca345effa88400/1/response.raw": "3afacfa1ef0bb26b6f3792e350158b54a7b25d51f10d9101774ada83532f31bf",
+    "docs/mve/reviews/wo6-live/attempts/57ca345effa88400/2/receipt.json": "a0729b3f2e993463c0fb8f31b6dab1d33db64c7c9f9f7383ddf20e4db871ff17",
+    "docs/mve/reviews/wo6-live/attempts/57ca345effa88400/2/request.json": "b2f58d3cf09110ef22f4bcd9737a17834fb64f863bc6ad95ed2109de1016526e",
+    "docs/mve/reviews/wo6-live/attempts/57ca345effa88400/2/response.raw": "6b4d2a4bb30c4445bd926ce5b9c15a3b1d2cdfebdd7abc4c6f376f1caea62e40",
+    "docs/mve/reviews/wo6-live/attempts/69f0e3feb043ead0/0/receipt.json": "2c9461744d8cfe4ee91b302d662020e207e9a48a2759b849d3221e01107a387e",
+    "docs/mve/reviews/wo6-live/attempts/69f0e3feb043ead0/0/request.json": "06280d73a483c3967e74adc555e0b6b8453f26ccf71378cb8aeab753463e2288",
+    "docs/mve/reviews/wo6-live/attempts/69f0e3feb043ead0/0/response.raw": "363a8e9e0445310757ef62331f29fdbf413f7824e75480bc2f6a8a9caaf5b64f",
+    "docs/mve/reviews/wo6-live/attempts/69f0e3feb043ead0/1/receipt.json": "d53baca09d35bb358ae74a0bd0bbb5e7765871bff5d8a577fc15a260f1eba795",
+    "docs/mve/reviews/wo6-live/attempts/69f0e3feb043ead0/1/request.json": "06280d73a483c3967e74adc555e0b6b8453f26ccf71378cb8aeab753463e2288",
+    "docs/mve/reviews/wo6-live/attempts/69f0e3feb043ead0/1/response.raw": "88001367646e0046fb665498ea716ecfc48c57c7d324224f795693b782b706f9",
+    "docs/mve/reviews/wo6-live/attempts/69f0e3feb043ead0/2/receipt.json": "ededeb2cc68fb159e7c579336acf169cdf94c145b595ba4cad4ac442c5964cef",
+    "docs/mve/reviews/wo6-live/attempts/69f0e3feb043ead0/2/request.json": "c539f506bbd4c08f25f4caea267f07aa62668adc8ab7c89b3e306e258a180e0a",
+    "docs/mve/reviews/wo6-live/attempts/69f0e3feb043ead0/2/response.raw": "4fad29ba3752e650d688721d6ea7d7dccdc83fe562ad552ed9379eb62d6779ac",
+    "docs/mve/reviews/wo6-live/attempts/7775256302a44f18/0/receipt.json": "7988c685a8b6ffa9c13c3bc5e9f79ff63843efcdc69b1f19a1c1b223d80eaa34",
+    "docs/mve/reviews/wo6-live/attempts/7775256302a44f18/0/request.json": "71229e3994446ccc57da162b562328cc048e1bfcd0df83fe8150be0996fd916b",
+    "docs/mve/reviews/wo6-live/attempts/7775256302a44f18/0/response.raw": "630e3226bcc562e45cdeeb712d16e0e64cc1337e4fdd74bb02ca986a22609cf6",
+    "docs/mve/reviews/wo6-live/attempts/7775256302a44f18/1/receipt.json": "6dd2c392019f1dda224b2a1d30fd25b2b73d1f50e87362e1c865669f14bbdd18",
+    "docs/mve/reviews/wo6-live/attempts/7775256302a44f18/1/request.json": "71229e3994446ccc57da162b562328cc048e1bfcd0df83fe8150be0996fd916b",
+    "docs/mve/reviews/wo6-live/attempts/7775256302a44f18/1/response.raw": "993e4fc63217c76f7c4912514c58f8adc6f08ff9b905667e405e3c9c7e0b3de5",
+    "docs/mve/reviews/wo6-live/attempts/7775256302a44f18/2/receipt.json": "7a8b93bca4f863a6df41ef0920fd335f42bc24958b418b7dbfa58471c292c65a",
+    "docs/mve/reviews/wo6-live/attempts/7775256302a44f18/2/request.json": "51d27e714c3d86f23e435bf19d17824b41466705125e48b990a1fcf7aba9fe77",
+    "docs/mve/reviews/wo6-live/attempts/7775256302a44f18/2/response.raw": "e0ab5d605ec4a83a75af4b4b13984d1db2cdc89a03c1f1dded3d5451f9a1d373",
+    "docs/mve/reviews/wo6-live/attempts/aee9b8f1478f3e32/0/receipt.json": "3b29613386b131b9cbc40858e9ab7af663a6de6e4279d4fe8809ef839ff90bb6",
+    "docs/mve/reviews/wo6-live/attempts/aee9b8f1478f3e32/0/request.json": "68045e6249065358995a8dcaf550b6cd709662a67b876a27cce4d0e2a14dcf2d",
+    "docs/mve/reviews/wo6-live/attempts/aee9b8f1478f3e32/0/response.raw": "e5f18de57f8a78d40661fad96b79d04136c32365cce1eefe28bee48d612944c1",
+    "docs/mve/reviews/wo6-live/attempts/aee9b8f1478f3e32/1/receipt.json": "f82a9c6fdeb9b1d03570e30cf65e7c81499a9412d96d66534b70862a593c875e",
+    "docs/mve/reviews/wo6-live/attempts/aee9b8f1478f3e32/1/request.json": "68045e6249065358995a8dcaf550b6cd709662a67b876a27cce4d0e2a14dcf2d",
+    "docs/mve/reviews/wo6-live/attempts/aee9b8f1478f3e32/1/response.raw": "7afbded2bc91694ce50998199138a9023c79d4240005ceb688da8f829ce0d5c9",
+    "docs/mve/reviews/wo6-live/attempts/aee9b8f1478f3e32/2/receipt.json": "0a3ed56990c84cba2a27a1b32ae3680893af4bc5ad29d7b6db9b7807a51192e7",
+    "docs/mve/reviews/wo6-live/attempts/aee9b8f1478f3e32/2/request.json": "37813436f8d7073eac43df9eb63cabf49293afe3245b1b5dccf6553f9bac1339",
+    "docs/mve/reviews/wo6-live/attempts/aee9b8f1478f3e32/2/response.raw": "3a84bf9d0728360e1631438aab0e3d0852f4cf4b87bfb030b3febb9ce25e66d7",
+    "docs/mve/reviews/wo6-live/attempts/d98cb0eb7218ffa2/0/receipt.json": "90ce25cee5dd13670ec9d6a3d287c7d4cf045d9a2f5190375962d35cecbc4e74",
+    "docs/mve/reviews/wo6-live/attempts/d98cb0eb7218ffa2/0/request.json": "432f60391c4a6f98178b5289a4b33df81d99e008904ef705be12590be92b3149",
+    "docs/mve/reviews/wo6-live/attempts/d98cb0eb7218ffa2/0/response.raw": "8a606a651dbb3c2a3f262f3fded1fcf947b6a970102593afbbc88527c2e45f5d",
+    "docs/mve/reviews/wo6-live/attempts/d98cb0eb7218ffa2/1/receipt.json": "56d377f9dee4b051d0f1367dded030aa416c88f23ccfcf1e5c73e8abcc593279",
+    "docs/mve/reviews/wo6-live/attempts/d98cb0eb7218ffa2/1/request.json": "432f60391c4a6f98178b5289a4b33df81d99e008904ef705be12590be92b3149",
+    "docs/mve/reviews/wo6-live/attempts/d98cb0eb7218ffa2/1/response.raw": "5e7abffc578cc818a11c207ac7adbca99dda62ac742cef96afb73b22db03d6b4",
+    "docs/mve/reviews/wo6-live/attempts/d98cb0eb7218ffa2/2/receipt.json": "336c967ed038e86b5d4c3b2e6b58da51533644e64e89916ccf8e15bd90e9343f",
+    "docs/mve/reviews/wo6-live/attempts/d98cb0eb7218ffa2/2/request.json": "d5f60b9016965518acf405568ac169d03dd3d018b2cbdee6de5a577222487507",
+    "docs/mve/reviews/wo6-live/attempts/d98cb0eb7218ffa2/2/response.raw": "30210731532a8bdc8c482d1f0a0bedaea1212c2adae573303f2b680050f5fe69",
+    "docs/mve/reviews/wo6-live/design.json": "cde1c7fb906a4adac7913204b4071d9a0e4c899eccbddd4e6903f46a49a37602",
+    "docs/mve/reviews/wo6-live/ledger.json": "5509e467216cdddee49eb87f59349e10d032104d57bb0131639e421e5288dfa6",
+    "docs/mve/reviews/wo6b-live/attempts/210903571ae0f66f/0/receipt.json": "dca2e838b0203d820e3edffbe5d4db54cf86bf7991fa1bb35c51420cca98573a",
+    "docs/mve/reviews/wo6b-live/attempts/210903571ae0f66f/0/request.json": "6ee9af52f53187698a78e9aa73513bb26351c6d02679a563214650909fad8f28",
+    "docs/mve/reviews/wo6b-live/attempts/210903571ae0f66f/0/response.raw": "fe4a212055eebd7ea4f65ca0535ae0c2556ac3e8d893d30deca9feeca7041407",
+    "docs/mve/reviews/wo6b-live/attempts/210903571ae0f66f/1/receipt.json": "6cd2dd93b2ed7fd26a5f127b3fd3875b2ba6f3e279b4f4f5eaf49a1b3309b7f9",
+    "docs/mve/reviews/wo6b-live/attempts/210903571ae0f66f/1/request.json": "0654f9fca1d6b0e7f6d8e4ff1e516e19934538a39f73ebe6f0b2b94d606c07b5",
+    "docs/mve/reviews/wo6b-live/attempts/210903571ae0f66f/1/response.raw": "39beb09015a90adb02578c3301da0958bb96d5ebf303c50df01076936ce071cf",
+    "docs/mve/reviews/wo6b-live/attempts/210903571ae0f66f/2/receipt.json": "2f0a99454acce595b43ba9fe4101ce136762a67bae5dfa8b6f1875742dde04b5",
+    "docs/mve/reviews/wo6b-live/attempts/210903571ae0f66f/2/request.json": "575815ee26500b3a5bb1f73e656210e58a0efd734e0a4e10fca909b1f22f55c4",
+    "docs/mve/reviews/wo6b-live/attempts/210903571ae0f66f/2/response.raw": "5a1aa47604789e59e34f3ca1334c68d6a008dece189effe1f192274d41a2622d",
+    "docs/mve/reviews/wo6b-live/attempts/469861a3a73becca/0/receipt.json": "9af3e12bcab1b83b71775b74a62e5ecf273a2065b0d4791a3e780b0579c87c59",
+    "docs/mve/reviews/wo6b-live/attempts/469861a3a73becca/0/request.json": "4bc90a665013bf529b1455c9652e35a2a621ca00c62ed72934a2e581b7577c19",
+    "docs/mve/reviews/wo6b-live/attempts/469861a3a73becca/0/response.raw": "5f1482d764ddb0189e052af39695885095a3a38941cb04dbcaa5d430c5dba6bf",
+    "docs/mve/reviews/wo6b-live/attempts/469861a3a73becca/1/receipt.json": "b789b87b30c61e8a45ec14f75bb89eb912b71b0a3599d17312bc538a3b68fc4f",
+    "docs/mve/reviews/wo6b-live/attempts/469861a3a73becca/1/request.json": "5c2466314dc31fb091126745a26f361842e44e55af998455ca378917e61ae0ff",
+    "docs/mve/reviews/wo6b-live/attempts/469861a3a73becca/1/response.raw": "cc853e609210494b20edd5755c78a769614a2eae928d1d172894c0e5b2394cdc",
+    "docs/mve/reviews/wo6b-live/attempts/469861a3a73becca/2/receipt.json": "3cf6fdef739da7559b811a886bd9fa91fadc74a6b8bbe855043eaca234d2d2c2",
+    "docs/mve/reviews/wo6b-live/attempts/469861a3a73becca/2/request.json": "54f23cb96a57c354842520c55bcd1ad111d9885639e5f7e2a193e86a62ec0768",
+    "docs/mve/reviews/wo6b-live/attempts/469861a3a73becca/2/response.raw": "bbb5cf9303b3d39c24f26568cea2002dbbc0e6f14e256298a935559248703419",
+    "docs/mve/reviews/wo6b-live/attempts/518ef22877fb0da2/0/receipt.json": "24479cb005bbd3ba5b62f33a418324c588a390df7d7673d3ef2d4d76da423877",
+    "docs/mve/reviews/wo6b-live/attempts/518ef22877fb0da2/0/request.json": "14bd2f2ed0e1058300a7b33b402ace8be80a847dd4e30f581e5ad3f2f185be73",
+    "docs/mve/reviews/wo6b-live/attempts/518ef22877fb0da2/0/response.raw": "33f076fcb46ec5d0373365f724ee60a4e6eb0ef06b0bd2f1be52ddb9cb42a1b6",
+    "docs/mve/reviews/wo6b-live/attempts/518ef22877fb0da2/1/receipt.json": "1d0c0850307b3e82a888476da3ad562c6b027ab00387770d7fd3d29b9d393798",
+    "docs/mve/reviews/wo6b-live/attempts/518ef22877fb0da2/1/request.json": "2e70227db32b3ad27a7d2b9f40485475207406f7804864098f29e45198c502ab",
+    "docs/mve/reviews/wo6b-live/attempts/518ef22877fb0da2/1/response.raw": "723e423c86e1d46e8e2f41430b2ee771c7acf5624c747b22b7a7ab29aebfe083",
+    "docs/mve/reviews/wo6b-live/attempts/518ef22877fb0da2/2/receipt.json": "0e619ca6a82f2288c4aba589b4a64d73b076b5c991401c3c8ad825a851211b16",
+    "docs/mve/reviews/wo6b-live/attempts/518ef22877fb0da2/2/request.json": "94e536ad2a9718c325f62e2ebaafcebd8e0aa8893008fb12297520966f5e8566",
+    "docs/mve/reviews/wo6b-live/attempts/518ef22877fb0da2/2/response.raw": "73686244a4b4526f3e357b68808de4b33d575748286e526b48ff8fe1adfda45b",
+    "docs/mve/reviews/wo6b-live/attempts/57ca345effa88400/0/receipt.json": "954c52cbdf2cc5d8add8311cd98374c814bfd200c5b90ee333a77c44db2272d2",
+    "docs/mve/reviews/wo6b-live/attempts/57ca345effa88400/0/request.json": "3de12fb8f055cb96c390fedcd332bff7803fdcf17672f3798ada7c24fbe6f317",
+    "docs/mve/reviews/wo6b-live/attempts/57ca345effa88400/0/response.raw": "d1cc33c4432435bb2c575e036b3cd468fe57863f1e8047ccd1a4914a4370c79d",
+    "docs/mve/reviews/wo6b-live/attempts/57ca345effa88400/1/receipt.json": "92135c2e68adaf86ed93b6b2b25b618b414343e2ef234585822972c09df5fa78",
+    "docs/mve/reviews/wo6b-live/attempts/57ca345effa88400/1/request.json": "006a1eb51e8121a7bccf83fc08489b09912237544f9a1ae2344de3576383e8a9",
+    "docs/mve/reviews/wo6b-live/attempts/57ca345effa88400/1/response.raw": "2d7f2b5e7e3c970d55ae2679431f87bc82a656105dae7bf1fedafdf282664709",
+    "docs/mve/reviews/wo6b-live/attempts/57ca345effa88400/2/receipt.json": "f6cc912d95dc0dbeed1907c475e43c69f10bad3067994f377742b91427808aff",
+    "docs/mve/reviews/wo6b-live/attempts/57ca345effa88400/2/request.json": "d758d4fb1f2c4317831e5ac79c5f7782389de6853e30891d7b2963400674d376",
+    "docs/mve/reviews/wo6b-live/attempts/57ca345effa88400/2/response.raw": "7cd6cedf2142afb07f4c42a002e15a2d72f38019d3b3672004d3cc426fedba1c",
+    "docs/mve/reviews/wo6b-live/attempts/69f0e3feb043ead0/0/receipt.json": "8fd382fac7826a3464eb767dcd0cdbcce466a08a9c21936531c1c72f5db63244",
+    "docs/mve/reviews/wo6b-live/attempts/69f0e3feb043ead0/0/request.json": "9982c958e6c19373f5f161e7ed146fcb6aa8438d5f847ed5b5c7aadc314c5cc8",
+    "docs/mve/reviews/wo6b-live/attempts/69f0e3feb043ead0/0/response.raw": "9a99f980569b6c8b77237ce9e4a2e07f26418b6aad3add6a6145b5ad18b780ee",
+    "docs/mve/reviews/wo6b-live/attempts/69f0e3feb043ead0/1/receipt.json": "e8c631e27c46e95399f7c5a078e671329e5f9527bdd3da0379bb2ed78e630a7a",
+    "docs/mve/reviews/wo6b-live/attempts/69f0e3feb043ead0/1/request.json": "418e36ac78e6194dd859897852a057e9730179a6673dafd838fb4d8cc4bc790a",
+    "docs/mve/reviews/wo6b-live/attempts/69f0e3feb043ead0/1/response.raw": "4894d8a75e351eefcfc8b4bc87eb23ea78fa24c7939dfe6b70e564fe0d26157b",
+    "docs/mve/reviews/wo6b-live/attempts/69f0e3feb043ead0/2/receipt.json": "03183807662cce0276103f22f74279e6513ee35490f98362f36708cad256fa8e",
+    "docs/mve/reviews/wo6b-live/attempts/69f0e3feb043ead0/2/request.json": "8ef974f2705816c5efdb1bead634d5937d81a2de66d7cf27b20cf0c9460ea51f",
+    "docs/mve/reviews/wo6b-live/attempts/69f0e3feb043ead0/2/response.raw": "43a49ba82479adea6d3f86761ee1a1cc5e2490274e4a6a7d83ece1e7aba39580",
+    "docs/mve/reviews/wo6b-live/attempts/7775256302a44f18/0/receipt.json": "974411d5dad637f5dbdfaff1c6e80ed0d7e2e5523c4eea0da36a85bb4b1f178c",
+    "docs/mve/reviews/wo6b-live/attempts/7775256302a44f18/0/request.json": "e010aa5ebb1664bfab60fc63da7aafa25ef64b51185b695d4c0a2c87cff5115a",
+    "docs/mve/reviews/wo6b-live/attempts/7775256302a44f18/0/response.raw": "9482c6836872411fc574e61f7ffb41b28982c4e1f4580b1b9453ee8eb798d8ba",
+    "docs/mve/reviews/wo6b-live/attempts/7775256302a44f18/1/receipt.json": "26d7c6a7c77da6719c85a417fe6dcac02d534400e4b564587fc088e36732763f",
+    "docs/mve/reviews/wo6b-live/attempts/7775256302a44f18/1/request.json": "eb18658a5b971b6d86586d214c7471777dfdfc6ba4662a73da8072cf2d5a78a6",
+    "docs/mve/reviews/wo6b-live/attempts/7775256302a44f18/1/response.raw": "d7d6a934cf51653fe636270c6fb9bd6ab22722c1cb9c38ce2cbc5f1af2f71985",
+    "docs/mve/reviews/wo6b-live/attempts/7775256302a44f18/2/receipt.json": "cbb65d35c0ed17e782c432baa2c1a66b1335e97cbebe812759464c67b0e43334",
+    "docs/mve/reviews/wo6b-live/attempts/7775256302a44f18/2/request.json": "63cad9de50113e900b25e7e7714340d9631db9d75f57f1842fab1f70c8672dc1",
+    "docs/mve/reviews/wo6b-live/attempts/7775256302a44f18/2/response.raw": "e944faff5eb91794c17115c0bf40d24c31d5e0d463dda219ca466d68072b5253",
+    "docs/mve/reviews/wo6b-live/attempts/aee9b8f1478f3e32/0/receipt.json": "70414b11ab5e41865503f80ab88d1709db6edf81a715955f9a6076e7f2fa8f15",
+    "docs/mve/reviews/wo6b-live/attempts/aee9b8f1478f3e32/0/request.json": "75a3e8d45ccf442edf508cc8f7d29233ed56344db34ba27ff792687b2ca1b560",
+    "docs/mve/reviews/wo6b-live/attempts/aee9b8f1478f3e32/0/response.raw": "0976d8e7343a022e5167a6bf2c91f0551351152bb961277f21d8febbf4652500",
+    "docs/mve/reviews/wo6b-live/attempts/aee9b8f1478f3e32/1/receipt.json": "a301b04ec398018588af2cf2132618a078dc700b47014723c53d3cfb5395b744",
+    "docs/mve/reviews/wo6b-live/attempts/aee9b8f1478f3e32/1/request.json": "ea2083a72d211a9c82614c99d026b4285b40471d18a2b1197423f90b243ccaca",
+    "docs/mve/reviews/wo6b-live/attempts/aee9b8f1478f3e32/1/response.raw": "dc5a56d5b0f87fe3b2fd5c89dfb570e858504df089ac27bb1702c829c2b942dd",
+    "docs/mve/reviews/wo6b-live/attempts/aee9b8f1478f3e32/2/receipt.json": "5aca4e0383665068811d79dbece4695bf103639d16db182c09fcae56b3ef2abb",
+    "docs/mve/reviews/wo6b-live/attempts/aee9b8f1478f3e32/2/request.json": "f065d3f51bf6751fbe28f1610d9ac436ecb777c1b2ce73e5e7239441775fb2f1",
+    "docs/mve/reviews/wo6b-live/attempts/aee9b8f1478f3e32/2/response.raw": "b49bf89b23666880c8f310b9f89d08108ad40be4e923ab6ef7a154e1d9de6873",
+    "docs/mve/reviews/wo6b-live/attempts/d98cb0eb7218ffa2/0/receipt.json": "3f1170dff2f245de10b9638e81083962f3880acfdf06749ff1112ce81f28b55a",
+    "docs/mve/reviews/wo6b-live/attempts/d98cb0eb7218ffa2/0/request.json": "bc1af399f69034635b4aefa547d83c065d9987a0edcd97a48d3210746ed4d05a",
+    "docs/mve/reviews/wo6b-live/attempts/d98cb0eb7218ffa2/0/response.raw": "6fa15bb134331e66c6afc21d0e08dd02faf6dcd0a0a28eccf5a5577268d61ea4",
+    "docs/mve/reviews/wo6b-live/attempts/d98cb0eb7218ffa2/1/receipt.json": "e342fe26c59fd3d175634de49125c677b87c0f7a7940fe854074af03e7c19737",
+    "docs/mve/reviews/wo6b-live/attempts/d98cb0eb7218ffa2/1/request.json": "9c005cd6d970c95e0fa4ad16a68a7d7006abba916571ed2bf7aadf3ab3a9c5ce",
+    "docs/mve/reviews/wo6b-live/attempts/d98cb0eb7218ffa2/1/response.raw": "1955c439e1dc48d71d7ba7991f09055df24c3be62e72dd1645ad680644cfb419",
+    "docs/mve/reviews/wo6b-live/attempts/d98cb0eb7218ffa2/2/receipt.json": "7d0ac011dff0339afb00dd96918695ab0fffdbcfd15892f5bc3d4c9aa1081f80",
+    "docs/mve/reviews/wo6b-live/attempts/d98cb0eb7218ffa2/2/request.json": "b26619f6b420e5a0357c928d256ec877a5bc1877c3f703e4c2518549ad0f39bd",
+    "docs/mve/reviews/wo6b-live/attempts/d98cb0eb7218ffa2/2/response.raw": "2b8e0f0fde077f8a0490411434b756e794bc667dc4b7df7fda9c811caedc1df8",
+    "docs/mve/reviews/wo6b-live/design.json": "b567c904b9263b4f7ac2400ef4853c94c65c92f6e4858fcf5b41073d425922d5",
+    "docs/mve/reviews/wo6b-live/ledger.json": "10423323e55d682065954dd71e5c8d1d5ce1b791a9b42a4c5d763521fe0fc2cd",
+    "docs/mve/reviews/wp0b-live/ledger.json": "b6a03a43f9bff4907d15b3a27f609dc9b2e12b0dcc9830170c02f5388c11553c",
+    "docs/mve/reviews/wp0b-live/receipt.json": "f328968f5e3ef6ebacff4cc1226b7e90485c9eefaff0722c5285aa1f88e18cc8",
+    "docs/mve/reviews/wp0b-live/response.raw": "43c4ba95f6e344d4904426fe73382dd19ff1e30ee557b2e437b200b03e5985cd",
+    "mve/observer/config/wo6_campaign.json": "3ff005c95af4b9a62867489f752f3fc694b5001985f95a3b32017b6d34a2dcf0"
+  }
+}
