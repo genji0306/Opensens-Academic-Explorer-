@@ -453,3 +453,36 @@ remembered shape; (b) either constrain the card vocabulary to implemented checks
 the observer's natural features on the exported numbers (density gradient, modality, reflection
 symmetry), each with pinned power; (c) exclude renderer-invariant features (drawing aids, panel layout)
 from the tag vocabulary. The GO2 freeze should wait for (a)–(c).
+
+## Addendum 19: WO-6c comparative observer (7fb14da3a40 + Opus envelope test): PASS, merged
+
+Suite outside the sandbox: 1204 passed, 2 skipped, including the 77 WO-1b tests. Astra's opt-in
+`tests/mve/wo6c_guard.py` plugin (skips WO-1b tests only when loaded with `-p`) is not auto-loaded; its
+premise over-reads the data rule: running WO-1b's own tests is not development use of WO-1b data.
+
+Two independent reviews: approve, no CRITICAL/HIGH. Verified by re-execution:
+- A/B blinding does not leak the side. The composite is a fixed 1024x352 canvas with metadata stripped,
+  crops are uniform per module, the transport carries no job or side identifiers, and the pinned order
+  seed is 63001000.
+- `separating` requires grounding, an implemented two-sample check, power >= 0.8, detection and side
+  agreement, in that order, after the card is frozen.
+- The v3 vocabulary translates or excludes every v2 tag seen in WO-6b, with renderer-source reasons.
+- The comparative power study reproduces byte for byte, and significance comes from Monte Carlo ranks,
+  not scipy's asymptotic p-values.
+- Reconciliation reproduces: 0.016339 = 0.000268 + 0.006627 + 0.009444, counted once.
+- Worst case USD 0.006144 x 24 = 0.147456 for the 1024x352 composite.
+- Live refuses while WO6C_APPROVAL is None.
+- No WO-6c path loads WO-1b blocks.
+
+Opus addition: `tests/mve/observer/test_wo6c_envelope.py` re-derives WO-1b's seeds, zero-index
+intervals and integer intervals from the committed manifest and asserts they sit inside
+development_c.py's hard-coded envelopes (reviewer MEDIUM: the envelope was hand-transcribed). It passes
+with strict bounds. Non-blocking LOW notes: KS side expression readability (features.py:158); a comment
+that scipy's p-value is unused; capture_c labels argument errors `source_pin`; the pre-existing
+receipt-after-rmtree order in the capture `finally`.
+
+Before any WO-6c live run:
+- Opus captures the development null renders outside the sandbox
+  (`for k in 0 1 2 3; do python3 -m mve.observer.capture_c --batch "$k" || break; done`), after the
+  WO-1b full capture, with the same atlas/lab quiet check.
+- The owner gives a new approval date.
