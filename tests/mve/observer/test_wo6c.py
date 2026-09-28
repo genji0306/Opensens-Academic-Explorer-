@@ -131,9 +131,13 @@ def test_composite():
 
 def test_live_locked_before_any_work(monkeypatch):
     monkeypatch.setattr(pilot_c, "load_plan", lambda: pytest.fail("live touched input"))
+    with monkeypatch.context() as m:
+        m.setattr(pilot_c, "WO6C_APPROVAL", None)
+        with pytest.raises(Refusal, match="owner_approval"):
+            pilot_c.execute(live=True, owner_approval="2026-09-29", reviewed_head="a" * 40)
+    assert pilot_c.WO6C_APPROVAL == "2026-09-29"
     with pytest.raises(Refusal, match="owner_approval"):
         pilot_c.execute(live=True, owner_approval="2026-09-28", reviewed_head="a" * 40)
-    assert pilot_c.WO6C_APPROVAL is None
 
 
 def test_reconciliation():

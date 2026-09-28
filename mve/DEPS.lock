@@ -4629,7 +4629,7 @@
     "WO-6c": {
       "cap_micro_usd": 250000,
       "data_discipline": "WO-1 development snapshots and registered new null seeds only; no WO-1b blocks consumed",
-      "design_sha256": "33176cfc2a970586bff2b67512b3f06fde499465336afc68e7d2f25c4da4db58",
+      "design_sha256": "c2250829b79e120a735cdeaf8e7c5d667f1aafb0630130d5665ff9db6bf946cf",
       "files": {
         "mve/budget.py": "f02ad5923cb25e16fd751f552f73a0989305d3855710c0fd3b2583c77e91ef51",
         "mve/money.py": "0503706ad4f3f1f6308e3f9a6b58f68b303b0fc9ded526f818d2aa2390ea3b50",
@@ -4683,7 +4683,7 @@
         "mve/observer/pilot_accounting.py": "29aba9689721f5c2275c36bd063749fd8c03ab4d5dc62022303f35a9fef369c8",
         "mve/observer/pilot_b.py": "fe974b0d83758de287219f8ee366282dcc4c011f8d759c09b7820b700a7b871a",
         "mve/observer/pilot_b_accounting.py": "3045efa22c94e4351b9c2f3eefddbfff3caf85373df7663471048594e6133ad7",
-        "mve/observer/pilot_c.py": "dad20d069bafb37bc25d65823b2cf46c802a670f0f9ed6ae73fb6e061e84a5a8",
+        "mve/observer/pilot_c.py": "998b6b42489b594b8dd70102f44042922afb575a766da3c70959d4345575498e",
         "mve/observer/pilot_c_accounting.py": "8a23529cbb564473eac51215def81f87717986b2b132ef110d9571fbd41d19d5",
         "mve/observer/pilot_cards.py": "fb2fffea58dc1bdc26910f5ca1e1859e57d62c3b6b66d4457360f5b0f0a0e5f0",
         "mve/observer/pilot_inputs.py": "b0c5f4b73b332c7f12be78c0984c726508d868a782a394bdd8b72e1672b0ebfa",
@@ -4725,19 +4725,19 @@
         "mve/reporting/tables.py": "c34343beca40a950e1e081676cb5be9c559e9ce96c60b5efdafba5c89f1b3ad0",
         "mve/reporting/topology.py": "924aaa1349796d2784e38fb21e62c1351cea84f63530184142968869506045f5",
         "schemas/mve_grounded_card_v3.json": "9951fccd3437b1396aea72bd21cc63518b5fddc610a816455e0858a5f0e4d15b",
-        "tests/mve/observer/test_wo6c.py": "5c3ece3a0692a0c3297c515e71b02ed6ee9990f7882aebf144e4b950484c29de",
+        "tests/mve/observer/test_wo6c.py": "9df258efcf4636fb188a479cde2244dacbc4994a94ce5d3d1b1c8aef6c48db5d",
         "tests/mve/wo6c_guard.py": "6ce0a96bc9d5aad1c4d0030b6e1c914ace5567c31a81c2865530b3940ac27f1b",
         "mve/observer/config/grounded_v2.json": "d7beee72c969e0cca8c7c47101549a2c941b8938312984dfbef89972c059eeca"
       },
       "inferential": false,
-      "owner_approval": null,
+      "owner_approval": "2026-09-29",
       "prior_micro_usd": 16339,
-      "prospective_tests": "Deferred by explicit WO-6c guard; Opus must run unchanged WO-1b modules separately",
+      "prospective_tests": "Opus ran the unchanged WO-1b modules in the full suite (1204 passed); the opt-in guard is not auto-loaded",
       "source_commits": {
         "atlas": "97b1e48cb1075aea431cf754cc84f2eeabb3dfb9",
         "lab": "c81510cd29b0fc666b1f171a9604a51be9661576"
       },
-      "status": "offline_only",
+      "status": "owner approved 2026-09-29 (one live run, off-peak, owner-run); Opus review PASS (Addendum 19)",
       "worst_case_micro_usd": 147456,
       "artifacts": {
         "docs/mve/reviews/WO6C_ASTRA_20260928.md": "3f26aa2e7df2b451a887bd5aa4ae5d0168a7e83db7d352b412de84490d622378",
