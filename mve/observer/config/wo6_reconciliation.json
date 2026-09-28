@@ -1,0 +1,187 @@
+{
+  "basis": "Pinned campaign cut: WP-0b is the sole prior hosted attempt. Usage-derived peak estimate, not a vendor invoice. New campaign spending requires a new reviewed cut.",
+  "remaining_micro_usd": 19999732,
+  "report": {
+    "aggregate": {
+      "attempts": 1,
+      "attempts_by_state": {
+        "cancelled": 0,
+        "dispatched": 0,
+        "reserved": 0,
+        "settled": 1
+      },
+      "exposure": {
+        "micro_usd": 268,
+        "usd": "0.000268"
+      },
+      "remaining": {
+        "micro_usd": 19999732,
+        "usd": "19.999732"
+      },
+      "reserved": {
+        "micro_usd": 0,
+        "usd": "0.000000"
+      },
+      "settled": {
+        "micro_usd": 268,
+        "usd": "0.000268"
+      },
+      "uncertain": {
+        "micro_usd": 0,
+        "usd": "0.000000"
+      }
+    },
+    "aggregation_reason": "monetary sums and attempt counts, not relation scoring",
+    "attempts": [
+      {
+        "actual": 268,
+        "created": "2026-09-27T12:28:42.706105+00:00",
+        "dispatched": "2026-09-27T12:28:42.741874+00:00",
+        "id": "wp0b:single-model-probe",
+        "origins": [
+          "campaign",
+          "live"
+        ],
+        "phase": "P0",
+        "receipt": "f328968f5e3ef6ebacff4cc1226b7e90485c9eefaff0722c5285aa1f88e18cc8",
+        "reserved": 39936,
+        "state": "settled",
+        "wave": "wp0b"
+      }
+    ],
+    "caps": {
+      "P0": 2000000,
+      "P1": 8000000,
+      "aggregate": 20000000
+    },
+    "caps_basis": "campaign configuration",
+    "carry_policy": "same attempt ID with byte-equivalent parsed row counted once; conflicting copies refused",
+    "complete": true,
+    "frozen": false,
+    "ledgers": {
+      "campaign": {
+        "events": [],
+        "frozen": false,
+        "quota": [],
+        "window_policy": "deepseek-pricing-20260927:UTC:Mon-Fri:01-04,06-10:VERIFIED:holidays-conservative"
+      },
+      "live": {
+        "events": [],
+        "frozen": false,
+        "quota": [],
+        "window_policy": "deepseek-pricing-20260927:UTC:Mon-Fri:01-04,06-10:VERIFIED:holidays-conservative"
+      }
+    },
+    "live_caps": {
+      "P0": 50000,
+      "P1": 8000000,
+      "aggregate": 50000
+    },
+    "macro": null,
+    "micro": null,
+    "null": "N/A: accounting census",
+    "p2_policy": "P2 shares the remaining aggregate, not a separate fixed cap",
+    "phases": {
+      "P0": {
+        "attempts": 1,
+        "attempts_by_state": {
+          "cancelled": 0,
+          "dispatched": 0,
+          "reserved": 0,
+          "settled": 1
+        },
+        "exposure": {
+          "micro_usd": 268,
+          "usd": "0.000268"
+        },
+        "remaining": {
+          "micro_usd": 1999732,
+          "usd": "1.999732"
+        },
+        "reserved": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "settled": {
+          "micro_usd": 268,
+          "usd": "0.000268"
+        },
+        "uncertain": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        }
+      },
+      "P1": {
+        "attempts": 0,
+        "attempts_by_state": {
+          "cancelled": 0,
+          "dispatched": 0,
+          "reserved": 0,
+          "settled": 0
+        },
+        "exposure": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "remaining": {
+          "micro_usd": 8000000,
+          "usd": "8.000000"
+        },
+        "reserved": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "settled": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "uncertain": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        }
+      },
+      "P2": {
+        "attempts": 0,
+        "attempts_by_state": {
+          "cancelled": 0,
+          "dispatched": 0,
+          "reserved": 0,
+          "settled": 0
+        },
+        "exposure": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "remaining": {
+          "micro_usd": 19999732,
+          "usd": "19.999732"
+        },
+        "reserved": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "settled": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        },
+        "uncertain": {
+          "micro_usd": 0,
+          "usd": "0.000000"
+        }
+      }
+    },
+    "quota_by_provider": {},
+    "quota_scope": "ledger quota rows have no phase field; per-phase attribution and quota limits are not established",
+    "scope": "complete supplied snapshots",
+    "stop_state": "not frozen",
+    "uncertain_policy": "dispatched without settlement retains full reservation; actual cost unknown"
+  },
+  "schema": "mve-wo6-reconciliation-v1",
+  "sha256": "61564cf683ec69bb840dcdb7fb7ad835fc8d1f5132a154e89cb86e990062b250",
+  "sources": {
+    "docs/mve/reviews/wp0b-live/ledger.json": "b6a03a43f9bff4907d15b3a27f609dc9b2e12b0dcc9830170c02f5388c11553c",
+    "docs/mve/reviews/wp0b-live/receipt.json": "f328968f5e3ef6ebacff4cc1226b7e90485c9eefaff0722c5285aa1f88e18cc8",
+    "docs/mve/reviews/wp0b-live/response.raw": "43c4ba95f6e344d4904426fe73382dd19ff1e30ee557b2e437b200b03e5985cd",
+    "mve/observer/config/wo6_campaign.json": "3ff005c95af4b9a62867489f752f3fc694b5001985f95a3b32017b6d34a2dcf0"
+  }
+}

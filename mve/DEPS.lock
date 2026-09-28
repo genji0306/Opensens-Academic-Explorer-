@@ -4089,7 +4089,7 @@
           "request": "tests/mve/observer/wo45_fixtures/request.json",
           "sha256": "f932d950aceb956738cdde85953cb140d97e9382def26efed528c5b15db43ab1",
           "strata": [
-            "spectral × zero spacings"
+            "spectral \u00d7 zero spacings"
           ],
           "views": 1,
           "slots_per_view": 3,
@@ -4363,6 +4363,55 @@
           "sha256": "e7e163564c078e1897d2738cdf92b68f309b8233422f74984b9415505ac727a4"
         }
       ]
+    },
+    "WO-6": {
+      "owner_approval": "2026-09-28",
+      "status": "offline activation; Opus review and operator execution pending",
+      "design_sha256": "f66f77f9c79b2fa0ed22a60d4419866eb5048c7a7d1c0ef981365ec20b089c77",
+      "files": {
+        "mve/observer/card.py": "64d190a1a2c1e28e4a03589825635fc8278219b012f637bd62f8e0b973ad862b",
+        "mve/observer/config/wo6_campaign.json": "3ff005c95af4b9a62867489f752f3fc694b5001985f95a3b32017b6d34a2dcf0",
+        "mve/observer/config/wo6_reconciliation.json": "bf067d084d70abbcfd18fb1d7e9f8bdf460c12a3805d48cf4b808cf0ac13462a",
+        "mve/observer/fixtures/wo6/26273407940f612fa020ca13/blind.png": "9f09e2ab89195a1095310bd6a65e957629d4d636d2af8d17e12d5221970292a4",
+        "mve/observer/fixtures/wo6/26273407940f612fa020ca13/data.json": "b7a7a892e42ae7b81e1205b43457711d06490dcdf8c14ceae4c3ba04fb999b06",
+        "mve/observer/fixtures/wo6/4fa1ba104ef92cc9974a34d0/blind.png": "c91d9b3f27e894799a38e7f40f655a95d19bf54d449009c2b33e1ce966d1aa57",
+        "mve/observer/fixtures/wo6/4fa1ba104ef92cc9974a34d0/data.json": "48c30d7a7de50fc2d7e56d13e0402d2e92e0738185c8712ed59b4274813903e0",
+        "mve/observer/fixtures/wo6/72a4faadef98a29892dbaabf/blind.png": "6fdcf3b32402464b0aeced96e8697c7e90f23dcb8b81f2364fe60ab62dcaa83a",
+        "mve/observer/fixtures/wo6/72a4faadef98a29892dbaabf/data.json": "1a8bdc6b8cbbc6d4e50a1d786465cd3f00a300b737b75cf9c9ef2e07bb80c12d",
+        "mve/observer/fixtures/wo6/README.md": "eb019eb30842f6f5126be5c12062be4f9b68b5b459ae2255b532ae3148739dd5",
+        "mve/observer/fixtures/wo6/ad3e2d070bf2281c2f4e5776/blind.png": "2127794e2dabca7f1544026ea40ba7e6e88c08de0c761872e54e4ba73de2975c",
+        "mve/observer/fixtures/wo6/ad3e2d070bf2281c2f4e5776/data.json": "1c492bd4071a53fcc40b26fc1f5833d70e5690515c6e551409111b8642438464",
+        "mve/observer/fixtures/wo6/c850cba22bfce83c435c9b3b/blind.png": "f45a8b0237a60103c5ddd9ddc285bf747d34bdb639e7170b242303f76afa7dfa",
+        "mve/observer/fixtures/wo6/c850cba22bfce83c435c9b3b/data.json": "a1fa92997394e24615cbeaf45c1829f90122a065d613344e3c0cbdbf73b50eaf",
+        "mve/observer/fixtures/wo6/e7e62f118767a71e4f9f5667/blind.png": "54eb13730ad2ea86b5094ed86555c77799914a30033cb372a8f50c3d687f6a1c",
+        "mve/observer/fixtures/wo6/e7e62f118767a71e4f9f5667/data.json": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+        "mve/observer/fixtures/wo6/f3252b4209f5b923c2742faf/blind.png": "0dbf184ce2839b81b71965ec81c65eafe2b455e1ba6cf59eccf50a0b60e814c1",
+        "mve/observer/fixtures/wo6/f3252b4209f5b923c2742faf/data.json": "14c194cc3a526079334197f402bac8bf2fa5ccfccab114688a884dd3f70e4f0e",
+        "mve/observer/fixtures/wo6/f65fc613988149f3756457a3/blind.png": "4b3c1ef5628de8305737b063c610868b8493a9b70107132eb67f14cfce0ecf1f",
+        "mve/observer/fixtures/wo6/f65fc613988149f3756457a3/data.json": "055749e0e91dcae5b3be49bde3ed9e0949af03483a4315c108ccd44f86762d40",
+        "mve/observer/fixtures/wo6/manifest.json": "55266cec425067006791845b5664e366c4962b4f3435ecf5b9349e4053834f2a",
+        "mve/observer/fixtures/wo6/receipt.json": "c06bd06f183580e58e60ae3d8a50ea1d4eded05e9d614e66f05513060bfd3f17",
+        "mve/observer/fixtures/wo6/repeat-verification.json": "0d5cb7a1f060e4ba80824b9f0982992a3a93ba31885a85f6e0de7024e70519dd",
+        "mve/observer/pilot.py": "a75dab5cfb49b619b87ba0d3c6368ceec11235d0874b1d7a4c6277822b0edff9",
+        "mve/observer/pilot_accounting.py": "29aba9689721f5c2275c36bd063749fd8c03ab4d5dc62022303f35a9fef369c8",
+        "mve/observer/pilot_cards.py": "fb2fffea58dc1bdc26910f5ca1e1859e57d62c3b6b66d4457360f5b0f0a0e5f0",
+        "mve/observer/pilot_inputs.py": "b0c5f4b73b332c7f12be78c0984c726508d868a782a394bdd8b72e1672b0ebfa",
+        "mve/observer/pilot_transport.py": "43aac9d25693d81ac8ba4d09a05ae793d4fbbc7e333b680e0e901794e29efd5d",
+        "mve/observer/run.py": "739f4a0b9db2d05832a8f1f2538d46544b86c1250e16f671fc95cd1eb4c58b3e",
+        "schemas/mve_hypothesis_card.json": "cd661975fa62fde28730a434685917d51fa1b8a972317ac8ff2681a158d7851f",
+        "tests/mve/observer/test_pilot.py": "6474ac4ca3ca69e1554f5e9bc2a95a6d7fb359e1b1edf9f8cdb1489b9ee08dde"
+      },
+      "call_cap": 24,
+      "P1_cap_usd": "0.25",
+      "aggregate_remainder_usd": "19.999732",
+      "second_observer": "SKIPPED: owner Q2 unanswered",
+      "planned_calls": 24,
+      "worst_case_micro_usd": 147456,
+      "scope": "Four development-only WO-1 pairs; shuffled slots unavailable; zero independent clusters; no replication or contrasts; GO2 cannot pass.",
+      "base_git_sha": "7a41d16508184ab4c8da79c1e02d7745f0f7def6",
+      "price_evidence_date": "2026-09-27",
+      "price_basis": "Existing owner-supplied, Opus-verified WP-0b peak prices; no new vendor fetch.",
+      "review_handoff": "docs/mve/reviews/WO6_PILOT_ASTRA_20260928.md"
     }
   },
   "schema": "mve-deps-v1"

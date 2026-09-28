@@ -1,4 +1,4 @@
-"""WO-4 offline observer runner. No live option, hosted transport or relay."""
+"""WO-4 replay runner; reviewed WO-6 live activation delegates to pilot.py."""
 
 from copy import deepcopy
 import hashlib
@@ -330,7 +330,14 @@ def run(
 
 
 def main(argv=None):
-    """Run a bounded authored replay request; owner answers do not enable live I/O."""
+    """Run authored replays or delegate the separately gated WO-6 pilot."""
+    import sys
+
+    arguments = list(sys.argv[1:] if argv is None else argv)
+    if "--live" in arguments or "--dry-run" in arguments:
+        from mve.observer.pilot import main as pilot_main
+
+        return pilot_main(arguments)
     import argparse
     from datetime import datetime
     from mve.budget import BudgetLedger

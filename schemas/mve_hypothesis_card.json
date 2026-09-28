@@ -3,9 +3,7 @@
   "$id": "oae-mve-hypothesis-card-v1",
   "type": "object",
   "properties": {
-    "schema": {
-      "const": "oae-mve-hypothesis-card-v1"
-    },
+    "schema": {"const": "oae-mve-hypothesis-card-v1"},
     "card_id": {
       "type": "string",
       "pattern": "^hyp_[1-9][0-9]*$"
@@ -25,22 +23,10 @@
     "testable_form": {
       "type": "object",
       "properties": {
-        "statistic": {
-          "type": "string",
-          "minLength": 1
-        },
-        "data": {
-          "type": "string",
-          "minLength": 1
-        },
-        "baseline": {
-          "type": "string",
-          "minLength": 1
-        },
-        "direction": {
-          "type": "string",
-          "minLength": 1
-        }
+        "statistic": {"type": "string", "minLength": 1},
+        "data": {"type": "string", "minLength": 1},
+        "baseline": {"type": "string", "minLength": 1},
+        "direction": {"type": "string", "minLength": 1}
       },
       "required": [
         "statistic",
@@ -80,14 +66,21 @@
               "statistic": {
                 "enum": [
                   "ks",
-                  "exponent_difference"
+                  "exponent_difference",
+                  "declared_statistic"
                 ]
               },
               "alpha": {
                 "type": "number",
                 "exclusiveMinimum": 0,
                 "exclusiveMaximum": 1
-              }
+              },
+              "threshold": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "maximum": 1
+              },
+              "operator": {"const": ">"}
             },
             "required": [
               "statistic",
@@ -106,272 +99,300 @@
       "additionalProperties": false
     },
     "check_spec": {
-      "type": "object",
-      "properties": {
-        "check_id": {
-          "const": "spacing"
-        },
-        "library_version": {
-          "const": "spacing-v1"
-        },
-        "estimator": {
-          "const": "conditional_power_mle"
-        },
-        "fitting_interval": {
-          "type": "array",
-          "items": {
-            "type": "number"
-          },
-          "minItems": 2
-        },
-        "baselines": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "name": {
-                "enum": [
-                  "gaudin",
-                  "cue",
-                  "wigner",
-                  "planck"
-                ]
-              },
-              "version": {
-                "type": "string",
-                "minLength": 1
-              },
-              "parameters": {
-                "type": "integer",
-                "minimum": 0
-              },
-              "role": {
-                "enum": [
-                  "primary",
-                  "secondary"
-                ]
-              }
-            },
-            "required": [
-              "name",
-              "version",
-              "parameters",
-              "role"
-            ],
-            "additionalProperties": false
-          },
-          "minItems": 2
-        },
-        "alpha": {
-          "type": "number",
-          "exclusiveMinimum": 0,
-          "exclusiveMaximum": 1
-        },
-        "calibration": {
+      "oneOf": [
+        {
           "type": "object",
           "properties": {
-            "method": {
-              "const": "rank_moving_block_refit"
-            },
-            "replicates": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "joint_replicates": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "size_trials": {
-              "type": "integer",
-              "minimum": 1
-            }
-          },
-          "required": [
-            "method",
-            "replicates",
-            "joint_replicates",
-            "size_trials"
-          ],
-          "additionalProperties": false
-        },
-        "dependence": {
-          "type": "object",
-          "properties": {
-            "thin": {
-              "type": "integer",
-              "minimum": 1
-            },
-            "block_len": {
-              "type": "integer",
-              "minimum": 2
-            }
-          },
-          "required": [
-            "thin",
-            "block_len"
-          ],
-          "additionalProperties": false
-        },
-        "development": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "source_block_id": {
-                "type": "string",
-                "minLength": 1
+            "check_id": {"const": "spacing"},
+            "library_version": {"const": "spacing-v1"},
+            "estimator": {"const": "conditional_power_mle"},
+            "fitting_interval": {
+              "type": "array",
+              "items": {
+                "type": "number"
               },
-              "sha256": {
-                "type": "string",
-                "pattern": "^[0-9a-f]{64}$"
-              },
-              "role": {
-                "enum": [
-                  "development",
-                  "replication"
-                ]
-              },
-              "min_gaps": {
-                "type": "integer",
-                "minimum": 1
-              }
+              "minItems": 2
             },
-            "required": [
-              "source_block_id",
-              "sha256",
-              "role",
-              "min_gaps"
-            ],
-            "additionalProperties": false
-          },
-          "minItems": 1
-        },
-        "replication": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "source_block_id": {
-                "type": "string",
-                "minLength": 1
-              },
-              "sha256": {
-                "type": "string",
-                "pattern": "^[0-9a-f]{64}$"
-              },
-              "role": {
-                "enum": [
-                  "development",
-                  "replication"
-                ]
-              },
-              "min_gaps": {
-                "type": "integer",
-                "minimum": 1
-              }
-            },
-            "required": [
-              "source_block_id",
-              "sha256",
-              "role",
-              "min_gaps"
-            ],
-            "additionalProperties": false
-          },
-          "minItems": 1
-        },
-        "seed": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "kill_rule": {
-          "type": "object",
-          "properties": {
-            "method": {
-              "enum": [
-                "primary",
-                "bonferroni"
-              ]
-            },
-            "overall_alpha": {
-              "type": "number",
-              "exclusiveMinimum": 0,
-              "exclusiveMaximum": 1
-            },
-            "components": {
+            "baselines": {
               "type": "array",
               "items": {
                 "type": "object",
                 "properties": {
-                  "statistic": {
+                  "name": {
                     "enum": [
-                      "ks",
-                      "exponent_difference"
+                      "gaudin",
+                      "cue",
+                      "wigner",
+                      "planck"
                     ]
                   },
-                  "alpha": {
-                    "type": "number",
-                    "exclusiveMinimum": 0,
-                    "exclusiveMaximum": 1
+                  "version": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "parameters": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "role": {
+                    "enum": [
+                      "primary",
+                      "secondary"
+                    ]
                   }
                 },
                 "required": [
-                  "statistic",
-                  "alpha"
+                  "name",
+                  "version",
+                  "parameters",
+                  "role"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 2
+            },
+            "alpha": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 1
+            },
+            "calibration": {
+              "type": "object",
+              "properties": {
+                "method": {"const": "rank_moving_block_refit"},
+                "replicates": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "joint_replicates": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "size_trials": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "method",
+                "replicates",
+                "joint_replicates",
+                "size_trials"
+              ],
+              "additionalProperties": false
+            },
+            "dependence": {
+              "type": "object",
+              "properties": {
+                "thin": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "block_len": {
+                  "type": "integer",
+                  "minimum": 2
+                }
+              },
+              "required": [
+                "thin",
+                "block_len"
+              ],
+              "additionalProperties": false
+            },
+            "development": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source_block_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "role": {
+                    "enum": [
+                      "development",
+                      "replication"
+                    ]
+                  },
+                  "min_gaps": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "source_block_id",
+                  "sha256",
+                  "role",
+                  "min_gaps"
                 ],
                 "additionalProperties": false
               },
               "minItems": 1
+            },
+            "replication": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "source_block_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "role": {
+                    "enum": [
+                      "development",
+                      "replication"
+                    ]
+                  },
+                  "min_gaps": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "source_block_id",
+                  "sha256",
+                  "role",
+                  "min_gaps"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            },
+            "seed": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "kill_rule": {
+              "type": "object",
+              "properties": {
+                "method": {
+                  "enum": [
+                    "primary",
+                    "bonferroni"
+                  ]
+                },
+                "overall_alpha": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "exclusiveMaximum": 1
+                },
+                "components": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "statistic": {
+                        "enum": [
+                          "ks",
+                          "exponent_difference"
+                        ]
+                      },
+                      "alpha": {
+                        "type": "number",
+                        "exclusiveMinimum": 0,
+                        "exclusiveMaximum": 1
+                      }
+                    },
+                    "required": [
+                      "statistic",
+                      "alpha"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "minItems": 1
+                }
+              },
+              "required": [
+                "method",
+                "overall_alpha",
+                "components"
+              ],
+              "additionalProperties": false
+            },
+            "unfolding": {
+              "enum": [
+                "smooth_count",
+                "local_density_offsets",
+                "already_unfolded"
+              ]
+            },
+            "lambda_bogomolny": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "spec_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "model": {
+              "enum": [
+                "planck",
+                "gaudin"
+              ]
             }
           },
           "required": [
-            "method",
-            "overall_alpha",
-            "components"
+            "check_id",
+            "library_version",
+            "estimator",
+            "fitting_interval",
+            "baselines",
+            "alpha",
+            "calibration",
+            "dependence",
+            "development",
+            "replication",
+            "seed",
+            "kill_rule",
+            "unfolding",
+            "lambda_bogomolny",
+            "spec_sha256",
+            "model"
           ],
           "additionalProperties": false
         },
-        "unfolding": {
-          "enum": [
-            "smooth_count",
-            "local_density_offsets",
-            "already_unfolded"
-          ]
-        },
-        "lambda_bogomolny": {
-          "type": "number",
-          "exclusiveMinimum": 0
-        },
-        "spec_sha256": {
-          "type": "string",
-          "pattern": "^[0-9a-f]{64}$"
-        },
-        "model": {
-          "enum": [
-            "planck",
-            "gaudin"
-          ]
+        {
+          "type": "object",
+          "properties": {
+            "check_id": {"const": "unavailable"},
+            "library_version": {"const": "unavailable-v1"},
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "alpha": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 1
+            },
+            "kill_rule": {
+              "$ref": "#/properties/kill_criterion"
+            },
+            "spec_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "check_id",
+            "library_version",
+            "reason",
+            "alpha",
+            "kill_rule",
+            "spec_sha256"
+          ],
+          "additionalProperties": false
         }
-      },
-      "required": [
-        "check_id",
-        "library_version",
-        "estimator",
-        "fitting_interval",
-        "baselines",
-        "alpha",
-        "calibration",
-        "dependence",
-        "development",
-        "replication",
-        "seed",
-        "kill_rule",
-        "unfolding",
-        "lambda_bogomolny",
-        "spec_sha256",
-        "model"
-      ],
-      "additionalProperties": false
+      ]
     },
     "sources": {
       "type": "array",
@@ -410,10 +431,7 @@
     "observer": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "minLength": 1
-        },
+        "id": {"type": "string", "minLength": 1},
         "kind": {
           "enum": [
             "human",
@@ -423,10 +441,7 @@
         "blinded": {
           "type": "boolean"
         },
-        "model_id": {
-          "type": "string",
-          "minLength": 1
-        },
+        "model_id": {"type": "string", "minLength": 1},
         "prompt_sha": {
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
@@ -525,10 +540,7 @@
             "high"
           ]
         },
-        "by": {
-          "type": "string",
-          "minLength": 1
-        }
+        "by": {"type": "string", "minLength": 1}
       },
       "required": [
         "value",
@@ -768,5 +780,6 @@
     "history",
     "context"
   ],
-  "additionalProperties": false
+  "additionalProperties": false,
+  "description": " 2026-09-28 WO-6 additive unavailable check contract: unimplemented checks remain preliminary and cannot establish survival."
 }

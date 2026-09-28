@@ -97,47 +97,60 @@ def validate(data):
         require(spec["alpha"] == spec["kill_rule"]["overall_alpha"], "alpha mismatch")
         require(spec["spec_sha256"] == spec_hash(spec), "spec hash mismatch")
         require(data["content_hash"] == card_hash(data), "content hash mismatch")
-        lo, hi = spec["fitting_interval"]
-        require(lo == 0 and hi > lo, "exponent interval must be (0, cutoff]")
-        require(
-            {b["name"] for b in spec["baselines"] if b["role"] == "primary"}
-            >= {"gaudin", "cue"},
-            "accepted Gaudin and CUE baselines required",
-        )
-        require(
-            all(
-                b["role"] == "secondary"
-                for b in spec["baselines"]
-                if b["name"] == "wigner"
-            ),
-            "Wigner is secondary",
-        )
-        for partition in ("development", "replication"):
+        if spec["check_id"] == "spacing":
+            lo, hi = spec["fitting_interval"]
+            require(lo == 0 and hi > lo, "exponent interval must be (0, cutoff]")
             require(
-                all(b["role"] == partition for b in spec[partition]),
-                "partition role mismatch",
+                {b["name"] for b in spec["baselines"] if b["role"] == "primary"}
+                >= {"gaudin", "cue"},
+                "accepted Gaudin and CUE baselines required",
             )
-        require(
-            all(
-                len({b["source_block_id"] for b in spec[p]}) == len(spec[p])
-                for p in ("development", "replication")
-            ),
-            "duplicate source block",
-        )
-        require(
-            not (
-                {b["source_block_id"] for b in spec["development"]}
-                & {b["source_block_id"] for b in spec["replication"]}
-            ),
-            "overlapping source blocks",
-        )
-        require(
-            not (
-                {b["sha256"] for b in spec["development"]}
-                & {b["sha256"] for b in spec["replication"]}
-            ),
-            "reused partition data",
-        )
+            require(
+                all(
+                    b["role"] == "secondary"
+                    for b in spec["baselines"]
+                    if b["name"] == "wigner"
+                ),
+                "Wigner is secondary",
+            )
+            for partition in ("development", "replication"):
+                require(
+                    all(b["role"] == partition for b in spec[partition]),
+                    "partition role mismatch",
+                )
+            require(
+                all(
+                    len({b["source_block_id"] for b in spec[p]}) == len(spec[p])
+                    for p in ("development", "replication")
+                ),
+                "duplicate source block",
+            )
+            require(
+                not (
+                    {b["source_block_id"] for b in spec["development"]}
+                    & {b["source_block_id"] for b in spec["replication"]}
+                ),
+                "overlapping source blocks",
+            )
+            require(
+                not (
+                    {b["sha256"] for b in spec["development"]}
+                    & {b["sha256"] for b in spec["replication"]}
+                ),
+                "reused partition data",
+            )
+        else:
+            require(
+                all(
+                    c.get("operator") == ">" and 0 < c.get("threshold", 0) <= 1
+                    for c in spec["kill_rule"]["components"]
+                ),
+                "unavailable check needs a numeric declared kill threshold",
+            )
+            require(
+                data["status"] in {"draft", "well_formed", "frozen", "preliminary"},
+                "unavailable check must remain preliminary",
+            )
         observer = data["observer"]
         require(
             observer["id"].startswith(observer["kind"] + ":"),

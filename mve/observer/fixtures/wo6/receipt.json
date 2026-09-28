@@ -1,0 +1,10 @@
+{
+  "archive_unchanged": true,
+  "capture": "captured",
+  "generated_bytes": 7583370,
+  "hosted_calls": 0,
+  "isolation_scope": "All files including ignored under both allowed source pathspec sets; full git status --ignored of both repos. Not a hash audit of unrelated repo directories.",
+  "mode": "offline_only",
+  "outside_write_probe": "denied_for_both_repos",
+  "source_repos_unchanged": true
+}
