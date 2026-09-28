@@ -389,3 +389,37 @@ perception" was stated too strongly for two of the four modules.
 Design consequence (for WO-1b): for spectral and Dyson the null twin is a positive control for GUE,
 not a negative one. A useful test there needs contrasts (Poisson, GOE) or a statistic aimed at
 deviations of the real zeros from GUE, not agreement with it.
+
+## Addendum 17: WO-1b prospective snapshot inventory (64245be7c9e + fix round a16c5c54086): PASS, merged
+
+Owner instruction: merge when the review passes. Suite outside the sandbox: 1176 passed, 2 skipped on
+the merged tree (Astra's seven nested-sandbox failures pass here).
+
+Inventory: 140 blocks, 30 clusters (20 ordinary, 5 per stratum; 10 contrast across all four strata),
+280 snapshots; manifest d286a45abc8187fd rebuilds byte for byte from the read-only Odlyzko cache
+(SHA256SUMS verified). Reviewer checks by re-execution: zero overlapping zero-index or integer-index
+intervals, 140 distinct seeds, spot-checked block digests reproduce, beta-ensemble tridiagonal
+normalisation correct for GOE and GUE (shared semicircle support), every contrast block has a pinned
+upper-tail power >= 0.8 at its n. Spectral/Dyson contrasts are Poisson and GOE, per Addendum 16.
+
+Native pilot (Opus, outside the sandbox, 06:27–06:35 UTC): batch 0 = one spectral ordinary cluster,
+10/10 snapshots accepted, all WO-1 repeat checks passed, source audit unchanged before/after, writes
+outside the output root denied for both repos, 458.5 s (45.9 s per snapshot incl. browser startup),
+595,682 accepted bytes. Opus inspected D (Odlyzko) and null-D (GUE) crops: both render correctly. Full
+capture estimate: 28 batches, ~3.6 h, ~17 MB. The pilot evidence under
+mve/generated/wo1b-d286a45abc8187fd/ is prospective and immutable (not committed; generated tree).
+
+Review findings and fixes (a16c5c54086): (1) reviewer CRITICAL, Opus: must-fix hardening (the zeros
+are public, so the real protection is pre-registration): R data was sealed only at observer_block;
+block_data()/numeric() now require an explicit purpose and materialise R only for "capture" (Opus
+verified by direct calls: tuning/analysis/observer refuse, a missing purpose is a TypeError, capture
+works), and any observer/analysis load of R requires a pinned `go2_freeze` record in DEPS.lock whose
+digest covers prompts, contract, power study, thresholds and runner source. No freeze record exists,
+so R is sealed. (2) Development exclusion is now validated. (3) power_row pins null = GUE.
+(4) Snapshot size is checked before the first write. (5) Batch JSON goes through the user-path guard.
+(6) A WO-1b-specific archive guard applies the 200 MiB / 5 GiB limits; WO-1's pinned guard is
+unchanged. (7) Operator note: a stuck partial snapshot refuses forever; recovery only by an
+Opus-reviewed, recorded quarantine move.
+
+Next: the full capture (27 remaining batches, ~3.5 h, local, no hosted calls). The GO2 freeze record
+must be written and reviewed before any observer run touches R.
