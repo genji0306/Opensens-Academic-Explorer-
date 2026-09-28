@@ -7,6 +7,7 @@ fulfilled from the archive by Playwright; the OS denies inet access (Unix IPC al
 """
 
 import argparse
+from contextlib import contextmanager
 import json
 import os
 from pathlib import Path
@@ -264,6 +265,23 @@ def run_worker(args, out):
     return 0
 
 
+@contextmanager
+def capture_log(out, private, receipt, limit=None):
+    """WO-1b bounds retained diagnostics; verbose browser logs stay disposable."""
+    path = (private if limit is not None else out) / "browser.log"
+    try:
+        with path.open("w") as log:
+            yield log
+    finally:
+        if limit is not None:
+            with path.open("rb") as source:
+                raw = source.read(limit)
+                truncated = bool(source.read(1))
+            with (out / "browser.log").open("xb") as target:
+                target.write(raw)
+            receipt["browser_log_truncated"] = truncated
+
+
 def isolated_capture(args, out, repos, receipt):
     # TemporaryDirectory uses mkdtemp (mode 0700). Cleanup also covers probe and
     # launch failures, before the caller attempts its source-tree audit.
@@ -272,7 +290,7 @@ def isolated_capture(args, out, repos, receipt):
         home, tmp = private_paths(private)
         home.mkdir()
         tmp.mkdir()
-        profile = sandbox_profile(out, private)
+        profile = sandbox_profile(getattr(args, "sandbox_output", out), private)
         readonly_probe(
             profile,
             [repos["atlas"] / s.PATHS["atlas"][2], repos["lab"] / "dist/index.html"],
@@ -284,7 +302,7 @@ def isolated_capture(args, out, repos, receipt):
             profile,
             sys.executable,
             "-m",
-            "mve.observer.snapshot_capture",
+            getattr(args, "worker_module", "mve.observer.snapshot_capture"),
             "--worker",
             "--output",
             args.output,
@@ -293,6 +311,7 @@ def isolated_capture(args, out, repos, receipt):
             "--timeout-per-pass",
             str(args.timeout_per_pass),
         ]
+        command.extend(getattr(args, "worker_args", []))
         if args.repeat:
             command.append("--repeat")
         env = {
@@ -307,7 +326,9 @@ def isolated_capture(args, out, repos, receipt):
             "TMPDIR": str(tmp),
         }
         # Logs stay private; do not echo installed paths or inherited values.
-        with (out / "browser.log").open("w") as log:
+        with capture_log(
+            out, private, receipt, getattr(args, "log_limit", None)
+        ) as log:
             result = subprocess.Popen(
                 command,
                 cwd=WORKTREE,

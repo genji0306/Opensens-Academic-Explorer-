@@ -118,7 +118,7 @@ def transform(filename, text):
     return text + APPEND.get(filename, "")
 
 
-def route_handler(dist):
+def route_handler(dist, *, prospective=False):
     def handle(route, request):
         url = urlsplit(request.url)
         if (
@@ -135,7 +135,10 @@ def route_handler(dist):
             route.abort()
             return
         if path.suffix == ".js":
-            data = transform(path.name, data.decode()).encode()
+            data = transform(path.name, data.decode())
+            if prospective:
+                data = block_transform(path.name, data)
+            data = data.encode()
         route.fulfill(
             status=200,
             body=data,
@@ -334,11 +337,14 @@ def kill_browser_groups(private):
             pass
 
 
-def run_browser(dist, out, chrome, ocr, private):
+def run_browser(dist, out, chrome, ocr, private, *, jobs=None, capture=None):
     from importlib.metadata import version
     from playwright.sync_api import sync_playwright
 
-    s.disk_guard(Path(__file__).resolve().parents[2] / "mve/generated", 120 * 1024**2)
+    if jobs is None:
+        s.disk_guard(
+            Path(__file__).resolve().parents[2] / "mve/generated", 120 * 1024**2
+        )
     # The parent supplies one short, private runtime per invocation. Each repeat
     # gets its own profile. Playwright emits --user-data-dir from the first arg.
     profile = private / out.name
@@ -375,7 +381,7 @@ def run_browser(dist, out, chrome, ocr, private):
             ],
         )
         try:
-            context.route("**/*", route_handler(dist))
+            context.route("**/*", route_handler(dist, prospective=jobs is not None))
             versions = {
                 "chrome": context.browser.version,
                 "playwright": version("playwright"),
@@ -388,6 +394,8 @@ def run_browser(dist, out, chrome, ocr, private):
                 "locale": "en-US",
                 "timezone": "UTC",
             }
+            if jobs is not None:
+                return [capture(context, out, j, versions, ocr) for j in jobs]
             entries = [
                 capture_one(context, out, j, versions, ocr) for j in s.capture_jobs()
             ]
@@ -399,3 +407,145 @@ def run_browser(dist, out, chrome, ocr, private):
             return manifest
         finally:
             context.close()
+
+
+# Applied AFTER the WO-1 patches, to exact pinned response text only. No archive
+# file is changed. Export is taken from the variables consumed by native drawing.
+BLOCK_PATCHES = {
+    "research.js": [
+        (
+            "const gaps=window.__mveControl?spectrum.gaps.slice(0,89):zetaGaps(+$('spectralCount').value),zg=histogram(gaps)",
+            "const gaps=window.__mveBlockModule==='spectral'?window.__mveBlock.values:zetaGaps(+$('spectralCount').value),zg=histogram(gaps)",
+        ),
+        (
+            "window.__mveData={values:Array.from(gaps),seed,source:window.__mveControl?'GUE first 89 gaps':'zeros 11-100'};",
+            "if(window.__mveBlockModule==='spectral')window.__mveData={...window.__mveBlock,values:Array.from(gaps)};",
+        ),
+    ],
+    "field-phase3.js": [
+        (
+            "segments = levelSet(params.set, {list, control: offLine ? ctrl : null}), stats = statistics(segments);",
+            "segments = window.__mveBlockModule==='field-dyson'?window.__mveBlock.values:levelSet(params.set, {list, control: offLine ? ctrl : null}), stats = statistics(segments);",
+        ),
+        (
+            "window.__mveData={values:segments,seed:DYSON_DEFAULTS.seed,source:params.set,ordinates:params.set==='zeta'?list:null};",
+            "if(window.__mveBlockModule==='field-dyson')window.__mveData={...window.__mveBlock,values:segments};",
+        ),
+    ],
+    "polar.js": [
+        (
+            "const set = synthetic() ? {n: sample().n, member: sample().member, synthetic: true} : {n: tables().primes, member: tables().isPrime, synthetic: false};",
+            "const injected=window.__mveBlockModule==='polar-ulam'; if(injected){S.N=window.__mveBlock.extent;fit(r.width,r.height);} const ns=injected?window.__mveBlock.values:tables().primes; const member=new Uint8Array(S.N+1); ns.forEach(n=>member[n]=1); const set={n:ns,member,synthetic:false};",
+        ),
+        (
+            "window.__mveData={values:Array.from(set.n),seed:S.seed,source:S.source,N:S.N};",
+            "if(window.__mveBlockModule==='polar-ulam')window.__mveData={...window.__mveBlock,values:Array.from(set.n)};",
+        ),
+    ],
+    "prime-sphere.js": [
+        (
+            "const sel = selectIntegers(o.N, o.set, {q: o.q, a: o.a, synthetic: o.synthetic});",
+            "o.N=window.__mveBlock.extent; const sel={n:window.__mveBlock.values,N:o.N,set:'primes',synthetic:false,seed:window.__mveBlock.seed,total:window.__mveBlock.values.length,capped:false};",
+        ),
+        (
+            'window.__mveData={values:Array.from(sel.n),seed:sel.seed,source:sel.synthetic?"cramer":"primes",options:o};',
+            "if(window.__mveBlockModule==='space-08')window.__mveData={...window.__mveBlock,values:Array.from(sel.n)};",
+        ),
+    ],
+}
+
+
+def block_transform(filename, text):
+    for old, new in BLOCK_PATCHES.get(filename, []):
+        if text.count(old) != 1:
+            raise ValueError("prospective pinned source drift")
+        text = text.replace(old, new)
+    return text
+
+
+def capture_block(context, root, job, versions, ocr):
+    """Native capture; return full pages only in RAM for the WO-1 repeat check."""
+    from mve.observer import snapshot_inventory as inv
+    import hashlib
+
+    block = job["block"]
+    page = context.new_page()
+    try:
+        viewport = block["camera"]["views"][job["view"]]["viewport"]
+        page.set_viewport_size({"width": viewport[0], "height": viewport[1]})
+        page.add_init_script(INIT_SCRIPT)
+        page.add_init_script(
+            "window.__mveControl=false;window.__mveBlockModule="
+            + json.dumps(block["module"])
+            + ";window.__mveBlock="
+            + job["raw"].decode()
+            + ";"
+        )
+        module = block["module"]
+        url = {
+            "spectral": "index.html#spectral",
+            "field-dyson": "index.html?preset=dyson#field",
+            "polar-ulam": "index.html?spiral=ulam#polar",
+            "space-08": "geometry.html#primesphere",
+        }[module]
+        page.goto(ORIGIN + "/" + url, wait_until="load")
+        # GUE selector keeps the Dyson field's own display on injected levels,
+        # rather than its unrelated default zeta list. Side histogram is selected.
+        if module == "field-dyson":
+            page.click('[data-field-preset="dyson"]')
+            page.select_option("#fieldDysonSet", "gue")
+            page.uncheck("#fieldControl")
+            page.uncheck("#fieldDysonAnimate")
+            page.evaluate("() => window.__mveFieldRedraw()")
+        else:
+            configure(page, {"module": module, "control": {"kind": "none"}})
+        page.wait_for_function("() => window.__mveData?.values?.length>0")
+        exported = inv.encoded(page.evaluate(DATA_JS))
+        if (
+            hashlib.sha256(exported).hexdigest() != block["data_sha256"]
+            or exported != job["raw"]
+        ):
+            raise ValueError("drawn numeric export differs from frozen block")
+        page.evaluate("() => window.scrollTo(0,0)")
+        page.evaluate(
+            "() => new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))"
+        )
+        box = page.locator(block["crop"]["selector"]).bounding_box()
+        if box is None:
+            raise ValueError("canvas absent")
+        crop = [
+            math.floor(box["x"]),
+            math.floor(box["y"]),
+            math.ceil(box["x"] + box["width"]),
+            math.ceil(box["y"] + box["height"]),
+        ]
+        full = page.screenshot(full_page=True, animations="disabled")
+        state = page.evaluate(STATE_JS)
+        page.evaluate(BLIND_JS)
+        page.evaluate(
+            "() => new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))"
+        )
+        if inv.encoded(page.evaluate(DATA_JS)) != exported:
+            raise ValueError("blind redraw changed data")
+        raw = page.screenshot(full_page=True, animations="disabled")
+        masks = masks_for(module, crop[2] - crop[0], crop[3] - crop[1])
+        clean = s.blind_png(raw, crop, masks)
+        s.assert_regions_clean(clean, masks)
+        with Image.open(io.BytesIO(clean)) as im:
+            output = io.BytesIO()
+            im.convert("RGB").resize(
+                tuple(block["crop"]["resize"]), Image.Resampling.LANCZOS
+            ).save(output, format="PNG")
+            clean = output.getvalue()
+        assert_nonblank(clean)
+        return dict(
+            full=full,
+            blind=clean,
+            data=exported,
+            crop=crop,
+            masks=masks,
+            state=state,
+            versions=versions,
+        )
+    finally:
+        page.close()

@@ -1,0 +1,124 @@
+{
+  "alpha": 0.05,
+  "calibration_draws": 256,
+  "limitations": "Finite beta ensembles; empirical size and power, not GO2 power or inferential survival.",
+  "repeats": 128,
+  "rows": [
+    {
+      "alternative": "Poisson",
+      "module": "spectral",
+      "n": 1024,
+      "null": "GUE",
+      "power_interval95": [
+        0.970863,
+        1.0
+      ],
+      "statistic": "gaudin_ks",
+      "upper_critical95": 0.029383348713969082,
+      "upper_power": 1.0,
+      "upper_size": 0.09375
+    },
+    {
+      "alternative": "GOE",
+      "module": "spectral",
+      "n": 1024,
+      "null": "GUE",
+      "power_interval95": [
+        0.970863,
+        1.0
+      ],
+      "statistic": "gaudin_ks",
+      "upper_critical95": 0.029383348713969082,
+      "upper_power": 1.0,
+      "upper_size": 0.09375
+    },
+    {
+      "alternative": "Poisson",
+      "module": "field-dyson",
+      "n": 1024,
+      "null": "GUE",
+      "power_interval95": [
+        0.970863,
+        1.0
+      ],
+      "statistic": "gaudin_ks",
+      "upper_critical95": 0.030399987560313868,
+      "upper_power": 1.0,
+      "upper_size": 0.046875
+    },
+    {
+      "alternative": "GOE",
+      "module": "field-dyson",
+      "n": 1024,
+      "null": "GUE",
+      "power_interval95": [
+        0.970863,
+        1.0
+      ],
+      "statistic": "gaudin_ks",
+      "upper_critical95": 0.030399987560313868,
+      "upper_power": 1.0,
+      "upper_size": 0.046875
+    },
+    {
+      "alternative": "Cramer",
+      "module": "polar-ulam",
+      "n": 2048,
+      "null": "GUE",
+      "power_interval95": [
+        0.970863,
+        1.0
+      ],
+      "statistic": "gaudin_ks",
+      "upper_critical95": 0.022641442447380866,
+      "upper_power": 1.0,
+      "upper_size": 0.03125
+    },
+    {
+      "alternative": "shuffled-index",
+      "module": "polar-ulam",
+      "n": 2048,
+      "null": "GUE",
+      "power_interval95": [
+        0.970863,
+        1.0
+      ],
+      "statistic": "gaudin_ks",
+      "upper_critical95": 0.022641442447380866,
+      "upper_power": 1.0,
+      "upper_size": 0.03125
+    },
+    {
+      "alternative": "Cramer",
+      "module": "space-08",
+      "n": 2048,
+      "null": "GUE",
+      "power_interval95": [
+        0.970863,
+        1.0
+      ],
+      "statistic": "gaudin_ks",
+      "upper_critical95": 0.021398061910891275,
+      "upper_power": 1.0,
+      "upper_size": 0.0234375
+    },
+    {
+      "alternative": "shuffled-index",
+      "module": "space-08",
+      "n": 2048,
+      "null": "GUE",
+      "power_interval95": [
+        0.970863,
+        1.0
+      ],
+      "statistic": "gaudin_ks",
+      "upper_critical95": 0.021398061910891275,
+      "upper_power": 1.0,
+      "upper_size": 0.0234375
+    }
+  ],
+  "rule": "gaudin_ks > upper_critical95; stage-1 sensitivity only",
+  "schema": "mve-wo1b-power-v1",
+  "seed": 2026092816,
+  "sha256": "a3c9b0abc2a3f53ec8f4a6fc38fabd5c1601dcc4593e4eb0c1baaecba78413c2"
+}

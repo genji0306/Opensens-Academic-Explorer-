@@ -4471,12 +4471,12 @@
         "mve/observer/pilot_cards.py": "fb2fffea58dc1bdc26910f5ca1e1859e57d62c3b6b66d4457360f5b0f0a0e5f0",
         "mve/observer/pilot_inputs.py": "b0c5f4b73b332c7f12be78c0984c726508d868a782a394bdd8b72e1672b0ebfa",
         "mve/observer/pilot_transport.py": "8141aaa69be3c896ad879cd2cb9fa79d530569d881accd084cbd3a50a25c8425",
-        "mve/observer/power.py": "f0146491738ea00d17c64c8352d266a0459ef9e81ccb87dbb0aa4625dfb0e136",
+        "mve/observer/power.py": "dfc84ac35cd5f8f188bb42eb5b4e8e33ca146bf17868743a90a9bd6b05ef72b1",
         "mve/observer/refusals.py": "075d9f8303275140b30981b199ec7ceec6e05a9977c41b944ef3cea7a9e52624",
         "mve/observer/rescore.py": "c52e88bee50c183e4d0b6c548eb5be82e5415faabc500ffd7e5e67637e09904d",
         "mve/observer/run.py": "739f4a0b9db2d05832a8f1f2538d46544b86c1250e16f671fc95cd1eb4c58b3e",
-        "mve/observer/snapshot_capture.py": "376a8f49fba6b374913b2f0df70437b50633695b74c9f46f2d81bb229c5c4d19",
-        "mve/observer/snapshot_render.py": "027c12b1d4963b9e0325e0427fd11f651d9ead226aa9b3ca74b7ee33cc8b1425",
+        "mve/observer/snapshot_capture.py": "603554f1b8342834ecf255b5ad5d38f3656dc7215665c10d2aae1184f6d5304e",
+        "mve/observer/snapshot_render.py": "dbde0630260b7ef05f10b568ed58f0d0d0038510be05d9b0797d5722571f1aea",
         "mve/observer/snapshots.py": "9c7c5b18d27aafdceffc496bea864981876c1b54244a4049b16c842c9f5a8a8d",
         "mve/observer/storage.py": "b719d940cbcc47fbb3ff4dab11475c78c49870db2bcf4222145a1bbf2343e4c3",
         "mve/preflight/probe.py": "efaef5dca40c19af16e0e231e07aa92ab57a2295056b759f80286a8ef15938da",
@@ -4509,6 +4509,109 @@
       "review_handoff": "docs/mve/reviews/WO6B_ASTRA_20260928.md",
       "status": "offline only; owner approval unset; Opus review pending",
       "worst_case_micro_usd": 147456
+    },
+    "WO-1b": {
+      "manifest_sha256": "d286a45abc8187fd06bd63a1957d34c809ca0c82abaf9aad8485ef3b9abe7620",
+      "source_hashes": {
+        "mve/observer/snapshot_batch.py": "e32255f56eb8b8263a101a9f89791060aee24bcf3dddc521dfec6431f7639078",
+        "mve/observer/snapshot_blocks.py": "45a8d4b92231d68f53ddb4da51d56a4806fdaad555b0195d636d30d3837ea54c",
+        "mve/observer/snapshot_inventory.py": "261110d00aef442d906f5101b275b8e1728f060e63f5e1164ba287b145e2f29a",
+        "mve/observer/snapshot_render.py": "dbde0630260b7ef05f10b568ed58f0d0d0038510be05d9b0797d5722571f1aea",
+        "mve/observer/snapshot_capture.py": "603554f1b8342834ecf255b5ad5d38f3656dc7215665c10d2aae1184f6d5304e",
+        "mve/observer/snapshots.py": "9c7c5b18d27aafdceffc496bea864981876c1b54244a4049b16c842c9f5a8a8d",
+        "mve/observer/native_nulls.py": "1228892143439fe5dbcb689f7927f63f176a16ab2ead0878829c2481154316d1",
+        "mve/observer/power.py": "dfc84ac35cd5f8f188bb42eb5b4e8e33ca146bf17868743a90a9bd6b05ef72b1",
+        "mve/observer/storage.py": "b719d940cbcc47fbb3ff4dab11475c78c49870db2bcf4222145a1bbf2343e4c3",
+        "mve/observer/config/wo1b_power.json": "7acf8e05e24857ae87f8489b79bc45b8587216982affe7119840fbde17de6b5f",
+        "mve/observer/checks/spacing.py": "f77f6056c9fd1cc4ea7f6abfa8e2f4d9670a9c4c26b163f688fe7cb24ea445ba",
+        "mve/observer/card.py": "64d190a1a2c1e28e4a03589825635fc8278219b012f637bd62f8e0b973ad862b",
+        "mve/observer/refusals.py": "075d9f8303275140b30981b199ec7ceec6e05a9977c41b944ef3cea7a9e52624",
+        "tests/mve/observer/test_snapshot_batch.py": "c4d035bf33ecf53dcfb48e494babd14b2521bc5d3634602f936eda28e1893f38",
+        "tests/mve/observer/test_snapshot_inventory.py": "d93249987b9fe2649f8f90f3ea6905e6f15dca185be0b71813f1affcde9df000"
+      },
+      "packet": "WO-1b",
+      "schema": "mve-deps-v1",
+      "base_git_sha": "ec5e31f8c378e31d2260145eea26d1b72c1f6ab4",
+      "mode": "offline_only",
+      "hosted_calls": 0,
+      "new_installs": [],
+      "manifest_path": "mve/observer/config/wo1b_manifest.json",
+      "power_path": "mve/observer/config/wo1b_power.json",
+      "power_sha256": "a3c9b0abc2a3f53ec8f4a6fc38fabd5c1601dcc4593e4eb0c1baaecba78413c2",
+      "external_commits": {
+        "atlas": "97b1e48cb1075aea431cf754cc84f2eeabb3dfb9",
+        "lab": "c81510cd29b0fc666b1f171a9604a51be9661576"
+      },
+      "allowed_archive_pathspecs": {
+        "atlas": [
+          "vendor/zeta-explorer/dist",
+          "rh_evidence/labs",
+          "data/riemann/evidence_atlas/inputs/lab_snapshots.json"
+        ],
+        "lab": [
+          "dist",
+          "scripts"
+        ]
+      },
+      "odlyzko_cache": {
+        "files": {
+          "zeros1.gz": "0d17d50f8b2a8bd128219ea03c8bce55d7d947ec8f27d7f56f30973c2e91bad0",
+          "zeros3": "75a1f1a978d5e3eddd16518f661d41a95a40b33782389ba02ec4ed0ce0764807",
+          "zeros4": "10d9f7dab2bbfff6b8befbe6f765969b0b3f38f6110ed1df423931addd52da8f",
+          "zeros5": "250ac4ba722c6face4d07c05777376fc2b9bc021b05232e8f53c91b1eb2b7e0d"
+        },
+        "provenance": "source: https://www-users.cse.umn.edu/~odlyzko/zeta_tables/ (A. Odlyzko), fetched 2026-09-28 with owner approval",
+        "provenance_sha256": "4b5ce4fa914f8dc602397521b74eee7a02a88e98bb881530cc54b139144baffb",
+        "sums_sha256": "c5e41be29493586ebd7ffefdd8f1f2818e8dad4ef314f52561e54a376e7e32be"
+      },
+      "ordinary_clusters": 20,
+      "contrast_clusters": 10,
+      "source_blocks": 140,
+      "snapshots": 280,
+      "passes": 2,
+      "generated_cap_bytes": 209715200,
+      "free_floor_bytes": 5368709120,
+      "review_handoff": "docs/mve/reviews/WO1B_ASTRA_20260928.md",
+      "status": "capture-ready with offline fakes; real pilot and Opus review pending",
+      "python": "3.13.2",
+      "packages": {
+        "numpy": "2.4.6",
+        "scipy": "1.17.1",
+        "Pillow": "12.2.0",
+        "playwright": "1.58.0",
+        "pytest": "8.4.2",
+        "pytest-cov": "6.3.0"
+      },
+      "snapshot_byte_cap": 524288,
+      "go2": {
+        "K": 20,
+        "alpha_per_arm": 0.05,
+        "arms": [
+          "null_twin",
+          "image_free",
+          "shuffled"
+        ],
+        "assumptions": [
+          "A1 independent clusters",
+          "A2 within-cluster symmetric differences"
+        ],
+        "contrast_clusters": 10,
+        "contrast_detection": "At least one frozen observer slot names the declared source-spacing target and passes its pinned diagnostic on disjoint D and R. Numeric rejection alone is not observer detection.",
+        "contrast_required": 8,
+        "status": "inventory only; no outcomes; not GO2 power",
+        "test": "exact sign-flip sum of cluster differences; 2^20 patterns per arm; intersection-union requires all three"
+      },
+      "artifacts": {
+        "docs/mve/reviews/WO1B_ASTRA_20260928.md": "42bda023617a3d7302a813291fe5c210e3a1bf23ed76944fedbfda124234d1f1",
+        "docs/mve/reviews/WO1B_EVIDENCE_20260928.json": "e88931a1e719a658e8bf2f42b063d4111ba327ba7d84e1c6e98a244125e588df",
+        "mve/observer/config/wo1b_manifest.json": "b9100fc8fd0c57ec385273d209448679fe0be3b13282fae6e72567e243a95873"
+      },
+      "validation": {
+        "focused_passed": 160,
+        "full_passed": 1131,
+        "nested_sandbox_failures": 7,
+        "coverage_percent": 97
+      }
     }
   },
   "schema": "mve-deps-v1"
