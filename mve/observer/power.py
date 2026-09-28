@@ -252,13 +252,102 @@ def check(proposal, job, study_result=None):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=OUTPUT)
+    parser.add_argument("--prospective", action="store_true")
     args = parser.parse_args(argv)
-    result = study()
+    if args.prospective and args.output == OUTPUT:
+        parser.error("prospective study requires an explicit output path")
+    result = prospective_study() if args.prospective else study()
     args.output.write_text(json.dumps(result, sort_keys=True, indent=2) + "\n")
     print(
         json.dumps(
             {"rows": len(result["rows"]), "seed": result["seed"], "hosted_calls": 0}
         )
+    )
+
+
+def prospective_study(*, repeats=128, sizes=(1024, 2048)):
+    """WO-1b upper-tail sensitivity at exact block n, independent calibration.
+
+    Empirical size is reported, not claimed to be a guaranteed conditional alpha.
+    Prime contrasts target index-spacing repulsion, never spatial point distance.
+    """
+    from mve.observer.snapshot_blocks import sample
+
+    if (
+        repeats < 20
+        or repeats > 256
+        or len(sizes) != 2
+        or any(n < 4 or n > 4096 for n in sizes)
+    ):
+        raise ValueError("bounded prospective study required")
+    rows = []
+    seed = 2026092816
+    for mi, module in enumerate(inputs.MODULES):
+        zero = module in ("spectral", "field-dyson")
+        n = sizes[0 if zero else 1]
+        populations = (
+            ("GUE", "Poisson", "GOE") if zero else ("GUE", "Cramer", "shuffled-index")
+        )
+        scores = {}
+        for pi, population in enumerate(populations):
+            values = []
+            for draw in range(3 * repeats):
+                draw_seed = int(
+                    np.random.SeedSequence([seed, mi, pi, draw]).generate_state(1)[0]
+                )
+                x = sample(population, module, n, draw_seed)
+                if population in ("Cramer", "shuffled-index"):
+                    x = np.diff(x) / np.log((x[:-1] + x[1:]) / 2)
+                values.append(diagnostic(x, "gaudin_ks"))
+            scores[population] = np.array(values)
+        calibration = np.sort(scores["GUE"][: 2 * repeats])
+        critical = float(calibration[-math.floor(0.05 * (2 * repeats + 1))])
+        for population in populations[1:]:
+            k = int(np.count_nonzero(scores[population][2 * repeats :] > critical))
+            rows.append(
+                dict(
+                    module=module,
+                    n=n,
+                    statistic="gaudin_ks",
+                    null="GUE",
+                    alternative=population,
+                    upper_power=k / repeats,
+                    power_interval95=bounds(k, repeats),
+                    upper_critical95=critical,
+                    upper_size=float(np.mean(scores["GUE"][2 * repeats :] > critical)),
+                )
+            )
+    result = dict(
+        schema="mve-wo1b-power-v1",
+        seed=seed,
+        repeats=repeats,
+        calibration_draws=2 * repeats,
+        alpha=0.05,
+        rows=rows,
+        rule="gaudin_ks > upper_critical95; stage-1 sensitivity only",
+        limitations="Finite beta ensembles; empirical size and power, not GO2 power or inferential survival.",
+    )
+    return {**result, "sha256": digest(result)}
+
+
+def prospective_check(block, numeric, study_result):
+    """Frozen contrast sensitivity check; never declares inferential survival."""
+    from mve.observer.snapshot_inventory import power_row
+
+    row = power_row(block, study_result)
+    x = spacing.positive_sample(numeric["source_gaps"])
+    if len(x) != block["n"]:
+        raise ValueError("contrast sample count mismatch")
+    value = diagnostic(x, row["statistic"])
+    return dict(
+        statistic=row["statistic"],
+        n=len(x),
+        value=value,
+        detected=value > row["upper_critical95"],
+        threshold=row["upper_critical95"],
+        power=row["upper_power"],
+        inferential=False,
+        status="stage1_sensitivity_only",
     )
 
 
