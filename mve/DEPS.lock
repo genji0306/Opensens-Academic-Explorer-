@@ -4420,7 +4420,7 @@
       "aggregate_remainder_micro_usd": 19993105,
       "base_git_sha": "b53bdf04c129b5cb87f3188c2824d2dff03bcd6c",
       "call_cap": 24,
-      "design_sha256": "514ffb97c45aa8d193d5bedee248ac072c8814f9f47243f46b398d8df9afa74c",
+      "design_sha256": "4a965b8ec888ab1abaa11a337e7f0a6da5071c91319fd6e441cc35a988c00fd1",
       "files": {
         "mve/budget.py": "f02ad5923cb25e16fd751f552f73a0989305d3855710c0fd3b2583c77e91ef51",
         "mve/money.py": "0503706ad4f3f1f6308e3f9a6b58f68b303b0fc9ded526f818d2aa2390ea3b50",
@@ -4466,7 +4466,7 @@
         "mve/observer/outbox.py": "91e67045474c12b277dc3f4eb621421d8e754719804c81c8b9fe1ac82d0e4976",
         "mve/observer/pilot.py": "012b32fd242c507158936665a3d0a83df1180f0406cd58d04ea5281bda5a0321",
         "mve/observer/pilot_accounting.py": "29aba9689721f5c2275c36bd063749fd8c03ab4d5dc62022303f35a9fef369c8",
-        "mve/observer/pilot_b.py": "6b0e1a1b10d449a6ecd3c3df8b23e5a3030b8122e3b7c1ef4083477b8ece5e93",
+        "mve/observer/pilot_b.py": "fe974b0d83758de287219f8ee366282dcc4c011f8d759c09b7820b700a7b871a",
         "mve/observer/pilot_b_accounting.py": "3045efa22c94e4351b9c2f3eefddbfff3caf85373df7663471048594e6133ad7",
         "mve/observer/pilot_cards.py": "fb2fffea58dc1bdc26910f5ca1e1859e57d62c3b6b66d4457360f5b0f0a0e5f0",
         "mve/observer/pilot_inputs.py": "b0c5f4b73b332c7f12be78c0984c726508d868a782a394bdd8b72e1672b0ebfa",
@@ -4491,7 +4491,7 @@
         "schemas/mve_hypothesis_card.json": "cd661975fa62fde28730a434685917d51fa1b8a972317ac8ff2681a158d7851f",
         "tests/mve/observer/test_observer_run.py": "79b38df37ac68bba9642553c808bfa18b604a3877e3defbd4eed10dc60de9fd5",
         "tests/mve/observer/test_pilot.py": "56ed30c9bec9e455216c850ae4c9220b73d1a54351421041e6c07d0d341ddd55",
-        "tests/mve/observer/test_wo6b.py": "1426ff0e58a97e87a427ca129e6f381834a26d67b8655434fabfbe787a570380"
+        "tests/mve/observer/test_wo6b.py": "8d0e4d97ad6864db78bca1210e9127bb4e51214b738f09f92595b09ee9702948"
       },
       "native_generator_sources": {
         "commit": "97b1e48cb1075aea431cf754cc84f2eeabb3dfb9",
@@ -4503,11 +4503,11 @@
         },
         "prefix": "vendor/zeta-explorer/dist/"
       },
-      "owner_approval": null,
+      "owner_approval": "2026-09-28",
       "planned_calls": 24,
       "prior_exposure_micro_usd": 6895,
       "review_handoff": "docs/mve/reviews/WO6B_ASTRA_20260928.md",
-      "status": "offline only; owner approval unset; Opus review pending",
+      "status": "owner approved 2026-09-28 (one live run, off-peak, owner-run); Opus review PASS (Addendum 16)",
       "worst_case_micro_usd": 147456
     }
   },

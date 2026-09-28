@@ -22,7 +22,7 @@ from mve.observer.refusals import Refusal, Parser, require, boundary, guarded
 from mve.preflight.probe import verified_ceiling, usd, utc_now
 from mve.preflight.probe_live import price_table
 
-WO6B_APPROVAL = None
+WO6B_APPROVAL = "2026-09-28"
 ROOT = Path(__file__).resolve().parents[2]
 BASE = storage.GENERATED / "wo6b-pilot"
 

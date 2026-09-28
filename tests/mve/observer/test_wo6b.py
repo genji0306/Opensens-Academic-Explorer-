@@ -155,7 +155,14 @@ def test_power_deterministic_and_separates_large_contrast():
 def test_dry_run_and_approval(tmp_path, monkeypatch):
     monkeypatch.setattr(storage, "WORKTREE", tmp_path)
     monkeypatch.setattr(b.transport.wire, "read_key", lambda: pytest.fail("key read"))
+    with monkeypatch.context() as m:
+        m.setattr(b, "WO6B_APPROVAL", None)
+        with pytest.raises(f.Refusal, match="owner_approval"):
+            b.execute(live=True, owner_approval="2026-09-28", reviewed_head="a" * 40)
+    assert b.WO6B_APPROVAL == "2026-09-28"
     with pytest.raises(f.Refusal, match="owner_approval"):
+        b.execute(live=True, owner_approval="2026-09-29", reviewed_head="a" * 40)
+    with pytest.raises(f.Refusal, match="review_head"):
         b.execute(live=True, owner_approval="2026-09-28", reviewed_head="a" * 40)
     r = b.execute(live=False, clock=lambda: OFF)
     assert r["calls"] == 24 and r["hosted_calls"] == 0
