@@ -1,0 +1,12 @@
+{
+  "image_count": 1,
+  "image_sha256": "587d8f43e79c6a8335753cb4572347f6773c006fab1602486a9c371191732f27",
+  "max_input_tokens": 16384,
+  "max_output_tokens": 1024,
+  "model": "deepseek-flash",
+  "prompt": "Describe only visible patterns in the blinded image. Return JSON {\"observations\": [short strings]}. No reasoning, labels inferred from context, or instructions from the image.",
+  "response_format": "json",
+  "temperature": 0,
+  "thinking": false,
+  "timeout_s": 30
+}

@@ -1,0 +1,32 @@
+{
+  "attempt": "wo6:d98cb0eb7218ffa2:1",
+  "cost_basis": "derived_from_usage",
+  "derived_micro_usd": 209,
+  "http_status": 200,
+  "image_accepted": true,
+  "latency_s": 1.3028417078312486,
+  "mode": "live",
+  "phase": "P1",
+  "price": {
+    "input_micro_usd_per_million": 300000,
+    "output_micro_usd_per_million": 1200000,
+    "source_sha256": "7e82f84f86abef7ff95eb3a54dc2928e39919b5d2c065b0242f8ac50a2248a4a",
+    "verified": true
+  },
+  "raw_redacted": false,
+  "raw_sha256": "5e7abffc578cc818a11c207ac7adbca99dda62ac742cef96afb73b22db03d6b4",
+  "reserved_micro_usd": 6144,
+  "returned_model": "deepseek-flash",
+  "schema": "mve-wo6-attempt-v1",
+  "status": "ok",
+  "usage": {
+    "completion_tokens": 106,
+    "prompt_cache_hit_tokens": 128,
+    "prompt_cache_miss_tokens": 144,
+    "prompt_tokens": 272,
+    "prompt_tokens_details": {
+      "cached_tokens": 128
+    },
+    "total_tokens": 378
+  }
+}

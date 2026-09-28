@@ -1,0 +1,3144 @@
+{
+  "cards": [
+    {
+      "artifacts": [],
+      "card_id": "hyp_1079175803123459544",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+      },
+      "claim": "The gaudin_ks discrepancy from Gaudin GUE is at most 0.1.",
+      "content_hash": "c82afc93f4dec9bb6cb54b820333a89b854cc0960f6036eba1ce939f62abb31e",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.1
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": false,
+        "call_ids": [
+          "wo6:offline-library"
+        ],
+        "id": "model:astra-library",
+        "kind": "model",
+        "model_id": "codex-astra",
+        "prompt_sha": "08475eac363391d05b33699398b1ef45d572b086593afac5bf4996c6dd580e9b"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "Discrepancy at most 0.1 on untouched replication data.",
+      "primary_statistic": "gaudin_ks",
+      "prior_plausibility": {
+        "by": "model:astra-library",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "1a8bdc6b8cbbc6d4e50a1d786465cd3f00a300b737b75cf9c9ef2e07bb80c12d",
+          "png_sha256": "6fdcf3b32402464b0aeced96e8697c7e90f23dcb8b81f2364fe60ab62dcaa83a",
+          "snapshot_id": "60243da526281b7b6461d2f17d83fcfafaa8211b686428740064fa455316f52d"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Gaudin GUE",
+        "data": "source gaps",
+        "direction": "greater; kill if discrepancy > 0.1",
+        "statistic": "gaudin_ks"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_375739202464319100",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.15
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "1723a0af2482d7dbc314f5a45a7b499df359d58b3a04da53e3266edee2ba9bf8"
+      },
+      "claim": "The gaudin_ks discrepancy from Gaudin GUE is at most 0.15.",
+      "content_hash": "6139176aa89207922050cc30a07190cb91c60c19b2515bb7e7ea759566686614",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.15
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": false,
+        "call_ids": [
+          "wo6:offline-library"
+        ],
+        "id": "model:astra-library",
+        "kind": "model",
+        "model_id": "codex-astra",
+        "prompt_sha": "08475eac363391d05b33699398b1ef45d572b086593afac5bf4996c6dd580e9b"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "Discrepancy at most 0.15 on untouched replication data.",
+      "primary_statistic": "gaudin_ks",
+      "prior_plausibility": {
+        "by": "model:astra-library",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "1a8bdc6b8cbbc6d4e50a1d786465cd3f00a300b737b75cf9c9ef2e07bb80c12d",
+          "png_sha256": "6fdcf3b32402464b0aeced96e8697c7e90f23dcb8b81f2364fe60ab62dcaa83a",
+          "snapshot_id": "60243da526281b7b6461d2f17d83fcfafaa8211b686428740064fa455316f52d"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Gaudin GUE",
+        "data": "source gaps",
+        "direction": "greater; kill if discrepancy > 0.15",
+        "statistic": "gaudin_ks"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_480329254099522678",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+      },
+      "claim": "The gaudin_ks discrepancy from Gaudin GUE is at most 0.2.",
+      "content_hash": "30349eaf8a1ee16cb26a678f2bc74d51423fd2a4fae402c4cf21dd5bd065b94d",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.2
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": false,
+        "call_ids": [
+          "wo6:offline-library"
+        ],
+        "id": "model:astra-library",
+        "kind": "model",
+        "model_id": "codex-astra",
+        "prompt_sha": "08475eac363391d05b33699398b1ef45d572b086593afac5bf4996c6dd580e9b"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "Discrepancy at most 0.2 on untouched replication data.",
+      "primary_statistic": "gaudin_ks",
+      "prior_plausibility": {
+        "by": "model:astra-library",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "1a8bdc6b8cbbc6d4e50a1d786465cd3f00a300b737b75cf9c9ef2e07bb80c12d",
+          "png_sha256": "6fdcf3b32402464b0aeced96e8697c7e90f23dcb8b81f2364fe60ab62dcaa83a",
+          "snapshot_id": "60243da526281b7b6461d2f17d83fcfafaa8211b686428740064fa455316f52d"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Gaudin GUE",
+        "data": "source gaps",
+        "direction": "greater; kill if discrepancy > 0.2",
+        "statistic": "gaudin_ks"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_1120197950921496908",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+      },
+      "claim": "The residue_count_discrepancy discrepancy from Cramer random primes is at most 0.1.",
+      "content_hash": "22cd0201340c9caffa821ea44c30bffae63685ba4cbcf46a02ce83c2b1301c8f",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.1
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": false,
+        "call_ids": [
+          "wo6:offline-library"
+        ],
+        "id": "model:astra-library",
+        "kind": "model",
+        "model_id": "codex-astra",
+        "prompt_sha": "08475eac363391d05b33699398b1ef45d572b086593afac5bf4996c6dd580e9b"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "Discrepancy at most 0.1 on untouched replication data.",
+      "primary_statistic": "residue_count_discrepancy",
+      "prior_plausibility": {
+        "by": "model:astra-library",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "b7a7a892e42ae7b81e1205b43457711d06490dcdf8c14ceae4c3ba04fb999b06",
+          "png_sha256": "9f09e2ab89195a1095310bd6a65e957629d4d636d2af8d17e12d5221970292a4",
+          "snapshot_id": "bcfc116b492aa250ba40ed17e061c95a8d444ec61d969c86ec5a6b064b0b69d4"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Cramer random primes",
+        "data": "source prime indices",
+        "direction": "greater; kill if discrepancy > 0.1",
+        "statistic": "residue_count_discrepancy"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_413548817394061949",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.15
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "1723a0af2482d7dbc314f5a45a7b499df359d58b3a04da53e3266edee2ba9bf8"
+      },
+      "claim": "The residue_count_discrepancy discrepancy from Cramer random primes is at most 0.15.",
+      "content_hash": "6193167b81a5d6c703f79c3d0f4d33fa592f57c434e2bafbee752ec1630e9bde",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.15
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": false,
+        "call_ids": [
+          "wo6:offline-library"
+        ],
+        "id": "model:astra-library",
+        "kind": "model",
+        "model_id": "codex-astra",
+        "prompt_sha": "08475eac363391d05b33699398b1ef45d572b086593afac5bf4996c6dd580e9b"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "Discrepancy at most 0.15 on untouched replication data.",
+      "primary_statistic": "residue_count_discrepancy",
+      "prior_plausibility": {
+        "by": "model:astra-library",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "b7a7a892e42ae7b81e1205b43457711d06490dcdf8c14ceae4c3ba04fb999b06",
+          "png_sha256": "9f09e2ab89195a1095310bd6a65e957629d4d636d2af8d17e12d5221970292a4",
+          "snapshot_id": "bcfc116b492aa250ba40ed17e061c95a8d444ec61d969c86ec5a6b064b0b69d4"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Cramer random primes",
+        "data": "source prime indices",
+        "direction": "greater; kill if discrepancy > 0.15",
+        "statistic": "residue_count_discrepancy"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_841822631348903825",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+      },
+      "claim": "The residue_count_discrepancy discrepancy from Cramer random primes is at most 0.2.",
+      "content_hash": "f6906ccc9b7f2df75a18a8e8404c47467c0e26774c25864fef7bab5e5ee45e8c",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.2
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": false,
+        "call_ids": [
+          "wo6:offline-library"
+        ],
+        "id": "model:astra-library",
+        "kind": "model",
+        "model_id": "codex-astra",
+        "prompt_sha": "08475eac363391d05b33699398b1ef45d572b086593afac5bf4996c6dd580e9b"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "Discrepancy at most 0.2 on untouched replication data.",
+      "primary_statistic": "residue_count_discrepancy",
+      "prior_plausibility": {
+        "by": "model:astra-library",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "b7a7a892e42ae7b81e1205b43457711d06490dcdf8c14ceae4c3ba04fb999b06",
+          "png_sha256": "9f09e2ab89195a1095310bd6a65e957629d4d636d2af8d17e12d5221970292a4",
+          "snapshot_id": "bcfc116b492aa250ba40ed17e061c95a8d444ec61d969c86ec5a6b064b0b69d4"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Cramer random primes",
+        "data": "source prime indices",
+        "direction": "greater; kill if discrepancy > 0.2",
+        "statistic": "residue_count_discrepancy"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_959434458612466957",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+      },
+      "claim": "The residue_count_discrepancy discrepancy from Cramer random primes is at most 0.1.",
+      "content_hash": "ad8f5b0c397a38ef184499f585d5bdb6c88cce0f4549f52bb54e871208a63453",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.1
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": false,
+        "call_ids": [
+          "wo6:offline-library"
+        ],
+        "id": "model:astra-library",
+        "kind": "model",
+        "model_id": "codex-astra",
+        "prompt_sha": "08475eac363391d05b33699398b1ef45d572b086593afac5bf4996c6dd580e9b"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "Discrepancy at most 0.1 on untouched replication data.",
+      "primary_statistic": "residue_count_discrepancy",
+      "prior_plausibility": {
+        "by": "model:astra-library",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "a1fa92997394e24615cbeaf45c1829f90122a065d613344e3c0cbdbf73b50eaf",
+          "png_sha256": "f45a8b0237a60103c5ddd9ddc285bf747d34bdb639e7170b242303f76afa7dfa",
+          "snapshot_id": "4f88635852dbf1319d51397b5d4cec0ce32b35659137d519cbe63569f60d400b"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Cramer random primes",
+        "data": "source prime indices",
+        "direction": "greater; kill if discrepancy > 0.1",
+        "statistic": "residue_count_discrepancy"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_241930484201958919",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.15
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "1723a0af2482d7dbc314f5a45a7b499df359d58b3a04da53e3266edee2ba9bf8"
+      },
+      "claim": "The residue_count_discrepancy discrepancy from Cramer random primes is at most 0.15.",
+      "content_hash": "948d5aea6bcce8e3377f9cd856022cf37644811871d7d57f2876e6751db6096c",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.15
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": false,
+        "call_ids": [
+          "wo6:offline-library"
+        ],
+        "id": "model:astra-library",
+        "kind": "model",
+        "model_id": "codex-astra",
+        "prompt_sha": "08475eac363391d05b33699398b1ef45d572b086593afac5bf4996c6dd580e9b"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "Discrepancy at most 0.15 on untouched replication data.",
+      "primary_statistic": "residue_count_discrepancy",
+      "prior_plausibility": {
+        "by": "model:astra-library",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "a1fa92997394e24615cbeaf45c1829f90122a065d613344e3c0cbdbf73b50eaf",
+          "png_sha256": "f45a8b0237a60103c5ddd9ddc285bf747d34bdb639e7170b242303f76afa7dfa",
+          "snapshot_id": "4f88635852dbf1319d51397b5d4cec0ce32b35659137d519cbe63569f60d400b"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Cramer random primes",
+        "data": "source prime indices",
+        "direction": "greater; kill if discrepancy > 0.15",
+        "statistic": "residue_count_discrepancy"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_81583541206389704",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+      },
+      "claim": "The residue_count_discrepancy discrepancy from Cramer random primes is at most 0.2.",
+      "content_hash": "d6024a27a15d003d44bf65a9db77af2d8d8479a0d861af40c45d63afc0b50b25",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.2
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": false,
+        "call_ids": [
+          "wo6:offline-library"
+        ],
+        "id": "model:astra-library",
+        "kind": "model",
+        "model_id": "codex-astra",
+        "prompt_sha": "08475eac363391d05b33699398b1ef45d572b086593afac5bf4996c6dd580e9b"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "Discrepancy at most 0.2 on untouched replication data.",
+      "primary_statistic": "residue_count_discrepancy",
+      "prior_plausibility": {
+        "by": "model:astra-library",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "a1fa92997394e24615cbeaf45c1829f90122a065d613344e3c0cbdbf73b50eaf",
+          "png_sha256": "f45a8b0237a60103c5ddd9ddc285bf747d34bdb639e7170b242303f76afa7dfa",
+          "snapshot_id": "4f88635852dbf1319d51397b5d4cec0ce32b35659137d519cbe63569f60d400b"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Cramer random primes",
+        "data": "source prime indices",
+        "direction": "greater; kill if discrepancy > 0.2",
+        "statistic": "residue_count_discrepancy"
+      }
+    },
+    {
+      "artifacts": [
+        {
+          "depends_on": [
+            "hyp_902044862441749616@1:d356a0355ad62faa8c97ced015d99488bf05a5d4b7dd9304cafc7d5b1b58b287"
+          ],
+          "id": "wo3-stage1",
+          "receipt": {
+            "card_id": "hyp_902044862441749616",
+            "content_hash": "d356a0355ad62faa8c97ced015d99488bf05a5d4b7dd9304cafc7d5b1b58b287",
+            "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+            "implementation_sha256": "f77f6056c9fd1cc4ea7f6abfa8e2f4d9670a9c4c26b163f688fe7cb24ea445ba",
+            "inferential": false,
+            "label": "descriptive",
+            "n": 89,
+            "reason": "WO-3 Gaudin KS diagnostic only; no calibrated p-value or replication. Card remains preliminary.",
+            "revision": 1,
+            "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a",
+            "statistic": "gaudin_ks",
+            "status": "stage1_only",
+            "value": 0.06113726544807788
+          },
+          "valid": true
+        }
+      ],
+      "card_id": "hyp_902044862441749616",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+      },
+      "claim": "The gaudin_ks discrepancy from Gaudin GUE is at most 0.1.",
+      "content_hash": "d356a0355ad62faa8c97ced015d99488bf05a5d4b7dd9304cafc7d5b1b58b287",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.1
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": false,
+        "call_ids": [
+          "wo6:offline-library"
+        ],
+        "id": "model:astra-library",
+        "kind": "model",
+        "model_id": "codex-astra",
+        "prompt_sha": "08475eac363391d05b33699398b1ef45d572b086593afac5bf4996c6dd580e9b"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "Discrepancy at most 0.1 on untouched replication data.",
+      "primary_statistic": "gaudin_ks",
+      "prior_plausibility": {
+        "by": "model:astra-library",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+          "png_sha256": "54eb13730ad2ea86b5094ed86555c77799914a30033cb372a8f50c3d687f6a1c",
+          "snapshot_id": "ca53beca81d6e8af8005863f3ebc9254af7f15a0a0d9e7a0a2ad6e0557d4704b"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Gaudin GUE",
+        "data": "source gaps",
+        "direction": "greater; kill if discrepancy > 0.1",
+        "statistic": "gaudin_ks"
+      }
+    },
+    {
+      "artifacts": [
+        {
+          "depends_on": [
+            "hyp_71604923157934366@1:bbbf5887aa8884910d0e02a501d0e97bf4e830de175166f14fb4b7d05945fda1"
+          ],
+          "id": "wo3-stage1",
+          "receipt": {
+            "card_id": "hyp_71604923157934366",
+            "content_hash": "bbbf5887aa8884910d0e02a501d0e97bf4e830de175166f14fb4b7d05945fda1",
+            "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+            "implementation_sha256": "f77f6056c9fd1cc4ea7f6abfa8e2f4d9670a9c4c26b163f688fe7cb24ea445ba",
+            "inferential": false,
+            "label": "descriptive",
+            "n": 89,
+            "reason": "WO-3 Gaudin KS diagnostic only; no calibrated p-value or replication. Card remains preliminary.",
+            "revision": 1,
+            "spec_sha256": "1723a0af2482d7dbc314f5a45a7b499df359d58b3a04da53e3266edee2ba9bf8",
+            "statistic": "gaudin_ks",
+            "status": "stage1_only",
+            "value": 0.06113726544807788
+          },
+          "valid": true
+        }
+      ],
+      "card_id": "hyp_71604923157934366",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.15
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "1723a0af2482d7dbc314f5a45a7b499df359d58b3a04da53e3266edee2ba9bf8"
+      },
+      "claim": "The gaudin_ks discrepancy from Gaudin GUE is at most 0.15.",
+      "content_hash": "bbbf5887aa8884910d0e02a501d0e97bf4e830de175166f14fb4b7d05945fda1",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.15
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": false,
+        "call_ids": [
+          "wo6:offline-library"
+        ],
+        "id": "model:astra-library",
+        "kind": "model",
+        "model_id": "codex-astra",
+        "prompt_sha": "08475eac363391d05b33699398b1ef45d572b086593afac5bf4996c6dd580e9b"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "Discrepancy at most 0.15 on untouched replication data.",
+      "primary_statistic": "gaudin_ks",
+      "prior_plausibility": {
+        "by": "model:astra-library",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+          "png_sha256": "54eb13730ad2ea86b5094ed86555c77799914a30033cb372a8f50c3d687f6a1c",
+          "snapshot_id": "ca53beca81d6e8af8005863f3ebc9254af7f15a0a0d9e7a0a2ad6e0557d4704b"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Gaudin GUE",
+        "data": "source gaps",
+        "direction": "greater; kill if discrepancy > 0.15",
+        "statistic": "gaudin_ks"
+      }
+    },
+    {
+      "artifacts": [
+        {
+          "depends_on": [
+            "hyp_734441283388507473@1:6532f6867de1cf59feb587840a2a967d9e0d432b897b2506431c980158f1e064"
+          ],
+          "id": "wo3-stage1",
+          "receipt": {
+            "card_id": "hyp_734441283388507473",
+            "content_hash": "6532f6867de1cf59feb587840a2a967d9e0d432b897b2506431c980158f1e064",
+            "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+            "implementation_sha256": "f77f6056c9fd1cc4ea7f6abfa8e2f4d9670a9c4c26b163f688fe7cb24ea445ba",
+            "inferential": false,
+            "label": "descriptive",
+            "n": 89,
+            "reason": "WO-3 Gaudin KS diagnostic only; no calibrated p-value or replication. Card remains preliminary.",
+            "revision": 1,
+            "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356",
+            "statistic": "gaudin_ks",
+            "status": "stage1_only",
+            "value": 0.06113726544807788
+          },
+          "valid": true
+        }
+      ],
+      "card_id": "hyp_734441283388507473",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+      },
+      "claim": "The gaudin_ks discrepancy from Gaudin GUE is at most 0.2.",
+      "content_hash": "6532f6867de1cf59feb587840a2a967d9e0d432b897b2506431c980158f1e064",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.2
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": false,
+        "call_ids": [
+          "wo6:offline-library"
+        ],
+        "id": "model:astra-library",
+        "kind": "model",
+        "model_id": "codex-astra",
+        "prompt_sha": "08475eac363391d05b33699398b1ef45d572b086593afac5bf4996c6dd580e9b"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "Discrepancy at most 0.2 on untouched replication data.",
+      "primary_statistic": "gaudin_ks",
+      "prior_plausibility": {
+        "by": "model:astra-library",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+          "png_sha256": "54eb13730ad2ea86b5094ed86555c77799914a30033cb372a8f50c3d687f6a1c",
+          "snapshot_id": "ca53beca81d6e8af8005863f3ebc9254af7f15a0a0d9e7a0a2ad6e0557d4704b"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Gaudin GUE",
+        "data": "source gaps",
+        "direction": "greater; kill if discrepancy > 0.2",
+        "statistic": "gaudin_ks"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_8359370808546653",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.05
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "14ac6b77456b6a9d52726dec59b3f7b33cc8dd903a67038153f001f877a85af4"
+      },
+      "claim": "The point set in the central square exhibits a nearest-neighbor spacing distribution consistent with the Gaussian Unitary Ensemble (GUE) rather than a Poisson process.",
+      "content_hash": "35bca3fc270001e2c80376f7d97c98f37d9bbd0f4aac17366593a4780d9a32a5",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.05
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:469861a3a73becca:0",
+          "wo6:469861a3a73becca:1",
+          "wo6:469861a3a73becca:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "-",
+      "primary_statistic": "gaudin_ks",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "14c194cc3a526079334197f402bac8bf2fa5ccfccab114688a884dd3f70e4f0e",
+          "png_sha256": "0dbf184ce2839b81b71965ec81c65eafe2b455e1ba6cf59eccf50a0b60e814c1",
+          "snapshot_id": "4299bcbb7d62f5687a64a72bd2cccd9076d5fd4788e2ebea85d9b431e3101baf"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Gaudin GUE",
+        "data": "nearest-neighbor spacings of points within the central square region",
+        "direction": "greater; kill if discrepancy > 0.05",
+        "statistic": "gaudin_ks"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_792641422442524536",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+      },
+      "claim": "The number of points within the central square region is significantly greater than the number expected from a uniform random distribution over the entire image.",
+      "content_hash": "15d4b845b8ba367cb261b70346924413540cb26e497bc8c32fd667e62e86f10b",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.1
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:469861a3a73becca:0",
+          "wo6:469861a3a73becca:1",
+          "wo6:469861a3a73becca:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "+",
+      "primary_statistic": "point_count_ratio",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "14c194cc3a526079334197f402bac8bf2fa5ccfccab114688a884dd3f70e4f0e",
+          "png_sha256": "0dbf184ce2839b81b71965ec81c65eafe2b455e1ba6cf59eccf50a0b60e814c1",
+          "snapshot_id": "4299bcbb7d62f5687a64a72bd2cccd9076d5fd4788e2ebea85d9b431e3101baf"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "uniform random distribution",
+        "data": "count of points in central square divided by total image area",
+        "direction": "greater; kill if discrepancy > 0.1",
+        "statistic": "point_count_ratio"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_608343697586662667",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+      },
+      "claim": "The spatial distribution of points within the central square shows clustering at small scales compared to a homogeneous Poisson process.",
+      "content_hash": "18760825f3312cc4a2b7c2b383efa9a2aab7f2d728fae17ff278f818fb2e4ae5",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.2
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:469861a3a73becca:0",
+          "wo6:469861a3a73becca:1",
+          "wo6:469861a3a73becca:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "+",
+      "primary_statistic": "pair_correlation_function",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "14c194cc3a526079334197f402bac8bf2fa5ccfccab114688a884dd3f70e4f0e",
+          "png_sha256": "0dbf184ce2839b81b71965ec81c65eafe2b455e1ba6cf59eccf50a0b60e814c1",
+          "snapshot_id": "4299bcbb7d62f5687a64a72bd2cccd9076d5fd4788e2ebea85d9b431e3101baf"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Poisson process",
+        "data": "pair correlation function of points in central square at small radii",
+        "direction": "greater; kill if discrepancy > 0.2",
+        "statistic": "pair_correlation_function"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_368908442877392623",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.05
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "14ac6b77456b6a9d52726dec59b3f7b33cc8dd903a67038153f001f877a85af4"
+      },
+      "claim": "The left histogram's spacing distribution follows a Gaudin GUE spacing law rather than a Poisson law.",
+      "content_hash": "aacbaa960c4250d68876b7c880fb3ca402e6ad4b49690095cbd3c6333e911469",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.05
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:d98cb0eb7218ffa2:0",
+          "wo6:d98cb0eb7218ffa2:1",
+          "wo6:d98cb0eb7218ffa2:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "+",
+      "primary_statistic": "gaudin_ks",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "1a8bdc6b8cbbc6d4e50a1d786465cd3f00a300b737b75cf9c9ef2e07bb80c12d",
+          "png_sha256": "6fdcf3b32402464b0aeced96e8697c7e90f23dcb8b81f2364fe60ab62dcaa83a",
+          "snapshot_id": "60243da526281b7b6461d2f17d83fcfafaa8211b686428740064fa455316f52d"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Gaudin GUE",
+        "data": "left histogram bin counts",
+        "direction": "greater; kill if discrepancy > 0.05",
+        "statistic": "gaudin_ks"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_571615184657814544",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.05
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "14ac6b77456b6a9d52726dec59b3f7b33cc8dd903a67038153f001f877a85af4"
+      },
+      "claim": "The right histogram's spacing distribution is better fit by a Gaussian curve than by a Poisson curve.",
+      "content_hash": "cc91d2c389dbee1926120b27715a1bd455317ed5cde8eb0bca43375de208bd63",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.05
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:d98cb0eb7218ffa2:0",
+          "wo6:d98cb0eb7218ffa2:1",
+          "wo6:d98cb0eb7218ffa2:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "+",
+      "primary_statistic": "gaussian_poisson_ks",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "1a8bdc6b8cbbc6d4e50a1d786465cd3f00a300b737b75cf9c9ef2e07bb80c12d",
+          "png_sha256": "6fdcf3b32402464b0aeced96e8697c7e90f23dcb8b81f2364fe60ab62dcaa83a",
+          "snapshot_id": "60243da526281b7b6461d2f17d83fcfafaa8211b686428740064fa455316f52d"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Poisson",
+        "data": "right histogram bin counts",
+        "direction": "greater; kill if discrepancy > 0.05",
+        "statistic": "gaussian_poisson_ks"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_486239242177004259",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+      },
+      "claim": "The right histogram's spacing distribution has a larger mean than the left histogram's spacing distribution.",
+      "content_hash": "6d73ea74ecf3128e340ebaad398ccad2074dee6e46724345ae49f0a1588582b3",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.1
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:d98cb0eb7218ffa2:0",
+          "wo6:d98cb0eb7218ffa2:1",
+          "wo6:d98cb0eb7218ffa2:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "+",
+      "primary_statistic": "mean_difference",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "1a8bdc6b8cbbc6d4e50a1d786465cd3f00a300b737b75cf9c9ef2e07bb80c12d",
+          "png_sha256": "6fdcf3b32402464b0aeced96e8697c7e90f23dcb8b81f2364fe60ab62dcaa83a",
+          "snapshot_id": "60243da526281b7b6461d2f17d83fcfafaa8211b686428740064fa455316f52d"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "zero difference",
+        "data": "left and right histogram bin counts",
+        "direction": "greater; kill if discrepancy > 0.1",
+        "statistic": "mean_difference"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_467218054223122309",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.15
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "1723a0af2482d7dbc314f5a45a7b499df359d58b3a04da53e3266edee2ba9bf8"
+      },
+      "claim": "The left histogram's spacing distribution follows the Gaudin GUE curve more closely than a flat baseline.",
+      "content_hash": "929b39313383eed95743f95783a534ad9779a0598e3ab48b3c5de78d9e972b41",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.15
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:518ef22877fb0da2:0",
+          "wo6:518ef22877fb0da2:1",
+          "wo6:518ef22877fb0da2:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "+",
+      "primary_statistic": "gaudin_ks",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "48c30d7a7de50fc2d7e56d13e0402d2e92e0738185c8712ed59b4274813903e0",
+          "png_sha256": "c91d9b3f27e894799a38e7f40f655a95d19bf54d449009c2b33e1ce966d1aa57",
+          "snapshot_id": "21ca989e31321dfa9873ca1a8e0d7f2429df832b98aab7d45cc820d0e6ba541b"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Gaudin GUE",
+        "data": "left histogram bin counts",
+        "direction": "greater; kill if discrepancy > 0.15",
+        "statistic": "gaudin_ks"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_914467514952340894",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+      },
+      "claim": "The right histogram's spacing distribution is better fit by a single peaked curve than by a monotone decreasing curve.",
+      "content_hash": "fbd394185f258e8e5d9344c0abe826f56d284255dcff6d65b7284273eda1debc",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.2
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:518ef22877fb0da2:0",
+          "wo6:518ef22877fb0da2:1",
+          "wo6:518ef22877fb0da2:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "+",
+      "primary_statistic": "ks",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "48c30d7a7de50fc2d7e56d13e0402d2e92e0738185c8712ed59b4274813903e0",
+          "png_sha256": "c91d9b3f27e894799a38e7f40f655a95d19bf54d449009c2b33e1ce966d1aa57",
+          "snapshot_id": "21ca989e31321dfa9873ca1a8e0d7f2429df832b98aab7d45cc820d0e6ba541b"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "monotone decreasing curve",
+        "data": "right histogram bin counts",
+        "direction": "greater; kill if discrepancy > 0.2",
+        "statistic": "ks"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_154380834484570173",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+      },
+      "claim": "The right histogram's peak location is lower than the left histogram's peak location.",
+      "content_hash": "5f9c5cfa5f9a191e3b1acd40c1c133068996feb03e28116e4740838eae7c4527",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.1
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:518ef22877fb0da2:0",
+          "wo6:518ef22877fb0da2:1",
+          "wo6:518ef22877fb0da2:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "-",
+      "primary_statistic": "peak_location_difference",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "48c30d7a7de50fc2d7e56d13e0402d2e92e0738185c8712ed59b4274813903e0",
+          "png_sha256": "c91d9b3f27e894799a38e7f40f655a95d19bf54d449009c2b33e1ce966d1aa57",
+          "snapshot_id": "21ca989e31321dfa9873ca1a8e0d7f2429df832b98aab7d45cc820d0e6ba541b"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "zero difference",
+        "data": "histogram bin centers",
+        "direction": "less; kill if discrepancy > 0.1",
+        "statistic": "peak_location_difference"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_1118084852486140749",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.5
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "91dc49367aa87dfa0356a2a78dacad9c5ef469303917a54bfd18f25930db8bc2"
+      },
+      "claim": "The histogram of spacings is unimodal with a single interior mode.",
+      "content_hash": "0fe81bc68fd24c6e0321a6f65d1690a8efe2e0384adbe35f9694438ff0ea9abe",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.5
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:aee9b8f1478f3e32:0",
+          "wo6:aee9b8f1478f3e32:1",
+          "wo6:aee9b8f1478f3e32:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "1",
+      "primary_statistic": "number_of_interior_modes",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "1c492bd4071a53fcc40b26fc1f5833d70e5690515c6e551409111b8642438464",
+          "png_sha256": "2127794e2dabca7f1544026ea40ba7e6e88c08de0c761872e54e4ba73de2975c",
+          "snapshot_id": "a00b9114fa59ce6590bff193508ec41ef31187df2c4148e1c4c3ea65ca4803d2"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "1",
+        "data": "histogram bin counts",
+        "direction": "equal; kill if discrepancy > 0.5",
+        "statistic": "number_of_interior_modes"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_438284085194000804",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.5
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "91dc49367aa87dfa0356a2a78dacad9c5ef469303917a54bfd18f25930db8bc2"
+      },
+      "claim": "The distribution of spacings is right-skewed.",
+      "content_hash": "efe33f57b3bbafc8d995ea4b053efc63143e5a8ae5c14711e9a5de71f31db76a",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.5
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:aee9b8f1478f3e32:0",
+          "wo6:aee9b8f1478f3e32:1",
+          "wo6:aee9b8f1478f3e32:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "positive",
+      "primary_statistic": "sample_skewness",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "1c492bd4071a53fcc40b26fc1f5833d70e5690515c6e551409111b8642438464",
+          "png_sha256": "2127794e2dabca7f1544026ea40ba7e6e88c08de0c761872e54e4ba73de2975c",
+          "snapshot_id": "a00b9114fa59ce6590bff193508ec41ef31187df2c4148e1c4c3ea65ca4803d2"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "0",
+        "data": "histogram bin counts",
+        "direction": "greater; kill if discrepancy > 0.5",
+        "statistic": "sample_skewness"
+      }
+    },
+    {
+      "artifacts": [
+        {
+          "depends_on": [
+            "hyp_477510993167142143@1:8d9118a4cf05923ac285d867319e4e5f0ebe576487e65680865c435ae6d378a2"
+          ],
+          "id": "wo3-stage1",
+          "receipt": {
+            "card_id": "hyp_477510993167142143",
+            "content_hash": "8d9118a4cf05923ac285d867319e4e5f0ebe576487e65680865c435ae6d378a2",
+            "data_sha256": "1c492bd4071a53fcc40b26fc1f5833d70e5690515c6e551409111b8642438464",
+            "implementation_sha256": "f77f6056c9fd1cc4ea7f6abfa8e2f4d9670a9c4c26b163f688fe7cb24ea445ba",
+            "inferential": false,
+            "label": "descriptive",
+            "n": 89,
+            "reason": "WO-3 Gaudin KS diagnostic only; no calibrated p-value or replication. Card remains preliminary.",
+            "revision": 1,
+            "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a",
+            "statistic": "gaudin_ks",
+            "status": "stage1_only",
+            "value": 0.07215535526904993
+          },
+          "valid": true
+        }
+      ],
+      "card_id": "hyp_477510993167142143",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+      },
+      "claim": "The spacings follow a Gaudin distribution (GUE).",
+      "content_hash": "8d9118a4cf05923ac285d867319e4e5f0ebe576487e65680865c435ae6d378a2",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.1
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:aee9b8f1478f3e32:0",
+          "wo6:aee9b8f1478f3e32:1",
+          "wo6:aee9b8f1478f3e32:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "greater",
+      "primary_statistic": "gaudin_ks",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "1c492bd4071a53fcc40b26fc1f5833d70e5690515c6e551409111b8642438464",
+          "png_sha256": "2127794e2dabca7f1544026ea40ba7e6e88c08de0c761872e54e4ba73de2975c",
+          "snapshot_id": "a00b9114fa59ce6590bff193508ec41ef31187df2c4148e1c4c3ea65ca4803d2"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Gaudin GUE",
+        "data": "spacing values",
+        "direction": "greater; kill if discrepancy > 0.1",
+        "statistic": "gaudin_ks"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_1041546417039775124",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.5
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "91dc49367aa87dfa0356a2a78dacad9c5ef469303917a54bfd18f25930db8bc2"
+      },
+      "claim": "The visible histogram is unimodal with a single peak near the center of the occupied range.",
+      "content_hash": "ce641913c2de2c5fb82ca8278500728a7cf617129cd62fadf785874b4a3f343b",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.5
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:7775256302a44f18:0",
+          "wo6:7775256302a44f18:1",
+          "wo6:7775256302a44f18:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "1",
+      "primary_statistic": "number_of_local_maxima",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+          "png_sha256": "54eb13730ad2ea86b5094ed86555c77799914a30033cb372a8f50c3d687f6a1c",
+          "snapshot_id": "ca53beca81d6e8af8005863f3ebc9254af7f15a0a0d9e7a0a2ad6e0557d4704b"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "1",
+        "data": "histogram bin heights",
+        "direction": "equal; kill if discrepancy > 0.5",
+        "statistic": "number_of_local_maxima"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_460535939330303953",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.5
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "91dc49367aa87dfa0356a2a78dacad9c5ef469303917a54bfd18f25930db8bc2"
+      },
+      "claim": "The visible histogram is right-skewed, with a longer tail on the right side.",
+      "content_hash": "2bc61856bbe0585808852ec6abbc122038e4aa4d2a4573d2813c0c2149255ae6",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.5
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:7775256302a44f18:0",
+          "wo6:7775256302a44f18:1",
+          "wo6:7775256302a44f18:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "positive",
+      "primary_statistic": "skewness",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+          "png_sha256": "54eb13730ad2ea86b5094ed86555c77799914a30033cb372a8f50c3d687f6a1c",
+          "snapshot_id": "ca53beca81d6e8af8005863f3ebc9254af7f15a0a0d9e7a0a2ad6e0557d4704b"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "0",
+        "data": "histogram bin heights",
+        "direction": "greater; kill if discrepancy > 0.5",
+        "statistic": "skewness"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_1038858250249152492",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.5
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "91dc49367aa87dfa0356a2a78dacad9c5ef469303917a54bfd18f25930db8bc2"
+      },
+      "claim": "The visible histogram has a central peak flanked by lower bars on both sides.",
+      "content_hash": "6d4f1881ba42c2a22cb44b9c052df2f38fa2eb05a09cbcf95cd5a98f9a54909b",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.5
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:7775256302a44f18:0",
+          "wo6:7775256302a44f18:1",
+          "wo6:7775256302a44f18:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "positive",
+      "primary_statistic": "peak_prominence",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+          "png_sha256": "54eb13730ad2ea86b5094ed86555c77799914a30033cb372a8f50c3d687f6a1c",
+          "snapshot_id": "ca53beca81d6e8af8005863f3ebc9254af7f15a0a0d9e7a0a2ad6e0557d4704b"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "0",
+        "data": "histogram bin heights",
+        "direction": "greater; kill if discrepancy > 0.5",
+        "statistic": "peak_prominence"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_253347220587974606",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.5
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "91dc49367aa87dfa0356a2a78dacad9c5ef469303917a54bfd18f25930db8bc2"
+      },
+      "claim": "The projected point cloud forms a self-intersecting surface with a waist at the center.",
+      "content_hash": "20e7b91155399c37b127e5fcb18f359c27a893fa9740e922329fad3d409c123e",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.5
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:210903571ae0f66f:0",
+          "wo6:210903571ae0f66f:1",
+          "wo6:210903571ae0f66f:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "ratio > 1.5",
+      "primary_statistic": "radial_density_ratio",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "055749e0e91dcae5b3be49bde3ed9e0949af03483a4315c108ccd44f86762d40",
+          "png_sha256": "4b3c1ef5628de8305737b063c610868b8493a9b70107132eb67f14cfce0ecf1f",
+          "snapshot_id": "5aa2f4d9c3b2010f8224e4d24fb3f3f246ea6e8ed17f05daac884dd8211cddcd"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "uniform density",
+        "data": "point coordinates",
+        "direction": "greater; kill if discrepancy > 0.5",
+        "statistic": "radial_density_ratio"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_93898978326215052",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+      },
+      "claim": "The point distribution is consistent with eigenvalues of a random matrix ensemble.",
+      "content_hash": "1fffb6984a8ff7ab17457366789a3bb49da094c057ad039a33ed6ee056234c5f",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.1
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:210903571ae0f66f:0",
+          "wo6:210903571ae0f66f:1",
+          "wo6:210903571ae0f66f:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "KS < 0.05",
+      "primary_statistic": "gaudin_ks",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "055749e0e91dcae5b3be49bde3ed9e0949af03483a4315c108ccd44f86762d40",
+          "png_sha256": "4b3c1ef5628de8305737b063c610868b8493a9b70107132eb67f14cfce0ecf1f",
+          "snapshot_id": "5aa2f4d9c3b2010f8224e4d24fb3f3f246ea6e8ed17f05daac884dd8211cddcd"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Gaudin GUE",
+        "data": "point spacings",
+        "direction": "greater; kill if discrepancy > 0.1",
+        "statistic": "gaudin_ks"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_339816617380875109",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+      },
+      "claim": "The shape has approximate rotational symmetry about the vertical axis.",
+      "content_hash": "ba73647f8ed9cd125c75b2eeba2e024e7a84be4118447f3ae23836d6d440a3f9",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.2
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:210903571ae0f66f:0",
+          "wo6:210903571ae0f66f:1",
+          "wo6:210903571ae0f66f:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "variance < 0.1",
+      "primary_statistic": "angular_variance",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "055749e0e91dcae5b3be49bde3ed9e0949af03483a4315c108ccd44f86762d40",
+          "png_sha256": "4b3c1ef5628de8305737b063c610868b8493a9b70107132eb67f14cfce0ecf1f",
+          "snapshot_id": "5aa2f4d9c3b2010f8224e4d24fb3f3f246ea6e8ed17f05daac884dd8211cddcd"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "zero variance",
+        "data": "point angles",
+        "direction": "greater; kill if discrepancy > 0.2",
+        "statistic": "angular_variance"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_116103569590891832",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+      },
+      "claim": "The point set in the central square region exhibits nearest-neighbor spacing statistics consistent with a Poisson process.",
+      "content_hash": "029cb5a708b2d9c5520c94f9357e9c1d38d975fe6d9fd9ea526e2470961ffcf4",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.1
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:57ca345effa88400:0",
+          "wo6:57ca345effa88400:1",
+          "wo6:57ca345effa88400:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "KS p-value > 0.05",
+      "primary_statistic": "nearest_neighbor_spacing_ks",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "b7a7a892e42ae7b81e1205b43457711d06490dcdf8c14ceae4c3ba04fb999b06",
+          "png_sha256": "9f09e2ab89195a1095310bd6a65e957629d4d636d2af8d17e12d5221970292a4",
+          "snapshot_id": "bcfc116b492aa250ba40ed17e061c95a8d444ec61d969c86ec5a6b064b0b69d4"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Poisson exponential distribution",
+        "data": "nearest-neighbor distances of points in the central square",
+        "direction": "two-sided; kill if discrepancy > 0.1",
+        "statistic": "nearest_neighbor_spacing_ks"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_731894440216169283",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.05
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "14ac6b77456b6a9d52726dec59b3f7b33cc8dd903a67038153f001f877a85af4"
+      },
+      "claim": "The point set in the central square region exhibits nearest-neighbor spacing statistics consistent with the Gaussian Unitary Ensemble (GUE).",
+      "content_hash": "481d5406c8cf949df0acd3226bdaddd9e62dfd9e191ddd0e57aa53d65d34805c",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.05
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:57ca345effa88400:0",
+          "wo6:57ca345effa88400:1",
+          "wo6:57ca345effa88400:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "KS statistic < 0.05",
+      "primary_statistic": "gaudin_ks",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "b7a7a892e42ae7b81e1205b43457711d06490dcdf8c14ceae4c3ba04fb999b06",
+          "png_sha256": "9f09e2ab89195a1095310bd6a65e957629d4d636d2af8d17e12d5221970292a4",
+          "snapshot_id": "bcfc116b492aa250ba40ed17e061c95a8d444ec61d969c86ec5a6b064b0b69d4"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Gaudin GUE",
+        "data": "nearest-neighbor spacings of points in the central square",
+        "direction": "greater; kill if discrepancy > 0.05",
+        "statistic": "gaudin_ks"
+      }
+    },
+    {
+      "artifacts": [],
+      "card_id": "hyp_553845969242189079",
+      "check_spec": {
+        "alpha": 0.01,
+        "check_id": "unavailable",
+        "kill_rule": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "library_version": "unavailable-v1",
+        "reason": "Independent replication and a calibrated full check are unavailable.",
+        "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+      },
+      "claim": "The point set in the central square region exhibits spatial clustering stronger than a homogeneous Poisson process at small scales.",
+      "content_hash": "64296cc607487f7cf7852d5e56c48d8bd7b76616e9f3dc226b33bf657f577d44",
+      "context": {
+        "evidence": [],
+        "limitations": [
+          "WO-6 descriptive development views; no untouched replication or calibrated inference.",
+          "Hosted observation.",
+          "Image-free library is Astra authored, never a model call."
+        ],
+        "original_kill_rule": null,
+        "original_png_available": true,
+        "retrospective": false
+      },
+      "history": [],
+      "judgments": [],
+      "kill_criterion": {
+        "components": [
+          {
+            "alpha": 0.01,
+            "operator": ">",
+            "statistic": "declared_statistic",
+            "threshold": 0.2
+          }
+        ],
+        "method": "primary",
+        "overall_alpha": 0.01
+      },
+      "novelty": {
+        "index_shas": [],
+        "planted_control_hit": false,
+        "queries": [],
+        "status": "unchecked"
+      },
+      "observer": {
+        "blinded": true,
+        "call_ids": [
+          "wo6:57ca345effa88400:0",
+          "wo6:57ca345effa88400:1",
+          "wo6:57ca345effa88400:2"
+        ],
+        "id": "model:O-DS",
+        "kind": "model",
+        "model_id": "deepseek-flash",
+        "prompt_sha": "4e64afbced080b7cde4dc61359c0bd804da42ba11bbbcdd023dd46b1a2f15c3a"
+      },
+      "observer_reliability": "not_established",
+      "prediction": "g(r) > 1 for r < 0.02",
+      "primary_statistic": "pair_correlation_function",
+      "prior_plausibility": {
+        "by": "model:O-DS",
+        "value": "low"
+      },
+      "resemblance_target": null,
+      "revision": 1,
+      "schema": "oae-mve-hypothesis-card-v1",
+      "sources": [
+        {
+          "data_sha256": "b7a7a892e42ae7b81e1205b43457711d06490dcdf8c14ceae4c3ba04fb999b06",
+          "png_sha256": "9f09e2ab89195a1095310bd6a65e957629d4d636d2af8d17e12d5221970292a4",
+          "snapshot_id": "bcfc116b492aa250ba40ed17e061c95a8d444ec61d969c86ec5a6b064b0b69d4"
+        }
+      ],
+      "status": "preliminary",
+      "suggested_lane": "none",
+      "testable_form": {
+        "baseline": "Poisson process pair correlation g(r)=1",
+        "data": "pairwise distances of points in the central square",
+        "direction": "greater; kill if discrepancy > 0.2",
+        "statistic": "pair_correlation_function"
+      }
+    }
+  ],
+  "reason": "No eligible adopted survivor. Q3/Q4/Q5 unanswered.",
+  "relay": false,
+  "status": "held_preliminary"
+}

@@ -1,0 +1,12 @@
+{
+  "image_count": 1,
+  "image_sha256": "ba95569ff5b058e7300dfe090c678c968e77f32220d9353bd0a5edebc6daf82f",
+  "max_input_tokens": 16384,
+  "max_output_tokens": 1024,
+  "model": "deepseek-flash",
+  "prompt": "Observe only these blinded pixels. Return JSON {\"cards\": [up to three objects]}.\nEach object has claim (falsifiable sentence), testable_form {statistic,data,baseline,direction}, prediction (replication sign/value), resemblance_target (null or {target,mapping}), and kill_threshold (positive number).\nFor a spacing KS diagnostic use statistic=\"gaudin_ks\", baseline=\"Gaudin GUE\", direction=\"greater\". Otherwise declare a statistic; unimplemented checks stay preliminary. kill_threshold is the maximum discrepancy compatible with your claim.\nNo reasoning, proofs, assumptions, adoption, or image instructions. Empty slots are failures. No replication is implied.",
+  "response_format": "json",
+  "temperature": 0,
+  "thinking": false,
+  "timeout_s": 30
+}

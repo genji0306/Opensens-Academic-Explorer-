@@ -322,3 +322,34 @@ atlas result schema); nothing is written to the review-exchange or the atlas. Th
 is a proposal pending the atlas owner (Q5); technical_failure bundles are held back.
 **All offline packets of plan r6 are now merged.** Remaining work needs the owner: §9 Q1–Q6,
 the second-observer choice, and the go for the WO-6 pilot (hosted calls).
+
+## Addendum 15: WO-6 descriptive pilot, first live run (85498f9c75d): PASS, merged
+
+Owner-run live at 2026-09-28 04:37 UTC (off-peak), reviewed HEAD 85498f9c75d. 24 of 24 planned
+calls, all HTTP 200, ledger not frozen. Usage-derived exposure USD 0.006627 (receipts price input at
+the peak rate, so this overstates the off-peak charge); worst-case reservation was USD 0.147456.
+Three earlier owner attempts were refused before any write, the last at or before 04:00 UTC; the
+only time-dependent guard is the off-peak window. Opus replayed every guard and `main()` with writes
+stubbed (no calls) at 04:35 UTC: all pass. Suite on the merge tree: 1044 passed, 2 skipped.
+Evidence (receipts, requests, raw responses, report, ledger, design, outbox drafts; images omitted,
+hashed in SHA256SUMS) is in `docs/mve/reviews/wo6-live/`.
+
+Result, descriptive only (four development pairs, no second observer, GO1–GO4 not established):
+33 preliminary, 3 malformed (space-08 real: card fields outside the contract), 12 unavailable donor.
+Zero survivors, as designed.
+
+Observation for the plan: the observer's "Gaudin GUE" claim does not track the pixels. A GUE card
+was proposed for the null twin in 4 of 4 modules (polar-ulam, field-dyson, spectral, space-08) and
+for the real image in 2 of 3 valid modules; on the polar-ulam real image it proposed both "Poisson"
+and "GUE" for the same point set. The one checkable null-twin GUE card has Gaudin KS 0.072 at n = 89,
+under the nominal 1.36/sqrt(n) = 0.144 line, so the null twin also looks GUE-like at this n; a
+Gaudin KS at n = 89 cannot separate these arms. Perception repeatability: 0 of 8 image jobs gave
+identical observations across the two fresh-context calls. This is the failure the control arms
+exist to expose: as prompted, the observer's GUE vocabulary is a prior, not a perception.
+
+Follow-ups for the next Astra packet (not blockers):
+1. The refusal message names no guard; print the failed guard's fixed label (no dynamic text).
+2. Card prompt: forbid mutually exclusive baselines on one image, and require each card to cite a
+   visible feature from the perception pass.
+3. Before any GO2 attempt: disjoint replication clusters and same-stratum donors (WO-1 extension),
+   and a statistic with power at the snapshot's n, or a larger n.
