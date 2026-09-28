@@ -486,3 +486,29 @@ Before any WO-6c live run:
   (`for k in 0 1 2 3; do python3 -m mve.observer.capture_c --batch "$k" || break; done`), after the
   WO-1b full capture, with the same atlas/lab quiet check.
 - The owner gives a new approval date.
+
+## Addendum 20: WO-1b robust capture (cee83563e97): PASS, merged
+
+Owner chose option 3 after the overnight capture stalled. State at dispatch: 70/280 accepted; batch 7
+failed twice on page-load timeouts under host load 60–70 (other lanes); both attempts are quarantined
+by Opus with hashed QUARANTINE.json records. Astra hit its Codex usage limit right after committing
+(resets 2026-10-04); the handoff and commit are complete.
+
+Suite outside the sandbox: 1245 passed, 2 skipped. Review (verified by read-only execution against the
+real evidence root): manifest d286a45abc8187fd unchanged; `resume_state` finds 70 completed and 210
+remaining; the batch-7 selection equals both quarantine records' id sets; both QUARANTINE.json records
+verify byte for byte. Accepted snapshots bind their original snapshot_render hash (dbde0630…), which
+DEPS.lock retains as `original_runtime_provenance`. The WO-6c design c2250829… and approval 2026-09-29
+verify. Page load is bounded at 120 s, with per-pass 1860 s and per-batch 3840 s ceilings and no
+retries. `--max-load` refuses before any directory is created. A batch never mixes browser versions,
+and cluster versions are checked across batches. `renderer_drift` writes only to a new directory.
+
+**Correction to Opus's incident note:** all 70 accepted snapshots record Chrome 153.0.8010.54. The
+"152" Opus saw was the owner's already-running browser process; headless capture launches the
+installed 153 binary. There is no version mix, and the drift receipt is optional. Also, batch order
+is not cluster order (batch 7 spans three clusters), so version consistency is enforced per cluster
+across batches.
+
+Reviewer MEDIUM (not changed, to avoid a pin cascade): cross-cluster version enforcement after
+capture relies on `version_start` staying in the `one_version([...])` aggregation
+(snapshot_batch.py:501). Keep it there in any future edit.
