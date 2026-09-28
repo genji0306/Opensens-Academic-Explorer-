@@ -1,0 +1,4090 @@
+{
+  "cards": [
+    {
+      "assessment": {
+        "citations": [
+          "p0:2",
+          "p0:3"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "469861a3a73becca",
+        "observations_sha256": "7ef70a23edd465082fd3bd8e07969039c4ab9fb4efddcb5961e07955e67a339b",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_775124667645178795",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.05
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "14ac6b77456b6a9d52726dec59b3f7b33cc8dd903a67038153f001f877a85af4"
+        },
+        "claim": "The central region of the speckle field contains fewer bright points than the surrounding regions.",
+        "content_hash": "850243c63cadec00185c7bf4fff3845ba32cad254773a24c97ff819b83bf1022",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.05
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:469861a3a73becca:0",
+            "wo6b:469861a3a73becca:1",
+            "wo6b:469861a3a73becca:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "a0e4aed6c6595b7022aff3f3766dc1e62c541af4978efb2c6e775da1e5782070"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "In a replication with a newly generated speckle field of the same size and point count, the central region will again show lower point density than the surrounding annulus.",
+        "primary_statistic": "mean point density in central region minus mean point density in surrounding annulus",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "14c194cc3a526079334197f402bac8bf2fa5ccfccab114688a884dd3f70e4f0e",
+            "png_sha256": "0dbf184ce2839b81b71965ec81c65eafe2b455e1ba6cf59eccf50a0b60e814c1",
+            "snapshot_id": "4299bcbb7d62f5687a64a72bd2cccd9076d5fd4788e2ebea85d9b431e3101baf"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "uniform spatial Poisson process with constant intensity",
+          "data": "point coordinates extracted from the displayed speckle field",
+          "direction": "central density < surrounding density; kill if discrepancy > 0.05",
+          "statistic": "mean point density in central region minus mean point density in surrounding annulus"
+        }
+      },
+      "job": "469861a3a73becca",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "point_cluster",
+          "id": "p0:1",
+          "region": "whole",
+          "text": "dense white speckles on dark background forming square region"
+        },
+        {
+          "feature_tag": "void",
+          "id": "p0:2",
+          "region": "middle_center",
+          "text": "central area with fewer bright points than surrounding regions"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "speckle density decreases toward center, increases at edges"
+        },
+        {
+          "feature_tag": "point_cluster",
+          "id": "p1:1",
+          "region": "whole",
+          "text": "dense white dots scattered across dark square field"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:2",
+          "region": "middle_center",
+          "text": "central area shows slightly higher dot concentration"
+        },
+        {
+          "feature_tag": "void",
+          "id": "p1:3",
+          "region": "middle_left",
+          "text": "dark empty band along left edge of dot field"
+        }
+      ],
+      "proposal": {
+        "claim": "The central region of the speckle field contains fewer bright points than the surrounding regions.",
+        "kill_threshold": 0.05,
+        "observation_ids": [
+          "p0:2",
+          "p0:3"
+        ],
+        "prediction": "In a replication with a newly generated speckle field of the same size and point count, the central region will again show lower point density than the surrounding annulus.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "uniform spatial Poisson process with constant intensity",
+          "data": "point coordinates extracted from the displayed speckle field",
+          "direction": "central density < surrounding density",
+          "statistic": "mean point density in central region minus mean point density in surrounding annulus"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "0b81bcf571e7030201f1efe1b1987c5009d9cf9f9cfbd27992c0e18bd9fd6bce",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:1",
+          "p0:3"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "469861a3a73becca",
+        "observations_sha256": "7ef70a23edd465082fd3bd8e07969039c4ab9fb4efddcb5961e07955e67a339b",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_623427884100365474",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.05
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "14ac6b77456b6a9d52726dec59b3f7b33cc8dd903a67038153f001f877a85af4"
+        },
+        "claim": "Speckle density increases from the center toward the edges of the square field.",
+        "content_hash": "84066e588f6003793ecff50a1249f32bef52787d77a1534aa08aa9cea424c621",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.05
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:469861a3a73becca:0",
+            "wo6b:469861a3a73becca:1",
+            "wo6b:469861a3a73becca:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "a0e4aed6c6595b7022aff3f3766dc1e62c541af4978efb2c6e775da1e5782070"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "In a replication with a newly generated speckle field of the same size and point count, radial distance from center will again correlate positively with local point density.",
+        "primary_statistic": "Spearman correlation between radial distance from field center and local point density",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "14c194cc3a526079334197f402bac8bf2fa5ccfccab114688a884dd3f70e4f0e",
+            "png_sha256": "0dbf184ce2839b81b71965ec81c65eafe2b455e1ba6cf59eccf50a0b60e814c1",
+            "snapshot_id": "4299bcbb7d62f5687a64a72bd2cccd9076d5fd4788e2ebea85d9b431e3101baf"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "uniform spatial Poisson process with constant intensity",
+          "data": "point coordinates extracted from the displayed speckle field",
+          "direction": "positive correlation between radial distance and density; kill if discrepancy > 0.05",
+          "statistic": "Spearman correlation between radial distance from field center and local point density"
+        }
+      },
+      "job": "469861a3a73becca",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "point_cluster",
+          "id": "p0:1",
+          "region": "whole",
+          "text": "dense white speckles on dark background forming square region"
+        },
+        {
+          "feature_tag": "void",
+          "id": "p0:2",
+          "region": "middle_center",
+          "text": "central area with fewer bright points than surrounding regions"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "speckle density decreases toward center, increases at edges"
+        },
+        {
+          "feature_tag": "point_cluster",
+          "id": "p1:1",
+          "region": "whole",
+          "text": "dense white dots scattered across dark square field"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:2",
+          "region": "middle_center",
+          "text": "central area shows slightly higher dot concentration"
+        },
+        {
+          "feature_tag": "void",
+          "id": "p1:3",
+          "region": "middle_left",
+          "text": "dark empty band along left edge of dot field"
+        }
+      ],
+      "proposal": {
+        "claim": "Speckle density increases from the center toward the edges of the square field.",
+        "kill_threshold": 0.05,
+        "observation_ids": [
+          "p0:3",
+          "p0:1"
+        ],
+        "prediction": "In a replication with a newly generated speckle field of the same size and point count, radial distance from center will again correlate positively with local point density.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "uniform spatial Poisson process with constant intensity",
+          "data": "point coordinates extracted from the displayed speckle field",
+          "direction": "positive correlation between radial distance and density",
+          "statistic": "Spearman correlation between radial distance from field center and local point density"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "a8c1889ec6ae419d3b646f5ee8e0bf60457266fb571395e9b8c7ccb28e2f5f94",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p1:1",
+          "p1:3"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "469861a3a73becca",
+        "observations_sha256": "7ef70a23edd465082fd3bd8e07969039c4ab9fb4efddcb5961e07955e67a339b",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_1080664849115445025",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.05
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "14ac6b77456b6a9d52726dec59b3f7b33cc8dd903a67038153f001f877a85af4"
+        },
+        "claim": "A dark band with fewer bright points runs along the left edge of the dot field.",
+        "content_hash": "75de48b0b1411004e966454c672930022bf4dd3a13555500ab777e46b6d6f6d6",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.05
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:469861a3a73becca:0",
+            "wo6b:469861a3a73becca:1",
+            "wo6b:469861a3a73becca:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "a0e4aed6c6595b7022aff3f3766dc1e62c541af4978efb2c6e775da1e5782070"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "In a replication with a newly generated speckle field of the same size and point count, a left-edge strip will again show lower point density than the interior.",
+        "primary_statistic": "mean point density in a left-edge strip minus mean point density in the field interior",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "14c194cc3a526079334197f402bac8bf2fa5ccfccab114688a884dd3f70e4f0e",
+            "png_sha256": "0dbf184ce2839b81b71965ec81c65eafe2b455e1ba6cf59eccf50a0b60e814c1",
+            "snapshot_id": "4299bcbb7d62f5687a64a72bd2cccd9076d5fd4788e2ebea85d9b431e3101baf"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "uniform spatial Poisson process with constant intensity",
+          "data": "point coordinates extracted from the displayed speckle field",
+          "direction": "left-edge strip density < interior density; kill if discrepancy > 0.05",
+          "statistic": "mean point density in a left-edge strip minus mean point density in the field interior"
+        }
+      },
+      "job": "469861a3a73becca",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "point_cluster",
+          "id": "p0:1",
+          "region": "whole",
+          "text": "dense white speckles on dark background forming square region"
+        },
+        {
+          "feature_tag": "void",
+          "id": "p0:2",
+          "region": "middle_center",
+          "text": "central area with fewer bright points than surrounding regions"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "speckle density decreases toward center, increases at edges"
+        },
+        {
+          "feature_tag": "point_cluster",
+          "id": "p1:1",
+          "region": "whole",
+          "text": "dense white dots scattered across dark square field"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:2",
+          "region": "middle_center",
+          "text": "central area shows slightly higher dot concentration"
+        },
+        {
+          "feature_tag": "void",
+          "id": "p1:3",
+          "region": "middle_left",
+          "text": "dark empty band along left edge of dot field"
+        }
+      ],
+      "proposal": {
+        "claim": "A dark band with fewer bright points runs along the left edge of the dot field.",
+        "kill_threshold": 0.05,
+        "observation_ids": [
+          "p1:3",
+          "p1:1"
+        ],
+        "prediction": "In a replication with a newly generated speckle field of the same size and point count, a left-edge strip will again show lower point density than the interior.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "uniform spatial Poisson process with constant intensity",
+          "data": "point coordinates extracted from the displayed speckle field",
+          "direction": "left-edge strip density < interior density",
+          "statistic": "mean point density in a left-edge strip minus mean point density in the field interior"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "8f48309039d37f3de9fa19547b38da8ff34534e536cfc7244b6d1be8b5fa40c8",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:1",
+          "p1:1"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "d98cb0eb7218ffa2",
+        "observations_sha256": "7f1599b8bfcd8b3f2527b2163ace2c601e843211066c002d91541bdaad78f0cf",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_533902691991073029",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.2
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+        },
+        "claim": "The right-panel gray bar heights are unimodal with a single peak near the panel center.",
+        "content_hash": "7e8a66a632b33214d80b34f3a74576e9eb597e624784ad69f3be0d73e62d8463",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:d98cb0eb7218ffa2:0",
+            "wo6b:d98cb0eb7218ffa2:1",
+            "wo6b:d98cb0eb7218ffa2:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "a33d1b8e6b6e461edc44b2acd8bb555d05de85276e38e639b41a5bcd378e95c7"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "In a replicated right-panel histogram, bar heights show exactly one local maximum.",
+        "primary_statistic": "mode count of binned bar heights",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "1a8bdc6b8cbbc6d4e50a1d786465cd3f00a300b737b75cf9c9ef2e07bb80c12d",
+            "png_sha256": "6fdcf3b32402464b0aeced96e8697c7e90f23dcb8b81f2364fe60ab62dcaa83a",
+            "snapshot_id": "60243da526281b7b6461d2f17d83fcfafaa8211b686428740064fa455316f52d"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "unimodal distribution with one interior mode",
+          "data": "source_gaps",
+          "direction": "observed mode count equals 1; kill if discrepancy > 0.2",
+          "statistic": "mode count of binned bar heights"
+        }
+      },
+      "job": "d98cb0eb7218ffa2",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p0:1",
+          "region": "middle_right",
+          "text": "Tall gray bars peak near center of right panel"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p0:2",
+          "region": "middle_left",
+          "text": "Teal curve rises then flattens across left panel"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p0:3",
+          "region": "bottom_right",
+          "text": "Gray bars decline to right in right panel"
+        },
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p1:1",
+          "region": "middle_right",
+          "text": "Tall gray bars peak near center of right histogram"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p1:2",
+          "region": "middle_left",
+          "text": "Green curve rises then flattens across left histogram"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p1:3",
+          "region": "bottom_right",
+          "text": "Bars decrease toward right tail in right histogram"
+        }
+      ],
+      "proposal": {
+        "claim": "The right-panel gray bar heights are unimodal with a single peak near the panel center.",
+        "kill_threshold": 0.2,
+        "observation_ids": [
+          "p0:1",
+          "p1:1"
+        ],
+        "prediction": "In a replicated right-panel histogram, bar heights show exactly one local maximum.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "unimodal distribution with one interior mode",
+          "data": "source_gaps",
+          "direction": "observed mode count equals 1",
+          "statistic": "mode count of binned bar heights"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "f756fdf9c39f388731282dbd4790882bd80d205ea87c91590f44fa9144a7c363",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:3",
+          "p1:3"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "d98cb0eb7218ffa2",
+        "observations_sha256": "7f1599b8bfcd8b3f2527b2163ace2c601e843211066c002d91541bdaad78f0cf",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_152824968966342588",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.2
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+        },
+        "claim": "The right-panel gray bar heights decline monotonically from the peak toward the right tail.",
+        "content_hash": "1f72610542aa74f8fc4e0a4d3329cd42b8db14d831592163a0624abf3069542c",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:d98cb0eb7218ffa2:0",
+            "wo6b:d98cb0eb7218ffa2:1",
+            "wo6b:d98cb0eb7218ffa2:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "a33d1b8e6b6e461edc44b2acd8bb555d05de85276e38e639b41a5bcd378e95c7"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "In a replicated right-panel histogram, post-peak bar heights decrease with increasing bin index.",
+        "primary_statistic": "Spearman rank correlation between bin index and bar height after the modal bin",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "1a8bdc6b8cbbc6d4e50a1d786465cd3f00a300b737b75cf9c9ef2e07bb80c12d",
+            "png_sha256": "6fdcf3b32402464b0aeced96e8697c7e90f23dcb8b81f2364fe60ab62dcaa83a",
+            "snapshot_id": "60243da526281b7b6461d2f17d83fcfafaa8211b686428740064fa455316f52d"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "monotone decreasing tail distribution",
+          "data": "source_gaps",
+          "direction": "negative rank correlation; kill if discrepancy > 0.2",
+          "statistic": "Spearman rank correlation between bin index and bar height after the modal bin"
+        }
+      },
+      "job": "d98cb0eb7218ffa2",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p0:1",
+          "region": "middle_right",
+          "text": "Tall gray bars peak near center of right panel"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p0:2",
+          "region": "middle_left",
+          "text": "Teal curve rises then flattens across left panel"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p0:3",
+          "region": "bottom_right",
+          "text": "Gray bars decline to right in right panel"
+        },
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p1:1",
+          "region": "middle_right",
+          "text": "Tall gray bars peak near center of right histogram"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p1:2",
+          "region": "middle_left",
+          "text": "Green curve rises then flattens across left histogram"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p1:3",
+          "region": "bottom_right",
+          "text": "Bars decrease toward right tail in right histogram"
+        }
+      ],
+      "proposal": {
+        "claim": "The right-panel gray bar heights decline monotonically from the peak toward the right tail.",
+        "kill_threshold": 0.2,
+        "observation_ids": [
+          "p0:3",
+          "p1:3"
+        ],
+        "prediction": "In a replicated right-panel histogram, post-peak bar heights decrease with increasing bin index.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "monotone decreasing tail distribution",
+          "data": "source_gaps",
+          "direction": "negative rank correlation",
+          "statistic": "Spearman rank correlation between bin index and bar height after the modal bin"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "be18f2fd760045fc7903774b0e14f80380850d5c9ccfaf8ae01d8d20216503e2",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:2",
+          "p1:2"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "d98cb0eb7218ffa2",
+        "observations_sha256": "7f1599b8bfcd8b3f2527b2163ace2c601e843211066c002d91541bdaad78f0cf",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_269182475916737131",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.2
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+        },
+        "claim": "The left-panel teal/green curve rises then flattens, approaching a horizontal asymptote.",
+        "content_hash": "6cab4a80431c8d7cabe4e65f81762747e358787e6dc5f6c8b40acc26ffbf2a7a",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:d98cb0eb7218ffa2:0",
+            "wo6b:d98cb0eb7218ffa2:1",
+            "wo6b:d98cb0eb7218ffa2:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "a33d1b8e6b6e461edc44b2acd8bb555d05de85276e38e639b41a5bcd378e95c7"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "In a replicated left-panel curve, the slope near the right end is smaller than the slope near the left end.",
+        "primary_statistic": "difference between final slope and initial slope of the fitted curve",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "1a8bdc6b8cbbc6d4e50a1d786465cd3f00a300b737b75cf9c9ef2e07bb80c12d",
+            "png_sha256": "6fdcf3b32402464b0aeced96e8697c7e90f23dcb8b81f2364fe60ab62dcaa83a",
+            "snapshot_id": "60243da526281b7b6461d2f17d83fcfafaa8211b686428740064fa455316f52d"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "saturating curve with decreasing positive slope",
+          "data": "left-panel curve y-values across x",
+          "direction": "final slope less than initial slope; kill if discrepancy > 0.2",
+          "statistic": "difference between final slope and initial slope of the fitted curve"
+        }
+      },
+      "job": "d98cb0eb7218ffa2",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p0:1",
+          "region": "middle_right",
+          "text": "Tall gray bars peak near center of right panel"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p0:2",
+          "region": "middle_left",
+          "text": "Teal curve rises then flattens across left panel"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p0:3",
+          "region": "bottom_right",
+          "text": "Gray bars decline to right in right panel"
+        },
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p1:1",
+          "region": "middle_right",
+          "text": "Tall gray bars peak near center of right histogram"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p1:2",
+          "region": "middle_left",
+          "text": "Green curve rises then flattens across left histogram"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p1:3",
+          "region": "bottom_right",
+          "text": "Bars decrease toward right tail in right histogram"
+        }
+      ],
+      "proposal": {
+        "claim": "The left-panel teal/green curve rises then flattens, approaching a horizontal asymptote.",
+        "kill_threshold": 0.2,
+        "observation_ids": [
+          "p0:2",
+          "p1:2"
+        ],
+        "prediction": "In a replicated left-panel curve, the slope near the right end is smaller than the slope near the left end.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "saturating curve with decreasing positive slope",
+          "data": "left-panel curve y-values across x",
+          "direction": "final slope less than initial slope",
+          "statistic": "difference between final slope and initial slope of the fitted curve"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "6dce2616b935a71d74e8db89ef94535fd4f309c1c4a474ed947734b8fa3c36c6",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:2",
+          "p1:1"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "518ef22877fb0da2",
+        "observations_sha256": "a6ca22a1f252df0a5f244a68b3a8ee9ea18f239adf5a3258bb21b063d37a9657",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_38081763660225526",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.2
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+        },
+        "claim": "The right-panel histogram's source gaps follow a bell-shaped distribution centered near the middle of the panel.",
+        "content_hash": "9ac222471f96c34c9289d4c0d9f06bf15c898199eb61b1105e3b1908e38127e4",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:518ef22877fb0da2:0",
+            "wo6b:518ef22877fb0da2:1",
+            "wo6b:518ef22877fb0da2:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "a309e7d24f807fc778afc203e3c0305dc71a05feb4c7d69f5e1ccfc88ce8d42c"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "Replicating the right-panel histogram yields a source_gaps mean within 10% of the panel midpoint.",
+        "primary_statistic": "mean of source_gaps in right panel",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "48c30d7a7de50fc2d7e56d13e0402d2e92e0738185c8712ed59b4274813903e0",
+            "png_sha256": "c91d9b3f27e894799a38e7f40f655a95d19bf54d449009c2b33e1ce966d1aa57",
+            "snapshot_id": "21ca989e31321dfa9873ca1a8e0d7f2429df832b98aab7d45cc820d0e6ba541b"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "normal distribution with mean at panel midpoint",
+          "data": "source_gaps",
+          "direction": "mean within 10% of panel midpoint; kill if discrepancy > 0.2",
+          "statistic": "mean of source_gaps in right panel"
+        }
+      },
+      "job": "518ef22877fb0da2",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p0:1",
+          "region": "middle_left",
+          "text": "gray bars rise to a broad plateau with a cyan curve"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p0:2",
+          "region": "middle_right",
+          "text": "cyan bell curve peaks over gray bars, purple dashed curve below"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p0:3",
+          "region": "bottom_right",
+          "text": "bars descend to the right under a dotted orange line"
+        },
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p1:1",
+          "region": "middle_right",
+          "text": "Tall gray bars peak near center of right panel"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p1:2",
+          "region": "middle_left",
+          "text": "Cyan curve rises then flattens across left panel"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "Gray bars denser on left, sparser on right"
+        }
+      ],
+      "proposal": {
+        "claim": "The right-panel histogram's source gaps follow a bell-shaped distribution centered near the middle of the panel.",
+        "kill_threshold": 0.2,
+        "observation_ids": [
+          "p1:1",
+          "p0:2"
+        ],
+        "prediction": "Replicating the right-panel histogram yields a source_gaps mean within 10% of the panel midpoint.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "normal distribution with mean at panel midpoint",
+          "data": "source_gaps",
+          "direction": "mean within 10% of panel midpoint",
+          "statistic": "mean of source_gaps in right panel"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "5eeca463564c6c314e8fac308b72685bc4432b8ba6753272da509018300026e6",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:1",
+          "p1:3"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "518ef22877fb0da2",
+        "observations_sha256": "a6ca22a1f252df0a5f244a68b3a8ee9ea18f239adf5a3258bb21b063d37a9657",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_305936214237242676",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.3
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "bf830d311597af3a8a772b7339f7b33e006c4df758d409175dcd3bdc6ea6c3f7"
+        },
+        "claim": "The left-panel histogram's source gaps are denser on the left side than the right side.",
+        "content_hash": "3d1c868c5fe38411c4c105034a0f69e2b06ef22d7bfc27e0327e1634c53d45da",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.3
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:518ef22877fb0da2:0",
+            "wo6b:518ef22877fb0da2:1",
+            "wo6b:518ef22877fb0da2:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "a309e7d24f807fc778afc203e3c0305dc71a05feb4c7d69f5e1ccfc88ce8d42c"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "Replicating the left-panel histogram yields more source_gaps in the left half than the right half.",
+        "primary_statistic": "count of source_gaps in left half minus right half of left panel",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "48c30d7a7de50fc2d7e56d13e0402d2e92e0738185c8712ed59b4274813903e0",
+            "png_sha256": "c91d9b3f27e894799a38e7f40f655a95d19bf54d449009c2b33e1ce966d1aa57",
+            "snapshot_id": "21ca989e31321dfa9873ca1a8e0d7f2429df832b98aab7d45cc820d0e6ba541b"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "uniform distribution across the left panel",
+          "data": "source_gaps",
+          "direction": "left-half count greater than right-half count; kill if discrepancy > 0.3",
+          "statistic": "count of source_gaps in left half minus right half of left panel"
+        }
+      },
+      "job": "518ef22877fb0da2",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p0:1",
+          "region": "middle_left",
+          "text": "gray bars rise to a broad plateau with a cyan curve"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p0:2",
+          "region": "middle_right",
+          "text": "cyan bell curve peaks over gray bars, purple dashed curve below"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p0:3",
+          "region": "bottom_right",
+          "text": "bars descend to the right under a dotted orange line"
+        },
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p1:1",
+          "region": "middle_right",
+          "text": "Tall gray bars peak near center of right panel"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p1:2",
+          "region": "middle_left",
+          "text": "Cyan curve rises then flattens across left panel"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "Gray bars denser on left, sparser on right"
+        }
+      ],
+      "proposal": {
+        "claim": "The left-panel histogram's source gaps are denser on the left side than the right side.",
+        "kill_threshold": 0.3,
+        "observation_ids": [
+          "p1:3",
+          "p0:1"
+        ],
+        "prediction": "Replicating the left-panel histogram yields more source_gaps in the left half than the right half.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "uniform distribution across the left panel",
+          "data": "source_gaps",
+          "direction": "left-half count greater than right-half count",
+          "statistic": "count of source_gaps in left half minus right half of left panel"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "03900b9c28fd258be1ea94a0064fae5326ac659525d87cb32719e2e2c342823a",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:3",
+          "p1:1"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "518ef22877fb0da2",
+        "observations_sha256": "a6ca22a1f252df0a5f244a68b3a8ee9ea18f239adf5a3258bb21b063d37a9657",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_759035400300418506",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.25
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "940017be856f0865839402a21becdfe29090058f81b43034431ce74ce6baad59"
+        },
+        "claim": "The right-panel histogram's source gaps have a right tail that descends under a dotted orange line.",
+        "content_hash": "c3e58224b284622bb57084a96542b48e7af74e1a5f1a335b0f68bbf6741fa0c2",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.25
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:518ef22877fb0da2:0",
+            "wo6b:518ef22877fb0da2:1",
+            "wo6b:518ef22877fb0da2:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "a309e7d24f807fc778afc203e3c0305dc71a05feb4c7d69f5e1ccfc88ce8d42c"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "Replicating the right-panel histogram yields a negative slope in the rightmost 20% of source_gaps.",
+        "primary_statistic": "slope of source_gaps frequency in the rightmost 20% of the right panel",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "48c30d7a7de50fc2d7e56d13e0402d2e92e0738185c8712ed59b4274813903e0",
+            "png_sha256": "c91d9b3f27e894799a38e7f40f655a95d19bf54d449009c2b33e1ce966d1aa57",
+            "snapshot_id": "21ca989e31321dfa9873ca1a8e0d7f2429df832b98aab7d45cc820d0e6ba541b"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "zero slope (flat tail)",
+          "data": "source_gaps",
+          "direction": "negative slope; kill if discrepancy > 0.25",
+          "statistic": "slope of source_gaps frequency in the rightmost 20% of the right panel"
+        }
+      },
+      "job": "518ef22877fb0da2",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p0:1",
+          "region": "middle_left",
+          "text": "gray bars rise to a broad plateau with a cyan curve"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p0:2",
+          "region": "middle_right",
+          "text": "cyan bell curve peaks over gray bars, purple dashed curve below"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p0:3",
+          "region": "bottom_right",
+          "text": "bars descend to the right under a dotted orange line"
+        },
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p1:1",
+          "region": "middle_right",
+          "text": "Tall gray bars peak near center of right panel"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p1:2",
+          "region": "middle_left",
+          "text": "Cyan curve rises then flattens across left panel"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "Gray bars denser on left, sparser on right"
+        }
+      ],
+      "proposal": {
+        "claim": "The right-panel histogram's source gaps have a right tail that descends under a dotted orange line.",
+        "kill_threshold": 0.25,
+        "observation_ids": [
+          "p0:3",
+          "p1:1"
+        ],
+        "prediction": "Replicating the right-panel histogram yields a negative slope in the rightmost 20% of source_gaps.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "zero slope (flat tail)",
+          "data": "source_gaps",
+          "direction": "negative slope",
+          "statistic": "slope of source_gaps frequency in the rightmost 20% of the right panel"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "f49e3b00720c363b31394999492923522eaea5bdc2a5d52f65337840bd3620cf",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:1",
+          "p1:1"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "aee9b8f1478f3e32",
+        "observations_sha256": "e1b3b14357b6ffc501e4d199f6c96b24d287387e3f98ad07b1eeaef7b194c699",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_694402750442793745",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.2
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+        },
+        "claim": "The displayed spacing histogram has its tallest bar in the middle-center region.",
+        "content_hash": "0766f9fe84bba4d8854c667b235878d4f70036032a3904dc01caa2fabe0c0bd7",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:aee9b8f1478f3e32:0",
+            "wo6b:aee9b8f1478f3e32:1",
+            "wo6b:aee9b8f1478f3e32:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "0e9ebb65c44ddc7473c8639042b1fc4fdbb307720e86ba95c99e5076020c385e"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "In a replication histogram of the same source gaps, the maximum-count bin falls in the middle-center region.",
+        "primary_statistic": "argmax bin index of histogram counts",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "1c492bd4071a53fcc40b26fc1f5833d70e5690515c6e551409111b8642438464",
+            "png_sha256": "2127794e2dabca7f1544026ea40ba7e6e88c08de0c761872e54e4ba73de2975c",
+            "snapshot_id": "a00b9114fa59ce6590bff193508ec41ef31187df2c4148e1c4c3ea65ca4803d2"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "uniform distribution over bins",
+          "data": "source_gaps",
+          "direction": "tallest bin located in middle-center rather than at an edge; kill if discrepancy > 0.2",
+          "statistic": "argmax bin index of histogram counts"
+        }
+      },
+      "job": "aee9b8f1478f3e32",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p0:1",
+          "region": "middle_center",
+          "text": "tallest bar near center"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p0:2",
+          "region": "bottom_right",
+          "text": "low flat bars on right"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "bars rise then fall left to right"
+        },
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p1:1",
+          "region": "middle_center",
+          "text": "tallest bar near center with two adjacent high bars"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p1:2",
+          "region": "bottom_right",
+          "text": "low flat bars extending to right edge"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "bars rise from left to center then fall to right"
+        }
+      ],
+      "proposal": {
+        "claim": "The displayed spacing histogram has its tallest bar in the middle-center region.",
+        "kill_threshold": 0.2,
+        "observation_ids": [
+          "p0:1",
+          "p1:1"
+        ],
+        "prediction": "In a replication histogram of the same source gaps, the maximum-count bin falls in the middle-center region.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "uniform distribution over bins",
+          "data": "source_gaps",
+          "direction": "tallest bin located in middle-center rather than at an edge",
+          "statistic": "argmax bin index of histogram counts"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "a6b5cb75a547cb6199597583a5e54c6f64b455604f1c6b41c48a7ba5b4fb9a9f",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:2",
+          "p1:2"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "aee9b8f1478f3e32",
+        "observations_sha256": "e1b3b14357b6ffc501e4d199f6c96b24d287387e3f98ad07b1eeaef7b194c699",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_1082025749779763038",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.2
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+        },
+        "claim": "The displayed spacing histogram has low flat bars extending to the right edge.",
+        "content_hash": "c1d2d751e7a9cb61ec18925a65cccd3ba80a267f8f4e09187eb40ea863766260",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:aee9b8f1478f3e32:0",
+            "wo6b:aee9b8f1478f3e32:1",
+            "wo6b:aee9b8f1478f3e32:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "0e9ebb65c44ddc7473c8639042b1fc4fdbb307720e86ba95c99e5076020c385e"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "In a replication histogram of the same source gaps, the rightmost bins remain low and flat.",
+        "primary_statistic": "mean count in rightmost bins relative to peak bin count",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "1c492bd4071a53fcc40b26fc1f5833d70e5690515c6e551409111b8642438464",
+            "png_sha256": "2127794e2dabca7f1544026ea40ba7e6e88c08de0c761872e54e4ba73de2975c",
+            "snapshot_id": "a00b9114fa59ce6590bff193508ec41ef31187df2c4148e1c4c3ea65ca4803d2"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "uniform distribution over bins",
+          "data": "source_gaps",
+          "direction": "rightmost bins have low counts and flat profile; kill if discrepancy > 0.2",
+          "statistic": "mean count in rightmost bins relative to peak bin count"
+        }
+      },
+      "job": "aee9b8f1478f3e32",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p0:1",
+          "region": "middle_center",
+          "text": "tallest bar near center"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p0:2",
+          "region": "bottom_right",
+          "text": "low flat bars on right"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "bars rise then fall left to right"
+        },
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p1:1",
+          "region": "middle_center",
+          "text": "tallest bar near center with two adjacent high bars"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p1:2",
+          "region": "bottom_right",
+          "text": "low flat bars extending to right edge"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "bars rise from left to center then fall to right"
+        }
+      ],
+      "proposal": {
+        "claim": "The displayed spacing histogram has low flat bars extending to the right edge.",
+        "kill_threshold": 0.2,
+        "observation_ids": [
+          "p0:2",
+          "p1:2"
+        ],
+        "prediction": "In a replication histogram of the same source gaps, the rightmost bins remain low and flat.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "uniform distribution over bins",
+          "data": "source_gaps",
+          "direction": "rightmost bins have low counts and flat profile",
+          "statistic": "mean count in rightmost bins relative to peak bin count"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "f774640b813d86003bb95a07232371768622af1c32e328650048e44a85548c17",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:3",
+          "p1:3"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "aee9b8f1478f3e32",
+        "observations_sha256": "e1b3b14357b6ffc501e4d199f6c96b24d287387e3f98ad07b1eeaef7b194c699",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_1053826327634991928",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.2
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "b2f1feb46065dc78fbb5e3165f615d076fae2a1564cc47916e669380898ad356"
+        },
+        "claim": "The displayed spacing histogram shows a rise-then-fall density gradient from left to right.",
+        "content_hash": "50f3b94b23201317345263c4f97b4e123db5c16a5ad959d230262138d1e4fc21",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.2
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:aee9b8f1478f3e32:0",
+            "wo6b:aee9b8f1478f3e32:1",
+            "wo6b:aee9b8f1478f3e32:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "0e9ebb65c44ddc7473c8639042b1fc4fdbb307720e86ba95c99e5076020c385e"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "In a replication histogram of the same source gaps, bin counts rise from the left to a central peak and then fall toward the right.",
+        "primary_statistic": "bin counts ordered left to right",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "1c492bd4071a53fcc40b26fc1f5833d70e5690515c6e551409111b8642438464",
+            "png_sha256": "2127794e2dabca7f1544026ea40ba7e6e88c08de0c761872e54e4ba73de2975c",
+            "snapshot_id": "a00b9114fa59ce6590bff193508ec41ef31187df2c4148e1c4c3ea65ca4803d2"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "uniform distribution over bins",
+          "data": "source_gaps",
+          "direction": "counts increase from left toward center then decrease toward right; kill if discrepancy > 0.2",
+          "statistic": "bin counts ordered left to right"
+        }
+      },
+      "job": "aee9b8f1478f3e32",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p0:1",
+          "region": "middle_center",
+          "text": "tallest bar near center"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p0:2",
+          "region": "bottom_right",
+          "text": "low flat bars on right"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "bars rise then fall left to right"
+        },
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p1:1",
+          "region": "middle_center",
+          "text": "tallest bar near center with two adjacent high bars"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p1:2",
+          "region": "bottom_right",
+          "text": "low flat bars extending to right edge"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "bars rise from left to center then fall to right"
+        }
+      ],
+      "proposal": {
+        "claim": "The displayed spacing histogram shows a rise-then-fall density gradient from left to right.",
+        "kill_threshold": 0.2,
+        "observation_ids": [
+          "p0:3",
+          "p1:3"
+        ],
+        "prediction": "In a replication histogram of the same source gaps, bin counts rise from the left to a central peak and then fall toward the right.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "uniform distribution over bins",
+          "data": "source_gaps",
+          "direction": "counts increase from left toward center then decrease toward right",
+          "statistic": "bin counts ordered left to right"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "efafc2b75e6ca3021954c65aef8c868c4dc05123177f3cfaf824db1d82a510ed",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:1",
+          "p1:1"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "7775256302a44f18",
+        "observations_sha256": "5b40acfebfd284551c983a8a9b58d9d31861f64310579ea737fbd9f7a406f889",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_1353009458437616",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.1
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+        },
+        "claim": "The displayed spacing histogram is unimodal with its tallest bar located in the middle-center region.",
+        "content_hash": "8827b92b361ccc7e6c63d3207f75ddc22eac94773ba04fa5280c1d8619dcdbc5",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:7775256302a44f18:0",
+            "wo6b:7775256302a44f18:1",
+            "wo6b:7775256302a44f18:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "665718f60831049bc703d7ec7ef120f7912fc8ba9c3f5e44b4cff618b3530a18"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "Recomputing the histogram from the same source_gaps yields a single tallest bar in the middle-center bin.",
+        "primary_statistic": "mode bin index of source_gaps",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+            "png_sha256": "54eb13730ad2ea86b5094ed86555c77799914a30033cb372a8f50c3d687f6a1c",
+            "snapshot_id": "ca53beca81d6e8af8005863f3ebc9254af7f15a0a0d9e7a0a2ad6e0557d4704b"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "uniform distribution over bins",
+          "data": "source_gaps",
+          "direction": "mode bin index equals the middle-center bin; kill if discrepancy > 0.1",
+          "statistic": "mode bin index of source_gaps"
+        }
+      },
+      "job": "7775256302a44f18",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p0:1",
+          "region": "middle_center",
+          "text": "tallest teal bar near center"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p0:2",
+          "region": "bottom_right",
+          "text": "short flat bars on right side"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "bars rise then fall from left to right"
+        },
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p1:1",
+          "region": "middle_center",
+          "text": "Tallest teal bar near center of histogram"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p1:2",
+          "region": "bottom_right",
+          "text": "Short bars taper to right side"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "Bar heights rise then fall across width"
+        }
+      ],
+      "proposal": {
+        "claim": "The displayed spacing histogram is unimodal with its tallest bar located in the middle-center region.",
+        "kill_threshold": 0.1,
+        "observation_ids": [
+          "p0:1",
+          "p1:1"
+        ],
+        "prediction": "Recomputing the histogram from the same source_gaps yields a single tallest bar in the middle-center bin.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "uniform distribution over bins",
+          "data": "source_gaps",
+          "direction": "mode bin index equals the middle-center bin",
+          "statistic": "mode bin index of source_gaps"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "adae3c83b15ee7c9a3965bbea64ad84079bff9bb59dde7dbb027f60b781b635b",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:2",
+          "p1:2"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "7775256302a44f18",
+        "observations_sha256": "5b40acfebfd284551c983a8a9b58d9d31861f64310579ea737fbd9f7a406f889",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_651062259185866813",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.1
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+        },
+        "claim": "The displayed spacing histogram has a right tail of short, flat bars.",
+        "content_hash": "89b46d7c1c0165385ae4178752a248ccdea5bbb925e6c3dad4e672ef14224f7a",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:7775256302a44f18:0",
+            "wo6b:7775256302a44f18:1",
+            "wo6b:7775256302a44f18:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "665718f60831049bc703d7ec7ef120f7912fc8ba9c3f5e44b4cff618b3530a18"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "Recomputing the histogram from the same source_gaps yields short flat bars on the right side.",
+        "primary_statistic": "mean bar height in rightmost bins relative to peak bar height",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+            "png_sha256": "54eb13730ad2ea86b5094ed86555c77799914a30033cb372a8f50c3d687f6a1c",
+            "snapshot_id": "ca53beca81d6e8af8005863f3ebc9254af7f15a0a0d9e7a0a2ad6e0557d4704b"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "uniform distribution over bins",
+          "data": "source_gaps",
+          "direction": "rightmost bin heights are lower than peak height; kill if discrepancy > 0.1",
+          "statistic": "mean bar height in rightmost bins relative to peak bar height"
+        }
+      },
+      "job": "7775256302a44f18",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p0:1",
+          "region": "middle_center",
+          "text": "tallest teal bar near center"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p0:2",
+          "region": "bottom_right",
+          "text": "short flat bars on right side"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "bars rise then fall from left to right"
+        },
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p1:1",
+          "region": "middle_center",
+          "text": "Tallest teal bar near center of histogram"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p1:2",
+          "region": "bottom_right",
+          "text": "Short bars taper to right side"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "Bar heights rise then fall across width"
+        }
+      ],
+      "proposal": {
+        "claim": "The displayed spacing histogram has a right tail of short, flat bars.",
+        "kill_threshold": 0.1,
+        "observation_ids": [
+          "p0:2",
+          "p1:2"
+        ],
+        "prediction": "Recomputing the histogram from the same source_gaps yields short flat bars on the right side.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "uniform distribution over bins",
+          "data": "source_gaps",
+          "direction": "rightmost bin heights are lower than peak height",
+          "statistic": "mean bar height in rightmost bins relative to peak bar height"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "9a045e53d2868efd988d6156182711bdbf396e39e37af96b2a8f5eacd7263587",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:3",
+          "p1:3"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "7775256302a44f18",
+        "observations_sha256": "5b40acfebfd284551c983a8a9b58d9d31861f64310579ea737fbd9f7a406f889",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_74336748656192257",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.1
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+        },
+        "claim": "The displayed spacing histogram bar heights rise then fall from left to right.",
+        "content_hash": "b6f90ee034e849bb0c3a4e4b3cf3c6732274bd00a2483dc4d6dc88ff42d268ed",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:7775256302a44f18:0",
+            "wo6b:7775256302a44f18:1",
+            "wo6b:7775256302a44f18:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "665718f60831049bc703d7ec7ef120f7912fc8ba9c3f5e44b4cff618b3530a18"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "Recomputing the histogram from the same source_gaps yields bar heights that rise then fall across the width.",
+        "primary_statistic": "sequence of bin heights across left-to-right bins",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "32f227e76e6ea40997b12bfbf38c0c52b23dff4a4ef0dc7cbb20589c257fb6fc",
+            "png_sha256": "54eb13730ad2ea86b5094ed86555c77799914a30033cb372a8f50c3d687f6a1c",
+            "snapshot_id": "ca53beca81d6e8af8005863f3ebc9254af7f15a0a0d9e7a0a2ad6e0557d4704b"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "uniform distribution over bins",
+          "data": "source_gaps",
+          "direction": "bin heights increase then decrease across width; kill if discrepancy > 0.1",
+          "statistic": "sequence of bin heights across left-to-right bins"
+        }
+      },
+      "job": "7775256302a44f18",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p0:1",
+          "region": "middle_center",
+          "text": "tallest teal bar near center"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p0:2",
+          "region": "bottom_right",
+          "text": "short flat bars on right side"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "bars rise then fall from left to right"
+        },
+        {
+          "feature_tag": "histogram_peak",
+          "id": "p1:1",
+          "region": "middle_center",
+          "text": "Tallest teal bar near center of histogram"
+        },
+        {
+          "feature_tag": "histogram_tail",
+          "id": "p1:2",
+          "region": "bottom_right",
+          "text": "Short bars taper to right side"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "Bar heights rise then fall across width"
+        }
+      ],
+      "proposal": {
+        "claim": "The displayed spacing histogram bar heights rise then fall from left to right.",
+        "kill_threshold": 0.1,
+        "observation_ids": [
+          "p0:3",
+          "p1:3"
+        ],
+        "prediction": "Recomputing the histogram from the same source_gaps yields bar heights that rise then fall across the width.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "uniform distribution over bins",
+          "data": "source_gaps",
+          "direction": "bin heights increase then decrease across width",
+          "statistic": "sequence of bin heights across left-to-right bins"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "5f6a6f9411c7029642b1701a3ebdcedc4f262adb5a06ed81842f8d632f6f8058",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:1",
+          "p0:2"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "210903571ae0f66f",
+        "observations_sha256": "6d0ac7ae50c5704b3dbb7d74ebcb46e9f0dcb66866d93db824e35a2ce9cb432a",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_879789681674442052",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.1
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+        },
+        "claim": "The point cloud's vertical density profile is bimodal, with a local minimum at the waist.",
+        "content_hash": "fbd3ea867898e4a7b809eb929da4dd0b78f19048b30edb71fd55cbc2c6a7501e",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:210903571ae0f66f:0",
+            "wo6b:210903571ae0f66f:1",
+            "wo6b:210903571ae0f66f:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "3382deb299153f089e4c2fd9f68c14f45820e512647d3c2d0a9020ea8e9a825d"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "A replication with a similar hourglass point cloud will show a dip in point count near the vertical center.",
+        "primary_statistic": "count of points per horizontal band",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "055749e0e91dcae5b3be49bde3ed9e0949af03483a4315c108ccd44f86762d40",
+            "png_sha256": "4b3c1ef5628de8305737b063c610868b8493a9b70107132eb67f14cfce0ecf1f",
+            "snapshot_id": "5aa2f4d9c3b2010f8224e4d24fb3f3f246ea6e8ed17f05daac884dd8211cddcd"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "unimodal vertical density",
+          "data": "vertical density profile of the point cloud",
+          "direction": "bimodal with minimum at center; kill if discrepancy > 0.1",
+          "statistic": "count of points per horizontal band"
+        }
+      },
+      "job": "210903571ae0f66f",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "point_cluster",
+          "id": "p0:1",
+          "region": "whole",
+          "text": "dense multicolored point cloud forming hourglass shape"
+        },
+        {
+          "feature_tag": "symmetry_axis",
+          "id": "p0:2",
+          "region": "middle_center",
+          "text": "narrow waist where upper and lower lobes meet"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "faint thin curved lines outline lobes on black background"
+        },
+        {
+          "feature_tag": "point_cluster",
+          "id": "p1:1",
+          "region": "whole",
+          "text": "dense multicolored point cloud forming hourglass shape"
+        },
+        {
+          "feature_tag": "symmetry_axis",
+          "id": "p1:2",
+          "region": "middle_center",
+          "text": "narrow waist pinch point at vertical center"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "faint thin elliptical outline surrounding point cloud"
+        }
+      ],
+      "proposal": {
+        "claim": "The point cloud's vertical density profile is bimodal, with a local minimum at the waist.",
+        "kill_threshold": 0.1,
+        "observation_ids": [
+          "p0:1",
+          "p0:2"
+        ],
+        "prediction": "A replication with a similar hourglass point cloud will show a dip in point count near the vertical center.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "unimodal vertical density",
+          "data": "vertical density profile of the point cloud",
+          "direction": "bimodal with minimum at center",
+          "statistic": "count of points per horizontal band"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "c54f8ab9a2ccbfa685d30b87e3a442666c0bf607930efc6704f00896fc802482",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:3",
+          "p1:3"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "210903571ae0f66f",
+        "observations_sha256": "6d0ac7ae50c5704b3dbb7d74ebcb46e9f0dcb66866d93db824e35a2ce9cb432a",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_943121844374146252",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.1
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+        },
+        "claim": "The faint thin curved lines form a closed elliptical outline around the point cloud.",
+        "content_hash": "1faefe349ead3a3f0aa42334fa89cb906844e51d4fbb150be2bb25aba0504ae0",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:210903571ae0f66f:0",
+            "wo6b:210903571ae0f66f:1",
+            "wo6b:210903571ae0f66f:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "3382deb299153f089e4c2fd9f68c14f45820e512647d3c2d0a9020ea8e9a825d"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "A replication will show a faint closed elliptical line surrounding the point cloud.",
+        "primary_statistic": "presence of closed curve",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "055749e0e91dcae5b3be49bde3ed9e0949af03483a4315c108ccd44f86762d40",
+            "png_sha256": "4b3c1ef5628de8305737b063c610868b8493a9b70107132eb67f14cfce0ecf1f",
+            "snapshot_id": "5aa2f4d9c3b2010f8224e4d24fb3f3f246ea6e8ed17f05daac884dd8211cddcd"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "no closed curve",
+          "data": "faint thin curved lines",
+          "direction": "closed elliptical outline; kill if discrepancy > 0.1",
+          "statistic": "presence of closed curve"
+        }
+      },
+      "job": "210903571ae0f66f",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "point_cluster",
+          "id": "p0:1",
+          "region": "whole",
+          "text": "dense multicolored point cloud forming hourglass shape"
+        },
+        {
+          "feature_tag": "symmetry_axis",
+          "id": "p0:2",
+          "region": "middle_center",
+          "text": "narrow waist where upper and lower lobes meet"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "faint thin curved lines outline lobes on black background"
+        },
+        {
+          "feature_tag": "point_cluster",
+          "id": "p1:1",
+          "region": "whole",
+          "text": "dense multicolored point cloud forming hourglass shape"
+        },
+        {
+          "feature_tag": "symmetry_axis",
+          "id": "p1:2",
+          "region": "middle_center",
+          "text": "narrow waist pinch point at vertical center"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "faint thin elliptical outline surrounding point cloud"
+        }
+      ],
+      "proposal": {
+        "claim": "The faint thin curved lines form a closed elliptical outline around the point cloud.",
+        "kill_threshold": 0.1,
+        "observation_ids": [
+          "p0:3",
+          "p1:3"
+        ],
+        "prediction": "A replication will show a faint closed elliptical line surrounding the point cloud.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "no closed curve",
+          "data": "faint thin curved lines",
+          "direction": "closed elliptical outline",
+          "statistic": "presence of closed curve"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "22990d0e415da8db44f141aec2ec8a6c4532cd594a15478d9151211894ad6343",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:1",
+          "p1:1"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "210903571ae0f66f",
+        "observations_sha256": "6d0ac7ae50c5704b3dbb7d74ebcb46e9f0dcb66866d93db824e35a2ce9cb432a",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_583117098966121474",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.1
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+        },
+        "claim": "The point cloud exhibits approximate mirror symmetry across the horizontal axis through the waist.",
+        "content_hash": "384152c18b0eef8a26bc1ad09014b483eb985fab01baa51772a750f42dabeddf",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:210903571ae0f66f:0",
+            "wo6b:210903571ae0f66f:1",
+            "wo6b:210903571ae0f66f:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "3382deb299153f089e4c2fd9f68c14f45820e512647d3c2d0a9020ea8e9a825d"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "A replication will show that reflecting the upper half across the horizontal axis aligns with the lower half.",
+        "primary_statistic": "correlation between upper and lower halves after reflection",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "055749e0e91dcae5b3be49bde3ed9e0949af03483a4315c108ccd44f86762d40",
+            "png_sha256": "4b3c1ef5628de8305737b063c610868b8493a9b70107132eb67f14cfce0ecf1f",
+            "snapshot_id": "5aa2f4d9c3b2010f8224e4d24fb3f3f246ea6e8ed17f05daac884dd8211cddcd"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "no symmetry",
+          "data": "point coordinates",
+          "direction": "positive correlation; kill if discrepancy > 0.1",
+          "statistic": "correlation between upper and lower halves after reflection"
+        }
+      },
+      "job": "210903571ae0f66f",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "point_cluster",
+          "id": "p0:1",
+          "region": "whole",
+          "text": "dense multicolored point cloud forming hourglass shape"
+        },
+        {
+          "feature_tag": "symmetry_axis",
+          "id": "p0:2",
+          "region": "middle_center",
+          "text": "narrow waist where upper and lower lobes meet"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "faint thin curved lines outline lobes on black background"
+        },
+        {
+          "feature_tag": "point_cluster",
+          "id": "p1:1",
+          "region": "whole",
+          "text": "dense multicolored point cloud forming hourglass shape"
+        },
+        {
+          "feature_tag": "symmetry_axis",
+          "id": "p1:2",
+          "region": "middle_center",
+          "text": "narrow waist pinch point at vertical center"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "faint thin elliptical outline surrounding point cloud"
+        }
+      ],
+      "proposal": {
+        "claim": "The point cloud exhibits approximate mirror symmetry across the horizontal axis through the waist.",
+        "kill_threshold": 0.1,
+        "observation_ids": [
+          "p0:1",
+          "p1:1"
+        ],
+        "prediction": "A replication will show that reflecting the upper half across the horizontal axis aligns with the lower half.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "no symmetry",
+          "data": "point coordinates",
+          "direction": "positive correlation",
+          "statistic": "correlation between upper and lower halves after reflection"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "2f60e1ce4692f07bedc1efc7fcc1cb35494738e3fddc118ce3901f99d5e3cbf2",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:1",
+          "p0:2",
+          "p1:1",
+          "p1:2"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "69f0e3feb043ead0",
+        "observations_sha256": "1a3b69c18634e934f338d610fa5b1393c4876baa91bca9580ba6992c013520bb",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_926447299333518311",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.05
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "14ac6b77456b6a9d52726dec59b3f7b33cc8dd903a67038153f001f877a85af4"
+        },
+        "claim": "The point cloud's vertical density profile is bimodal, with two lobes separated by a low-density waist.",
+        "content_hash": "cacd2bc2a87db9cdbd766894fa8e092cc2ef6121048ccdbe285d390692813840",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.05
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:69f0e3feb043ead0:0",
+            "wo6b:69f0e3feb043ead0:1",
+            "wo6b:69f0e3feb043ead0:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "fd7dcf90ad0560148bdb0d121eef102261c5896713eb010ba952d4a9e4ac0365"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "A histogram of point y-coordinates will show two distinct peaks separated by a trough near the vertical center.",
+        "primary_statistic": "Kernel density estimate of point y-coordinates",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "a1fa92997394e24615cbeaf45c1829f90122a065d613344e3c0cbdbf73b50eaf",
+            "png_sha256": "f45a8b0237a60103c5ddd9ddc285bf747d34bdb639e7170b242303f76afa7dfa",
+            "snapshot_id": "4f88635852dbf1319d51397b5d4cec0ce32b35659137d519cbe63569f60d400b"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "unimodal distribution",
+          "data": "y-coordinates of all visible points in the hourglass point cloud",
+          "direction": "bimodal with a central minimum; kill if discrepancy > 0.05",
+          "statistic": "Kernel density estimate of point y-coordinates"
+        }
+      },
+      "job": "69f0e3feb043ead0",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "point_cluster",
+          "id": "p0:1",
+          "region": "whole",
+          "text": "dense multicolored point cloud forming hourglass shape"
+        },
+        {
+          "feature_tag": "symmetry_axis",
+          "id": "p0:2",
+          "region": "middle_center",
+          "text": "narrow waist with vertical symmetry axis"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "faint elliptical outline surrounding point cloud"
+        },
+        {
+          "feature_tag": "point_cluster",
+          "id": "p1:1",
+          "region": "whole",
+          "text": "Dense multicolored point cloud forming hourglass shape"
+        },
+        {
+          "feature_tag": "symmetry_axis",
+          "id": "p1:2",
+          "region": "middle_center",
+          "text": "Vertical symmetry axis through central pinch point"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "Faint elliptical wireframe curves surrounding point cloud"
+        }
+      ],
+      "proposal": {
+        "claim": "The point cloud's vertical density profile is bimodal, with two lobes separated by a low-density waist.",
+        "kill_threshold": 0.05,
+        "observation_ids": [
+          "p0:1",
+          "p0:2",
+          "p1:1",
+          "p1:2"
+        ],
+        "prediction": "A histogram of point y-coordinates will show two distinct peaks separated by a trough near the vertical center.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "unimodal distribution",
+          "data": "y-coordinates of all visible points in the hourglass point cloud",
+          "direction": "bimodal with a central minimum",
+          "statistic": "Kernel density estimate of point y-coordinates"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "70dda63dfc49c227304351dc9108099d86a2cc1762b4bab6bc28cc9e9d4cf89e",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:2",
+          "p1:2"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "69f0e3feb043ead0",
+        "observations_sha256": "1a3b69c18634e934f338d610fa5b1393c4876baa91bca9580ba6992c013520bb",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_111336270781907553",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.1
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+        },
+        "claim": "The point cloud is symmetric about a vertical axis through the central pinch point.",
+        "content_hash": "a92e48e631e6f75a94185bd57587558c7ac69b35622914cfccaa8e8805d239af",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:69f0e3feb043ead0:0",
+            "wo6b:69f0e3feb043ead0:1",
+            "wo6b:69f0e3feb043ead0:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "fd7dcf90ad0560148bdb0d121eef102261c5896713eb010ba952d4a9e4ac0365"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "Reflecting the point cloud across the vertical line through the waist yields a point set that closely overlaps the original.",
+        "primary_statistic": "Mirror symmetry error (e.g., mean nearest-neighbor distance between point set and its horizontal reflection)",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "a1fa92997394e24615cbeaf45c1829f90122a065d613344e3c0cbdbf73b50eaf",
+            "png_sha256": "f45a8b0237a60103c5ddd9ddc285bf747d34bdb639e7170b242303f76afa7dfa",
+            "snapshot_id": "4f88635852dbf1319d51397b5d4cec0ce32b35659137d519cbe63569f60d400b"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "random point set with no symmetry",
+          "data": "x,y coordinates of all visible points",
+          "direction": "lower symmetry error than baseline; kill if discrepancy > 0.1",
+          "statistic": "Mirror symmetry error (e.g., mean nearest-neighbor distance between point set and its horizontal reflection)"
+        }
+      },
+      "job": "69f0e3feb043ead0",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "point_cluster",
+          "id": "p0:1",
+          "region": "whole",
+          "text": "dense multicolored point cloud forming hourglass shape"
+        },
+        {
+          "feature_tag": "symmetry_axis",
+          "id": "p0:2",
+          "region": "middle_center",
+          "text": "narrow waist with vertical symmetry axis"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "faint elliptical outline surrounding point cloud"
+        },
+        {
+          "feature_tag": "point_cluster",
+          "id": "p1:1",
+          "region": "whole",
+          "text": "Dense multicolored point cloud forming hourglass shape"
+        },
+        {
+          "feature_tag": "symmetry_axis",
+          "id": "p1:2",
+          "region": "middle_center",
+          "text": "Vertical symmetry axis through central pinch point"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "Faint elliptical wireframe curves surrounding point cloud"
+        }
+      ],
+      "proposal": {
+        "claim": "The point cloud is symmetric about a vertical axis through the central pinch point.",
+        "kill_threshold": 0.1,
+        "observation_ids": [
+          "p0:2",
+          "p1:2"
+        ],
+        "prediction": "Reflecting the point cloud across the vertical line through the waist yields a point set that closely overlaps the original.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "random point set with no symmetry",
+          "data": "x,y coordinates of all visible points",
+          "direction": "lower symmetry error than baseline",
+          "statistic": "Mirror symmetry error (e.g., mean nearest-neighbor distance between point set and its horizontal reflection)"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "a62c4707c353a2e370b5e395e08f556bdad15426f2481e63897719f64cb37a85",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:3",
+          "p1:3"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "69f0e3feb043ead0",
+        "observations_sha256": "1a3b69c18634e934f338d610fa5b1393c4876baa91bca9580ba6992c013520bb",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_436374950957794103",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.1
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "38b66fd4294de1f7f03402bcf3b1c19af3927e019a7f9717ab7710fcbf4e192a"
+        },
+        "claim": "The faint elliptical outline is centered on the point cloud and has a major axis aligned with the vertical symmetry axis.",
+        "content_hash": "b01fabf0ed4ac7ed9436a898ced337327acf99689ace27fdf970883600f1e3da",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.1
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:69f0e3feb043ead0:0",
+            "wo6b:69f0e3feb043ead0:1",
+            "wo6b:69f0e3feb043ead0:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "fd7dcf90ad0560148bdb0d121eef102261c5896713eb010ba952d4a9e4ac0365"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "Fitting an ellipse to the faint outline yields a center close to the point cloud centroid and a major axis within a few degrees of vertical.",
+        "primary_statistic": "Ellipse center offset and orientation angle",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "a1fa92997394e24615cbeaf45c1829f90122a065d613344e3c0cbdbf73b50eaf",
+            "png_sha256": "f45a8b0237a60103c5ddd9ddc285bf747d34bdb639e7170b242303f76afa7dfa",
+            "snapshot_id": "4f88635852dbf1319d51397b5d4cec0ce32b35659137d519cbe63569f60d400b"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "ellipse with random center and orientation",
+          "data": "coordinates of the faint elliptical wireframe curves",
+          "direction": "center offset near zero and orientation near vertical; kill if discrepancy > 0.1",
+          "statistic": "Ellipse center offset and orientation angle"
+        }
+      },
+      "job": "69f0e3feb043ead0",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "point_cluster",
+          "id": "p0:1",
+          "region": "whole",
+          "text": "dense multicolored point cloud forming hourglass shape"
+        },
+        {
+          "feature_tag": "symmetry_axis",
+          "id": "p0:2",
+          "region": "middle_center",
+          "text": "narrow waist with vertical symmetry axis"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p0:3",
+          "region": "whole",
+          "text": "faint elliptical outline surrounding point cloud"
+        },
+        {
+          "feature_tag": "point_cluster",
+          "id": "p1:1",
+          "region": "whole",
+          "text": "Dense multicolored point cloud forming hourglass shape"
+        },
+        {
+          "feature_tag": "symmetry_axis",
+          "id": "p1:2",
+          "region": "middle_center",
+          "text": "Vertical symmetry axis through central pinch point"
+        },
+        {
+          "feature_tag": "curve_shape",
+          "id": "p1:3",
+          "region": "whole",
+          "text": "Faint elliptical wireframe curves surrounding point cloud"
+        }
+      ],
+      "proposal": {
+        "claim": "The faint elliptical outline is centered on the point cloud and has a major axis aligned with the vertical symmetry axis.",
+        "kill_threshold": 0.1,
+        "observation_ids": [
+          "p0:3",
+          "p1:3"
+        ],
+        "prediction": "Fitting an ellipse to the faint outline yields a center close to the point cloud centroid and a major axis within a few degrees of vertical.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "ellipse with random center and orientation",
+          "data": "coordinates of the faint elliptical wireframe curves",
+          "direction": "center offset near zero and orientation near vertical",
+          "statistic": "Ellipse center offset and orientation angle"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "91cc190897c9b4ca4748e1f340510ae398e706042b286520539db6e662f7a69e",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:2",
+          "p1:2"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "57ca345effa88400",
+        "observations_sha256": "92af296fd11c7cb6f013f14670b1baf4a21ed910b683151fe47170782137a54c",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_25654244219612464",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.05
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "14ac6b77456b6a9d52726dec59b3f7b33cc8dd903a67038153f001f877a85af4"
+        },
+        "claim": "The central region of the dot field contains fewer white dots per unit area than the surrounding square region.",
+        "content_hash": "d18e6469c06ae98680a14f4e4c1a42bfce2382787ff3afc03796ec9126e9acd9",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.05
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:57ca345effa88400:0",
+            "wo6b:57ca345effa88400:1",
+            "wo6b:57ca345effa88400:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "6005f901112d7a1fd493fa89438d88a1ed8052763fe85ce62412926c7f6b4c8d"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "In a replication with a newly generated dot field of the same size and overall dot count, the central region will again show a lower mean dot density than the surrounding region.",
+        "primary_statistic": "mean dot count per unit area in central region minus mean dot count per unit area in surrounding region",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "b7a7a892e42ae7b81e1205b43457711d06490dcdf8c14ceae4c3ba04fb999b06",
+            "png_sha256": "9f09e2ab89195a1095310bd6a65e957629d4d636d2af8d17e12d5221970292a4",
+            "snapshot_id": "bcfc116b492aa250ba40ed17e061c95a8d444ec61d969c86ec5a6b064b0b69d4"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "zero difference in mean dot density between central and surrounding regions",
+          "data": "dot positions extracted from the displayed square dot field",
+          "direction": "central density < surrounding density; kill if discrepancy > 0.05",
+          "statistic": "mean dot count per unit area in central region minus mean dot count per unit area in surrounding region"
+        }
+      },
+      "job": "57ca345effa88400",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "point_cluster",
+          "id": "p0:1",
+          "region": "whole",
+          "text": "dense white dots on dark background forming square region"
+        },
+        {
+          "feature_tag": "void",
+          "id": "p0:2",
+          "region": "middle_center",
+          "text": "sparse area with fewer white dots"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p0:3",
+          "region": "bottom_center",
+          "text": "dots become denser toward bottom edge"
+        },
+        {
+          "feature_tag": "point_cluster",
+          "id": "p1:1",
+          "region": "whole",
+          "text": "dense white dots scattered across dark background forming square region"
+        },
+        {
+          "feature_tag": "void",
+          "id": "p1:2",
+          "region": "middle_center",
+          "text": "central area with fewer dots creating sparse void"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:3",
+          "region": "bottom_center",
+          "text": "lower edge shows higher dot density than upper regions"
+        }
+      ],
+      "proposal": {
+        "claim": "The central region of the dot field contains fewer white dots per unit area than the surrounding square region.",
+        "kill_threshold": 0.05,
+        "observation_ids": [
+          "p0:2",
+          "p1:2"
+        ],
+        "prediction": "In a replication with a newly generated dot field of the same size and overall dot count, the central region will again show a lower mean dot density than the surrounding region.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "zero difference in mean dot density between central and surrounding regions",
+          "data": "dot positions extracted from the displayed square dot field",
+          "direction": "central density < surrounding density",
+          "statistic": "mean dot count per unit area in central region minus mean dot count per unit area in surrounding region"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "3712b3881a382905403bcbf8aaeb4f5a91fe911c0eae0def3eed0b7f22d8fc2b",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:3",
+          "p1:3"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "57ca345effa88400",
+        "observations_sha256": "92af296fd11c7cb6f013f14670b1baf4a21ed910b683151fe47170782137a54c",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_255427994922929251",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.05
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "14ac6b77456b6a9d52726dec59b3f7b33cc8dd903a67038153f001f877a85af4"
+        },
+        "claim": "Dot density increases toward the bottom edge of the square dot field.",
+        "content_hash": "b4ff13d40bcf486abb6af7729b0075007698d5c04408f0837335653a1b04f19a",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.05
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:57ca345effa88400:0",
+            "wo6b:57ca345effa88400:1",
+            "wo6b:57ca345effa88400:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "6005f901112d7a1fd493fa89438d88a1ed8052763fe85ce62412926c7f6b4c8d"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "In a replication with a newly generated dot field of the same size and overall dot count, the Spearman correlation between vertical position and local dot density will again be positive.",
+        "primary_statistic": "Spearman correlation between vertical position (top to bottom) and local dot density",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "b7a7a892e42ae7b81e1205b43457711d06490dcdf8c14ceae4c3ba04fb999b06",
+            "png_sha256": "9f09e2ab89195a1095310bd6a65e957629d4d636d2af8d17e12d5221970292a4",
+            "snapshot_id": "bcfc116b492aa250ba40ed17e061c95a8d444ec61d969c86ec5a6b064b0b69d4"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "zero correlation between vertical position and local dot density",
+          "data": "dot positions extracted from the displayed square dot field",
+          "direction": "positive correlation (density increases downward); kill if discrepancy > 0.05",
+          "statistic": "Spearman correlation between vertical position (top to bottom) and local dot density"
+        }
+      },
+      "job": "57ca345effa88400",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "point_cluster",
+          "id": "p0:1",
+          "region": "whole",
+          "text": "dense white dots on dark background forming square region"
+        },
+        {
+          "feature_tag": "void",
+          "id": "p0:2",
+          "region": "middle_center",
+          "text": "sparse area with fewer white dots"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p0:3",
+          "region": "bottom_center",
+          "text": "dots become denser toward bottom edge"
+        },
+        {
+          "feature_tag": "point_cluster",
+          "id": "p1:1",
+          "region": "whole",
+          "text": "dense white dots scattered across dark background forming square region"
+        },
+        {
+          "feature_tag": "void",
+          "id": "p1:2",
+          "region": "middle_center",
+          "text": "central area with fewer dots creating sparse void"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:3",
+          "region": "bottom_center",
+          "text": "lower edge shows higher dot density than upper regions"
+        }
+      ],
+      "proposal": {
+        "claim": "Dot density increases toward the bottom edge of the square dot field.",
+        "kill_threshold": 0.05,
+        "observation_ids": [
+          "p0:3",
+          "p1:3"
+        ],
+        "prediction": "In a replication with a newly generated dot field of the same size and overall dot count, the Spearman correlation between vertical position and local dot density will again be positive.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "zero correlation between vertical position and local dot density",
+          "data": "dot positions extracted from the displayed square dot field",
+          "direction": "positive correlation (density increases downward)",
+          "statistic": "Spearman correlation between vertical position (top to bottom) and local dot density"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "9ebe87696599ccd83c8929900aa7811f450e33b0a5ea235f0b40f80bf9943b29",
+      "status": "grounded"
+    },
+    {
+      "assessment": {
+        "citations": [
+          "p0:1",
+          "p1:1"
+        ],
+        "contradictory": false,
+        "grounded": true,
+        "job": "57ca345effa88400",
+        "observations_sha256": "92af296fd11c7cb6f013f14670b1baf4a21ed910b683151fe47170782137a54c",
+        "reason": null,
+        "status": "grounded"
+      },
+      "check": {
+        "inferential": false,
+        "reason": "No exact statistic/data/baseline/direction mapping.",
+        "status": "unavailable"
+      },
+      "hypothesis": {
+        "artifacts": [],
+        "card_id": "hyp_999751333392318309",
+        "check_spec": {
+          "alpha": 0.01,
+          "check_id": "unavailable",
+          "kill_rule": {
+            "components": [
+              {
+                "alpha": 0.01,
+                "operator": ">",
+                "statistic": "declared_statistic",
+                "threshold": 0.05
+              }
+            ],
+            "method": "primary",
+            "overall_alpha": 0.01
+          },
+          "library_version": "unavailable-v1",
+          "reason": "Independent replication and a calibrated full check are unavailable.",
+          "spec_sha256": "14ac6b77456b6a9d52726dec59b3f7b33cc8dd903a67038153f001f877a85af4"
+        },
+        "claim": "The white dots form a dense cluster filling a square region on a dark background.",
+        "content_hash": "130f28152d0b4399290272f19bbe3fa885930a75f4a536140f66500b4165bf5c",
+        "context": {
+          "evidence": [],
+          "limitations": [
+            "WO-6b descriptive; citation is not truth; no replication or survivor.",
+            "Hosted observation."
+          ],
+          "original_kill_rule": null,
+          "original_png_available": true,
+          "retrospective": false
+        },
+        "history": [],
+        "judgments": [],
+        "kill_criterion": {
+          "components": [
+            {
+              "alpha": 0.01,
+              "operator": ">",
+              "statistic": "declared_statistic",
+              "threshold": 0.05
+            }
+          ],
+          "method": "primary",
+          "overall_alpha": 0.01
+        },
+        "novelty": {
+          "index_shas": [],
+          "planted_control_hit": false,
+          "queries": [],
+          "status": "unchecked"
+        },
+        "observer": {
+          "blinded": true,
+          "call_ids": [
+            "wo6b:57ca345effa88400:0",
+            "wo6b:57ca345effa88400:1",
+            "wo6b:57ca345effa88400:2"
+          ],
+          "id": "model:O-DS",
+          "kind": "model",
+          "model_id": "deepseek-flash",
+          "prompt_sha": "6005f901112d7a1fd493fa89438d88a1ed8052763fe85ce62412926c7f6b4c8d"
+        },
+        "observer_reliability": "not_established",
+        "prediction": "In a replication with a newly generated image of the same type, the proportion of dots inside the square region will again exceed the proportion expected under a uniform distribution across the full image.",
+        "primary_statistic": "proportion of dots falling inside the bounding square region",
+        "prior_plausibility": {
+          "by": "model:O-DS",
+          "value": "low"
+        },
+        "resemblance_target": null,
+        "revision": 1,
+        "schema": "oae-mve-hypothesis-card-v1",
+        "sources": [
+          {
+            "data_sha256": "b7a7a892e42ae7b81e1205b43457711d06490dcdf8c14ceae4c3ba04fb999b06",
+            "png_sha256": "9f09e2ab89195a1095310bd6a65e957629d4d636d2af8d17e12d5221970292a4",
+            "snapshot_id": "bcfc116b492aa250ba40ed17e061c95a8d444ec61d969c86ec5a6b064b0b69d4"
+          }
+        ],
+        "status": "preliminary",
+        "suggested_lane": "none",
+        "testable_form": {
+          "baseline": "uniform distribution of dots across the full image area",
+          "data": "dot positions extracted from the displayed image",
+          "direction": "proportion inside square > proportion expected under uniform distribution; kill if discrepancy > 0.05",
+          "statistic": "proportion of dots falling inside the bounding square region"
+        }
+      },
+      "job": "57ca345effa88400",
+      "lifecycle": "preliminary",
+      "observations": [
+        {
+          "feature_tag": "point_cluster",
+          "id": "p0:1",
+          "region": "whole",
+          "text": "dense white dots on dark background forming square region"
+        },
+        {
+          "feature_tag": "void",
+          "id": "p0:2",
+          "region": "middle_center",
+          "text": "sparse area with fewer white dots"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p0:3",
+          "region": "bottom_center",
+          "text": "dots become denser toward bottom edge"
+        },
+        {
+          "feature_tag": "point_cluster",
+          "id": "p1:1",
+          "region": "whole",
+          "text": "dense white dots scattered across dark background forming square region"
+        },
+        {
+          "feature_tag": "void",
+          "id": "p1:2",
+          "region": "middle_center",
+          "text": "central area with fewer dots creating sparse void"
+        },
+        {
+          "feature_tag": "density_gradient",
+          "id": "p1:3",
+          "region": "bottom_center",
+          "text": "lower edge shows higher dot density than upper regions"
+        }
+      ],
+      "proposal": {
+        "claim": "The white dots form a dense cluster filling a square region on a dark background.",
+        "kill_threshold": 0.05,
+        "observation_ids": [
+          "p0:1",
+          "p1:1"
+        ],
+        "prediction": "In a replication with a newly generated image of the same type, the proportion of dots inside the square region will again exceed the proportion expected under a uniform distribution across the full image.",
+        "resemblance_target": null,
+        "testable_form": {
+          "baseline": "uniform distribution of dots across the full image area",
+          "data": "dot positions extracted from the displayed image",
+          "direction": "proportion inside square > proportion expected under uniform distribution",
+          "statistic": "proportion of dots falling inside the bounding square region"
+        }
+      },
+      "schema": "oae-mve-grounded-card-v2",
+      "sha256": "777a8b28d1f31d1c8ddc7bafa356b134e8ca58357c360b72bc188791c0cb3609",
+      "status": "grounded"
+    }
+  ],
+  "relay": false,
+  "status": "held_preliminary"
+}

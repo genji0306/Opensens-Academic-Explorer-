@@ -1,0 +1,288 @@
+{
+  "attempts": [
+    {
+      "actual": 266,
+      "created": "2026-09-28T13:22:17.525660+00:00",
+      "dispatched": "2026-09-28T13:22:17.571976+00:00",
+      "id": "wo6b:210903571ae0f66f:0",
+      "phase": "P1",
+      "receipt": "dca2e838b0203d820e3edffbe5d4db54cf86bf7991fa1bb35c51420cca98573a",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 262,
+      "created": "2026-09-28T13:22:19.239233+00:00",
+      "dispatched": "2026-09-28T13:22:19.275371+00:00",
+      "id": "wo6b:210903571ae0f66f:1",
+      "phase": "P1",
+      "receipt": "6cd2dd93b2ed7fd26a5f127b3fd3875b2ba6f3e279b4f4f5eaf49a1b3309b7f9",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 597,
+      "created": "2026-09-28T13:22:20.641255+00:00",
+      "dispatched": "2026-09-28T13:22:20.684375+00:00",
+      "id": "wo6b:210903571ae0f66f:2",
+      "phase": "P1",
+      "receipt": "2f0a99454acce595b43ba9fe4101ce136762a67bae5dfa8b6f1875742dde04b5",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 289,
+      "created": "2026-09-28T13:21:49.638845+00:00",
+      "dispatched": "2026-09-28T13:21:49.669248+00:00",
+      "id": "wo6b:469861a3a73becca:0",
+      "phase": "P1",
+      "receipt": "9af3e12bcab1b83b71775b74a62e5ecf273a2065b0d4791a3e780b0579c87c59",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 283,
+      "created": "2026-09-28T13:21:51.669814+00:00",
+      "dispatched": "2026-09-28T13:21:51.697858+00:00",
+      "id": "wo6b:469861a3a73becca:1",
+      "phase": "P1",
+      "receipt": "b789b87b30c61e8a45ec14f75bb89eb912b71b0a3599d17312bc538a3b68fc4f",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 737,
+      "created": "2026-09-28T13:21:53.401438+00:00",
+      "dispatched": "2026-09-28T13:21:53.430173+00:00",
+      "id": "wo6b:469861a3a73becca:2",
+      "phase": "P1",
+      "receipt": "3cf6fdef739da7559b811a886bd9fa91fadc74a6b8bbe855043eaca234d2d2c2",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 249,
+      "created": "2026-09-28T13:22:01.285111+00:00",
+      "dispatched": "2026-09-28T13:22:01.327294+00:00",
+      "id": "wo6b:518ef22877fb0da2:0",
+      "phase": "P1",
+      "receipt": "24479cb005bbd3ba5b62f33a418324c588a390df7d7673d3ef2d4d76da423877",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 245,
+      "created": "2026-09-28T13:22:02.599414+00:00",
+      "dispatched": "2026-09-28T13:22:02.631411+00:00",
+      "id": "wo6b:518ef22877fb0da2:1",
+      "phase": "P1",
+      "receipt": "1d0c0850307b3e82a888476da3ad562c6b027ab00387770d7fd3d29b9d393798",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 647,
+      "created": "2026-09-28T13:22:04.449413+00:00",
+      "dispatched": "2026-09-28T13:22:04.528574+00:00",
+      "id": "wo6b:518ef22877fb0da2:2",
+      "phase": "P1",
+      "receipt": "0e619ca6a82f2288c4aba589b4a64d73b076b5c991401c3c8ad825a851211b16",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 283,
+      "created": "2026-09-28T13:22:28.698441+00:00",
+      "dispatched": "2026-09-28T13:22:28.725796+00:00",
+      "id": "wo6b:57ca345effa88400:0",
+      "phase": "P1",
+      "receipt": "954c52cbdf2cc5d8add8311cd98374c814bfd200c5b90ee333a77c44db2272d2",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 288,
+      "created": "2026-09-28T13:22:30.057728+00:00",
+      "dispatched": "2026-09-28T13:22:30.086522+00:00",
+      "id": "wo6b:57ca345effa88400:1",
+      "phase": "P1",
+      "receipt": "92135c2e68adaf86ed93b6b2b25b618b414343e2ef234585822972c09df5fa78",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 758,
+      "created": "2026-09-28T13:22:31.913002+00:00",
+      "dispatched": "2026-09-28T13:22:31.945868+00:00",
+      "id": "wo6b:57ca345effa88400:2",
+      "phase": "P1",
+      "receipt": "f6cc912d95dc0dbeed1907c475e43c69f10bad3067994f377742b91427808aff",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 260,
+      "created": "2026-09-28T13:22:23.252771+00:00",
+      "dispatched": "2026-09-28T13:22:23.283909+00:00",
+      "id": "wo6b:69f0e3feb043ead0:0",
+      "phase": "P1",
+      "receipt": "8fd382fac7826a3464eb767dcd0cdbcce466a08a9c21936531c1c72f5db63244",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 262,
+      "created": "2026-09-28T13:22:24.575686+00:00",
+      "dispatched": "2026-09-28T13:22:24.614797+00:00",
+      "id": "wo6b:69f0e3feb043ead0:1",
+      "phase": "P1",
+      "receipt": "e8c631e27c46e95399f7c5a078e671329e5f9527bdd3da0379bb2ed78e630a7a",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 694,
+      "created": "2026-09-28T13:22:25.859736+00:00",
+      "dispatched": "2026-09-28T13:22:25.888993+00:00",
+      "id": "wo6b:69f0e3feb043ead0:2",
+      "phase": "P1",
+      "receipt": "03183807662cce0276103f22f74279e6513ee35490f98362f36708cad256fa8e",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 246,
+      "created": "2026-09-28T13:22:12.829743+00:00",
+      "dispatched": "2026-09-28T13:22:12.862034+00:00",
+      "id": "wo6b:7775256302a44f18:0",
+      "phase": "P1",
+      "receipt": "974411d5dad637f5dbdfaff1c6e80ed0d7e2e5523c4eea0da36a85bb4b1f178c",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 246,
+      "created": "2026-09-28T13:22:14.047170+00:00",
+      "dispatched": "2026-09-28T13:22:14.086701+00:00",
+      "id": "wo6b:7775256302a44f18:1",
+      "phase": "P1",
+      "receipt": "26d7c6a7c77da6719c85a417fe6dcac02d534400e4b564587fc088e36732763f",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 609,
+      "created": "2026-09-28T13:22:15.362972+00:00",
+      "dispatched": "2026-09-28T13:22:15.394358+00:00",
+      "id": "wo6b:7775256302a44f18:2",
+      "phase": "P1",
+      "receipt": "cbb65d35c0ed17e782c432baa2c1a66b1335e97cbebe812759464c67b0e43334",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 241,
+      "created": "2026-09-28T13:22:07.324860+00:00",
+      "dispatched": "2026-09-28T13:22:07.402117+00:00",
+      "id": "wo6b:aee9b8f1478f3e32:0",
+      "phase": "P1",
+      "receipt": "70414b11ab5e41865503f80ab88d1709db6edf81a715955f9a6076e7f2fa8f15",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 253,
+      "created": "2026-09-28T13:22:09.068166+00:00",
+      "dispatched": "2026-09-28T13:22:09.260265+00:00",
+      "id": "wo6b:aee9b8f1478f3e32:1",
+      "phase": "P1",
+      "receipt": "a301b04ec398018588af2cf2132618a078dc700b47014723c53d3cfb5395b744",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 619,
+      "created": "2026-09-28T13:22:10.427510+00:00",
+      "dispatched": "2026-09-28T13:22:10.461618+00:00",
+      "id": "wo6b:aee9b8f1478f3e32:2",
+      "phase": "P1",
+      "receipt": "5aca4e0383665068811d79dbece4695bf103639d16db182c09fcae56b3ef2abb",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 243,
+      "created": "2026-09-28T13:21:56.205858+00:00",
+      "dispatched": "2026-09-28T13:21:56.248742+00:00",
+      "id": "wo6b:d98cb0eb7218ffa2:0",
+      "phase": "P1",
+      "receipt": "3f1170dff2f245de10b9638e81083962f3880acfdf06749ff1112ce81f28b55a",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 243,
+      "created": "2026-09-28T13:21:57.539659+00:00",
+      "dispatched": "2026-09-28T13:21:57.574173+00:00",
+      "id": "wo6b:d98cb0eb7218ffa2:1",
+      "phase": "P1",
+      "receipt": "e342fe26c59fd3d175634de49125c677b87c0f7a7940fe854074af03e7c19737",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    },
+    {
+      "actual": 624,
+      "created": "2026-09-28T13:21:58.784262+00:00",
+      "dispatched": "2026-09-28T13:21:58.824043+00:00",
+      "id": "wo6b:d98cb0eb7218ffa2:2",
+      "phase": "P1",
+      "receipt": "7d0ac011dff0339afb00dd96918695ab0fffdbcfd15892f5bc3d4c9aa1081f80",
+      "reserved": 6144,
+      "state": "settled",
+      "wave": "wo6:pilot"
+    }
+  ],
+  "configuration": {
+    "caps": {
+      "P0": 2000000,
+      "P1": 250000,
+      "aggregate": 19993105
+    },
+    "prices": {
+      "deepseek-flash": {
+        "input_micro_usd_per_million": 300000,
+        "output_micro_usd_per_million": 1200000,
+        "source_sha256": "7e82f84f86abef7ff95eb3a54dc2928e39919b5d2c065b0242f8ac50a2248a4a",
+        "verified": true
+      }
+    },
+    "window": "deepseek-pricing-20260927:UTC:Mon-Fri:01-04,06-10:VERIFIED:holidays-conservative"
+  },
+  "events": [],
+  "exposure_micro_usd": 9444,
+  "frozen": false,
+  "quota": []
+}

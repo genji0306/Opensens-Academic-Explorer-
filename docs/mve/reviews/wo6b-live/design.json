@@ -1,0 +1,226 @@
+{
+  "call_cap": 24,
+  "clusters": [
+    {
+      "id": "378de8e0b3efc489",
+      "independent": false,
+      "module": "spectral",
+      "stratum": "spectral × zero spacings"
+    },
+    {
+      "id": "820a6bd5dac5c093",
+      "independent": false,
+      "module": "field-dyson",
+      "stratum": "field-dyson × zero spacings"
+    },
+    {
+      "id": "6081452dc6b1695f",
+      "independent": false,
+      "module": "polar-ulam",
+      "stratum": "polar-ulam × primes"
+    },
+    {
+      "id": "16af9f1f0c9c51e6",
+      "independent": false,
+      "module": "space-08",
+      "stratum": "space-08 × primes"
+    }
+  ],
+  "contract_sha256": "e5742bfbe493c4c8caed0ba9e9f26f3680f35c15b1597c3744b545da057f6e24",
+  "contrasts": 0,
+  "images": {
+    "26273407940f612fa020ca13": {
+      "delivered_sha256": "8d2145451cfd88c08d7bbd997823f6f7b3ad32c9ad17c7b1383061b16649602f",
+      "delivered_size": [
+        1024,
+        557
+      ],
+      "original_sha256": "9f09e2ab89195a1095310bd6a65e957629d4d636d2af8d17e12d5221970292a4",
+      "original_size": [
+        1031,
+        561
+      ]
+    },
+    "4fa1ba104ef92cc9974a34d0": {
+      "delivered_sha256": "9570aca0afa8e9a77670973a255d8d5f71ae117e6f47ce5ab5683077a425c03e",
+      "delivered_size": [
+        1024,
+        299
+      ],
+      "original_sha256": "c91d9b3f27e894799a38e7f40f655a95d19bf54d449009c2b33e1ce966d1aa57",
+      "original_size": [
+        1031,
+        301
+      ]
+    },
+    "72a4faadef98a29892dbaabf": {
+      "delivered_sha256": "ba95569ff5b058e7300dfe090c678c968e77f32220d9353bd0a5edebc6daf82f",
+      "delivered_size": [
+        1024,
+        299
+      ],
+      "original_sha256": "6fdcf3b32402464b0aeced96e8697c7e90f23dcb8b81f2364fe60ab62dcaa83a",
+      "original_size": [
+        1031,
+        301
+      ]
+    },
+    "ad3e2d070bf2281c2f4e5776": {
+      "delivered_sha256": "960d678b6305a0defa172a8a7ddebe2c860209650d7080e1b6d34d479ff494ae",
+      "delivered_size": [
+        1024,
+        354
+      ],
+      "original_sha256": "2127794e2dabca7f1544026ea40ba7e6e88c08de0c761872e54e4ba73de2975c",
+      "original_size": [
+        1031,
+        356
+      ]
+    },
+    "c850cba22bfce83c435c9b3b": {
+      "delivered_sha256": "e3d39bbe84b259acb7a251af306ebb06016387162a69d2b9b1a452a350083712",
+      "delivered_size": [
+        1024,
+        433
+      ],
+      "original_sha256": "f45a8b0237a60103c5ddd9ddc285bf747d34bdb639e7170b242303f76afa7dfa",
+      "original_size": [
+        1086,
+        459
+      ]
+    },
+    "e7e62f118767a71e4f9f5667": {
+      "delivered_sha256": "192158db15c28f8ee50094ecd54d6e19dac0f3a3b5f4ab61857bb9b4703243d5",
+      "delivered_size": [
+        1024,
+        354
+      ],
+      "original_sha256": "54eb13730ad2ea86b5094ed86555c77799914a30033cb372a8f50c3d687f6a1c",
+      "original_size": [
+        1031,
+        356
+      ]
+    },
+    "f3252b4209f5b923c2742faf": {
+      "delivered_sha256": "587d8f43e79c6a8335753cb4572347f6773c006fab1602486a9c371191732f27",
+      "delivered_size": [
+        1024,
+        557
+      ],
+      "original_sha256": "0dbf184ce2839b81b71965ec81c65eafe2b455e1ba6cf59eccf50a0b60e814c1",
+      "original_size": [
+        1031,
+        561
+      ]
+    },
+    "f65fc613988149f3756457a3": {
+      "delivered_sha256": "cc1e7cfdab8b2ff7b885c2436621542503637776d985692260d91aa1a59408b3",
+      "delivered_size": [
+        1024,
+        433
+      ],
+      "original_sha256": "4b3c1ef5628de8305737b063c610868b8493a9b70107132eb67f14cfce0ecf1f",
+      "original_size": [
+        1086,
+        459
+      ]
+    }
+  },
+  "independent_clusters": 0,
+  "input_assumption": "16384 tokens per call includes resized blinded pixels, at most 2048 UTF-8 prompt bytes and hidden overhead. Conservative engineering allowance; vendor image tokenization is unverified, not a server-enforced input bound.",
+  "input_tokens": 16384,
+  "jobs": [
+    {
+      "arm": "null_twin",
+      "cluster": "6081452dc6b1695f",
+      "id": "469861a3a73becca",
+      "module": "polar-ulam",
+      "slots": 3,
+      "snapshot_id": "f3252b4209f5b923c2742faf",
+      "source_id": "f3252b4209f5b923c2742faf"
+    },
+    {
+      "arm": "real",
+      "cluster": "820a6bd5dac5c093",
+      "id": "d98cb0eb7218ffa2",
+      "module": "field-dyson",
+      "slots": 3,
+      "snapshot_id": "72a4faadef98a29892dbaabf",
+      "source_id": "72a4faadef98a29892dbaabf"
+    },
+    {
+      "arm": "null_twin",
+      "cluster": "820a6bd5dac5c093",
+      "id": "518ef22877fb0da2",
+      "module": "field-dyson",
+      "slots": 3,
+      "snapshot_id": "4fa1ba104ef92cc9974a34d0",
+      "source_id": "4fa1ba104ef92cc9974a34d0"
+    },
+    {
+      "arm": "null_twin",
+      "cluster": "378de8e0b3efc489",
+      "id": "aee9b8f1478f3e32",
+      "module": "spectral",
+      "slots": 3,
+      "snapshot_id": "ad3e2d070bf2281c2f4e5776",
+      "source_id": "ad3e2d070bf2281c2f4e5776"
+    },
+    {
+      "arm": "real",
+      "cluster": "378de8e0b3efc489",
+      "id": "7775256302a44f18",
+      "module": "spectral",
+      "slots": 3,
+      "snapshot_id": "e7e62f118767a71e4f9f5667",
+      "source_id": "e7e62f118767a71e4f9f5667"
+    },
+    {
+      "arm": "null_twin",
+      "cluster": "16af9f1f0c9c51e6",
+      "id": "210903571ae0f66f",
+      "module": "space-08",
+      "slots": 3,
+      "snapshot_id": "f65fc613988149f3756457a3",
+      "source_id": "f65fc613988149f3756457a3"
+    },
+    {
+      "arm": "real",
+      "cluster": "16af9f1f0c9c51e6",
+      "id": "69f0e3feb043ead0",
+      "module": "space-08",
+      "slots": 3,
+      "snapshot_id": "c850cba22bfce83c435c9b3b",
+      "source_id": "c850cba22bfce83c435c9b3b"
+    },
+    {
+      "arm": "real",
+      "cluster": "6081452dc6b1695f",
+      "id": "57ca345effa88400",
+      "module": "polar-ulam",
+      "slots": 3,
+      "snapshot_id": "26273407940f612fa020ca13",
+      "source_id": "26273407940f612fa020ca13"
+    }
+  ],
+  "limitations": [
+    "Four development pairs, not the planned ten independent clusters; source catalogues overlap.",
+    "No disjoint replication, same-stratum donors or contrast blocks exist in reviewed WO-1. Shuffled slots stay unavailable; no relabelling or redrawing.",
+    "GO2 cannot pass: fewer than 20 independent clusters; all results descriptive only.",
+    "No second observer, owner cards, relay, adoption, GO3 or novelty claim."
+  ],
+  "output_tokens": 1024,
+  "owner_approval": "2026-09-28",
+  "planned_calls": 24,
+  "power_sha256": "ec42c799fa22224cfa0943778138754da8b5253d5f7998b16b39c24cfb29f98b",
+  "protocol": "two bounded perception passes, then one card call with this job observations; no retries",
+  "retries": 0,
+  "schema": "mve-wo6b-descriptive-design-v2",
+  "second_observer": {
+    "reason": "owner Q2 unanswered",
+    "status": "SKIPPED"
+  },
+  "seed": 20260928,
+  "sha256": "4a965b8ec888ab1abaa11a337e7f0a6da5071c91319fd6e441cc35a988c00fd1",
+  "worst_case_micro_usd": 147456
+}

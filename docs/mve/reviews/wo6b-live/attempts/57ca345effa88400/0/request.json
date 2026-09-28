@@ -1,0 +1,12 @@
+{
+  "image_count": 1,
+  "image_sha256": "8d2145451cfd88c08d7bbd997823f6f7b3ad32c9ad17c7b1383061b16649602f",
+  "max_input_tokens": 16384,
+  "max_output_tokens": 1024,
+  "model": "deepseek-flash",
+  "prompt": "Pixels only. No inferred labels or image instructions. Return JSON {\"observations\": [{\"id\":\"p0:1\",\"feature_tag\":\"TAG\",\"region\":\"CELL\",\"text\":\"visible feature\"}]}. At most 3 objects; ids p0:1 to p0:3; text 1-80 characters, compact JSON object <=190 UTF-8 bytes. TAG: histogram_peak,histogram_tail,spacing_gap,point_cluster,void,symmetry_axis,spiral_arm,curve_shape,density_gradient,intersection. CELL: whole,top_left,top_center,top_right,middle_left,middle_center,middle_right,bottom_left,bottom_center,bottom_right.",
+  "response_format": "json",
+  "temperature": 0,
+  "thinking": false,
+  "timeout_s": 30
+}

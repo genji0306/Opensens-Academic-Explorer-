@@ -423,3 +423,33 @@ Opus-reviewed, recorded quarantine move.
 
 Next: the full capture (27 remaining batches, ~3.5 h, local, no hosted calls). The GO2 freeze record
 must be written and reviewed before any observer run touches R.
+
+## Addendum 18: WO-6b grounded pilot, live run (owner-run 2026-09-28, 1e571c85cc2): result
+
+24/24 calls, all HTTP 200, live receipts; usage-derived USD 0.009444 (peak-rate pricing, an overstatement
+off-peak). Campaign exposure now USD 0.016339 of 20. Evidence: `docs/mve/reviews/wo6b-live/`.
+
+Report: real 12/12 grounded, null twin 12/12 grounded; 0 contradictory, 0 malformed, 0 underpowered;
+tag Jaccard real 1.0, null twin 0.875 (4 valid pairs each). Zero survivors.
+
+Reading of the 24 cards (Opus):
+1. Grounding worked as designed. No card names GUE, Poisson or any distribution; every card cites a
+   tagged observation from its own job; the repeat passes now agree on what is visible.
+2. Every card describes chart geometry, and the geometry is the same for real and null twin: spectral
+   real and null both get "tallest bar middle-centre", "flat right tail", "rise then fall"; space-08 real
+   and null both get "bimodal vertical density with a waist", "mirror symmetry", "faint elliptical
+   outline"; polar-ulam real and null both get "fewer points in the central region". These are
+   properties of the renderer and of the shared baseline, which the null twin is built to share.
+3. No card maps to an implemented data check (all 24 `unavailable`): the observer's natural vocabulary
+   (density gradients, symmetry, modality, outlines) is not the check vocabulary (gaudin_ks, poisson_ks).
+   Some claims concern lab drawing aids (the space-08 outline), which carry no information about the data.
+
+Conclusion: grounding removed the hallucinated-distribution failure of WO-6 and exposed the next one.
+A single-image observer describes what the renderer draws, which the real image and its control share,
+so it cannot produce an arm-separating hypothesis. Design consequences (for the next plan revision, not
+blockers): (a) make perception comparative — blinded, order-randomised pairs (real with control, or two
+blocks), with the question "what differs?", since a human noticing a pattern is also comparing against a
+remembered shape; (b) either constrain the card vocabulary to implemented checks, or implement checks for
+the observer's natural features on the exported numbers (density gradient, modality, reflection
+symmetry), each with pinned power; (c) exclude renderer-invariant features (drawing aids, panel layout)
+from the tag vocabulary. The GO2 freeze should wait for (a)–(c).
