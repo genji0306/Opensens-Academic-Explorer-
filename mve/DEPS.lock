@@ -4394,7 +4394,7 @@
         "mve/observer/fixtures/wo6/manifest.json": "55266cec425067006791845b5664e366c4962b4f3435ecf5b9349e4053834f2a",
         "mve/observer/fixtures/wo6/receipt.json": "c06bd06f183580e58e60ae3d8a50ea1d4eded05e9d614e66f05513060bfd3f17",
         "mve/observer/fixtures/wo6/repeat-verification.json": "0d5cb7a1f060e4ba80824b9f0982992a3a93ba31885a85f6e0de7024e70519dd",
-        "mve/observer/pilot.py": "80a8d75e2b88836849f89ee6a4783e2e33e8b32fbfb27298b4605d54647f19a4",
+        "mve/observer/pilot.py": "012b32fd242c507158936665a3d0a83df1180f0406cd58d04ea5281bda5a0321",
         "mve/observer/pilot_accounting.py": "29aba9689721f5c2275c36bd063749fd8c03ab4d5dc62022303f35a9fef369c8",
         "mve/observer/pilot_cards.py": "fb2fffea58dc1bdc26910f5ca1e1859e57d62c3b6b66d4457360f5b0f0a0e5f0",
         "mve/observer/pilot_inputs.py": "b0c5f4b73b332c7f12be78c0984c726508d868a782a394bdd8b72e1672b0ebfa",
@@ -4464,9 +4464,9 @@
         "mve/observer/metrics.py": "cf64440be3505455f4406a4f5e7706af80345d0d1e306a45d807bace281152a4",
         "mve/observer/native_nulls.py": "1228892143439fe5dbcb689f7927f63f176a16ab2ead0878829c2481154316d1",
         "mve/observer/outbox.py": "91e67045474c12b277dc3f4eb621421d8e754719804c81c8b9fe1ac82d0e4976",
-        "mve/observer/pilot.py": "80a8d75e2b88836849f89ee6a4783e2e33e8b32fbfb27298b4605d54647f19a4",
+        "mve/observer/pilot.py": "012b32fd242c507158936665a3d0a83df1180f0406cd58d04ea5281bda5a0321",
         "mve/observer/pilot_accounting.py": "29aba9689721f5c2275c36bd063749fd8c03ab4d5dc62022303f35a9fef369c8",
-        "mve/observer/pilot_b.py": "15539844c59a7fe68b2c4c25c75453d27ca02b308f17cf52d9c2e9150e7309df",
+        "mve/observer/pilot_b.py": "6b0e1a1b10d449a6ecd3c3df8b23e5a3030b8122e3b7c1ef4083477b8ece5e93",
         "mve/observer/pilot_b_accounting.py": "3045efa22c94e4351b9c2f3eefddbfff3caf85373df7663471048594e6133ad7",
         "mve/observer/pilot_cards.py": "fb2fffea58dc1bdc26910f5ca1e1859e57d62c3b6b66d4457360f5b0f0a0e5f0",
         "mve/observer/pilot_inputs.py": "b0c5f4b73b332c7f12be78c0984c726508d868a782a394bdd8b72e1672b0ebfa",
@@ -4491,7 +4491,7 @@
         "schemas/mve_hypothesis_card.json": "cd661975fa62fde28730a434685917d51fa1b8a972317ac8ff2681a158d7851f",
         "tests/mve/observer/test_observer_run.py": "79b38df37ac68bba9642553c808bfa18b604a3877e3defbd4eed10dc60de9fd5",
         "tests/mve/observer/test_pilot.py": "56ed30c9bec9e455216c850ae4c9220b73d1a54351421041e6c07d0d341ddd55",
-        "tests/mve/observer/test_wo6b.py": "e0a140988d6dbf16f7091ff2a596dcfdf9bff21ba657d88cc27a97e7054b2391"
+        "tests/mve/observer/test_wo6b.py": "1426ff0e58a97e87a427ca129e6f381834a26d67b8655434fabfbe787a570380"
       },
       "native_generator_sources": {
         "commit": "97b1e48cb1075aea431cf754cc84f2eeabb3dfb9",

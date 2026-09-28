@@ -353,3 +353,39 @@ Follow-ups for the next Astra packet (not blockers):
    visible feature from the perception pass.
 3. Before any GO2 attempt: disjoint replication clusters and same-stratum donors (WO-1 extension),
    and a statistic with power at the snapshot's n, or a larger n.
+
+## Addendum 16: WO-6b grounded observer + power gate (341035dae3d + Opus fix): PASS, merged
+
+Suite outside the sandbox: 1099 passed, 2 skipped (Astra's seven nested-sandbox failures pass here).
+Two independent reviews (grounding/refusals; power/accounting): no CRITICAL. Verified by re-execution:
+the power study reproduces `config/wo6b_power.json` byte for byte (seed 2026092806, ~39 s); the
+reconciliation reproduces byte for byte (prior 6895 micro-USD = WP-0b 268 + WO-6 6627, counted once;
+remainder 19993105); the native null generators reproduce the committed WO-1 null arrays; GUE
+tridiagonal (Dumitriu–Edelman beta = 2), bulk-only semicircle unfolding and the Fredholm Gaudin CDF
+agree (KS 0.0017 at n = 200k). Live refuses while WO6B_APPROVAL is None. WO-6 evidence is read-only.
+
+Opus fix (one HIGH, latent): both pilot CLIs printed the summary outside the refusal boundary, so a
+result missing a key would print a traceback with local paths. The summary is now built inside the
+boundary; regression test added for both CLIs; DEPS.lock pins refreshed for pilot.py, pilot_b.py and
+test_wo6b.py.
+
+Non-blocking notes for a later packet: (1) the contradiction table matches pinned aliases only, so a
+reworded baseline evades it (disclosed in grounded_v2.json); (2) `rescore` has no labelled refusal
+boundary (offline maintainer tool); (3) the v2 schema's `check` object admits extra fields; (4) the
+minimal-n search does not enforce power >= 0.8 at all larger grid n (holds in the pinned output, not
+by construction); (5) the upper-tail size is a plug-in Monte Carlo estimate (realised 0.0–0.117,
+mean 0.047), so the "alpha <= .05" comment overstates it.
+
+**Corrections to Addendum 15.** (a) The three space-08 malformed slots were `bad_type`: `prediction`
+was a JSON number. There were no fields outside the contract. (b) More important: for the spectral
+and field-dyson modules the WO-1 null twin is drawn from the same beta = 2 ensemble as GUE. A GUE card
+on those null twins is therefore not a misperception, and gaudin_ks cannot separate real from null
+twin at any tested n (power 0.02–0.12 up to n = 1024). Structurally, not for want of data. What
+survives from Addendum 15: the v1 cards did not separate the arms, none cited a visible feature
+(0/33 grounded under v2), one real image received both Poisson and GUE, and the prime modules' GUE
+claims concern spatial point distances that no implemented check measures. "A prior, not a
+perception" was stated too strongly for two of the four modules.
+
+Design consequence (for WO-1b): for spectral and Dyson the null twin is a positive control for GUE,
+not a negative one. A useful test there needs contrasts (Poisson, GOE) or a statistic aimed at
+deviations of the real zeros from GUE, not agreement with it.

@@ -509,3 +509,16 @@ def test_stage1_power_uses_declared_upper_tail_not_two_sided_discrimination():
     result = power.check(proposal(), job, study_result=study)
     assert result["status"] == "underpowered"
     assert result["power"] == 0
+
+
+@pytest.mark.parametrize("module", ["pilot", "pilot_b"])
+def test_summary_print_stays_inside_refusal_boundary(module, capsys, monkeypatch):
+    import importlib
+
+    mod = importlib.import_module("mve.observer." + module)
+    monkeypatch.setattr(mod, "execute", lambda **kw: {"planned_calls": 1})
+    with pytest.raises(SystemExit) as caught:
+        mod.main(["--dry-run"])
+    assert caught.value.code == 2
+    err = capsys.readouterr().err
+    assert err == "WO-6 refused: internal_error\n"

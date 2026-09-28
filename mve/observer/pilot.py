@@ -413,11 +413,8 @@ def main(argv=None):
             result = execute(
                 live=False, clock=lambda: datetime(2026, 9, 28, 12, tzinfo=timezone.utc)
             )
-    except Exception as exc:
-        label = exc.label if isinstance(exc, Refusal) else "internal_error"
-        ap.exit(2, "WO-6 refused: " + label + "\n")
-    print(
-        json.dumps(
+        # Build the printed summary inside the refusal boundary: a missing key must not leak a traceback.
+        summary = json.dumps(
             {
                 k: result[k]
                 for k in (
@@ -428,7 +425,10 @@ def main(argv=None):
                 )
             }
         )
-    )
+    except Exception as exc:
+        label = exc.label if isinstance(exc, Refusal) else "internal_error"
+        ap.exit(2, "WO-6 refused: " + label + "\n")
+    print(summary)
     return 0
 
 
