@@ -231,7 +231,9 @@ def build(cache=data.CACHE):
     plan["cache"] = data.verify_cache(cache)
     plan["power_sha256"] = load_power()["sha256"]
     for b in plan["blocks"]:
-        b["data_sha256"] = hashlib.sha256(encoded(data.numeric(b, cache))).hexdigest()
+        b["data_sha256"] = hashlib.sha256(
+            encoded(data.numeric(b, cache, purpose="capture"))
+        ).hexdigest()
     return seal(plan)
 
 
@@ -239,7 +241,8 @@ def power_row(block, study):
     rows = [
         r
         for r in study["rows"]
-        if (r["module"], r["n"], r["alternative"])
+        if r.get("null") == "GUE"
+        and (r["module"], r["n"], r["alternative"])
         == (block["module"], block["n"], block["generator"])
     ]
     if len(rows) != 1 or rows[0]["upper_power"] < 0.8:
@@ -256,6 +259,18 @@ def validate(plan):
         stripped.pop(key, None)
     seen = set()
     for b in stripped["blocks"]:
+        source = b["source"]
+        development = plan["development"]
+        if (
+            source["population"] == "zeta-zero-index"
+            and int(source["index_start"]) <= development["zero_indices_through"]
+        ):
+            raise ValueError("zero block overlaps development")
+        if (
+            b["module"] not in ZERO
+            and source["start"] <= development["integer_indices_through"]
+        ):
+            raise ValueError("prime block overlaps development")
         sha = b["data_sha256"]
         if (
             not isinstance(sha, str)
@@ -303,35 +318,75 @@ def jobs(plan):
     ]
 
 
-def observer_block(plan, ident, *, purpose):
-    """Only D/donor may enter prompts or tuning. R is capture/check-only.
+def require_go2_freeze(plan):
+    """Recompute the reviewed GO2 commitment before opening held-out artifacts.
 
-    Replication check consumers must use their separately frozen card contract;
-    there is deliberately no tuning override or include-R flag here.
+    The lock record is a sealed {manifest_sha256, files} object. Each of the five
+    required file groups maps worktree-relative paths to SHA-256 hashes. Merely
+    pinning a list of filenames or trusting cached hashes cannot open R.
     """
-    if purpose not in ("observer", "tuning"):
+    try:
+        record = json.loads((ROOT / "mve/DEPS.lock").read_text())["packets"]["WO-1b"][
+            "go2_freeze"
+        ]
+        groups = record["files"]
+        if (
+            not isinstance(groups, dict)
+            or set(groups)
+            != {
+                "observer_prompts",
+                "contract",
+                "power_study",
+                "thresholds",
+                "runner_source",
+            }
+            or any(
+                not isinstance(files, dict) or not files for files in groups.values()
+            )
+            or record["manifest_sha256"] != plan["sha256"]
+            or seal(record) != record
+        ):
+            raise ValueError("invalid freeze record")
+        actual = {
+            category: {path: s.sha256(s.inside(ROOT, path)) for path in files}
+            for category, files in groups.items()
+        }
+        if seal({"manifest_sha256": plan["sha256"], "files": actual}) != record:
+            raise ValueError("freeze digest mismatch")
+    except (KeyError, TypeError, OSError, ValueError) as exc:
+        raise ValueError("replication requires matching GO2 freeze") from exc
+
+
+def observer_block(plan, ident, *, purpose):
+    """R never enters tuning; observer/analysis require a reviewed GO2 freeze."""
+    if purpose not in ("observer", "tuning", "analysis"):
         raise ValueError("invalid observer purpose")
     block = next(b for b in plan["blocks"] if b["id"] == ident)
     if block["partition"] == "R":
-        raise ValueError("replication is sealed from observer/tuning")
+        if purpose == "tuning":
+            raise ValueError("replication is sealed from tuning")
+        require_go2_freeze(plan)
     validate(plan)
     return deepcopy(block)
 
 
-def block_data(plan, block, cache=data.CACHE):
+def block_data(plan, block, cache=data.CACHE, *, purpose):
+    data.require_purpose(block, purpose)
     expected = next(b for b in plan["blocks"] if b["id"] == block["id"])
     if expected != block:
         raise ValueError("block outside frozen plan")
-    raw = encoded(data.numeric(block, cache))
+    raw = encoded(data.numeric(block, cache, purpose=purpose))
     if hashlib.sha256(raw).hexdigest() != block["data_sha256"]:
         raise ValueError("block data drift")
     return raw
 
 
-def observer_png(plan, ident, view, root, *, purpose):
-    """Blinded-only delivery, with held-out refusal before any artifact read."""
+def snapshot_artifact(plan, ident, view, root, *, purpose, filename):
+    """All observer/analysis artifact delivery passes the seal before any read."""
     from mve.observer.snapshot_batch import completed
 
+    if filename not in ("blind-0.png", "data.json"):
+        raise ValueError("invalid delivery artifact")
     observer_block(plan, ident, purpose=purpose)
     if view not in (0, 1):
         raise ValueError("invalid view")
@@ -339,4 +394,16 @@ def observer_png(plan, ident, view, root, *, purpose):
     folder = s.inside(root, job["snapshot_id"])
     if not completed(folder, plan, job):
         raise ValueError("capture unavailable")
-    return (folder / "blind-0.png").read_bytes()
+    return (folder / filename).read_bytes()
+
+
+def observer_png(plan, ident, view, root, *, purpose):
+    return snapshot_artifact(
+        plan, ident, view, root, purpose=purpose, filename="blind-0.png"
+    )
+
+
+def snapshot_data(plan, ident, view, root, *, purpose):
+    return snapshot_artifact(
+        plan, ident, view, root, purpose=purpose, filename="data.json"
+    )

@@ -100,7 +100,7 @@ def test_every_block_reproduces_without_opening_outcomes():
     assert inv.build() == plan
     assert len({b["seed"] for b in plan["blocks"]}) == 140
     for b in plan["blocks"]:
-        raw = inv.block_data(plan, b)
+        raw = inv.block_data(plan, b, purpose="capture")
         assert raw
     first = plan["blocks"][0]
     assert inv.observer_block(plan, first["id"], purpose="observer") == first
@@ -109,11 +109,11 @@ def test_every_block_reproduces_without_opening_outcomes():
     changed = deepcopy(first)
     changed["seed"] += 1
     with pytest.raises(ValueError):
-        inv.block_data(plan, changed)
+        inv.block_data(plan, changed, purpose="capture")
     changed = deepcopy(plan)
     changed["blocks"][0]["data_sha256"] = "0" * 64
     with pytest.raises(ValueError):
-        inv.block_data(changed, changed["blocks"][0])
+        inv.block_data(changed, changed["blocks"][0], purpose="capture")
     with pytest.raises(ValueError):
         inv.validate(changed)
     with pytest.raises(ValueError):

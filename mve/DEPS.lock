@@ -4513,9 +4513,9 @@
     "WO-1b": {
       "manifest_sha256": "d286a45abc8187fd06bd63a1957d34c809ca0c82abaf9aad8485ef3b9abe7620",
       "source_hashes": {
-        "mve/observer/snapshot_batch.py": "e32255f56eb8b8263a101a9f89791060aee24bcf3dddc521dfec6431f7639078",
-        "mve/observer/snapshot_blocks.py": "45a8d4b92231d68f53ddb4da51d56a4806fdaad555b0195d636d30d3837ea54c",
-        "mve/observer/snapshot_inventory.py": "261110d00aef442d906f5101b275b8e1728f060e63f5e1164ba287b145e2f29a",
+        "mve/observer/snapshot_batch.py": "9d11dd28e17bd96d70de9f4d3f9c7dbcf37f215b5d541874d9ddcb247d4da6b5",
+        "mve/observer/snapshot_blocks.py": "187d6ce2b2149c2666a1c12000feaf3809c1dca8516e8d08521c9e8cc2895c11",
+        "mve/observer/snapshot_inventory.py": "b11732e5293920cb2b3c2cacdd13bf1455d916cce6296471ac1e4b3dbd173611",
         "mve/observer/snapshot_render.py": "dbde0630260b7ef05f10b568ed58f0d0d0038510be05d9b0797d5722571f1aea",
         "mve/observer/snapshot_capture.py": "603554f1b8342834ecf255b5ad5d38f3656dc7215665c10d2aae1184f6d5304e",
         "mve/observer/snapshots.py": "9c7c5b18d27aafdceffc496bea864981876c1b54244a4049b16c842c9f5a8a8d",
@@ -4526,8 +4526,9 @@
         "mve/observer/checks/spacing.py": "f77f6056c9fd1cc4ea7f6abfa8e2f4d9670a9c4c26b163f688fe7cb24ea445ba",
         "mve/observer/card.py": "64d190a1a2c1e28e4a03589825635fc8278219b012f637bd62f8e0b973ad862b",
         "mve/observer/refusals.py": "075d9f8303275140b30981b199ec7ceec6e05a9977c41b944ef3cea7a9e52624",
-        "tests/mve/observer/test_snapshot_batch.py": "c4d035bf33ecf53dcfb48e494babd14b2521bc5d3634602f936eda28e1893f38",
-        "tests/mve/observer/test_snapshot_inventory.py": "d93249987b9fe2649f8f90f3ea6905e6f15dca185be0b71813f1affcde9df000"
+        "tests/mve/observer/test_snapshot_batch.py": "b9c777c725d3b84f91510657324575551fd5f589f8e2bbc762557c2d14e1044f",
+        "tests/mve/observer/test_snapshot_inventory.py": "938dcfee79d5099a53e290bb1359122e4bbdcb2ec7657ca04b881abd96f8ddbf",
+        "tests/mve/observer/test_wo1b_review.py": "ac8378471f59fc980494fa3595e1955f428bfe742748712c96a2b1d670aa0888"
       },
       "packet": "WO-1b",
       "schema": "mve-deps-v1",
@@ -4572,7 +4573,7 @@
       "generated_cap_bytes": 209715200,
       "free_floor_bytes": 5368709120,
       "review_handoff": "docs/mve/reviews/WO1B_ASTRA_20260928.md",
-      "status": "capture-ready with offline fakes; real pilot and Opus review pending",
+      "status": "native pilot passed per Opus; review fixes ready for Opus; GO2 replication sealed",
       "python": "3.13.2",
       "packages": {
         "numpy": "2.4.6",
@@ -4602,15 +4603,27 @@
         "test": "exact sign-flip sum of cluster differences; 2^20 patterns per arm; intersection-union requires all three"
       },
       "artifacts": {
-        "docs/mve/reviews/WO1B_ASTRA_20260928.md": "42bda023617a3d7302a813291fe5c210e3a1bf23ed76944fedbfda124234d1f1",
+        "docs/mve/reviews/WO1B_ASTRA_20260928.md": "b97152e7ef161a0a1c496a57842bd2ee00c039a44a67dfb29635f631e63a963e",
         "docs/mve/reviews/WO1B_EVIDENCE_20260928.json": "e88931a1e719a658e8bf2f42b063d4111ba327ba7d84e1c6e98a244125e588df",
         "mve/observer/config/wo1b_manifest.json": "b9100fc8fd0c57ec385273d209448679fe0be3b13282fae6e72567e243a95873"
       },
       "validation": {
-        "focused_passed": 160,
-        "full_passed": 1131,
+        "focused_passed": 77,
+        "full_passed": 1167,
+        "full_skipped": 4,
         "nested_sandbox_failures": 7,
-        "coverage_percent": 97
+        "coverage_percent": 98,
+        "changed_executable_lines": 60,
+        "changed_executable_lines_covered": 60,
+        "nested_sandbox_failure_names": [
+          "tests/mve/test_formalizer_g3.py::test_real_lean_repairs_statement_without_proof",
+          "tests/mve/test_formalizer_runtime.py::test_native_targets_compile_without_proofs",
+          "tests/mve/test_formalizer_runtime.py::test_typecheck_record_keeps_proof_separate",
+          "tests/mve/test_formalizer_runtime.py::test_real_lean_typechecks_from_relocated_project",
+          "tests/mve/test_isolation.py::test_real_subprocess_cannot_read_gold_or_connect",
+          "tests/mve/test_isolation.py::test_public_staging_rejects_links_and_worker_timeout",
+          "tests/mve/test_open_review_followups.py::test_worker_created_runtime_symlink_cannot_read_private_gold"
+        ]
       }
     }
   },

@@ -26,6 +26,7 @@ def sha(raw):
 
 def write(path, raw):
     if not isinstance(raw, bytes):
+        storage.encoded(raw)  # Shared portable-path guard; keep canonical WO-1b bytes.
         raw = inv.encoded(raw)
     storage.disk_guard(ROOT / "mve/generated", len(raw))
     with path.open("xb") as stream:
@@ -67,13 +68,35 @@ def admit(generated, remaining, archive_bytes):
 def save_pass(folder, number, packet):
     if number not in (0, 1):
         raise ValueError("invalid pass")
+    copies = 2 if number == 0 else 1
+    base = s.tree_bytes(folder) + 8192
+    if number == 0:
+        base += len(packet["data"])
+    if base + copies * len(packet["blind"]) > inv.SNAPSHOT_CAP:
+        raise ValueError("snapshot byte envelope exceeded")
+    receipt = dict(
+        full_sha256=sha(packet["full"]),
+        blind_sha256=sha(packet["blind"]),
+        data_sha256=sha(packet["data"]),
+        crop=packet["crop"],
+        masks=packet["masks"],
+        state=packet["state"],
+        versions=packet["versions"],
+        chunks=s.png_chunks(packet["blind"]),
+    )
+    # Reserve both passes before writing pass zero. Recheck the actual second
+    # PNG/metadata on pass one. 1 KiB covers the fixed leakage report per pass;
+    # 8 KiB reserves the difference and completion receipts, including audit.
+    storage.encoded(receipt)
+    pass_bytes = len(packet["blind"]) + len(inv.encoded(receipt)) + 1024
+    projected = base + copies * pass_bytes
+    if projected > inv.SNAPSHOT_CAP:
+        raise ValueError("snapshot byte envelope exceeded")
     # Full pages are only transient RAM; hash before releasing each packet.
     if number == 0:
         write(folder / "data.json", packet["data"])
     elif (folder / "data.json").read_bytes() != packet["data"]:
         raise ValueError("repeat numeric bytes mismatch")
-    if len(packet["blind"]) + s.tree_bytes(folder) + 8192 > inv.SNAPSHOT_CAP:
-        raise ValueError("snapshot byte envelope exceeded")
     write(folder / f"blind-{number}.png", packet["blind"])
     leakage = s.leakage_report(
         folder / f"blind-{number}.png",
@@ -83,14 +106,7 @@ def save_pass(folder, number, packet):
     write(
         folder / f"pass-{number}.json",
         dict(
-            full_sha256=sha(packet["full"]),
-            blind_sha256=sha(packet["blind"]),
-            data_sha256=sha(packet["data"]),
-            crop=packet["crop"],
-            masks=packet["masks"],
-            state=packet["state"],
-            versions=packet["versions"],
-            chunks=s.png_chunks(packet["blind"]),
+            **receipt,
             leakage=leakage,
         ),
     )
@@ -208,6 +224,17 @@ def archive_size(repos):
     return total + 1024**2
 
 
+def archive_repo(repo, name, dest, generated):
+    """WO-1b admission before WO-1's bounded, allowlisted extraction.
+
+    The extractor enforces a 64 MiB maximum, so reserving that whole bound with
+    storage's 200 MiB/5 GiB guard covers every extraction write under our lock.
+    WO-1's pinned guard and archive semantics remain unchanged.
+    """
+    storage.disk_guard(generated, 64 * 1024**2)
+    s.archive_repo(repo, name, dest, generated)
+
+
 def check_stage(stage):
     old.check_sources(stage)
     dist = stage / "atlas/vendor/zeta-explorer/dist"
@@ -232,7 +259,7 @@ def worker(args, out):
     snapshots = out.parent / "snapshots"
     chosen = [j for j in chosen if not completed(snapshots / j["snapshot_id"], plan, j)]
     for job in chosen:
-        job["raw"] = inv.block_data(plan, job["block"], args.cache)
+        job["raw"] = inv.block_data(plan, job["block"], args.cache, purpose="capture")
         (snapshots / job["snapshot_id"]).mkdir()
     packets = []
     began = time.monotonic()
@@ -359,11 +386,11 @@ def run(args):
         )
         try:
             for name, repo in repos.items():
-                s.archive_repo(repo, name, stage / name, ROOT / "mve/generated")
+                archive_repo(repo, name, stage / name, ROOT / "mve/generated")
             write(out / "sources.json", check_stage(stage))
             archive_before = s.tree_listing(stage)
             for j in chosen:
-                inv.block_data(plan, j["block"], args.cache)
+                inv.block_data(plan, j["block"], args.cache, purpose="capture")
             if args.prepare_only:
                 receipt["status"] = "prepared_only"
             elif not chosen:

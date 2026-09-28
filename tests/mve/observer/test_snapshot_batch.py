@@ -64,7 +64,7 @@ def test_batch_selection_pilot_and_bounds():
 def test_lean_pair_and_immutable_resume(tmp_path):
     plan = inv.load()
     job = batch.select_jobs(plan, 0)[0]
-    raw = inv.block_data(plan, job["block"])
+    raw = inv.block_data(plan, job["block"], purpose="capture")
     folder = tmp_path / job["snapshot_id"]
     folder.mkdir()
     a = fake_packet(job, raw)
@@ -92,7 +92,7 @@ def test_lean_pair_and_immutable_resume(tmp_path):
 def test_failed_repeat_and_partial_never_skipped(tmp_path):
     plan = inv.load()
     job = batch.select_jobs(plan, 0)[0]
-    a = fake_packet(job, inv.block_data(plan, job["block"]))
+    a = fake_packet(job, inv.block_data(plan, job["block"], purpose="capture"))
     with pytest.raises(ValueError, match="incomplete"):
         batch.completed(tmp_path, plan, job)
     batch.save_pass(tmp_path, 0, a)
@@ -142,7 +142,7 @@ def test_native_capture_with_fake_page_and_actual_export(module, tmp_path):
 
     plan = inv.load()
     job = next(j for j in inv.jobs(plan) if j["module"] == module)
-    job["raw"] = inv.block_data(plan, job["block"])
+    job["raw"] = inv.block_data(plan, job["block"], purpose="capture")
     page = Mock()
     page.locator.return_value.bounding_box.return_value = {
         "x": 0,
@@ -180,7 +180,7 @@ def test_native_redraw_data_drift(tmp_path):
 
     plan = inv.load()
     job = inv.jobs(plan)[0]
-    job["raw"] = inv.block_data(plan, job["block"])
+    job["raw"] = inv.block_data(plan, job["block"], purpose="capture")
     page = Mock()
     page.locator.return_value.bounding_box.return_value = {
         "x": 0,
@@ -345,7 +345,7 @@ def test_worker_and_cli_guards(fake_batch_env, monkeypatch):
 def test_completed_artifact_identity_and_numeric_guards(tmp_path):
     plan = inv.load()
     job = inv.jobs(plan)[0]
-    a = fake_packet(job, inv.block_data(plan, job["block"]))
+    a = fake_packet(job, inv.block_data(plan, job["block"], purpose="capture"))
     batch.save_pass(tmp_path, 0, a)
     batch.save_pass(tmp_path, 1, a)
     receipt = finish_fixture(tmp_path, plan, job, a, a, 1)
@@ -371,7 +371,7 @@ def test_completed_artifact_identity_and_numeric_guards(tmp_path):
 def test_snapshot_cap_before_completing(tmp_path, monkeypatch):
     plan = inv.load()
     job = inv.jobs(plan)[0]
-    a = fake_packet(job, inv.block_data(plan, job["block"]))
+    a = fake_packet(job, inv.block_data(plan, job["block"], purpose="capture"))
     with pytest.raises(ValueError, match="envelope"):
         batch.save_pass(tmp_path, 0, {**a, "blind": b"x" * inv.SNAPSHOT_CAP})
     monkeypatch.setattr(inv, "SNAPSHOT_CAP", 1)
@@ -560,7 +560,7 @@ def test_observer_delivery_cannot_read_replication_even_for_tuning(
     job = inv.jobs(plan)[0]
     folder = tmp_path / job["snapshot_id"]
     folder.mkdir()
-    a = fake_packet(job, inv.block_data(plan, job["block"]))
+    a = fake_packet(job, inv.block_data(plan, job["block"], purpose="capture"))
     batch.save_pass(folder, 0, a)
     batch.save_pass(folder, 1, a)
     finish_fixture(folder, plan, job, a, a, 1)
@@ -584,7 +584,7 @@ def test_observer_delivery_cannot_read_replication_even_for_tuning(
 def test_successful_pixels_are_not_complete_before_source_audit(tmp_path):
     plan = inv.load()
     job = inv.jobs(plan)[0]
-    a = fake_packet(job, inv.block_data(plan, job["block"]))
+    a = fake_packet(job, inv.block_data(plan, job["block"], purpose="capture"))
     batch.save_pass(tmp_path, 0, a)
     batch.save_pass(tmp_path, 1, a)
     candidate = batch.finish_snapshot(tmp_path, plan, job, a, a, 1)

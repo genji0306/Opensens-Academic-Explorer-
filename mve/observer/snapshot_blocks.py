@@ -101,7 +101,15 @@ def sample(generator, module, n, seed, start=200001, stop=240001):
     return x
 
 
-def numeric(block, cache=None):
+def require_purpose(block, purpose):
+    if purpose not in ("capture", "observer", "tuning", "analysis"):
+        raise ValueError("invalid numeric purpose")
+    if block["partition"] == "R" and purpose != "capture":
+        raise ValueError("replication numeric materialization is capture-only")
+
+
+def numeric(block, cache=None, *, purpose):
+    require_purpose(block, purpose)
     source = block["source"]
     if block["generator"] == "Odlyzko":
         offsets = read_zeros(cache or CACHE, source["file"])[
