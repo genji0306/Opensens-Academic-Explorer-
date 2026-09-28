@@ -338,10 +338,12 @@ def isolated_capture(args, out, repos, receipt):
                 start_new_session=True,
             )
             try:
-                result.wait(timeout=CAPTURE_TIMEOUT_SECONDS)
+                result.wait(
+                    timeout=getattr(args, "overall_timeout", CAPTURE_TIMEOUT_SECONDS)
+                )
             except subprocess.TimeoutExpired as exc:
                 raise ValueError(
-                    "isolated capture exceeded 900-second overall wall-clock timeout"
+                    "isolated capture exceeded overall wall-clock timeout"
                 ) from exc
             finally:
                 # Stop worker/driver before collecting separately detached Chrome

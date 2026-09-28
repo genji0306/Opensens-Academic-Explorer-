@@ -686,7 +686,10 @@ def test_darwin_paths_fallback(monkeypatch, result):
 
 
 @pytest.mark.parametrize("timeout", [False, True])
-def test_worker_kills_all_groups_even_after_normal_exit(tmp_path, monkeypatch, timeout):
+@pytest.mark.parametrize("overall", [900, 1680, 3840])
+def test_worker_kills_all_groups_even_after_normal_exit(
+    tmp_path, monkeypatch, timeout, overall
+):
     monkeypatch.setattr(c, "readonly_probe", Mock())
     monkeypatch.setattr(
         c, "darwin_runtime_paths", lambda: [Path("/private/var/folders")]
@@ -709,6 +712,7 @@ def test_worker_kills_all_groups_even_after_normal_exit(tmp_path, monkeypatch, t
     monkeypatch.setattr(c.os, "killpg", kill)
     repos = {"atlas": tmp_path / "atlas", "lab": tmp_path / "lab"}
     args = c.parse_args(["--repeat", "--timeout-per-pass", "600"])
+    args.overall_timeout = overall
     if timeout:
         with pytest.raises(ValueError, match="wall-clock timeout"):
             c.isolated_capture(args, tmp_path, repos, {})
@@ -719,7 +723,7 @@ def test_worker_kills_all_groups_even_after_normal_exit(tmp_path, monkeypatch, t
         (12346, signal.SIGKILL),
         (12347, signal.SIGKILL),
     }
-    assert proc.wait.call_args_list[0].kwargs == {"timeout": 900}
+    assert proc.wait.call_args_list[0].kwargs == {"timeout": overall}
     assert proc.wait.call_args_list[1].kwargs == {"timeout": 5}
 
 

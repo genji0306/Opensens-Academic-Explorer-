@@ -4475,8 +4475,8 @@
         "mve/observer/refusals.py": "075d9f8303275140b30981b199ec7ceec6e05a9977c41b944ef3cea7a9e52624",
         "mve/observer/rescore.py": "c52e88bee50c183e4d0b6c548eb5be82e5415faabc500ffd7e5e67637e09904d",
         "mve/observer/run.py": "739f4a0b9db2d05832a8f1f2538d46544b86c1250e16f671fc95cd1eb4c58b3e",
-        "mve/observer/snapshot_capture.py": "603554f1b8342834ecf255b5ad5d38f3656dc7215665c10d2aae1184f6d5304e",
-        "mve/observer/snapshot_render.py": "dbde0630260b7ef05f10b568ed58f0d0d0038510be05d9b0797d5722571f1aea",
+        "mve/observer/snapshot_capture.py": "0eb7b20a408a8e1957cc24ce04238579d7f1963b50f777fc859bf77ff6e8258f",
+        "mve/observer/snapshot_render.py": "7511fd2364f0eff29aa897db07125b3576f6e94cabfd3291c4a0422b27e50e16",
         "mve/observer/snapshots.py": "9c7c5b18d27aafdceffc496bea864981876c1b54244a4049b16c842c9f5a8a8d",
         "mve/observer/storage.py": "b719d940cbcc47fbb3ff4dab11475c78c49870db2bcf4222145a1bbf2343e4c3",
         "mve/preflight/probe.py": "efaef5dca40c19af16e0e231e07aa92ab57a2295056b759f80286a8ef15938da",
@@ -4491,7 +4491,8 @@
         "schemas/mve_hypothesis_card.json": "cd661975fa62fde28730a434685917d51fa1b8a972317ac8ff2681a158d7851f",
         "tests/mve/observer/test_observer_run.py": "79b38df37ac68bba9642553c808bfa18b604a3877e3defbd4eed10dc60de9fd5",
         "tests/mve/observer/test_pilot.py": "56ed30c9bec9e455216c850ae4c9220b73d1a54351421041e6c07d0d341ddd55",
-        "tests/mve/observer/test_wo6b.py": "8d0e4d97ad6864db78bca1210e9127bb4e51214b738f09f92595b09ee9702948"
+        "tests/mve/observer/test_wo6b.py": "8d0e4d97ad6864db78bca1210e9127bb4e51214b738f09f92595b09ee9702948",
+        "mve/observer/capture_policy.py": "8374f19f11fb333251a5430def6cf346986636f4dcadc6117727fb379e67c5d0"
       },
       "native_generator_sources": {
         "commit": "97b1e48cb1075aea431cf754cc84f2eeabb3dfb9",
@@ -4513,11 +4514,11 @@
     "WO-1b": {
       "manifest_sha256": "d286a45abc8187fd06bd63a1957d34c809ca0c82abaf9aad8485ef3b9abe7620",
       "source_hashes": {
-        "mve/observer/snapshot_batch.py": "9d11dd28e17bd96d70de9f4d3f9c7dbcf37f215b5d541874d9ddcb247d4da6b5",
+        "mve/observer/snapshot_batch.py": "2425bed283a282e40475e6bf8c3514c3457f63a2140b62c0c3c0b200ca429275",
         "mve/observer/snapshot_blocks.py": "187d6ce2b2149c2666a1c12000feaf3809c1dca8516e8d08521c9e8cc2895c11",
         "mve/observer/snapshot_inventory.py": "b11732e5293920cb2b3c2cacdd13bf1455d916cce6296471ac1e4b3dbd173611",
-        "mve/observer/snapshot_render.py": "dbde0630260b7ef05f10b568ed58f0d0d0038510be05d9b0797d5722571f1aea",
-        "mve/observer/snapshot_capture.py": "603554f1b8342834ecf255b5ad5d38f3656dc7215665c10d2aae1184f6d5304e",
+        "mve/observer/snapshot_render.py": "7511fd2364f0eff29aa897db07125b3576f6e94cabfd3291c4a0422b27e50e16",
+        "mve/observer/snapshot_capture.py": "0eb7b20a408a8e1957cc24ce04238579d7f1963b50f777fc859bf77ff6e8258f",
         "mve/observer/snapshots.py": "9c7c5b18d27aafdceffc496bea864981876c1b54244a4049b16c842c9f5a8a8d",
         "mve/observer/native_nulls.py": "1228892143439fe5dbcb689f7927f63f176a16ab2ead0878829c2481154316d1",
         "mve/observer/power.py": "53ec21bbfac12b53d51ef512de456382b2cdc2d8686264c1ebbb094c7ccec0cd",
@@ -4526,9 +4527,14 @@
         "mve/observer/checks/spacing.py": "f77f6056c9fd1cc4ea7f6abfa8e2f4d9670a9c4c26b163f688fe7cb24ea445ba",
         "mve/observer/card.py": "64d190a1a2c1e28e4a03589825635fc8278219b012f637bd62f8e0b973ad862b",
         "mve/observer/refusals.py": "075d9f8303275140b30981b199ec7ceec6e05a9977c41b944ef3cea7a9e52624",
-        "tests/mve/observer/test_snapshot_batch.py": "b9c777c725d3b84f91510657324575551fd5f589f8e2bbc762557c2d14e1044f",
+        "tests/mve/observer/test_snapshot_batch.py": "1212e552045e22ad81d6d585d2040191ce59cc8b207023b531363a5f7c1ad256",
         "tests/mve/observer/test_snapshot_inventory.py": "938dcfee79d5099a53e290bb1359122e4bbdcb2ec7657ca04b881abd96f8ddbf",
-        "tests/mve/observer/test_wo1b_review.py": "ac8378471f59fc980494fa3595e1955f428bfe742748712c96a2b1d670aa0888"
+        "tests/mve/observer/test_wo1b_review.py": "ac8378471f59fc980494fa3595e1955f428bfe742748712c96a2b1d670aa0888",
+        "mve/observer/capture_policy.py": "8374f19f11fb333251a5430def6cf346986636f4dcadc6117727fb379e67c5d0",
+        "mve/observer/capture_evidence.py": "380532fe1a2a2922632a2cc8271b94f22f86ba3bb3dd8bf35a86ea73a64a32da",
+        "mve/observer/renderer_drift.py": "4b0d9e9a51a3a81b13993449dc015a17c9809ee88bbe1ba7aa0e952d3b8d0785",
+        "tests/mve/observer/test_capture_robust.py": "75ce90fb66d7199488c6d702f2c12c682d0ed0f9a1f7f8c0e7fd750d2a5e61cc",
+        "tests/mve/observer/test_snapshot_capture.py": "899ef9e7d22398585c7d8ff4febc10f873755807b600b9d868411f1e528683e5"
       },
       "packet": "WO-1b",
       "schema": "mve-deps-v1",
@@ -4624,6 +4630,36 @@
           "tests/mve/test_isolation.py::test_public_staging_rejects_links_and_worker_timeout",
           "tests/mve/test_open_review_followups.py::test_worker_created_runtime_symlink_cannot_read_private_gold"
         ]
+      },
+      "original_runtime_provenance": {
+        "base_git_sha": "cb8a3fc382d",
+        "source_hashes": {
+          "mve/observer/snapshot_batch.py": "9d11dd28e17bd96d70de9f4d3f9c7dbcf37f215b5d541874d9ddcb247d4da6b5",
+          "mve/observer/snapshot_blocks.py": "187d6ce2b2149c2666a1c12000feaf3809c1dca8516e8d08521c9e8cc2895c11",
+          "mve/observer/snapshot_inventory.py": "b11732e5293920cb2b3c2cacdd13bf1455d916cce6296471ac1e4b3dbd173611",
+          "mve/observer/snapshot_render.py": "dbde0630260b7ef05f10b568ed58f0d0d0038510be05d9b0797d5722571f1aea",
+          "mve/observer/snapshot_capture.py": "603554f1b8342834ecf255b5ad5d38f3656dc7215665c10d2aae1184f6d5304e",
+          "mve/observer/snapshots.py": "9c7c5b18d27aafdceffc496bea864981876c1b54244a4049b16c842c9f5a8a8d",
+          "mve/observer/native_nulls.py": "1228892143439fe5dbcb689f7927f63f176a16ab2ead0878829c2481154316d1",
+          "mve/observer/power.py": "53ec21bbfac12b53d51ef512de456382b2cdc2d8686264c1ebbb094c7ccec0cd",
+          "mve/observer/storage.py": "b719d940cbcc47fbb3ff4dab11475c78c49870db2bcf4222145a1bbf2343e4c3",
+          "mve/observer/config/wo1b_power.json": "7acf8e05e24857ae87f8489b79bc45b8587216982affe7119840fbde17de6b5f",
+          "mve/observer/checks/spacing.py": "f77f6056c9fd1cc4ea7f6abfa8e2f4d9670a9c4c26b163f688fe7cb24ea445ba",
+          "mve/observer/card.py": "64d190a1a2c1e28e4a03589825635fc8278219b012f637bd62f8e0b973ad862b",
+          "mve/observer/refusals.py": "075d9f8303275140b30981b199ec7ceec6e05a9977c41b944ef3cea7a9e52624",
+          "tests/mve/observer/test_snapshot_batch.py": "b9c777c725d3b84f91510657324575551fd5f589f8e2bbc762557c2d14e1044f",
+          "tests/mve/observer/test_snapshot_inventory.py": "938dcfee79d5099a53e290bb1359122e4bbdcb2ec7657ca04b881abd96f8ddbf",
+          "tests/mve/observer/test_wo1b_review.py": "ac8378471f59fc980494fa3595e1955f428bfe742748712c96a2b1d670aa0888"
+        },
+        "note": "Historical completions hash pass metadata containing the original snapshot_render_sha256 and browser version; current runtime pins do not rewrite or invalidate them."
+      },
+      "robust_capture": {
+        "page_load_seconds": 120,
+        "snapshot_seconds": 180,
+        "pass_seconds": 1860,
+        "overall_seconds": 3840,
+        "cluster_versions": "enforced across batches; frozen batch slices are not clusters",
+        "review_handoff": "docs/mve/reviews/WO1B_ROBUST_ASTRA_20260929.md"
       }
     },
     "WO-6c": {
@@ -4635,7 +4671,7 @@
         "mve/money.py": "0503706ad4f3f1f6308e3f9a6b58f68b303b0fc9ded526f818d2aa2390ea3b50",
         "mve/observer/__init__.py": "92c077f8a431ade64207a5687ed3b986a58583f5ddaa8549be8525d2a8fa7da8",
         "mve/observer/__main__.py": "d2078e677f393f5461795f77060dc2b75d32ce79d803e159df685bdfa3acff4a",
-        "mve/observer/capture_c.py": "0514b62ce0e569a5dddae7f8c353e38ac30d68a987344d75baabe285a9273e03",
+        "mve/observer/capture_c.py": "c731143e6d8d4a2459f9cfbebad960c585f877198f6b962d86f0db3003056c32",
         "mve/observer/card.py": "64d190a1a2c1e28e4a03589825635fc8278219b012f637bd62f8e0b973ad862b",
         "mve/observer/checks/__init__.py": "eab831389e70fceb160fad27f9f40485d4564770ae6764a5625631275406158f",
         "mve/observer/checks/calibration.py": "5fede91432db9385f48243cb82be640ecd5b0f90db792a17a08c232cb1ed8338",
@@ -4694,11 +4730,11 @@
         "mve/observer/rescore.py": "c52e88bee50c183e4d0b6c548eb5be82e5415faabc500ffd7e5e67637e09904d",
         "mve/observer/rescore_c.py": "0d06c73793fc0e8e54af0c05314be40ae53bb788cdaf37593d77be501e22af40",
         "mve/observer/run.py": "739f4a0b9db2d05832a8f1f2538d46544b86c1250e16f671fc95cd1eb4c58b3e",
-        "mve/observer/snapshot_batch.py": "9d11dd28e17bd96d70de9f4d3f9c7dbcf37f215b5d541874d9ddcb247d4da6b5",
+        "mve/observer/snapshot_batch.py": "2425bed283a282e40475e6bf8c3514c3457f63a2140b62c0c3c0b200ca429275",
         "mve/observer/snapshot_blocks.py": "187d6ce2b2149c2666a1c12000feaf3809c1dca8516e8d08521c9e8cc2895c11",
-        "mve/observer/snapshot_capture.py": "603554f1b8342834ecf255b5ad5d38f3656dc7215665c10d2aae1184f6d5304e",
+        "mve/observer/snapshot_capture.py": "0eb7b20a408a8e1957cc24ce04238579d7f1963b50f777fc859bf77ff6e8258f",
         "mve/observer/snapshot_inventory.py": "b11732e5293920cb2b3c2cacdd13bf1455d916cce6296471ac1e4b3dbd173611",
-        "mve/observer/snapshot_render.py": "dbde0630260b7ef05f10b568ed58f0d0d0038510be05d9b0797d5722571f1aea",
+        "mve/observer/snapshot_render.py": "7511fd2364f0eff29aa897db07125b3576f6e94cabfd3291c4a0422b27e50e16",
         "mve/observer/snapshots.py": "9c7c5b18d27aafdceffc496bea864981876c1b54244a4049b16c842c9f5a8a8d",
         "mve/observer/storage.py": "b719d940cbcc47fbb3ff4dab11475c78c49870db2bcf4222145a1bbf2343e4c3",
         "mve/preflight/__init__.py": "f89051b5140cc466f5d4bb91e15781427bfbfab80db214040cc089dadf50ab9e",
@@ -4725,9 +4761,13 @@
         "mve/reporting/tables.py": "c34343beca40a950e1e081676cb5be9c559e9ce96c60b5efdafba5c89f1b3ad0",
         "mve/reporting/topology.py": "924aaa1349796d2784e38fb21e62c1351cea84f63530184142968869506045f5",
         "schemas/mve_grounded_card_v3.json": "9951fccd3437b1396aea72bd21cc63518b5fddc610a816455e0858a5f0e4d15b",
-        "tests/mve/observer/test_wo6c.py": "9df258efcf4636fb188a479cde2244dacbc4994a94ce5d3d1b1c8aef6c48db5d",
+        "tests/mve/observer/test_wo6c.py": "c7b9b25e1e48558d5cc373d537290c98287706e138edf09d4188ff21e1336a45",
         "tests/mve/wo6c_guard.py": "6ce0a96bc9d5aad1c4d0030b6e1c914ace5567c31a81c2865530b3940ac27f1b",
-        "mve/observer/config/grounded_v2.json": "d7beee72c969e0cca8c7c47101549a2c941b8938312984dfbef89972c059eeca"
+        "mve/observer/config/grounded_v2.json": "d7beee72c969e0cca8c7c47101549a2c941b8938312984dfbef89972c059eeca",
+        "mve/observer/capture_policy.py": "8374f19f11fb333251a5430def6cf346986636f4dcadc6117727fb379e67c5d0",
+        "mve/observer/capture_evidence.py": "380532fe1a2a2922632a2cc8271b94f22f86ba3bb3dd8bf35a86ea73a64a32da",
+        "tests/mve/observer/test_capture_robust.py": "75ce90fb66d7199488c6d702f2c12c682d0ed0f9a1f7f8c0e7fd750d2a5e61cc",
+        "tests/mve/observer/test_snapshot_capture.py": "899ef9e7d22398585c7d8ff4febc10f873755807b600b9d868411f1e528683e5"
       },
       "inferential": false,
       "owner_approval": "2026-09-29",

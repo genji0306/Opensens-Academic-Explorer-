@@ -16,6 +16,9 @@ import time
 from mve.observer import snapshot_inventory as inv, snapshots as s, storage
 from mve.observer import snapshot_capture as old, snapshot_render as render
 
+from mve.observer import capture_policy as policy
+from mve.observer.capture_evidence import resume_state, snapshot_version
+
 ROOT = inv.ROOT
 RECEIPT_ALLOWANCE = 4 * 1024**2
 
@@ -34,7 +37,7 @@ def write(path, raw):
 
 
 def select_jobs(plan, k, *, size=10, pilot=False):
-    if type(k) is not int or k < 0 or type(size) is not int or not 1 <= size <= 10:
+    if type(k) is not int or k < 0 or type(size) is not int or size != 10:
         raise ValueError("invalid bounded batch")
     all_jobs = inv.jobs(plan)
     if pilot:
@@ -46,6 +49,17 @@ def select_jobs(plan, k, *, size=10, pilot=False):
     if not chosen:
         raise ValueError("batch outside inventory")
     return chosen
+
+
+def selected_jobs(plan, args):
+    if args.drift_from:
+        chosen = [
+            j for j in inv.jobs(plan) if j["block"]["cluster"] == args.drift_cluster
+        ]
+        if not chosen or len(chosen) > 10 or args.pilot or args.prepare_only:
+            raise ValueError("drift requires one bounded cluster")
+        return chosen
+    return select_jobs(plan, args.batch, size=args.batch_size, pilot=args.pilot)
 
 
 def admit(generated, remaining, archive_bytes):
@@ -113,6 +127,9 @@ def save_pass(folder, number, packet):
 
 
 def finish_snapshot(folder, plan, job, first, second, seconds):
+    browser_version = policy.one_version(
+        [first["versions"].get("chrome"), second["versions"].get("chrome")]
+    )
     repeat = dict(
         tolerance=s.PNG_REPEAT_TOLERANCE,
         data_bytes_equal=first["data"] == second["data"],
@@ -128,6 +145,7 @@ def finish_snapshot(folder, plan, job, first, second, seconds):
     files = {p.name: s.sha256(p) for p in folder.iterdir() if p.is_file()}
     receipt = inv.seal(
         dict(
+            browser_version=browser_version,
             plan_sha256=plan["sha256"],
             snapshot_id=job["snapshot_id"],
             block=job["block"]["id"],
@@ -156,6 +174,7 @@ def completed(folder, plan, job):
     audit = r["source_audit"]
     require_audit(audit)
     verify_artifacts(folder, plan, job, r, final=True)
+    snapshot_version(folder, r)
     return True
 
 
@@ -190,6 +209,7 @@ def verify_artifacts(folder, plan, job, r, *, final=False):
 def accept_snapshot(folder, plan, job, candidate, audit):
     require_audit(audit)
     verify_artifacts(folder, plan, job, candidate)
+    snapshot_version(folder, candidate)
     receipt = inv.seal({**candidate, "source_audit": audit})
     if s.tree_bytes(folder) + len(inv.encoded(receipt)) > inv.SNAPSHOT_CAP:
         raise ValueError("snapshot byte envelope exceeded")
@@ -255,7 +275,7 @@ def worker(args, out):
     private = Path(os.environ["MVE_WO1_PRIVATE_DIR"])
     old.private_paths(private)
     plan = inv.load(args.plan)
-    chosen = select_jobs(plan, args.batch, size=args.batch_size, pilot=args.pilot)
+    chosen = selected_jobs(plan, args)
     snapshots = out.parent / "snapshots"
     chosen = [j for j in chosen if not completed(snapshots / j["snapshot_id"], plan, j)]
     for job in chosen:
@@ -269,8 +289,16 @@ def worker(args, out):
         # Browser profile is under the private runtime, pass dir is only a name.
         def capture(context, root, job, versions, ocr):
             started = time.monotonic()
-            packet = render.capture_block(context, root, job, versions, ocr)
-            save_pass(snapshots / job["snapshot_id"], number, packet)
+            with policy.deadline(args.page_load_timeout + policy.POST_LOAD_SECONDS):
+                packet = render.capture_block(
+                    context,
+                    root,
+                    job,
+                    versions,
+                    ocr,
+                    page_load_timeout=args.page_load_timeout,
+                )
+                save_pass(snapshots / job["snapshot_id"], number, packet)
             packet["seconds"] = time.monotonic() - started
             return packet
 
@@ -294,6 +322,11 @@ def worker(args, out):
         finally:
             signal.setitimer(signal.ITIMER_REAL, 0)
             signal.signal(signal.SIGALRM, previous)
+    browser_version = policy.one_version(
+        p["versions"].get("chrome")
+        for packets_in_pass in packets
+        for p in packets_in_pass
+    )
     elapsed = time.monotonic() - began
     receipts = [
         finish_snapshot(
@@ -304,6 +337,7 @@ def worker(args, out):
     write(
         out / "capture.json",
         dict(
+            browser_version=browser_version,
             snapshots=len(receipts),
             seconds=elapsed,
             seconds_per_snapshot=elapsed / max(1, len(receipts)),
@@ -332,32 +366,53 @@ def parse_args(argv=None):
     )
     p.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
     p.add_argument("--output", help=argparse.SUPPRESS)
-    p.add_argument("--timeout-per-pass", type=int, default=300)
+    policy.options(p)
+    p.add_argument("--drift-from", type=Path)
+    p.add_argument("--drift-output", type=Path)
+    p.add_argument("--drift-cluster")
     args = p.parse_args(argv)
-    if not 1 <= args.timeout_per_pass <= 400:
-        p.error("pass timeout must be 1..400 seconds")
+    try:
+        policy.bounds(args, 10)
+    except ValueError as exc:
+        p.error(str(exc))
     return args
 
 
 def run(args):
     plan = inv.load(args.plan)
-    chosen = select_jobs(plan, args.batch, size=args.batch_size, pilot=args.pilot)
+    chosen = selected_jobs(plan, args)
     cache = inv.data.verify_cache(args.cache)
     if cache != plan["cache"]:
         raise ValueError("cache provenance drift")
     base = storage.local(Path("mve/generated") / ("wo1b-" + plan["sha256"][:16]))
+    if bool(args.drift_from) != bool(args.drift_output):
+        raise ValueError("both drift paths required")
+    if args.drift_from:
+        from mve.observer import renderer_drift
+
+        args.drift_from = args.drift_from.expanduser().resolve()
+        renderer_drift.accepted_cluster(args.drift_from, plan, chosen)
+        base = storage.local(args.drift_output)
+        if (
+            base == args.drift_from
+            or base.is_relative_to(args.drift_from)
+            or args.drift_from.is_relative_to(base)
+        ):
+            raise ValueError("drift output overlaps accepted evidence")
+        if not args.worker and base.exists():
+            raise ValueError("immutable drift output exists")
     if args.worker:
         out = old.output_path(ROOT, args.output)
         if out.parent != base:
             raise ValueError("worker output identity mismatch")
         return worker(args, out)
+    load_start = policy.load(args.max_load)
     with storage.lock():
+        if args.drift_from and base.exists():
+            raise ValueError("immutable drift output exists")
         snapshots = storage.local(base.relative_to(ROOT) / "snapshots")
-        remaining = [
-            j
-            for j in inv.jobs(plan)
-            if not completed(snapshots / j["snapshot_id"], plan, j)
-        ]
+        state = resume_state(base, plan)
+        remaining = chosen if args.drift_from else state["remaining"]
         chosen = [
             j
             for j in chosen
@@ -367,6 +422,15 @@ def run(args):
             name: Path(getattr(args, name)).expanduser().resolve() for name in s.COMMITS
         }
         projected = admit(ROOT / "mve/generated", len(remaining), archive_size(repos))
+        version_start = (
+            policy.browser_version(args.chrome)
+            if not args.prepare_only and chosen
+            else None
+        )
+        for j in chosen:
+            prior = state["cluster_versions"].get(j["block"]["cluster"])
+            if prior and version_start:
+                policy.one_version([prior, version_start])
         snapshots.mkdir(parents=True, exist_ok=True)
         prefix = f'{"pilot" if args.pilot else "batch"}-{args.batch:03d}-'
         attempt = len(list(base.glob(prefix + "*")))
@@ -377,6 +441,11 @@ def run(args):
         stage = out / "stage"
         archive_before = None
         receipt = dict(
+            load_start=load_start,
+            browser_version_start=version_start,
+            browser_version=None,
+            bounds=policy.bounds(args, 10),
+            quarantine=state["quarantine"],
             plan_sha256=plan["sha256"],
             batch=args.batch,
             mode="offline",
@@ -397,7 +466,8 @@ def run(args):
                 receipt["status"] = "already_complete"
             else:
                 # Old parent supplies OS network/write denial, fresh runtime,
-                # process-group cleanup, fixed log destination and 900s wall cap.
+                # process-group cleanup and a bounded log. This packet supplies its
+                # derived overall ceiling, leaving the original WO-1 default intact.
                 args.worker_module = "mve.observer.snapshot_batch"
                 args.worker_args = [
                     "--plan",
@@ -409,6 +479,16 @@ def run(args):
                     "--cache",
                     str(args.cache.expanduser().resolve()),
                 ]
+                args.worker_args += ["--page-load-timeout", str(args.page_load_timeout)]
+                if args.drift_from:
+                    args.worker_args += [
+                        "--drift-from",
+                        str(args.drift_from),
+                        "--drift-output",
+                        str(args.drift_output),
+                        "--drift-cluster",
+                        args.drift_cluster,
+                    ]
                 if args.pilot:
                     args.worker_args.append("--pilot")
                 args.repeat = False
@@ -417,8 +497,15 @@ def run(args):
                 args.sandbox_output = base
                 args.log_limit = 65536
                 old.isolated_capture(args, out, repos, receipt)
+                capture = json.loads((out / "capture.json").read_text())
+                receipt["browser_version"] = policy.one_version(
+                    [version_start, capture["browser_version"]]
+                    + [r["browser_version"] for r in capture["candidates"]]
+                )
                 receipt["status"] = "captured"
         finally:
+            receipt["load_end"] = policy.load()
+            policy.end_version(receipt, args.chrome, version_start)
             after = s.isolation_state(repos)
             receipt["source_repos_unchanged"] = before == after
             receipt["source_audit_before_sha256"] = s.digest(before)
@@ -436,6 +523,8 @@ def run(args):
                 or not receipt["archive_unchanged"]
             ):
                 raise ValueError("source drift")
+        if receipt["status"] == "renderer_drift":
+            raise ValueError("renderer version changed during batch")
         if receipt["status"] == "captured":
             capture = json.loads((out / "capture.json").read_text())
             candidates = capture["candidates"]
@@ -457,6 +546,7 @@ def run(args):
             write(
                 out / "accepted.json",
                 dict(
+                    browser_version=receipt["browser_version"],
                     snapshots=len(chosen),
                     bytes=sum(
                         s.tree_bytes(snapshots / j["snapshot_id"]) for j in chosen
@@ -466,6 +556,11 @@ def run(args):
                     seconds_per_snapshot=capture["seconds_per_snapshot"],
                 ),
             )
+        if args.drift_from and receipt["status"] == "captured":
+            drift = renderer_drift.compare(args.drift_from, base, plan, chosen)
+            write(out / "drift.json", drift)
+            if not drift["passed"]:
+                raise ValueError("renderer drift exceeds WO-1 tolerance")
         print(
             json.dumps(
                 {
@@ -482,7 +577,7 @@ def main(argv=None):
         return run(parse_args(argv))
     except (ValueError, OSError, KeyError) as exc:
         # No local paths, inherited environment or exception text in stdout.
-        print("WO-1b refused: " + type(exc).__name__)
+        print("WO-1b refused: " + getattr(exc, "label", type(exc).__name__))
         return 2
 
 

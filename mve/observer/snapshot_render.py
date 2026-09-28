@@ -16,7 +16,7 @@ from urllib.parse import unquote, urlsplit
 
 from PIL import Image
 
-from mve.observer import snapshots as s
+from mve.observer import snapshots as s, capture_policy as policy
 
 ORIGIN = "https://mve.invalid"
 # Fixed native drawing changes: one spectral sample, matched Ulam palette, and
@@ -388,6 +388,7 @@ def run_browser(dist, out, chrome, ocr, private, *, jobs=None, capture=None):
                 "Pillow": version("Pillow"),
                 "adapter": "WO-1-v1",
                 "snapshot_render_sha256": s.sha256(Path(__file__)),
+                "capture_policy_sha256": s.sha256(Path(policy.__file__)),
                 "viewport": [1440, 1100],
                 "device_scale_factor": 1,
                 "gpu": "SwiftShader",
@@ -395,7 +396,9 @@ def run_browser(dist, out, chrome, ocr, private, *, jobs=None, capture=None):
                 "timezone": "UTC",
             }
             if jobs is not None:
-                return [capture(context, out, j, versions, ocr) for j in jobs]
+                packets = [capture(context, out, j, versions, ocr) for j in jobs]
+                policy.one_version([versions["chrome"], context.browser.version])
+                return packets
             entries = [
                 capture_one(context, out, j, versions, ocr) for j in s.capture_jobs()
             ]
@@ -463,11 +466,15 @@ def block_transform(filename, text):
     return text
 
 
-def capture_block(context, root, job, versions, ocr):
+def capture_block(
+    context, root, job, versions, ocr, *, page_load_timeout=policy.PAGE_LOAD_SECONDS
+):
     """Native capture; return full pages only in RAM for the WO-1 repeat check."""
     from mve.observer import snapshot_inventory as inv
     import hashlib
 
+    if not 1 <= page_load_timeout <= policy.PAGE_LOAD_SECONDS:
+        raise ValueError("bounded page load timeout required")
     block = job["block"]
     page = context.new_page()
     try:
@@ -488,7 +495,9 @@ def capture_block(context, root, job, versions, ocr):
             "polar-ulam": "index.html?spiral=ulam#polar",
             "space-08": "geometry.html#primesphere",
         }[module]
-        page.goto(ORIGIN + "/" + url, wait_until="load")
+        page.goto(
+            ORIGIN + "/" + url, wait_until="load", timeout=page_load_timeout * 1000
+        )
         # GUE selector keeps the Dyson field's own display on injected levels,
         # rather than its unrelated default zeta list. Side histogram is selected.
         if module == "field-dyson":
@@ -545,7 +554,7 @@ def capture_block(context, root, job, versions, ocr):
             crop=crop,
             masks=masks,
             state=state,
-            versions=versions,
+            versions={**versions, "page_load_timeout_seconds": page_load_timeout},
         )
     finally:
         page.close()

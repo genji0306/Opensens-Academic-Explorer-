@@ -1,0 +1,140 @@
+{
+  "manifest_sha256": "d286a45abc8187fd06bd63a1957d34c809ca0c82abaf9aad8485ef3b9abe7620",
+  "accepted_snapshots": 70,
+  "remaining_snapshots": 210,
+  "pass_browser_versions": {
+    "153.0.8010.54": 140
+  },
+  "original_render_hashes": {
+    "dbde0630260b7ef05f10b568ed58f0d0d0038510be05d9b0797d5722571f1aea": 140
+  },
+  "batch7_snapshot_ids": [
+    "b197497000cfd8ba4052de9b",
+    "8509c7ba037b1ec14d71cb93",
+    "e54f3a5322a88dd3310c7ff1",
+    "6b955676b2935ed8036b6fed",
+    "cddc3b903483ebf9eca5937a",
+    "56c4f0a7dfb379bc6f117627",
+    "29c634c2c655302ab80f86b9",
+    "670f7deb2556737eac8699f5",
+    "b71437227d935c5c7b2cb1cd",
+    "a4d056876dac61967589a542"
+  ],
+  "batch7_clusters": {
+    "spectral-contrast-2": 4,
+    "field-dyson-ordinary-0": 4,
+    "field-dyson-ordinary-3": 2
+  },
+  "quarantine": [
+    {
+      "attempt": "batch-007-000",
+      "record_sha256": "f7fb5c8a7a9bba144e0db1d7ca5513c86e5dd657d8f9002e7297393fbded9dfd",
+      "snapshot_ids": [
+        "29c634c2c655302ab80f86b9",
+        "56c4f0a7dfb379bc6f117627",
+        "670f7deb2556737eac8699f5",
+        "6b955676b2935ed8036b6fed",
+        "8509c7ba037b1ec14d71cb93",
+        "a4d056876dac61967589a542",
+        "b197497000cfd8ba4052de9b",
+        "b71437227d935c5c7b2cb1cd",
+        "cddc3b903483ebf9eca5937a",
+        "e54f3a5322a88dd3310c7ff1"
+      ]
+    },
+    {
+      "attempt": "batch-007-001",
+      "record_sha256": "f462e698ef599d1e7e039aded3dcbefb03c7a6b6adbbfa122778cec7bc59c9bd",
+      "snapshot_ids": [
+        "29c634c2c655302ab80f86b9",
+        "56c4f0a7dfb379bc6f117627",
+        "670f7deb2556737eac8699f5",
+        "6b955676b2935ed8036b6fed",
+        "8509c7ba037b1ec14d71cb93",
+        "a4d056876dac61967589a542",
+        "b197497000cfd8ba4052de9b",
+        "b71437227d935c5c7b2cb1cd",
+        "cddc3b903483ebf9eca5937a",
+        "e54f3a5322a88dd3310c7ff1"
+      ]
+    }
+  ],
+  "quarantine_bytes": 913377,
+  "evidence_bytes": 5232526,
+  "source_evidence_tree_digest": "e709465c9c7a53a17397f8e31d29aaa8a8a75240dfaa08c361afbaf9aeb52598",
+  "admission": {
+    "existing_bytes": 7601733,
+    "remaining_snapshots": 210,
+    "snapshot_cap": 524288,
+    "archive_bytes": 19004225,
+    "receipt_allowance": 4194304,
+    "projected_bytes": 140900742,
+    "cap_bytes": 209715200
+  },
+  "local_generated_bytes": 0,
+  "free_bytes": 117145600000,
+  "validation": {
+    "focused": "186 passed, 2 skipped in 64.72 seconds",
+    "coverage": {
+      "mve/observer/capture_c.py": {
+        "changed_executable_lines": 20,
+        "covered_changed_lines": 20,
+        "combined_coverage_percent": 92.85714285714286,
+        "missing_changed_lines": []
+      },
+      "mve/observer/capture_evidence.py": {
+        "changed_executable_lines": 65,
+        "covered_changed_lines": 65,
+        "combined_coverage_percent": 100.0,
+        "missing_changed_lines": []
+      },
+      "mve/observer/capture_policy.py": {
+        "changed_executable_lines": 70,
+        "covered_changed_lines": 70,
+        "combined_coverage_percent": 100.0,
+        "missing_changed_lines": []
+      },
+      "mve/observer/renderer_drift.py": {
+        "changed_executable_lines": 41,
+        "covered_changed_lines": 40,
+        "combined_coverage_percent": 96.49122807017544,
+        "missing_changed_lines": [
+          88
+        ]
+      },
+      "mve/observer/snapshot_batch.py": {
+        "changed_executable_lines": 63,
+        "covered_changed_lines": 62,
+        "combined_coverage_percent": 97.91183294663573,
+        "missing_changed_lines": [
+          389
+        ]
+      },
+      "mve/observer/snapshot_capture.py": {
+        "changed_executable_lines": 1,
+        "covered_changed_lines": 1,
+        "combined_coverage_percent": 95.91078066914498,
+        "missing_changed_lines": []
+      },
+      "mve/observer/snapshot_render.py": {
+        "changed_executable_lines": 8,
+        "covered_changed_lines": 8,
+        "combined_coverage_percent": 97.4910394265233,
+        "missing_changed_lines": []
+      }
+    },
+    "changed_lines_covered": 266,
+    "changed_executable_lines": 268,
+    "initial_tests_first": "New regression module failed importing missing capture_policy before implementation; offline regression tests cover the capture behavior and refusal paths.",
+    "full_suite": "1236 passed, 7 nested-sandbox failures, 4 skipped in 120.64 seconds",
+    "nested_sandbox_failures": [
+      "tests/mve/test_formalizer_g3.py::test_real_lean_repairs_statement_without_proof",
+      "tests/mve/test_formalizer_runtime.py::test_native_targets_compile_without_proofs",
+      "tests/mve/test_formalizer_runtime.py::test_typecheck_record_keeps_proof_separate",
+      "tests/mve/test_formalizer_runtime.py::test_real_lean_typechecks_from_relocated_project",
+      "tests/mve/test_isolation.py::test_real_subprocess_cannot_read_gold_or_connect",
+      "tests/mve/test_isolation.py::test_public_staging_rejects_links_and_worker_timeout",
+      "tests/mve/test_open_review_followups.py::test_worker_created_runtime_symlink_cannot_read_private_gold"
+    ]
+  }
+}

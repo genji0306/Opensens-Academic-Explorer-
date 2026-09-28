@@ -16,7 +16,8 @@ from mve.observer import development_c as dev, storage, snapshots as s
 from mve.observer import snapshot_capture as old, snapshot_render as render
 from mve.observer import snapshot_batch as batch, render_c
 from mve.observer.snapshot_inventory import seal
-from mve.observer.refusals import Parser, Refusal
+from mve.observer import capture_policy as policy
+from mve.observer.refusals import Parser
 
 ROOT = dev.ROOT
 BASE = Path("mve/generated/wo6c-pilot/captures")
@@ -72,6 +73,8 @@ def plan():
                     (dev.ROOT / "mve/observer" / name).read_bytes()
                 ).hexdigest()
                 for name in (
+                    "capture_policy.py",
+                    "capture_evidence.py",
                     "capture_c.py",
                     "render_c.py",
                     "snapshot_render.py",
@@ -128,8 +131,16 @@ def worker(args, out, p, jobs):
 
         def capture(context, root, j, versions, ocr):
             context.route("**/*", render_c.handler(dist))
-            packet = render.capture_block(context, root, j, versions, ocr)
-            batch.save_pass(snapshots / j["snapshot_id"], number, packet)
+            with policy.deadline(args.page_load_timeout + policy.POST_LOAD_SECONDS):
+                packet = render.capture_block(
+                    context,
+                    root,
+                    j,
+                    versions,
+                    ocr,
+                    page_load_timeout=args.page_load_timeout,
+                )
+                batch.save_pass(snapshots / j["snapshot_id"], number, packet)
             return packet
 
         def expired(signum, frame):
@@ -152,13 +163,20 @@ def worker(args, out, p, jobs):
         finally:
             signal.setitimer(signal.ITIMER_REAL, 0)
             signal.signal(signal.SIGALRM, previous)
+    browser_version = policy.one_version(
+        packet["versions"].get("chrome") for part in packets for packet in part
+    )
     candidates = [
         batch.finish_snapshot(snapshots / j["snapshot_id"], p, j, a, b, 0)
         for j, a, b in zip(jobs, *packets)
     ]
     batch.write(
         out / "capture.json",
-        dict(candidates=candidates, seconds=time.monotonic() - began),
+        dict(
+            browser_version=browser_version,
+            candidates=candidates,
+            seconds=time.monotonic() - began,
+        ),
     )
     return 0
 
@@ -174,6 +192,8 @@ def run(args):
         if args.output != str(out.relative_to(ROOT)):
             raise ValueError("worker output mismatch")
         return worker(args, out, p, jobs)
+    load_start = policy.load(args.max_load)
+    limits = policy.bounds(args, 4)
     with storage.lock():
         if out.exists():
             raise ValueError("immutable capture attempt exists")
@@ -182,13 +202,24 @@ def run(args):
             if (snapshots / j["snapshot_id"]).exists():
                 raise ValueError("immutable snapshot exists")
         storage.disk_guard(storage.local(storage.GENERATED), 80 * 1024**2)
+        version_start = (
+            policy.browser_version(args.chrome) if not args.prepare_only else None
+        )
         out.mkdir(parents=True)
         snapshots.mkdir(exist_ok=True)
         repos = {k: Path(getattr(args, k)).expanduser().resolve() for k in s.COMMITS}
         before = s.isolation_state(repos)
         stage = out / "stage"
         archive_before = None
-        receipt = dict(status="failed", hosted_calls=0, plan_sha256=p["sha256"])
+        receipt = dict(
+            status="failed",
+            hosted_calls=0,
+            plan_sha256=p["sha256"],
+            load_start=load_start,
+            bounds=limits,
+            browser_version=None,
+            browser_version_start=version_start,
+        )
         try:
             for name, repo in repos.items():
                 batch.archive_repo(
@@ -201,14 +232,26 @@ def run(args):
                 receipt["status"] = "prepared_only"
             else:
                 args.worker_module = "mve.observer.capture_c"
-                args.worker_args = ["--batch", str(args.batch)]
+                args.worker_args = [
+                    "--batch",
+                    str(args.batch),
+                    "--page-load-timeout",
+                    str(args.page_load_timeout),
+                ]
                 args.output = str(out.relative_to(ROOT))
                 args.repeat = False
                 args.sandbox_output = base
                 args.log_limit = 65536
                 old.isolated_capture(args, out, repos, receipt)
+                captured = json.loads((out / "capture.json").read_text())
+                receipt["browser_version"] = policy.one_version(
+                    [version_start, captured["browser_version"]]
+                    + [r["browser_version"] for r in captured["candidates"]]
+                )
                 receipt["status"] = "captured"
         finally:
+            receipt["load_end"] = policy.load()
+            policy.end_version(receipt, args.chrome, version_start)
             after = s.isolation_state(repos)
             receipt.update(
                 source_repos_unchanged=before == after,
@@ -221,6 +264,8 @@ def run(args):
                 shutil.rmtree(stage)
             batch.write(out / "receipt.json", receipt)
             batch.require_audit(receipt)
+        if receipt["status"] == "renderer_drift":
+            raise ValueError("renderer version changed during batch")
         if receipt["status"] == "captured":
             candidates = json.loads((out / "capture.json").read_text())["candidates"]
             if len(candidates) != len(jobs):
@@ -241,7 +286,7 @@ def main(argv=None):
     p.add_argument("--prepare-only", action="store_true")
     p.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
     p.add_argument("--output", help=argparse.SUPPRESS)
-    p.add_argument("--timeout-per-pass", type=int, default=300)
+    policy.options(p)
     for key, value in old.DEFAULT_REPOS.items():
         p.add_argument("--" + key, default=value)
     p.add_argument(
@@ -250,13 +295,10 @@ def main(argv=None):
     )
     a = p.parse_args(argv)
     try:
-        if not 1 <= a.timeout_per_pass <= 400:
-            raise ValueError("bounded timeout required")
+        policy.bounds(a, 4)
         return run(a)
     except Exception as exc:
-        print(
-            "WO-6 refused: " + (exc.label if isinstance(exc, Refusal) else "source_pin")
-        )
+        print("WO-6 refused: " + getattr(exc, "label", "source_pin"))
         return 2
 
 

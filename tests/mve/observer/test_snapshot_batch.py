@@ -28,7 +28,7 @@ def fake_packet(job, raw):
         crop=[0, 0, 640, 400],
         masks=[],
         state={"camera": "fixture"},
-        versions={"adapter": "fixture"},
+        versions={"adapter": "fixture", "chrome": "153.fixture"},
     )
 
 
@@ -208,6 +208,7 @@ def test_native_redraw_data_drift(tmp_path):
 def fake_batch_env(tmp_path, monkeypatch):
     from mve.observer import snapshots as s
 
+    monkeypatch.setattr(batch.policy, "browser_version", lambda _: "153.fixture")
     monkeypatch.setattr(batch, "ROOT", tmp_path)
     monkeypatch.setattr(batch.storage, "WORKTREE", tmp_path)
     monkeypatch.setattr(
@@ -236,7 +237,7 @@ def fake_batch_env(tmp_path, monkeypatch):
     monkeypatch.setattr(
         batch.render,
         "capture_block",
-        lambda context, root, job, versions, ocr: fake_packet(job, job["raw"]),
+        lambda context, root, job, versions, ocr, **kw: fake_packet(job, job["raw"]),
     )
 
     def isolated(args, out, repos, receipt):

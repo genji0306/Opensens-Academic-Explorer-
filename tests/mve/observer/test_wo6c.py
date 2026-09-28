@@ -134,7 +134,9 @@ def test_live_locked_before_any_work(monkeypatch):
     with monkeypatch.context() as m:
         m.setattr(pilot_c, "WO6C_APPROVAL", None)
         with pytest.raises(Refusal, match="owner_approval"):
-            pilot_c.execute(live=True, owner_approval="2026-09-29", reviewed_head="a" * 40)
+            pilot_c.execute(
+                live=True, owner_approval="2026-09-29", reviewed_head="a" * 40
+            )
     assert pilot_c.WO6C_APPROVAL == "2026-09-29"
     with pytest.raises(Refusal, match="owner_approval"):
         pilot_c.execute(live=True, owner_approval="2026-09-28", reviewed_head="a" * 40)
@@ -376,7 +378,7 @@ def fake_packet(j):
         crop=[0, 0, 640, 400],
         masks=[],
         state={},
-        versions={},
+        versions={"chrome": "153.fixture"},
     )
 
 
@@ -453,8 +455,11 @@ def capture_env(sandbox, monkeypatch):
         atlas="atlas",
         lab="lab",
         chrome="unused",
-        timeout_per_pass=300,
+        timeout_per_pass=780,
+        page_load_timeout=120,
+        max_load=None,
     )
+    monkeypatch.setattr(cap.policy, "browser_version", lambda _: "153.fixture")
     monkeypatch.setattr(cap.s, "isolation_state", lambda repos: {"unchanged": True})
     monkeypatch.setattr(
         batch,
@@ -470,7 +475,9 @@ def capture_env(sandbox, monkeypatch):
 
     monkeypatch.setattr(sr, "run_browser", browser)
     monkeypatch.setattr(
-        sr, "capture_block", lambda context, root, j, versions, ocr: fake_packet(j)
+        sr,
+        "capture_block",
+        lambda context, root, j, versions, ocr, **kw: fake_packet(j),
     )
     monkeypatch.setenv("MVE_WO1_SANDBOX_WORKER", "1")
     monkeypatch.setenv("MVE_WO1_PRIVATE_DIR", "/private/tmp/mvewo1-fixture")
@@ -774,3 +781,36 @@ def test_power_cli_comparative_without_prospective_data(tmp_path, monkeypatch):
         power.main(["--comparative"])
     with pytest.raises(SystemExit):
         power.main(["--comparative", "--prospective", "--output", str(output)])
+
+
+@pytest.mark.parametrize("change", ["end", "passes", "load"])
+def test_capture_robust_refusals(capture_env, sandbox, monkeypatch, change):
+    a = capture_env
+    a.prepare_only = False
+    if change == "load":
+        a.max_load = 10
+        monkeypatch.setattr(cap.policy.os, "getloadavg", lambda: (70.0, 60.0, 50.0))
+    elif change == "end":
+        values = iter(["153.fixture", "154.fixture"])
+        monkeypatch.setattr(cap.policy, "browser_version", lambda _: next(values))
+    else:
+        count = 0
+
+        def capture(context, root, j, versions, ocr, **kw):
+            nonlocal count
+            count += 1
+            packet = fake_packet(j)
+            packet["versions"]["chrome"] = (
+                "153.fixture" if count <= 4 else "154.fixture"
+            )
+            return packet
+
+        monkeypatch.setattr(sr, "capture_block", capture)
+    with pytest.raises(ValueError):
+        cap.run(a)
+    assert not list(sandbox.rglob("complete.json"))
+    if change == "load":
+        assert not (sandbox / "mve").exists()
+    else:
+        r = json.loads(next(sandbox.rglob("receipt.json")).read_text())
+        assert "load_start" in r and "load_end" in r and r["source_repos_unchanged"]
