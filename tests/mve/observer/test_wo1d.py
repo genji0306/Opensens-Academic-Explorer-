@@ -279,12 +279,15 @@ def test_quarantine_admission_allows_new_plan_recapture(tmp_path, monkeypatch):
 
     base, args = old_quarantine_sources(tmp_path, monkeypatch)
     quarantine_c.run(args)
-    new_plan = capture_c.plan()["sha256"]
+    new_plan = capture_c.plan()
     (base / "native/0").mkdir()
-    (base / "native/0/receipt.json").write_text(json.dumps({"plan_sha256": new_plan}))
+    (base / "native/0/plan.json").write_text(json.dumps(new_plan))
+    (base / "native/0/receipt.json").write_text(
+        json.dumps({"plan_sha256": new_plan["sha256"]})
+    )
     (base / "snapshots" / OLD_IDS[0]).mkdir()
     (base / "snapshots" / OLD_IDS[0] / "complete.json").write_text(
-        json.dumps({"plan_sha256": new_plan})
+        json.dumps({"plan_sha256": new_plan["sha256"]})
     )
     assert quarantine_c.admission(base)[0]["moves"] == 20
 

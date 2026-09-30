@@ -4523,7 +4523,7 @@
         "tests/mve/observer/test_observer_run.py": "79b38df37ac68bba9642553c808bfa18b604a3877e3defbd4eed10dc60de9fd5",
         "tests/mve/observer/test_pilot.py": "56ed30c9bec9e455216c850ae4c9220b73d1a54351421041e6c07d0d341ddd55",
         "tests/mve/observer/test_wo6b.py": "8d0e4d97ad6864db78bca1210e9127bb4e51214b738f09f92595b09ee9702948",
-        "mve/observer/capture_policy.py": "b6ec09d5465f92ae8e916947cbef67b1170443476f6456ca26e744f8ae24645a"
+        "mve/observer/capture_policy.py": "892a8e8218071886a2e48c807e3164ade5e85b955500e5f18789820206d8a8e8"
       },
       "native_generator_sources": {
         "commit": "97b1e48cb1075aea431cf754cc84f2eeabb3dfb9",
@@ -4564,7 +4564,7 @@
         "tests/mve/observer/test_snapshot_batch.py": "1212e552045e22ad81d6d585d2040191ce59cc8b207023b531363a5f7c1ad256",
         "tests/mve/observer/test_snapshot_inventory.py": "938dcfee79d5099a53e290bb1359122e4bbdcb2ec7657ca04b881abd96f8ddbf",
         "tests/mve/observer/test_wo1b_review.py": "ac8378471f59fc980494fa3595e1955f428bfe742748712c96a2b1d670aa0888",
-        "mve/observer/capture_policy.py": "b6ec09d5465f92ae8e916947cbef67b1170443476f6456ca26e744f8ae24645a",
+        "mve/observer/capture_policy.py": "892a8e8218071886a2e48c807e3164ade5e85b955500e5f18789820206d8a8e8",
         "mve/observer/capture_evidence.py": "5f5548c0dc9f87b6b265fb46a59f273b9e092f0abd6d677099b52b5f3c295334",
         "mve/observer/renderer_drift.py": "4b0d9e9a51a3a81b13993449dc015a17c9809ee88bbe1ba7aa0e952d3b8d0785",
         "tests/mve/observer/test_capture_robust.py": "25fe21de099ca44a26beb36e80b048bf77c2fb14d45e103345d844925aa9e185",
@@ -4704,13 +4704,13 @@
         "mve/observer/renderer_pin.py": "22a46a71c81fe5c658cf4507e7260c4da85a2cc0cc3be4d01ab177c106c55d59",
         "mve/observer/quarantine_partial.py": "fcd88938af3fb67ce1a6b6d33ef916b3b2d21342bc324a22e8e7311f6a8419f5",
         "tests/mve/observer/test_wo1c.py": "c1d0d007c281f5230b57bdbdc88610093c46e239193cfc8fdb5c4f5fb249ec4f",
-        "tests/mve/observer/test_wo1d.py": "2b2c67121305cac960164016e77feb136871334ef2b0311c6a4a616179c3e324",
+        "tests/mve/observer/test_wo1d.py": "cb6646f15e5fad89682302a81479998d2fa290f19a556a43cf2906f12147d270",
         "mve/budget.py": "f02ad5923cb25e16fd751f552f73a0989305d3855710c0fd3b2583c77e91ef51",
         "mve/money.py": "0503706ad4f3f1f6308e3f9a6b58f68b303b0fc9ded526f818d2aa2390ea3b50",
         "mve/observer/__init__.py": "92c077f8a431ade64207a5687ed3b986a58583f5ddaa8549be8525d2a8fa7da8",
         "mve/observer/__main__.py": "d2078e677f393f5461795f77060dc2b75d32ce79d803e159df685bdfa3acff4a",
-        "mve/observer/capture_c.py": "4fcfe196b0c39cbc3075acc5db6784593d0b20bd3a4833b5a4c62a1a9dd0a52f",
-        "mve/observer/quarantine_c.py": "7fa645bb6c859effd1b9166e949e43f43d3b4ec5d4ae0c7136d4ce08a998f3d4",
+        "mve/observer/capture_c.py": "046e0e6c4b3508380312929beb56e0ae58f8b3840aacc8706fb524816f1db4c4",
+        "mve/observer/quarantine_c.py": "54c851c3acc879c2da6034d1a10ed4b41f80346e499eb171ae9e3f0e54da0eca",
         "mve/observer/card.py": "64d190a1a2c1e28e4a03589825635fc8278219b012f637bd62f8e0b973ad862b",
         "mve/observer/checks/__init__.py": "eab831389e70fceb160fad27f9f40485d4564770ae6764a5625631275406158f",
         "mve/observer/checks/calibration.py": "5fede91432db9385f48243cb82be640ecd5b0f90db792a17a08c232cb1ed8338",
@@ -4803,11 +4803,11 @@
         "tests/mve/observer/test_wo6c.py": "b4d16099f82a07013b2a08098a7efb696025026d6ba806eb3db6e79b3f7f1973",
         "tests/mve/wo6c_guard.py": "6ce0a96bc9d5aad1c4d0030b6e1c914ace5567c31a81c2865530b3940ac27f1b",
         "mve/observer/config/grounded_v2.json": "d7beee72c969e0cca8c7c47101549a2c941b8938312984dfbef89972c059eeca",
-        "mve/observer/capture_policy.py": "b6ec09d5465f92ae8e916947cbef67b1170443476f6456ca26e744f8ae24645a",
+        "mve/observer/capture_policy.py": "892a8e8218071886a2e48c807e3164ade5e85b955500e5f18789820206d8a8e8",
         "mve/observer/capture_evidence.py": "5f5548c0dc9f87b6b265fb46a59f273b9e092f0abd6d677099b52b5f3c295334",
         "tests/mve/observer/test_capture_robust.py": "25fe21de099ca44a26beb36e80b048bf77c2fb14d45e103345d844925aa9e185",
         "tests/mve/observer/test_snapshot_capture.py": "1049a364abaa7115fae174f1b8d099790b7ff8adefce01a3bf1fc9ebb5208d03",
-        "tests/mve/observer/test_wo1e.py": "7a17ac3bfc8fafa63c0b23bf10a49daa8e42539eecbc5dc8902173ab1f96f39a"
+        "tests/mve/observer/test_wo1e.py": "6c2884925ba3eaf71c06b79e6435aef5f17b35ff4e879d9aa1d265ae31f9daee"
       },
       "inferential": false,
       "owner_approval": "2026-09-29",

@@ -245,6 +245,9 @@ def run(args):
             batch.write(out / "sources.json", check_stage(stage))
             archive_before = s.tree_listing(stage)
             batch.write(out / "plan.json", p)
+            if not args.prepare_only:
+                # The worker checks quarantine admission before its first pass.
+                batch.write(out / "receipt.json", receipt)
             if args.prepare_only:
                 receipt["status"] = "prepared_only"
             else:
@@ -299,7 +302,13 @@ def run(args):
                 audit_failure = exc
                 receipt["audit_failure_type"] = type(exc).__name__
                 receipt["audit_failure_label"] = getattr(exc, "label", "internal_error")
-            batch.write(out / "receipt.json", receipt)
+            receipt_path = out / "receipt.json"
+            if receipt_path.exists():
+                final_path = out / "receipt-final.json"
+                batch.write(final_path, receipt)
+                os.replace(final_path, receipt_path)
+            else:
+                batch.write(receipt_path, receipt)
         if receipt["status"] == "renderer_pin":
             raise policy.RendererPinError("renderer bundle changed during batch")
         if audit_failure is not None:

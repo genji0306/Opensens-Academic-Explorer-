@@ -67,7 +67,27 @@ def inventory(path):
     return dict(files=files, directories=directories)
 
 
-def recapture_claim(base, ident, old_plan_sha256):
+def current_attempt_plan(attempt):
+    """Return a current sealed plan only when its receipt agrees."""
+    plan_file = attempt / "plan.json"
+    receipt_file = attempt / "receipt.json"
+    if plan_file.is_symlink() or receipt_file.is_symlink():
+        raise ValueError("symlink active provenance")
+    if not plan_file.is_file() or not receipt_file.is_file():
+        return None
+    plan = json.loads(plan_file.read_text())
+    receipt = json.loads(receipt_file.read_text())
+    if (
+        inv.seal(plan) == plan
+        and plan.get("schema") == "mve-wo6c-capture-v1"
+        and plan.get("sha256") == capture_c.plan()["sha256"]
+        and receipt.get("plan_sha256") == plan["sha256"]
+    ):
+        return plan
+    return None
+
+
+def recapture_claim(base, ident, old_plan_sha256, old_inventory=None):
     native = base / "native"
     if native.is_symlink():
         raise ValueError("symlink native root")
@@ -75,17 +95,25 @@ def recapture_claim(base, ident, old_plan_sha256):
         for attempt in native.iterdir():
             if attempt.is_symlink() or not attempt.is_dir():
                 raise ValueError("invalid active attempt")
-            plan_file = attempt / "plan.json"
-            if plan_file.is_symlink():
-                raise ValueError("symlink active plan")
-            if not plan_file.is_file():
+            if attempt.name not in ATTEMPTS:
                 continue
-            plan = json.loads(plan_file.read_text())
-            if (
-                inv.seal(plan) == plan
-                and plan.get("sha256") != old_plan_sha256
-                and ident in {job.get("snapshot_id") for job in plan.get("jobs", [])}
-            ):
+            plan = current_attempt_plan(attempt)
+            if plan is None or plan["sha256"] == old_plan_sha256:
+                continue
+            jobs = plan.get("jobs")
+            if not isinstance(jobs, list) or len(jobs) != 16:
+                continue
+            number = int(attempt.name)
+            if ident in {
+                job.get("snapshot_id") for job in jobs[4 * number : 4 * number + 4]
+            }:
+                if old_inventory is not None:
+                    active_files = inventory(base / "snapshots" / ident)["files"]
+                    old_files = old_inventory["files"]
+                    if not active_files and not old_files:
+                        continue
+                    if set(active_files.values()) & set(old_files.values()):
+                        continue
                 return True
     return False
 
@@ -101,26 +129,32 @@ def active_is_superseded(base, move, plan_sha256):
     marker = active / (
         "receipt.json" if source.parts[0] == "native" else "complete.json"
     )
+    if source.parts[0] == "native":
+        plan_file = active / "plan.json"
+        receipt_file = active / "receipt.json"
+        if plan_file.is_symlink() or receipt_file.is_symlink():
+            raise ValueError("symlink active provenance")
+        if plan_file.is_file() and receipt_file.is_file():
+            plan = json.loads(plan_file.read_text())
+            receipt = json.loads(receipt_file.read_text())
+            if (
+                inv.seal(plan) == plan
+                and plan.get("sha256") == plan_sha256
+                and receipt.get("plan_sha256") == plan_sha256
+            ):
+                return True
+        if current_attempt_plan(active) is not None:
+            return False
+        raise ValueError("unidentified active attempt")
     if marker.is_file():
         sha = json.loads(marker.read_text()).get("plan_sha256")
         if sha == plan_sha256:
             return True
-        if isinstance(sha, str) and len(sha) == 64:
-            return False
-    if source.parts[0] == "native":
-        plan_file = active / "plan.json"
-        if plan_file.is_file():
-            sha = json.loads(plan_file.read_text()).get("sha256")
-            if sha == plan_sha256:
-                return True
-            if isinstance(sha, str) and len(sha) == 64:
-                return False
-        raise ValueError("unidentified active attempt")
-    else:
-        # During capture, complete.json does not yet exist. A native attempt
-        # with a sealed different plan establishes the recapture's ownership.
-        if recapture_claim(base, source.parts[1], plan_sha256):
-            return False
+        if sha != capture_c.plan()["sha256"]:
+            raise ValueError("unidentified active snapshot")
+    # An unfinished snapshot requires a current-plan batch claim and fresh bytes.
+    if recapture_claim(base, source.parts[1], plan_sha256, move["inventory"]):
+        return False
     if inventory(active) == move["inventory"]:
         return True
     raise ValueError("unidentified active snapshot")
@@ -187,12 +221,6 @@ def verify_failed(base, record):
         if active.is_symlink():
             raise ValueError("symlink active snapshot")
         if active.exists():
-            marker = active / "complete.json"
-            if (
-                marker.is_file()
-                and json.loads(marker.read_text()).get("plan_sha256") != plan["sha256"]
-            ):
-                continue
             if recapture_claim(base, ident, plan["sha256"]):
                 continue
             raise ValueError("unrecorded failed attempt snapshot")
@@ -283,7 +311,6 @@ def failed_attempt(base, args):
     if not isinstance(args.reason, str) or not args.reason.strip():
         raise ValueError("failed attempt reason required")
     with storage.lock():
-        admission(base)
         folder = base / "quarantine" / args.name
         if folder.exists() or folder.is_symlink():
             raise ValueError("immutable quarantine exists")
@@ -352,6 +379,7 @@ def failed_attempt(base, args):
             if dest.exists() or dest.is_symlink():
                 raise ValueError("quarantine destination exists")
             (base / move["source"]).rename(dest)
+        admission(base)
         return verify_failed(base, record)
 
 

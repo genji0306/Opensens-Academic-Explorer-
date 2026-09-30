@@ -138,19 +138,32 @@ def write_traceback(out, exc, *, worker=False):
     if target.exists():
         return
     frames = traceback.extract_tb(exc.__traceback__)
+    safe_messages = {
+        ValueError: {"superseded evidence still active"},
+        PageTimeoutError: {
+            "snapshot timeout",
+            "capture pass timeout",
+            "worker page timeout",
+        },
+        RendererPinError: {
+            "worker renderer pin mismatch",
+            "renderer bundle changed during batch",
+        },
+        RendererVersionError: {
+            "renderer version mismatch or missing",
+            "worker renderer version mismatch",
+            "renderer version changed during batch",
+        },
+        HostLoadError: {"host_load"},
+    }
     message = str(exc)
-    # An exception can contain source paths, private workspace paths or URLs.
-    # Retain its message only when it has no path-shaped absolute component.
-    import re
-
-    if (
-        worker
-        and message
-        and not re.search(r"(?<![A-Za-z0-9._-])/(?:[^/\s]+)|[A-Za-z]:[\\/]", message)
-    ):
-        heading = f"{type(exc).__name__}: {message[:4096]}"
+    if type(exc) in safe_messages and message in safe_messages[type(exc)]:
+        diagnostic = message
+    elif isinstance(exc, OSError) and isinstance(exc.errno, int):
+        diagnostic = f"errno={exc.errno}"
     else:
-        heading = type(exc).__name__
+        diagnostic = "<redacted>"
+    heading = f"{type(exc).__name__}: {diagnostic}"
     rows = [heading] + [
         f"{Path(frame.filename).name}:{frame.lineno}:{frame.name}" for frame in frames
     ]

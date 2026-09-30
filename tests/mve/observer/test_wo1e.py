@@ -9,6 +9,7 @@ import pytest
 
 from mve.observer import capture_c, capture_evidence, capture_policy, quarantine_c
 from mve.observer import snapshot_inventory as inv, storage
+from tests.mve.observer.test_wo1d import old_quarantine_sources
 
 
 WO1B = (
@@ -45,7 +46,8 @@ def test_real_wo6c_failed_then_in_progress_recapture(tmp_path, monkeypatch):
     monkeypatch.setattr(storage, "WORKTREE", tmp_path)
     base = tmp_path / capture_c.BASE
     shutil.copytree(WO6C, base)
-    assert any(r["moves"] == 20 for r in quarantine_c.admission(base))
+    with pytest.raises(ValueError, match="unidentified active attempt"):
+        quarantine_c.admission(base)
     result = quarantine_c.run(
         SimpleNamespace(
             name="failed-604055543b64-b0",
@@ -60,6 +62,7 @@ def test_real_wo6c_failed_then_in_progress_recapture(tmp_path, monkeypatch):
     attempt.mkdir()
     p = capture_c.plan()
     (attempt / "plan.json").write_text(json.dumps(p))
+    (attempt / "receipt.json").write_text(json.dumps({"plan_sha256": p["sha256"]}))
     for job in p["jobs"][:4]:
         (base / "snapshots" / job["snapshot_id"]).mkdir()
     assert any(r["moves"] == 20 for r in quarantine_c.admission(base))
@@ -128,6 +131,173 @@ def test_worker_traceback_message_only_without_absolute_path(tmp_path):
     except ValueError as exc:
         capture_policy.write_traceback(quoted, exc, worker=True)
     assert "Users" not in (quoted / "worker-traceback.txt").read_text()
+
+
+@pytest.mark.parametrize(
+    "plan_kind,receipt_kind",
+    [
+        ("superseded", "current"),
+        ("current", "superseded"),
+        ("current", "other"),
+    ],
+)
+def test_active_attempt_refuses_superseded_or_inconsistent_provenance(
+    tmp_path, monkeypatch, plan_kind, receipt_kind
+):
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    quarantine_c.run(args)
+    old = json.loads((base / "quarantine/old-plan/native/0/plan.json").read_text())
+    current = capture_c.plan()
+    attempt = base / "native/0"
+    attempt.mkdir()
+    (attempt / "plan.json").write_text(
+        json.dumps(old if plan_kind == "superseded" else current)
+    )
+    sha = {"current": current["sha256"], "superseded": old["sha256"], "other": "f" * 64}
+    (attempt / "receipt.json").write_text(
+        json.dumps({"plan_sha256": sha[receipt_kind]})
+    )
+    with pytest.raises(ValueError):
+        quarantine_c.admission(base)
+
+
+def test_active_attempt_refuses_symlinked_receipt(tmp_path, monkeypatch):
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    quarantine_c.run(args)
+    current = capture_c.plan()
+    attempt = base / "native/0"
+    attempt.mkdir()
+    (attempt / "plan.json").write_text(json.dumps(current))
+    (attempt / "receipt-target.json").write_text(
+        json.dumps({"plan_sha256": current["sha256"]})
+    )
+    (attempt / "receipt.json").symlink_to("receipt-target.json")
+    with pytest.raises(ValueError, match="symlink active provenance"):
+        quarantine_c.admission(base)
+
+
+@pytest.mark.parametrize(
+    "claim,contents",
+    [
+        ("superseded_plan", "fresh"),
+        ("wrong_batch", "fresh"),
+        ("missing_receipt", "fresh"),
+        ("identical", "identical"),
+        ("derived_subset", "derived_subset"),
+    ],
+)
+def test_unfinished_snapshot_refuses_unowned_or_superseded_bytes(
+    tmp_path, monkeypatch, claim, contents
+):
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    quarantine_c.run(args)
+    old = json.loads((base / "quarantine/old-plan/native/0/plan.json").read_text())
+    current = capture_c.plan()
+    number = "1" if claim == "wrong_batch" else "0"
+    attempt = base / "native" / number
+    attempt.mkdir()
+    (attempt / "plan.json").write_text(
+        json.dumps(old if claim == "superseded_plan" else current)
+    )
+    if claim != "missing_receipt":
+        (attempt / "receipt.json").write_text(
+            json.dumps({"plan_sha256": current["sha256"]})
+        )
+    ident = current["jobs"][0]["snapshot_id"]
+    snapshot = base / "snapshots" / ident
+    if contents == "identical":
+        shutil.copytree(base / "quarantine/old-plan/snapshots" / ident, snapshot)
+    else:
+        snapshot.mkdir()
+        (snapshot / "data.json").write_text(
+            "{}" if contents == "derived_subset" else "new capture"
+        )
+        if contents == "derived_subset":
+            (snapshot / "new.json").write_text("additional bytes")
+    with pytest.raises(ValueError):
+        quarantine_c.admission(base)
+
+
+def test_unfinished_snapshot_accepts_current_batch_with_fresh_bytes(
+    tmp_path, monkeypatch
+):
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    quarantine_c.run(args)
+    current = capture_c.plan()
+    attempt = base / "native/0"
+    attempt.mkdir()
+    (attempt / "plan.json").write_text(json.dumps(current))
+    (attempt / "receipt.json").write_text(
+        json.dumps({"plan_sha256": current["sha256"], "status": "failed"})
+    )
+    snapshot = base / "snapshots" / current["jobs"][0]["snapshot_id"]
+    snapshot.mkdir()
+    (snapshot / "data.json").write_text("new capture")
+    assert quarantine_c.admission(base)[0]["moves"] == 20
+
+
+def test_completed_marker_cannot_admit_copied_superseded_snapshot(
+    tmp_path, monkeypatch
+):
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    quarantine_c.run(args)
+    current = capture_c.plan()
+    attempt = base / "native/0"
+    attempt.mkdir()
+    (attempt / "plan.json").write_text(json.dumps(current))
+    (attempt / "receipt.json").write_text(
+        json.dumps({"plan_sha256": current["sha256"]})
+    )
+    ident = current["jobs"][0]["snapshot_id"]
+    snapshot = base / "snapshots" / ident
+    shutil.copytree(base / "quarantine/old-plan/snapshots" / ident, snapshot)
+    (snapshot / "complete.json").write_text(
+        json.dumps({"plan_sha256": current["sha256"]})
+    )
+    with pytest.raises(ValueError):
+        quarantine_c.admission(base)
+
+
+def test_native_capture_seals_receipt_before_worker_admission(tmp_path, monkeypatch):
+    from tests.mve.observer.test_wo6c import sandbox, capture_env
+
+    sandbox.__wrapped__(tmp_path, monkeypatch)
+    args = capture_env.__wrapped__(tmp_path, monkeypatch)
+    args.prepare_only = False
+
+    def isolated(a, out, repos, receipt):
+        early = json.loads((out / "receipt.json").read_text())
+        assert early["plan_sha256"] == capture_c.plan()["sha256"]
+        assert early["status"] == "failed"
+        assert quarantine_c.admission(tmp_path / capture_c.BASE) == []
+        raise capture_policy.PageTimeoutError("snapshot timeout")
+
+    monkeypatch.setattr(capture_c.old, "isolated_capture", isolated)
+    with pytest.raises(capture_policy.PageTimeoutError):
+        capture_c.run(args)
+    final = json.loads(
+        (tmp_path / capture_c.BASE / "native/0/receipt.json").read_text()
+    )
+    assert final["failure_type"] == "PageTimeoutError"
+
+
+@pytest.mark.parametrize(
+    "message",
+    [
+        "api_token_sk_live_abc123secret",
+        "relative/private/customer.csv",
+        "/Users/person/private/customer.csv",
+        "https://example.org/private?token=abc123",
+    ],
+)
+def test_worker_traceback_redacts_token_or_path_message(tmp_path, message):
+    try:
+        raise ValueError(message)
+    except ValueError as exc:
+        capture_policy.write_traceback(tmp_path, exc, worker=True)
+    raw = (tmp_path / "worker-traceback.txt").read_text()
+    assert message not in raw
+    assert raw.startswith("ValueError: <redacted>\n")
 
 
 def test_worker_admission_failure_retains_own_traceback(tmp_path, monkeypatch, capsys):
