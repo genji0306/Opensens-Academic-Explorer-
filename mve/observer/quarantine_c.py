@@ -87,7 +87,7 @@ def current_attempt_plan(attempt):
     return None
 
 
-def recapture_claim(base, ident, old_plan_sha256, old_inventory=None):
+def recapture_claim(base, ident, old_plan_sha256):
     native = base / "native"
     if native.is_symlink():
         raise ValueError("symlink native root")
@@ -107,13 +107,6 @@ def recapture_claim(base, ident, old_plan_sha256, old_inventory=None):
             if ident in {
                 job.get("snapshot_id") for job in jobs[4 * number : 4 * number + 4]
             }:
-                if old_inventory is not None:
-                    active_files = inventory(base / "snapshots" / ident)["files"]
-                    old_files = old_inventory["files"]
-                    if not active_files and not old_files:
-                        continue
-                    if set(active_files.values()) & set(old_files.values()):
-                        continue
                 return True
     return False
 
@@ -152,11 +145,20 @@ def active_is_superseded(base, move, plan_sha256):
             return True
         if sha != capture_c.plan()["sha256"]:
             raise ValueError("unidentified active snapshot")
-    # An unfinished snapshot requires a current-plan batch claim and fresh bytes.
-    if recapture_claim(base, source.parts[1], plan_sha256, move["inventory"]):
-        return False
-    if inventory(active) == move["inventory"]:
+        if recapture_claim(base, source.parts[1], plan_sha256):
+            return False
+        raise ValueError("unidentified active snapshot")
+    # Unfinished evidence must add a path or change a file at its original path.
+    active_inventory = inventory(active)
+    old_inventory = move["inventory"]
+    if active_inventory == old_inventory:
         return True
+    if active_inventory["files"].items() <= old_inventory["files"].items() and set(
+        active_inventory["directories"]
+    ) <= set(old_inventory["directories"]):
+        raise ValueError("unidentified active snapshot")
+    if recapture_claim(base, source.parts[1], plan_sha256):
+        return False
     raise ValueError("unidentified active snapshot")
 
 

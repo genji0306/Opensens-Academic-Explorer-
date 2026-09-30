@@ -2,13 +2,14 @@
 
 import json
 import shutil
+from io import BytesIO
 from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
 
 from mve.observer import capture_c, capture_evidence, capture_policy, quarantine_c
-from mve.observer import snapshot_inventory as inv, storage
+from mve.observer import snapshot_inventory as inv, snapshots as s, storage
 from tests.mve.observer.test_wo1d import old_quarantine_sources
 
 
@@ -65,6 +66,12 @@ def test_real_wo6c_failed_then_in_progress_recapture(tmp_path, monkeypatch):
     (attempt / "receipt.json").write_text(json.dumps({"plan_sha256": p["sha256"]}))
     for job in p["jobs"][:4]:
         (base / "snapshots" / job["snapshot_id"]).mkdir()
+    with pytest.raises(ValueError, match="unidentified active snapshot"):
+        quarantine_c.admission(base)
+    for job in p["jobs"][:4]:
+        (base / "snapshots" / job["snapshot_id"] / "pass-0.json").write_text(
+            "new pass metadata"
+        )
     assert any(r["moves"] == 20 for r in quarantine_c.admission(base))
 
 
@@ -190,6 +197,9 @@ def test_unfinished_snapshot_refuses_unowned_or_superseded_bytes(
     tmp_path, monkeypatch, claim, contents
 ):
     base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    if contents == "derived_subset":
+        ident = capture_c.plan()["jobs"][0]["snapshot_id"]
+        (base / "snapshots" / ident / "pass-0.json").write_text("old pass")
     quarantine_c.run(args)
     old = json.loads((base / "quarantine/old-plan/native/0/plan.json").read_text())
     current = capture_c.plan()
@@ -212,8 +222,12 @@ def test_unfinished_snapshot_refuses_unowned_or_superseded_bytes(
         (snapshot / "data.json").write_text(
             "{}" if contents == "derived_subset" else "new capture"
         )
-        if contents == "derived_subset":
-            (snapshot / "new.json").write_text("additional bytes")
+    if contents == "derived_subset":
+        active = quarantine_c.inventory(snapshot)["files"]
+        old_files = quarantine_c.inventory(
+            base / "quarantine/old-plan/snapshots" / ident
+        )["files"]
+        assert active != old_files and active.items() <= old_files.items()
     with pytest.raises(ValueError):
         quarantine_c.admission(base)
 
@@ -236,7 +250,7 @@ def test_unfinished_snapshot_accepts_current_batch_with_fresh_bytes(
     assert quarantine_c.admission(base)[0]["moves"] == 20
 
 
-def test_completed_marker_cannot_admit_copied_superseded_snapshot(
+def test_completed_current_plan_recapture_admits_shared_render_bytes(
     tmp_path, monkeypatch
 ):
     base, args = old_quarantine_sources(tmp_path, monkeypatch)
@@ -251,11 +265,100 @@ def test_completed_marker_cannot_admit_copied_superseded_snapshot(
     ident = current["jobs"][0]["snapshot_id"]
     snapshot = base / "snapshots" / ident
     shutil.copytree(base / "quarantine/old-plan/snapshots" / ident, snapshot)
+    old_files = quarantine_c.inventory(base / "quarantine/old-plan/snapshots" / ident)[
+        "files"
+    ]
+    assert (
+        old_files["data.json"] == quarantine_c.inventory(snapshot)["files"]["data.json"]
+    )
+    (snapshot / "complete.json").write_text(
+        json.dumps({"plan_sha256": current["sha256"]})
+    )
+    assert quarantine_c.admission(base)[0]["moves"] == 20
+
+
+@pytest.mark.parametrize("claim", ["missing_receipt", "wrong_batch"])
+def test_completed_current_plan_snapshot_requires_claim(tmp_path, monkeypatch, claim):
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    quarantine_c.run(args)
+    current = capture_c.plan()
+    number = "1" if claim == "wrong_batch" else "0"
+    attempt = base / "native" / number
+    attempt.mkdir()
+    (attempt / "plan.json").write_text(json.dumps(current))
+    if claim != "missing_receipt":
+        (attempt / "receipt.json").write_text(
+            json.dumps({"plan_sha256": current["sha256"]})
+        )
+    ident = current["jobs"][0]["snapshot_id"]
+    snapshot = base / "snapshots" / ident
+    shutil.copytree(base / "quarantine/old-plan/snapshots" / ident, snapshot)
     (snapshot / "complete.json").write_text(
         json.dumps({"plan_sha256": current["sha256"]})
     )
     with pytest.raises(ValueError):
         quarantine_c.admission(base)
+
+
+def test_unfinished_current_batch_admits_overlap_with_new_artifact(
+    tmp_path, monkeypatch
+):
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    quarantine_c.run(args)
+    current = capture_c.plan()
+    attempt = base / "native/0"
+    attempt.mkdir()
+    (attempt / "plan.json").write_text(json.dumps(current))
+    (attempt / "receipt.json").write_text(
+        json.dumps({"plan_sha256": current["sha256"]})
+    )
+    ident = current["jobs"][0]["snapshot_id"]
+    snapshot = base / "snapshots" / ident
+    shutil.copytree(base / "quarantine/old-plan/snapshots" / ident, snapshot)
+    (snapshot / "pass-0.json").write_text("new pass metadata")
+    assert quarantine_c.admission(base)[0]["moves"] == 20
+
+
+def test_fake_renderer_two_batches_admit_deterministic_recapture(tmp_path, monkeypatch):
+    from tests.mve.observer.test_wo6c import capture_env, png, sandbox
+
+    sandbox.__wrapped__(tmp_path, monkeypatch)
+    render_args = capture_env.__wrapped__(tmp_path, monkeypatch)
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    current = capture_c.plan()
+    rendered_png = png()
+    repeat = dict(
+        tolerance=s.PNG_REPEAT_TOLERANCE,
+        data_bytes_equal=True,
+        full=s.compare_png(BytesIO(rendered_png), BytesIO(rendered_png)),
+        blind=s.compare_png(BytesIO(rendered_png), BytesIO(rendered_png)),
+    )
+    repeat["passed"] = repeat["data_bytes_equal"] and all(
+        repeat[key]["passed"] for key in ("full", "blind")
+    )
+    for job in current["jobs"][:4]:
+        snapshot = base / "snapshots" / job["snapshot_id"]
+        (snapshot / "data.json").write_bytes(
+            capture_c.capture_data(job["module"], job["source"])
+        )
+        (snapshot / "blind-0.png").write_bytes(rendered_png)
+        (snapshot / "blind-1.png").write_bytes(rendered_png)
+        (snapshot / "difference.json").write_bytes(inv.encoded(repeat))
+    quarantine_c.run(args)
+    render_args.prepare_only = False
+    assert capture_c.run(render_args) == 0
+    assert quarantine_c.admission(base)[0]["moves"] == 20
+    for job in current["jobs"][:4]:
+        ident = job["snapshot_id"]
+        active_files = quarantine_c.inventory(base / "snapshots" / ident)["files"]
+        old_files = quarantine_c.inventory(
+            base / "quarantine/old-plan/snapshots" / ident
+        )["files"]
+        for name in ("data.json", "blind-0.png", "blind-1.png", "difference.json"):
+            assert active_files[name] == old_files[name]
+    render_args.batch = 1
+    assert capture_c.run(render_args) == 0
+    assert quarantine_c.admission(base)[0]["moves"] == 20
 
 
 def test_native_capture_seals_receipt_before_worker_admission(tmp_path, monkeypatch):
