@@ -87,7 +87,7 @@ def current_attempt_plan(attempt):
     return None
 
 
-def recapture_claim(base, ident, old_plan_sha256):
+def recapture_claim(base, ident, old_plan_sha256, *, allow_same_plan=False):
     native = base / "native"
     if native.is_symlink():
         raise ValueError("symlink native root")
@@ -98,7 +98,9 @@ def recapture_claim(base, ident, old_plan_sha256):
             if attempt.name not in ATTEMPTS:
                 continue
             plan = current_attempt_plan(attempt)
-            if plan is None or plan["sha256"] == old_plan_sha256:
+            if plan is None or (
+                not allow_same_plan and plan["sha256"] == old_plan_sha256
+            ):
                 continue
             jobs = plan.get("jobs")
             if not isinstance(jobs, list) or len(jobs) != 16:
@@ -111,7 +113,7 @@ def recapture_claim(base, ident, old_plan_sha256):
     return False
 
 
-def active_is_superseded(base, move, plan_sha256):
+def active_is_superseded(base, move, plan_sha256, *, failed_attempt=False):
     """IDs are data-derived; only matching evidence provenance is superseded."""
     source = Path(move["source"])
     active = base / source
@@ -119,6 +121,33 @@ def active_is_superseded(base, move, plan_sha256):
         return False
     if active.is_symlink() or not active.is_dir():
         raise ValueError("invalid active evidence")
+    if failed_attempt:
+        # The same capture plan is reusable after a failed attempt. Its moved
+        # inventory, rather than its plan hash, identifies the old evidence.
+        active_inventory = inventory(active)
+        old_inventory = move["inventory"]
+        if active_inventory == old_inventory:
+            return True
+        if source.parts[0] == "native":
+            if current_attempt_plan(active) is not None:
+                return False
+            raise ValueError("unidentified active attempt")
+        complete = active / "complete.json"
+        if complete.is_file():
+            if json.loads(complete.read_text()).get("plan_sha256") == capture_c.plan()[
+                "sha256"
+            ] and recapture_claim(
+                base, source.parts[1], plan_sha256, allow_same_plan=True
+            ):
+                return False
+            raise ValueError("unidentified active snapshot")
+        if active_inventory["files"].items() <= old_inventory["files"].items() and set(
+            active_inventory["directories"]
+        ) <= set(old_inventory["directories"]):
+            raise ValueError("unidentified active snapshot")
+        if recapture_claim(base, source.parts[1], plan_sha256, allow_same_plan=True):
+            return False
+        raise ValueError("unidentified active snapshot")
     marker = active / (
         "receipt.json" if source.parts[0] == "native" else "complete.json"
     )
@@ -210,7 +239,7 @@ def verify_failed(base, record):
             raise ValueError("failed attempt path mismatch")
         if inventory(base / move["dest"]) != move["inventory"]:
             raise ValueError("failed attempt artifact digest mismatch")
-        if active_is_superseded(base, move, plan["sha256"]):
+        if active_is_superseded(base, move, plan["sha256"], failed_attempt=True):
             raise ValueError("failed attempt evidence still active")
     if {p.name for p in (folder / "native").iterdir()} != {number} or {
         p.name for p in (folder / "snapshots").iterdir()
@@ -223,7 +252,13 @@ def verify_failed(base, record):
         if active.is_symlink():
             raise ValueError("symlink active snapshot")
         if active.exists():
-            if recapture_claim(base, ident, plan["sha256"]):
+            inventory(active)
+            complete = active / "complete.json"
+            if (
+                not complete.is_file()
+                or json.loads(complete.read_text()).get("plan_sha256")
+                == capture_c.plan()["sha256"]
+            ) and recapture_claim(base, ident, plan["sha256"], allow_same_plan=True):
                 continue
             raise ValueError("unrecorded failed attempt snapshot")
     return dict(

@@ -99,6 +99,243 @@ def test_failed_attempt_record_preserves_and_admits(tmp_path, monkeypatch):
     assert quarantine_c.admission(base)[0]["moves"] == 2
 
 
+@pytest.mark.parametrize("failures", [1, 2])
+def test_same_plan_failed_batch_set_aside_retry_and_next_batch(
+    tmp_path, monkeypatch, failures
+):
+    from tests.mve.observer.test_wo6c import capture_env, fake_packet, sandbox
+
+    sandbox.__wrapped__(tmp_path, monkeypatch)
+    args = capture_env.__wrapped__(tmp_path, monkeypatch)
+    args.prepare_only = False
+    args.batch = 1
+    base = tmp_path / capture_c.BASE
+    current = capture_c.plan()
+    calls = 0
+
+    def fail_midway(context, root, job, versions, ocr, **kwargs):
+        nonlocal calls
+        calls += 1
+        if calls == 2:
+            raise capture_policy.PageTimeoutError("page timeout")
+        return fake_packet(job)
+
+    for n in range(failures):
+        calls = 0
+        monkeypatch.setattr(capture_c.render, "capture_block", fail_midway)
+        with pytest.raises(capture_policy.PageTimeoutError):
+            capture_c.run(args)
+        first = base / "snapshots" / current["jobs"][4]["snapshot_id"]
+        assert (first / "pass-0.json").is_file()
+        assert (base / "native/1/receipt.json").is_file()
+        name = f"failed-b1-{n + 1}"
+        result = quarantine_c.run(
+            SimpleNamespace(
+                name=name,
+                reason="page timeout",
+                failed_attempt="1",
+                plan_sha256=None,
+            )
+        )
+        assert result["moves"] == 5
+        assert not first.exists()
+        assert (base / "quarantine" / name / "snapshots" / first.name).is_dir()
+        assert len(quarantine_c.admission(base)) == n + 1
+
+    monkeypatch.setattr(
+        capture_c.render, "capture_block", lambda c, r, j, v, o, **kw: fake_packet(j)
+    )
+    assert capture_c.run(args) == 0
+    assert len(quarantine_c.admission(base)) == failures
+    receipt = json.loads((base / "native/1/receipt.json").read_text())
+    assert receipt["plan_sha256"] == current["sha256"]
+    args.batch = 2
+    assert capture_c.run(args) == 0
+    assert len(quarantine_c.admission(base)) == failures
+
+
+def test_failed_attempt_copied_back_identical_inventory_is_superseded(
+    tmp_path, monkeypatch
+):
+    monkeypatch.setattr(storage, "WORKTREE", tmp_path)
+    base = tmp_path / capture_c.BASE
+    current = capture_c.plan()
+    attempt = base / "native/1"
+    attempt.mkdir(parents=True)
+    (attempt / "plan.json").write_text(json.dumps(current))
+    (attempt / "receipt.json").write_text(
+        json.dumps({"plan_sha256": current["sha256"], "status": "failed"})
+    )
+    ident = current["jobs"][4]["snapshot_id"]
+    partial = base / "snapshots" / ident
+    partial.mkdir(parents=True)
+    (partial / "pass-0.json").write_text("partial")
+    quarantine_c.run(
+        SimpleNamespace(
+            name="failed-b1-1",
+            reason="page timeout",
+            failed_attempt="1",
+            plan_sha256=None,
+        )
+    )
+    moved = base / "quarantine/failed-b1-1"
+    shutil.copytree(moved / "native/1", attempt)
+    with pytest.raises(ValueError, match="failed attempt evidence still active"):
+        quarantine_c.admission(base)
+    shutil.rmtree(attempt)
+    shutil.copytree(moved / "snapshots" / ident, partial)
+    with pytest.raises(ValueError, match="failed attempt evidence still active"):
+        quarantine_c.admission(base)
+
+
+@pytest.mark.parametrize(
+    "case,admitted",
+    [
+        ("unfinished_fresh", True),
+        ("unfinished_subset", False),
+        ("unfinished_identical", False),
+        ("completed_current", True),
+        ("completed_wrong_plan", False),
+        ("wrong_batch", False),
+    ],
+)
+def test_same_plan_retry_snapshot_claim_and_inventory(
+    tmp_path, monkeypatch, case, admitted
+):
+    monkeypatch.setattr(storage, "WORKTREE", tmp_path)
+    base = tmp_path / capture_c.BASE
+    current = capture_c.plan()
+    ident = current["jobs"][4]["snapshot_id"]
+    attempt = base / "native/1"
+    attempt.mkdir(parents=True)
+    (attempt / "plan.json").write_text(json.dumps(current))
+    (attempt / "receipt.json").write_text(
+        json.dumps({"plan_sha256": current["sha256"], "status": "failed"})
+    )
+    snapshot = base / "snapshots" / ident
+    snapshot.mkdir(parents=True)
+    (snapshot / "data.json").write_text("old data")
+    (snapshot / "pass-0.json").write_text("old pass")
+    quarantine_c.run(
+        SimpleNamespace(
+            name="failed-b1",
+            reason="page timeout",
+            failed_attempt="1",
+            plan_sha256=None,
+        )
+    )
+    old = base / "quarantine/failed-b1/snapshots" / ident
+    retry = base / "native" / ("2" if case == "wrong_batch" else "1")
+    retry.mkdir()
+    (retry / "plan.json").write_text(json.dumps(current))
+    (retry / "receipt.json").write_text(
+        json.dumps({"plan_sha256": current["sha256"], "status": "failed", "retry": 2})
+    )
+    snapshot.mkdir()
+    if case == "unfinished_identical":
+        shutil.copy2(old / "data.json", snapshot / "data.json")
+        shutil.copy2(old / "pass-0.json", snapshot / "pass-0.json")
+    elif case == "unfinished_subset":
+        shutil.copy2(old / "data.json", snapshot / "data.json")
+    else:
+        (snapshot / "data.json").write_text("new data")
+    if case.startswith("completed"):
+        (snapshot / "complete.json").write_text(
+            json.dumps(
+                {
+                    "plan_sha256": current["sha256"]
+                    if case == "completed_current"
+                    else "f" * 64
+                }
+            )
+        )
+    if admitted:
+        assert quarantine_c.admission(base)[0]["moves"] == 2
+    else:
+        with pytest.raises(ValueError):
+            quarantine_c.admission(base)
+
+
+def test_same_plan_retry_unmoved_completion_requires_current_plan(
+    tmp_path, monkeypatch
+):
+    monkeypatch.setattr(storage, "WORKTREE", tmp_path)
+    base = tmp_path / capture_c.BASE
+    current = capture_c.plan()
+    ident = current["jobs"][4]["snapshot_id"]
+    attempt = base / "native/1"
+    attempt.mkdir(parents=True)
+    (attempt / "plan.json").write_text(json.dumps(current))
+    (attempt / "receipt.json").write_text(
+        json.dumps({"plan_sha256": current["sha256"], "status": "failed"})
+    )
+    quarantine_c.run(
+        SimpleNamespace(
+            name="failed-b1",
+            reason="page timeout",
+            failed_attempt="1",
+            plan_sha256=None,
+        )
+    )
+    attempt.mkdir()
+    (attempt / "plan.json").write_text(json.dumps(current))
+    (attempt / "receipt.json").write_text(
+        json.dumps({"plan_sha256": current["sha256"], "status": "failed", "retry": 2})
+    )
+    snapshot = base / "snapshots" / ident
+    snapshot.mkdir(parents=True)
+    (snapshot / "complete.json").write_text(json.dumps({"plan_sha256": "f" * 64}))
+    with pytest.raises(ValueError, match="unrecorded failed attempt snapshot"):
+        quarantine_c.admission(base)
+    (snapshot / "complete.json").write_text(
+        json.dumps({"plan_sha256": current["sha256"]})
+    )
+    assert quarantine_c.admission(base)[0]["moves"] == 1
+
+
+@pytest.mark.parametrize(
+    "provenance", ["missing_receipt", "wrong_receipt", "wrong_plan"]
+)
+def test_same_plan_retry_native_requires_current_plan_and_receipt(
+    tmp_path, monkeypatch, provenance
+):
+    monkeypatch.setattr(storage, "WORKTREE", tmp_path)
+    base = tmp_path / capture_c.BASE
+    current = capture_c.plan()
+    attempt = base / "native/1"
+    attempt.mkdir(parents=True)
+    (attempt / "plan.json").write_text(json.dumps(current))
+    (attempt / "receipt.json").write_text(
+        json.dumps({"plan_sha256": current["sha256"], "status": "failed"})
+    )
+    quarantine_c.run(
+        SimpleNamespace(
+            name="failed-b1",
+            reason="page timeout",
+            failed_attempt="1",
+            plan_sha256=None,
+        )
+    )
+    attempt.mkdir()
+    wrong = inv.seal({**current, "development_sha256": "f" * 64})
+    (attempt / "plan.json").write_text(
+        json.dumps(wrong if provenance == "wrong_plan" else current)
+    )
+    if provenance != "missing_receipt":
+        (attempt / "receipt.json").write_text(
+            json.dumps(
+                {
+                    "plan_sha256": "f" * 64
+                    if provenance == "wrong_receipt"
+                    else current["sha256"],
+                    "retry": 2,
+                }
+            )
+        )
+    with pytest.raises(ValueError, match="unidentified active attempt"):
+        quarantine_c.admission(base)
+
+
 @pytest.mark.parametrize("status", ["captured", "accepted"])
 def test_failed_attempt_refuses_success(tmp_path, monkeypatch, status):
     monkeypatch.setattr(storage, "WORKTREE", tmp_path)
