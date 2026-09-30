@@ -5,7 +5,13 @@ import json
 import os
 from pathlib import Path
 
-from mve.observer import capture_c, snapshot_inventory as inv, snapshots as s, storage
+from mve.observer import (
+    capture_c,
+    snapshot_batch as batch,
+    snapshot_inventory as inv,
+    snapshots as s,
+    storage,
+)
 
 SCHEMA = "mve-wo6c-plan-quarantine-v1"
 FAILED_SCHEMA = "mve-wo6c-failed-attempt-quarantine-v1"
@@ -65,6 +71,21 @@ def inventory(path):
         else:
             raise ValueError("unsupported quarantine artifact")
     return dict(files=files, directories=directories)
+
+
+def batch_accepted(snapshots, plan, number, receipt):
+    """A captured receipt is accepted only when all four completions validate."""
+    if receipt.get("status") != "captured":
+        return False
+    for job in plan["jobs"][4 * int(number) : 4 * int(number) + 4]:
+        folder = snapshots / job["snapshot_id"]
+        if not (folder / "complete.json").is_file():
+            return False
+        try:
+            batch.completed(folder, plan, job)
+        except (ValueError, KeyError, TypeError):
+            return False
+    return True
 
 
 def current_attempt_plan(attempt):
@@ -215,7 +236,7 @@ def verify_failed(base, record):
         inv.seal(plan) != plan
         or plan.get("schema") != "mve-wo6c-capture-v1"
         or len(plan.get("jobs", [])) != 16
-        or receipt.get("status") != "failed"
+        or receipt.get("status") not in {"failed", "captured"}
         or receipt.get("plan_sha256") != plan.get("sha256")
         or record.get("attempt_plan_sha256") != plan.get("sha256")
     ):
@@ -225,6 +246,8 @@ def verify_failed(base, record):
     }
     if len(ids) != 4:
         raise ValueError("failed attempt batch incomplete")
+    if batch_accepted(folder / "snapshots", plan, number, receipt):
+        raise ValueError("accepted batch cannot be set aside")
     sources = {m["source"] for m in record["moves"]}
     if len(sources) != len(record["moves"]) or f"native/{number}" not in sources:
         raise ValueError("failed attempt moves incomplete")
@@ -361,7 +384,7 @@ def failed_attempt(base, args):
             or plan.get("schema") != "mve-wo6c-capture-v1"
             or len(plan.get("jobs", [])) != 16
             or receipt.get("plan_sha256") != plan.get("sha256")
-            or receipt.get("status") != "failed"
+            or receipt.get("status") not in {"failed", "captured"}
         ):
             raise ValueError("only a sealed failed attempt can be set aside")
         ids = {
@@ -373,16 +396,14 @@ def failed_attempt(base, args):
         snapshots = base / "snapshots"
         if snapshots.is_symlink():
             raise ValueError("symlink snapshots root")
+        if batch_accepted(snapshots, plan, number, receipt):
+            raise ValueError("accepted batch cannot be set aside")
         moves = []
         for source in [attempt] + [
             snapshots / ident
             for ident in sorted(ids)
             if (snapshots / ident).exists() or (snapshots / ident).is_symlink()
         ]:
-            if source != attempt:
-                complete = source / "complete.json"
-                if complete.exists():
-                    raise ValueError("accepted snapshot cannot be set aside")
             rel = source.relative_to(base)
             moves.append(
                 dict(

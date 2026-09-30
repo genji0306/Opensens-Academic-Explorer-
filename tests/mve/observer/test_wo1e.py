@@ -154,6 +154,150 @@ def test_same_plan_failed_batch_set_aside_retry_and_next_batch(
     assert len(quarantine_c.admission(base)) == failures
 
 
+@pytest.mark.parametrize("failure_edge", ["renderer", "acceptance"])
+def test_completed_batch_edge_set_aside_retry_and_next_batch(
+    tmp_path, monkeypatch, failure_edge
+):
+    from mve.observer import snapshot_batch as batch
+    from tests.mve.observer.test_wo6c import capture_env, fake_packet, sandbox
+
+    sandbox.__wrapped__(tmp_path, monkeypatch)
+    args = capture_env.__wrapped__(tmp_path, monkeypatch)
+    args.prepare_only = False
+    args.batch = 1
+    base = tmp_path / capture_c.BASE
+    current = capture_c.plan()
+    jobs = current["jobs"][4:8]
+    unrelated = base / "snapshots" / current["jobs"][0]["snapshot_id"]
+    unrelated.mkdir(parents=True)
+    (unrelated / "other-batch.txt").write_text("preserve")
+    original_accept = batch.accept_snapshot
+    if failure_edge == "renderer":
+        calls = 0
+
+        def fail_after_two(context, root, job, versions, ocr, **kwargs):
+            nonlocal calls
+            calls += 1
+            if calls == 3:
+                audit = dict(
+                    source_repos_unchanged=True,
+                    archive_unchanged=True,
+                    source_audit_before_sha256="same",
+                    source_audit_after_sha256="same",
+                )
+                for finished in jobs[:2]:
+                    folder = base / "snapshots" / finished["snapshot_id"]
+                    packet = fake_packet(
+                        {
+                            **finished,
+                            "raw": capture_c.capture_data(
+                                finished["module"], finished["source"]
+                            ),
+                        }
+                    )
+                    batch.save_pass(folder, 1, packet)
+                    candidate = batch.finish_snapshot(
+                        folder, current, finished, packet, packet, 0
+                    )
+                    original_accept(folder, current, finished, candidate, audit)
+                raise capture_policy.PageTimeoutError("page timeout")
+            return fake_packet(job)
+
+        monkeypatch.setattr(capture_c.render, "capture_block", fail_after_two)
+        with pytest.raises(capture_policy.PageTimeoutError):
+            capture_c.run(args)
+        assert (
+            json.loads((base / "native/1/receipt.json").read_text())["status"]
+            == "failed"
+        )
+    else:
+        calls = 0
+
+        def crash_during_acceptance(*accept_args):
+            nonlocal calls
+            calls += 1
+            if calls == 3:
+                raise RuntimeError("acceptance interrupted")
+            return original_accept(*accept_args)
+
+        monkeypatch.setattr(batch, "accept_snapshot", crash_during_acceptance)
+        with pytest.raises(RuntimeError, match="acceptance interrupted"):
+            capture_c.run(args)
+        monkeypatch.setattr(batch, "accept_snapshot", original_accept)
+        assert (
+            json.loads((base / "native/1/receipt.json").read_text())["status"]
+            == "captured"
+        )
+
+    assert (
+        sum(
+            (base / "snapshots" / j["snapshot_id"] / "complete.json").is_file()
+            for j in jobs
+        )
+        == 2
+    )
+    name = f"failed-b1-{failure_edge}"
+    result = quarantine_c.run(
+        SimpleNamespace(
+            name=name, reason="batch interrupted", failed_attempt="1", plan_sha256=None
+        )
+    )
+    assert result["moves"] == 5
+    assert all(not (base / "snapshots" / j["snapshot_id"]).exists() for j in jobs)
+    assert all(
+        (base / "quarantine" / name / "snapshots" / j["snapshot_id"]).is_dir()
+        for j in jobs
+    )
+    assert (unrelated / "other-batch.txt").read_text() == "preserve"
+    assert quarantine_c.admission(base)[0]["moves"] == 5
+
+    def fresh_packet(context, root, job, versions, ocr, **kwargs):
+        return {**fake_packet(job), "state": {"retry": True}}
+
+    monkeypatch.setattr(capture_c.render, "capture_block", fresh_packet)
+    assert capture_c.run(args) == 0
+    assert all(
+        batch.completed(base / "snapshots" / j["snapshot_id"], current, j) for j in jobs
+    )
+    assert quarantine_c.admission(base)[0]["moves"] == 5
+    args.batch = 2
+    assert capture_c.run(args) == 0
+    assert quarantine_c.admission(base)[0]["moves"] == 5
+
+
+def test_copied_back_complete_snapshot_is_superseded(tmp_path, monkeypatch):
+    from tests.mve.observer.test_wo6c import capture_env, sandbox
+
+    sandbox.__wrapped__(tmp_path, monkeypatch)
+    args = capture_env.__wrapped__(tmp_path, monkeypatch)
+    args.prepare_only = False
+    args.batch = 1
+    base = tmp_path / capture_c.BASE
+    assert capture_c.run(args) == 0
+    plan = capture_c.plan()
+    ident = plan["jobs"][4]["snapshot_id"]
+    (base / "snapshots" / plan["jobs"][7]["snapshot_id"] / "complete.json").unlink()
+    quarantine_c.run(
+        SimpleNamespace(
+            name="partial-accept",
+            reason="acceptance interrupted",
+            failed_attempt="1",
+            plan_sha256=None,
+        )
+    )
+    retry = base / "native/1"
+    retry.mkdir()
+    (retry / "plan.json").write_text(json.dumps(plan))
+    (retry / "receipt.json").write_text(
+        json.dumps({"plan_sha256": plan["sha256"], "status": "failed", "retry": 2})
+    )
+    shutil.copytree(
+        base / "quarantine/partial-accept/snapshots" / ident, base / "snapshots" / ident
+    )
+    with pytest.raises(ValueError, match="failed attempt evidence still active"):
+        quarantine_c.admission(base)
+
+
 def test_failed_attempt_copied_back_identical_inventory_is_superseded(
     tmp_path, monkeypatch
 ):
@@ -336,8 +480,91 @@ def test_same_plan_retry_native_requires_current_plan_and_receipt(
         quarantine_c.admission(base)
 
 
-@pytest.mark.parametrize("status", ["captured", "accepted"])
-def test_failed_attempt_refuses_success(tmp_path, monkeypatch, status):
+def test_fully_accepted_batch_cannot_be_set_aside(tmp_path, monkeypatch):
+    from tests.mve.observer.test_wo6c import capture_env, sandbox
+
+    sandbox.__wrapped__(tmp_path, monkeypatch)
+    args = capture_env.__wrapped__(tmp_path, monkeypatch)
+    args.prepare_only = False
+    args.batch = 1
+    assert capture_c.run(args) == 0
+    base = tmp_path / capture_c.BASE
+    with pytest.raises(ValueError, match="accepted"):
+        quarantine_c.run(
+            SimpleNamespace(
+                name="bad",
+                reason="fully accepted",
+                failed_attempt="1",
+                plan_sha256=None,
+            )
+        )
+    assert (base / "native/1").is_dir()
+    assert not (base / "quarantine/bad").exists()
+
+
+def test_captured_receipt_with_invalid_completion_can_be_set_aside(
+    tmp_path, monkeypatch
+):
+    from tests.mve.observer.test_wo6c import capture_env, sandbox
+
+    sandbox.__wrapped__(tmp_path, monkeypatch)
+    args = capture_env.__wrapped__(tmp_path, monkeypatch)
+    args.prepare_only = False
+    args.batch = 1
+    assert capture_c.run(args) == 0
+    base = tmp_path / capture_c.BASE
+    ident = capture_c.plan()["jobs"][7]["snapshot_id"]
+    (base / "snapshots" / ident / "complete.json").write_text("{}")
+    result = quarantine_c.run(
+        SimpleNamespace(
+            name="invalid-completion",
+            reason="acceptance validation interrupted",
+            failed_attempt="1",
+            plan_sha256=None,
+        )
+    )
+    assert result["moves"] == 5
+    assert quarantine_c.admission(base)[0]["moves"] == 5
+
+
+def test_failed_record_reader_rejects_fully_accepted_captured_batch(
+    tmp_path, monkeypatch
+):
+    from tests.mve.observer.test_wo6c import capture_env, sandbox
+
+    sandbox.__wrapped__(tmp_path, monkeypatch)
+    args = capture_env.__wrapped__(tmp_path, monkeypatch)
+    args.prepare_only = False
+    args.batch = 1
+    assert capture_c.run(args) == 0
+    base = tmp_path / capture_c.BASE
+    ident = capture_c.plan()["jobs"][7]["snapshot_id"]
+    completed = base / "snapshots" / ident / "complete.json"
+    sealed_completion = completed.read_bytes()
+    completed.unlink()
+    quarantine_c.run(
+        SimpleNamespace(
+            name="partial-acceptance",
+            reason="acceptance interrupted",
+            failed_attempt="1",
+            plan_sha256=None,
+        )
+    )
+    folder = base / "quarantine/partial-acceptance"
+    moved = folder / "snapshots" / ident
+    (moved / "complete.json").write_bytes(sealed_completion)
+    record_path = folder / "QUARANTINE.json"
+    record = json.loads(record_path.read_text())
+    for move in record["moves"]:
+        if move["source"] == f"snapshots/{ident}":
+            move["inventory"] = quarantine_c.inventory(moved)
+    record_path.write_text(json.dumps(inv.seal(record)))
+    with pytest.raises(ValueError, match="accepted batch cannot be set aside"):
+        quarantine_c.admission(base)
+
+
+@pytest.mark.parametrize("status", ["accepted", "prepared_only"])
+def test_failed_attempt_refuses_other_status(tmp_path, monkeypatch, status):
     monkeypatch.setattr(storage, "WORKTREE", tmp_path)
     base = tmp_path / capture_c.BASE
     attempt = base / "native/0"
@@ -762,7 +989,6 @@ def test_failed_attempt_admission_faults(tmp_path, monkeypatch, fault):
         "missing",
         "batch",
         "snapshot_symlink",
-        "accepted",
         "snapshot_link",
         "both_modes",
     ],
@@ -792,10 +1018,6 @@ def test_failed_attempt_writer_faults(tmp_path, monkeypatch, fault):
         shutil.rmtree(attempt)
     elif fault == "snapshot_symlink":
         (base / "snapshots").symlink_to(attempt, target_is_directory=True)
-    elif fault == "accepted":
-        snapshot = base / "snapshots" / p["jobs"][0]["snapshot_id"]
-        snapshot.mkdir(parents=True)
-        (snapshot / "complete.json").write_text("{}")
     elif fault == "snapshot_link":
         snapshot = base / "snapshots" / p["jobs"][0]["snapshot_id"]
         snapshot.parent.mkdir()
