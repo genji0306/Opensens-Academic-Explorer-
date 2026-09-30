@@ -9,6 +9,25 @@
       "bundle_symlinks": null,
       "hash_method": "sha256 of sorted per-file shasum -a 256 lines (./ paths, spaces preserved); renderer_pin.framework_hash",
       "bundle_path": "operator-supplied via --chrome; never persisted"
+    },
+    "chrome-154": {
+      "browser_version": "154.0.8037.58",
+      "framework_tree_sha256": "bee47bb114b9beaa9cb2bce536ebdb61e9a3fc73da3cf7a4ab301363ccaab28b",
+      "launcher_sha256": "633aa60f1ee2346804e006071d8f6a2114106e9c17abd601fe61bf9754638740",
+      "info_plist_sha256": "3f3640b26a6296c2f4ff8cce069a8d49e52115112e64c37a4f6580c30e9b936f",
+      "versions_current_target": "154.0.8037.58",
+      "bundle_symlinks": {
+        "Frameworks/Google Chrome Framework.framework/Google Chrome Framework": "Versions/Current/Google Chrome Framework",
+        "Frameworks/Google Chrome Framework.framework/Helpers": "Versions/Current/Helpers",
+        "Frameworks/Google Chrome Framework.framework/Libraries": "Versions/Current/Libraries",
+        "Frameworks/Google Chrome Framework.framework/Resources": "Versions/Current/Resources",
+        "Frameworks/Google Chrome Framework.framework/Versions/152.0.7977.83/Helpers/GoogleUpdater.app/Contents/Helpers/GoogleSoftwareUpdate.bundle/Contents/MacOS/ksadmin": "../Helpers/ksadmin",
+        "Frameworks/Google Chrome Framework.framework/Versions/153.0.8010.54/Helpers/GoogleUpdater.app/Contents/Helpers/GoogleSoftwareUpdate.bundle/Contents/MacOS/ksadmin": "../Helpers/ksadmin",
+        "Frameworks/Google Chrome Framework.framework/Versions/154.0.8037.58/Helpers/GoogleUpdater.app/Contents/Helpers/GoogleSoftwareUpdate.bundle/Contents/MacOS/ksadmin": "../Helpers/ksadmin",
+        "Frameworks/Google Chrome Framework.framework/Versions/Current": "154.0.8037.58"
+      },
+      "hash_method": "sha256 of sorted per-file shasum -a 256 lines (./ paths, spaces preserved); renderer_pin.framework_hash",
+      "bundle_path": "operator-supplied at runtime via --chrome (prepared as an unmodified ditto copy of the preserved snapshot bundle; smoke record renderers/wo1d-154-smoke.json passed launch, codesign, native and context version 154.0.8037.58)"
     }
   },
   "note": "Per-packet dependency locks preserved verbatim at merge into mve/integration; each packet pins the files it was built and reviewed against.",
