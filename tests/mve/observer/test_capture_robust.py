@@ -408,6 +408,7 @@ def test_actual_browser_context_version_checks_are_mocked(tmp_path, monkeypatch)
     manager.__exit__ = Mock(return_value=False)
     manager.chromium.launch_persistent_context.return_value = context
     monkeypatch.setattr(playwright.sync_api, "sync_playwright", lambda: manager)
+    monkeypatch.setattr(policy, "browser_version", lambda _: "153.fixture")
     jobs = [dict(snapshot_id="fixture")]
     assert render.run_browser(
         tmp_path,
@@ -434,6 +435,19 @@ def test_actual_browser_context_version_checks_are_mocked(tmp_path, monkeypatch)
             capture=change,
         )
     assert context.close.call_count == 2
+    capture = Mock()
+    with pytest.raises(policy.RendererVersionError):
+        render.run_browser(
+            tmp_path,
+            tmp_path / "pass-2",
+            "unused",
+            None,
+            tmp_path,
+            jobs=jobs,
+            capture=capture,
+        )
+    capture.assert_not_called()
+    assert context.close.call_count == 3
 
 
 def test_policy_low_bounds_and_invalid_count():

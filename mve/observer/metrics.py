@@ -5,6 +5,7 @@ import numpy as np
 from scipy.stats import beta
 from mve.observer.card import Card, go1, binding
 from mve.observer.design import ARMS, require
+from mve.observer.capture_policy import one_version
 
 
 def interval(successes, trials):
@@ -56,6 +57,30 @@ def sign_flip(differences, *, seed):
 
 def report(plan, rows, observer):
     p = plan.to_dict()
+    entries = {e["snapshot_id"]: e for e in p.get("manifest", {}).get("snapshots", [])}
+    renderer_versions = {}
+    for cluster in p["clusters"]:
+        # Include discovery, null, replication and donor blocks, not just the
+        # images that happened to produce a card. Synthetic summaries without
+        # a manifest retain an explicit unknown covariate.
+        blocks = {
+            cluster.get(k)
+            for k in (
+                "discovery",
+                "replication",
+                "donor",
+                "null_discovery",
+                "null_replication",
+            )
+        }
+        values = [
+            e["renderer_versions"].get("chrome")
+            for e in entries.values()
+            if e["data_ref"]["source_block_id"] in blocks
+        ]
+        renderer_versions[cluster["id"]] = (
+            one_version(values) if any(v is not None for v in values) else None
+        )
     jobs = {j["id"]: j for j in p["jobs"]}
     expected = {(j["id"], i) for j in p["jobs"] for i in range(j["slots"])}
     require(
@@ -189,6 +214,7 @@ def report(plan, rows, observer):
             "cluster_outcomes": [
                 {
                     **c,
+                    "renderer_version": renderer_versions[c["id"]],
                     "survivors": {
                         a: counts[c["id"], a]
                         for a in (("contrast",) if c["contrast"] else ARMS)
@@ -196,6 +222,13 @@ def report(plan, rows, observer):
                 }
                 for c in p["clusters"]
             ],
+            "renderer_caveat": (
+                "Renderer version is a per-cluster covariate. Within-cluster comparisons "
+                "retain a common renderer. If clusters use 153 and 154, version is "
+                "confounded with capture order and largely with module; an aggregate "
+                "result cannot establish renderer invariance. Sign-flip inference still "
+                "depends on A1 and A2. Unknown versions are reported as null."
+            ),
             "assumptions": [
                 "A1 independent clusters (not proven by disjointness)",
                 "A2 within-cluster exchangeability / symmetric differences; random call order does not prove this",

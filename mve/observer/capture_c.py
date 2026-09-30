@@ -16,7 +16,7 @@ from mve.observer import development_c as dev, storage, snapshots as s
 from mve.observer import snapshot_capture as old, snapshot_render as render
 from mve.observer import snapshot_batch as batch, render_c
 from mve.observer.snapshot_inventory import seal
-from mve.observer import capture_policy as policy
+from mve.observer import capture_policy as policy, renderer_pin
 from mve.observer.refusals import Parser
 
 ROOT = dev.ROOT
@@ -194,6 +194,11 @@ def run(args):
         return worker(args, out, p, jobs)
     load_start = policy.load(args.max_load)
     limits = policy.bounds(args, 4)
+    version_start = (
+        renderer_pin.preflight(args.chrome, args.renderer_pin)
+        if not args.prepare_only
+        else None
+    )
     with storage.lock():
         if out.exists():
             raise ValueError("immutable capture attempt exists")
@@ -202,9 +207,6 @@ def run(args):
             if (snapshots / j["snapshot_id"]).exists():
                 raise ValueError("immutable snapshot exists")
         storage.disk_guard(storage.local(storage.GENERATED), 80 * 1024**2)
-        version_start = (
-            policy.browser_version(args.chrome) if not args.prepare_only else None
-        )
         out.mkdir(parents=True)
         snapshots.mkdir(exist_ok=True)
         repos = {k: Path(getattr(args, k)).expanduser().resolve() for k in s.COMMITS}
@@ -219,6 +221,7 @@ def run(args):
             bounds=limits,
             browser_version=None,
             browser_version_start=version_start,
+            renderer_pin=args.renderer_pin,
         )
         try:
             for name, repo in repos.items():
@@ -238,6 +241,8 @@ def run(args):
                     "--page-load-timeout",
                     str(args.page_load_timeout),
                 ]
+                if args.renderer_pin:
+                    args.worker_args += ["--renderer-pin", args.renderer_pin]
                 args.output = str(out.relative_to(ROOT))
                 args.repeat = False
                 args.sandbox_output = base
@@ -265,7 +270,7 @@ def run(args):
             batch.write(out / "receipt.json", receipt)
             batch.require_audit(receipt)
         if receipt["status"] == "renderer_drift":
-            raise ValueError("renderer version changed during batch")
+            raise policy.RendererVersionError("renderer version changed during batch")
         if receipt["status"] == "captured":
             candidates = json.loads((out / "capture.json").read_text())["candidates"]
             if len(candidates) != len(jobs):

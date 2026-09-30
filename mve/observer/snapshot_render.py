@@ -396,6 +396,7 @@ def run_browser(dist, out, chrome, ocr, private, *, jobs=None, capture=None):
                 "timezone": "UTC",
             }
             if jobs is not None:
+                policy.one_version([policy.browser_version(chrome), versions["chrome"]])
                 packets = [capture(context, out, j, versions, ocr) for j in jobs]
                 policy.one_version([versions["chrome"], context.browser.version])
                 return packets

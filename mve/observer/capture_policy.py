@@ -16,11 +16,18 @@ MAX_PASS_SECONDS = 1860
 MAX_BATCH_SECONDS = 3840
 
 
+class RendererVersionError(ValueError):
+    label = "renderer_version"
+
+
 class HostLoadError(ValueError):
     label = "host_load"
 
 
 def options(parser):
+    parser.add_argument(
+        "--renderer-pin", help="named pinned_renderers record in DEPS.lock"
+    )
     parser.add_argument("--page-load-timeout", type=int, default=PAGE_LOAD_SECONDS)
     parser.add_argument("--timeout-per-pass", type=int)
     parser.add_argument("--max-load", type=float)
@@ -73,7 +80,7 @@ def one_version(values):
         or any(not isinstance(v, str) or not v for v in values)
         or len(set(values)) != 1
     ):
-        raise ValueError("renderer version mismatch or missing")
+        raise RendererVersionError("renderer version mismatch or missing")
     return values[0]
 
 

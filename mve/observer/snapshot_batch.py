@@ -16,7 +16,7 @@ import time
 from mve.observer import snapshot_inventory as inv, snapshots as s, storage
 from mve.observer import snapshot_capture as old, snapshot_render as render
 
-from mve.observer import capture_policy as policy
+from mve.observer import capture_policy as policy, renderer_pin
 from mve.observer.capture_evidence import resume_state, snapshot_version
 
 ROOT = inv.ROOT
@@ -407,6 +407,24 @@ def run(args):
             raise ValueError("worker output identity mismatch")
         return worker(args, out)
     load_start = policy.load(args.max_load)
+    # Native pin checks precede even the lock's directory creation. Resume and
+    # version checks are repeated under lock before selecting an attempt.
+    pre_state = resume_state(base, plan)
+    pending = {j["snapshot_id"] for j in pre_state["remaining"]}
+    version_start = (
+        renderer_pin.preflight(args.chrome, args.renderer_pin)
+        if not args.prepare_only and any(j["snapshot_id"] in pending for j in chosen)
+        else None
+    )
+    for j in chosen:
+        prior = pre_state["cluster_versions"].get(j["block"]["cluster"])
+        if (
+            prior
+            and version_start
+            and j["snapshot_id"] in pending
+            and not args.drift_from
+        ):
+            policy.one_version([prior, version_start])
     with storage.lock():
         if args.drift_from and base.exists():
             raise ValueError("immutable drift output exists")
@@ -418,15 +436,12 @@ def run(args):
             for j in chosen
             if j["snapshot_id"] in {r["snapshot_id"] for r in remaining}
         ]
+        if chosen and not args.prepare_only and version_start is None:
+            raise policy.RendererVersionError("selection changed; rerun preflight")
         repos = {
             name: Path(getattr(args, name)).expanduser().resolve() for name in s.COMMITS
         }
         projected = admit(ROOT / "mve/generated", len(remaining), archive_size(repos))
-        version_start = (
-            policy.browser_version(args.chrome)
-            if not args.prepare_only and chosen
-            else None
-        )
         for j in chosen:
             prior = state["cluster_versions"].get(j["block"]["cluster"])
             if prior and version_start:
@@ -443,6 +458,7 @@ def run(args):
         receipt = dict(
             load_start=load_start,
             browser_version_start=version_start,
+            renderer_pin=args.renderer_pin,
             browser_version=None,
             bounds=policy.bounds(args, 10),
             quarantine=state["quarantine"],
@@ -480,6 +496,8 @@ def run(args):
                     str(args.cache.expanduser().resolve()),
                 ]
                 args.worker_args += ["--page-load-timeout", str(args.page_load_timeout)]
+                if args.renderer_pin:
+                    args.worker_args += ["--renderer-pin", args.renderer_pin]
                 if args.drift_from:
                     args.worker_args += [
                         "--drift-from",
@@ -524,7 +542,7 @@ def run(args):
             ):
                 raise ValueError("source drift")
         if receipt["status"] == "renderer_drift":
-            raise ValueError("renderer version changed during batch")
+            raise policy.RendererVersionError("renderer version changed during batch")
         if receipt["status"] == "captured":
             capture = json.loads((out / "capture.json").read_text())
             candidates = capture["candidates"]

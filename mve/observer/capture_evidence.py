@@ -35,6 +35,11 @@ def quarantine(base, plan):
         plain_child(root, folder.name)
         path = plain_child(folder, "QUARANTINE.json")
         record = json.loads(path.read_text())
+        if record["schema"] == "mve-wo1b-partial-quarantine-v1":
+            from mve.observer import quarantine_partial
+
+            records.append(quarantine_partial.read(base, folder, plan, record))
+            continue
         if (
             record["schema"] != "mve-wo1b-quarantine-v1"
             or record["attempt"] != folder.name
@@ -103,3 +108,34 @@ def resume_state(base, plan):
         cluster_versions=versions,
         quarantine=records,
     )
+
+
+def main(argv=None):
+    """Read-only evidence admission, including recorded partial quarantine."""
+    import argparse
+    from mve.observer import snapshot_inventory as inv
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--base", type=Path, required=True)
+    parser.add_argument("--plan", type=Path, required=True)
+    args = parser.parse_args(argv)
+    try:
+        state = resume_state(args.base, inv.load(args.plan))
+        print(
+            json.dumps(
+                dict(
+                    completed=len(state["completed"]),
+                    remaining=len(state["remaining"]),
+                    cluster_versions=state["cluster_versions"],
+                    quarantine=state["quarantine"],
+                )
+            )
+        )
+        return 0
+    except (ValueError, OSError, KeyError) as exc:
+        print("evidence refused: " + getattr(exc, "label", type(exc).__name__))
+        return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -448,6 +448,7 @@ def test_capture_plan_and_delivery(sandbox, monkeypatch):
 @pytest.fixture
 def capture_env(sandbox, monkeypatch):
     args = SimpleNamespace(
+        renderer_pin=None,
         batch=0,
         worker=False,
         prepare_only=True,
@@ -814,3 +815,16 @@ def test_capture_robust_refusals(capture_env, sandbox, monkeypatch, change):
     else:
         r = json.loads(next(sandbox.rglob("receipt.json")).read_text())
         assert "load_start" in r and "load_end" in r and r["source_repos_unchanged"]
+
+
+def test_pinned_capture_forwards_pin(capture_env, sandbox, monkeypatch):
+    from mve.observer import renderer_pin
+
+    a = capture_env
+    a.prepare_only = False
+    a.renderer_pin = "chrome-153"
+    monkeypatch.setattr(renderer_pin, "preflight", lambda *args: "153.fixture")
+    assert cap.run(a) == 0
+    assert a.worker_args[-2:] == ["--renderer-pin", "chrome-153"]
+    receipt = json.loads(next(sandbox.rglob("receipt.json")).read_text())
+    assert receipt["renderer_pin"] == "chrome-153"
