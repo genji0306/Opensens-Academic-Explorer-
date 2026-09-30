@@ -130,19 +130,33 @@ def end_version(receipt, chrome, started):
         receipt["status"] = "renderer_drift"
 
 
-def write_traceback(out, exc):
+def write_traceback(out, exc, *, worker=False):
     """Persist only exception type and stack locations, never values or source lines."""
     if out is None or not Path(out).is_dir():
         return
-    if (Path(out) / "traceback.txt").exists():
+    target = Path(out) / ("worker-traceback.txt" if worker else "traceback.txt")
+    if target.exists():
         return
     frames = traceback.extract_tb(exc.__traceback__)
-    rows = [type(exc).__name__] + [
+    message = str(exc)
+    # An exception can contain source paths, private workspace paths or URLs.
+    # Retain its message only when it has no path-shaped absolute component.
+    import re
+
+    if (
+        worker
+        and message
+        and not re.search(r"(?<![A-Za-z0-9._-])/(?:[^/\s]+)|[A-Za-z]:[\\/]", message)
+    ):
+        heading = f"{type(exc).__name__}: {message[:4096]}"
+    else:
+        heading = type(exc).__name__
+    rows = [heading] + [
         f"{Path(frame.filename).name}:{frame.lineno}:{frame.name}" for frame in frames
     ]
     raw = ("\n".join(rows) + "\n").encode()[:65536]
     fd = os.open(
-        Path(out) / "traceback.txt",
+        target,
         os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
         0o600,
     )

@@ -622,7 +622,9 @@ def main(argv=None):
         return run(args)
     except Exception as exc:
         # No local paths, inherited environment or exception text in stdout.
-        policy.write_traceback(getattr(args, "attempt_path", None), exc)
+        policy.write_traceback(
+            getattr(args, "attempt_path", None), exc, worker=args.worker
+        )
         if args.worker:
             policy.write_worker_refusal(getattr(args, "attempt_path", None), exc)
         print("WO-1b refused: " + getattr(exc, "label", "internal_error"))

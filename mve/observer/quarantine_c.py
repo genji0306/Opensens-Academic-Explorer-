@@ -8,6 +8,7 @@ from pathlib import Path
 from mve.observer import capture_c, snapshot_inventory as inv, snapshots as s, storage
 
 SCHEMA = "mve-wo6c-plan-quarantine-v1"
+FAILED_SCHEMA = "mve-wo6c-failed-attempt-quarantine-v1"
 ATTEMPTS = {"0", "1", "2", "3"}
 
 
@@ -66,7 +67,146 @@ def inventory(path):
     return dict(files=files, directories=directories)
 
 
+def recapture_claim(base, ident, old_plan_sha256):
+    native = base / "native"
+    if native.is_symlink():
+        raise ValueError("symlink native root")
+    if native.is_dir():
+        for attempt in native.iterdir():
+            if attempt.is_symlink() or not attempt.is_dir():
+                raise ValueError("invalid active attempt")
+            plan_file = attempt / "plan.json"
+            if plan_file.is_symlink():
+                raise ValueError("symlink active plan")
+            if not plan_file.is_file():
+                continue
+            plan = json.loads(plan_file.read_text())
+            if (
+                inv.seal(plan) == plan
+                and plan.get("sha256") != old_plan_sha256
+                and ident in {job.get("snapshot_id") for job in plan.get("jobs", [])}
+            ):
+                return True
+    return False
+
+
+def active_is_superseded(base, move, plan_sha256):
+    """IDs are data-derived; only matching evidence provenance is superseded."""
+    source = Path(move["source"])
+    active = base / source
+    if not active.exists() and not active.is_symlink():
+        return False
+    if active.is_symlink() or not active.is_dir():
+        raise ValueError("invalid active evidence")
+    marker = active / (
+        "receipt.json" if source.parts[0] == "native" else "complete.json"
+    )
+    if marker.is_file():
+        sha = json.loads(marker.read_text()).get("plan_sha256")
+        if sha == plan_sha256:
+            return True
+        if isinstance(sha, str) and len(sha) == 64:
+            return False
+    if source.parts[0] == "native":
+        plan_file = active / "plan.json"
+        if plan_file.is_file():
+            sha = json.loads(plan_file.read_text()).get("sha256")
+            if sha == plan_sha256:
+                return True
+            if isinstance(sha, str) and len(sha) == 64:
+                return False
+        raise ValueError("unidentified active attempt")
+    else:
+        # During capture, complete.json does not yet exist. A native attempt
+        # with a sealed different plan establishes the recapture's ownership.
+        if recapture_claim(base, source.parts[1], plan_sha256):
+            return False
+    if inventory(active) == move["inventory"]:
+        return True
+    raise ValueError("unidentified active snapshot")
+
+
+def verify_failed(base, record):
+    if inv.seal(record) != record or record.get("schema") != FAILED_SCHEMA:
+        raise ValueError("failed attempt record mismatch")
+    if not isinstance(record.get("reason"), str) or not record["reason"].strip():
+        raise ValueError("failed attempt reason required")
+    name = storage.token(record["name"])
+    number = record["attempt"]
+    if number not in ATTEMPTS:
+        raise ValueError("invalid failed attempt number")
+    folder = base / "quarantine" / name
+    if (
+        folder.is_symlink()
+        or not folder.is_dir()
+        or {p.name for p in folder.iterdir()}
+        != {"QUARANTINE.json", "native", "snapshots"}
+    ):
+        raise ValueError("failed attempt quarantine root mismatch")
+    attempt = folder / "native" / number
+    plan = json.loads((attempt / "plan.json").read_text())
+    receipt = json.loads((attempt / "receipt.json").read_text())
+    if (
+        inv.seal(plan) != plan
+        or plan.get("schema") != "mve-wo6c-capture-v1"
+        or len(plan.get("jobs", [])) != 16
+        or receipt.get("status") != "failed"
+        or receipt.get("plan_sha256") != plan.get("sha256")
+        or record.get("attempt_plan_sha256") != plan.get("sha256")
+    ):
+        raise ValueError("failed attempt provenance mismatch")
+    ids = {
+        j["snapshot_id"] for j in plan["jobs"][4 * int(number) : 4 * int(number) + 4]
+    }
+    if len(ids) != 4:
+        raise ValueError("failed attempt batch incomplete")
+    sources = {m["source"] for m in record["moves"]}
+    if len(sources) != len(record["moves"]) or f"native/{number}" not in sources:
+        raise ValueError("failed attempt moves incomplete")
+    if any(
+        src != f"native/{number}" and src not in {f"snapshots/{i}" for i in ids}
+        for src in sources
+    ):
+        raise ValueError("failed attempt snapshot selection mismatch")
+    for move in record["moves"]:
+        source = Path(move["source"])
+        if Path(move["dest"]) != Path("quarantine") / name / source:
+            raise ValueError("failed attempt path mismatch")
+        if inventory(base / move["dest"]) != move["inventory"]:
+            raise ValueError("failed attempt artifact digest mismatch")
+        if active_is_superseded(base, move, plan["sha256"]):
+            raise ValueError("failed attempt evidence still active")
+    if {p.name for p in (folder / "native").iterdir()} != {number} or {
+        p.name for p in (folder / "snapshots").iterdir()
+    } != {Path(src).name for src in sources if src.startswith("snapshots/")}:
+        raise ValueError("failed attempt artifact set mismatch")
+    for ident in ids - {
+        Path(src).name for src in sources if src.startswith("snapshots/")
+    }:
+        active = base / "snapshots" / ident
+        if active.is_symlink():
+            raise ValueError("symlink active snapshot")
+        if active.exists():
+            marker = active / "complete.json"
+            if (
+                marker.is_file()
+                and json.loads(marker.read_text()).get("plan_sha256") != plan["sha256"]
+            ):
+                continue
+            if recapture_claim(base, ident, plan["sha256"]):
+                continue
+            raise ValueError("unrecorded failed attempt snapshot")
+    return dict(
+        name=name,
+        plan_sha256=plan["sha256"],
+        record_sha256=s.sha256(folder / "QUARANTINE.json"),
+        moves=len(sources),
+    )
+
+
 def verify(base, record):
+    if record.get("schema") == FAILED_SCHEMA:
+        return verify_failed(base, record)
     if inv.seal(record) != record:
         raise ValueError("quarantine record hash mismatch")
     if record.get("schema") != SCHEMA or not record.get("reason"):
@@ -102,18 +242,8 @@ def verify(base, record):
         ):
             raise ValueError("quarantine path mismatch")
         expected[source.parts[0]].add(source.parts[1])
-        active = base / source
-        if active.exists() or active.is_symlink():
-            marker = active / (
-                "receipt.json" if source.parts[0] == "native" else "complete.json"
-            )
-            if (
-                active.is_symlink()
-                or not marker.is_file()
-                or json.loads(marker.read_text()).get("plan_sha256")
-                != capture_c.plan()["sha256"]
-            ):
-                raise ValueError("superseded evidence still active")
+        if active_is_superseded(base, move, record["superseded_plan_sha256"]):
+            raise ValueError("superseded evidence still active")
         if inventory(base / dest) != move["inventory"]:
             raise ValueError("quarantine artifact digest mismatch")
     if expected != required:
@@ -146,9 +276,92 @@ def admission(base):
     return results
 
 
+def failed_attempt(base, args):
+    number = args.failed_attempt
+    if number not in ATTEMPTS:
+        raise ValueError("failed attempt must be 0..3")
+    if not isinstance(args.reason, str) or not args.reason.strip():
+        raise ValueError("failed attempt reason required")
+    with storage.lock():
+        admission(base)
+        folder = base / "quarantine" / args.name
+        if folder.exists() or folder.is_symlink():
+            raise ValueError("immutable quarantine exists")
+        attempt = base / "native" / number
+        if attempt.is_symlink() or not attempt.is_dir():
+            raise ValueError("failed attempt missing")
+        plan = json.loads((attempt / "plan.json").read_text())
+        receipt = json.loads((attempt / "receipt.json").read_text())
+        if (
+            inv.seal(plan) != plan
+            or plan.get("schema") != "mve-wo6c-capture-v1"
+            or len(plan.get("jobs", [])) != 16
+            or receipt.get("plan_sha256") != plan.get("sha256")
+            or receipt.get("status") != "failed"
+        ):
+            raise ValueError("only a sealed failed attempt can be set aside")
+        ids = {
+            j["snapshot_id"]
+            for j in plan["jobs"][4 * int(number) : 4 * int(number) + 4]
+        }
+        if len(ids) != 4:
+            raise ValueError("failed attempt batch incomplete")
+        snapshots = base / "snapshots"
+        if snapshots.is_symlink():
+            raise ValueError("symlink snapshots root")
+        moves = []
+        for source in [attempt] + [
+            snapshots / ident
+            for ident in sorted(ids)
+            if (snapshots / ident).exists() or (snapshots / ident).is_symlink()
+        ]:
+            if source != attempt:
+                complete = source / "complete.json"
+                if complete.exists():
+                    raise ValueError("accepted snapshot cannot be set aside")
+            rel = source.relative_to(base)
+            moves.append(
+                dict(
+                    source=rel.as_posix(),
+                    dest=(Path("quarantine") / args.name / rel).as_posix(),
+                    inventory=inventory(source),
+                )
+            )
+        record = inv.seal(
+            dict(
+                schema=FAILED_SCHEMA,
+                name=args.name,
+                reason=args.reason,
+                attempt=number,
+                attempt_plan_sha256=plan["sha256"],
+                moves=moves,
+            )
+        )
+        raw = storage.encoded(record)
+        storage.disk_guard(storage.local(storage.GENERATED), len(raw))
+        folder.mkdir(parents=True)
+        (folder / "native").mkdir()
+        (folder / "snapshots").mkdir()
+        fd = os.open(
+            folder / "QUARANTINE.json", os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600
+        )
+        with os.fdopen(fd, "wb") as stream:
+            stream.write(raw)
+        for move in moves:
+            dest = base / move["dest"]
+            if dest.exists() or dest.is_symlink():
+                raise ValueError("quarantine destination exists")
+            (base / move["source"]).rename(dest)
+        return verify_failed(base, record)
+
+
 def run(args):
     base = storage.local(capture_c.BASE)
     storage.token(args.name)
+    if getattr(args, "failed_attempt", None) is not None:
+        if args.plan_sha256 is not None:
+            raise ValueError("failed attempt does not take superseded plan hash")
+        return failed_attempt(base, args)
     if len(args.plan_sha256) != 64 or any(
         c not in "0123456789abcdef" for c in args.plan_sha256
     ):
@@ -229,7 +442,9 @@ def run(args):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--name", required=True)
-    parser.add_argument("--plan-sha256", required=True)
+    selector = parser.add_mutually_exclusive_group(required=True)
+    selector.add_argument("--plan-sha256")
+    selector.add_argument("--failed-attempt")
     parser.add_argument("--reason", required=True)
     args = parser.parse_args(argv)
     try:

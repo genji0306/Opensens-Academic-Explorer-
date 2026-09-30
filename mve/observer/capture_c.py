@@ -195,10 +195,11 @@ def run(args):
     base = storage.local(BASE)
     from mve.observer import quarantine_c
 
-    quarantine_c.admission(base)
     out = base / ("prepare" if args.prepare_only else "native") / str(args.batch)
     if args.worker:
         args.attempt_path = out
+    quarantine_c.admission(base)
+    if args.worker:
         if args.output != str(out.relative_to(ROOT)):
             raise ValueError("worker output mismatch")
         return worker(args, out, p, jobs)
@@ -339,7 +340,7 @@ def main(argv=None):
         policy.bounds(a, 4)
         return run(a)
     except Exception as exc:
-        policy.write_traceback(getattr(a, "attempt_path", None), exc)
+        policy.write_traceback(getattr(a, "attempt_path", None), exc, worker=a.worker)
         if a.worker:
             policy.write_worker_refusal(getattr(a, "attempt_path", None), exc)
         print("WO-6 refused: " + getattr(exc, "label", "internal_error"))
