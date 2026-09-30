@@ -473,6 +473,7 @@ def run(args):
             selected=[j["snapshot_id"] for j in chosen],
             status="failed",
         )
+        failure = None
         try:
             for name, repo in repos.items():
                 archive_repo(repo, name, stage / name, ROOT / "mve/generated")
@@ -528,6 +529,10 @@ def run(args):
                     + [r["browser_version"] for r in capture["candidates"]]
                 )
                 receipt["status"] = "captured"
+        except Exception as exc:
+            failure = exc
+            receipt["failure_type"] = type(exc).__name__
+            receipt["failure_label"] = getattr(exc, "label", "internal_error")
         finally:
             receipt["load_end"] = policy.load()
             policy.end_version(receipt, args.chrome, version_start)
@@ -557,6 +562,8 @@ def run(args):
             raise policy.RendererPinError("renderer bundle changed during batch")
         if receipt["status"] == "renderer_drift":
             raise policy.RendererVersionError("renderer version changed during batch")
+        if failure is not None:
+            raise failure
         if receipt["status"] == "captured":
             capture = json.loads((out / "capture.json").read_text())
             candidates = capture["candidates"]

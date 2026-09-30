@@ -234,6 +234,7 @@ def run(args):
             browser_version_start=version_start,
             renderer_pin=args.renderer_pin,
         )
+        failure = None
         try:
             for name, repo in repos.items():
                 batch.archive_repo(
@@ -268,6 +269,10 @@ def run(args):
                     + [r["browser_version"] for r in captured["candidates"]]
                 )
                 receipt["status"] = "captured"
+        except Exception as exc:
+            failure = exc
+            receipt["failure_type"] = type(exc).__name__
+            receipt["failure_label"] = getattr(exc, "label", "internal_error")
         finally:
             receipt["load_end"] = policy.load()
             policy.end_version(receipt, args.chrome, version_start)
@@ -292,6 +297,8 @@ def run(args):
             raise policy.RendererPinError("renderer bundle changed during batch")
         if receipt["status"] == "renderer_drift":
             raise policy.RendererVersionError("renderer version changed during batch")
+        if failure is not None:
+            raise failure
         if receipt["status"] == "captured":
             candidates = json.loads((out / "capture.json").read_text())["candidates"]
             if len(candidates) != len(jobs):

@@ -10,6 +10,55 @@ import pytest
 from mve.observer import capture_policy as policy, capture_c, renderer_pin
 from mve.observer import snapshot_render as render
 
+OLD_IDS = (
+    "93376ce123f8426439c1b3e6",
+    "0bb9e1f84029cea57041d4cd",
+    "65e365d1ac2f5c474cc05a1e",
+    "ca9e1b12e3a7ba6cdfeec931",
+    "c8bf43bc1bdb578db09f5365",
+    "b1c2807deb8641dca0fea2a3",
+    "214acada2b09237754145c42",
+    "03b77b35aff9820b12dd7271",
+    "d27c9f581d94d3525f242a72",
+    "d6612f609a3a66362b57db25",
+    "458301fd43f9448d5d89bb3c",
+    "d8ca2378b89b644d037289be",
+    "a5e81925bca7373df6762649",
+    "f0dc286c666c0f33c1b4eb8e",
+    "ce2391138dbdb78a0d52298f",
+    "7337e2000bb8fea0bc1a5a77",
+)
+
+
+def old_quarantine_sources(tmp_path, monkeypatch):
+    from mve.observer import snapshot_inventory as inv, storage
+
+    monkeypatch.setattr(storage, "WORKTREE", tmp_path)
+    base = tmp_path / capture_c.BASE
+    old_plan = inv.seal(
+        dict(
+            schema="mve-wo6c-capture-v1",
+            jobs=[dict(snapshot_id=ident) for ident in OLD_IDS],
+        )
+    )
+    for n in range(4):
+        attempt = base / "native" / str(n)
+        attempt.mkdir(parents=True)
+        (attempt / "plan.json").write_text(json.dumps(old_plan))
+        (attempt / "receipt.json").write_text(
+            json.dumps({"plan_sha256": old_plan["sha256"]})
+        )
+        (attempt / "browser.log").write_text("bounded diagnostic")
+    for ident in OLD_IDS:
+        folder = base / "snapshots" / ident
+        folder.mkdir(parents=True)
+        if ident not in OLD_IDS[-4:]:
+            (folder / "data.json").write_text("{}")
+    args = SimpleNamespace(
+        name="old-plan", plan_sha256=old_plan["sha256"], reason="superseded runtime"
+    )
+    return base, args
+
 
 def synthetic_bundle(tmp_path):
     contents = tmp_path / "Browser.app" / "Contents"
@@ -109,6 +158,17 @@ def test_bundle_record_and_each_component(tmp_path, monkeypatch):
             path.symlink_to(before)
 
 
+def test_null_lock_fields_refuse_preflight(tmp_path, monkeypatch):
+    chrome = synthetic_bundle(tmp_path)
+    candidate = renderer_pin.candidate(chrome)
+    for key in ("launcher_sha256", "info_plist_sha256", "bundle_symlinks"):
+        candidate[key] = None
+    monkeypatch.setattr(renderer_pin, "record", lambda _: candidate)
+    with pytest.raises(policy.RendererPinError) as exc:
+        renderer_pin.preflight(chrome, "chrome-153")
+    assert exc.value.label == "renderer_pin"
+
+
 def test_unlabeled_exception_is_internal_error(monkeypatch, capsys):
     monkeypatch.setattr(
         capture_c, "run", lambda a: (_ for _ in ()).throw(RuntimeError("secret"))
@@ -119,25 +179,9 @@ def test_unlabeled_exception_is_internal_error(monkeypatch, capsys):
 
 
 def test_wo6c_quarantine_write_ahead_and_empty_dirs(tmp_path, monkeypatch):
-    from mve.observer import quarantine_c, storage
+    from mve.observer import quarantine_c
 
-    monkeypatch.setattr(storage, "WORKTREE", tmp_path)
-    base = tmp_path / capture_c.BASE
-    old = "a" * 64
-    for n in range(4):
-        attempt = base / "native" / str(n)
-        attempt.mkdir(parents=True)
-        (attempt / "receipt.json").write_text(json.dumps({"plan_sha256": old}))
-        (attempt / "browser.log").write_text("bounded diagnostic")
-    ids = [j["snapshot_id"] for j in capture_c.plan()["jobs"]]
-    for ident in ids:
-        folder = base / "snapshots" / ident
-        folder.mkdir(parents=True)
-        if ident not in ids[-4:]:
-            (folder / "data.json").write_text("{}")
-    args = SimpleNamespace(
-        name="old-plan", plan_sha256=old, reason="superseded runtime"
-    )
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
     result = quarantine_c.run(args)
     assert result["moves"] == 20
     assert not list((base / "native").iterdir())
@@ -151,6 +195,98 @@ def test_wo6c_quarantine_write_ahead_and_empty_dirs(tmp_path, monkeypatch):
     (q / "native/3/browser.log").write_text("tamper")
     with pytest.raises(ValueError):
         quarantine_c.admission(base)
+
+
+@pytest.mark.parametrize("missing", ["native/3", "snapshots/7337e2000bb8fea0bc1a5a77"])
+def test_quarantine_writer_requires_complete_source_set(tmp_path, monkeypatch, missing):
+    import shutil
+    from mve.observer import quarantine_c
+
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    shutil.rmtree(base / missing)
+    with pytest.raises(ValueError, match="complete|missing"):
+        quarantine_c.run(args)
+    assert not (base / "quarantine").exists()
+
+
+def test_quarantine_writer_rejects_extra_snapshot(tmp_path, monkeypatch):
+    from mve.observer import quarantine_c
+
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    (base / "snapshots/extra").mkdir()
+    with pytest.raises(ValueError, match="snapshot"):
+        quarantine_c.run(args)
+    assert not (base / "quarantine").exists()
+
+
+@pytest.mark.parametrize("fault", ["symlink_attempt", "short_plan", "bad_identity"])
+def test_quarantine_rejects_invalid_old_plan_inventory(tmp_path, monkeypatch, fault):
+    import shutil
+    from mve.observer import quarantine_c, snapshot_inventory as inv
+
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    attempt = base / "native/0"
+    if fault == "symlink_attempt":
+        shutil.rmtree(attempt)
+        attempt.symlink_to("1")
+    else:
+        plan = json.loads((attempt / "plan.json").read_text())
+        if fault == "short_plan":
+            plan["jobs"].pop()
+        else:
+            plan["jobs"][0]["snapshot_id"] = "invalid"
+        plan = inv.seal(plan)
+        (attempt / "plan.json").write_text(json.dumps(plan))
+        (attempt / "receipt.json").write_text(
+            json.dumps({"plan_sha256": plan["sha256"]})
+        )
+        args.plan_sha256 = plan["sha256"]
+    with pytest.raises(ValueError):
+        quarantine_c.expected_snapshots(base / "native", args.plan_sha256)
+
+
+def test_quarantine_admission_rejects_partial_record_and_half_move(
+    tmp_path, monkeypatch
+):
+    import shutil
+    from mve.observer import quarantine_c, snapshot_inventory as inv
+
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    quarantine_c.run(args)
+    q = base / "quarantine/old-plan"
+    path = q / "QUARANTINE.json"
+    record = json.loads(path.read_text())
+    complete = list(record["moves"])
+    record["moves"] = [
+        m
+        for m in record["moves"]
+        if m["source"] != "snapshots/7337e2000bb8fea0bc1a5a77"
+    ]
+    path.write_text(json.dumps(inv.seal(record)))
+    (q / "snapshots/7337e2000bb8fea0bc1a5a77").rmdir()
+    with pytest.raises(ValueError, match="complete|missing"):
+        quarantine_c.admission(base)
+    record["moves"] = complete
+    path.write_text(json.dumps(inv.seal(record)))
+    (q / "snapshots/7337e2000bb8fea0bc1a5a77").mkdir()
+    shutil.move(q / "native/3", base / "native/3")
+    with pytest.raises(ValueError):
+        quarantine_c.admission(base)
+
+
+def test_quarantine_admission_allows_new_plan_recapture(tmp_path, monkeypatch):
+    from mve.observer import quarantine_c
+
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    quarantine_c.run(args)
+    new_plan = capture_c.plan()["sha256"]
+    (base / "native/0").mkdir()
+    (base / "native/0/receipt.json").write_text(json.dumps({"plan_sha256": new_plan}))
+    (base / "snapshots" / OLD_IDS[0]).mkdir()
+    (base / "snapshots" / OLD_IDS[0] / "complete.json").write_text(
+        json.dumps({"plan_sha256": new_plan})
+    )
+    assert quarantine_c.admission(base)[0]["moves"] == 20
 
 
 def test_traceback_is_bounded_private_and_no_exception_text(tmp_path):
@@ -265,15 +401,9 @@ def test_worker_timeout_label_relay_and_private_record(tmp_path):
 
 
 def quarantine_fixture(tmp_path, monkeypatch):
-    from mve.observer import quarantine_c, storage
+    from mve.observer import quarantine_c
 
-    monkeypatch.setattr(storage, "WORKTREE", tmp_path)
-    base = tmp_path / capture_c.BASE
-    (base / "native/0").mkdir(parents=True)
-    (base / "native/0/receipt.json").write_text(json.dumps({"plan_sha256": "a" * 64}))
-    ident = capture_c.plan()["jobs"][0]["snapshot_id"]
-    (base / "snapshots" / ident).mkdir(parents=True)
-    args = SimpleNamespace(name="old", plan_sha256="a" * 64, reason="old runtime")
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
     quarantine_c.run(args)
     return base, args
 
@@ -298,7 +428,7 @@ def test_quarantine_admission_rejects_tampering(tmp_path, monkeypatch, fault):
     from mve.observer import quarantine_c, snapshot_inventory as inv
 
     base, _ = quarantine_fixture(tmp_path, monkeypatch)
-    q = base / "quarantine/old"
+    q = base / "quarantine/old-plan"
     path = q / "QUARANTINE.json"
     record = json.loads(path.read_text())
     if fault == "hash":
@@ -342,18 +472,14 @@ def test_quarantine_admission_rejects_tampering(tmp_path, monkeypatch, fault):
     ],
 )
 def test_quarantine_writer_refuses_invalid_sources(tmp_path, monkeypatch, fault):
-    from mve.observer import quarantine_c, storage
+    import shutil
+    from mve.observer import quarantine_c
 
-    monkeypatch.setattr(storage, "WORKTREE", tmp_path)
-    base = tmp_path / capture_c.BASE
-    args = SimpleNamespace(name="old", plan_sha256="a" * 64, reason="old runtime")
-    if fault != "no_attempt":
-        (base / "native/0").mkdir(parents=True)
-        (base / "native/0/receipt.json").write_text(
-            json.dumps({"plan_sha256": "a" * 64})
-        )
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
     if fault == "invalid_hash":
         args.plan_sha256 = "bad"
+    elif fault == "no_attempt":
+        shutil.rmtree(base / "native")
     elif fault == "unexpected_attempt":
         (base / "native/4").mkdir()
     elif fault == "unexpected_snapshot":
@@ -472,14 +598,85 @@ def test_wo6c_bundle_change_at_batch_end_never_accepts(tmp_path, monkeypatch):
     assert not list(tmp_path.rglob("complete.json"))
 
 
-def test_quarantine_cli_and_inventory_edges(tmp_path, monkeypatch, capsys):
-    from mve.observer import quarantine_c, storage
+@pytest.mark.parametrize("entry", ["wo6c", "wo1b"])
+@pytest.mark.parametrize("pin_changed", [True, False])
+def test_batch_end_pin_precedes_earlier_capture_error(
+    tmp_path, monkeypatch, capsys, entry, pin_changed
+):
+    from mve.observer import snapshot_batch as batch, snapshot_inventory as inv
 
-    monkeypatch.setattr(storage, "WORKTREE", tmp_path)
-    base = tmp_path / capture_c.BASE
-    (base / "native/0/nested").mkdir(parents=True)
+    if entry == "wo6c":
+        from tests.mve.observer.test_wo6c import sandbox, capture_env
+
+        sandbox.__wrapped__(tmp_path, monkeypatch)
+        capture_env.__wrapped__(tmp_path, monkeypatch)
+
+        def command():
+            return capture_c.main(
+                [
+                    "--batch",
+                    "0",
+                    "--renderer-pin",
+                    "chrome-153",
+                    "--chrome",
+                    "unused",
+                    "--atlas",
+                    "atlas",
+                    "--lab",
+                    "lab",
+                ]
+            )
+
+        public = "WO-6 refused: "
+    else:
+        from tests.mve.observer.test_snapshot_batch import fake_batch_env
+
+        fake_batch_env.__wrapped__(tmp_path, monkeypatch)
+
+        def command():
+            return batch.main(
+                [
+                    "--plan",
+                    str(inv.ROOT / inv.PLAN),
+                    "--batch",
+                    "0",
+                    "--renderer-pin",
+                    "chrome-153",
+                ]
+            )
+
+        public = "WO-1b refused: "
+    monkeypatch.setattr(renderer_pin, "preflight", lambda *a: "153.fixture")
+    if pin_changed:
+        monkeypatch.setattr(
+            renderer_pin,
+            "verify",
+            lambda *a: (_ for _ in ()).throw(policy.RendererPinError("changed")),
+        )
+    else:
+        monkeypatch.setattr(renderer_pin, "verify", lambda *a: "153.fixture")
+    monkeypatch.setattr(
+        batch.old,
+        "isolated_capture",
+        lambda *a: (_ for _ in ()).throw(policy.PageTimeoutError("earlier")),
+    )
+    assert command() == 2
+    assert capsys.readouterr().out.strip() == public + (
+        "renderer_pin" if pin_changed else "page_timeout"
+    )
+    receipt = json.loads(next(tmp_path.rglob("receipt.json")).read_text())
+    assert receipt["status"] == ("renderer_pin" if pin_changed else "failed")
+    assert receipt["failure_type"] == "PageTimeoutError"
+    assert receipt["failure_label"] == "page_timeout"
+    assert not list(tmp_path.rglob("complete.json"))
+
+
+def test_quarantine_cli_and_inventory_edges(tmp_path, monkeypatch, capsys):
+    from mve.observer import quarantine_c
+
+    base, args = old_quarantine_sources(tmp_path, monkeypatch)
+    (base / "native/0/nested").mkdir()
     (base / "native/0/nested/file").write_bytes(b"x")
-    (base / "native/0/receipt.json").write_text(json.dumps({"plan_sha256": "a" * 64}))
     assert (
         quarantine_c.main(["--name", "old", "--plan-sha256", "bad", "--reason", "old"])
         == 2
@@ -487,16 +684,16 @@ def test_quarantine_cli_and_inventory_edges(tmp_path, monkeypatch, capsys):
     assert "refused" in capsys.readouterr().out
     assert (
         quarantine_c.main(
-            ["--name", "old", "--plan-sha256", "a" * 64, "--reason", "old"]
+            ["--name", args.name, "--plan-sha256", args.plan_sha256, "--reason", "old"]
         )
         == 0
     )
-    assert '"moves": 1' in capsys.readouterr().out
-    record = json.loads((base / "quarantine/old/QUARANTINE.json").read_text())
+    assert '"moves": 20' in capsys.readouterr().out
+    record = json.loads((base / "quarantine/old-plan/QUARANTINE.json").read_text())
     assert record["moves"][0]["inventory"]["directories"] == ["nested"]
     assert (
         quarantine_c.main(
-            ["--name", "old", "--plan-sha256", "a" * 64, "--reason", "old"]
+            ["--name", args.name, "--plan-sha256", args.plan_sha256, "--reason", "old"]
         )
         == 2
     )
@@ -506,6 +703,6 @@ def test_quarantine_cli_and_inventory_edges(tmp_path, monkeypatch, capsys):
     with pytest.raises(ValueError):
         quarantine_c.admission(base)
     (base / "quarantine/invalid").unlink()
-    (base / "quarantine/link").symlink_to("old")
+    (base / "quarantine/link").symlink_to("old-plan")
     with pytest.raises(ValueError):
         quarantine_c.admission(base)

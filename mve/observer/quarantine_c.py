@@ -8,6 +8,44 @@ from pathlib import Path
 from mve.observer import capture_c, snapshot_inventory as inv, snapshots as s, storage
 
 SCHEMA = "mve-wo6c-plan-quarantine-v1"
+ATTEMPTS = {"0", "1", "2", "3"}
+
+
+def expected_snapshots(native, plan_sha256):
+    """Recover the complete superseded set from all four sealed plan copies."""
+    if (
+        native.is_symlink()
+        or not native.is_dir()
+        or {p.name for p in native.iterdir()} != ATTEMPTS
+    ):
+        raise ValueError("complete native attempt set required")
+    expected = None
+    for number in sorted(ATTEMPTS):
+        attempt = native / number
+        if attempt.is_symlink() or not attempt.is_dir():
+            raise ValueError("native attempt must be a plain directory")
+        plan = json.loads((attempt / "plan.json").read_text())
+        receipt = json.loads((attempt / "receipt.json").read_text())
+        if (
+            inv.seal(plan) != plan
+            or plan.get("schema") != "mve-wo6c-capture-v1"
+            or plan.get("sha256") != plan_sha256
+            or receipt.get("plan_sha256") != plan_sha256
+        ):
+            raise ValueError("superseded plan and receipt mismatch")
+        jobs = plan.get("jobs")
+        if not isinstance(jobs, list) or len(jobs) != 16:
+            raise ValueError("complete superseded plan required")
+        ids = [j["snapshot_id"] for j in jobs]
+        if len(set(ids)) != 16 or any(
+            not isinstance(ident, str)
+            or len(ident) != 24
+            or any(c not in "0123456789abcdef" for c in ident)
+            for ident in ids
+        ):
+            raise ValueError("invalid superseded snapshot identities")
+        expected = set(ids)
+    return expected
 
 
 def inventory(path):
@@ -47,6 +85,10 @@ def verify(base, record):
         "snapshots",
     }:
         raise ValueError("quarantine root artifact set mismatch")
+    expected_ids = expected_snapshots(
+        folder / "native", record["superseded_plan_sha256"]
+    )
+    required = {"native": ATTEMPTS, "snapshots": expected_ids}
     expected = {"native": set(), "snapshots": set()}
     if len({move["source"] for move in record["moves"]}) != len(record["moves"]):
         raise ValueError("duplicate quarantine source")
@@ -59,11 +101,23 @@ def verify(base, record):
             or dest != Path("quarantine") / record["name"] / source
         ):
             raise ValueError("quarantine path mismatch")
-        if (base / source).exists() or (base / source).is_symlink():
-            raise ValueError("superseded evidence still active")
         expected[source.parts[0]].add(source.parts[1])
+        active = base / source
+        if active.exists() or active.is_symlink():
+            marker = active / (
+                "receipt.json" if source.parts[0] == "native" else "complete.json"
+            )
+            if (
+                active.is_symlink()
+                or not marker.is_file()
+                or json.loads(marker.read_text()).get("plan_sha256")
+                != capture_c.plan()["sha256"]
+            ):
+                raise ValueError("superseded evidence still active")
         if inventory(base / dest) != move["inventory"]:
             raise ValueError("quarantine artifact digest mismatch")
+    if expected != required:
+        raise ValueError("quarantine record lacks complete expected set")
     for kind, names in expected.items():
         if set(p.name for p in (folder / kind).iterdir()) != names:
             raise ValueError("quarantine artifact set mismatch")
@@ -107,8 +161,14 @@ def run(args):
         current_plan = capture_c.plan()
         if args.plan_sha256 == current_plan["sha256"]:
             raise ValueError("current plan cannot be quarantined")
-        jobs = current_plan["jobs"]
-        known_ids = {j["snapshot_id"] for j in jobs}
+        known_ids = expected_snapshots(base / "native", args.plan_sha256)
+        snapshot_root = base / "snapshots"
+        if (
+            snapshot_root.is_symlink()
+            or not snapshot_root.is_dir()
+            or {p.name for p in snapshot_root.iterdir()} != known_ids
+        ):
+            raise ValueError("complete superseded snapshot set required")
         moves = []
         for kind in ("native", "snapshots"):
             root = base / kind
