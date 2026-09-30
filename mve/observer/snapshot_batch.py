@@ -303,11 +303,13 @@ def worker(args, out):
             return packet
 
         def expired(signum, frame):
-            raise ValueError("batch pass timeout")
+            raise policy.PageTimeoutError("batch pass timeout")
 
         previous = signal.signal(signal.SIGALRM, expired)
         try:
             signal.setitimer(signal.ITIMER_REAL, args.timeout_per_pass)
+            if args.renderer_pin:
+                renderer_pin.verify(args.chrome, args.renderer_pin)
             packets.append(
                 render.run_browser(
                     out / "stage/atlas/vendor/zeta-explorer/dist",
@@ -403,6 +405,7 @@ def run(args):
             raise ValueError("immutable drift output exists")
     if args.worker:
         out = old.output_path(ROOT, args.output)
+        args.attempt_path = out
         if out.parent != base:
             raise ValueError("worker output identity mismatch")
         return worker(args, out)
@@ -451,6 +454,7 @@ def run(args):
         attempt = len(list(base.glob(prefix + "*")))
         out = base / (prefix + f"{attempt:03d}")
         out.mkdir()
+        args.attempt_path = out
         before = s.isolation_state(repos)
         write(out / "admission.json", projected)
         stage = out / "stage"
@@ -514,7 +518,10 @@ def run(args):
                 # Allow snapshots and this attempt, but never lab/atlas writes.
                 args.sandbox_output = base
                 args.log_limit = 65536
-                old.isolated_capture(args, out, repos, receipt)
+                try:
+                    old.isolated_capture(args, out, repos, receipt)
+                except Exception as exc:
+                    policy.relay_worker_refusal(out, exc)
                 capture = json.loads((out / "capture.json").read_text())
                 receipt["browser_version"] = policy.one_version(
                     [version_start, capture["browser_version"]]
@@ -524,6 +531,11 @@ def run(args):
         finally:
             receipt["load_end"] = policy.load()
             policy.end_version(receipt, args.chrome, version_start)
+            if args.renderer_pin and version_start is not None:
+                try:
+                    renderer_pin.verify(args.chrome, args.renderer_pin)
+                except policy.RendererPinError:
+                    receipt["status"] = "renderer_pin"
             after = s.isolation_state(repos)
             receipt["source_repos_unchanged"] = before == after
             receipt["source_audit_before_sha256"] = s.digest(before)
@@ -541,6 +553,8 @@ def run(args):
                 or not receipt["archive_unchanged"]
             ):
                 raise ValueError("source drift")
+        if receipt["status"] == "renderer_pin":
+            raise policy.RendererPinError("renderer bundle changed during batch")
         if receipt["status"] == "renderer_drift":
             raise policy.RendererVersionError("renderer version changed during batch")
         if receipt["status"] == "captured":
@@ -591,11 +605,15 @@ def run(args):
 
 
 def main(argv=None):
+    args = parse_args(argv)
     try:
-        return run(parse_args(argv))
-    except (ValueError, OSError, KeyError) as exc:
+        return run(args)
+    except Exception as exc:
         # No local paths, inherited environment or exception text in stdout.
-        print("WO-1b refused: " + getattr(exc, "label", type(exc).__name__))
+        policy.write_traceback(getattr(args, "attempt_path", None), exc)
+        if args.worker:
+            policy.write_worker_refusal(getattr(args, "attempt_path", None), exc)
+        print("WO-1b refused: " + getattr(exc, "label", "internal_error"))
         return 2
 
 

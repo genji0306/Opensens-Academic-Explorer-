@@ -24,13 +24,13 @@ REAL = (
 def test_bounds_are_derived_and_bounded():
     a = batch.parse_args(["--plan", "x", "--batch", "7"])
     assert a.page_load_timeout == 120
-    assert a.timeout_per_pass == 1860
-    assert a.overall_timeout == 3840
+    assert a.timeout_per_pass == 2760
+    assert a.overall_timeout == 5640
     for option, value in [
         ("page-load-timeout", "0"),
         ("page-load-timeout", "121"),
-        ("timeout-per-pass", "1859"),
-        ("timeout-per-pass", "1861"),
+        ("timeout-per-pass", "2759"),
+        ("timeout-per-pass", "2761"),
         ("max-load", "nan"),
         ("max-load", "-1"),
     ]:
@@ -98,7 +98,7 @@ def test_navigation_timeout_explicit_and_no_retry():
     context = Mock()
     page = context.new_page.return_value
     page.goto.side_effect = TimeoutError("load")
-    with pytest.raises(TimeoutError):
+    with pytest.raises(policy.PageTimeoutError):
         render.capture_block(context, None, j, {}, None, page_load_timeout=120)
     assert page.goto.call_count == 1
     assert page.goto.call_args.kwargs["timeout"] == 120000
@@ -454,7 +454,7 @@ def test_policy_low_bounds_and_invalid_count():
     from types import SimpleNamespace
 
     a = SimpleNamespace(page_load_timeout=60, timeout_per_pass=None, max_load=10)
-    assert policy.bounds(a, 4)["overall_seconds"] == 1200
+    assert policy.bounds(a, 4)["overall_seconds"] == 1920
     with pytest.raises(ValueError):
         policy.bounds(a, 11)
 

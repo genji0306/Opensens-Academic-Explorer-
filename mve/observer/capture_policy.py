@@ -6,18 +6,27 @@ import os
 from pathlib import Path
 import plistlib
 import signal
+import traceback
 import time
 
 PAGE_LOAD_SECONDS = 120
-POST_LOAD_SECONDS = 60
+POST_LOAD_SECONDS = 150
 PASS_OVERHEAD_SECONDS = 60
 BATCH_OVERHEAD_SECONDS = 120
-MAX_PASS_SECONDS = 1860
-MAX_BATCH_SECONDS = 3840
+MAX_PASS_SECONDS = 2760
+MAX_BATCH_SECONDS = 5640
 
 
 class RendererVersionError(ValueError):
     label = "renderer_version"
+
+
+class RendererPinError(RendererVersionError):
+    label = "renderer_pin"
+
+
+class PageTimeoutError(ValueError):
+    label = "page_timeout"
 
 
 class HostLoadError(ValueError):
@@ -92,7 +101,7 @@ def deadline(seconds):
     remaining, interval = signal.getitimer(signal.ITIMER_REAL)
 
     def expired(signum, frame):
-        raise ValueError("snapshot timeout")
+        raise PageTimeoutError("snapshot timeout")
 
     signal.signal(signal.SIGALRM, expired)
     signal.setitimer(
@@ -119,3 +128,59 @@ def end_version(receipt, chrome, started):
     receipt["browser_version_end"] = ended
     if started != ended:
         receipt["status"] = "renderer_drift"
+
+
+def write_traceback(out, exc):
+    """Persist only exception type and stack locations, never values or source lines."""
+    if out is None or not Path(out).is_dir():
+        return
+    if (Path(out) / "traceback.txt").exists():
+        return
+    frames = traceback.extract_tb(exc.__traceback__)
+    rows = [type(exc).__name__] + [
+        f"{Path(frame.filename).name}:{frame.lineno}:{frame.name}" for frame in frames
+    ]
+    raw = ("\n".join(rows) + "\n").encode()[:65536]
+    fd = os.open(
+        Path(out) / "traceback.txt",
+        os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
+        0o600,
+    )
+    with os.fdopen(fd, "wb") as stream:
+        stream.write(raw)
+
+
+def write_worker_refusal(out, exc):
+    if out is None or not Path(out).is_dir():
+        return
+    label = getattr(exc, "label", "internal_error")
+    if label not in (
+        "page_timeout",
+        "renderer_pin",
+        "renderer_version",
+        "internal_error",
+    ):
+        label = "internal_error"
+    fd = os.open(
+        Path(out) / "worker_refusal.json",
+        os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
+        0o600,
+    )
+    with os.fdopen(fd, "w") as stream:
+        stream.write('{"label":"' + label + '"}\n')
+
+
+def relay_worker_refusal(out, exc):
+    path = Path(out) / "worker_refusal.json"
+    if not path.is_file():
+        raise exc
+    import json
+
+    label = json.loads(path.read_text())["label"]
+    if label == "page_timeout":
+        raise PageTimeoutError("worker page timeout") from exc
+    if label == "renderer_pin":
+        raise RendererPinError("worker renderer pin mismatch") from exc
+    if label == "renderer_version":
+        raise RendererVersionError("worker renderer version mismatch") from exc
+    raise exc

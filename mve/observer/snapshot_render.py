@@ -150,7 +150,8 @@ def route_handler(dist, *, prospective=False):
     return handle
 
 
-def configure(page, job):
+def configure(page, job, *, action_timeout_ms=policy.POST_LOAD_SECONDS * 1000):
+    page.set_default_timeout(action_timeout_ms)
     module, null = job["module"], job["control"]["kind"] == "null_twin"
     if module == "spectral":
         page.select_option("#spectralCount", "100")
@@ -222,9 +223,15 @@ def assert_nonblank(data):
 
 
 def capture_one(context, root, job, versions, ocr):
+    with policy.deadline(policy.PAGE_LOAD_SECONDS + policy.POST_LOAD_SECONDS):
+        return _capture_one(context, root, job, versions, ocr)
+
+
+def _capture_one(context, root, job, versions, ocr):
     folder = s.inside(root, job["snapshot_id"])
     folder.mkdir()
     page = context.new_page()
+    page.set_default_timeout(policy.POST_LOAD_SECONDS * 1000)
     try:
         page.add_init_script(INIT_SCRIPT)
         page.add_init_script(
@@ -237,7 +244,11 @@ def capture_one(context, root, job, versions, ocr):
             "polar-ulam": "index.html?spiral=ulam#polar",
             "space-08": "geometry.html#primesphere",
         }[module]
-        page.goto(ORIGIN + "/" + url, wait_until="load")
+        page.goto(
+            ORIGIN + "/" + url,
+            wait_until="load",
+            timeout=policy.PAGE_LOAD_SECONDS * 1000,
+        )
         configure(page, job)
         page.evaluate("() => window.scrollTo(0,0)")
         page.evaluate("() => new Promise(r=>requestAnimationFrame(r))")
@@ -305,6 +316,10 @@ def capture_one(context, root, job, versions, ocr):
         if module == "spectral":
             entry["atlas_snapshot_id"] = "spectral-gaps-against-gue"
         return entry
+    except Exception as exc:
+        if type(exc).__name__ == "TimeoutError":
+            raise policy.PageTimeoutError("browser action timeout") from exc
+        raise
     finally:
         page.close()
 
@@ -354,6 +369,7 @@ def run_browser(dist, out, chrome, ocr, private, *, jobs=None, capture=None):
             str(profile),
             executable_path=str(chrome_launcher(private, out.name, chrome)),
             headless=True,
+            timeout=policy.PASS_OVERHEAD_SECONDS * 1000,
             # Safe only under the parent's OS sandbox: internet and writes
             # outside the explicit output/runtime allowlist remain denied.
             chromium_sandbox=False,
@@ -478,6 +494,7 @@ def capture_block(
         raise ValueError("bounded page load timeout required")
     block = job["block"]
     page = context.new_page()
+    page.set_default_timeout(policy.POST_LOAD_SECONDS * 1000)
     try:
         viewport = block["camera"]["views"][job["view"]]["viewport"]
         page.set_viewport_size({"width": viewport[0], "height": viewport[1]})
@@ -557,5 +574,9 @@ def capture_block(
             state=state,
             versions={**versions, "page_load_timeout_seconds": page_load_timeout},
         )
+    except Exception as exc:
+        if type(exc).__name__ == "TimeoutError":
+            raise policy.PageTimeoutError("browser action timeout") from exc
+        raise
     finally:
         page.close()

@@ -76,6 +76,7 @@ def plan():
                     "capture_policy.py",
                     "capture_evidence.py",
                     "capture_c.py",
+                    "quarantine_c.py",
                     "render_c.py",
                     "snapshot_render.py",
                     "snapshot_capture.py",
@@ -93,6 +94,9 @@ def digest_id(module, source):
 
 
 def image(job, side):
+    from mve.observer import quarantine_c
+
+    quarantine_c.admission(storage.local(BASE))
     p = plan()
     ident = digest_id(job["module"], job["sealed"][side])
     j = next(j for j in p["jobs"] if j["snapshot_id"] == ident)
@@ -144,11 +148,13 @@ def worker(args, out, p, jobs):
             return packet
 
         def expired(signum, frame):
-            raise ValueError("capture pass timeout")
+            raise policy.PageTimeoutError("capture pass timeout")
 
         previous = signal.signal(signal.SIGALRM, expired)
         try:
             signal.setitimer(signal.ITIMER_REAL, args.timeout_per_pass)
+            if args.renderer_pin:
+                renderer_pin.verify(args.chrome, args.renderer_pin)
             packets.append(
                 render.run_browser(
                     dist,
@@ -187,8 +193,12 @@ def run(args):
         raise ValueError("batch must be 0..3")
     jobs = p["jobs"][4 * args.batch : 4 * args.batch + 4]
     base = storage.local(BASE)
+    from mve.observer import quarantine_c
+
+    quarantine_c.admission(base)
     out = base / ("prepare" if args.prepare_only else "native") / str(args.batch)
     if args.worker:
+        args.attempt_path = out
         if args.output != str(out.relative_to(ROOT)):
             raise ValueError("worker output mismatch")
         return worker(args, out, p, jobs)
@@ -208,6 +218,7 @@ def run(args):
                 raise ValueError("immutable snapshot exists")
         storage.disk_guard(storage.local(storage.GENERATED), 80 * 1024**2)
         out.mkdir(parents=True)
+        args.attempt_path = out
         snapshots.mkdir(exist_ok=True)
         repos = {k: Path(getattr(args, k)).expanduser().resolve() for k in s.COMMITS}
         before = s.isolation_state(repos)
@@ -247,7 +258,10 @@ def run(args):
                 args.repeat = False
                 args.sandbox_output = base
                 args.log_limit = 65536
-                old.isolated_capture(args, out, repos, receipt)
+                try:
+                    old.isolated_capture(args, out, repos, receipt)
+                except Exception as exc:
+                    policy.relay_worker_refusal(out, exc)
                 captured = json.loads((out / "capture.json").read_text())
                 receipt["browser_version"] = policy.one_version(
                     [version_start, captured["browser_version"]]
@@ -257,6 +271,11 @@ def run(args):
         finally:
             receipt["load_end"] = policy.load()
             policy.end_version(receipt, args.chrome, version_start)
+            if args.renderer_pin and version_start is not None:
+                try:
+                    renderer_pin.verify(args.chrome, args.renderer_pin)
+                except policy.RendererPinError:
+                    receipt["status"] = "renderer_pin"
             after = s.isolation_state(repos)
             receipt.update(
                 source_repos_unchanged=before == after,
@@ -269,6 +288,8 @@ def run(args):
                 shutil.rmtree(stage)
             batch.write(out / "receipt.json", receipt)
             batch.require_audit(receipt)
+        if receipt["status"] == "renderer_pin":
+            raise policy.RendererPinError("renderer bundle changed during batch")
         if receipt["status"] == "renderer_drift":
             raise policy.RendererVersionError("renderer version changed during batch")
         if receipt["status"] == "captured":
@@ -303,7 +324,10 @@ def main(argv=None):
         policy.bounds(a, 4)
         return run(a)
     except Exception as exc:
-        print("WO-6 refused: " + getattr(exc, "label", "source_pin"))
+        policy.write_traceback(getattr(a, "attempt_path", None), exc)
+        if a.worker:
+            policy.write_worker_refusal(getattr(a, "attempt_path", None), exc)
+        print("WO-6 refused: " + getattr(exc, "label", "internal_error"))
         return 2
 
 

@@ -18,7 +18,7 @@ import subprocess
 import sys
 import tempfile
 
-from mve.observer import snapshots as s
+from mve.observer import snapshots as s, capture_policy as policy
 from mve.observer import snapshot_render as render
 
 WORKTREE = Path(__file__).resolve().parents[2]
@@ -177,7 +177,7 @@ def readonly_probe(profile, repo_files):
 
 def capture_pass(args, dist, out, private):
     def expired(signum, frame):
-        raise ValueError(
+        raise policy.PageTimeoutError(
             f"{out.name} pass exceeded {args.timeout_per_pass}-second wall-clock timeout"
         )
 
@@ -270,14 +270,28 @@ def capture_log(out, private, receipt, limit=None):
     """WO-1b bounds retained diagnostics; verbose browser logs stay disposable."""
     path = (private if limit is not None else out) / "browser.log"
     try:
-        with path.open("w") as log:
+        with os.fdopen(
+            os.open(
+                path,
+                os.O_WRONLY
+                | os.O_CREAT
+                | (os.O_EXCL if limit is not None else os.O_TRUNC),
+                0o600,
+            ),
+            "w",
+        ) as log:
             yield log
     finally:
         if limit is not None:
             with path.open("rb") as source:
                 raw = source.read(limit)
                 truncated = bool(source.read(1))
-            with (out / "browser.log").open("xb") as target:
+            with os.fdopen(
+                os.open(
+                    out / "browser.log", os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600
+                ),
+                "wb",
+            ) as target:
                 target.write(raw)
             receipt["browser_log_truncated"] = truncated
 
@@ -342,7 +356,7 @@ def isolated_capture(args, out, repos, receipt):
                     timeout=getattr(args, "overall_timeout", CAPTURE_TIMEOUT_SECONDS)
                 )
             except subprocess.TimeoutExpired as exc:
-                raise ValueError(
+                raise policy.PageTimeoutError(
                     "isolated capture exceeded overall wall-clock timeout"
                 ) from exc
             finally:

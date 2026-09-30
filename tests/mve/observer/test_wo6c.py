@@ -456,7 +456,7 @@ def capture_env(sandbox, monkeypatch):
         atlas="atlas",
         lab="lab",
         chrome="unused",
-        timeout_per_pass=780,
+        timeout_per_pass=None,
         page_load_timeout=120,
         max_load=None,
     )
@@ -824,6 +824,7 @@ def test_pinned_capture_forwards_pin(capture_env, sandbox, monkeypatch):
     a.prepare_only = False
     a.renderer_pin = "chrome-153"
     monkeypatch.setattr(renderer_pin, "preflight", lambda *args: "153.fixture")
+    monkeypatch.setattr(renderer_pin, "verify", lambda *args: "153.fixture")
     assert cap.run(a) == 0
     assert a.worker_args[-2:] == ["--renderer-pin", "chrome-153"]
     receipt = json.loads(next(sandbox.rglob("receipt.json")).read_text())

@@ -112,6 +112,9 @@ def test_browser_capture_fixture(tmp_path, monkeypatch):
     """Exercises orchestration with a fixture page, not a live browser claim."""
 
     class Page:
+        def set_default_timeout(self, ms):
+            self.timeout = ms
+
         def __init__(self):
             self.blind = False
 

@@ -29,13 +29,12 @@ def bundle(tmp_path):
     (contents / "Info.plist").write_bytes(
         plistlib.dumps({"CFBundleShortVersionString": VERSION})
     )
-    lines = b"".join(
-        hashlib.sha256(raw).hexdigest().encode() + b"  ./" + name + b"\n"
-        for name, raw in [(b"a", b"alpha"), (b"z", b"omega")]
-    )
-    pin = dict(
-        browser_version=VERSION, framework_tree_sha256=hashlib.sha256(lines).hexdigest()
-    )
+    chrome = contents / "MacOS/Google Chrome"
+    chrome.parent.mkdir()
+    chrome.write_bytes(b"launcher")
+    from mve.observer import renderer_pin
+
+    pin = renderer_pin.candidate(chrome)
     return contents / "MacOS/Google Chrome", tree, pin
 
 
@@ -93,7 +92,7 @@ def test_pinned_preflight_refuses(tmp_path, monkeypatch, fault):
         record.clear()
     with pytest.raises(policy.RendererVersionError) as exc:
         pin.preflight(chrome, "chrome-153")
-    assert exc.value.label == "renderer_version"
+    assert exc.value.label == "renderer_pin"
 
 
 @pytest.mark.parametrize("entry", ["wo1b", "wo6c", "admission"])
@@ -360,6 +359,7 @@ def test_pinned_batch_forwards_pin_and_records_it(fake_batch_env, monkeypatch):
         return "153.fixture"
 
     monkeypatch.setattr(renderer_pin, "preflight", checked)
+    monkeypatch.setattr(renderer_pin, "verify", checked)
     args = batch.parse_args(
         [
             "--plan",
@@ -371,7 +371,7 @@ def test_pinned_batch_forwards_pin_and_records_it(fake_batch_env, monkeypatch):
         ]
     )
     assert batch.run(args) == 0
-    assert seen == ["chrome-153"]
+    assert seen == ["chrome-153"] * 4
     assert args.worker_args[-2:] == ["--renderer-pin", "chrome-153"]
     receipt = json.loads(next(fake_batch_env.rglob("receipt.json")).read_text())
     assert receipt["renderer_pin"] == "chrome-153"
