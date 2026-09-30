@@ -671,6 +671,113 @@ def test_batch_end_pin_precedes_earlier_capture_error(
     assert not list(tmp_path.rglob("complete.json"))
 
 
+@pytest.mark.parametrize("entry", ["wo6c", "wo1b"])
+@pytest.mark.parametrize(
+    "pin_changed,audit_failed,capture_failed,expected_label",
+    [
+        (True, True, False, "renderer_pin"),
+        (True, True, True, "renderer_pin"),
+        (False, True, False, "internal_error"),
+        (False, False, False, None),
+    ],
+)
+def test_batch_end_pin_precedes_source_audit_and_clean_batch(
+    tmp_path,
+    monkeypatch,
+    capsys,
+    entry,
+    pin_changed,
+    audit_failed,
+    capture_failed,
+    expected_label,
+):
+    from mve.observer import snapshot_batch as batch, snapshot_inventory as inv
+    from mve.observer import snapshots as s
+
+    if entry == "wo6c":
+        from tests.mve.observer.test_wo6c import sandbox, capture_env
+
+        sandbox.__wrapped__(tmp_path, monkeypatch)
+        capture_env.__wrapped__(tmp_path, monkeypatch)
+
+        def command():
+            return capture_c.main(
+                [
+                    "--batch",
+                    "0",
+                    "--renderer-pin",
+                    "chrome-153",
+                    "--chrome",
+                    "unused",
+                    "--atlas",
+                    "atlas",
+                    "--lab",
+                    "lab",
+                ]
+            )
+
+        public = "WO-6 refused: "
+    else:
+        from tests.mve.observer.test_snapshot_batch import fake_batch_env
+
+        fake_batch_env.__wrapped__(tmp_path, monkeypatch)
+
+        def command():
+            return batch.main(
+                [
+                    "--plan",
+                    str(inv.ROOT / inv.PLAN),
+                    "--batch",
+                    "0",
+                    "--renderer-pin",
+                    "chrome-153",
+                ]
+            )
+
+        public = "WO-1b refused: "
+
+    monkeypatch.setattr(renderer_pin, "preflight", lambda *a: "153.fixture")
+    if pin_changed:
+        monkeypatch.setattr(
+            renderer_pin,
+            "verify",
+            lambda *a: (_ for _ in ()).throw(policy.RendererPinError("changed")),
+        )
+    else:
+        monkeypatch.setattr(renderer_pin, "verify", lambda *a: "153.fixture")
+    if capture_failed:
+        monkeypatch.setattr(
+            batch.old,
+            "isolated_capture",
+            lambda *a: (_ for _ in ()).throw(policy.PageTimeoutError("earlier")),
+        )
+    audit_calls = 0
+
+    def isolation_state(repos):
+        nonlocal audit_calls
+        audit_calls += 1
+        return {"fixture": "changed" if audit_failed and audit_calls > 1 else "same"}
+
+    monkeypatch.setattr(s, "isolation_state", isolation_state)
+    assert command() == (2 if expected_label else 0)
+    output = capsys.readouterr().out.strip()
+    if expected_label:
+        assert output == public + expected_label
+    receipt = json.loads(next(tmp_path.rglob("receipt.json")).read_text())
+    assert receipt["status"] == ("renderer_pin" if pin_changed else "captured")
+    assert receipt["source_repos_unchanged"] is (not audit_failed)
+    if audit_failed:
+        assert receipt["audit_failure_type"] == "ValueError"
+        assert receipt["audit_failure_label"] == "internal_error"
+        assert not list(tmp_path.rglob("complete.json"))
+    else:
+        assert "audit_failure_type" not in receipt
+        assert list(tmp_path.rglob("complete.json"))
+    if capture_failed:
+        assert receipt["failure_type"] == "PageTimeoutError"
+        assert receipt["failure_label"] == "page_timeout"
+
+
 def test_quarantine_cli_and_inventory_edges(tmp_path, monkeypatch, capsys):
     from mve.observer import quarantine_c
 

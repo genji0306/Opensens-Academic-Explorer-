@@ -474,6 +474,7 @@ def run(args):
             status="failed",
         )
         failure = None
+        audit_failure = None
         try:
             for name, repo in repos.items():
                 archive_repo(repo, name, stage / name, ROOT / "mve/generated")
@@ -552,14 +553,18 @@ def run(args):
             if stage.exists():
                 shutil.rmtree(stage)
             receipt["generated_bytes"] = s.tree_bytes(ROOT / "mve/generated")
-            write(out / "receipt.json", receipt)
             if (
                 not receipt["source_repos_unchanged"]
                 or not receipt["archive_unchanged"]
             ):
-                raise ValueError("source drift")
+                audit_failure = ValueError("source drift")
+                receipt["audit_failure_type"] = type(audit_failure).__name__
+                receipt["audit_failure_label"] = "internal_error"
+            write(out / "receipt.json", receipt)
         if receipt["status"] == "renderer_pin":
             raise policy.RendererPinError("renderer bundle changed during batch")
+        if audit_failure is not None:
+            raise audit_failure
         if receipt["status"] == "renderer_drift":
             raise policy.RendererVersionError("renderer version changed during batch")
         if failure is not None:

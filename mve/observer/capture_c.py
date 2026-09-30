@@ -235,6 +235,7 @@ def run(args):
             renderer_pin=args.renderer_pin,
         )
         failure = None
+        audit_failure = None
         try:
             for name, repo in repos.items():
                 batch.archive_repo(
@@ -291,10 +292,17 @@ def run(args):
             )
             if stage.exists():
                 shutil.rmtree(stage)
+            try:
+                batch.require_audit(receipt)
+            except ValueError as exc:
+                audit_failure = exc
+                receipt["audit_failure_type"] = type(exc).__name__
+                receipt["audit_failure_label"] = getattr(exc, "label", "internal_error")
             batch.write(out / "receipt.json", receipt)
-            batch.require_audit(receipt)
         if receipt["status"] == "renderer_pin":
             raise policy.RendererPinError("renderer bundle changed during batch")
+        if audit_failure is not None:
+            raise audit_failure
         if receipt["status"] == "renderer_drift":
             raise policy.RendererVersionError("renderer version changed during batch")
         if failure is not None:
